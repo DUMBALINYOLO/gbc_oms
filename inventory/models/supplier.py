@@ -14,7 +14,7 @@ from .inventory_management import StockReceipt
 from .order import Order
 from accounts.models import Account
 from basedata.models import SoftDeletionModel
-from basedata.const import SUPPLIER_ADDRESSES_TYPE_CHOICES, SUPPLIER_STATUS_CHOICES
+from basedata.constants import SUPPLIER_ADDRESSES_TYPE_CHOICES, SUPPLIER_STATUS_CHOICES
 
 
 

@@ -143,15 +143,15 @@ class BillPayment(SoftDeletionModel):
         on_delete=models.SET_NULL,
         blank=True,
         null=True)
-    cash = models.ForeignKey(
-                'daily_cash_register.CashRegister', 
-                on_delete=models.SET_NULL, 
-                null=True,
-                blank=True,
-                related_name='billpayments'
-            )
+    # cash = models.ForeignKey(
+    #             'daily_cash_register.CashRegister', 
+    #             on_delete=models.SET_NULL, 
+    #             null=True,
+    #             blank=True,
+    #             related_name='billpayments'
+    #         )
     paid_by = models.ForeignKey(
-                            'employees.Employee',
+                            'people.StaffUser',
                             on_delete=models.SET_NULL,
                             blank=True,
                             null=True

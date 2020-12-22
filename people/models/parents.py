@@ -8,7 +8,7 @@ from basedata.constants import (
             GENDER_CHOICES,
             USER_STATUS_CHOICES,
         )
-from basedata.utils import random_string
+
 from .accounts import User
 
 

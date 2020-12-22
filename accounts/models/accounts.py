@@ -19,8 +19,6 @@ from .transactions import Credit, Debit
 
 
 
-
-
 class AbstractAccount(SoftDeletionModel):
     '''
     The representation of the record of all financial expenditures and receipts

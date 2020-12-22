@@ -8,8 +8,10 @@ from django.conf import settings
 from django.db import models
 from django.db.models import Q
 from accounts.models import Account, Journal, JournalEntry
-from basedata.models import SingletonModel, SoftDeletionModel
-from basedata.const import (
+from basedata.models import SoftDeletionModel
+from solo.models import SingletonModel
+
+from basedata.constants import (
                 INVENTORY_VALUATION_PERIOD_CHOICES,
                 INVENTORY_VALUATION_METHODS_CHOICES,
                 INVENTORY_CHECK_FREQUENCY_CHOICES,

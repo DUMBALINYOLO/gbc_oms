@@ -8,7 +8,6 @@ from functools import reduce
 from django.conf import settings
 from django.db import models
 from django.db.models import Q
-from manufacture.models import ManufacturedStockItem
 from basedata.models import SoftDeletionModel
 
 
@@ -23,7 +22,7 @@ class WareHouse(SoftDeletionModel):
     address = models.TextField()
     description = models.TextField(blank=True)
     inventory_controller = models.ForeignKey(
-                                'employees.Employee',
+                                'people.StaffUser',
                                 on_delete=models.SET_NULL,
                                 null=True,
                                 blank=True
@@ -32,116 +31,6 @@ class WareHouse(SoftDeletionModel):
     width = models.FloatField(default=0.0)
     height = models.FloatField(default=0.0)
     last_inventory_check_date = models.DateField(blank=True, null=True)
-
-
-
-
-    ##########################################MANUFACTURED STOCK ITMES ############################################
-    @property
-    def manufactured_items_count(self):
-        '''returns the number of distinct item types in the warehouse'''
-        return self.manufacturedstockitems.count()
-
-    @property
-    def manufacturedstockitems(self):
-        return self.manufacturedstockitems.all()
-
-
-    # @property
-    # def manufactured_items_quantity(self):
-    #     '''returns the total number of physical entities stored in the warehouse'''
-    #     return sum(
-    #         [i.quantity for i in self.manufacturedstockitems])
-
-
-    def decrement_manufactured_item(self, item, quantity):
-        '''Takes an item and decrements it from the appropriate warehouse item'''
-        #safety checks handled elsewhere
-        retrieved_item = self.get_manufactured_item(item)
-        if retrieved_item:
-            retrieved_item.decrement(quantity)
-
-
-    def increament_manufactured_item(self, item, quantity):
-        '''Takes an item and decrements it from the appropriate warehouse item'''
-        #safety checks handled elsewhere
-        retrieved_item = self.get_manufactured_item(item)
-        if retrieved_item:
-            retrieved_item.increment(quantity)
-
-
-    def get_manufactured_item(self, item):
-        '''can accept product consumable or equipment as an arg'''
-        if ManufacturedStockItem.objects.filter(
-            item=item, warehouse=self).exists():
-
-            return ManufacturedStockItem.objects.get(item=item, warehouse=self)
-
-        return None # next code is dead for now
-
-
-    def has_manufactured_item(self, item):
-        return self.get_manufactured_item(item) is not None
-
-
-    def has_manufactured_item_quantity_greater_than_zero(self, item):
-        queried_item = self.has_manufactured_item(item)
-
-        if not queried_item: return False
-
-        return queried_item.quantity > 0
-
-
-    def add_manufactured_item(self, item, quantity, location=None):
-        #check if record of item is already in warehouse
-        #ignore location if present
-        if self.has_manufactured_item(item) and not location:
-            self.get_manufactured_item(item).increment(quantity)
-
-
-        elif location:
-            location = StorageMedia.objects.get(pk=location)
-            print('warehouse location: ', location)
-            qs = self.manufacturedstockitems.filter(item=item,
-                location=location)
-
-            if qs.exists():
-                wi = qs.first()
-                wi.increment(quantity)
-                print('qs: Exists!')
-            else:
-                print('New Item')
-                print('location: ', location)
-                print('quantity: ', quantity)
-                print('warehouse: ', self)
-
-                ManufacturedStockItem.objects.create(
-                    item=item,
-                    location=location,
-                    quantity=quantity,
-                    warehouse=self)
-
-        else:
-            self.manufacturedstockitems.create(item=item,
-                    quantity=quantity, location=location)
-
-        return self.get_manufactured_item(item)
-
-    def manufactured_transfer(self, other, item, quantity):
-        #transfer stock from current warehouse to other warehouse
-
-        if not other.has_manufactured_item(item):
-            other.add_manufactured_item(item, 0)
-        elif not self.has_manufactured_item(item):
-            raise Exception('The source warehouse does not stock this item')
-        else:
-            source_item = self.get_manufactured_item(item)
-            if quantity > source_item.quantity:
-                raise Exception('The transferred quantity is greater than the inventory in stock')
-            other.get_manufactured_item(item).increment(quantity)
-            self.get_manufactured_item(item).decrement(quantity)
-            # for successful transfers, record the transfer cost some way
-
 
 
     ###########################################INVENTORY STOCK ITEMS###################################################

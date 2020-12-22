@@ -268,7 +268,7 @@ INVOCE_LINE_CHOICES = [
         
     ]
 
-CUSTOMER_PAYMENT_METHODS_CHOICES = [
+STUDENT_PAYMENT_METHODS_CHOICES = [
             ("cash", "Cash" ),
             ("transfer", "Transfer"),
             ("debit card", "Debit Card"),
@@ -781,4 +781,28 @@ CLASS_ENROLLMENT_STATUS_CHOICES = [
 		('enroll', 'ENROLLED'),
 		('disenroll', 'DISENROLLED')
 ]
+
+
+FEES_TARGETS_CHOICES = [
+    ('individual', 'INDIVIDUAL'),
+    ('all', 'ALL STUDENTS'),
+    ('eights', 'GRADE 8'),
+    ('nines', 'GRADE 9'),
+    ('tens', 'GRADE 10'),
+    ('elvens', 'GRADE 11'),
+    ('twelves', 'GRADE 12'),
+    ('other', 'OTHER'),
+
+]
+
+
+FEES_TYPE_CHOICES = [
+    ('once', 'ONCE-OFF'),
+    ('often', 'OFTEN'),
+]
+
+
+
+
+
 

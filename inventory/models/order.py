@@ -11,7 +11,7 @@ from .warehouse import (
                     )
 from .inventory_management import *
 from .debit_note import DebitNoteLine
-from basedata.const import INVENTORY_ORDER_STATUS_CHOICES, UNIT_OF_MEASURE_CHOICES
+from basedata.constants import INVENTORY_ORDER_STATUS_CHOICES, UNIT_OF_MEASURE_CHOICES
 from basedata.models import SoftDeletionModel
 import accounts
 
@@ -48,7 +48,7 @@ class Order(SoftDeletionModel):
     methods
     -------------
     '''
-    validated_by = models.ForeignKey('employees.Employee',
+    validated_by = models.ForeignKey('people.StaffUser',
                                     on_delete=models.SET_NULL,
                                     null=True,
                                     blank=True)
@@ -82,7 +82,7 @@ class Order(SoftDeletionModel):
 
     received_to_date = models.FloatField(default=0.0)
     issuing_inventory_controller = models.ForeignKey(
-                                        'employees.Employee',
+                                        'people.StaffUser',
                                         default=1,
                                         on_delete=models.SET_NULL,
                                         null=True,
@@ -328,4 +328,5 @@ class OrderItem(models.Model):
     @property
     def returned_value(self):
         return D(self.returned_quantity) * self.order_price
+
 

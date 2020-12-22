@@ -51,7 +51,7 @@ class Asset(SoftDeletionModel):
     init_date = models.DateField()
     depreciation_method = models.IntegerField(default=0, choices=ASSET_DEPRECIATION_METHOD_CHOICES)
     salvage_value = models.DecimalField(max_digits=16, decimal_places=2)
-    created_by = models.ForeignKey('employees.Employee', default=1, on_delete=models.SET_NULL, null=True)
+    created_by = models.ForeignKey('people.StaffUser', default=1, on_delete=models.SET_NULL, null=True)
     entry = models.ForeignKey("accounts.JournalEntry", null=True, on_delete=models.SET_NULL)
     reference_number = models.CharField(max_length=255, unique=True, null=True, default=None)
 

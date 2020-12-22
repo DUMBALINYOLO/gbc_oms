@@ -29,10 +29,10 @@ class StudentClass(SoftDeletionModel):
 	    # related_name="courses",
 	        through='curriculum.KlassStudiedSubject'
 	    )
-	students = models.ManyToManyField(
-	    'people.Student', 
-	    # related_name="courses",
-	    through='StudentEnrollment',)
+	# students = models.ManyToManyField(
+	#     'people.Student', 
+	#     # related_name="courses",
+	#     through='StudentEnrollment',)
 	status = models.CharField(
 		max_length=68, choices=STUDENT_CLASS_STATUS_CHOICES)
 	# year = models.CharField(max_length=68, choices=YEAR_CHOICES)

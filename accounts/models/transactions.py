@@ -130,7 +130,7 @@ class JournalEntry(SoftDeletionModel):
                 )
     posted_to_ledger = models.BooleanField(default=False)
     adjusted = models.BooleanField(default=False)
-    creator = models.ForeignKey('employees.Employee',  
+    creator = models.ForeignKey('people.StaffUser', 
                                 on_delete=models.SET_NULL, 
                                 null=True
                             )

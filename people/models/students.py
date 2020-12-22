@@ -8,7 +8,6 @@ from basedata.constants import (
             GENDER_CHOICES,
             USER_STATUS_CHOICES,
         )
-from basedata.utils import random_string
 from phonenumber_field.modelfields import PhoneNumberField
 from .accounts import User
 

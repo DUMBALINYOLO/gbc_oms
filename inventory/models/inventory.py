@@ -3,14 +3,14 @@ from decimal import Decimal as D
 from django.db.models import Q
 from .warehouse import InventoryStockItem, WareHouse
 from .order import Order, OrderItem
-from basedata.const import (
+from basedata.constants import (
             INVENTORY_TYPES_CHOICES,
             PRODUCT_COMPONENT_PRICING_CHOICES,
             EQUIPMENT_COMPONENT_CONDITION_CHOICES,
             UNIT_OF_MEASURE_CHOICES
     )
 from basedata.models import SoftDeletionModel
-from manufacture.models import ProductionProcessIngridient
+
 
 
 

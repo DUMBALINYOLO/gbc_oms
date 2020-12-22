@@ -4,7 +4,7 @@ from django.db.models import Q
 from .inventory import InventoryItem
 from accounts.models import Account, JournalEntry
 from simple_history.models import HistoricalRecords
-from basedata.const import INVENTORY_ORDER_PAYMENT_METHODS_CHOICES
+from basedata.constants import INVENTORY_ORDER_PAYMENT_METHODS_CHOICES
 from basedata.models import SoftDeletionModel
 
 
@@ -61,15 +61,8 @@ class OrderPayment(SoftDeletionModel):
     entry = models.ForeignKey('accounts.JournalEntry',
         on_delete=models.SET_NULL,
         blank=True, null=True)
-    cash = models.ForeignKey(
-                'daily_cash_register.CashRegister', 
-                on_delete=models.SET_NULL, 
-                null=True,
-                blank=True,
-                related_name='orderpayments'
-            )
     paid_by = models.ForeignKey(
-                        'employees.Employee',
+                        'people.StaffUser',
                         on_delete = models.SET_NULL,
                         null = True,
                         related_name = 'orderpayments',
@@ -118,7 +111,7 @@ class StockReceipt(SoftDeletionModel):
     '''
     order = models.ForeignKey('inventory.Order', on_delete=models.SET_NULL,
         null=True)
-    received_by = models.ForeignKey('employees.Employee',
+    received_by = models.ForeignKey('people.StaffUser',
         on_delete=models.SET_NULL,
         null=True,
         default=1)
@@ -170,9 +163,11 @@ class StockReceiptLine(SoftDeletionModel):
 #might need to rename
 class InventoryCheck(SoftDeletionModel):
     date = models.DateField()
-    adjusted_by = models.ForeignKey('employees.Employee',
-        on_delete=models.SET_NULL,
-        null=True )
+    adjusted_by = models.ForeignKey(
+                    'people.StaffUser',
+                    on_delete=models.SET_NULL,
+                    null=True 
+                )
     warehouse = models.ForeignKey('inventory.WareHouse',
         on_delete=models.SET_NULL,
         null=True )
@@ -229,10 +224,10 @@ class StockAdjustment(SoftDeletionModel):
 class TransferOrder(SoftDeletionModel):
     date = models.DateField()
     expected_completion_date = models.DateField()
-    issuing_inventory_controller = models.ForeignKey('employees.Employee',
+    issuing_inventory_controller = models.ForeignKey('people.StaffUser',
         related_name='issuing_inventory_controller',
         on_delete=models.SET_NULL, null=True)
-    receiving_inventory_controller = models.ForeignKey('employees.Employee',
+    receiving_inventory_controller = models.ForeignKey('people.StaffUser',
         on_delete=models.SET_NULL, null=True)
     actual_completion_date =models.DateField(null=True)#provided later
     source_warehouse = models.ForeignKey('inventory.WareHouse',
@@ -287,7 +282,7 @@ class TransferOrderLine(SoftDeletionModel):
 
 class InventoryScrappingRecord(SoftDeletionModel):
     date = models.DateField()
-    controller = models.ForeignKey('employees.Employee',
+    controller = models.ForeignKey('people.StaffUser',
         on_delete=models.SET_NULL, null=True)
     warehouse = models.ForeignKey('inventory.WareHouse', on_delete=models.SET_NULL, null=True)
     comments = models.TextField(blank=True)
@@ -324,3 +319,5 @@ class InventoryScrappingRecordLine(SoftDeletionModel):
                 D(self.quantity)
 
         return 0
+
+        
