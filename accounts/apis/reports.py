@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from basedata.utilities import extract_period
-from invoicing.models import Invoice, InvoiceLine, CreditNote
+from fees.models import Invoice, InvoiceLine
 from inventory.models import InventoryItem
 from accounts.serializers import (
         DebitSerializer,

@@ -8,11 +8,17 @@ from basedata.constants import (
             GENDER_CHOICES,
             USER_STATUS_CHOICES,
         )
-
+from phonenumber_field.modelfields import PhoneNumberField
 from .accounts import User
 
 
-class Parent(User):
+class Parent(SoftDeletionModel):
+    user = models.OneToOneField(
+                        'people.User', 
+                        on_delete=models.PROTECT,
+                        null=True,
+                        blank=True
+                    )
     title = models.CharField(max_length=200, choices=USER_TITLE_CHOICES)
     gender = models.CharField(
                     max_length=500, 
@@ -21,7 +27,11 @@ class Parent(User):
                     null=True
                 )
     id_number = models.CharField(max_length=64, blank=True, null=True)
-    
+    first_name = models.CharField(max_length =32, blank=True, null=True)
+    middle_name = models.CharField(max_length =32, blank=True, null=True)
+    last_name = models.CharField(max_length =32)
+    phone_number = PhoneNumberField(blank=True, null=True)
+    whatsapp_number = PhoneNumberField(blank=True, null=True)
 
 
 

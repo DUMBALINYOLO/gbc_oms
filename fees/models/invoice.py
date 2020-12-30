@@ -82,11 +82,13 @@ class Invoice(SoftDeletionModel):
         blank=True,
         null=True,
         on_delete=models.SET_NULL)
-    draft = models.BooleanField(blank=True, default=True)
+    draft = models.BooleanField(blank=True, default=False)
     student = models.ForeignKey("people.Student",
         on_delete=models.SET_NULL,
         null=True,
-        default=DEFAULT_CUSTOMER)
+        default=DEFAULT_CUSTOMER,
+        related_name ='myinvoices'
+    )
     bookkeeper = models.ForeignKey('people.StaffUser',
         on_delete=models.SET_NULL,
         null=True,
@@ -102,8 +104,6 @@ class Invoice(SoftDeletionModel):
 
     entry = models.ForeignKey('accounts.JournalEntry',
         on_delete=models.SET_NULL,  blank=True, null=True)
-    # sale = models.ForeignKey('invoicing.Sale',
-    #     on_delete=models.SET_NULL,  blank=True, null=True)
     is_voided = models.BooleanField(blank=True,default=False)
 
 

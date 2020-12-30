@@ -6,7 +6,7 @@ from dateutil.relativedelta import relativedelta
 
 from django.db import models
 
-from basedata.models import SingletonModel
+from solo.models import SingletonModel
 
 from django.shortcuts import reverse
 from basedata.const import (
@@ -43,11 +43,15 @@ class Event(models.Model):
     repeat_active = models.BooleanField(default=False, blank=True)
     label = models.CharField(max_length=32, blank=True) 
     icon = models.CharField(max_length=32, blank=True, choices=EVENT_ICON_CHOICES)
-    owner = models.ForeignKey('people.StaffUser', on_delete=models.SET_NULL, null=True)
+    owner = models.ForeignKey(
+                            'people.User', 
+                            on_delete=models.SET_NULL, 
+                            null=True,
+                            related_name='events',
+                        )
     # reminder_notification = models.ForeignKey('messaging.notification', 
     #     blank=True, null=True, on_delete=models.SET_NULL)
 
-    
 
 
     @property
@@ -110,7 +114,32 @@ class EventParticipant(models.Model):
                     blank=True
                 )
 
-                
+    def __str__(self):
+        return f'{self.event.__str__()}'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
 

@@ -12,8 +12,15 @@ from phonenumber_field.modelfields import PhoneNumberField
 from .accounts import User
 
 
-class Student(User):
+class Student(SoftDeletionModel):
     # user = models.OneToOneField('User', on_delete=models.SET_NULL, null=True)
+
+    user = models.OneToOneField(
+                        'people.User', 
+                        on_delete=models.PROTECT,
+                        null=True,
+                        blank=True
+                    )
     
     guardian = models.ForeignKey(
     					'people.Parent', 
@@ -22,12 +29,7 @@ class Student(User):
     					null=True,
                         blank=True
     				)
-    school = models.ForeignKey(
-    					'setup.Institution',  
-    					on_delete=models.PROTECT, 
-    					related_name='students', 
-    					null=True
-    				)
+
     gender = models.CharField(
     				max_length=500, 
     				choices=GENDER_CHOICES, 
@@ -42,6 +44,11 @@ class Student(User):
     # 							default=None,
     # 							primary_key=True,
     # 						)
+    first_name = models.CharField(max_length =32, blank=True, null=True)
+    middle_name = models.CharField(max_length =32, blank=True, null=True)
+    last_name = models.CharField(max_length =32)
+    phone_number = PhoneNumberField(blank=True, null=True)
+    whatsapp_number = PhoneNumberField(blank=True, null=True)
 
 
     def save(self, *args, **kwargs):

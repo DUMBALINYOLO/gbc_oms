@@ -1,39 +1,39 @@
 from rest_framework.routers import DefaultRouter
-from invoicing.apis import (
-		PaymentViewSet,
+from .apis import (
 		QuotationViewSet,
-		SalesGroupPricingDiscountViewSet,
+		AdminStudentReceiptViewSet,
 		UnverifiedInvoiceViewSet,
 		OverdueInvoiceViewSet,
 		VoidedInvoiceViewSet,
 		RefundedInvoiceViewSet,
 		FullyPaidNotSaleInvoiceViewSet,
-		SaleViewSet,
 		InvoiceViewSet,
-		InvoiceLineViewSet,
-		CustomerReceiptViewSet,
+		StudentInvoiceViewSet,
+		StudentReceiptViewSet,
+		FeeViewSet,
+		FeesConfigViewSet,
+		AdminPaymentViewSet,
+		AdminStudentReceiptViewSet
 
 	)
 
 router = DefaultRouter()
 
-router.register(r'creditnotes', CreditNoteViewSet, basename='creditnotes')
-router.register(r'payments', PaymentViewSet, basename='payments')
-router.register(r'receipts', CustomerReceiptViewSet, basename='receipts')
-router.register(r'invoicelines', InvoiceLineViewSet, basename='invoicelines')
+router.register(r'admin-payments', AdminPaymentViewSet, basename='admin-payments')
+router.register(r'admin-receipts', AdminStudentReceiptViewSet, basename='admin-receipts')
+router.register(r'fees', FeeViewSet, basename='fees')
+router.register(r'fees-config', FeesConfigViewSet, basename='fees-config')
 router.register(r'invoices', InvoiceViewSet, basename='invoices')
+router.register(r'student-invoices', StudentInvoiceViewSet, basename='student-invoices')
+router.register(r'student-receipts', StudentReceiptViewSet, basename='student-receipts')
 
 #take from here
-router.register(r'sales-groups-pricing-discounts', SalesGroupPricingDiscountViewSet, basename='sales-groups-pricing-discounts')
 router.register(r'quotations', QuotationViewSet, basename='quotations')
 router.register(r'unverified-invoices', UnverifiedInvoiceViewSet, basename='unverified-invoices')
 router.register(r'overdue-invoices', OverdueInvoiceViewSet, basename='overdue-invoices')
 router.register(r'voided-invoices', VoidedInvoiceViewSet, basename='voided-invoices')
 router.register(r'refunded-invoices', RefundedInvoiceViewSet, basename='refunded-invoices')
 router.register(r'fullypaid-not-yet-sales-invoices', FullyPaidNotSaleInvoiceViewSet, basename='fullypaid-not-yet-sales-invoices')
-router.register(r'sales', SaleViewSet, basename='sales')
-
-
 
 
 urlpatterns = router.urls

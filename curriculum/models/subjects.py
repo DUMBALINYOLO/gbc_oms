@@ -31,6 +31,7 @@ class Subject(SoftDeletionModel):
 
 class KlassStudiedSubject(SoftDeletionModel):
 
+
     subject = models.ForeignKey('Subject', on_delete=models.PROTECT)
     klass = models.ForeignKey('klasses.StudentClass', on_delete=models.PROTECT)
     subject_teacher = models.ForeignKey(
@@ -75,6 +76,7 @@ class StudentStudySubject(SoftDeletionModel):
 
 
 
+
 class AddCourseToSubject(SoftDeletionModel):
     course = models.ForeignKey('courses.Course', on_delete=models.PROTECT)
     subject = models.ForeignKey('KlassStudiedSubject', on_delete=models.PROTECT)
@@ -89,6 +91,4 @@ class AddCourseToSubject(SoftDeletionModel):
 
     def __str__(self):
         return f'{self.course.__str__()} {self.subject.__str__()}'
-
-
 

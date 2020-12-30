@@ -1,3 +1,5 @@
-from .payment import *
-from .invoice import *
-from .receipt import *
+from .student import *
+from .admin import *
+
+
+

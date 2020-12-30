@@ -21,11 +21,11 @@ from accounts.apis import (
                     AdjustmentViewSet,
                     DebitViewSet,
                     CreditViewSet,
-                    TrialBalanceAPIView,
-                    ProfitAndLossReportAPIView,
-                    JournalReportAPIView,
-                    BalanceSheetAPIView,
-                    AccountReportAPIView,
+                    # TrialBalanceAPIView,
+                    # ProfitAndLossReportAPIView,
+                    # JournalReportAPIView,
+                    # BalanceSheetAPIView,
+                    # AccountReportAPIView,
                     FullyPaidButNotVerifiedBillViewset,
                     FullyPaidBillViewset,
                     JournalViewSet,
@@ -65,14 +65,7 @@ router.register(r'bills', BillViewset, basename='bills')
 router.register(r'bill-payments', BillPaymentViewset, basename='bill-payments')
 
 
-urlpatterns = [
-     path('trial-balance-reports', TrialBalanceAPIView.as_view()),
-     path('balance-sheets-reports', BalanceSheetAPIView.as_view()),
-     path('profit-and-loss-reports', ProfitAndLossReportAPIView.as_view()),
-     path('journal-reports', JournalReportAPIView.as_view()),
-     path('accounts-movements-reports', AccountReportAPIView.as_view()),
-
-] + router.urls
+urlpatterns = router.urls
 
 
 

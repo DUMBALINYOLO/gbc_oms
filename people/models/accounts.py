@@ -55,9 +55,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
 
-    first_name = models.CharField(max_length =32, blank=True, null=True)
-    middle_name = models.CharField(max_length =32, blank=True, null=True)
-    last_name = models.CharField(max_length =32)
+    
     email = models.EmailField(
                         unique=True, 
                         blank=True, 
@@ -69,9 +67,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
     category = models.CharField(max_length=341, choices = USER_TYPE_CHOICES, default='student')
-    phone_number = PhoneNumberField(blank=True, null=True)
-    whatsapp_number = PhoneNumberField(blank=True, null=True)
-    
     
 
     objects = UserManager()

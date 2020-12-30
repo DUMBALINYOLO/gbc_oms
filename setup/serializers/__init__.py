@@ -1,2 +1,2 @@
-from .it_admin import *
+from .admin import *
 

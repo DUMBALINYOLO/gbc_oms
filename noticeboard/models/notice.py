@@ -14,12 +14,6 @@ class Notice(SoftDeletionModel):
 	'''
 
 	title = models.CharField(max_length=68)
-	school = models.ForeignKey(
-							'setup.Institution',
-							on_delete=models.SET_NULL,
-							null=True,
-							related_name='curriculums'
-						)
 	type = models.CharField(max_length=200, choices=SCHOOL_NOTICE_TYPE_CHOICES)
 	status = models.CharField(max_length=200, choices=SCHOOL_NOTICE_BOARD_STATUS_CHOICES)
 	date_created = models.DateField()
@@ -30,6 +24,8 @@ class Notice(SoftDeletionModel):
 
 	def __str__(self):
 		return self.title
+
+
 
 
 

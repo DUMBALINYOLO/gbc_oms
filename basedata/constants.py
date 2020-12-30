@@ -457,6 +457,7 @@ SUPPLIER_STATUS_CHOICES = [
 
 
 
+
 STUDY_MODE_CHOICES = [
 		('studied', 'STUDIED'),
 		('unstudied', 'NOT STUDIED')

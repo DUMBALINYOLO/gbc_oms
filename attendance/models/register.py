@@ -6,7 +6,7 @@ from django.conf import settings
 	
 
 class Attendance(SoftDeletionModel):
-	date = models.DateTimeField(auto_now_add=True)
+	date = models.DateField()
 	klass = models.ForeignKey(
 						'klasses.StudentClass', 
 						models.SET_NULL, 
@@ -17,7 +17,7 @@ class Attendance(SoftDeletionModel):
 	recorded_by = models.ForeignKey(
                             "people.StaffUser", 
                             on_delete=models.SET_NULL, 
-                            related_name='recorder', 
+                            related_name='registerrecords', 
                             null=True
                         )
 	complete=models.BooleanField(default=False, blank=True)
@@ -59,4 +59,20 @@ class AttendanceRecord(SoftDeletionModel):
 		return f"(STUDENT: {self.student}, STATUS: {self.status})"
 
 
+	@property
+	def date(self):
+		return self.attendance.date
+
+
+
+
+
+
+
+
+
+
+
+
 		
+	

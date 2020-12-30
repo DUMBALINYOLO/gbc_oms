@@ -1,0 +1,21 @@
+export const GET_RECEIPTS = 'GET_RECEIPTS';
+export const GET_RECEIPT = 'GET_RECEIPT';
+export const GET_STUDENT_RECEIPTS = 'GET_STUDENT_RECEIPTS';
+export const GET_STUDENT_RECEIPT = 'GET_STUDENT_RECEIPT';
+export const GET_PAYMENTS = 'GET_PAYMENTS';
+export const ADD_PAYMENT = 'ADD_PAYMENT';
+export const GET_PAYMENT = 'GET_PAYMENT';
+export const EDIT_PAYMENT = 'EDIT_PAYMENT';
+export const GET_FEES = 'GET_FEES';
+export const ADD_FEE = 'ADD_FEE';
+export const EDIT_FEE = 'EDIT_FEE';
+export const GET_FEES_CONFIG = 'GET_FEES_CONFIG';
+export const ADD_FEE_CONFIG = 'ADD_FEE_CONFIG';
+export const EDIT_FEE_CONFIG = 'EDIT_FEE_CONFIG';
+export const GET_STUDENT_INVOICES = 'GET_STUDENT_INVOICES';
+export const GET_STUDENT_INVOICE = 'GET_STUDENT_INVOICE';
+
+
+
+
+

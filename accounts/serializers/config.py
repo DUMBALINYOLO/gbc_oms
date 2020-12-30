@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from accounts.models import Tax, AccountingSettings, Currency
-from employees.models import Employee
+# from employees.models import Employee
 
 class StringSerializer(serializers.StringRelatedField):
 
@@ -45,10 +45,10 @@ class CurrencySerializer(serializers.ModelSerializer):
             'symbol',
         ]
 
-class EmployeeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Employee
-        fields = ['id', 'username']
+# class EmployeeSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Employee
+#         fields = ['id', 'username']
 
 
 

@@ -5,10 +5,10 @@ from basedata.constants import ONLINE_ADMISSION_STATUS_CHOICES
 
 
 class Admission(SoftDeletionModel):
-    student = models.ForeignKey(
+    student = models.OneToOneField(
                         'people.Student',
                         on_delete=models.CASCADE,
-                        related_name='applications'
+                        related_name='application'
                 )
     status = models.CharField(
                         max_length=200, 
@@ -29,7 +29,6 @@ class Admission(SoftDeletionModel):
         if not self.application_number:
             self.application_number = str(uuid.uuid4()).replace("-", '').upper()[:15]
         super(Admission, self).save(*args, **kwargs)
-
 
 
 

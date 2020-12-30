@@ -2,17 +2,12 @@ from django.db import models
 from decimal import Decimal as D
 from basedata.models import SoftDeletionModel
 from basedata.constants import STUDENT_CLASS_STATUS_CHOICES, YEAR_CHOICES
+from curriculum.models import Subject, KlassStudiedSubject
 
 
 class StudentClass(SoftDeletionModel):
 
 	name = models.CharField(max_length=68)
-	institution = models.ForeignKey(
-							'setup.Institution',
-							on_delete=models.SET_NULL,
-							null=True,
-							related_name='klasses'
-						)
 	stream = models.ForeignKey(
 					'klasses.Stream', 
 					related_name='classes',
@@ -21,7 +16,7 @@ class StudentClass(SoftDeletionModel):
 				)
 	max_population = models.IntegerField(default=0)
 	population = models.IntegerField(default=0)
-	class_teacher = models.ForeignKey('people.StaffUser', on_delete=models.SET_NULL, null=True)
+	class_teacher = models.OneToOneField('people.StaffUser', on_delete=models.SET_NULL, null=True)
 	year = models.CharField(max_length=68)
 	creation_date  =   models.DateTimeField(auto_now=False, auto_now_add=True)
 	subjects = models.ManyToManyField(
@@ -55,6 +50,21 @@ class StudentClass(SoftDeletionModel):
 		return self.population
 
     
+	def save(self, *args, **kwargs):
+		super(StudentClass, self).save(*args, **kwargs)
+		subjects_count = Subject.objects.count()
+		if self.subjects.count() < subjects_count:
+			for subject in Subject.objects.all():
+				KlassStudiedSubject.objects.create(
+										subject=subject, 
+										status='unstudied',
+										klass = self
+									)
+ 
+
+
+
+
     # @property
     # def is_full(self):
     # 	pass
