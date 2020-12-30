@@ -7,6 +7,7 @@ from .constants import (
 				ACCOUNT_TYPES_CLASSIFICATION_CHOICES,
 				ASSET_DEPRECIATION_METHOD_CHOICES, 
 				ASSET_TYPE_CHOICES, 
+				STUDENT_PAYMENT_METHODS_CHOICES,
 				ACCOUNTING_PERIODS_CHOICES, 
 				JOURNAL_ENTRY_TYPES_CHOICES,
 				EMPLOYEES_GENDER_CHOICES, 
@@ -16,7 +17,6 @@ from .constants import (
 				INVENTORY_ORDER_STATUS_CHOICES,
 				INVOICE_SALE_STATUS_CHOICES,
 				INVOCE_LINE_CHOICES, 
-				CUSTOMER_PAYMENT_METHODS_CHOICES,
 				PROCCES_RATE_UNIT_TIME_CHOICES,
 				MANUFACTURING_PRODUCT_TYPES,
 				BILL_OF_MATERIALS_LINE_CHOICES,
@@ -97,29 +97,41 @@ from .constants import (
 				COURSE_RATING_CHOICES,
 				COURSE_GRADING_TYPE_CHOICES,
 				GENERAL_GRADING_TYPE_CHOICES,
+				FEES_TARGETS_CHOICES,
+				FEES_TYPE_CHOICES,
 				
 			)
 
 
-class NoteViewSet(viewsets.ModelViewSet):
-    queryset = Note.objects.all()
-    serializer_class = NoteSerializer
 
 
-class OrganizationViewSet(viewsets.ModelViewSet):
-    queryset = Organization.objects.all()
-    serializer_class = OrganizationSerializer
+
+class FeeTargetsChoicesAPIView(views.APIView):
 
 
-class UnitOfMeasureViewSet(viewsets.ModelViewSet):
-	queryset = UnitOfMeasure.objects.all()
-    
+	def get(self, request, format=None):
 
-	def get_serializer_class(self, *args, **kwargs):
+		my_choices = []
+		choice_dict = dict(FEES_TARGETS_CHOICES)
+		for key, value in choice_dict.items():
 
-		if self.action in ['create', 'put', 'patch']:
-			return UnitOfMeasureSerializer
-		return UnitOfMeasureListSerializer
+			itered_dict = {"key": key, "value": value}
+			my_choices.append(itered_dict)
+		return Response(my_choices, status=status.HTTP_200_OK)
+
+class FeeTypeChoicesAPIView(views.APIView):
+
+
+	def get(self, request, format=None):
+
+		my_choices = []
+		choice_dict = dict(FEES_TYPE_CHOICES)
+		for key, value in choice_dict.items():
+
+			itered_dict = {"key": key, "value": value}
+			my_choices.append(itered_dict)
+		return Response(my_choices, status=status.HTTP_200_OK)
+
 
 
 class BillPaymentMethodsChoicesAPIView(views.APIView):
@@ -908,7 +920,7 @@ class CustomerPaymentMethodsChoicesAPIView(views.APIView):
 	def get(self, request, format=None):
 
 		my_choices = []
-		choice_dict = dict(CUSTOMER_PAYMENT_METHODS_CHOICES)
+		choice_dict = dict(STUDENT_PAYMENT_METHODS_CHOICES)
 		for key, value in choice_dict.items():
 
 			itered_dict = {"key": key, "value": value}

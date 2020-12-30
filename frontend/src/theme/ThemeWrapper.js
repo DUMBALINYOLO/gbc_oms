@@ -194,6 +194,7 @@ class ThemeWrapper extends React.Component {
               changeLayout={this.handleChangeLayout}
               changeDirection={this.handleChangeDirection}
             />
+            
             <AppContext.Provider value={this.handleChangeMode}>
               {children}
             </AppContext.Provider>

@@ -28,6 +28,8 @@ import {
 } from '../constants';
 
 // Get
+
+
 export const getReceipts = () => dispatch => {
     axios.get(adminreceiptsURL)
         .then(res => {
@@ -124,16 +126,6 @@ export const addFee= (fee) => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getFee = id => dispatch =>{
-      axios.get(`http://127.0.0.1:8000/api/fees/fees/${id}`)
-        .then(res => {
-            dispatch({
-                type: GET_FEE,
-                payload: res.data
-            });
-        }).catch(err => console.log(err))
-
-}
 
 
 
@@ -156,17 +148,6 @@ export const addFeeConfig= (fee) => dispatch => {
                 payload: res.data
             });
         }).catch(err => console.log(err))
-}
-
-export const getFeeConfig = id => dispatch =>{
-      axios.get(`http://127.0.0.1:8000/api/fees/fees-config/${id}`)
-        .then(res => {
-            dispatch({
-                type: GET_FEE_CONFIG,
-                payload: res.data
-            });
-        }).catch(err => console.log(err))
-
 }
 
 
@@ -217,6 +198,33 @@ export const editPayment = (id, payment) => dispatch => {
                 payload: res.data
             });
         }).catch(err => console.log(err))
+
 }
+
+
+export const editFee = (id, payment) => dispatch => {
+    axios.put(`http://127.0.0.1:8000/api/fees/fees/${id}`, payment)
+        .then(res => {
+            dispatch({
+                type: EDIT_FEE,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+
+export const editFeeConfig = (id, payment) => dispatch => {
+    axios.put(`http://127.0.0.1:8000/api/fees/fees-config/${id}`, payment)
+        .then(res => {
+            dispatch({
+                type: EDIT_FEE_CONFIG,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+
+
+
 
 

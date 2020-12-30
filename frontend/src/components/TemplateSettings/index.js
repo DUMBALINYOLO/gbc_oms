@@ -338,68 +338,6 @@ class TemplateSettings extends React.Component {
                 </section>
                 {/* END */}
               </TabContainer>
-              <TabContainer>
-                <section className={classes.settingWraper}>
-                  <Paper className={classes.optBlock}>
-                    <FormControl component="fieldset">
-                      <FormLabel component="legend" className={classes.title}>
-                        <Icon className={classes.icon}>chrome_reader_mode</Icon>
-                        Navigation Layout
-                      </FormLabel>
-                      <FormGroup row>
-                        <FormControlLabel
-                          className={classes.layoutField}
-                          control={(
-                            <LayoutThumb
-                              value="left-sidebar"
-                              selectedLayout={layout}
-                              handleChange={this.handleChangeLayout}
-                              name="Left Sidebar"
-                              preview={<LeftSidebarThumb />}
-                            />
-                          )}
-                        />
-                        <FormControlLabel
-                          className={classes.layoutField}
-                          control={(
-                            <LayoutThumb
-                              value="big-sidebar"
-                              selectedLayout={layout}
-                              handleChange={this.handleChangeLayout}
-                              name="Left Big Sidebar"
-                              preview={<LeftSidebarBigThumb />}
-                            />
-                          )}
-                        />
-                        <FormControlLabel
-                          className={classes.layoutField}
-                          control={(
-                            <LayoutThumb
-                              value="top-navigation"
-                              selectedLayout={layout}
-                              handleChange={this.handleChangeLayout}
-                              name="Top Navigation"
-                              preview={<TopNavigationThumb />}
-                            />
-                          )}
-                        />
-                        <FormControlLabel
-                          className={classes.layoutField}
-                          control={(
-                            <LayoutThumb
-                              value="mega-menu"
-                              selectedLayout={layout}
-                              handleChange={this.handleChangeLayout}
-                              name="Mega Menu"
-                              preview={<MegaMenuThumb />}
-                            />
-                          )}
-                        />
-                      </FormGroup>
-                    </FormControl>
-                  </Paper>
-                </section>
-              </TabContainer>
             </SwipeableViews>
           </div>
         </Slide>

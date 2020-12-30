@@ -2,9 +2,6 @@ from rest_framework import routers
 from django.urls import path
 
 from .api import (
-            NoteViewSet,
-            OrganizationViewSet,
-            UnitOfMeasureViewSet,
             AccountTypesCategoryChoicesAPIView,
             AccountTypesClassificationChoicesAPIView,
             AssetsDepreciationMethodChoicesAPIView,
@@ -95,7 +92,9 @@ from .api import (
             CourseLayoutChoicesAPIView,
             CourseRatingChoicesAPIView,
             CourseGradingTypeChoicesAPIView,
-            GeneralGradingTypeChoicesAPIView
+            GeneralGradingTypeChoicesAPIView,
+            FeeTargetsChoicesAPIView,
+            FeeTypeChoicesAPIView,
 
 
         )
@@ -109,6 +108,8 @@ urlpatterns = [
     path('account-types-classification-choices/', AccountTypesClassificationChoicesAPIView.as_view(), name='account-types-classification-choices'),
     path('assets-depriciation-method-choices/', AssetsDepreciationMethodChoicesAPIView.as_view(), name='assets-depriciation-method-choices'),
     path('asset-types-choices/', AssetTypesChoicesAPIView.as_view(), name='asset-types-choices'),
+    path('fee-targets-choices/', FeeTargetsChoicesAPIView.as_view(), name='fee-targets-choices'),
+    path('fee-type-choices/', FeeTypeChoicesAPIView.as_view(), name='fee-type-choices'),
     #make redux state from here
     path('account-type-choices/', AccountTypeChoicesAPIView.as_view(), name='account-type-choices'),
     path('bill-frequency-choices/', BillFrequencyChoicesAPIView.as_view(), name='bill-frequency-choices'),

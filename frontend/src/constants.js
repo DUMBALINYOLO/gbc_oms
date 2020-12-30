@@ -159,6 +159,8 @@ export const studynotesapprovalstatuschoicesURL = `${endpoint}/basedata/study-no
 export const stafftypechoicesURL = `${endpoint}/basedata/staff-type-choices/`
 export const coursestatuschoicesURL = `${endpoint}/basedata/course-status-choices/`
 export const studynotesstatuschoicesURL = `${endpoint}/basedata/studynotes-status-choices/`
+export const feetargetschoicesURL = `${endpoint}/basedata/fee-targets-choices/`
+export const feetypechoicesURL = `${endpoint}/basedata/fee-type-choices/`
 
 //people
 export const studentsitviewURL = `${endpoint}/people/students-it-view/`

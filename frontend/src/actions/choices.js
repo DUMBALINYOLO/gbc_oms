@@ -88,8 +88,10 @@ import {
     GET_STUDY_NOTES_APPROVAL_STATUS_CHOICES,
     GET_STAFF_TYPE_CHOICES,
     GET_COURSES_STATUS_CHOICES,
+    GET_FEE_TARGETS_CHOICES,
+    GET_FEE_TYPE_CHOICES,
 
-} from '.././types/choiceTypes';
+} from '../types/choiceTypes';
 import { 
     generalgradingtypechoicesURL,
     coursegradingtypechoicesURL,
@@ -119,10 +121,30 @@ import {
     stafftypechoicesURL,
     coursestatuschoicesURL,
     studynotesstatuschoicesURL,
+    feetargetschoicesURL,
+    feetypechoicesURL
 } from '../constants';
 
 
+export const getFeeTargetsChoices = () => dispatch => {
+    axios.get(feetargetschoicesURL)
+        .then(res => {
+            dispatch({
+                type: GET_FEE_TARGETS_CHOICES,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
 
+export const getFeeTypeChoices = () => dispatch => {
+    axios.get(feetypechoicesURL)
+        .then(res => {
+            dispatch({
+                type: GET_FEE_TYPE_CHOICES,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
 
 
 export const getProcessedProductsStockStatusChoices = () => dispatch => {

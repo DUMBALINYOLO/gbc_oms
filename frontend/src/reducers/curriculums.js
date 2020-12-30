@@ -19,7 +19,7 @@ const initialState = {
     loading: false
 }
 
-export default function(state = initialState, action){
+export default function (state = initialState, action){
     switch(action.type){
         case GET_SUBJECTS:
             return {
@@ -42,11 +42,11 @@ export default function(state = initialState, action){
                 subject:action.payload
                 };
         case EDIT_SUBJECT:
-            const arrayList = state.subjects;
-            arrayList.splice(arrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
+            const subarrayList = state.subjects;
+            subarrayList.splice(subarrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
             return {
                 ...state,
-                subjects: arrayList,
+                subjects: subarrayList,
             };
         case GET_CURRICULUMS:
             return {
@@ -63,17 +63,17 @@ export default function(state = initialState, action){
                 ...state,
                 curriculum: [...state.curriculums, action.payload]
             }
-        case GET_CURRICULUMS:
+        case GET_CURRICULUM:
             return {
                 ...state,
                 curriculum:action.payload
             };
         case EDIT_CURRICULUM:
-            const arrayList = state.curriculums;
-            arrayList.splice(arrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
+            const cuarrayList = state.curriculums;
+            cuarrayList.splice(cuarrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
             return {
                 ...state,
-                curriculums: arrayList,
+                curriculums: cuarrayList,
             };
         default:
             return state;

@@ -22,7 +22,7 @@ const initialState = {
     loading: false
 }
 
-export default function(state = initialState, action){
+export default function (state = initialState, action){
     switch(action.type){
         case GET_ADMISSIONS:
             return {
@@ -57,32 +57,32 @@ export default function(state = initialState, action){
             };
 
         case EDIT_PENDING_ADMISSIONS:
-            const arrayList = state.pendingadmissions;
-            arrayList.splice(arrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
+            const pearrayList = state.pendingadmissions;
+            pearrayList.splice(pearrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
             return {
                 ...state,
-                pendingadmissions: arrayList,
+                pendingadmissions: pearrayList,
             };
         case EDIT_REJECTED_ADMISSIONS:
-            const arrayList = state.rejectedadmissions;
-            arrayList.splice(arrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
+            const rejearrayList = state.rejectedadmissions;
+            rejearrayList.splice(rejearrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
             return {
                 ...state,
-                rejectedadmissions: arrayList,
+                rejectedadmissions: rejearrayList,
             };
         case EDIT_MEETING_ADMISSIONS:
-            const arrayList = state.meetingadmissions;
-            arrayList.splice(arrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
+            const meetarrayList = state.meetingadmissions;
+            meetarrayList.splice(meetarrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
             return {
                 ...state,
-                meetingadmissions: arrayList,
+                meetingadmissions: meetarrayList,
             };
         case EDIT_ACCEPTED_ADMISSIONS:
-            const arrayList = state.acceptedadmissions;
-            arrayList.splice(arrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
+            let acearrayList = state.acceptedadmissions;
+            acearrayList.splice(acearrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
             return {
                 ...state,
-                acceptedadmissions: arrayList,
+                acceptedadmissions: acearrayList,
             };
         default:
             return state;

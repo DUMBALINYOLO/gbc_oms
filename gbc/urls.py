@@ -12,5 +12,6 @@ urlpatterns = [
     re_path(r'api/fees/', include('fees.urls')),
     re_path(r'api/grading/', include('grading.urls')),
     re_path(r'api/school/', include('setup.urls')),
+    re_path(r'api/basedata/', include('basedata.urls')),
 
 ]

@@ -132,8 +132,8 @@ const navigationConfig = [
         ],
       },
       {
-        id: "branches",
-        title: "Branches",
+        id: "fees",
+        title: "Fees",
         type: "collapse",
         icon: <BusinessIcon />,
         badge: {
@@ -144,10 +144,10 @@ const navigationConfig = [
         },
         children: [
           {
-            id: "all branches",
-            title: "Our Branches",
+            id: "fees",
+            title: "Fees",
             type: "item",
-            url: "/itdashboard/branches",
+            url: "/itdashboard/fees",
             exact: true,
           },
           {
