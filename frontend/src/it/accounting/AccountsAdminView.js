@@ -143,6 +143,7 @@ const AccountsAdminView = props => {
                           <TableCell>{item.name}</TableCell>
                           <TableCell>{item.account_number}</TableCell>
                           <TableCell>{item.balance}</TableCell>
+                          <TableCell>{item.type}</TableCell>
                           <TableCell>{item.balance_sheet_category}</TableCell>
                           <TableCell>
                               <Controls.ActionButton

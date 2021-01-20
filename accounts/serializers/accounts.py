@@ -126,6 +126,7 @@ class AccountDetailSerializer(serializers.ModelSerializer):
 
 
 
+
 class InterestBearingAccountCreateUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -146,10 +147,6 @@ class InterestBearingAccountCreateUpdateSerializer(serializers.ModelSerializer):
 
         ]
 
-    def update(self, instance, validated_data):
-        if validated_data.get('active') is True and instance.get_balance() != 0:
-            raise serializers.ValidationError('Accounts with a non-zero balance cannot be disabled.')
-        return super(InterestBearingAccountCreateUpdateSerializer, self).update(instance, validated_data)
 
 
 class InterestBearingAccountListSerializer(serializers.ModelSerializer):

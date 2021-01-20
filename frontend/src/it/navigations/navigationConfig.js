@@ -41,7 +41,7 @@ const navigationConfig = [
       },
       {
         id: "dashes",
-        title: "Dashboards",
+        title: "DASHBOARDS",
         type: "collapse",
         icon: <Brightness5Icon />,
         badge: {
@@ -69,7 +69,7 @@ const navigationConfig = [
       },
       {
         id: "configs",
-        title: "Configurations",
+        title: "CONFIGURATIONS",
         type: "collapse",
         icon: <Brightness5Icon />,
         badge: {
@@ -97,7 +97,7 @@ const navigationConfig = [
       },
       {
         id: "users",
-        title: "Staff Users",
+        title: "STAFF USERS",
         type: "collapse",
         icon: <HowToRegIcon />,
         badge: {
@@ -150,17 +150,45 @@ const navigationConfig = [
             exact: true,
           },
           {
-            id: "interestaccounts",
-            title: "INTEREST ACCOUNTS",
+            id: "taxes",
+            title: "TAXES",
             type: "item",
-            url: "/itdashboard/inactive-accounts",
+            url: "/itdashboard/taxes",
+            exact: true,
+          },
+          {
+            id: "currencies",
+            title: "CURRENCIES",
+            type: "item",
+            url: "/itdashboard/currencies",
+            exact: true,
+          },
+          {
+            id: "workbooks",
+            title: "WORKBOOKS",
+            type: "item",
+            url: "/itdashboard/workbooks",
+            exact: true,
+          },
+          {
+            id: "ledgers",
+            title: "LEDGERS",
+            type: "item",
+            url: "/itdashboard/ledgers",
+            exact: true,
+          },
+          {
+            id: "journals",
+            title: "JOURNALS",
+            type: "item",
+            url: "/itdashboard/journals",
             exact: true,
           },
         ],
       },
       {
         id: "fees",
-        title: "Fees",
+        title: "FEES",
         type: "collapse",
         icon: <BusinessIcon />,
         badge: {
@@ -181,7 +209,7 @@ const navigationConfig = [
       },
       {
         id: "curriculums",
-        title: "Curriculums",
+        title: "CURRICULUMS",
         type: "collapse",
         icon: <BusinessIcon />,
         badge: {

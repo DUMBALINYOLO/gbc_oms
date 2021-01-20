@@ -38,7 +38,7 @@ router = routers.DefaultRouter()
 
 
 
-router.register(r'accounts', AccountViewSet, basename='active-accounts')
+router.register(r'accounts', AccountViewSet, basename='accounts')
 #new take me sir
 router.register(r'interest-bearing-accounts', InterestBearingAccountViewSet, basename='interest-bearing-accounts')
 router.register(r'journals', JournalViewSet, basename='journals')
@@ -56,7 +56,7 @@ router.register(r'unposted-journal-entries', UnPostedJournalEntryViewSet, basena
 router.register(r'posted-journal-entries', PostedJournalEntryViewSet, basename='posted-journal-entries')
 #the end 
 router.register(r'journal-entries', JournalEntryViewSet, basename='journal-entries')
-router.register(r'in-active-accounts', InActiveAccountViewSet, basename='inactive-accounts')
+router.register(r'in-active-accounts', InActiveAccountViewSet, basename='in-active-accounts')
 router.register(r'assets', AssetViewSet, basename='assets')
 router.register(r'accounting-configuration', AccountingSettingsViewset, basename='accounting-configuration')
 router.register(r'taxes', TaxViewset, basename='taxes')

@@ -31,28 +31,22 @@ from accounts.serializers import (
 
 
 class InActiveAccountViewSet(viewsets.ModelViewSet):
-    queryset = Account.objects.filter(active='inactive')
-    # permission_classes = [
-    #     permissions.IsAuthenticated,
-    # ]
-    serializer_class = InActiveAccountSerializer
+    queryset = Account.objects.filter(active='inactive').order_by('-id')
+
+    serializer_class = AccountCreateUpdateSerializer
 
 
-    def get_serializer_class(self):
-        if self.action in ['create', 'put', 'patch', 'update']:
-            return AccountCreateUpdateSerializer
-        return AccountDetailSerializer
-
+    # def get_serializer_class(self, *args, **kwargs):
+    #     if self.action in ['create', 'put', 'update', 'patch']:
+    #         return AccountCreateUpdateSerializer
+    #     return AccountDetailSerializer
 
 
 class AccountViewSet(viewsets.ModelViewSet):
     queryset = Account.objects.filter(active='active')
-    # permission_classes = [
-    #     permissions.IsAuthenticated,
-    # ]
 
-    def get_serializer_class(self):
-        if self.action in ['create', 'put', 'patch', 'update']:
+    def get_serializer_class(self, *args, **kwargs):
+        if self.action in ['create', 'put', 'update', 'patch']:
             return AccountCreateUpdateSerializer
         return AccountDetailSerializer
 
@@ -66,7 +60,7 @@ class InterestBearingAccountViewSet(viewsets.ModelViewSet):
     #     permissions.IsAuthenticated,
     # ]
 
-    def get_serializer_class(self):
+    def get_serializer_class(self, *args, **kwargs):
         if self.action in ['create', 'put']:
             return  InterestBearingAccountCreateUpdateSerializer
         elif self.action == 'retrieve':

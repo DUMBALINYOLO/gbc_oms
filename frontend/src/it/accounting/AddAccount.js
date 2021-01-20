@@ -140,7 +140,7 @@ const AddAccount = props => {
                   <Grid item xs={6}>
                       <Controls.DictSelect
                           name="balance_sheet_category"
-                          label="TYPE"
+                          label="BALANACE SHEET CATEGORY"
                           value={values.balance_sheet_category}
                           onChange={handleInputChange}
                           options={props.accountbalancesheetcategorieschoices}

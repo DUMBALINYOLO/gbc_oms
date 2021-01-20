@@ -43,6 +43,7 @@ export const addTax = (tax) => dispatch => {
 
 //Edit
 export const editTax = (id, tax) => dispatch => {
+    JSON.stringify(id, null, 3)
     axios.put(`http://127.0.0.1:8000/api/accounting/taxes/${id}/`, tax)
         .then(res => {
             dispatch({

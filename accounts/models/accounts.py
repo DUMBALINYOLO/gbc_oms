@@ -63,7 +63,7 @@ class AbstractAccount(SoftDeletionModel):
         abstract = True
 
     def __str__(self):
-        return f'{self.name} {self.account_number}'
+        return f'{self.name}'
 
 
     def balance_on_date(self, date):

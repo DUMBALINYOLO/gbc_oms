@@ -2,7 +2,9 @@ import axios from 'axios';
 import {
         GET_IN_ACTIVE_ACCOUNTS,
         DELETE_IN_ACTIVE_ACCOUNT,
-        GET_IN_ACTIVE_ACCOUNT
+        GET_IN_ACTIVE_ACCOUNT,
+        EDIT_IN_ACTIVE_ACCOUNT,
+        ADD_IN_ACTIVE_ACCOUNT
     } from '../types/inactiveaccountTypes';
 import { inactiveaccountsURL } from '../constants';
 
@@ -39,3 +41,32 @@ export const getInActiveAccount = id => dispatch =>{
         }).catch(err => console.log(err))
 
 }
+
+
+
+export const editInactiveAccount = (id, account) => dispatch => {
+    JSON.stringify(id, null, 3)
+    axios.patch(`http://127.0.0.1:8000/api/accounting/in-active-accounts/${id}/`, account)
+        .then(res => {
+            dispatch({
+                type: EDIT_IN_ACTIVE_ACCOUNT,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+// Add
+export const addInActiveAccount = (account) => dispatch => {
+    axios.post(inactiveaccountsURL, account)
+        .then(res => {
+            dispatch({
+                type: ADD_IN_ACTIVE_ACCOUNT,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+
+
+
+

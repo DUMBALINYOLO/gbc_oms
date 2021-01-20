@@ -11,6 +11,12 @@ import admissions from './admissions';
 import feechoices from './feechoices';
 import fees from './fees';
 import accounts from './accounts';
+import inactiveaccounts from './inactiveaccounts';
+import taxes from './taxes';
+import currencies from './currencies';
+import workbooks from './workbooks';
+import ledgers from './ledgers';
+import journals from './journals';
 
 
 
@@ -27,5 +33,11 @@ export default combineReducers({
     feechoices,
     fees,
     accounts,
+    inactiveaccounts,
+    taxes,
+    currencies,
+    workbooks,
+    ledgers,
+    journals,
 });
 

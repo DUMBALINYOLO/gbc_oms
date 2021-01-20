@@ -9,13 +9,11 @@ import 'sanitize.css/sanitize.css';
 
 
 ReactDOM.render(
-  <React.StrictMode>
     <Provider store={store}>
       <Router>
         <App />
       </Router>
-    </Provider>
-  </React.StrictMode>,
+    </Provider>,
   document.getElementById('app')
 );
 

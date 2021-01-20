@@ -56,7 +56,8 @@ export const getLedger = id => dispatch =>{
 
 //Edit
 export const editLedger = (id, ledger) => dispatch => {
-    axios.put(`http://127.0.0.1:8000/api/accounting/ledgers/${id}/`, ledger)
+    JSON.stringify(id, null, 3)
+    axios.patch(`http://127.0.0.1:8000/api/accounting/ledgers/${id}/`, ledger)
         .then(res => {
             dispatch({
                 type: EDIT_LEDGER,

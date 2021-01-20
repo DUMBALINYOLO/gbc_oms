@@ -42,7 +42,8 @@ export const addCurrency = (currency) => dispatch => {
 
 //Edit
 export const editCurrency = (id, currency) => dispatch => {
-    axios.put(`http://127.0.0.1:8000/api/accounting/currencies/${id}/`, currency)
+    JSON.stringify(id, null, 3)
+    axios.patch(`http://127.0.0.1:8000/api/accounting/currencies/${id}/`, currency)
         .then(res => {
             dispatch({
                 type: EDIT_CURRENCY,
