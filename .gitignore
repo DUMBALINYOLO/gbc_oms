@@ -16,6 +16,8 @@ virtual/
 
 
 *.pyc
+*.sqlite3
+*.pyc
 
 # Packaging
 *.pyc
