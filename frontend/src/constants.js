@@ -162,6 +162,8 @@ export const studynotesstatuschoicesURL = `${endpoint}/basedata/studynotes-statu
 export const feetargetschoicesURL = `${endpoint}/basedata/fee-targets-choices/`
 export const feetypechoicesURL = `${endpoint}/basedata/fee-type-choices/`
 
+export const accountstatuschoicesURL = `${endpoint}/basedata/account-status-choices/`
+
 //people
 export const studentsitviewURL = `${endpoint}/people/students-it-view/`
 

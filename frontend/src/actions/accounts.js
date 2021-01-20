@@ -55,7 +55,8 @@ export const getAccount = id => dispatch =>{
 
 //Edit
 export const editAccount = (id, account) => dispatch => {
-    axios.put(`http://127.0.0.1:8000/api/accounting/accounts/${id}/`, account)
+    JSON.stringify(id, null, 3)
+    axios.patch(`http://127.0.0.1:8000/api/accounting/accounts/${id}/`, account)
         .then(res => {
             dispatch({
                 type: EDIT_ACCOUNT,

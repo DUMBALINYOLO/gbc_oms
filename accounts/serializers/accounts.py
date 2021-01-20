@@ -45,6 +45,7 @@ class AccountCreateUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
         fields = [
+            'id',
             'name',
             'balance',
             'type',
@@ -54,7 +55,6 @@ class AccountCreateUpdateSerializer(serializers.ModelSerializer):
             'parent_account',
             'balance_sheet_category',
             'active',
-
         ]
 
 
@@ -95,6 +95,7 @@ class AccountDetailSerializer(serializers.ModelSerializer):
         model = Account
         fields = [
             'id',
+            'name',
             'account_number',
             'type',
             'balance_sheet_category',

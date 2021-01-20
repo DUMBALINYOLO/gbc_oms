@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import InformationTechnologyLayout from "../layout/InformationTechnologyLayout";
-import { getFees, addFee, editFee } from '../../actions/fees';
+import { getAccounts, editAccount, addAccount } from '../../actions/accounts';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -15,7 +15,7 @@ import {
   Toolbar, 
   InputAdornment } 
 from '@material-ui/core';
-import AddFee from './AddFee';
+import AddAccount from './AddAccount';
 import  Controls  from "../../components/formcontrols/Controls";
 import  Popup  from "../../components/formcontrols/Popup";
 import  useTable  from "../../components/table/useTable";
@@ -40,9 +40,10 @@ const useStyles = makeStyles(theme => ({
 const headCells = [
   { id: 'id', label: 'ID' },
   { id: 'name', label: 'NAME' },
-  { id: 'amount', label: 'AMOUNT' },
+  { id: 'account_number', label: 'NUMBER' },
+  { id: 'balance', label: 'BALANCE' },
   { id: 'type', label: 'TYPE' },
-  { id: 'targets', label: 'TARGETS' },
+  { id: 'balance_sheet_category', label: 'CATEGORY' },
   { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
@@ -54,8 +55,7 @@ const options = {
   filterType: "checkbox"
 };
 
-const FeeItView = props => {
-  const { history } = props;
+const AccountsAdminView = props => {
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
@@ -63,7 +63,7 @@ const FeeItView = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getFees();
+        props.getAccounts();
     }
     console.log('mount it!');
 
@@ -71,11 +71,11 @@ const FeeItView = props => {
   }, []);
 
 
-  const addOrEdit = (fee, resetForm) => {
-      if (fee.id > 0)
-        props.editFee(fee.id, fee)    
+  const addOrEdit = (account, resetForm) => {
+      if (account.id > 0)
+        props.editAccount(account.id, account)    
       else
-        props.addFee(fee)
+        props.addAccount(account)
         //   
       resetForm()
       setRecordForEdit(null)
@@ -141,9 +141,9 @@ const FeeItView = props => {
                       (<TableRow key={item.id}>
                           <TableCell>{item.id}</TableCell>
                           <TableCell>{item.name}</TableCell>
-                          <TableCell>{item.amount}</TableCell>
-                          <TableCell>{item.type}</TableCell>
-                          <TableCell>{item.targets}</TableCell>
+                          <TableCell>{item.account_number}</TableCell>
+                          <TableCell>{item.balance}</TableCell>
+                          <TableCell>{item.balance_sheet_category}</TableCell>
                           <TableCell>
                               <Controls.ActionButton
                                   color="primary"
@@ -163,11 +163,11 @@ const FeeItView = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Fee Form"
+      title="Account Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >
-        <AddFee
+        <AddAccount
             recordForEdit={recordForEdit}
             addOrEdit={addOrEdit} 
         />
@@ -177,10 +177,10 @@ const FeeItView = props => {
 };
 
 const mapStateToProps = state =>({
-    records: state.fees.fees
+    records: state.accounts.accounts
 })
 
 export default connect(
   mapStateToProps, 
-  {getFees, addFee, editFee} ) 
-  (FeeItView);
+  {getAccounts, editAccount, addAccount} ) 
+  (AccountsAdminView);

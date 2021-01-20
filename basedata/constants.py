@@ -11,6 +11,12 @@ ACCOUNT_TYPES_CATEGORY_CHOICES = [
 
     ]
 
+ACCOUNT_STATUS_CHOICES = [
+        ('active', 'ACTIVE'),
+        ('inactive', 'INACTIVE'),
+    ]
+
+
 ACCOUNT_TYPES_CLASSIFICATION_CHOICES = [
         ('NONE', ''),
         (100, 'Do Not Choose Me'),

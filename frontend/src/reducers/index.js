@@ -10,6 +10,7 @@ import studentattendances from './studentattendances';
 import admissions from './admissions';
 import feechoices from './feechoices';
 import fees from './fees';
+import accounts from './accounts';
 
 
 
@@ -25,5 +26,6 @@ export default combineReducers({
     admissions,
     feechoices,
     fees,
+    accounts,
 });
 

@@ -8,11 +8,13 @@ from django.db import models
 from django.db.models import Q
 from django.utils import timezone
 from accounts.utils import format_currency
-from basedata.const import (
+from basedata.constants import (
         ACCOUNT_TYPE_CHOICES,
         ACCOUNTS_BALANCE_SHEET_CATEGORIES,
         INTEREST_INTERVAL_ACCOUNT_CHOICES,
         ACCOUNT_INTEREST_METHOD_CHOICES,
+        ACCOUNT_STATUS_CHOICES
+
     )
 from basedata.models import SoftDeletionModel
 from .transactions import Credit, Debit
@@ -47,7 +49,13 @@ class AbstractAccount(SoftDeletionModel):
                                         choices=ACCOUNTS_BALANCE_SHEET_CATEGORIES,
                                         default='current-assets'
                                     )
-    active = models.BooleanField(default=False, verbose_name="active?")
+    active = models.CharField(
+                        choices=ACCOUNT_STATUS_CHOICES, 
+                        default='inactive',
+                        max_length=123
+                    )
+
+
     updated_date = models.DateTimeField(auto_now=False, null=True, blank=True, verbose_name='date updated')
 
 

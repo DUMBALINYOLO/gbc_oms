@@ -31,26 +31,32 @@ from accounts.serializers import (
 
 
 class InActiveAccountViewSet(viewsets.ModelViewSet):
-    queryset = Account.objects.filter(active=False)
+    queryset = Account.objects.filter(active='inactive')
     # permission_classes = [
     #     permissions.IsAuthenticated,
     # ]
     serializer_class = InActiveAccountSerializer
 
 
+    def get_serializer_class(self):
+        if self.action in ['create', 'put', 'patch', 'update']:
+            return AccountCreateUpdateSerializer
+        return AccountDetailSerializer
+
+
+
 class AccountViewSet(viewsets.ModelViewSet):
-    queryset = Account.objects.filter(active=True)
+    queryset = Account.objects.filter(active='active')
     # permission_classes = [
     #     permissions.IsAuthenticated,
     # ]
 
     def get_serializer_class(self):
-        if self.action == 'list':
-            return AccountListSerializer 
-        elif self.action == 'retrieve':
-            return AccountDetailSerializer
-        return  AccountCreateUpdateSerializer
-        
+        if self.action in ['create', 'put', 'patch', 'update']:
+            return AccountCreateUpdateSerializer
+        return AccountDetailSerializer
+
+    
 
     #may have to filter a queryset in future but for now this can server our purposes
 

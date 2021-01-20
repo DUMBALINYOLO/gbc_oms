@@ -1,9 +1,8 @@
-import React, {  useEffect } from "react";
-import { connect } from 'react-redux';
+import React, {useEffect} from "react";
 import {  Grid, makeStyles,  } from "@material-ui/core";
 import {Form, useForm } from "../../components/formcontrols/useForm";
 import  Controls  from "../../components/formcontrols/Controls";
-import { getFeeTargetsChoices, getFeeTypeChoices} from '../../actions/choices';
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -36,15 +35,12 @@ const useStyles = makeStyles(theme => ({
 const initialFValues = {
 
   name: '',
-  targets: '',
-  type: '',
-  amount: '',
 
 }
 
 
 
-const AddFee = props => {
+const AddCurriculum = props => {
   const { addOrEdit, recordForEdit } = props
   const classes = useStyles();
 
@@ -52,12 +48,6 @@ const AddFee = props => {
     let temp = { ...errors }
     if ('name' in fieldValues)
         temp.name = fieldValues.name ? "" : "This field is required."
-    if ('targets' in fieldValues)
-        temp.targets = fieldValues.targets ? "" : "This field is required."
-    if ('type' in fieldValues)
-        temp.type = fieldValues.type ? "" : "This field is required."
-    if ('amount' in fieldValues)
-        temp.amount = fieldValues.amount ? "" : "This field is required."
     setErrors({
         ...temp
     })
@@ -84,10 +74,6 @@ const AddFee = props => {
   }
 
   useEffect(() => {
-    if(!props.fetched) {
-        props.getFeeTargetsChoices();
-        props.getFeeTypeChoices();
-    }
     if (recordForEdit != null)
             setValues({
                 ...recordForEdit
@@ -106,32 +92,9 @@ const AddFee = props => {
                           value={values.name}
                           onChange={handleInputChange}
                           error={errors.fullName}
-                      />
-                      <Controls.Input
-                          label="AMOUNT"
-                          name="amount"
-                          value={values.amount}
-                          onChange={handleInputChange}
-                          error={errors.amount}
-                      />                
+                      />               
                   </Grid>
                   <Grid item xs={6}>
-                      <Controls.DictSelect
-                          name="type"
-                          label="TYPE"
-                          value={values.type}
-                          onChange={handleInputChange}
-                          options={props.feetypechoices}
-                          error={errors.type}
-                      />
-                      <Controls.DictSelect
-                          name="targets"
-                          label="TARGETS"
-                          value={values.targets}
-                          onChange={handleInputChange}
-                          options={props.feetargetschoices}
-                          error={errors.targets}
-                      />
  
                       <div>
                           <Controls.Button
@@ -148,10 +111,6 @@ const AddFee = props => {
   );
 };
 
-const mapStateToProps = state =>({
-    feetypechoices: state.feechoices.feetypechoices,
-    feetargetschoices: state.feechoices.feetargetschoices
 
-})
 
-export default connect(mapStateToProps, {getFeeTypeChoices, getFeeTargetsChoices} ) (AddFee);
+export default  AddCurriculum;

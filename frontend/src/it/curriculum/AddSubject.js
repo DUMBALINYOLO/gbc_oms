@@ -1,11 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {  useEffect } from "react";
 import { connect } from 'react-redux';
-import InformationTechnologyLayout from "../layout/InformationTechnologyLayout";
-import { Typography, Grid, makeStyles, TextField } from "@material-ui/core";
-import Paper from '@material-ui/core/Paper';
+import {  Grid, makeStyles,  } from "@material-ui/core";
 import {Form, useForm } from "../../components/formcontrols/useForm";
 import  Controls  from "../../components/formcontrols/Controls";
-import { getHaulierStatusChoices } from '../../actions/choices';
+import { getCurriculums } from '../../actions/curriculums';
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -36,37 +35,30 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const initialFValues = {
-
   name: '',
-  status: '',
-  address_one: '',
-  address_two: '',
-
+  curriculum: '',
 }
 
+			
 
-const AddHaulier = props => {
+
+
+const AddSubject = props => {
   const { addOrEdit, recordForEdit } = props
-
-  const { history } = props;
   const classes = useStyles();
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors }
     if ('name' in fieldValues)
         temp.name = fieldValues.name ? "" : "This field is required."
-    if ('status' in fieldValues)
-        temp.status = fieldValues.status ? "" : "This field is required."
-    if ('address_one' in fieldValues)
-        temp.address_one = fieldValues.address_one ? "" : "This field is required."
-    if ('address_two' in fieldValues)
-        temp.address_two = fieldValues.address_two ? "" : "This field is required."
+    if ('curriculum' in fieldValues)
+        temp.curriculum = fieldValues.curriculum ? "" : "This field is required."
     setErrors({
         ...temp
     })
 
-    if (fieldValues == values)
-        return Object.values(temp).every(x => x == "")
+    if (fieldValues === values)
+        return Object.values(temp).every(x => x === "")
   }
 
   const {
@@ -88,7 +80,7 @@ const AddHaulier = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getHaulierStatusChoices();
+        props.getCurriculums();
     }
     if (recordForEdit != null)
             setValues({
@@ -99,41 +91,28 @@ const AddHaulier = props => {
 
 
   return (
-    <InformationTechnologyLayout>
         <Form onSubmit={handleSubmit}>
               <Grid container>
                   <Grid item xs={6}>
                       <Controls.Input
                           name="name"
-                          label="Name"
+                          label="NAME"
                           value={values.name}
                           onChange={handleInputChange}
                           error={errors.fullName}
-                      />
-                      <Controls.Input
-                          label="Address One"
-                          name="address_one"
-                          value={values.address_one}
-                          onChange={handleInputChange}
-                          error={errors.address_one}
-                      />                
+                      />              
                   </Grid>
                   <Grid item xs={6}>
-                      <Controls.DictSelect
-                          name="status"
-                          label="Is it Active?"
-                          value={values.status}
+                      <Controls.Select
+                          name="curriculum"
+                          label="CURRICULUM"
+                          value={values.curriculum}
                           onChange={handleInputChange}
-                          options={props.haulierstatuschoices}
-                          error={errors.status}
+                          options={props.curriculums}
+                          error={errors.curriculum}
                       />
-                      <Controls.Input
-                          label="Address Two"
-                          name="address_two"
-                          value={values.address_two}
-                          onChange={handleInputChange}
-                          error={errors.address_two}
-                      />  
+
+ 
                       <div>
                           <Controls.Button
                               type="submit"
@@ -146,12 +125,12 @@ const AddHaulier = props => {
                   </Grid>
               </Grid>
           </Form>
-    </InformationTechnologyLayout>
   );
 };
 
 const mapStateToProps = state =>({
-  haulierstatuschoices: state.haulierstatuschoices.haulierstatuschoices
+    curriculums: state.curriculums.curriculums
+
 })
 
-export default connect(mapStateToProps, {getHaulierStatusChoices} ) (AddHaulier);
+export default connect(mapStateToProps, {getCurriculums} ) (AddSubject);

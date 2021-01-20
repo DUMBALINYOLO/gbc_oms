@@ -203,7 +203,8 @@ export const editPayment = (id, payment) => dispatch => {
 
 
 export const editFee = (id, payment) => dispatch => {
-    axios.put(`http://127.0.0.1:8000/api/fees/fees/${id}`, payment)
+    JSON.stringify(id, null, 3)
+    axios.patch(`http://127.0.0.1:8000/api/fees/fees/${id}/`, payment)
         .then(res => {
             dispatch({
                 type: EDIT_FEE,

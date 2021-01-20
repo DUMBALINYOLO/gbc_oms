@@ -99,11 +99,23 @@ from .constants import (
 				GENERAL_GRADING_TYPE_CHOICES,
 				FEES_TARGETS_CHOICES,
 				FEES_TYPE_CHOICES,
+				ACCOUNT_STATUS_CHOICES,
 				
 			)
 
 
+class AccountStatusChoicesAPIView(views.APIView):
 
+
+	def get(self, request, format=None):
+
+		my_choices = []
+		choice_dict = dict(ACCOUNT_STATUS_CHOICES)
+		for key, value in choice_dict.items():
+
+			itered_dict = {"key": key, "value": value}
+			my_choices.append(itered_dict)
+		return Response(my_choices, status=status.HTTP_200_OK)
 
 
 class FeeTargetsChoicesAPIView(views.APIView):

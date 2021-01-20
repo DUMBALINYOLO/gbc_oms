@@ -48,6 +48,7 @@ class SubjectCreateUpdateSerializer(serializers.ModelSerializer):
 
 
 class SubjectListDetailSerializer(serializers.ModelSerializer):
+	curriculum = StringSerializer()
 
 	class Meta:
 		model = Subject

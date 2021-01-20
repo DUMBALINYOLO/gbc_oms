@@ -37,7 +37,7 @@ export const deleteCurriculum = (id) => dispatch => {
 
 // Add
 export const addCurriculum = (curriculum) => dispatch => {
-    axios.post(curriculumsURL, account)
+    axios.post(curriculumsURL, curriculum)
         .then(res => {
             dispatch({
                 type: ADD_CURRICULUM,
@@ -60,7 +60,8 @@ export const getCurriculum = id => dispatch =>{
 
 //Edit
 export const editCurriculum = (id, curriculum) => dispatch => {
-    axios.put(`http://127.0.0.1:8000/api/curriculum/curriculums/${id}/`, curriculum)
+    JSON.stringify(id, null, 3)
+    axios.patch(`http://127.0.0.1:8000/api/curriculum/curriculums/${id}/`, curriculum)
         .then(res => {
             dispatch({
                 type: EDIT_CURRICULUM,
@@ -119,7 +120,8 @@ export const getSubject = id => dispatch =>{
 
 //Edit
 export const editSubject = (id, subject) => dispatch => {
-    axios.put(`http://127.0.0.1:8000/api/curriculum/subjects/${id}/`, subject)
+    JSON.stringify(id, null, 3)
+    axios.patch(`http://127.0.0.1:8000/api/curriculum/subjects/${id}/`, subject)
         .then(res => {
             dispatch({
                 type: EDIT_SUBJECT,

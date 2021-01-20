@@ -90,6 +90,7 @@ import {
     GET_COURSES_STATUS_CHOICES,
     GET_FEE_TARGETS_CHOICES,
     GET_FEE_TYPE_CHOICES,
+    GET_ACCOUNT_STATUS_CHOICES,
 
 } from '../types/choiceTypes';
 import { 
@@ -122,8 +123,19 @@ import {
     coursestatuschoicesURL,
     studynotesstatuschoicesURL,
     feetargetschoicesURL,
-    feetypechoicesURL
+    feetypechoicesURL,
+    accountstatuschoicesURL,
 } from '../constants';
+
+export const getAccountStatusChoices = () => dispatch => {
+    axios.get(accountstatuschoicesURL)
+        .then(res => {
+            dispatch({
+                type: GET_ACCOUNT_STATUS_CHOICES,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
 
 
 export const getFeeTargetsChoices = () => dispatch => {
@@ -148,7 +160,7 @@ export const getFeeTypeChoices = () => dispatch => {
 
 
 export const getProcessedProductsStockStatusChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/processed-products-stock-status-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/processed-products-stock-status-choices/')
         .then(res => {
             dispatch({
                 type: GET_PROCESSED_PRODUCTS_STOCK_STATUS_CHOICES,
@@ -158,7 +170,7 @@ export const getProcessedProductsStockStatusChoices = () => dispatch => {
 }
 
 export const getBillOfMaterialsLineChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/bill-of-materials-line-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/bill-of-materials-line-choices/')
         .then(res => {
             dispatch({
                 type: GET_BILL_OF_MATERIALS_LINE_CHOICES,
@@ -168,7 +180,7 @@ export const getBillOfMaterialsLineChoices = () => dispatch => {
 }
 
 export const getManufacturingProductTypesChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/manufacturing-product-types-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/manufacturing-product-types-choices/')
         .then(res => {
             dispatch({
                 type: GET_MANUFACTURING_PRODUCT_TYPES_CHOICES,
@@ -178,7 +190,7 @@ export const getManufacturingProductTypesChoices = () => dispatch => {
 }
 
 export const getProcessRateUnitTimeChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/process-rate-unit-time-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/process-rate-unit-time-choices/')
         .then(res => {
             dispatch({
                 type: GET_PROCESS_RATE_UNIT_TIME_CHOICES,
@@ -188,7 +200,7 @@ export const getProcessRateUnitTimeChoices = () => dispatch => {
 }
 
 export const getCustomerPaymentMethodsChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/customer-payment-methods-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/customer-payment-methods-choices/')
         .then(res => {
             dispatch({
                 type: GET_CUSTOMER_PAYMENT_METHODS_CHOICES,
@@ -198,7 +210,7 @@ export const getCustomerPaymentMethodsChoices = () => dispatch => {
 }
 
 export const getManufacturingProcessChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/manufacturing-process-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/manufacturing-process-choices/')
         .then(res => {
             dispatch({
                 type: GET_MANUFACTURING_PROCESS_CHOICES,
@@ -208,7 +220,7 @@ export const getManufacturingProcessChoices = () => dispatch => {
 }
 
 export const getInvoiceLineChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/invoice-line-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/invoice-line-choices/')
         .then(res => {
             dispatch({
                 type: GET_INVOICE_LINE_CHOICES,
@@ -218,7 +230,7 @@ export const getInvoiceLineChoices = () => dispatch => {
 }
 
 export const getInvoiceSalesChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/invoice-sales-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/invoice-sales-choices/')
         .then(res => {
             dispatch({
                 type: GET_INVOICE_SALES_CHOICES,
@@ -228,7 +240,7 @@ export const getInvoiceSalesChoices = () => dispatch => {
 }
 
 export const getInventoryOrderStatusChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/inventory-order-status-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/inventory-order-status-choices/')
         .then(res => {
             dispatch({
                 type: GET_INVENTORY_ORDER_STATUS_CHOICES,
@@ -238,7 +250,7 @@ export const getInventoryOrderStatusChoices = () => dispatch => {
 }
 
 export const getEquipmentComponentConditionChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/equipment-component-condition-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/equipment-component-condition-choices/')
         .then(res => {
             dispatch({
                 type: GET_EQUIPMENT_COMPONENT_CONDITION_CHOICES,
@@ -248,7 +260,7 @@ export const getEquipmentComponentConditionChoices = () => dispatch => {
 }
 
 export const getProductComponentPricingChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/product-component-pricing-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/product-component-pricing-choices/')
         .then(res => {
             dispatch({
                 type: GET_PRODUCT_COMPONENT_PRICING_CHOICES,
@@ -258,7 +270,7 @@ export const getProductComponentPricingChoices = () => dispatch => {
 }
 
 export const getInventoryTypesChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/inventory-types-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/inventory-types-choices/')
         .then(res => {
             dispatch({
                 type: GET_INVENTORY_TYPES_CHOICES,
@@ -268,7 +280,7 @@ export const getInventoryTypesChoices = () => dispatch => {
 }
 
 export const getEmployeesGenderChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/employees-gender-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/employees-gender-choices/')
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEES_GENDER_CHOICES,
@@ -278,7 +290,7 @@ export const getEmployeesGenderChoices = () => dispatch => {
 }
 
 export const getJournalEntryTypesChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/journal-entry-types-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/journal-entry-types-choices/')
         .then(res => {
             dispatch({
                 type: GET_JOURNAL_ENTRY_TYPES_CHOICES,
@@ -288,7 +300,7 @@ export const getJournalEntryTypesChoices = () => dispatch => {
 }
 
 export const getAccountingPeriodsChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/accounting-periods-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/accounting-periods-choices/')
         .then(res => {
             dispatch({
                 type: GET_ACCOUNTING_PERIODS_CHOICES,
@@ -298,7 +310,7 @@ export const getAccountingPeriodsChoices = () => dispatch => {
 }
 
 export const getEmploymentContractTerminationReasons = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/employment-contract-termination-reasons/')
+    axios.get('http://127.0.0.1:8000/api/basedata/employment-contract-termination-reasons/')
         .then(res => {
             dispatch({
                 type: GET_EMPLOYMENT_CONTRACT_TERMINATION_REASONS,
@@ -308,7 +320,7 @@ export const getEmploymentContractTerminationReasons = () => dispatch => {
 }
 
 export const getEmployeeCategoryChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/employee-category-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-category-choices/')
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_CATEGORY_CHOICES,
@@ -318,7 +330,7 @@ export const getEmployeeCategoryChoices = () => dispatch => {
 }
 
 export const getEmployeeLeaveCategoryChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/employee-leave-category-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-leave-category-choices/')
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_LEAVE_CATEGORY_CHOICES,
@@ -328,7 +340,7 @@ export const getEmployeeLeaveCategoryChoices = () => dispatch => {
 }
 
 export const getEmployeeLeaveStatusChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/employee-leave-status-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-leave-status-choices/')
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_LEAVE_STATUS_CHOICES,
@@ -338,7 +350,7 @@ export const getEmployeeLeaveStatusChoices = () => dispatch => {
 }
 
 export const getEmployeeLunchChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/employee-lunch-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-lunch-choices/')
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_LUNCH_CHOICES,
@@ -348,7 +360,7 @@ export const getEmployeeLunchChoices = () => dispatch => {
 }
 
 export const getEmployeePayFrequencies = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/employee-pay-frequencies/')
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-pay-frequencies/')
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_PAY_FREQUENCIES,
@@ -358,7 +370,7 @@ export const getEmployeePayFrequencies = () => dispatch => {
 }
 
 export const getEmployeeDeductionMethods = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/employee-deduction-methods/')
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-deduction-methods/')
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_DEDUCTION_METHODS,
@@ -368,7 +380,7 @@ export const getEmployeeDeductionMethods = () => dispatch => {
 }
 
 export const getEmployeePayrollDateChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/employee-payroll-date-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-payroll-date-choices/')
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_PAYROLL_DATE_CHOICES,
@@ -378,7 +390,7 @@ export const getEmployeePayrollDateChoices = () => dispatch => {
 }
 
 export const getEmployeePayslipStatusChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/employee-payslip-status-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-payslip-status-choices/')
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_PAYSLIP_STATUS_CHOICES,
@@ -388,7 +400,7 @@ export const getEmployeePayslipStatusChoices = () => dispatch => {
 }
 
 export const getEmployeeTimesheetMonthChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/employee-timesheet-month-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-timesheet-month-choices/')
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_TIMESHEET_MONTH_CHOICES,
@@ -398,7 +410,7 @@ export const getEmployeeTimesheetMonthChoices = () => dispatch => {
 }
 
 export const getEmployeeYearChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/employee-year-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-year-choices/')
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_YEAR_CHOICES,
@@ -408,7 +420,7 @@ export const getEmployeeYearChoices = () => dispatch => {
 }
 
 export const getNatureOfEmploymentChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/nature-of-employment-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/nature-of-employment-choices/')
         .then(res => {
             dispatch({
                 type: GET_NATURE_OF_EMPLOYMENT_CHOICES,
@@ -418,7 +430,7 @@ export const getNatureOfEmploymentChoices = () => dispatch => {
 }
 
 export const getEmployeePayrollTaxChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/employee-payroll-tax-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-payroll-tax-choices/')
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_PAYROLL_TAX_CHOICES,
@@ -429,7 +441,7 @@ export const getEmployeePayrollTaxChoices = () => dispatch => {
 
 
 export const getEventRepeatChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/event-repeat-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/event-repeat-choices/')
         .then(res => {
             dispatch({
                 type: GET_EVENT_REPEAT_CHOICES,
@@ -439,7 +451,7 @@ export const getEventRepeatChoices = () => dispatch => {
 }
 
 export const getEventIconChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/event-icon-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/event-icon-choices/')
         .then(res => {
             dispatch({
                 type: GET_EVENT_ICON_CHOICES,
@@ -449,7 +461,7 @@ export const getEventIconChoices = () => dispatch => {
 }
 
 export const getEventTimeChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/event-time-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/event-time-choices/')
         .then(res => {
             dispatch({
                 type: GET_EVENT_TIME_CHOICES,
@@ -459,7 +471,7 @@ export const getEventTimeChoices = () => dispatch => {
 }
 
 export const getEventReminderChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/event-reminder-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/event-reminder-choices/')
         .then(res => {
             dispatch({
                 type: GET_EVENT_REMINDER_CHOICES,
@@ -469,7 +481,7 @@ export const getEventReminderChoices = () => dispatch => {
 }
 
 export const getEventParticipantTypesChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/event-participant-types-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/event-participant-types-choices/')
         .then(res => {
             dispatch({
                 type: GET_EVENT_PARTICIPANT_TYPES_CHOICES,
@@ -479,7 +491,7 @@ export const getEventParticipantTypesChoices = () => dispatch => {
 }
 
 export const getEventPriorityChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/event-priority-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/event-priority-choices/')
         .then(res => {
             dispatch({
                 type: GET_EVENT_PRIORITY_CHOICES,
@@ -489,7 +501,7 @@ export const getEventPriorityChoices = () => dispatch => {
 }
 
 export const getManufacturingShiftTimeChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/manufactring-shift-time-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/manufactring-shift-time-choices/')
         .then(res => {
             dispatch({
                 type: GET_MANUFACTURING_SHIFT_TIME_CHOICES,
@@ -499,7 +511,7 @@ export const getManufacturingShiftTimeChoices = () => dispatch => {
 }
 
 export const getInventoryOrderPaymentMethodsChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/inventory-order-payment-methods-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/inventory-order-payment-methods-choices/')
         .then(res => {
             dispatch({
                 type: GET_INVENTORY_ORDER_PAYMENT_METHODS_CHOICES,
@@ -509,7 +521,7 @@ export const getInventoryOrderPaymentMethodsChoices = () => dispatch => {
 }
 
 export const getInvoiceSalesTypesChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/invoice-sales-types-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/invoice-sales-types-choices/')
         .then(res => {
             dispatch({
                 type: GET_INVOICE_SALES_TYPES_CHOICES,
@@ -519,7 +531,7 @@ export const getInvoiceSalesTypesChoices = () => dispatch => {
 }
 
 export const getBillPaymentMethodsChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/bill-payment-methods-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/bill-payment-methods-choices/')
         .then(res => {
             dispatch({
                 type: GET_BILL_PAYMENT_METHODS_CHOICES,
@@ -529,7 +541,7 @@ export const getBillPaymentMethodsChoices = () => dispatch => {
 }
 
 export const getBillingChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/billing-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/billing-choices/')
         .then(res => {
             dispatch({
                 type: GET_BILLING_CHOICES,
@@ -540,7 +552,7 @@ export const getBillingChoices = () => dispatch => {
 
 
 export const getCustomerStatusChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/customer-status-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/customer-status-choices/')
         .then(res => {
             dispatch({
                 type: GET_CUSTOMER_STATUS_CHOICES,
@@ -550,7 +562,7 @@ export const getCustomerStatusChoices = () => dispatch => {
 }
 
 export const getSupplierStatusChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/supplier-status-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/supplier-status-choices/')
         .then(res => {
             dispatch({
                 type: GET_SUPPLIER_STATUS_CHOICES,
@@ -560,7 +572,7 @@ export const getSupplierStatusChoices = () => dispatch => {
 }
 
 export const getSupplierAddressTypeChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/supplier-address-type-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/supplier-address-type-choices/')
         .then(res => {
             dispatch({
                 type: GET_SUPPLIER_ADDRESS_TYPE_CHOICES,
@@ -570,7 +582,7 @@ export const getSupplierAddressTypeChoices = () => dispatch => {
 }
 
 export const getBillPaymentStatusChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/bill-payment-status-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/bill-payment-status-choices/')
         .then(res => {
             dispatch({
                 type: GET_BILL_PAYMENT_STATUS_CHOICES,
@@ -580,7 +592,7 @@ export const getBillPaymentStatusChoices = () => dispatch => {
 }
 
 export const getEmployeesTypeChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/employees-type-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/employees-type-choices/')
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEES_TYPE_CHOICES,
@@ -590,7 +602,7 @@ export const getEmployeesTypeChoices = () => dispatch => {
 }
 
 export const getEmployeesAttendanceStatusChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/employees-attendance-status-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/employees-attendance-status-choices/')
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEES_ATTENDANCE_STATUS_CHOICES,
@@ -600,7 +612,7 @@ export const getEmployeesAttendanceStatusChoices = () => dispatch => {
 }
 
 export const getCustomerAddressTypeChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/customer-address-type-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/customer-address-type-choices/')
         .then(res => {
             dispatch({
                 type: GET_CUSTOMER_ADDRESS_TYPE_CHOICES,
@@ -610,7 +622,7 @@ export const getCustomerAddressTypeChoices = () => dispatch => {
 }
 
 export const getUnitOfMeasureChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/unit-of-measure-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/unit-of-measure-choices/')
         .then(res => {
             dispatch({
                 type: GET_UNIT_OF_MEASURE_CHOICES,
@@ -620,7 +632,7 @@ export const getUnitOfMeasureChoices = () => dispatch => {
 }
 
 export const getInventoryCheckDateChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/inventory-check-date-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/inventory-check-date-choices/')
         .then(res => {
             dispatch({
                 type: GET_INVENTORY_CHECK_DATE_CHOICES,
@@ -630,7 +642,7 @@ export const getInventoryCheckDateChoices = () => dispatch => {
 }
 
 export const getInventoryCheckFrequencyChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/inventory-check-frequency-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/inventory-check-frequency-choices/')
         .then(res => {
             dispatch({
                 type: GET_INVENTORY_CHECK_FREQUENCY_CHOICES,
@@ -640,7 +652,7 @@ export const getInventoryCheckFrequencyChoices = () => dispatch => {
 }
 
 export const getInventoryValuationMethodsChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/inventory-valuation-methods-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/inventory-valuation-methods-choices/')
         .then(res => {
             dispatch({
                 type: GET_INVENTORY_VALUATION_METHODS_CHOICES,
@@ -650,7 +662,7 @@ export const getInventoryValuationMethodsChoices = () => dispatch => {
 }
 
 export const getInventoryValuationPeriodChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/inventory-valuation-period-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/inventory-valuation-period-choices/')
         .then(res => {
             dispatch({
                 type: GET_INVENTORY_VALUATION_PERIOD_CHOICES,
@@ -660,7 +672,7 @@ export const getInventoryValuationPeriodChoices = () => dispatch => {
 }
 
 export const getAccountInterestMethodChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/account-interest-method-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/account-interest-method-choices/')
         .then(res => {
             dispatch({
                 type: GET_ACCOUNT_INTEREST_METHOD_CHOICES,
@@ -670,7 +682,7 @@ export const getAccountInterestMethodChoices = () => dispatch => {
 }
 
 export const getInterestIntervalAccountChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/interest-interval-account-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/interest-interval-account-choices/')
         .then(res => {
             dispatch({
                 type: GET_INTEREST_INTERVAL_ACCOUNT_CHOICES,
@@ -680,7 +692,7 @@ export const getInterestIntervalAccountChoices = () => dispatch => {
 }
 
 export const getAccountBalanceSheetCategoriesChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/account-balance-sheet-categories-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/account-balance-sheet-categories-choices/')
         .then(res => {
             dispatch({
                 type: GET_ACCOUNT_BALANCE_SHEET_CATEGORIES_CHOICES,
@@ -690,7 +702,7 @@ export const getAccountBalanceSheetCategoriesChoices = () => dispatch => {
 }
 
 export const getBillFrequencyChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/bill-frequency-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/bill-frequency-choices/')
         .then(res => {
             dispatch({
                 type: GET_BILL_FREQUENCY_CHOICES,
@@ -701,7 +713,7 @@ export const getBillFrequencyChoices = () => dispatch => {
 
 
 export const getAccountTypeChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/account-type-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/account-type-choices/')
         .then(res => {
             dispatch({
                 type: GET_ACCOUNT_TYPE_CHOICES,
@@ -711,7 +723,7 @@ export const getAccountTypeChoices = () => dispatch => {
 }
 
 export const getAssetTypesChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/asset-types-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/asset-types-choices/')
         .then(res => {
             dispatch({
                 type: GET_ASSET_TYPES_CHOICES,
@@ -721,7 +733,7 @@ export const getAssetTypesChoices = () => dispatch => {
 }
 
 export const getAssetsDepriciationMethodChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/assets-depriciation-method-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/assets-depriciation-method-choices/')
         .then(res => {
             dispatch({
                 type: GET_ASSETS_DEPRECIATION_METHOD_CHOICES,
@@ -731,7 +743,7 @@ export const getAssetsDepriciationMethodChoices = () => dispatch => {
 }
 
 export const getAccountTypesCategoryChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/account-types-category-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/account-types-category-choices/')
         .then(res => {
             dispatch({
                 type: GET_ACCOUNT_TYPES_CATEGORY_CHOICES,
@@ -741,7 +753,7 @@ export const getAccountTypesCategoryChoices = () => dispatch => {
 }
 
 export const getAccountTypesClassificationChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/config/account-types-classification-choices/')
+    axios.get('http://127.0.0.1:8000/api/basedata/account-types-classification-choices/')
         .then(res => {
             dispatch({
                 type: GET_ACCOUNT_TYPES_CLASSIFICATION_CHOICES,

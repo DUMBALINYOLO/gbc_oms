@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import InformationTechnologyLayout from "../layout/InformationTechnologyLayout";
-import { getFees, addFee, editFee } from '../../actions/fees';
+import { getSubjects, addSubject, editSubject } from '../../actions/curriculums';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -15,7 +15,7 @@ import {
   Toolbar, 
   InputAdornment } 
 from '@material-ui/core';
-import AddFee from './AddFee';
+import AddSubject from './AddSubject';
 import  Controls  from "../../components/formcontrols/Controls";
 import  Popup  from "../../components/formcontrols/Popup";
 import  useTable  from "../../components/table/useTable";
@@ -40,9 +40,8 @@ const useStyles = makeStyles(theme => ({
 const headCells = [
   { id: 'id', label: 'ID' },
   { id: 'name', label: 'NAME' },
-  { id: 'amount', label: 'AMOUNT' },
-  { id: 'type', label: 'TYPE' },
-  { id: 'targets', label: 'TARGETS' },
+  { id: 'subject_code', label: 'CODE' },
+  { id: 'curriculum', label: 'CURRICULUM' },
   { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
@@ -54,7 +53,7 @@ const options = {
   filterType: "checkbox"
 };
 
-const FeeItView = props => {
+const SubjectAdminView = props => {
   const { history } = props;
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null)
@@ -63,7 +62,7 @@ const FeeItView = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getFees();
+        props.getSubjects();
     }
     console.log('mount it!');
 
@@ -71,11 +70,11 @@ const FeeItView = props => {
   }, []);
 
 
-  const addOrEdit = (fee, resetForm) => {
-      if (fee.id > 0)
-        props.editFee(fee.id, fee)    
+  const addOrEdit = (subject, resetForm) => {
+      if (subject.id > 0)
+        props.editSubject(subject.id, subject)    
       else
-        props.addFee(fee)
+        props.addSubject(subject)
         //   
       resetForm()
       setRecordForEdit(null)
@@ -116,7 +115,7 @@ const FeeItView = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Fee"
+              label="Search Curriculum"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
@@ -141,9 +140,8 @@ const FeeItView = props => {
                       (<TableRow key={item.id}>
                           <TableCell>{item.id}</TableCell>
                           <TableCell>{item.name}</TableCell>
-                          <TableCell>{item.amount}</TableCell>
-                          <TableCell>{item.type}</TableCell>
-                          <TableCell>{item.targets}</TableCell>
+                          <TableCell>{item.subject_code}</TableCell>
+                          <TableCell>{item.curriculum}</TableCell>
                           <TableCell>
                               <Controls.ActionButton
                                   color="primary"
@@ -163,11 +161,11 @@ const FeeItView = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Fee Form"
+      title="Curriculum Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >
-        <AddFee
+        <AddSubject
             recordForEdit={recordForEdit}
             addOrEdit={addOrEdit} 
         />
@@ -177,10 +175,10 @@ const FeeItView = props => {
 };
 
 const mapStateToProps = state =>({
-    records: state.fees.fees
+    records: state.curriculums.subjects,
 })
 
 export default connect(
   mapStateToProps, 
-  {getFees, addFee, editFee} ) 
-  (FeeItView);
+  {getSubjects, addSubject, editSubject} ) 
+  (SubjectAdminView);

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import InformationTechnologyLayout from "../layout/InformationTechnologyLayout";
-import { getHauliers } from '../../actions/hauliers';
-import { addHaulier, editHaulier } from '../../actions/hauliers';
+import { getCurriculums, addCurriculum, editCurriculum } from '../../actions/curriculums';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -16,7 +15,7 @@ import {
   Toolbar, 
   InputAdornment } 
 from '@material-ui/core';
-import AddHaulier from './AddHaulier';
+import AddCurriculum from './AddCurriculum';
 import  Controls  from "../../components/formcontrols/Controls";
 import  Popup  from "../../components/formcontrols/Popup";
 import  useTable  from "../../components/table/useTable";
@@ -40,11 +39,8 @@ const useStyles = makeStyles(theme => ({
 
 const headCells = [
   { id: 'id', label: 'ID' },
-  { id: 'code', label: 'Haulier Code' },
-  { id: 'name', label: 'Name' },
-  { id: 'status', label: 'Status' },
-  { id: 'address_one', label: 'First Address' },
-  { id: 'address_two', label: 'Second Address' },
+  { id: 'name', label: 'NAME' },
+  { id: 'code', label: 'CODE' },
   { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
@@ -56,7 +52,7 @@ const options = {
   filterType: "checkbox"
 };
 
-const HauliersItView = props => {
+const FeeItView = props => {
   const { history } = props;
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null)
@@ -65,7 +61,7 @@ const HauliersItView = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getHauliers();
+        props.getCurriculums();
     }
     console.log('mount it!');
 
@@ -73,16 +69,15 @@ const HauliersItView = props => {
   }, []);
 
 
-  const addOrEdit = (haulier, resetForm) => {
-      if (haulier.id > 0)
-        props.editHaulier(haulier)    
+  const addOrEdit = (curriculum, resetForm) => {
+      if (curriculum.id > 0)
+        props.editCurriculum(curriculum.id, curriculum)    
       else
-        props.addHaulier(haulier)
+        props.addCurriculum(curriculum)
         //   
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
-      console.log(haulier)
   }
 
   
@@ -100,7 +95,7 @@ const HauliersItView = props => {
       let target = e.target;
       setFilterFn({
           fn: items => {
-              if (target.value == "")
+              if (target.value === "")
                   return items;
               else
                   return items.filter(x => x.name.toLowerCase().includes(target.value))
@@ -119,7 +114,7 @@ const HauliersItView = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Hauliers"
+              label="Search Curriculum"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
@@ -143,11 +138,8 @@ const HauliersItView = props => {
                   recordsAfterPagingAndSorting().map(item =>
                       (<TableRow key={item.id}>
                           <TableCell>{item.id}</TableCell>
-                          <TableCell>{item.code}</TableCell>
                           <TableCell>{item.name}</TableCell>
-                          <TableCell>{item.status}</TableCell>
-                          <TableCell>{item.address_one}</TableCell>
-                          <TableCell>{item.address_two}</TableCell>
+                          <TableCell>{item.code}</TableCell>
                           <TableCell>
                               <Controls.ActionButton
                                   color="primary"
@@ -167,11 +159,11 @@ const HauliersItView = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Haulier Form"
+      title="Curriculum Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >
-        <AddHaulier
+        <AddCurriculum
             recordForEdit={recordForEdit}
             addOrEdit={addOrEdit} 
         />
@@ -181,10 +173,10 @@ const HauliersItView = props => {
 };
 
 const mapStateToProps = state =>({
-    records: state.hauliers.hauliers
+    records: state.curriculums.curriculums
 })
 
 export default connect(
   mapStateToProps, 
-  {getHauliers, addHaulier, editHaulier} ) 
-  (HauliersItView);
+  {getCurriculums, addCurriculum, editCurriculum} ) 
+  (FeeItView);

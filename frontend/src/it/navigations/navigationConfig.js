@@ -68,14 +68,6 @@ const navigationConfig = [
         ],
       },
       {
-        id: "profile",
-        title: "Profile",
-        type: "item",
-        url: "/",
-        exact: true,
-        icon: <PersonIcon />
-      },
-      {
         id: "configs",
         title: "Configurations",
         type: "collapse",
@@ -132,6 +124,41 @@ const navigationConfig = [
         ],
       },
       {
+        id: "accounting",
+        title: "ACCOUNTING",
+        type: "collapse",
+        icon: <BusinessIcon />,
+        badge: {
+          title: "3",
+          bg: "#525E8A",
+          fg: "#FFFFFF",
+          
+        },
+        children: [
+          {
+            id: "activeaccounts",
+            title: "ACTIVE ACCOUNTS",
+            type: "item",
+            url: "/itdashboard/active-accounts",
+            exact: true,
+          },
+          {
+            id: "inactiveaccounts",
+            title: "INACTIVE ACCOUNTS",
+            type: "item",
+            url: "/itdashboard/inactive-accounts",
+            exact: true,
+          },
+          {
+            id: "interestaccounts",
+            title: "INTEREST ACCOUNTS",
+            type: "item",
+            url: "/itdashboard/inactive-accounts",
+            exact: true,
+          },
+        ],
+      },
+      {
         id: "fees",
         title: "Fees",
         type: "collapse",
@@ -150,219 +177,37 @@ const navigationConfig = [
             url: "/itdashboard/fees",
             exact: true,
           },
-          {
-            id: "add branch",
-            title: "Add Branch",
-            type: "item",
-            url: "/itdashboard/branches/add",
-            exact: true,
-          },
         ],
       },
       {
-        id: "products",
-        title: "Products",
+        id: "curriculums",
+        title: "Curriculums",
         type: "collapse",
-        icon: <CategoryIcon />,
+        icon: <BusinessIcon />,
         badge: {
-          title: "4",
+          title: "3",
           bg: "#525E8A",
           fg: "#FFFFFF",
           
         },
         children: [
           {
-            id: "all products",
-            title: "All Products",
+            id: "curriculums",
+            title: "Curriculums",
             type: "item",
-            url: "/productsitview",
+            url: "/itdashboard/curriculums",
             exact: true,
           },
           {
-            id: "add product",
-            title: "Add Product",
+            id: "subjects",
+            title: "SUBJECTS",
             type: "item",
-            url: "/productsitview/add",
+            url: "/itdashboard/subjects",
             exact: true,
           },
         ],
       },
-      {
-        id: "customers",
-        title: "Customers",
-        type: "collapse",
-        icon: <SupervisorAccountIcon />,
-        badge: {
-          title: "5",
-          bg: "#525E8A",
-          fg: "#FFFFFF",
-          
-        },
-        children: [
-          {
-            id: "all customers",
-            title: "Our Customers",
-            type: "item",
-            url: "/itdashboard/customers",
-            exact: true,
-          },
-          {
-            id: "add customer",
-            title: "Add Customer",
-            type: "item",
-            url: "/itdashboard/customers/add",
-            exact: true,
-          },
-        ],
-      },
-      {
-        id: "hauliers",
-        title: "Hauliers",
-        type: "collapse",
-        icon: <LocalCarWashIcon />,
-        badge: {
-          title: "6",
-          bg: "#525E8A",
-          fg: "#FFFFFF",
-          
-        },
-        children: [
-          {
-            id: "all hauliers",
-            title: "Hauliers",
-            type: "item",
-            url: "/itdashboard/hauliers",
-            exact: true,
-          },
-          {
-            id: "add haulier",
-            title: "Create Haulier",
-            type: "item",
-            url: "/pages/hauliersitview/add",
-            exact: true,
-          },
-        ],
-      },
-      {
-        id: "transactions",
-        title: "Transactions",
-        type: "collapse",
-        icon: <AccountBalanceIcon />,
-        badge: {
-          title: "7",
-          bg: "#525E8A",
-          fg: "#FFFFFF",
-          
-        },
-        children: [
-          {
-            id: "all transactions",
-            title: "All Posts",
-            type: "item",
-            url: "/pages/posts",
-            exact: true,
-          },
-          {
-            id: "add transaction",
-            title: "Add Post",
-            type: "item",
-            url: "/pages/posts/add-post",
-            exact: true,
-          },
-        ],
-      },
-      {
-        id: "vehicles",
-        title: "Vehicles",
-        type: "collapse",
-        icon: <TrainIcon />,
-        badge: {
-          title: "8",
-          bg: "#525E8A",
-          fg: "#FFFFFF",
-          
-        },
-        children: [
-          {
-            id: "all vehicles",
-            title: "All Posts",
-            type: "item",
-            url: "/pages/posts",
-            exact: true,
-          },
-          {
-            id: "add vehicle",
-            title: "Add Post",
-            type: "item",
-            url: "/pages/posts/add-post",
-            exact: true,
-          },
-        ],
-      },
-      {
-        id: "tickets",
-        title: "Tickets",
-        type: "collapse",
-        icon: <AttachMoneyIcon />,
-        badge: {
-          title: "9",
-          bg: "#525E8A",
-          fg: "#FFFFFF",
-          
-        },
-        children: [
-          {
-            id: "all tickets",
-            title: "All Posts",
-            type: "item",
-            url: "/pages/posts",
-            exact: true,
-          },
-          {
-            id: "add ticket",
-            title: "Add Ticket",
-            type: "item",
-            url: "/pages/posts/add-post",
-            exact: true,
-          },
-        ],
-      },
-      {
-        id: "devices",
-        title:"Devices",
-        type: "collapse",
-        icon: <BuildIcon />,
-        badge: {
-          title: "10",
-          bg: "#525E8A",
-          fg: "#FFFFFF",
-          
-        },
-        children: [
-          {
-            id: "all devices",
-            title: "All Devices",
-            type: "item",
-            url: "/pages/posts",
-            exact: true,
-          },
-          {
-            id: "add device",
-            title: "Add Post",
-            type: "item",
-            url: "/pages/posts/add-post",
-            exact: true,
-          },
-        ],
-      },
-      {
-        id: "calendar",
-        title: "Calendar",
-        type: "item",
-        icon: <CalendarTodayIcon/>,
-        url: "/pages/calendar",
-        exact: true,
-      },
+      
     ],
   },
 ];

@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import {  Grid, makeStyles,  } from "@material-ui/core";
 import {Form, useForm } from "../../components/formcontrols/useForm";
 import  Controls  from "../../components/formcontrols/Controls";
-import { getFeeTargetsChoices, getFeeTypeChoices} from '../../actions/choices';
+import { getAccounts } from '../../actions/accounts';
+import { getAccountBalanceSheetCategoriesChoices, getAccountStatusChoices, getAccountTypeChoices} from '../../actions/choices';
 
 
 const useStyles = makeStyles(theme => ({
@@ -36,15 +37,18 @@ const useStyles = makeStyles(theme => ({
 const initialFValues = {
 
   name: '',
-  targets: '',
+  balance: '',
   type: '',
-  amount: '',
+  description: '',
+  parent_account: '',
+  balance_sheet_category: '',
+  active: '',
 
 }
 
 
 
-const AddFee = props => {
+const AddAccount = props => {
   const { addOrEdit, recordForEdit } = props
   const classes = useStyles();
 
@@ -52,12 +56,14 @@ const AddFee = props => {
     let temp = { ...errors }
     if ('name' in fieldValues)
         temp.name = fieldValues.name ? "" : "This field is required."
-    if ('targets' in fieldValues)
-        temp.targets = fieldValues.targets ? "" : "This field is required."
     if ('type' in fieldValues)
         temp.type = fieldValues.type ? "" : "This field is required."
-    if ('amount' in fieldValues)
-        temp.amount = fieldValues.amount ? "" : "This field is required."
+    if ('description' in fieldValues)
+        temp.description = fieldValues.description ? "" : "This field is required."
+    if ('balance_sheet_category' in fieldValues)
+        temp.balance_sheet_category = fieldValues.balance_sheet_category ? "" : "This field is required."
+    if ('active' in fieldValues)
+        temp.active = fieldValues.active ? "" : "This field is required."
     setErrors({
         ...temp
     })
@@ -85,8 +91,10 @@ const AddFee = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getFeeTargetsChoices();
-        props.getFeeTypeChoices();
+        props.getAccountStatusChoices();
+        props.getAccounts();
+        props.getAccountTypeChoices();
+        props.getAccountBalanceSheetCategoriesChoices();
     }
     if (recordForEdit != null)
             setValues({
@@ -105,32 +113,54 @@ const AddFee = props => {
                           label="NAME"
                           value={values.name}
                           onChange={handleInputChange}
-                          error={errors.fullName}
+                          error={errors.name}
                       />
                       <Controls.Input
-                          label="AMOUNT"
-                          name="amount"
-                          value={values.amount}
+                          label="BALANCE"
+                          name="balance"
+                          value={values.balance}
                           onChange={handleInputChange}
-                          error={errors.amount}
-                      />                
-                  </Grid>
-                  <Grid item xs={6}>
+                      />
+                      <Controls.Input
+                          label="DESCRIPTION"
+                          name="description"
+                          value={values.description}
+                          onChange={handleInputChange}
+                          error={errors.description}
+                      />
                       <Controls.DictSelect
                           name="type"
                           label="TYPE"
                           value={values.type}
                           onChange={handleInputChange}
-                          options={props.feetypechoices}
+                          options={props.accounttypechoices}
                           error={errors.type}
+                      />                
+                  </Grid>
+                  <Grid item xs={6}>
+                      <Controls.DictSelect
+                          name="balance_sheet_category"
+                          label="TYPE"
+                          value={values.balance_sheet_category}
+                          onChange={handleInputChange}
+                          options={props.accountbalancesheetcategorieschoices}
+                          error={errors.balance_sheet_category}
+                      />
+                      <Controls.Select
+                          name="parent_account"
+                          label="PARENT ACCOUNT"
+                          value={values.parent_account}
+                          onChange={handleInputChange}
+                          options={props.accounts}
+                          error={errors.parent_account}
                       />
                       <Controls.DictSelect
-                          name="targets"
-                          label="TARGETS"
-                          value={values.targets}
+                          name="active"
+                          label="STATUS"
+                          value={values.active}
                           onChange={handleInputChange}
-                          options={props.feetargetschoices}
-                          error={errors.targets}
+                          options={props.accountstatuschoices}
+                          error={errors.active}
                       />
  
                       <div>
@@ -149,9 +179,14 @@ const AddFee = props => {
 };
 
 const mapStateToProps = state =>({
-    feetypechoices: state.feechoices.feetypechoices,
-    feetargetschoices: state.feechoices.feetargetschoices
+    accounts: state.accounts.accounts,
+    accountstatuschoices: state.feechoices.accountstatuschoices,
+    accounttypechoices: state.feechoices.accounttypechoices,
+    accountbalancesheetcategorieschoices: state.feechoices.accountbalancesheetcategorieschoices,
 
 })
 
-export default connect(mapStateToProps, {getFeeTypeChoices, getFeeTargetsChoices} ) (AddFee);
+export default connect(
+    mapStateToProps, 
+    {getAccountBalanceSheetCategoriesChoices, getAccounts, getAccountTypeChoices, getAccountStatusChoices} ) 
+    (AddAccount);
