@@ -4,6 +4,10 @@ import {
     GET_ACCOUNT_STATUS_CHOICES,
     GET_ACCOUNT_BALANCE_SHEET_CATEGORIES_CHOICES,
     GET_ACCOUNT_TYPE_CHOICES,
+    GET_ASSET_TYPES_CHOICES, 
+    GET_ASSETS_DEPRECIATION_METHOD_CHOICES,
+    GET_GENERAL_GRADING_TYPE_CHOICES,
+    GET_ATTENDANCE_STATUS_CHOICES,
 } from '../types/choiceTypes'
 
 const initialState = {
@@ -12,12 +16,27 @@ const initialState = {
     accountstatuschoices: [],
     accountbalancesheetcategorieschoices : [],
     accounttypechoices : [],
+    assettypechoices: [],
+    assetsdepriciationmethodchoices : [],
+    generalgradingtypechoices : [],
+    attendancestatuschoices : [],
+
  }
  
  
  export default function a(state = initialState, action){
      switch(action.type){
-         case GET_FEE_TARGETS_CHOICES:
+        case GET_ATTENDANCE_STATUS_CHOICES:
+             return {
+                 ...state,
+                 attendancestatuschoices: action.payload
+             };
+        case GET_GENERAL_GRADING_TYPE_CHOICES:
+             return {
+                 ...state,
+                 generalgradingtypechoices: action.payload
+             };
+        case GET_FEE_TARGETS_CHOICES:
              return {
                  ...state,
                  feetargetschoices: action.payload
@@ -41,6 +60,16 @@ const initialState = {
             return {
                 ...state,
                 accounttypechoices : action.payload
+            };
+        case GET_ASSET_TYPES_CHOICES:
+            return {
+                ...state,
+                assettypechoices : action.payload
+            };
+        case GET_ASSETS_DEPRECIATION_METHOD_CHOICES:
+            return {
+                ...state,
+                assetsdepriciationmethodchoices : action.payload
             };
          default:
              return state;

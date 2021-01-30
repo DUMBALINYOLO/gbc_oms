@@ -97,11 +97,11 @@ class Cover extends React.Component {
 }
 
 Cover.propTypes = {
-  classes: PropTypes.object.isRequired,
-  avatar: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  desc: PropTypes.string.isRequired,
-  coverImg: PropTypes.string.isRequired,
+  // classes: PropTypes.object.isRequired,
+  // avatar: PropTypes.string.isRequired,
+  // name: PropTypes.string.isRequired,
+  // desc: PropTypes.string.isRequired,
+  // coverImg: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(Cover);

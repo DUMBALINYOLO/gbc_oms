@@ -62,7 +62,7 @@ class OrderPayment(SoftDeletionModel):
         on_delete=models.SET_NULL,
         blank=True, null=True)
     paid_by = models.ForeignKey(
-                        'people.StaffUser',
+                        'people.BursarProfile',
                         on_delete = models.SET_NULL,
                         null = True,
                         related_name = 'orderpayments',
@@ -111,7 +111,7 @@ class StockReceipt(SoftDeletionModel):
     '''
     order = models.ForeignKey('inventory.Order', on_delete=models.SET_NULL,
         null=True)
-    received_by = models.ForeignKey('people.StaffUser',
+    received_by = models.ForeignKey('people.BursarProfile',
         on_delete=models.SET_NULL,
         null=True,
         default=1)
@@ -164,7 +164,7 @@ class StockReceiptLine(SoftDeletionModel):
 class InventoryCheck(SoftDeletionModel):
     date = models.DateField()
     adjusted_by = models.ForeignKey(
-                    'people.StaffUser',
+                    'people.BursarProfile',
                     on_delete=models.SET_NULL,
                     null=True 
                 )
@@ -224,10 +224,10 @@ class StockAdjustment(SoftDeletionModel):
 class TransferOrder(SoftDeletionModel):
     date = models.DateField()
     expected_completion_date = models.DateField()
-    issuing_inventory_controller = models.ForeignKey('people.StaffUser',
+    issuing_inventory_controller = models.ForeignKey('people.BursarProfile',
         related_name='issuing_inventory_controller',
         on_delete=models.SET_NULL, null=True)
-    receiving_inventory_controller = models.ForeignKey('people.StaffUser',
+    receiving_inventory_controller = models.ForeignKey('people.BursarProfile',
         on_delete=models.SET_NULL, null=True)
     actual_completion_date =models.DateField(null=True)#provided later
     source_warehouse = models.ForeignKey('inventory.WareHouse',
@@ -282,7 +282,7 @@ class TransferOrderLine(SoftDeletionModel):
 
 class InventoryScrappingRecord(SoftDeletionModel):
     date = models.DateField()
-    controller = models.ForeignKey('people.StaffUser',
+    controller = models.ForeignKey('people.BursarProfile',
         on_delete=models.SET_NULL, null=True)
     warehouse = models.ForeignKey('inventory.WareHouse', on_delete=models.SET_NULL, null=True)
     comments = models.TextField(blank=True)

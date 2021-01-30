@@ -48,7 +48,7 @@ class Order(SoftDeletionModel):
     methods
     -------------
     '''
-    validated_by = models.ForeignKey('people.StaffUser',
+    validated_by = models.ForeignKey('people.BursarProfile',
                                     on_delete=models.SET_NULL,
                                     null=True,
                                     blank=True)
@@ -82,7 +82,7 @@ class Order(SoftDeletionModel):
 
     received_to_date = models.FloatField(default=0.0)
     issuing_inventory_controller = models.ForeignKey(
-                                        'people.StaffUser',
+                                        'people.BursarProfile',
                                         default=1,
                                         on_delete=models.SET_NULL,
                                         null=True,

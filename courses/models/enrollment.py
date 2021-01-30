@@ -9,7 +9,7 @@ from basedata.constants import (
 class StudentCourseEnrollment(SoftDeletionModel):
     status = models.CharField(max_length=200, choices=COURSE_ENROLLMENT_STATUS_CHOICES)
     student = models.ForeignKey(
-                    'people.Student', 
+                    'people.StudentProfile', 
                     on_delete=models.PROTECT,
                     related_name="enrollments"
                 )

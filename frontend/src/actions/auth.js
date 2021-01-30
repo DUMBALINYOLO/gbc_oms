@@ -1,32 +1,36 @@
 import axios from "axios";
-import * as actionTypes from "../types/actionTypes";
+import {
+  AUTH_SUCCESS,
+  AUTH_LOGOUT,
+  AUTH_FAIL,
+  AUTH_START,
 
+} from '../types/authTypes';
 
 export const authStart = () => {
   return {
-    type: actionTypes.AUTH_START
+    type: AUTH_START
   };
 };
 
-export const authSuccess = token => {
+export const authSuccess = user => {
   return {
-    type: actionTypes.AUTH_SUCCESS,
-    token: token
+    type: AUTH_SUCCESS,
+    user
   };
 };
 
 export const authFail = error => {
   return {
-    type: actionTypes.AUTH_FAIL,
+    type: AUTH_FAIL,
     error: error
   };
 };
 
 export const logout = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("expirationDate");
+  localStorage.removeItem("user");
   return {
-    type: actionTypes.AUTH_LOGOUT
+    type: AUTH_LOGOUT
   };
 };
 
@@ -42,41 +46,20 @@ export const authLogin = (email, password) => {
   return dispatch => {
     dispatch(authStart());
     axios
-      .post("http://127.0.0.1:8000/rest-auth/login/", {
+      .post("http://127.0.0.1:8000/api/people/login/", {
         email: email,
         password: password
       })
       .then(res => {
-        const token = res.data.key;
-        const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
-        localStorage.setItem("token", token);
-        localStorage.setItem("expirationDate", expirationDate);
-        dispatch(authSuccess(token));
-        dispatch(checkAuthTimeout(3600));
-      })
-      .catch(err => {
-        dispatch(authFail(err));
-      });
-  };
-};
-
-export const authCreateUser = (title, username, email,  category, company_branch) => {
-  return dispatch => {
-    dispatch(authStart());
-    axios
-      .post("http://127.0.0.1:8000/rest-auth/registration/", {
-        title: title,
-        username: username,
-        email: email,
-        category: category,
-        company_branch: company_branch,
-      })
-      .then(res => {
-        const token = res.data.key;
-        const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
-        localStorage.setItem("token", token);
-        localStorage.setItem("expirationDate", expirationDate);
-        dispatch(authSuccess(token));
+        const user = {
+          token: res.data.key,
+          email,
+          userId: res.data.token,
+          userRole: res.data.user.type,
+          expirationDate: new Date(new Date().getTime() + 3600 * 1000)
+        };
+        localStorage.setItem("user", JSON.stringify(user));
+        dispatch(authSuccess(user));
         dispatch(checkAuthTimeout(3600));
       })
       .catch(err => {
@@ -88,15 +71,15 @@ export const authCreateUser = (title, username, email,  category, company_branch
 
 export const authCheckState = () => {
   return dispatch => {
-    const token = localStorage.getItem("token");
-    if (token === undefined) {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user === undefined || user === null) {
       dispatch(logout());
     } else {
-      const expirationDate = new Date(localStorage.getItem("expirationDate"));
+      const expirationDate = new Date(user.expirationDate);
       if (expirationDate <= new Date()) {
         dispatch(logout());
       } else {
-        dispatch(authSuccess(token));
+        dispatch(authSuccess(user));
         dispatch(
           checkAuthTimeout(
             (expirationDate.getTime() - new Date().getTime()) / 1000
@@ -106,4 +89,3 @@ export const authCheckState = () => {
     }
   };
 };
-

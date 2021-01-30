@@ -22,7 +22,7 @@ class WareHouse(SoftDeletionModel):
     address = models.TextField()
     description = models.TextField(blank=True)
     inventory_controller = models.ForeignKey(
-                                'people.StaffUser',
+                                'people.BursarProfile',
                                 on_delete=models.SET_NULL,
                                 null=True,
                                 blank=True

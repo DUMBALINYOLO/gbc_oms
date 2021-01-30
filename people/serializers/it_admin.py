@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from people.models import Student
+from people.models import Student, StaffUser
 from attendance.models import AttendanceRecord
-from discipline.models import StudentDiscipline
+# from discipline.models import StudentDiscipline
 
 
 
@@ -21,23 +21,23 @@ class AttendanceSerializer(serializers.ModelSerializer):
 			]
 
 
-class StudentDisciplineSerailizer(serializers.ModelSerializer):
+# class StudentDisciplineSerailizer(serializers.ModelSerializer):
 
-	class Meta:
-		model = StudentDiscipline
-		fields = [
-			'id',
-			'offense',
-			'issue_status',
-			'date',
-			'comments',
-			'action'
-		]
+# 	class Meta:
+# 		model = StudentDiscipline
+# 		fields = [
+# 			'id',
+# 			'offense',
+# 			'issue_status',
+# 			'date',
+# 			'comments',
+# 			'action'
+# 		]
 
 
 class ItStudentDetailSerializer(serializers.ModelSerializer):
 	attendancerecords = AttendanceSerializer(many=True)
-	behaviour = StudentDisciplineSerailizer(many=True)
+	# behaviour = StudentDisciplineSerailizer(many=True)
 
 	class Meta:
 		model = Student
@@ -57,7 +57,7 @@ class ItStudentDetailSerializer(serializers.ModelSerializer):
 				'whatsapp_number',
 				# 'student_number',
 				'attendancerecords',
-				'behaviour',
+				# 'behaviour',
 
 			]
 
@@ -75,6 +75,13 @@ class ItStudentListSerializer(serializers.ModelSerializer):
 				'klass',
 				'gender',
 			]
+
+
+class StaffUserListDetailSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = StaffUser
+		fields = "__all__"
 
 
 

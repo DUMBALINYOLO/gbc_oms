@@ -131,6 +131,7 @@ export const studentreceiptsURL= `${endpoint}/fees/student-receipts/`
 
 
 //basedata
+
 export const generalgradingtypechoicesURL = `${endpoint}/basedata/general-grading-type-choices/`
 export const coursegradingtypechoicesURL = `${endpoint}/basedata/course-grading-type-choices/`
 export const courseratingchoicesURL = `${endpoint}/basedata/course-rating-choices/`
@@ -165,7 +166,25 @@ export const feetypechoicesURL = `${endpoint}/basedata/fee-type-choices/`
 export const accountstatuschoicesURL = `${endpoint}/basedata/account-status-choices/`
 
 //people
-export const studentsitviewURL = `${endpoint}/people/students-it-view/`
+export const adminstudentsURL = `${endpoint}/people/admin-students/`
+export const adminprincipalsURL = `${endpoint}/people/admin-principals/`
+export const adminteachersURL = `${endpoint}/people/admin-teachers/`
+export const adminbursarsURL = `${endpoint}/people/admin-bursars/`
+export const adminparentsURL = `${endpoint}/people/admin-parents/`
+export const bursarparentsURL = `${endpoint}/people/bursar-parents/`
+export const bursarstudentsURL = `${endpoint}/people/bursar-students/`
+export const createstudentURL = `${endpoint}/people/create-student/`
+export const createbursarURL = `${endpoint}/people/create-bursar/`
+export const createprincipalURL = `${endpoint}/people/create-principal/`
+export const createteacherURL = `${endpoint}/people/create-teacher/`
+export const parentprofilesURL = `${endpoint}/people/parent-profiles/`
+export const principalprofilesURL = `${endpoint}/people/principal-profiles/`
+export const teacherprofilesURL = `${endpoint}/people/teacher-profiles/`
+export const bursarprofilesURL = `${endpoint}/people/bursar-profiles/`
+export const studentprofilesURL = `${endpoint}/people/student-profiles/`
+
+
+
 
 
 //courses
@@ -173,10 +192,39 @@ export const coursesitviewURL = `${endpoint}/courses/courses-it-view/`
 
 
 
+//courses
+export const classesURL = `${endpoint}/classes/classes/`
+export const classstreamsURL = `${endpoint}/classes/class-streams/`
+export const classsubjectsURL = `${endpoint}/classes/class-subjects/`
+export const classstudentsURL = `${endpoint}/classes/class-students/`
+
+
+
 //attendance 
 export const adminattendancesURL = `${endpoint}/attendance/admin-attendances/`
 export const teacherattendancesURL = `${endpoint}/attendance/teacher-attendances/`
 export const studentattendancesURL = `${endpoint}/attendance/student-attendances/`
+export const studentattendancerecordsURL = `${endpoint}/attendance/student-attendance-records/`
+
+
+
+//gradings
+export const adminstudenttestsURL = `${endpoint}/grading/admin-student-tests/`
+export const adminstudentassignmentsURL = `${endpoint}/grading/admin-student-assignments/`
+export const adminstudentexcercisesURL = `${endpoint}/grading/admin-student-excercises/`
+export const teacherstudenttestsURL = `${endpoint}/grading/teacher-student-tests/`
+export const teacherstudentexcercisesURL = `${endpoint}/grading/teacher-student-excercises/`
+export const teacherstudentassignmentsURL = `${endpoint}/grading/teacher-student-assignments/`
+export const studentexcercisesURL = `${endpoint}/grading/student-excercises/`
+export const studenttestsURL = `${endpoint}/grading/student-tests/`
+export const studentassignmentsURL = `${endpoint}/grading/student-assignments/`
+export const gradingasignmentrecordsURL = `${endpoint}/grading/grading-asignment-records/`
+export const gradingtestrecordsURL = `${endpoint}/grading/grading-test-records/`
+export const gradingexcerciserecordsURL = `${endpoint}/grading/grading-excercise-records/`
+
+
+
+
 
 
 //curriculum
@@ -192,15 +240,6 @@ export const pendingstudentadmissionsURL = `${endpoint}/admissions/pending-stude
 export const rejectedstudentadmissionsURL = `${endpoint}/admissions/rejected-student-admissions/`
 export const meetingstudentadmissionsURL = `${endpoint}/admissions/meeting-student-admissions/`
 export const acceptedstudentadmissionsURL = `${endpoint}/admissions/accepted-student-admissions/`
-
-
-
-
-
-
-
-
-
 
 
 

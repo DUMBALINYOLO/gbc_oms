@@ -1,11 +1,18 @@
+from django.shortcuts import get_object_or_404
 from rest_framework import viewsets 
-from grading.models import GeneralGrade
+from grading.models import (
+		GeneralGrade,
+		Record
+	)
 from django.db.models import Q as ComplexQueryFilter
 from grading.serializers import (
 						AdminGeneralGradeCreateSerializer,
 						AdminGeneralGradeUpdateSerializer,
-						AdminGeneralListDetailSerializer
+						AdminGeneralListDetailSerializer,
+						RecordCreateUpdateSerializer,
+						RecordListDetailSerializer,
 					)
+
 
 
 
@@ -36,9 +43,9 @@ class AdminGeneralGradeTestViewSet(viewsets.ModelViewSet):
 
 
 
-	def perform_create(self, serializer, *args, **kwargs):
-		user = self.request.user
-		return serializer.save(type='test', recorded_by=user.staffuser)
+	# def perform_create(self, serializer, *args, **kwargs):
+	# 	user = self.request.user
+	# 	return serializer.save(type='test', recorded_by=user.staffuser)
 
 
 class AdminGeneralGradeExcerciseViewSet(viewsets.ModelViewSet):
@@ -67,9 +74,9 @@ class AdminGeneralGradeExcerciseViewSet(viewsets.ModelViewSet):
 
 
 
-	def perform_create(self, serializer, *args, **kwargs):
-		user = self.request.user
-		return serializer.save(type='excercise', recorded_by=user.staffuser)
+	# def perform_create(self, serializer, *args, **kwargs):
+	# 	user = self.request.user
+	# 	return serializer.save(type='excercise', recorded_by=user.staffuser)
 
 
 class AdminGeneralGradeAssignmentViewSet(viewsets.ModelViewSet):
@@ -98,10 +105,90 @@ class AdminGeneralGradeAssignmentViewSet(viewsets.ModelViewSet):
 		return queryset
 
 
+def get_grade(grade_id):
+	grade = get_object_or_404(GeneralGrade, id=grade_id)
+	return grade
 
-	def perform_create(self, serializer, *args, **kwargs):
-		user = self.request.user
-		return serializer.save(type='asignment', recorded_by=user.staffuser)
+
+class AsignmentRecordViewSet(viewsets.ModelViewSet):
+	
+
+	def get_serializer_class(self, *args, **kwargs):
+		if self.action in ['create', 'patch', 'update', 'put']:
+			return RecordCreateUpdateSerializer
+		return  RecordListDetailSerializer
+
+
+
+	def get_queryset(self, *args, **kwargs):
+		queryset = Record.objects.filter(
+								grade__type='asignment'
+							).prefetch_related(
+								'student'
+							).order_by('-id')
+		grade_id = self.request.query_params.get('id', None)
+		if grade_id is not None:
+			grade = get_grade(grade_id=grade_id)
+			queryset = grade.records.filter(
+								grade__type='asignment'
+							).prefetch_related(
+								'student'
+							).order_by('-id')
+		return queryset
+
+
+class TestRecordViewSet(viewsets.ModelViewSet):
+	
+
+	def get_serializer_class(self, *args, **kwargs):
+		if self.action in ['create', 'patch', 'update', 'put']:
+			return RecordCreateUpdateSerializer
+		return  RecordListDetailSerializer
+
+
+
+	def get_queryset(self, *args, **kwargs):
+		queryset = Record.objects.filter(
+								grade__type='test'
+							).prefetch_related(
+								'student'
+							).order_by('-id')
+		grade_id = self.request.query_params.get('id', None)
+		if grade_id is not None:
+			grade = get_grade(grade_id=grade_id)
+			queryset = grade.records.filter(
+								grade__type='test'
+							).prefetch_related(
+								'student'
+							).order_by('-id')
+		return queryset
+
+
+class ExcerciseRecordViewSet(viewsets.ModelViewSet):
+	
+
+	def get_serializer_class(self, *args, **kwargs):
+		if self.action in ['create', 'patch', 'update', 'put']:
+			return RecordCreateUpdateSerializer
+		return  RecordListDetailSerializer
+
+
+
+	def get_queryset(self, *args, **kwargs):
+		queryset = Record.objects.filter(
+								grade__type='excercise'
+							).prefetch_related(
+								'student'
+							).order_by('-id')
+		grade_id = self.request.query_params.get('id', None)
+		if grade_id is not None:
+			grade = get_grade(grade_id=grade_id)
+			queryset = grade.records.filter(
+								grade__type='excercise'
+							).prefetch_related(
+								'student'
+							).order_by('-id')
+		return queryset
 
 
 

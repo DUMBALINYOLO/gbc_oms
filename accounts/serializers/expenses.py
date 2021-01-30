@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from accounts.models import *
 from django.conf import settings
-from drf_writable_nested.serializers import WritableNestedModelSerializer
+# from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 class StringSerializer(serializers.StringRelatedField):
     def to_internal_value(self, value):
@@ -20,7 +20,7 @@ class BillLineSerializer(serializers.ModelSerializer):
 
 
 
-class BillCreateSerializer(WritableNestedModelSerializer):
+class BillCreateSerializer(serializers.ModelSerializer):
     lines = BillLineSerializer(many=True)
 
     class Meta:

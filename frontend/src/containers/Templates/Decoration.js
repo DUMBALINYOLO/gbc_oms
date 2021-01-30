@@ -68,12 +68,12 @@ class Decoration extends React.Component {
 }
 
 Decoration.propTypes = {
-  classes: PropTypes.object.isRequired,
-  mode: PropTypes.string.isRequired,
-  gradient: PropTypes.bool.isRequired,
-  decoration: PropTypes.bool.isRequired,
-  bgPosition: PropTypes.string.isRequired,
-  horizontalMenu: PropTypes.bool.isRequired,
+  // classes: PropTypes.object.isRequired,
+  // mode: PropTypes.string.isRequired,
+  // gradient: PropTypes.bool.isRequired,
+  // decoration: PropTypes.bool.isRequired,
+  // bgPosition: PropTypes.string.isRequired,
+  // horizontalMenu: PropTypes.bool.isRequired,
 };
 
 export default (withStyles(styles)(Decoration));

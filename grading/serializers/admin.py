@@ -29,8 +29,10 @@ class RecordListDetailSerializer(serializers.ModelSerializer):
 		model = Record
 		fields = [
 			'id',
+			'name',
 			'student',
 			'score',
+			'totalmarks',
 		]
 
 
@@ -71,7 +73,7 @@ class AdminGeneralGradeUpdateSerializer(WritableNestedModelSerializer):
 
 
 class AdminGeneralListDetailSerializer(serializers.ModelSerializer):
-	records = RecordListDetailSerializer(many=True)
+	# records = RecordListDetailSerializer(many=True)
 	klass = StringSerializer()
 	subject = StringSerializer()
 	recorded_by = StringSerializer()
@@ -88,7 +90,7 @@ class AdminGeneralListDetailSerializer(serializers.ModelSerializer):
 			'type',
 			'subject',
 			'recorded_by',
-			'records',
+			# 'records',
 		]
 
 

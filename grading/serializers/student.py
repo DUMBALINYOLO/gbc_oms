@@ -3,7 +3,6 @@ from grading.models import (
 		GeneralGrade,
 		Record
 	)
-from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 
 class StringSerializer(serializers.StringRelatedField):

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from event.models import Event, EventParticipant
-from drf_writable_nested.serializers import WritableNestedModelSerializer
+# from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 class StringSerializer(serializers.StringRelatedField):
 
@@ -32,7 +32,7 @@ class EventParticipantListDetailSerializer(serializers.ModelSerializer):
 		]
 
 
-class AdminEventCreateUpdateSerializer(WritableNestedModelSerializer):
+class AdminEventCreateUpdateSerializer(serializers.ModelSerializer):
 	participants = EventParticipantCreateUpdateSerializer(many=True, required=False)
 
 	class Meta:

@@ -13,5 +13,8 @@ urlpatterns = [
     re_path(r'api/grading/', include('grading.urls')),
     re_path(r'api/school/', include('setup.urls')),
     re_path(r'api/basedata/', include('basedata.urls')),
+    re_path(r'api/people/', include('people.urls')),
+    re_path(r'api/classes/', include('klasses.urls')),
+
 
 ]

@@ -5,13 +5,18 @@ import {
         DELETE_ATTENDANCE,
         GET_ATTENDANCE,
         EDIT_ATTENDANCE,
-        GET_STUDENT_ATTENDANCES
+        GET_STUDENT_ATTENDANCES,
+        ADD_ATTENDANCE_RECORD,
+        GET_ATTENDANCE_RECORDS,
+        EDIT_ATTENDANCE_RECORD,
     } from '../types/attendanceTypes';
 import { 
     adminattendancesURL,
     teacherattendancesURL,
-    studentattendancesURL 
+    studentattendancesURL,
+    studentattendancerecordsURL,
 } from '../constants';
+
 
 // Get
 export const getAdminAttendances = () => dispatch => {
@@ -60,7 +65,8 @@ export const getAdminAttendance = id => dispatch =>{
 
 //Edit
 export const editAdminAttendance = (id, attendance) => dispatch => {
-    axios.put(`http://127.0.0.1:8000/api/attendance/admin-attendances/${id}/`, attendance)
+    JSON.stringify(id, null, 3)
+    axios.patch(`http://127.0.0.1:8000/api/attendance/admin-attendances/${id}/`, attendance)
         .then(res => {
             dispatch({
                 type: EDIT_ATTENDANCE,
@@ -118,7 +124,8 @@ export const getTeacherAttendance = id => dispatch =>{
 
 //Edit
 export const editTeacherAttendance = (id, attendance) => dispatch => {
-    axios.put(`http://127.0.0.1:8000/api/attendance/teacher-attendances/${id}/`, attendance)
+    JSON.stringify(id, null, 3)
+    axios.patch(`http://127.0.0.1:8000/api/attendance/teacher-attendances/${id}/`, attendance)
         .then(res => {
             dispatch({
                 type: EDIT_ATTENDANCE,
@@ -139,6 +146,46 @@ export const getStudentAttendances = () => dispatch => {
             });
         }).catch(err => console.log(err))
 }
+
+
+
+
+// Get
+export const getAdminAttendanceRecords = () => dispatch => {
+    axios.get(studentattendancerecordsURL)
+        .then(res => {
+            dispatch({
+                type: GET_ATTENDANCE_RECORDS,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+// Add
+export const addAttendanceRecord = (record) => dispatch => {
+    axios.post(studentattendancerecordsURL, record)
+        .then(res => {
+            dispatch({
+                type: ADD_ATTENDANCE_RECORD,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+//Edit
+export const editAttendanceRecord = (id, record) => dispatch => {
+    JSON.stringify(id, null, 3)
+    axios.patch(`http://127.0.0.1:8000/api/attendance/student-attendance-records/${id}/`, record)
+        .then(res => {
+            dispatch({
+                type: EDIT_ATTENDANCE_RECORD,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+
+
 
 
 

@@ -1,0 +1,13 @@
+export const ADD_CLASS = 'ADD_CLASS';
+export const GET_CLASSES = 'GET_CLASSES';
+export const GET_CLASS = 'GET_CLASS';
+export const EDIT_CLASS = 'EDIT_CLASS';
+export const ADD_STREAM = 'ADD_STREAM';
+export const GET_STREAMS = 'GET_STREAMS';
+export const EDIT_STREAM = 'EDIT_STREAM';
+
+export const GET_CLASS_SUBJECTS = 'GET_CLASS_SUBJECTS';
+export const ADD_CLASS_SUBJECT = 'ADD_CLASS_SUBJECT';
+export const EDIT_CLASS_SUBJECT = 'EDIT_CLASS_SUBJECT';
+export const GET_CLASS_STUDENTS = 'GET_CLASS_STUDENTS';
+

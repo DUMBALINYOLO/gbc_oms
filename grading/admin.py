@@ -10,3 +10,5 @@ from .models import (
 # Register your models here.
 admin.site.register(CourseGrade)
 admin.site.register(GradeRecord)
+admin.site.register(GeneralGrade)
+admin.site.register(Record)

@@ -32,13 +32,21 @@ class CurriculumViewSet(viewsets.ModelViewSet):
 
 class SubjectViewSet(viewsets.ModelViewSet):
 
-	queryset = Subject.objects.all()
-
-
+	
+	
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'put', 'patch', 'update']:
 			SubjectCreateUpdateSerializer
 		return SubjectListDetailSerializer
+
+
+	def get_queryset(self, *args, **kwargs):
+		queryset = Subject.objects.all()
+		user = self.request.user
+		print(user)
+		return queryset
+		
+
 
 
 

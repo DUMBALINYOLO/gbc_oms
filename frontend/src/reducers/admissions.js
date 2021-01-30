@@ -19,10 +19,10 @@ const initialState = {
     rejectedadmissions: [],
     meetingadmissions: [],
     acceptedadmissions: [],
-    loading: false
+    loading: false,
 }
 
-export default function (state = initialState, action){
+export default function admissions(state = initialState, action){
     switch(action.type){
         case GET_ADMISSIONS:
             return {
@@ -55,6 +55,7 @@ export default function (state = initialState, action){
                 ...state,
                 acceptedadmissions: action.payload
             };
+
 
         case EDIT_PENDING_ADMISSIONS:
             const pearrayList = state.pendingadmissions;

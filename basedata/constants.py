@@ -581,17 +581,15 @@ STUDY_NOTES_APPROVAL_STATUS_CHOICES = [
 
 
 USER_TYPE_CHOICES = [
-			('admin', 'School Admin'),
+			('principal', 'Principal'),
 			('teacher', 'Teacher'),
 			('student', 'Student'),
 			('parent', 'Parent'),
-			('librarian', 'Librarian'),
-			('clerk', 'Clerk'),
-			('it_admin', 'IT Admin'),
-			('hofad', 'Head Office Admin'),
+            ('clerk', 'Clerk'),
+            ('bursar', 'Bursar'),
+            ('none', 'None'),
+
 		]
-
-
 
 
 USER_TITLE_CHOICES = [

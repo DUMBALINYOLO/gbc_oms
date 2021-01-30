@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from attendance.models import  Attendance, AttendanceRecord
-from drf_writable_nested.serializers import WritableNestedModelSerializer
+# from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 class StringSerializer(serializers.StringRelatedField):
     def to_internal_value(self, value):
@@ -42,7 +42,7 @@ class AdminAttendanceCreateSerializer(serializers.ModelSerializer):
 		]
 
 
-class AdminAttendanceUpdateSerializer(WritableNestedModelSerializer):
+class AdminAttendanceUpdateSerializer(serializers.ModelSerializer):
 	records = AttendanceRecordUpdateSerializer(many=True)
 
 	class Meta:
@@ -74,7 +74,7 @@ class AdminAttendanceListSerializer(serializers.ModelSerializer):
 class AdminAttendanceDetailSerializer(serializers.ModelSerializer):
 	klass = StringSerializer()
 	recorded_by = StringSerializer()
-	records = AttendanceRecordListSerializer(many=True)
+	# records = AttendanceRecordListSerializer(many=True)
 
 	class Meta:
 		model = Attendance
@@ -83,5 +83,5 @@ class AdminAttendanceDetailSerializer(serializers.ModelSerializer):
 			'date',
 			'klass',
 			'recorded_by',
-			'records',
+			# 'records',
 		]

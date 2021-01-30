@@ -27,26 +27,3 @@ class StudentAdmissionViewSet(viewsets.ModelViewSet):
 
 	def perform_create(self, serializer, *args, **kwargs):
 		return serializer.create(student=self.request.user, status='pending')
-
-
-
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

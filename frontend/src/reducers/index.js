@@ -17,6 +17,11 @@ import currencies from './currencies';
 import workbooks from './workbooks';
 import ledgers from './ledgers';
 import journals from './journals';
+import people from './people';
+import assets from './assets';
+import classes from './classes';
+import gradings from './gradings';
+
 
 
 
@@ -39,5 +44,9 @@ export default combineReducers({
     workbooks,
     ledgers,
     journals,
+    people,
+    assets,
+    classes,
+    gradings,
 });
 

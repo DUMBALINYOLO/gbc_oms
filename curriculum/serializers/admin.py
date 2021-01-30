@@ -8,6 +8,7 @@ from curriculum.models import (
 	)
 
 
+
 class StringSerializer(serializers.StringRelatedField):
     def to_internal_value(self, value):
         return value

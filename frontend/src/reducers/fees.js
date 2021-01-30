@@ -36,7 +36,7 @@ const initialState = {
     loading: false
 }
 
-export default function (state = initialState, action){
+export default function fees(state = initialState, action){
     switch(action.type){
         case GET_RECEIPTS:
             return {

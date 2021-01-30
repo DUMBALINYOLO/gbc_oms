@@ -89,6 +89,7 @@ export const getAcceptedAdmissions = () => dispatch => {
 
 //Edit
 export const editPendingAdmission = (id, admission) => dispatch => {
+    JSON.stringify(id, null, 3)
     axios.put(`http://127.0.0.1:8000/api/admissions/pending-student-admissions/${id}/`, admission)
         .then(res => {
             dispatch({
@@ -100,6 +101,7 @@ export const editPendingAdmission = (id, admission) => dispatch => {
 
 
 export const editRejectedAdmission = (id, admission) => dispatch => {
+    JSON.stringify(id, null, 3)
     axios.put(`http://127.0.0.1:8000/api/admissions/rejected-student-admissions/${id}/`, admission)
         .then(res => {
             dispatch({
@@ -111,6 +113,7 @@ export const editRejectedAdmission = (id, admission) => dispatch => {
 
 
 export const editMeetingAdmission = (id, admission) => dispatch => {
+    JSON.stringify(id, null, 3)
     axios.put(`http://127.0.0.1:8000/api/admissions/meeting-student-admissions/${id}/`, admission)
         .then(res => {
             dispatch({
@@ -122,6 +125,7 @@ export const editMeetingAdmission = (id, admission) => dispatch => {
 
 
 export const editAcceptedAdmission = (id, admission) => dispatch => {
+    JSON.stringify(id, null, 3)
     axios.put(`http://127.0.0.1:8000/api/admissions/accepted-student-admissions/${id}/`, admission)
         .then(res => {
             dispatch({

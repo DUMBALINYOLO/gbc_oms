@@ -17,7 +17,6 @@ class StudentAttendanceViewSet(viewsets.ModelViewSet):
 
 	def get_queryset(self, *args, **kwargs):
 		student = self.request.user
-		queryset = student.attendancerecords.all()
-
+		queryset = student.attendance
 		return queryset
 

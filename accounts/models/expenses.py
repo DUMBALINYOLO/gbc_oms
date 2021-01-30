@@ -151,7 +151,7 @@ class BillPayment(SoftDeletionModel):
     #             related_name='billpayments'
     #         )
     paid_by = models.ForeignKey(
-                            'people.StaffUser',
+                            'people.BursarProfile',
                             on_delete=models.SET_NULL,
                             blank=True,
                             null=True

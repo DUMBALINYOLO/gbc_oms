@@ -55,6 +55,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
 
+    base_type = 'none'
+
     
     email = models.EmailField(
                         unique=True, 
@@ -66,14 +68,21 @@ class User(AbstractBaseUser, PermissionsMixin):
     staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
-    category = models.CharField(max_length=341, choices = USER_TYPE_CHOICES, default='student')
-    
+    type = models.CharField(max_length=341, choices = USER_TYPE_CHOICES, default=base_type)
+    username = models.CharField(max_length=341, unique=True)
+
+    def __str__(self):
+        if self.username is not None:
+            return self.username
+        return self.email
+
+        
 
     objects = UserManager()
 
 
     USERNAME_FIELD = 'email'
-    REQUIRE_FIELDS = ['category']
+    REQUIRE_FIELDS = ['type', 'username']
 
     @property
     def token(self):

@@ -12,12 +12,11 @@ class Notice(SoftDeletionModel):
 		filter ongoing and expired
 
 	'''
-
 	title = models.CharField(max_length=68)
 	type = models.CharField(max_length=200, choices=SCHOOL_NOTICE_TYPE_CHOICES)
 	status = models.CharField(max_length=200, choices=SCHOOL_NOTICE_BOARD_STATUS_CHOICES)
-	date_created = models.DateField()
-	expiry_date = models.DateField()
+	date_created = models.DateField(auto_now_add=True)
+	expiry_date = models.DateField(auto_now_add=True)
 	content = models.TextField()
 
 
@@ -27,30 +26,3 @@ class Notice(SoftDeletionModel):
 		return self.title
 
 
-
-
-
-class Announcement(SoftDeletionModel):
-
-	'''
-		filter ongoing and expired
-
-	'''
-
-	title = models.CharField(max_length=68)
-	course = models.ForeignKey(
-							'courses.Course',
-							on_delete=models.SET_NULL,
-							null=True,
-							related_name='announcements'
-						)
-
-	type = models.CharField(max_length=200, choices=SCHOOL_NOTICE_TYPE_CHOICES)
-	status = models.CharField(max_length=200, choices=SCHOOL_NOTICE_BOARD_STATUS_CHOICES)
-	date_created = models.DateField()
-	expiry_date = models.DateField()
-	content = models.TextField()
-
-
-	def __str__(self):
-		return self.title

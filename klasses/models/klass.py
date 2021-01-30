@@ -16,21 +16,20 @@ class StudentClass(SoftDeletionModel):
 				)
 	max_population = models.IntegerField(default=0)
 	population = models.IntegerField(default=0)
-	class_teacher = models.OneToOneField('people.StaffUser', on_delete=models.SET_NULL, null=True)
+	class_teacher = models.OneToOneField('people.TeacherProfile', on_delete=models.SET_NULL, null=True)
 	year = models.CharField(max_length=68)
 	creation_date  =   models.DateTimeField(auto_now=False, auto_now_add=True)
 	subjects = models.ManyToManyField(
 	        'curriculum.Subject', 
 	    # related_name="courses",
-	        through='curriculum.KlassStudiedSubject'
+	        through='curriculum.KlassStudiedSubject',
 	    )
-	# students = models.ManyToManyField(
-	#     'people.Student', 
-	#     # related_name="courses",
-	#     through='StudentEnrollment',)
+	students = models.ManyToManyField(
+	    'people.StudentProfile', 
+	    related_name="klasses",
+	    through='StudentEnrollment',)
 	status = models.CharField(
 		max_length=68, choices=STUDENT_CLASS_STATUS_CHOICES)
-	# year = models.CharField(max_length=68, choices=YEAR_CHOICES)
 
 
 
@@ -61,10 +60,6 @@ class StudentClass(SoftDeletionModel):
 										klass = self
 									)
  
-
-
-
-
     # @property
     # def is_full(self):
     # 	pass

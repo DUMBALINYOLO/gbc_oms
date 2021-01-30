@@ -6,6 +6,8 @@ import DatePicker from "./DatePicker";
 import Button from "./Button";
 import DictSelect from "./DictSelect";
 import ActionButton from "./ActionButton";
+import GradeSelect from './GradeSelect';
+import UserSelect from './UserSelect';
 
 
 const Controls = {
@@ -17,6 +19,8 @@ const Controls = {
     Button,
     DictSelect,
     ActionButton,
+    GradeSelect,
+    UserSelect,
 }
 
 export default Controls;

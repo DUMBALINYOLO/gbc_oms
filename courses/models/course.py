@@ -26,14 +26,8 @@ from basedata.constants import (
 
 
 class Course(SoftDeletionModel):
-    owners = models.ManyToManyField(
-                    'setup.Institution', 
-                    related_name='owned_courses',
-                    through= 'courses.AddCourseToSchool'
-
-                )
     students = models.ManyToManyField(
-                        'people.Student',
+                        'people.StudentProfile',
                         through = 'courses.StudentCourseEnrollment',
                         related_name='taken_courses'
 
@@ -52,34 +46,7 @@ class Course(SoftDeletionModel):
     end_date = models.DateTimeField()
     course_number = models.CharField(max_length=200, unique=True, blank=True, null=True)
     description = models.TextField()
-    # topics_format = models.CharField(max_length=200, choices=COURSES_FORMAT_CHOICES)
-    # number_of_sections = models.CharField(max_length=200, choices=NUMBER_OF_SECTIONS_CHOICES)
-    # hidden_sections = models.CharField(max_length=200, choices=COURSE_HIDDEN_CHOICES)
-    # course_layout = models.CharField(max_length=200, choices=COURSE_LAYOUT_CHOICES)
-    # force_language  = models.CharField(max_length=200, choices=LANGUAGE_CHOICES)
-    # number_of_announcements = models.CharField(max_length=200, choices=NUMBER_OF_ANNOUNCEMENTS_CHOICES)
-    # show_gradebook_to_students = models.CharField(max_length=200, choices=BOOLEAN_CHOICES)
-    # show_activity_reports = models.CharField(max_length=200, choices=BOOLEAN_CHOICES)
-    # maximum_upload_size = models.CharField(max_length=200, choices=FILES_UPLOAD_CHOICES)
-    # enable_completion_tracking = models.CharField(max_length=200, choices=BOOLEAN_CHOICES)
-    # group_mode = models.CharField(max_length=200, choices=COURSE_GROUPS_CHOICES)
-    # force_group_mode = models.BooleanField(default=False)
-    # default_grouping = models.BooleanField(default=False)
-    # your_word_for_administrator = models.CharField(max_length=200, blank=True, null=True)
-    # your_word_for_teacher = models.CharField(max_length=200, blank=True, null=True)
-    # your_word_for_parent = models.CharField(max_length=200, blank=True, null=True)
-    # your_word_for_student = models.CharField(max_length=200, blank=True, null=True)
-    # your_word_for_course_designer = models.CharField(max_length=200, blank=True, null=True)
-    # your_word_for_manager = models.CharField(max_length=200, blank=True, null=True)
-    # your_word_for_course_creator = models.CharField(max_length=200, blank=True, null=True)
-    # your_word_for_guest = models.CharField(max_length=200, blank=True, null=True)
-    # your_word_for_non_editing_teacher = models.CharField(max_length=200, blank=True, null=True)
-    # your_word_for_authenticated_user = models.CharField(max_length=200, blank=True, null=True)
 
-
-
-
-    # tags
 
 
     def save(self, *args, **kwargs):
@@ -110,61 +77,6 @@ class Course(SoftDeletionModel):
         return self.all()
 
 
-    @property
-    def images(self):
-        images = []
-        topics = self.topics.all()
-        for topic in topics:
-            for suptopic in topic.subtopics.all():
-                for note in suptopic.notes.all():
-                    for image in note.images.all():
-                        images.append(image)
-        return images
-
-    @property
-    def videos(self):
-        videos = []
-        topics = self.topics.all()
-        for topic in topics:
-            for suptopic in topic.subtopics.all():
-                for note in suptopic.notes.all():
-                    for video in note.videos.all():
-                        videos.append(video)
-        return videos
-
-
-    @property
-    def notes(self):
-        notes = []
-        topics = self.topics.all()
-        for topic in topics:
-            for suptopic in topic.subtopics.all():
-                for note in suptopic.notes.all():
-                    for note in note.notes.all():
-                        notes.append(note)
-        return notes
-
-    @property
-    def files(self):
-        files = []
-        topics = self.topics.all()
-        for topic in topics:
-            for suptopic in topic.subtopics.all():
-                for note in suptopic.notes.all():
-                    for file in note.files.all():
-                        files.append(file)
-        return files
-
-    @property
-    def references(self):
-        bibliography = []
-        topics = self.topics.all()
-        for topic in topics:
-            for suptopic in topic.subtopics.all():
-                for note in suptopic.notes.all():
-                    for refr in note.references.all():
-                        bibliography.append(refr)
-        return bibliography
 
 
 
@@ -324,21 +236,10 @@ class Review(SoftDeletionModel):
     
     course = models.ForeignKey('Course',on_delete=models.SET_NULL, null=True, related_name='reviews')
     pub_date = models.DateTimeField(auto_now_add=True)
-    reviewer = models.ForeignKey('people.Student',on_delete=models.SET_NULL, null=True, related_name='reviews')
+    reviewer = models.ForeignKey('people.StudentProfile',on_delete=models.SET_NULL, null=True, related_name='reviews')
     comment = models.CharField(max_length=200)
     rating = models.IntegerField(choices=COURSE_RATING_CHOICES)
 
 
     def __str__(self):
         return self.reviewer.__str__()
-
-
-
-
-
-
-
-
-
-
-

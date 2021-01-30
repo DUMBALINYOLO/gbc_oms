@@ -1,24 +1,23 @@
 
 
 import os
+import os
+from datetime import timedelta
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DEBUG = True
+if DEBUG:
+    from dotenv import load_dotenv
+    load_dotenv()
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'k$i=2jy+1s5t(+^3_me23xvqr!6e03p53rvg8t+$v9(s&6))5q'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+
 
 ALLOWED_HOSTS = []
 
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -40,12 +39,18 @@ INSTALLED_APPS = [
     'inventory',
     'setup',
     'noticeboard',
-    'people',
+    'people.apps.PeopleConfig',
     'klasses',
-    #third part apps 
+    'communication',
+    #third part apps
+    'django_extensions',
     'solo.apps.SoloAppConfig',
     'rest_framework',
     'corsheaders',
+    'channels',
+    'django_celery_beat',
+    'knox',
+
 
 ]
 
@@ -80,6 +85,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'gbc.wsgi.application'
+ASGI_APPLICATION = "gbc.routing.application"
 
 
 # Database
@@ -111,9 +117,29 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'knox.auth.TokenAuthentication',
+    ),
 
-# Internationalization
-# https://docs.djangoproject.com/en/3.0/topics/i18n/
+
+    'DATE_INPUT_FORMATS': ['iso-8601', '%Y-%m-%dT%H:%M:%S.%fZ'],
+    # "DATE_INPUT_FORMATS": ["%d-%m-%Y"],
+    # 'DATE_FORMAT': ["%d-%m-%Y"],
+    # 'DATETIME_FORMAT': ["%d-%m-%Y %H:%M:%S"],
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,
+}
+
+
+
 
 LANGUAGE_CODE = 'en-us'
 
@@ -132,3 +158,34 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'dumbaclassics@gmail.com'
+EMAIL_HOST_PASSWORD = 'npfspfydygnmoqcx'
+EMAIL_USE_TLS = True
+
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+CELERY_BEAT_SCHEDULE = {
+    "scheduled_task": {  # change name of task
+        "task": "",
+        "schedule": timedelta(hours=24),
+    }
+}

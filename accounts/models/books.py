@@ -136,7 +136,7 @@ class Adjustment(models.Model):
                         )
     description = models.TextField()
     created_by = models.ForeignKey(
-                            'people.StaffUser', 
+                            'people.BursarProfile', 
                             on_delete=models.SET_NULL, 
                             null=True,
                             default=1

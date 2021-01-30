@@ -33,12 +33,12 @@ class CourseGrade(SoftDeletionModel):
 		return f'NAME: {self.name} {self.klass}'
 
 
-	def save(self, *args, **kwargs):
-		super(CourseGrade, self).save(*args, **kwargs)
-		if self.grade_records.count() <= 0:
-			for student in self.klass.students.all():
-				self.grade_records.create(student=student, score=0.0) 
-				# separate sql query i guess for each entry created.
+	# def save(self, *args, **kwargs):
+		# super(CourseGrade, self).save(*args, **kwargs)
+		# if self.grade_records.count() <= 0:
+		# 	for student in self.klass.students.all():
+		# 		self.grade_records.create(student=student, score=0.0) 
+
 
 
 
@@ -51,7 +51,7 @@ class GradeRecord(SoftDeletionModel):
 							related_name='grade_records'
 						)
 	student = models.ForeignKey(
-							'people.Student',
+							'people.StudentProfile',
 							on_delete=models.SET_NULL,
 							blank=True,
 							null=True,

@@ -29,10 +29,10 @@ const Breadcrumbs = (props) => {
 };
 
 Breadcrumbs.propTypes = {
-  classes: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  theme: PropTypes.string.isRequired,
-  separator: PropTypes.string.isRequired,
+  // classes: PropTypes.object.isRequired,
+  // location: PropTypes.object.isRequired,
+  // theme: PropTypes.string.isRequired,
+  // separator: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(Breadcrumbs);

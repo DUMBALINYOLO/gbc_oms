@@ -35,7 +35,7 @@ class Payment(SoftDeletionModel):
         default='transfer')
     reference_number = models.CharField(max_length=255, null=True, default=None) 
     bookkeeper  = models.ForeignKey(
-                        "people.StaffUser",
+                        "people.BursarProfile",
                         on_delete=models.SET_NULL, 
                         null=True,
                         related_name = 'incoming_payments',

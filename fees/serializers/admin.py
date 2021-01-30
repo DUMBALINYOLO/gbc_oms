@@ -7,7 +7,7 @@ from fees.models import (
 							Payment,
 							StudentReceipt
 						)
-from drf_writable_nested.serializers import WritableNestedModelSerializer
+# from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 class StringSerializer(serializers.StringRelatedField):
 
@@ -98,7 +98,7 @@ class InvoiceLineListSerializer(serializers.ModelSerializer):
 
 
 
-class InvoiceCreateUpdateSerializer(WritableNestedModelSerializer):
+class InvoiceCreateUpdateSerializer(serializers.ModelSerializer):
 	lines = InvoiceLineCreateSerializer(many=True)
 
 	class Meta:

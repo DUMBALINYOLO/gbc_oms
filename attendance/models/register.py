@@ -3,10 +3,10 @@ from basedata.models import SoftDeletionModel
 from basedata.constants import ATTENDANCE_STATUS_CHOICES
 from django.conf import settings
 
-	
+
 
 class Attendance(SoftDeletionModel):
-	date = models.DateField()
+	date = models.DateField(auto_now_add=True)
 	klass = models.ForeignKey(
 						'klasses.StudentClass', 
 						models.SET_NULL, 
@@ -15,7 +15,7 @@ class Attendance(SoftDeletionModel):
 						related_name='attendances'
 					)
 	recorded_by = models.ForeignKey(
-                            "people.StaffUser", 
+                            "people.TeacherProfile", 
                             on_delete=models.SET_NULL, 
                             related_name='registerrecords', 
                             null=True
@@ -31,7 +31,7 @@ class Attendance(SoftDeletionModel):
 		# separate sql query i guess for each entry created.
 
 	def __str__(self):
-		return f"{self.id}, {self.date}"
+		return f"{self.date}"
 
 
 
@@ -45,7 +45,7 @@ class AttendanceRecord(SoftDeletionModel):
 				related_name='records'
 			)
 	student = models.ForeignKey(
-						'people.Student', 
+						'people.StudentProfile', 
 						on_delete=models.SET_NULL,
 						blank=True,
 						null=True,
@@ -62,17 +62,3 @@ class AttendanceRecord(SoftDeletionModel):
 	@property
 	def date(self):
 		return self.attendance.date
-
-
-
-
-
-
-
-
-
-
-
-
-		
-	

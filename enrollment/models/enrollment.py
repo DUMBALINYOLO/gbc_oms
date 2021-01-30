@@ -4,9 +4,10 @@ from basedata.models import SoftDeletionModel
 from basedata.constants import ONLINE_ADMISSION_STATUS_CHOICES
 
 
+
 class Admission(SoftDeletionModel):
     student = models.OneToOneField(
-                        'people.Student',
+                        'people.StudentProfile',
                         on_delete=models.CASCADE,
                         related_name='application'
                 )
@@ -16,7 +17,7 @@ class Admission(SoftDeletionModel):
                         default='pending'
                     )
     application_date = models.DateField(auto_now_add=True)
-    application_number  = models.CharField(max_length=255, null=True, default=None)
+    application_number  = models.CharField(max_length=255, null=True, blank=True, default=None)
     klass = models.ForeignKey(
                             'klasses.StudentClass',
                             related_name='applicants',
@@ -32,4 +33,11 @@ class Admission(SoftDeletionModel):
 
 
 
+    def __str__(self):
+        return f'Application For: {self.student.__str__()}'
 
+
+    def enroll(self):
+        self.status = 'approved'
+        self.save()
+        return self.status

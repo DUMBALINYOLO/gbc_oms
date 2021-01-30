@@ -4,7 +4,7 @@ from accounts.models import (
                     Credit,
                     Debit
                 )
-from drf_writable_nested.serializers import WritableNestedModelSerializer
+# from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 
 class StringSerializer(serializers.StringRelatedField):
@@ -23,7 +23,7 @@ class DebitSerializer(serializers.ModelSerializer):
         fields = ['id', 'amount', 'date']
 
 
-class JournalEntryCreateUpdateSerializer(WritableNestedModelSerializer):
+class JournalEntryCreateUpdateSerializer(serializers.ModelSerializer):
     debit_set = DebitSerializer(many=True)
     credit_set = DebitSerializer(many=True)
 

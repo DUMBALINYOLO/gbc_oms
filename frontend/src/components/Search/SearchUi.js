@@ -157,8 +157,8 @@ class SearchUi extends React.Component {
 }
 
 SearchUi.propTypes = {
-  classes: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
+  // classes: PropTypes.object.isRequired,
+  // history: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(SearchUi);

@@ -78,18 +78,18 @@ class Invoice(SoftDeletionModel):
     sale_type = models.CharField(max_length=16, choices=INVOICE_SALES_TYPES_CHOICES)
     status = models.CharField(max_length=16, choices=INVOICE_SALE_STATUS_CHOICES)
     tracking_number = models.CharField(max_length=255, null=True, default=None)  
-    validated_by = models.ForeignKey('people.StaffUser',
+    validated_by = models.ForeignKey('people.BursarProfile',
         blank=True,
         null=True,
         on_delete=models.SET_NULL)
     draft = models.BooleanField(blank=True, default=False)
-    student = models.ForeignKey("people.Student",
+    student = models.ForeignKey("people.StudentProfile",
         on_delete=models.SET_NULL,
         null=True,
         default=DEFAULT_CUSTOMER,
         related_name ='myinvoices'
     )
-    bookkeeper = models.ForeignKey('people.StaffUser',
+    bookkeeper = models.ForeignKey('people.BursarProfile',
         on_delete=models.SET_NULL,
         null=True,
         default=DEFAULT_SALES_REP,
@@ -302,40 +302,4 @@ class InvoiceLine(SoftDeletionModel):
             return D(0)
 
         return self.subtotal * D(self.tax.rate / 100.0)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

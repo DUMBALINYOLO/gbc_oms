@@ -17,7 +17,7 @@ class AccountingSettings(SingletonModel):
         choices=ACCOUNTING_PERIODS_CHOICES, default=1)
 
     default_bookkeeper = models.ForeignKey(
-                            'people.User', 
+                            'people.BursarProfile', 
                             null=True,
                             blank=True, 
                             on_delete=models.SET_NULL

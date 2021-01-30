@@ -17,7 +17,7 @@ class GeneralGrade(SoftDeletionModel):
 							related_name='ongoing_grades'
 						)
 	total_marks = models.IntegerField(default=0)
-	date = models.DateField()
+	date = models.DateField(auto_now_add=True)
 	type = models.CharField(max_length=70, choices=GENERAL_GRADING_TYPE_CHOICES)
 	subject = models.ForeignKey(
 						'curriculum.Subject',
@@ -25,7 +25,7 @@ class GeneralGrade(SoftDeletionModel):
 						null=True
 					)
 	recorded_by = models.ForeignKey(
-							'people.StaffUser',
+							'people.TeacherProfile',
 							on_delete=models.SET_NULL,
 							null=True,
 							related_name ='marklist'
@@ -38,9 +38,9 @@ class GeneralGrade(SoftDeletionModel):
 
 	def save(self, *args, **kwargs):
 		super(GeneralGrade, self).save(*args, **kwargs)
-		if self.grade_records.count() <= 0:
+		if self.records.count() <= 0:
 			for student in self.klass.students.all():
-				self.grade_records.create(student=student, score=0.0) 
+				self.records.create(student=student, score=0.0) 
 				# separate sql query i guess for each entry created.
 
 
@@ -54,7 +54,7 @@ class Record(SoftDeletionModel):
 							related_name='records'
 						)
 	student = models.ForeignKey(
-							'people.Student',
+							'people.StudentProfile',
 							on_delete=models.SET_NULL,
 							blank=True,
 							null=True,
@@ -76,20 +76,6 @@ class Record(SoftDeletionModel):
 	def subject(self):
 		return self.grade.subject
 
-
-		
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
+	@property
+	def name(self):
+		return self.grade.name

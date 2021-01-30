@@ -32,6 +32,10 @@ class StaffUser(SoftDeletionModel):
     last_name = models.CharField(max_length =32)
     phone_number = PhoneNumberField(blank=True, null=True)
     whatsapp_number = PhoneNumberField(blank=True, null=True)
+
+
+    def __str__(self):
+        return self.first_name
     
 
 

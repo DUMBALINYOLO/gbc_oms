@@ -1,8 +1,9 @@
 from rest_framework import viewsets
-from people.models import Student
+from people.models import Student, User, StaffUser
 from people.serializers import (
 						ItStudentDetailSerializer,
-						ItStudentListSerializer
+						ItStudentListSerializer,
+						StaffUserListDetailSerializer
 					)
 
 
@@ -17,6 +18,13 @@ class StudentITViewViewSet(viewsets.ModelViewSet):
 		if self.action == 'list':
 			return ItStudentListSerializer
 		return ItStudentDetailSerializer
-		
-			
+
+
+
+class StaffUserViewSet(viewsets.ModelViewSet):
+
+	queryset = StaffUser.objects.all()
+	serializer_class = StaffUserListDetailSerializer
+
+	
 			

@@ -1,21 +1,41 @@
 import {
     ADD_ATTENDANCE,
-    GET_ATTENDANCES ,
+    GET_ATTENDANCES,
     DELETE_ATTENDANCE,
     GET_ATTENDANCE,
     EDIT_ATTENDANCE,
-
-
+    // GET_STUDENT_ATTENDANCES,
+    ADD_ATTENDANCE_RECORD,
+    GET_ATTENDANCE_RECORDS,
+    EDIT_ATTENDANCE_RECORD,
 } from '../types/attendanceTypes';
 
 const initialState = {
     adminattendances: [],
-    adminattendance: [],
+    adminattendance: {},
+    attendandancerecords: [],
     loading: false
 }
 
-export default function(state = initialState, action){
+export default function a(state = initialState, action){
     switch(action.type){
+        case GET_ATTENDANCE_RECORDS:
+            return {
+                ...state,
+                attendandancerecords: action.payload
+            };
+        case ADD_ATTENDANCE_RECORD:
+            return {
+                ...state,
+                record: [...state.attendandancerecords, action.payload]
+            }
+        case EDIT_ATTENDANCE_RECORD:
+            const zarrayList = state.attendandancerecords;
+            zarrayList.splice(zarrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
+            return {
+                ...state,
+                attendandancerecords: zarrayList,
+            };
         case GET_ATTENDANCES:
             return {
                 ...state,

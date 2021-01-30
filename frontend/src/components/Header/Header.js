@@ -191,16 +191,16 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-  classes: PropTypes.object.isRequired,
-  toggleDrawerOpen: PropTypes.func.isRequired,
-  margin: PropTypes.bool.isRequired,
-  gradient: PropTypes.bool.isRequired,
-  position: PropTypes.string.isRequired,
-  mode: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  changeMode: PropTypes.func.isRequired,
-  openGuide: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
+  // classes: PropTypes.object.isRequired,
+  // toggleDrawerOpen: PropTypes.func.isRequired,
+  // margin: PropTypes.bool.isRequired,
+  // gradient: PropTypes.bool.isRequired,
+  // position: PropTypes.string.isRequired,
+  // mode: PropTypes.string.isRequired,
+  // title: PropTypes.string.isRequired,
+  // changeMode: PropTypes.func.isRequired,
+  // openGuide: PropTypes.func.isRequired,
+  // history: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Header);

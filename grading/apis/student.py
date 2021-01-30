@@ -28,7 +28,7 @@ class StudentExcerciseViewSet(viewsets.ModelViewSet):
 
 
 	def get_queryset(self, *args, **kwargs):
-		user = self.requst.user
+		user = self.request.user
 		student = user.student
 		queryset = student.grades.filter(
 						~ComplexQueryFilter(

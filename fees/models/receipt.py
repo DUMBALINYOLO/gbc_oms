@@ -19,7 +19,7 @@ class StudentReceipt(SoftDeletionModel):
     '''
 
     cashier = models.ForeignKey(
-                            'people.StaffUser',
+                            'people.BursarProfile',
                             null=True, 
                             blank=True, 
                             db_index=True,
@@ -27,7 +27,7 @@ class StudentReceipt(SoftDeletionModel):
                             on_delete=models.SET_NULL
                         )
     customer = models.ForeignKey(
-                            'people.Student',  
+                            'people.StudentProfile',  
                             null=True, 
                             blank=True, 
                             db_index=True,
@@ -61,19 +61,3 @@ class StudentReceipt(SoftDeletionModel):
     @property
     def balance_as_of_date(self):
         return self.payments.invoice.total_due
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
