@@ -1,15 +1,13 @@
 from django.db import models
 from basedata.models import SoftDeletionModel
 from basedata.constants import (
-			STUDY_NOTES_STATUS_CHOICES, 
+			STUDY_NOTES_STATUS_CHOICES,
 			STUDY_NOTES_APPROVAL_STATUS_CHOICES
 		)
 
 
 
-
-
-class ItemBase(SoftDeletionModel):	
+class ItemBase(SoftDeletionModel):
     title = models.CharField(max_length=250)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -25,21 +23,20 @@ class ItemBase(SoftDeletionModel):
 class Text(ItemBase):
     content = models.TextField()
 
-    
 
 
 class File(ItemBase):
     file = models.FileField(upload_to='files/%Y/%m/%d/')
-    
+
 
 
 
 class Image(ItemBase):
     file = models.FileField(upload_to='photos/%Y/%m/%d/')
-    
+
 class Video(ItemBase):
     url = models.URLField()
-    
+
 
 
 class StudyNote(SoftDeletionModel):
@@ -80,26 +77,7 @@ class StudyNote(SoftDeletionModel):
         return self.title
 
 
-    # @property
-    # def videos(self):
-    #     return self.videos.all()
 
-    # @property
-    # def notes(self):
-    #     return self.notes.all()
-
-    # @property
-    # def files(self):
-    #     return self.files.all()
-
-    # @property
-    # def images(self):
-    #     return self.images.all()
-
-
-    # @property
-    # def references(self):
-    #     return self.references.all()
 
 
 
@@ -238,8 +216,3 @@ class AddBibliography(SoftDeletionModel):
     def __str__(self):
 
         return f'{self.reference.__str__()} {self.note.__str__()}'
-
-
-
-
-

@@ -3,7 +3,6 @@ from django.db import models
 from django.db.models import Avg
 from django.conf import settings
 from basedata.models import SoftDeletionModel
-
 from basedata.constants import (
                     BOOLEAN_CHOICES,
                     LANGUAGE_CHOICES,
@@ -35,7 +34,7 @@ class Course(SoftDeletionModel):
     stream  = models.CharField(
                     choices=CLASS_STREAM_CHOICES,
                     max_length=289
-                ) 
+                )
     full_name = models.CharField(max_length=500)
     short_name = models.CharField(max_length=100)
     course_visibility= models.CharField(max_length=500, choices=COURSE_VISIBILITY_CHOICES)
@@ -68,13 +67,6 @@ class Course(SoftDeletionModel):
         # return np.mean(all_ratings)
         return self.reviews.aggregate(Avg('rating'))['rating__avg']
 
-    @property
-    def reviews(self):
-        return self.all()
-
-    @property
-    def topics(self):
-        return self.all()
 
 
 
@@ -103,7 +95,7 @@ class AddTopicObjective(SoftDeletionModel):
                         on_delete=models.SET_NULL,
                         blank =True,
                         null = True,
-                        
+
                     )
     timestamp = models.DateTimeField(max_length=78)
 
@@ -124,6 +116,7 @@ class TopicGuideLine(SoftDeletionModel):
 
 
 
+
 class AddTopicGuideline(SoftDeletionModel):
     guideline = models.ForeignKey(
                         'TopicGuideLine',
@@ -137,7 +130,7 @@ class AddTopicGuideline(SoftDeletionModel):
                         on_delete=models.SET_NULL,
                         blank =True,
                         null = True,
-                        
+
                     )
     timestamp = models.DateTimeField(max_length=78)
 
@@ -154,8 +147,8 @@ class AddTopicGuideline(SoftDeletionModel):
 class Topic(SoftDeletionModel):
     title = models.CharField(max_length=300)
     course = models.ForeignKey(
-                        'Course', 
-                        on_delete=models.SET_NULL, 
+                        'Course',
+                        on_delete=models.SET_NULL,
                         related_name='topics',
                         null=True
                     )
@@ -164,7 +157,7 @@ class Topic(SoftDeletionModel):
     objectives = models.ManyToManyField(
                             'TopicObjective',
                             through = 'AddTopicObjective'
-                            
+
                         )
     guidelines = models.ManyToManyField(
                             'TopicGuideLine',
@@ -175,23 +168,14 @@ class Topic(SoftDeletionModel):
     def __str__(self):
         return self.title
 
-    @property
-    def subtopics(self):
-        return self.subtopics.all()
-
-    @property
-    def subtopics_count(self):
-        return self.subtopics.count()
-    
-
 
 #nested
 class SubTopic(SoftDeletionModel):
 
     title = models.CharField(max_length=300)
     topic = models.ForeignKey(
-                        'Topic', 
-                        on_delete=models.SET_NULL, 
+                        'Topic',
+                        on_delete=models.SET_NULL,
                         related_name='subtopics',
                         null=True
                     )
@@ -200,40 +184,11 @@ class SubTopic(SoftDeletionModel):
         return self.title
 
 
-    @property
-    def notes(self):
-        return self.notes.prefetch_related(
-                                    'images',
-                                    'videos',
-                                    'files',
-                                    'notes',
-                                    'references',
-                                )
 
 
-    # @property
-    # def assignments(self):
-    #     return self.assignments.prefetch_related(
-    #                                 '',
-    #                                 '',
-    #                             )
-
-    # @property
-    # def practices(self):
-    #     return self.practices.prefetch_related(
-    #                                 '',
-    #                                 '',
-    #                             )
-
-    # @property
-    # def tests(self):
-    #     return self.tests.prefetch_related(
-    #                                 '',
-    #                                 '',
-    #                             )
 
 class Review(SoftDeletionModel):
-    
+
     course = models.ForeignKey('Course',on_delete=models.SET_NULL, null=True, related_name='reviews')
     pub_date = models.DateTimeField(auto_now_add=True)
     reviewer = models.ForeignKey('people.StudentProfile',on_delete=models.SET_NULL, null=True, related_name='reviews')

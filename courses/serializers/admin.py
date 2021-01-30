@@ -525,6 +525,7 @@ class ItAddTopicGuidelineListDetailSerializer(serializers.ModelSerializer):
 
 
 class ItReviewListDetailSerializer(serializers.ModelSerializer):
+	course =StringSerializer()
 
 	class Meta:
 		model = Review
@@ -536,6 +537,21 @@ class ItReviewListDetailSerializer(serializers.ModelSerializer):
 			'rating',
 
 		]
+
+
+class ItReviewCreateUpdateSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = Review
+		fields = [
+			'id',
+			'course',
+			'pub_date',
+			'comment',
+			'rating',
+
+		]
+
 
 
 class ItSubTopicCreateUpdateSerializer(serializers.ModelSerializer):
