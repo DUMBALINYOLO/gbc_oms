@@ -75,17 +75,17 @@ class CounterWidget extends PureComponent {
   }
 }
 
-CounterWidget.propTypes = {
-  classes: PropTypes.object.isRequired,
-  color: PropTypes.string.isRequired,
-  start: PropTypes.number.isRequired,
-  end: PropTypes.number.isRequired,
-  duration: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  unitBefore: PropTypes.string,
-  unitAfter: PropTypes.string,
-};
+// CounterWidget.propTypes = {
+//   classes: PropTypes.object.isRequired,
+//   color: PropTypes.string.isRequired,
+//   start: PropTypes.number.isRequired,
+//   end: PropTypes.number.isRequired,
+//   duration: PropTypes.number.isRequired,
+//   title: PropTypes.string.isRequired,
+//   children: PropTypes.node.isRequired,
+//   unitBefore: PropTypes.string,
+//   unitAfter: PropTypes.string,
+// };
 
 CounterWidget.defaultProps = {
   unitBefore: '',

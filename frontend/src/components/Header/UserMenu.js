@@ -85,16 +85,6 @@ class UserMenu extends React.Component {
             </div>
           </MenuItem>
           <Divider variant="inset" />
-          <MenuItem onClick={this.handleClose}>
-            <div >
-              <ListItemAvatar>
-                <Avatar >
-                  <Info />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={dummy.text.sentences} className={classes.textNotif} secondary={dummy.text.date} />
-            </div>
-          </MenuItem>
           <Divider variant="inset" />
           <MenuItem onClick={this.handleClose}>
             <div >

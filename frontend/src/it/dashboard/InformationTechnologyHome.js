@@ -54,25 +54,6 @@ class InformationTechnologyHome extends PureComponent {
             <PerformanceChartWidget />
           </Grid>
         </Grid>
-        {/* 3rd Section */}
-        <Grid container spacing={3} className={classes.root}>
-          <Grid item md={6} xs={12}>
-            <Divider className={classes.divider} />
-            <ContactWidget />
-            <Divider className={classes.divider} />
-            <TaskWidget />
-          </Grid>
-          <Grid item md={6} xs={12}>
-            <Hidden mdDown>
-              <Divider className={classes.divider} />
-            </Hidden>
-            <WeatherWidget />
-            <Divider className={classes.divider} />
-            <DateWidget />
-            <Divider className={classes.divider} />
-            <TimelineWidget />
-          </Grid>
-        </Grid>
         <Divider className={classes.divider} />
         <CalculatorWidget />
       </InformationTechnologyLayout>
@@ -85,4 +66,3 @@ InformationTechnologyHome.propTypes = {
 };
 
 export default withStyles(styles)(InformationTechnologyHome);
-

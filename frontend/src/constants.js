@@ -162,7 +162,6 @@ export const coursestatuschoicesURL = `${endpoint}/basedata/course-status-choice
 export const studynotesstatuschoicesURL = `${endpoint}/basedata/studynotes-status-choices/`
 export const feetargetschoicesURL = `${endpoint}/basedata/fee-targets-choices/`
 export const feetypechoicesURL = `${endpoint}/basedata/fee-type-choices/`
-
 export const accountstatuschoicesURL = `${endpoint}/basedata/account-status-choices/`
 
 //people
@@ -185,10 +184,25 @@ export const studentprofilesURL = `${endpoint}/people/student-profiles/`
 
 
 
-
-
 //courses
-export const coursesitviewURL = `${endpoint}/courses/courses-it-view/`
+export const adminupcomingcoursesURL = `${endpoint}/courses/admin-upcoming-courses/`
+export const adminongoingcoursesURL = `${endpoint}/courses/admin-ongoing-courses/`
+export const adminfinishedcoursesURL = `${endpoint}/courses/admin-finished-courses/`
+export const admininactivecoursesURL = `${endpoint}/courses/admin-inactive-courses/`
+export const admintopicsURL = `${endpoint}/courses/admin-topics/`
+export const adminreviewsURL = `${endpoint}/courses/admin-reviews/`
+export const adminsubtopicsURL = `${endpoint}/courses/admin-subtopics/`
+export const admintopicobjectivesURL = `${endpoint}/courses/admin-topic-objectives/`
+export const admintopicguidelinesURL = `${endpoint}/courses/admin-topic-guidelines/`
+export const adminstudynotesURL = `${endpoint}/courses/admin-study-notes/`
+export const adminstudynotesimagesURL = `${endpoint}/courses/admin-study-notes-images/`
+export const adminstudynotesnotesURL = `${endpoint}/courses/admin-study-notes-notes/`
+export const adminstudynotesfilesURL = `${endpoint}/courses/admin-study-notes-files/`
+export const adminstudynotesvideosURL = `${endpoint}/courses/admin-study-notes-videos/`
+export const adminstudynotesreferencesURL = `${endpoint}/courses/admin-study-notes-references/`
+export const adminauthorsURL = `${endpoint}/courses/admin-authors/`
+export const adminpublishercitiesURL = `${endpoint}/courses/admin-publisher-cities/`
+export const adminpublishersURL = `${endpoint}/courses/admin-publishers/`
 
 
 
@@ -200,7 +214,7 @@ export const classstudentsURL = `${endpoint}/classes/class-students/`
 
 
 
-//attendance 
+//attendance
 export const adminattendancesURL = `${endpoint}/attendance/admin-attendances/`
 export const teacherattendancesURL = `${endpoint}/attendance/teacher-attendances/`
 export const studentattendancesURL = `${endpoint}/attendance/student-attendances/`
@@ -232,7 +246,8 @@ export const subjectsURL = `${endpoint}/curriculum/subjects/`
 export const curriculumsURL = `${endpoint}/curriculum/curriculums/`
 
 
-
+//reports
+export const statscountersURL = `${endpoint}/reports/stats-counters`
 
 //admissions
 export const studentadmissionsURL = `${endpoint}/admissions/student-admissions/`
@@ -240,14 +255,3 @@ export const pendingstudentadmissionsURL = `${endpoint}/admissions/pending-stude
 export const rejectedstudentadmissionsURL = `${endpoint}/admissions/rejected-student-admissions/`
 export const meetingstudentadmissionsURL = `${endpoint}/admissions/meeting-student-admissions/`
 export const acceptedstudentadmissionsURL = `${endpoint}/admissions/accepted-student-admissions/`
-
-
-
-
-
-
-
-
-
-
-

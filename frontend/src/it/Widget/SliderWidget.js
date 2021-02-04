@@ -8,7 +8,11 @@ import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
 import Slider from 'react-animated-slider';
 import './slider.css';
-import imgApi from '../../api/images/photos';
+import one from './images/1.jpg';
+import two from './images/2.jpg';
+import three from './images/3.jpg';
+import four from './images/4.jpg';
+import five from './images/5.jpg';
 
 const styles = theme => ({
   tag: {
@@ -34,11 +38,11 @@ const content = [
     description:
     'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.',
     button: 'Watch Video',
-    image: imgApi[8],
+    image: one,
     label: 'Uploaded to',
     tag: 'Just Uploaded',
     to: 'Lorem Video',
-    userProfile: imgApi[54],
+    userProfile: two,
     type: 'video',
   },
   {
@@ -46,11 +50,11 @@ const content = [
     description:
     'Cras mattis consectetur purus sit amet fermentum.',
     button: 'See Post',
-    image: imgApi[15],
+    image: two,
     label: 'Posted to',
     tag: 'Newest Post',
     to: 'Ipsum Media',
-    userProfile: imgApi[53],
+    userProfile: two,
     type: 'article'
   },
   {
@@ -58,11 +62,11 @@ const content = [
     description:
     'Lorem ipsum dolor sit amet',
     button: 'Read Article',
-    image: imgApi[29],
+    image: three,
     label: 'Posted to',
     tag: 'Latest Article',
     to: 'Dolor Sit News',
-    userProfile: imgApi[58],
+    userProfile: three,
     type: 'article'
   }
 ];

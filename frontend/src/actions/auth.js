@@ -52,9 +52,8 @@ export const authLogin = (email, password) => {
       })
       .then(res => {
         const user = {
-          token: res.data.key,
+          token: res.data.token,
           email,
-          userId: res.data.token,
           userRole: res.data.user.type,
           expirationDate: new Date(new Date().getTime() + 3600 * 1000)
         };

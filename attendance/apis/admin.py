@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from attendance.models import  Attendance, AttendanceRecord
@@ -16,9 +16,11 @@ def get_attendance(attendance_id):
 	return attendance
 
 
-class AdminAttendanceViewSet(viewsets.ModelViewSet):
-	
 
+
+class AdminAttendanceViewSet(viewsets.ModelViewSet):
+
+	permission_classes = [permissions.AllowAny]
 	queryset = Attendance.objects.all().order_by('-id')
 
 
@@ -34,7 +36,7 @@ class AdminAttendanceViewSet(viewsets.ModelViewSet):
 
 
 class AdminAttendanceRecordViewSet(viewsets.ModelViewSet):
-	
+
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'patch', 'update', 'put']:
@@ -49,13 +51,3 @@ class AdminAttendanceRecordViewSet(viewsets.ModelViewSet):
 			attendance = get_attendance(attendance_id=attendnce_id)
 			queryset = attendance.records.all()
 		return queryset
-
-
-
-
-
-
-
-
-
-

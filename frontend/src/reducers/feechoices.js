@@ -1,13 +1,16 @@
-import { 
+import {
     GET_FEE_TARGETS_CHOICES,
     GET_FEE_TYPE_CHOICES,
     GET_ACCOUNT_STATUS_CHOICES,
     GET_ACCOUNT_BALANCE_SHEET_CATEGORIES_CHOICES,
     GET_ACCOUNT_TYPE_CHOICES,
-    GET_ASSET_TYPES_CHOICES, 
+    GET_ASSET_TYPES_CHOICES,
     GET_ASSETS_DEPRECIATION_METHOD_CHOICES,
     GET_GENERAL_GRADING_TYPE_CHOICES,
     GET_ATTENDANCE_STATUS_CHOICES,
+    GET_INVENTORY_CHECK_FREQUENCY_CHOICES,
+    GET_STUDYNOTES_STATUS_CHOICES,
+    GET_STUDY_NOTES_APPROVAL_STATUS_CHOICES,
 } from '../types/choiceTypes'
 
 const initialState = {
@@ -20,12 +23,24 @@ const initialState = {
     assetsdepriciationmethodchoices : [],
     generalgradingtypechoices : [],
     attendancestatuschoices : [],
+    studynotesstatuschoices : [],
+    studynotesapprovalstatuschoices : [],
 
  }
- 
- 
- export default function a(state = initialState, action){
+
+
+ export default function choices(state = initialState, action){
      switch(action.type){
+        case GET_STUDYNOTES_STATUS_CHOICES:
+            return {
+                ...state,
+                studynotesstatuschoices: action.payload
+            };
+        case GET_STUDY_NOTES_APPROVAL_STATUS_CHOICES:
+            return {
+                ...state,
+                studynotesapprovalstatuschoices: action.payload
+            };
         case GET_ATTENDANCE_STATUS_CHOICES:
              return {
                  ...state,
@@ -75,4 +90,3 @@ const initialState = {
              return state;
      }
  }
- 

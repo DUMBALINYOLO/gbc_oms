@@ -27,24 +27,26 @@ from basedata.constants import (
 class Course(SoftDeletionModel):
     students = models.ManyToManyField(
                         'people.StudentProfile',
-                        through = 'courses.StudentCourseEnrollment',
-                        related_name='taken_courses'
-
+                        related_name='taken_courses', blank=True
                     )
-    stream  = models.CharField(
-                    choices=CLASS_STREAM_CHOICES,
-                    max_length=289
-                )
+    topics = models.ManyToManyField(
+                        'courses.Topic',
+                         blank=True
+                    )
+    reviews = models.ManyToManyField(
+                        'courses.Review',
+                         blank=True
+                    )
+    image = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True, null=True)
     full_name = models.CharField(max_length=500)
     short_name = models.CharField(max_length=100)
-    course_visibility= models.CharField(max_length=500, choices=COURSE_VISIBILITY_CHOICES)
     status = models.CharField(max_length=300, choices=COURSES_STATUS_CHOICES)
-    overview = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     course_number = models.CharField(max_length=200, unique=True, blank=True, null=True)
     description = models.TextField()
+
 
 
 
@@ -71,11 +73,11 @@ class Course(SoftDeletionModel):
 
 
 
-
-
 class TopicObjective(SoftDeletionModel):
     name = models.CharField(max_length=300)
     description = models.TextField(blank=False)
+    topic_id = models.IntegerField(blank=True, null=True)
+
 
 
     def __str__(self):
@@ -99,6 +101,7 @@ class AddTopicObjective(SoftDeletionModel):
                     )
     timestamp = models.DateTimeField(max_length=78)
 
+
     class Meta:
         unique_together = [['objective', 'topic']]
 
@@ -109,6 +112,7 @@ class AddTopicObjective(SoftDeletionModel):
 class TopicGuideLine(SoftDeletionModel):
     name = models.CharField(max_length=300)
     description = models.TextField(blank=False)
+    topic_id = models.IntegerField(blank=True, null=True)
 
 
     def __str__(self):
@@ -146,23 +150,21 @@ class AddTopicGuideline(SoftDeletionModel):
 
 class Topic(SoftDeletionModel):
     title = models.CharField(max_length=300)
-    course = models.ForeignKey(
-                        'Course',
-                        on_delete=models.SET_NULL,
-                        related_name='topics',
-                        null=True
-                    )
     content_overview= models.TextField(blank=False)
     assessment_overview= models.TextField(blank=False)
+    subtopics = models.ManyToManyField(
+                        'courses.SubTopic',
+                         blank=True
+                    )
     objectives = models.ManyToManyField(
                             'TopicObjective',
-                            through = 'AddTopicObjective'
-
+                            blank=True,
                         )
     guidelines = models.ManyToManyField(
                             'TopicGuideLine',
-                            through='AddTopicGuideline'
+                            blank=True,
                         )
+    course_id = models.IntegerField(blank=True, null=True)
 
 
     def __str__(self):
@@ -173,11 +175,10 @@ class Topic(SoftDeletionModel):
 class SubTopic(SoftDeletionModel):
 
     title = models.CharField(max_length=300)
-    topic = models.ForeignKey(
-                        'Topic',
-                        on_delete=models.SET_NULL,
-                        related_name='subtopics',
-                        null=True
+    topic_id = models.IntegerField(blank=True, null=True)
+    notes = models.ManyToManyField(
+                        'courses.StudyNote',
+                         blank=True
                     )
 
     def __str__(self):
@@ -188,13 +189,11 @@ class SubTopic(SoftDeletionModel):
 
 
 class Review(SoftDeletionModel):
-
-    course = models.ForeignKey('Course',on_delete=models.SET_NULL, null=True, related_name='reviews')
     pub_date = models.DateTimeField(auto_now_add=True)
     reviewer = models.ForeignKey('people.StudentProfile',on_delete=models.SET_NULL, null=True, related_name='reviews')
     comment = models.CharField(max_length=200)
     rating = models.IntegerField(choices=COURSE_RATING_CHOICES)
-
+    course_id = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.reviewer.__str__()

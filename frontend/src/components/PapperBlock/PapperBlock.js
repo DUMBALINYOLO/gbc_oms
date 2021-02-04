@@ -45,17 +45,17 @@ class PapperBlock extends React.Component {
   }
 }
 
-PapperBlock.propTypes = {
-  classes: PropTypes.object.isRequired,
-  title: PropTypes.string.isRequired,
-  desc: PropTypes.string.isRequired,
-  icon: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  whiteBg: PropTypes.bool,
-  colorMode: PropTypes.bool,
-  noMargin: PropTypes.bool,
-  overflowX: PropTypes.bool,
-};
+// PapperBlock.propTypes = {
+//   classes: PropTypes.object.isRequired,
+//   title: PropTypes.string.isRequired,
+//   desc: PropTypes.string.isRequired,
+//   icon: PropTypes.string,
+//   children: PropTypes.node.isRequired,
+//   whiteBg: PropTypes.bool,
+//   colorMode: PropTypes.bool,
+//   noMargin: PropTypes.bool,
+//   overflowX: PropTypes.bool,
+// };
 
 PapperBlock.defaultProps = {
   whiteBg: false,

@@ -1,4 +1,5 @@
 from rest_framework import viewsets, generics, permissions
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from people.models import (
@@ -65,7 +66,7 @@ class CreatePrincipalAPI(generics.GenericAPIView):
 
 
 class CreateTeacherAPI(generics.GenericAPIView):
-
+	permission_classes = [permissions.AllowAny]
 	serializer_class = AdminTeacherSerializer
 
 	def post(self, request, *args, **kwargs):
@@ -84,9 +85,17 @@ class AdminStudentViewSet(viewsets.ModelViewSet):
 
 
 class AdminPrincipalViewSet(viewsets.ModelViewSet):
-
-	queryset = Principal.objects.all()
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 	serializer_class = AdminPrincipalListDetailSerializer
+
+	def get_queryset(self):
+		queryset = Principal.objects.all()
+		user = self.request.user
+		API_key = self.request.META.get('HTTP_AUTHORIZATION')
+		print(user)
+		print(API_key)
+		return queryset
 
 
 class AdminParentViewSet(viewsets.ModelViewSet):
@@ -95,10 +104,15 @@ class AdminParentViewSet(viewsets.ModelViewSet):
 	serializer_class = AdminParentListDetailSerializer
 
 
+
+
+
 class AdminTeacherViewSet(viewsets.ModelViewSet):
 
 	queryset = Teacher.objects.all()
 	serializer_class = AdminTeacherListDetailSerializer
+
+
 
 
 class AdminBursarViewSet(viewsets.ModelViewSet):
@@ -153,7 +167,7 @@ class StudentAttendanceRecordsViewSet(viewsets.ModelViewSet):
 			student = get_student(student_number=student_id)
 			queryset = student.attendancerecords.all().order_by('-id')
 		return queryset
-	
+
 
 # class StudentBehaviorRecordsViewSet(viewsets.ModelViewSet):
 # 	pass
@@ -203,7 +217,7 @@ class StudentGeneralGradeAssignmentViewSet(viewsets.ModelViewSet):
 									grade__type='asignment'
 									).order_by('-id')
 		return queryset
-	
+
 
 # class StudentCoursePerformanceRecordsViewSet(viewsets.ModelViewSet):
 # 	pass

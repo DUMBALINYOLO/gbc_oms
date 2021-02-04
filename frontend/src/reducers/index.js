@@ -21,14 +21,18 @@ import people from './people';
 import assets from './assets';
 import classes from './classes';
 import gradings from './gradings';
+import courses from './courses';
+import reports from './reports';
+import messages from './messages';
+import errors from './errors';
 
 
 
 
 export default combineReducers({
     ui: uiReducer,
-	timelines,
-	subMenuOpen,
+  	timelines,
+  	subMenuOpen,
     auth,
     curriculums,
     teacherattendances,
@@ -48,5 +52,8 @@ export default combineReducers({
     assets,
     classes,
     gradings,
+    courses,
+    reports,
+    messages,
+    errors,
 });
-

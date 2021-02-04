@@ -10,7 +10,7 @@ import {
         GET_ATTENDANCE_RECORDS,
         EDIT_ATTENDANCE_RECORD,
     } from '../types/attendanceTypes';
-import { 
+import {
     adminattendancesURL,
     teacherattendancesURL,
     studentattendancesURL,
@@ -42,6 +42,7 @@ export const deleteAdminAttendance = (id) => dispatch => {
 
 // Add
 export const addAdminAttendance = (attendance) => dispatch => {
+
     axios.post(adminattendancesURL, attendance)
         .then(res => {
             dispatch({
@@ -183,22 +184,3 @@ export const editAttendanceRecord = (id, record) => dispatch => {
             });
         }).catch(err => console.log(err))
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

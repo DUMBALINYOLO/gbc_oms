@@ -48,7 +48,7 @@ const navigationConfig = [
           title: "1",
           bg: "#525E8A",
           fg: "#FFFFFF",
-          
+
         },
         children: [
           {
@@ -76,7 +76,7 @@ const navigationConfig = [
           title: "1",
           bg: "#525E8A",
           fg: "#FFFFFF",
-          
+
         },
         children: [
           {
@@ -104,7 +104,7 @@ const navigationConfig = [
           title: "2",
           bg: "#525E8A",
           fg: "#FFFFFF",
-          
+
         },
         children: [
           {
@@ -139,7 +139,7 @@ const navigationConfig = [
           title: "3",
           bg: "#525E8A",
           fg: "#FFFFFF",
-          
+
         },
         children: [
           {
@@ -167,7 +167,7 @@ const navigationConfig = [
           title: "3",
           bg: "#525E8A",
           fg: "#FFFFFF",
-          
+
         },
         children: [
           {
@@ -188,7 +188,7 @@ const navigationConfig = [
           title: "3",
           bg: "#525E8A",
           fg: "#FFFFFF",
-          
+
         },
         children: [
           {
@@ -201,71 +201,43 @@ const navigationConfig = [
         ],
       },
       {
-        id: "accounting",
-        title: "ACCOUNTING",
+        id: "courses",
+        title: "COURSES",
         type: "collapse",
         icon: <BusinessIcon />,
         badge: {
           title: "3",
           bg: "#525E8A",
           fg: "#FFFFFF",
-          
+
         },
         children: [
           {
             id: "activeaccounts",
-            title: "ACTIVE ACCOUNTS",
+            title: "UPCOMING",
             type: "item",
-            url: "/itdashboard/active-accounts",
+            url: "/itdashboard/upcomingcourses",
             exact: true,
           },
           {
-            id: "inactiveaccounts",
-            title: "INACTIVE ACCOUNTS",
+            id: "ongoings",
+            title: "ONGOING",
             type: "item",
-            url: "/itdashboard/inactive-accounts",
+            url: "/itdashboard/ongoingcourses",
             exact: true,
           },
           {
-            id: "taxes",
-            title: "TAXES",
+            id: "finished",
+            title: "FINSHED",
             type: "item",
-            url: "/itdashboard/taxes",
+            url: "/itdashboard/finishedcourses",
             exact: true,
           },
           {
-            id: "currencies",
-            title: "CURRENCIES",
+            id: "inactive",
+            title: "INACTIVE",
             type: "item",
-            url: "/itdashboard/currencies",
-            exact: true,
-          },
-          {
-            id: "assets",
-            title: "ASSETS",
-            type: "item",
-            url: "/itdashboard/assets",
-            exact: true,
-          },
-          {
-            id: "workbooks",
-            title: "WORKBOOKS",
-            type: "item",
-            url: "/itdashboard/workbooks",
-            exact: true,
-          },
-          {
-            id: "ledgers",
-            title: "LEDGERS",
-            type: "item",
-            url: "/itdashboard/ledgers",
-            exact: true,
-          },
-          {
-            id: "journals",
-            title: "JOURNALS",
-            type: "item",
-            url: "/itdashboard/journals",
+            url: "/itdashboard/inactivecourses",
             exact: true,
           },
         ],
@@ -279,7 +251,7 @@ const navigationConfig = [
           title: "3",
           bg: "#525E8A",
           fg: "#FFFFFF",
-          
+
         },
         children: [
           {
@@ -300,7 +272,7 @@ const navigationConfig = [
           title: "3",
           bg: "#525E8A",
           fg: "#FFFFFF",
-          
+
         },
         children: [
           {
@@ -328,7 +300,7 @@ const navigationConfig = [
           title: "3",
           bg: "#525E8A",
           fg: "#FFFFFF",
-          
+
         },
         children: [
           {
@@ -349,7 +321,7 @@ const navigationConfig = [
           title: "3",
           bg: "#525E8A",
           fg: "#FFFFFF",
-          
+
         },
         children: [
           {
@@ -384,7 +356,7 @@ const navigationConfig = [
           title: "3",
           bg: "#525E8A",
           fg: "#FFFFFF",
-          
+
         },
         children: [
           {
@@ -417,11 +389,9 @@ const navigationConfig = [
           },
         ],
       },
-      
+
     ],
   },
 ];
 
 export default navigationConfig;
-
-

@@ -1,15 +1,15 @@
 import axios from 'axios';
 import {
-        GET_ADMIN_STUDENTS, 
+        GET_ADMIN_STUDENTS,
         GET_ADMIN_STUDENT,
         GET_ADMIN_BURSARS,
-        GET_ADMIN_BURSAR, 
+        GET_ADMIN_BURSAR,
         GET_ADMIN_PARENTS,
         GET_ADMIN_PARENT,
-        GET_ADMIN_PRINCIPALS, 
+        GET_ADMIN_PRINCIPALS,
         GET_ADMIN_PRINCIPAL,
         GET_ADMIN_TEACHERS,
-        GET_ADMIN_TEACHER, 
+        GET_ADMIN_TEACHER,
         CREATE_TEACHER,
         CREATE_BURSAR,
         CREATE_PRINCIPAL,
@@ -24,7 +24,7 @@ import {
         GET_STUDENT_PROFILES,
 
     } from '../types/peopleTypes';
-import { 
+import {
     adminstudentsURL,
     adminprincipalsURL,
     adminteachersURL,
@@ -41,11 +41,16 @@ import {
     teacherprofilesURL,
     bursarprofilesURL,
     studentprofilesURL,
-        
+
 } from '../constants';
 
 
-export const getPrincipalProfiles = () => dispatch => {
+export const getPrincipalProfiles = (token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
+
     axios.get(principalprofilesURL)
         .then(res => {
             dispatch({
@@ -277,9 +282,3 @@ export const addTeacher = (teacher) => dispatch => {
             });
         }).catch(err => console.log(err))
 }
-
-
-
-
-
-

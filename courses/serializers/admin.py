@@ -1,25 +1,18 @@
 from rest_framework import serializers
+from django.shortcuts import get_object_or_404
 from courses.models import (
 			Text,
 			File,
 			Image,
 			Video,
 			StudyNote,
-			AddTextToNote,
-			AddImageToNote,
-			AddFileToNote,
-			AddVideoToNote,
-			AddBibliography,
 			Course,
 			TopicObjective,
-			AddTopicObjective,
 			TopicGuideLine,
-			AddTopicGuideline,
 			Topic,
 			SubTopic,
 			Review,
 			StudentCourseEnrollment,
-			AddCourseToSchool,
 			Author,
 			PublisherCity,
 			Publisher,
@@ -36,18 +29,52 @@ class StringSerializer(serializers.StringRelatedField):
         return value
 
 
+def get_topic(topic_id):
+	topic = get_object_or_404(Topic, id=topic_id)
+	return topic
+
+
+def get_course(course_id):
+	course = get_object_or_404(Course, id=course_id)
+	return course
+
+def get_subtopic(subtopic_id):
+	subtopic = get_object_or_404(SubTopic, id=subtopic_id)
+	return subtopic
+
+def get_studynote(studynote_id):
+	study_note = get_object_or_404(StudyNote, id=studynote_id)
+	return study_note
+
 
 class ItReferenceSourceCreateUpdateSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = ReferrenceSource
 		fields = [
+				'id',
 				'title',
 				'author',
 				'publisher',
 				'date_published',
+				'note_id'
 
 			]
+		read_only_fields = ('id',)
+
+	def create(self, validated_data):
+		note_id = validated_data['note_id']
+		reference = Text(
+					title= validated_data['title'],
+					author= validated_data['author'],
+					publisher= validated_data['author'],
+					date_published = validated_data['date_published'],
+					note_id= validated_data['note_id'],
+				)
+		reference.save()
+		current_note = get_studynote(note_id)
+		current_note.references.add(reference)
+		return reference
 
 
 class ItReferenceSourceListDetailSerializer(serializers.ModelSerializer):
@@ -71,6 +98,7 @@ class ItCreateUpdateAuthorSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Author
 		fields = [
+				'id',
 				'name'
 			]
 
@@ -83,30 +111,6 @@ class ItListAuthorSerializer(serializers.ModelSerializer):
 				'id',
 				'author_number'
 				'name'
-			]
-
-
-class ItListAuthorSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = Author
-		fields = [
-				'id',
-				'author_number'
-				'name',
-			]
-
-
-class ItDetailAuthorSerializer(serializers.ModelSerializer):
-	publications = ItReferenceSourceListDetailSerializer(many=True)
-
-	class Meta:
-		model = Author
-		fields = [
-				'id',
-				'author_number'
-				'name',
-				'publications',
 			]
 
 
@@ -135,18 +139,6 @@ class ItPublisherListSerializer(serializers.ModelSerializer):
 
 
 
-class ItPublisherDetailSerializer(serializers.ModelSerializer):
-	refferences = ItReferenceSourceListDetailSerializer(many=True)
-
-	class Meta:
-		model = Publisher
-		fields = [
-			'id',
-			'number',
-			'name',
-			'city',
-			'refferences',
-		]
 
 
 
@@ -155,6 +147,7 @@ class ItPublisherCityCreateUpdateSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = PublisherCity
 		fields = [
+			'id',
 			'name'
 		]
 
@@ -170,18 +163,6 @@ class ItPublisherCityListSerializer(serializers.ModelSerializer):
 		]
 
 
-class ItPublisherCityDetailSerializer(serializers.ModelSerializer):
-	publishers = ItPublisherListSerializer(many=True)
-
-	class Meta:
-		model = PublisherCity
-		fields = [
-			'id',
-			'name',
-			'number',
-			'publishers',
-		]
-
 
 
 
@@ -190,9 +171,23 @@ class ItTextCreateUpdateSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Text
 		fields = [
+				'id',
 				'title',
 				'content',
 			]
+		read_only_fields = ('id',)
+
+	def create(self, validated_data):
+		note_id = validated_data['note_id']
+		text = Text(
+					title= validated_data['title'],
+					content = validated_data['content'],
+					note_id= validated_data['note_id'],
+				)
+		text.save()
+		current_note = get_studynote(note_id)
+		current_note.notes.add(text)
+		return text
 
 
 
@@ -210,11 +205,12 @@ class ItTextListDetailSerializer(serializers.ModelSerializer):
 
 
 
-class ItFileCreateUpdateSerializer(serializers.ModelSerializer):
+class ItTextListDetailSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = File
 		fields = [
+				'id',
 				'title',
 				'file',
 			]
@@ -234,14 +230,54 @@ class ItFileListDetailSerializer(serializers.ModelSerializer):
 			]
 
 
+class ItFileCreateUpdateSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = File
+		fields = [
+				'id',
+				'title',
+				'file',
+			]
+		read_only_fields = ('id',)
+
+	def create(self, validated_data):
+		note_id = validated_data['note_id']
+		file = File(
+					title= validated_data['title'],
+					file= validated_data['file'],
+					note_id= validated_data['note_id'],
+				)
+		file.save()
+		current_note = get_studynote(note_id)
+		current_note.files.add(file)
+		return file
+
+
+
 class ItImageCreateUpdateSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Image
 		fields = [
+				'id',
 				'title',
 				'file',
+				'note_id'
 			]
+		read_only_fields = ('id',)
+
+	def create(self, validated_data):
+		note_id = validated_data['note_id']
+		image = Image(
+					title= validated_data['title'],
+					file= validated_data['file'],
+					note_id= validated_data['note_id'],
+				)
+		image.save()
+		current_note = get_studynote(note_id)
+		current_note.images.add(image)
+		return image
 
 
 
@@ -264,9 +300,25 @@ class ItVideoCreateUpdateSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Video
 		fields = [
+				'id',
 				'title',
 				'url',
+				'note_id',
 			]
+		read_only_fields = ('id',)
+
+	def create(self, validated_data):
+		note_id = validated_data['note_id']
+		video = Video(
+					title= validated_data['title'],
+					url= validated_data['url'],
+					note_id= validated_data['note_id'],
+				)
+		video.save()
+		current_note = get_studynote(note_id)
+		current_note.videos.add(video)
+		return video
+
 
 
 
@@ -290,12 +342,28 @@ class ItStudyNoteCreateUpdateSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = StudyNote
 		fields = [
+				'id',
 				'title',
-				'topic',
 				'status',
 				'approval_status',
 				'note',
+				'subtopic_id',
 			]
+		read_only_fields = ('id',)
+
+	def create(self, validated_data):
+		subtopic_id = validated_data['subtopic_id']
+		studynote = StudyNote(
+					title= validated_data['title'],
+					status= validated_data['status'],
+					approval_status= validated_data['approval_status'],
+					note= validated_data['note'],
+					subtopic_id = validated_data['subtopic_id'],
+				)
+		studynote.save()
+		current_topic = get_subtopic(subtopic_id)
+		current_topic.notes.add(studynote)
+		return studynote
 
 
 class ItStudyNoteListSerializer(serializers.ModelSerializer):
@@ -305,7 +373,6 @@ class ItStudyNoteListSerializer(serializers.ModelSerializer):
 		fields = [
 			'id',
 			'title',
-			'topic',
 			'status',
 			'approval_status',
 
@@ -319,120 +386,13 @@ class ItStudyNoteDetailSerializer(serializers.ModelSerializer):
 		fields = [
 			'id',
 			'title',
-			'topic',
 			'status',
 			'approval_status',
 		]
 
 
 
-class ItAddTextToNoteCreateUpdateSerializer(serializers.ModelSerializer):
 
-	class Meta:
-		model = AddTextToNote
-		fields = [
-			'note',
-			'text',
-		]
-
-
-class ItAddedTextToNoteListDetailSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = AddTextToNote
-		fields = [
-			'id',
-			'note',
-			'text',
-			'timestamp',
-		]
-
-
-class ItAddVideoToNoteCreateUpdateSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = AddVideoToNote
-		fields = [
-			'note',
-			'text',
-		]
-
-
-class ItAddedVideoToNoteListDetailSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = AddVideoToNote
-		fields = [
-			'id',
-			'note',
-			'video',
-			'timestamp',
-		]
-
-
-class ItAddFileToNoteCreateUpdateSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = AddFileToNote
-		fields = [
-			'note',
-			'file',
-		]
-
-
-class ItAddedFileToNoteListDetailSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = AddFileToNote
-		fields = [
-			'id',
-			'note',
-			'video',
-			'timestamp',
-		]
-
-class ItAddImageToNoteCreateUpdateSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = AddImageToNote
-		fields = [
-			'note',
-			'file',
-		]
-
-
-class ItAddedFileToNoteListDetailSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = AddImageToNote
-		fields = [
-			'id',
-			'note',
-			'image',
-			'timestamp',
-		]
-
-
-class ItAddBibliographyToNoteCreateUpdateSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = AddBibliography
-		fields = [
-			'note',
-			'reference',
-		]
-
-
-class ItAddedFileToNoteListDetailSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = AddBibliography
-		fields = [
-			'id',
-			'note',
-			'reference',
-			'timestamp',
-		]
 
 
 class ItTopicObjectiveCreateUpdateSerializer(serializers.ModelSerializer):
@@ -440,9 +400,24 @@ class ItTopicObjectiveCreateUpdateSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = TopicObjective
 		fields = [
+			'id',
 			'name',
 			'description',
+			'topic_id'
 		]
+		read_only_fields = ('id',)
+
+	def create(self, validated_data):
+		topic_id = validated_data['topic_id']
+		objective = TopicObjective(
+					name= validated_data['name'],
+					description= validated_data['description'],
+					topic_id = validated_data['topic_id'],
+				)
+		objective.save()
+		current_topic = get_topic(topic_id)
+		current_topic.objectives.add(objective)
+		return objective
 
 
 class ItTopicObjectiveListDetailSerializer(serializers.ModelSerializer):
@@ -462,9 +437,24 @@ class ItTopicGuidelineCreateUpdateSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = TopicGuideLine
 		fields = [
+			'id',
 			'name',
 			'description',
+			'topic_id',
 		]
+		read_only_fields = ('id',)
+
+	def create(self, validated_data):
+		topic_id = validated_data['topic_id']
+		guideline = TopicGuideLine(
+					name= validated_data['name'],
+					description= validated_data['description'],
+					topic_id = validated_data['topic_id'],
+				)
+		guideline.save()
+		current_topic = get_topic(topic_id)
+		current_topic.guidelines.add(guideline)
+		return guideline
 
 
 class ItTopicGuidelineListDetailSerializer(serializers.ModelSerializer):
@@ -478,50 +468,6 @@ class ItTopicGuidelineListDetailSerializer(serializers.ModelSerializer):
 
 		]
 
-
-
-class ItAddTopicObjectiveCreateUpdateSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = AddTopicObjective
-		fields = [
-			'objective',
-			'topic',
-		]
-
-
-class ItAddTopicObjectiveListDetailSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = AddTopicObjective
-		fields = [
-			'id',
-			'objective',
-			'topic',
-			'timestamp',
-		]
-
-
-class ItAddTopicObjectiveCreateUpdateSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = AddTopicGuideline
-		fields = [
-			'guideline',
-			'topic',
-		]
-
-
-class ItAddTopicGuidelineListDetailSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = AddTopicGuideline
-		fields = [
-			'id',
-			'guideline',
-			'topic',
-			'timestamp',
-		]
 
 
 class ItReviewListDetailSerializer(serializers.ModelSerializer):
@@ -559,9 +505,22 @@ class ItSubTopicCreateUpdateSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = SubTopic
 		fields =[
+			'id',
 			'title',
-			'topic',
+			'topic_id',
 		]
+		read_only_fields = ('id',)
+
+	def create(self, validated_data):
+		topic_id = validated_data['topic_id']
+		subtopic = SubTopic(
+					title= validated_data['title'],
+					topic_id = validated_data['topic_id'],
+				)
+		subtopic.save()
+		current_topic = get_topic(topic_id)
+		current_topic.subtopics.add(subtopic)
+		return subtopic
 
 
 class ItSubTopicListSerializer(serializers.ModelSerializer):
@@ -591,18 +550,35 @@ class ItSubTopicDetailSerializer(serializers.ModelSerializer):
 
 
 
+
 class ItTopicCreateUpdateSerializer(serializers.ModelSerializer):
+
 
 	class Meta:
 		model = Topic
 		fields = [
+			'id',
 			'title',
-			'course',
 			'content_overview',
 			'assessment_overview',
+			'course_id',
 		]
+		read_only_fields = ('id',)
 
 
+	def create(self, validated_data):
+		course_id = validated_data['course_id']
+		topic = Topic(
+					title= validated_data['title'],
+					content_overview = validated_data['content_overview'],
+					assessment_overview = validated_data['assessment_overview'],
+					course_id = validated_data['course_id'],
+				)
+		topic.save()
+		current_course = get_course(course_id)
+		print(validated_data)
+		current_course.topics.add(topic)
+		return topic
 
 class ItTopicListSerializer(serializers.ModelSerializer):
 
@@ -611,16 +587,17 @@ class ItTopicListSerializer(serializers.ModelSerializer):
 		fields = [
 			'id',
 			'title',
-			'course',
+			'content_overview',
+			'assessment_overview',
+
 		]
 
 
 
 
 
-
 class ItTopicDetailSerializer(serializers.ModelSerializer):
-	subtopics = ItSubTopicDetailSerializer(many=True)
+
 
 
 	class Meta:
@@ -628,12 +605,8 @@ class ItTopicDetailSerializer(serializers.ModelSerializer):
 		fields = [
 			'id',
 			'title',
-			'course',
 			'content_overview',
 			'assessment_overview',
-			'objectives',
-			'guidelines',
-			'subtopics',
 
 		]
 
@@ -643,12 +616,11 @@ class ItCourseCreateUpdateSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Course
 		fields = [
+			'id',
+			'image',
 			'full_name',
 			'short_name',
-			'stream',
-			'course_visibility',
 			'status',
-			'overview',
 			'start_date',
 			'end_date',
 			'description',
@@ -666,9 +638,9 @@ class ItCourseListSerializer(serializers.ModelSerializer):
 			'id',
 			'full_name',
 			'short_name',
-			'stream',
 			'status',
-			'course_visibility'
+			'start_date',
+			'end_date',
 
 		]
 
@@ -712,17 +684,8 @@ class ItOwnersSerializer(serializers.ModelSerializer):
 
 
 class ItCourseDetailSerializer(serializers.ModelSerializer):
-	students = ItStudentSerializer(many=True)
-	owners = ItOwnersSerializer(many=True)
-	reviews = ItReviewListDetailSerializer(many=True)
-	notes = ItTextListDetailSerializer(many=True)
-	references = ItReferenceSourceListDetailSerializer(many=True)
-	videos = ItVideoListDetailSerializer(many=True)
-	files = ItFileListDetailSerializer(many=True)
-	images =ItImageListDetailSerializer(many=True)
 	status = serializers.SerializerMethodField()
 	stream = serializers.SerializerMethodField()
-	course_visibility = serializers.SerializerMethodField()
 
 	class Meta:
 		model = Course
@@ -731,36 +694,18 @@ class ItCourseDetailSerializer(serializers.ModelSerializer):
 			'full_name',
 			'short_name',
 			'stream',
-			'course_visibility',
 			'status',
 			'overview',
 			'start_date',
 			'end_date',
 			'course_number',
 			'description',
-			'students',
-			'owners',
-			'reviews',
-			'images',
-			'videos',
-			'notes',
-			'references',
-			'files',
 
 		]
- 
+
 
 	def get_stream(self, obj):
 		return obj.get_stream_display()
 
 	def get_status(self, obj):
 		return obj.get_status_display()
-
-
-	def get_course_visibility(self, obj):
-		return obj.get_course_visibility_display()
-
-
-
-
-

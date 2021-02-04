@@ -59,27 +59,8 @@ class Cover extends React.Component {
           >
             <MoreVertIcon />
           </IconButton>
-          <Menu
-            id="long-menu"
-            anchorEl={anchorElOpt}
-            open={Boolean(anchorElOpt)}
-            onClose={this.handleCloseOpt}
-            PaperProps={{
-              style: {
-                maxHeight: ITEM_HEIGHT * 4.5,
-                width: 200,
-              },
-            }}
-          >
-            {optionsOpt.map(option => (
-              <MenuItem key={option} selected={option === 'Edit Profile'} onClick={this.handleCloseOpt}>
-                {option}
-              </MenuItem>
-            ))}
-          </Menu>
         </div>
         <div className={classes.content}>
-          <Avatar alt={name} src={avatar} className={classes.avatar} />
           <Typography variant="h4" className={classes.name} gutterBottom>
             {name}
             <VerifiedUser className={classes.verified} />
@@ -87,9 +68,6 @@ class Cover extends React.Component {
           <Typography className={classes.subheading} gutterBottom>
             {desc}
           </Typography>
-          <Button className={classes.button} size="large" variant="contained" color="secondary">
-            Add to Connection
-          </Button>
         </div>
       </div>
     );

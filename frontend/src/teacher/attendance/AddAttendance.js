@@ -34,22 +34,23 @@ const useStyles = makeStyles(theme => ({
   // }
 }));
 
-const initialFValues = {
-    klass: '', 
-    recorded_by: '',
-}
 
 
 
 const MarkRegister = props => {
-  const { addOrEdit, recordForEdit } = props
+  const { addOrEdit, recordForEdit } = props;
+  const {email} =props;
+
+
+  const initialFValues = {
+      klass: '',
+      recorded_by: email,
+  }
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors }
     if ('klass' in fieldValues)
         temp.klass = fieldValues.klass ? "" : "This field is required."
-    if ('recorded_by' in fieldValues)
-        temp.recorded_by = fieldValues.recorded_by ? "" : "This field is required."
     setErrors({
         ...temp
     })
@@ -67,7 +68,7 @@ const MarkRegister = props => {
       resetForm
   } = useForm(initialFValues, true, validate);
 
-  
+
   const handleSubmit = e => {
       e.preventDefault()
       if (validate()) {
@@ -99,18 +100,10 @@ const MarkRegister = props => {
                             onChange={handleInputChange}
                             options={props.classes}
                             error={errors.klass}
-                    />              
+                    />
                   </Grid>
                   <Grid item xs={6}>
-                      <Controls.UserSelect
-                          name="recorded_by"
-                          label="TEACHER"
-                          value={values.recorded_by}
-                          onChange={handleInputChange}
-                          options={props.teacherprofiles}
-                          error={errors.recorded_by}
-                      />
- 
+
                       <div>
                           <Controls.Button
                               type="submit"
@@ -129,6 +122,7 @@ const MarkRegister = props => {
 const mapStateToProps = state =>({
     classes: state.classes.classes,
     teacherprofiles: state.people.teacherprofiles,
+    email: state.auth.email,
 
 })
 

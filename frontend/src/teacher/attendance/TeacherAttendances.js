@@ -6,14 +6,14 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
 import { useHistory } from 'react-router-dom';
-import { 
-  Paper, 
-  makeStyles, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  Toolbar, 
-  InputAdornment } 
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment }
 from '@material-ui/core';
 import MarkRegister from './AddAttendance';
 import  Controls  from "../../components/formcontrols/Controls";
@@ -69,16 +69,17 @@ const TeacherAttendances = props => {
         props.getAdminAttendances();
     }
     console.log('mount it!');
-    
+
   }, []);
 
 
   const addOrEdit = (fee, resetForm) => {
       if (fee.id > 0)
-        props.editAdminAttendance(fee.id, fee)    
+        props.editAdminAttendance(fee.id, fee)
       else
         props.addAdminAttendance(fee)
-        //   
+        console.log(fee)
+        //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -114,7 +115,7 @@ const TeacherAttendances = props => {
     history.push(`/teacherdashboard/attendance/${id}`)
   }
 
-  
+
   return (
     <TeacherLayout>
       <Paper className={classes.pageContent}>
@@ -176,7 +177,7 @@ const TeacherAttendances = props => {
       >
         <MarkRegister
             recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit} 
+            addOrEdit={addOrEdit}
         />
       </Popup>
     </TeacherLayout>
@@ -188,6 +189,6 @@ const mapStateToProps = state =>({
 })
 
 export default connect(
-  mapStateToProps, 
-  {getAdminAttendances, editAdminAttendance, addAdminAttendance} ) 
+  mapStateToProps,
+  {getAdminAttendances, editAdminAttendance, addAdminAttendance} )
   (TeacherAttendances);

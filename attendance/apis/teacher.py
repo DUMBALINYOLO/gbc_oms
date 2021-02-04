@@ -22,22 +22,9 @@ class TeacherAttendanceViewSet(viewsets.ModelViewSet):
 		return TeacherAttendanceListSerializer
 
 
-	def perform_create(self, serializer):
-		serializer.save(recorded_by=self.request.user)
-
 
 	def get_queryset(self, *args, **kwargs):
 		teacher = self.request.user
 		queryset =teacher.registerrecords.all().order_by('-id')
 
 		return queryset
-
-
-
-
-
-
-
-
-
-

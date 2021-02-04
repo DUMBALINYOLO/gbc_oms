@@ -52,6 +52,8 @@
     "mui-datatables": "^3.7.3",
     "rcolor": "^2.0.2",
     "react": "^17.0.1",
+    "react-alert": "^7.0.2",
+    "react-alert-template-basic": "^1.0.0",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-animated-slider": "^2.0.0",
     "react-autosuggest": "^10.0.4",

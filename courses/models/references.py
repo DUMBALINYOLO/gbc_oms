@@ -43,7 +43,7 @@ class PublisherCity(SoftDeletionModel):
     @property
     def publishers(self):
         return self.publishers.all()
-    
+
 
 
 class Publisher(SoftDeletionModel):
@@ -70,15 +70,15 @@ class Publisher(SoftDeletionModel):
     @property
     def refferences(self):
         return self.refferences.all()
-    
+
 
 
 
 class ReferrenceSource(SoftDeletionModel):
     title = models.CharField(max_length=300)
     author = models.ForeignKey(
-    					'Author', 
-    					on_delete=models.CASCADE, 
+    					'Author',
+    					on_delete=models.CASCADE,
     					related_name='publications'
     				)
     publisher  = models.ForeignKey(
@@ -89,11 +89,8 @@ class ReferrenceSource(SoftDeletionModel):
                             related_name = 'refferences'
                         )
     date_published = models.DateField()
+    note_id = models.IntegerField(blank=True, null=True)
 
 
     def __str__(self):
         return self.title
-
-
-
-        
