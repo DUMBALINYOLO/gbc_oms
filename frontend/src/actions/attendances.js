@@ -16,32 +16,45 @@ import {
     studentattendancesURL,
     studentattendancerecordsURL,
 } from '../constants';
+import { createMessage, returnErrors } from './messages';
 
 
 // Get
-export const getAdminAttendances = () => dispatch => {
+export const getAdminAttendances = (token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(adminattendancesURL)
         .then(res => {
             dispatch({
                 type: GET_ATTENDANCES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 //Delete
-export const deleteAdminAttendance = (id) => dispatch => {
+export const deleteAdminAttendance = (id, token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.delete(adminattendancesURL, id)
         .then(res => {
             dispatch({
                 type: DELETE_ATTENDANCE,
                 payload: id
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 // Add
-export const addAdminAttendance = (attendance) => dispatch => {
+export const addAdminAttendance = (attendance, token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
 
     axios.post(adminattendancesURL, attendance)
         .then(res => {
@@ -49,23 +62,31 @@ export const addAdminAttendance = (attendance) => dispatch => {
                 type: ADD_ATTENDANCE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 //get
-export const getAdminAttendance = id => dispatch =>{
+export const getAdminAttendance = (id, token) => dispatch =>{
+      axios.defaults.headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`
+      };
       axios.get(`http://127.0.0.1:8000/api/attendance/admin-attendances/${id}`)
         .then(res => {
             dispatch({
                 type: GET_ATTENDANCE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }
 
 //Edit
-export const editAdminAttendance = (id, attendance) => dispatch => {
+export const editAdminAttendance = (id, attendance, token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     JSON.stringify(id, null, 3)
     axios.patch(`http://127.0.0.1:8000/api/attendance/admin-attendances/${id}/`, attendance)
         .then(res => {
@@ -73,58 +94,78 @@ export const editAdminAttendance = (id, attendance) => dispatch => {
                 type: EDIT_ATTENDANCE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
 
 // Get
-export const getTeacherAttendances = () => dispatch => {
+export const getTeacherAttendances = (token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(teacherattendancesURL)
         .then(res => {
             dispatch({
                 type: GET_ATTENDANCES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 //Delete
-export const deleteTeacherAttendance = (id) => dispatch => {
+export const deleteTeacherAttendance = (id, token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.delete(teacherattendancesURL, id)
         .then(res => {
             dispatch({
                 type: DELETE_ATTENDANCE,
                 payload: id
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 // Add
-export const addTeacherAttendance = (attendance) => dispatch => {
+export const addTeacherAttendance = (attendance, token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.post(teacherattendancesURL, attendance)
         .then(res => {
             dispatch({
                 type: ADD_ATTENDANCE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 //get
-export const getTeacherAttendance = id => dispatch =>{
+export const getTeacherAttendance = (id, token) => dispatch =>{
+      axios.defaults.headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`
+      };
       axios.get(`http://127.0.0.1:8000/api/attendance/teacher-attendances/${id}`)
         .then(res => {
             dispatch({
                 type: GET_ATTENDANCE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }
 
 //Edit
-export const editTeacherAttendance = (id, attendance) => dispatch => {
+export const editTeacherAttendance = (id, attendance, token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     JSON.stringify(id, null, 3)
     axios.patch(`http://127.0.0.1:8000/api/attendance/teacher-attendances/${id}/`, attendance)
         .then(res => {
@@ -132,49 +173,65 @@ export const editTeacherAttendance = (id, attendance) => dispatch => {
                 type: EDIT_ATTENDANCE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
 
 // Get
-export const getStudentAttendances = () => dispatch => {
+export const getStudentAttendances = (token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(studentattendancesURL)
         .then(res => {
             dispatch({
                 type: GET_STUDENT_ATTENDANCES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
 
 
 // Get
-export const getAdminAttendanceRecords = () => dispatch => {
+export const getAdminAttendanceRecords = (token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(studentattendancerecordsURL)
         .then(res => {
             dispatch({
                 type: GET_ATTENDANCE_RECORDS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 // Add
-export const addAttendanceRecord = (record) => dispatch => {
+export const addAttendanceRecord = (record, token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.post(studentattendancerecordsURL, record)
         .then(res => {
             dispatch({
                 type: ADD_ATTENDANCE_RECORD,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 //Edit
-export const editAttendanceRecord = (id, record) => dispatch => {
+export const editAttendanceRecord = (id, record, token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     JSON.stringify(id, null, 3)
     axios.patch(`http://127.0.0.1:8000/api/attendance/student-attendance-records/${id}/`, record)
         .then(res => {
@@ -182,5 +239,5 @@ export const editAttendanceRecord = (id, record) => dispatch => {
                 type: EDIT_ATTENDANCE_RECORD,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }

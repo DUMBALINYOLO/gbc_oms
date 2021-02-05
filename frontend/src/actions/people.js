@@ -43,6 +43,8 @@ import {
     studentprofilesURL,
 
 } from '../constants';
+import { createMessage, returnErrors } from './messages';
+
 
 
 export const getPrincipalProfiles = (token) => dispatch => {
@@ -57,228 +59,312 @@ export const getPrincipalProfiles = (token) => dispatch => {
                 type: GET_PRINCIPAL_PROFILES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getBursarProfiles = () => dispatch => {
+export const getBursarProfiles = (token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(bursarprofilesURL)
         .then(res => {
             dispatch({
                 type: GET_BURSAR_PROFILES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getTeacherProfiles = () => dispatch => {
+export const getTeacherProfiles = (token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(teacherprofilesURL)
         .then(res => {
             dispatch({
                 type: GET_TEACHER_PROFILES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getParentProfiles = () => dispatch => {
+export const getParentProfiles = (token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(parentprofilesURL)
         .then(res => {
             dispatch({
                 type: GET_PARENT_PROFILES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getStudentProfiles = () => dispatch => {
+export const getStudentProfiles = (token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(studentprofilesURL)
         .then(res => {
             dispatch({
                 type: GET_STUDENT_PROFILES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
 
-export const getAdminStudents = () => dispatch => {
+export const getAdminStudents = (token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(adminstudentsURL)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDENTS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getAdminParents = () => dispatch => {
+export const getAdminParents = (token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(adminparentsURL)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_PARENTS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getAdminPrincipals = () => dispatch => {
+export const getAdminPrincipals = (token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(adminprincipalsURL)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_PRINCIPALS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getAdminBursars = () => dispatch => {
+export const getAdminBursars = (token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(adminbursarsURL)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_BURSARS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getAdminTeachers = () => dispatch => {
+export const getAdminTeachers = (token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(adminteachersURL)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_TEACHERS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const getBursarParents = () => dispatch => {
+export const getBursarParents = (token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(bursarparentsURL)
         .then(res => {
             dispatch({
                 type: GET_BURSAR_PARENTS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getBursarStudents = () => dispatch => {
+export const getBursarStudents = (token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(bursarstudentsURL)
         .then(res => {
             dispatch({
                 type: GET_BURSAR_STUDENTS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const getAdminStudent = id => dispatch =>{
+export const getAdminStudent = (id, token ) => dispatch =>{
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(`http://127.0.0.1:8000/api/people/admin-students/${id}`)
       .then(res => {
           dispatch({
               type: GET_ADMIN_STUDENT,
               payload: res.data
           });
-      }).catch(err => console.log(err))
+      }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }
 
-export const getBursarStudent = id => dispatch =>{
+export const getBursarStudent = (id, token) => dispatch =>{
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(`http://127.0.0.1:8000/api/people/bursar-students/${id}`)
       .then(res => {
           dispatch({
               type: GET_BURSAR_STUDENT,
               payload: res.data
           });
-      }).catch(err => console.log(err))
+      }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }
 
-export const getAdminParent = id => dispatch =>{
+export const getAdminParent = (id, token) => dispatch =>{
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(`http://127.0.0.1:8000/api/people/admin-parents/${id}`)
       .then(res => {
           dispatch({
               type: GET_ADMIN_PARENT,
               payload: res.data
           });
-      }).catch(err => console.log(err))
+      }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }
 
-export const getBursarParent = id => dispatch =>{
+export const getBursarParent = (id, token) => dispatch =>{
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(`http://127.0.0.1:8000/api/people/bursar-parents/${id}`)
       .then(res => {
           dispatch({
               type: GET_BURSAR_PARENT,
               payload: res.data
           });
-      }).catch(err => console.log(err))
+      }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }
 
-export const getAdminBursar = id => dispatch =>{
+export const getAdminBursar = (id, token) => dispatch =>{
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(`http://127.0.0.1:8000/api/people/admin-bursars/${id}`)
       .then(res => {
           dispatch({
               type: GET_ADMIN_BURSAR,
               payload: res.data
           });
-      }).catch(err => console.log(err))
+      }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }
 
-export const getAdminPrincipal = id => dispatch =>{
+export const getAdminPrincipal = (id, token) => dispatch =>{
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(`http://127.0.0.1:8000/api/people/admin-principals/${id}`)
       .then(res => {
           dispatch({
               type: GET_ADMIN_PRINCIPAL,
               payload: res.data
           });
-      }).catch(err => console.log(err))
+      }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }
 
-export const getAdminTeacher = id => dispatch =>{
+export const getAdminTeacher = (id, token) => dispatch =>{
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(`http://127.0.0.1:8000/api/people/admin-teachers/${id}`)
       .then(res => {
           dispatch({
               type: GET_ADMIN_TEACHER,
               payload: res.data
           });
-      }).catch(err => console.log(err))
+      }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }
 
 
 // Add
-export const addPrincipal = (principal) => dispatch => {
+export const addPrincipal = (principal, token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.post(createprincipalURL, principal)
         .then(res => {
             dispatch({
                 type: CREATE_PRINCIPAL,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const addBursar = (bursar) => dispatch => {
+export const addBursar = (bursar, token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.post(createbursarURL, bursar)
         .then(res => {
             dispatch({
                 type: CREATE_BURSAR,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const addTeacher = (teacher) => dispatch => {
+export const addTeacher = (teacher, token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.post(createteacherURL, teacher)
         .then(res => {
             dispatch({
                 type: CREATE_TEACHER,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
