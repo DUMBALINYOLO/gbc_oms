@@ -70,7 +70,7 @@ from courses.serializers import (
 
 
 class AdminUpcomingCourseViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	authentication_classes = (TokenAuthentication,)#SessionAuthentication, BasicAuthentication)
 	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 
