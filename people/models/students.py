@@ -19,7 +19,7 @@ class StudentManager(BaseUserManager):
     def create_student(self, email, username, password=None):
         if email is None:
             raise TypeError('Users must have an email address.')
-        student = Student(username=username, 
+        student = Student(username=username,
                           email=self.normalize_email(email))
         student.set_password(password)
         student.save()
@@ -28,14 +28,11 @@ class StudentManager(BaseUserManager):
 
 
 class Student(User):
-    # base_type = 'student'
+    base_type = 'student'
     objects = StudentManager()
 
 
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            self.type = 'student'
-        super(Student, self).save(*args, **kwargs)
+
 
     class Meta:
         proxy  = True
@@ -52,20 +49,20 @@ class Student(User):
     @property
     def application(self):
         return self.studentprofile.application
-    
+
 
 
 class StudentProfile(SoftDeletionModel):
     user = models.OneToOneField(
-                        'people.User', 
+                        'people.User',
                         on_delete=models.PROTECT,
                         null=True,
                         blank=True
                     )
     gender = models.CharField(
-                    max_length=500, 
-                    choices=GENDER_CHOICES, 
-                    blank=True, 
+                    max_length=500,
+                    choices=GENDER_CHOICES,
+                    blank=True,
                     null=True
                 )
     guardian = models.ForeignKey(
@@ -89,11 +86,3 @@ class StudentProfile(SoftDeletionModel):
 
     def __str__(self):
         return self.user.__str__()
-
-
-
-
-
-
-
-

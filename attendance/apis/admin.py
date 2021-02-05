@@ -1,4 +1,5 @@
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, generics, permissions
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from attendance.models import  Attendance, AttendanceRecord
@@ -11,6 +12,7 @@ from attendance.serializers import (
 			AttendanceRecordListSerializer,
 	)
 
+
 def get_attendance(attendance_id):
 	attendance = get_object_or_404(Attendance, id=attendance_id)
 	return attendance
@@ -19,8 +21,9 @@ def get_attendance(attendance_id):
 
 
 class AdminAttendanceViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
-	permission_classes = [permissions.AllowAny]
 	queryset = Attendance.objects.all().order_by('-id')
 
 
@@ -36,6 +39,8 @@ class AdminAttendanceViewSet(viewsets.ModelViewSet):
 
 
 class AdminAttendanceRecordViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 
 	def get_serializer_class(self, *args, **kwargs):

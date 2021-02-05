@@ -566,6 +566,7 @@ class ItTopicCreateUpdateSerializer(serializers.ModelSerializer):
 		read_only_fields = ('id',)
 
 
+
 	def create(self, validated_data):
 		course_id = validated_data['course_id']
 		topic = Topic(
@@ -576,7 +577,6 @@ class ItTopicCreateUpdateSerializer(serializers.ModelSerializer):
 				)
 		topic.save()
 		current_course = get_course(course_id)
-		print(validated_data)
 		current_course.topics.add(topic)
 		return topic
 

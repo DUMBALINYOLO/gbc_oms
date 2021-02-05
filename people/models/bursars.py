@@ -21,7 +21,7 @@ class BursarManager(BaseUserManager):
     def create_bursar(self, email, username, password=None):
         if email is None:
             raise TypeError('Users must have an email address.')
-        bursar = Bursar(username=username, 
+        bursar = Bursar(username=username,
                           email=self.normalize_email(email))
         bursar.set_password(password)
         bursar.save()
@@ -29,16 +29,8 @@ class BursarManager(BaseUserManager):
 
 
 class Bursar(User):
-    # base_type = 'bursar'
+    base_type = 'bursar'
     objects = BursarManager()
-
-
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            self.type = 'bursar'
-        super(Bursar, self).save(*args, **kwargs)
-
-
 
     class Meta:
         proxy  = True
@@ -46,21 +38,21 @@ class Bursar(User):
     @property
     def profile(self):
         return self.bursarprofile
-    
+
 
 
 class BursarProfile(SoftDeletionModel):
     user = models.OneToOneField(
-                        'people.User', 
+                        'people.User',
                         on_delete=models.PROTECT,
                         null=True,
                         blank=True
                     )
     title = models.CharField(max_length=200, blank=True, null=True, choices=USER_TITLE_CHOICES)
     gender = models.CharField(
-                    max_length=500, 
-                    choices=GENDER_CHOICES, 
-                    blank=True, 
+                    max_length=500,
+                    choices=GENDER_CHOICES,
+                    blank=True,
                     null=True
                 )
     id_number = models.CharField(max_length=64, blank=True, null=True)
@@ -77,5 +69,3 @@ class BursarProfile(SoftDeletionModel):
 
     def __str__(self):
         return self.user.__str__()
-
-

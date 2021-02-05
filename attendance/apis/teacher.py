@@ -1,4 +1,5 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, generics, permissions
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.response import Response
 from attendance.models import  Attendance, AttendanceRecord
 from attendance.serializers import (
@@ -10,6 +11,8 @@ from attendance.serializers import (
 
 
 class TeacherAttendanceViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 	def get_serializer_class(self, *args, **kwargs):
 

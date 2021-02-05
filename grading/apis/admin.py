@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets 
+from rest_framework import viewsets, generics, permissions
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from grading.models import (
 		GeneralGrade,
 		Record
@@ -17,6 +18,8 @@ from grading.serializers import (
 
 
 class AdminGeneralGradeTestViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 
 	def get_serializer_class(self, *args, **kwargs):
@@ -49,6 +52,8 @@ class AdminGeneralGradeTestViewSet(viewsets.ModelViewSet):
 
 
 class AdminGeneralGradeExcerciseViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 
 	def get_serializer_class(self, *args, **kwargs):
@@ -80,6 +85,8 @@ class AdminGeneralGradeExcerciseViewSet(viewsets.ModelViewSet):
 
 
 class AdminGeneralGradeAssignmentViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 
 	def get_serializer_class(self, *args, **kwargs):
@@ -111,7 +118,9 @@ def get_grade(grade_id):
 
 
 class AsignmentRecordViewSet(viewsets.ModelViewSet):
-	
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'patch', 'update', 'put']:
@@ -138,7 +147,9 @@ class AsignmentRecordViewSet(viewsets.ModelViewSet):
 
 
 class TestRecordViewSet(viewsets.ModelViewSet):
-	
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'patch', 'update', 'put']:
@@ -165,7 +176,9 @@ class TestRecordViewSet(viewsets.ModelViewSet):
 
 
 class ExcerciseRecordViewSet(viewsets.ModelViewSet):
-	
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'patch', 'update', 'put']:
@@ -189,6 +202,3 @@ class ExcerciseRecordViewSet(viewsets.ModelViewSet):
 								'student'
 							).order_by('-id')
 		return queryset
-
-
-

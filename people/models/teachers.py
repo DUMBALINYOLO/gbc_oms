@@ -21,7 +21,7 @@ class TeacherManager(BaseUserManager):
     def create_teacher(self, email, username, password=None):
         if email is None:
             raise TypeError('Users must have an email address.')
-        teacher = Teacher(username=username, 
+        teacher = Teacher(username=username,
                           email=self.normalize_email(email))
         teacher.set_password(password)
         teacher.save()
@@ -33,11 +33,6 @@ class Teacher(User):
     objects = TeacherManager()
 
 
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            self.type = 'teacher'
-        super(Teacher, self).save(*args, **kwargs)
-
 
     class Meta:
         proxy  = True
@@ -45,21 +40,21 @@ class Teacher(User):
     @property
     def profile(self):
         return self.teacherprofile
-    
+
 
 
 class TeacherProfile(SoftDeletionModel):
     user = models.OneToOneField(
-                        'people.User', 
+                        'people.User',
                         on_delete=models.PROTECT,
                         null=True,
                         blank=True
                     )
     title = models.CharField(max_length=200, blank=True, null=True, choices=USER_TITLE_CHOICES)
     gender = models.CharField(
-                    max_length=500, 
-                    choices=GENDER_CHOICES, 
-                    blank=True, 
+                    max_length=500,
+                    choices=GENDER_CHOICES,
+                    blank=True,
                     null=True
                 )
     id_number = models.CharField(max_length=64, blank=True, null=True)
