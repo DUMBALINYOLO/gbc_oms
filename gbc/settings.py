@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'channels',
     'django_celery_beat',
     'knox',
+    'psycopg2',
 
 
 ]
@@ -92,10 +93,21 @@ ASGI_APPLICATION = "gbc.routing.application"
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'gerere',
+        'USER': 'postgres',
+        'PASSWORD': 'Celumusa1$',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -134,7 +146,7 @@ REST_FRAMEWORK = {
     # 'DATE_FORMAT': ["%d-%m-%Y"],
     # 'DATETIME_FORMAT': ["%d-%m-%Y %H:%M:%S"],
 }
-# 
+#
 # SIMPLE_JWT = {
 #     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
 #     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
