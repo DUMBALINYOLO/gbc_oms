@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import {  Grid, makeStyles,  } from "@material-ui/core";
 import {Form, useForm } from "../../../components/formcontrols/useForm";
 import  Controls  from "../../../components/formcontrols/Controls";
-import { getFeeTargetsChoices, getFeeTypeChoices} from '../../../actions/choices';
+import { getCourseStatus } from '../../../actions/courses';
+import TextField from '@material-ui/core/TextField';
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -34,11 +36,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const initialFValues = {
-
-  name: '',
-  targets: '',
-  type: '',
-  amount: '',
+  full_name: '',
+  short_name: '',
+  status: '',
+  start_date: '',
+  end_date: '',
+  description: '',
 
 }
 
@@ -50,14 +53,18 @@ const AddCourse = props => {
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors }
-    if ('name' in fieldValues)
-        temp.name = fieldValues.name ? "" : "This field is required."
-    if ('targets' in fieldValues)
-        temp.targets = fieldValues.targets ? "" : "This field is required."
-    if ('type' in fieldValues)
-        temp.type = fieldValues.type ? "" : "This field is required."
-    if ('amount' in fieldValues)
-        temp.amount = fieldValues.amount ? "" : "This field is required."
+    if ('full_name' in fieldValues)
+        temp.full_name = fieldValues.full_name ? "" : "This field is required."
+    if ('status' in fieldValues)
+        temp.status = fieldValues.status ? "" : "This field is required."
+    if ('short_name' in fieldValues)
+        temp.short_name = fieldValues.short_name ? "" : "This field is required."
+    if ('start_date' in fieldValues)
+        temp.start_date = fieldValues.start_date ? "" : "This field is required."
+    if ('end_date' in fieldValues)
+        temp.end_date = fieldValues.end_date ? "" : "This field is required."
+    if ('description' in fieldValues)
+        temp.description = fieldValues.description ? "" : "This field is required."
     setErrors({
         ...temp
     })
@@ -85,8 +92,7 @@ const AddCourse = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getFeeTargetsChoices();
-        props.getFeeTypeChoices();
+        props.getCourseStatus();
     }
     if (recordForEdit != null)
             setValues({
@@ -101,37 +107,67 @@ const AddCourse = props => {
               <Grid container>
                   <Grid item xs={6}>
                       <Controls.Input
-                          name="name"
-                          label="NAME"
-                          value={values.name}
+                          name="full_name"
+                          label="FULL NAME"
+                          value={values.full_name}
                           onChange={handleInputChange}
-                          error={errors.fullName}
+                          error={errors.full_name}
                       />
                       <Controls.Input
-                          label="AMOUNT"
-                          name="amount"
-                          value={values.amount}
+                          label="SHORT NAME"
+                          name="short_name"
+                          value={values.short_name}
                           onChange={handleInputChange}
-                          error={errors.amount}
+                          error={errors.short_name}
                       />
+                      <TextField
+                          id="ldate"
+                          label="START DATE"
+                          type="date"
+                          value={values.start_date}
+                          name='start_date'
+                          error={errors.start_date}
+                          defaultValue="2021-01-01"
+                          format="yy-mm-dd"
+                          onChange={handleInputChange}
+                          className={classes.textField}
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                        />
                   </Grid>
                   <Grid item xs={6}>
                       <Controls.DictSelect
-                          name="type"
-                          label="TYPE"
-                          value={values.type}
+                          name="status"
+                          label="STATUS"
+                          value={values.status}
                           onChange={handleInputChange}
-                          options={props.feetypechoices}
-                          error={errors.type}
+                          options={props.coursestatuschoices}
+                          error={errors.status}
                       />
-                      <Controls.DictSelect
-                          name="targets"
-                          label="TARGETS"
-                          value={values.targets}
+                      <Controls.Input
+                          label="DESCRIPTION"
+                          name="description"
+                          value={values.description}
                           onChange={handleInputChange}
-                          options={props.feetargetschoices}
-                          error={errors.targets}
+                          error={errors.description}
                       />
+                      <TextField
+                          id="date"
+                          label="END DATE"
+                          type="date"
+                          value={values.end_date}
+                          name='end_date'
+                          error={errors.end_date}
+                          defaultValue="2021-01-01"
+                          format="yy-mm-dd"
+                          onChange={handleInputChange}
+                          className={classes.textField}
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                        />
+
 
                       <div>
                           <Controls.Button
@@ -149,9 +185,8 @@ const AddCourse = props => {
 };
 
 const mapStateToProps = state =>({
-    feetypechoices: state.feechoices.feetypechoices,
-    feetargetschoices: state.feechoices.feetargetschoices
+    coursestatuschoices: state.courses.coursestatuschoices,
 
 })
 
-export default connect(mapStateToProps, {getFeeTypeChoices, getFeeTargetsChoices} ) (AddCourse);
+export default connect(mapStateToProps, {getCourseStatus} ) (AddCourse);

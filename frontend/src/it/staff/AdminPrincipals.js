@@ -60,7 +60,7 @@ const AdminPrincipals = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const {token, email} = props;
-  console.log(token, email)
+
 
   useEffect(() => {
     if(!props.fetched) {

@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { bindActionCreators } from 'redux';
 import { toggleAction, playTransitionAction } from '../../../actions/uiactions';
 import styles from './appStyles-jss';
-import InformationTechnologyLayout from '../../layout/InformationTechnologyLayout';
+import TeacherLayout from '../../layout/TeacherLayout';
 
 
 
@@ -54,13 +54,13 @@ class AttendanceBag extends React.Component {
 
     return (
       <>
-      <InformationTechnologyLayout>
+      <TeacherLayout>
         <div className={classes.appFrameLanding} id="mainContent">
           <div className={classes.blogWrap}>
             {children}
           </div>
         </div>
-      </InformationTechnologyLayout>
+      </TeacherLayout>
 
 
     </>

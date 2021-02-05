@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
-import InformationTechnologyLayout from "../../layout/InformationTechnologyLayout";
-import { getAdminUpcomingCourses, addCourse, editCourse } from '../../../actions/courses';
+import TeacherLayout from "../../layout/TeacherLayout";
+import { getAdminInactiveCourses, addCourse, editCourse } from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -26,7 +26,6 @@ import CourseCard from "./CourseCard";
 
 
 
-
 const useStyles = makeStyles(theme => ({
   pageContent: {
       margin: theme.spacing(5),
@@ -41,17 +40,11 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-
-
-
-
-
-
 const options = {
   filterType: "checkbox"
 };
 
-const AdminUpcomingCourses = props => {
+const TeacherUpcomingCourses = props => {
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
@@ -61,7 +54,7 @@ const AdminUpcomingCourses = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminUpcomingCourses();
+        props.getAdminInactiveCourses();
     }
     console.log('mount it!');
 
@@ -81,9 +74,6 @@ const AdminUpcomingCourses = props => {
   }
 
 
-
-
-
   const handleSearch = e => {
       let target = e.target;
       setFilterFn({
@@ -97,7 +87,6 @@ const AdminUpcomingCourses = props => {
   }
 
 
-
   const openInPopup = item => {
       setRecordForEdit(item)
       setOpenPopup(true)
@@ -108,7 +97,7 @@ const AdminUpcomingCourses = props => {
   }
 
   const handleClick = id =>{
-    history.push(`/itdashboard/upcomingcourses/${id}`)
+    history.push(`/teacherdashboard/inactivecourses/${id}`)
   }
 
   const {
@@ -116,7 +105,7 @@ const AdminUpcomingCourses = props => {
     } = props;
 
   return (
-    <InformationTechnologyLayout>
+    <TeacherLayout>
       <Paper className={classes.pageContent}>
 
       <Toolbar>
@@ -170,15 +159,15 @@ const AdminUpcomingCourses = props => {
             addOrEdit={addOrEdit}
         />
       </Popup>
-    </InformationTechnologyLayout>
+    </TeacherLayout>
   );
 };
 
 const mapStateToProps = state =>({
-    courseData: state.courses.adminupcomingcourses,
+    courseData: state.courses.admininactivecourses,
 })
 
 export default connect(
   mapStateToProps,
-  {getAdminUpcomingCourses, addCourse, editCourse} )
-  (AdminUpcomingCourses);
+  {getAdminInactiveCourses, addCourse, editCourse} )
+  (TeacherUpcomingCourses);

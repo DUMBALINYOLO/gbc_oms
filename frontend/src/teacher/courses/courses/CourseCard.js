@@ -15,6 +15,7 @@ import AddShoppingCart from '@material-ui/icons/AddShoppingCart';
 import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import styles from './cardStyles-jss'
+import four from './four.jpg';
 
 
 class CourseCard extends React.Component {
@@ -42,7 +43,7 @@ class CourseCard extends React.Component {
         </div>
         <CardMedia
           className={classes.mediaProduct}
-          image={thumbnail}
+          image={four}
           title={full_name}
         />
         <CardContent className={classes.floatingButtonWrap}>

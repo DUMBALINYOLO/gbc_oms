@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import InformationTechnologyLayout from "../../layout/InformationTechnologyLayout";
+// import TeacherLayout from "../layout/TeacherLayout";
 import { getAdminTopics, addTopic, editTopic } from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
@@ -106,7 +106,7 @@ const Topics = props => {
   }
 
   const handleClick = id =>{
-    history.push(`/itdashboard/topics/${id}`)
+    history.push(`/teacherdashboard/topics/${id}`)
   }
 
   const {
