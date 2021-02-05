@@ -110,7 +110,7 @@ const SubTopics = props => {
   }
 
   const handleClick = id =>{
-    history.push(`/itdashboard/subtopics/${id}`)
+    history.push(`/teacherdashboard/subtopics/${id}`)
   }
 
   return (

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import InformationTechnologyLayout from "../../layout/InformationTechnologyLayout";
+import TeacherLayout from "../../layout/TeacherLayout";
 import { getAdminOngoingCourses, addCourse, editCourse } from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
@@ -25,8 +25,6 @@ import SearchCourse from "./SearchCourse";
 import CourseCard from "./CourseCard";
 
 
-
-
 const useStyles = makeStyles(theme => ({
   pageContent: {
       margin: theme.spacing(5),
@@ -42,16 +40,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-
-
-
-
-
 const options = {
   filterType: "checkbox"
 };
 
-const AdminOngoingCourses = props => {
+const TeacherOngoingCourses = props => {
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
@@ -108,7 +101,7 @@ const AdminOngoingCourses = props => {
   }
 
   const handleClick = id =>{
-    history.push(`/itdashboard/ongoingcourses/${id}`)
+    history.push(`/teacherdashboard/ongoingcourses/${id}`)
   }
 
   const {
@@ -116,7 +109,7 @@ const AdminOngoingCourses = props => {
     } = props;
 
   return (
-    <InformationTechnologyLayout>
+    <TeacherLayout>
       <Paper className={classes.pageContent}>
 
       <Toolbar>
@@ -170,7 +163,7 @@ const AdminOngoingCourses = props => {
             addOrEdit={addOrEdit}
         />
       </Popup>
-    </InformationTechnologyLayout>
+    </TeacherLayout>
   );
 };
 
@@ -181,4 +174,4 @@ const mapStateToProps = state =>({
 export default connect(
   mapStateToProps,
   {getAdminOngoingCourses, addCourse, editCourse} )
-  (AdminOngoingCourses);
+  (TeacherOngoingCourses);

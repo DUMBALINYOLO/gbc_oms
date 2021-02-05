@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
-import InformationTechnologyLayout from "../../layout/InformationTechnologyLayout";
-import { getAdminInactiveCourses, addCourse, editCourse } from '../../../actions/courses';
+import TeacherLayout from "../../layout/TeacherLayout";
+import { getAdminUpcomingCourses, addCourse, editCourse } from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -25,7 +25,6 @@ import SearchCourse from "./SearchCourse";
 import CourseCard from "./CourseCard";
 
 
-
 const useStyles = makeStyles(theme => ({
   pageContent: {
       margin: theme.spacing(5),
@@ -41,16 +40,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-
-
-
-
-
 const options = {
   filterType: "checkbox"
 };
 
-const AdminUpcomingCourses = props => {
+const TeacherUpcomingCourses = props => {
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
@@ -60,7 +54,7 @@ const AdminUpcomingCourses = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminInactiveCourses();
+        props.getAdminUpcomingCourses();
     }
     console.log('mount it!');
 
@@ -73,15 +67,10 @@ const AdminUpcomingCourses = props => {
         props.editCourse(fee.id, fee)
       else
         props.addCourse(fee)
-        //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
-
-
-
-
 
   const handleSearch = e => {
       let target = e.target;
@@ -95,8 +84,6 @@ const AdminUpcomingCourses = props => {
       })
   }
 
-
-
   const openInPopup = item => {
       setRecordForEdit(item)
       setOpenPopup(true)
@@ -107,7 +94,7 @@ const AdminUpcomingCourses = props => {
   }
 
   const handleClick = id =>{
-    history.push(`/itdashboard/inactivecourses/${id}`)
+    history.push(`/teacherdashboard/upcomingcourses/${id}`)
   }
 
   const {
@@ -115,7 +102,7 @@ const AdminUpcomingCourses = props => {
     } = props;
 
   return (
-    <InformationTechnologyLayout>
+    <TeacherLayout>
       <Paper className={classes.pageContent}>
 
       <Toolbar>
@@ -169,15 +156,15 @@ const AdminUpcomingCourses = props => {
             addOrEdit={addOrEdit}
         />
       </Popup>
-    </InformationTechnologyLayout>
+    </TeacherLayout>
   );
 };
 
 const mapStateToProps = state =>({
-    courseData: state.courses.admininactivecourses,
+    courseData: state.courses.adminupcomingcourses,
 })
 
 export default connect(
   mapStateToProps,
-  {getAdminInactiveCourses, addCourse, editCourse} )
-  (AdminUpcomingCourses);
+  {getAdminUpcomingCourses, addCourse, editCourse} )
+  (TeacherUpcomingCourses);

@@ -4,6 +4,7 @@ import {  Grid, makeStyles,  } from "@material-ui/core";
 import {Form, useForm } from "../../../components/formcontrols/useForm";
 import  Controls  from "../../../components/formcontrols/Controls";
 import {getStudyNotesApprovalStatusChoices, getStudynotesStatusChoices} from '../../../actions/choices';
+import TextField from '@material-ui/core/TextField';
 
 
 const useStyles = makeStyles(theme => ({
@@ -109,22 +110,26 @@ const AddNote = props => {
                           onChange={handleInputChange}
                           error={errors.title}
                       />
-                      <Controls.DictSelect
-                          name="status"
-                          label="STATUS"
-                          value={values.status}
+                    <TextField
+                          name="note"
+                          label="NOTE"
+                          rows={4}
+                          fullWidth
+                          id="standard-multiline-flexible"
+                          value={values.note}
                           onChange={handleInputChange}
-                          options={props.studynotesstatuschoices}
-                          error={errors.status}
+                          error={errors.note}
                       />
+
                   </Grid>
                   <Grid item xs={6}>
-                    <Controls.Input
-                        name="note"
-                        label="NOTE"
-                        value={values.note}
+                    <Controls.DictSelect
+                        name="status"
+                        label="STATUS"
+                        value={values.status}
                         onChange={handleInputChange}
-                        error={errors.note}
+                        options={props.studynotesstatuschoices}
+                        error={errors.status}
                     />
                     <Controls.DictSelect
                         name="approval_status"

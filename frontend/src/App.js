@@ -15,7 +15,7 @@ import AdminTaxes  from './it/accounting/AdminTaxes';
 import AdminCurrencies from './it/accounting/AdminCurrencies';
 import AdminWorkBooks from './it/accounting/AdminWorkBooks';
 import AdminLedgers from './it/accounting/AdminLedger';
-import JournalsAdminView from './it/accounting/JournalsAdminView';
+// import JournalsAdminView from './it/accounting/JournalsAdminView';
 import AssetsAdminView from './it/accounting/AssetsAdminView';
 import AdminClass from './it/classes/AdminClass';
 import AdminStream from './it/classes/AdminStream';
@@ -40,6 +40,16 @@ import AdminAssignment from './it/gradings/AdminAssignment';
 import BursarLog from './test/BursarLog';
 import StudentLog from './test/StudentLog';
 import Login from './auth/Login';
+
+import TeacherUpcomingCourses from './teacher/courses/courses/TeacherUpcomingCourses';
+import TeacherUpcomingCourse from './teacher/courses/courses/TeacherUpcomingCourse';
+import TeacherOngoingCourses from './teacher/courses/courses/TeacherOngoingCourses';
+import TeacherFinishedCourses from './teacher/courses/courses/TeacherFinishedCourses';
+import TeacherInactiveCourses from './teacher/courses/courses/TeacherInactiveCourses';
+import TeacherFinishedCourse from './teacher/courses/courses/TeacherFinishedCourse';
+import TeacherOngoingCourse from './teacher/courses/courses/TeacherOngoingCourse';
+import TeacherInactiveCourse from './teacher/courses/courses/TeacherInactiveCourse';
+
 import TeacherHome from './teacher/dashboard/TeacherHome';
 import TeacherAttendances from './teacher/attendance/TeacherAttendances';
 import TeacherAttendance from './teacher/attendance/TeacherAttendance';
@@ -63,7 +73,9 @@ import AdminFinishedCourse from './it/courses/courses/AdminFinishedCourse';
 import AdminOngoingCourse from './it/courses/courses/AdminOngoingCourse';
 import AdminInactiveCourse from './it/courses/courses/AdminInactiveCourse';
 import {authCheckState} from './actions/auth';
-
+import TeacherTopic from './teacher/courses/topics/TeacherTopic';
+import TeacherSubTopic from './teacher/courses/subtopics/TeacherSubTopic';
+import TeacherStudyNote from './teacher/courses/notes/TeacherStudyNote';
 
 
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
@@ -100,6 +112,17 @@ class App extends React.Component {
               <Route exact path='/teacherdashboard/assignments/:id' component={TeacherAssignment} />
               <Route exact path='/teacherdashboard/students' component={TeacherStudents} />
               <Route exact path='/teacherdashboard/students/:id' component={TeacherStudentProfile} />
+              <Route exact path='/teacherdashboard/topics/:id' component={TeacherTopic} />
+              <Route exact path='/teacherdashboard/subtopics/:id' component={TeacherSubTopic} />
+              <Route exact path='/teacherdashboard/notes/:id' component={TeacherStudyNote} />
+              <Route exact path='/teacherdashboard/ongoingcourses' component={TeacherOngoingCourses} />
+              <Route exact path='/teacherdashboard/ongoingcourses/:id' component={TeacherOngoingCourse} />
+              <Route exact path='/teacherdashboard/finishedcourses' component={TeacherFinishedCourses} />
+              <Route exact path='/teacherdashboard/finishedcourses/:id' component={TeacherFinishedCourse} />
+              <Route exact path='/teacherdashboard/inactivecourses' component={TeacherInactiveCourses} />
+              <Route exact path='/teacherdashboard/inactivecourses/:id' component={TeacherInactiveCourse} />
+              <Route exact path='/teacherdashboard/upcomingcourses' component={TeacherUpcomingCourses} />
+              <Route exact path='/teacherdashboard/upcomingcourses/:id' component={TeacherUpcomingCourse} />
               <Route exact path='/itdashboard/fees' component={Fees} />
               <Route exact path='/itdashboard/curriculums' component={Curriculum} />
               <Route exact path='/itdashboard/taxes' component={AdminTaxes} />
@@ -128,7 +151,6 @@ class App extends React.Component {
               <Route exact path='/itdashboard/currencies' component={AdminCurrencies} />
               <Route exact path='/itdashboard/assets' component={AssetsAdminView} />
               <Route exact path='/itdashboard/subjects' component={SubjectsAdminView} />
-              <Route exact path='/itdashboard/journals' component={JournalsAdminView} />
               <Route exact path='/itdashboard/upcomingcourses' component={AdminUpcomingCourses} />
               <Route exact path='/itdashboard/upcomingcourses/:id' component={AdminUpcomingCourse} />
               <Route exact path='/itdashboard/topics/:id' component={AdminTopic} />

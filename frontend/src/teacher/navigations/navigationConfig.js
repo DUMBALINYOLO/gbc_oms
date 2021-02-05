@@ -26,6 +26,7 @@ import BusinessIcon from '@material-ui/icons/Business';
 import PersonIcon from '@material-ui/icons/Person';
 
 
+
 const navigationConfig = [
   {
     id: "Main",
@@ -48,7 +49,7 @@ const navigationConfig = [
           title: "1",
           bg: "#525E8A",
           fg: "#FFFFFF",
-          
+
         },
         children: [
           {
@@ -69,7 +70,7 @@ const navigationConfig = [
           title: "1",
           bg: "#525E8A",
           fg: "#FFFFFF",
-          
+
         },
         children: [
           {
@@ -77,6 +78,48 @@ const navigationConfig = [
             title: "ATTENDANCE",
             type: "item",
             url: "/teacherdashboard/attendance",
+            exact: true,
+          },
+        ],
+      },
+      {
+        id: "courses",
+        title: "COURSES",
+        type: "collapse",
+        icon: <BusinessIcon />,
+        badge: {
+          title: "3",
+          bg: "#525E8A",
+          fg: "#FFFFFF",
+
+        },
+        children: [
+          {
+            id: "activeaccounts",
+            title: "UPCOMING",
+            type: "item",
+            url: "/teacherdashboard/upcomingcourses",
+            exact: true,
+          },
+          {
+            id: "ongoings",
+            title: "ONGOING",
+            type: "item",
+            url: "/teacherdashboard/ongoingcourses",
+            exact: true,
+          },
+          {
+            id: "finished",
+            title: "FINSHED",
+            type: "item",
+            url: "/teacherdashboard/finishedcourses",
+            exact: true,
+          },
+          {
+            id: "inactive",
+            title: "INACTIVE",
+            type: "item",
+            url: "/teacherdashboard/inactivecourses",
             exact: true,
           },
         ],
@@ -90,7 +133,7 @@ const navigationConfig = [
           title: "1",
           bg: "#525E8A",
           fg: "#FFFFFF",
-          
+
         },
         children: [
           {
@@ -116,11 +159,9 @@ const navigationConfig = [
           },
         ],
       },
-      
+
     ],
   },
 ];
 
 export default navigationConfig;
-
-

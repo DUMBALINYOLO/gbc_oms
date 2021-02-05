@@ -109,7 +109,7 @@ const Notes = props => {
   }
 
   const handleClick = id =>{
-    history.push(`/itdashboard/notes/${id}`)
+    history.push(`/teacherdashboard/notes/${id}`)
   }
 
   return (

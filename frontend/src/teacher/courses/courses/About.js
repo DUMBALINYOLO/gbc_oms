@@ -58,7 +58,7 @@ class About extends React.Component {
             </div>
             {/* ----------------------------------------------------------------------*/}
             {/* About Me */}
-            <PapperBlock title='USERNAME' icon="ios-contact-outline" whiteBg noMargin desc={data.full_name}>
+            <PapperBlock title='COURSE' icon="ios-contact-outline" whiteBg noMargin desc={data.full_name}>
               <Divider className={classes.divider} />
               <List dense className={classes.profileList}>
                 <ListItem>
@@ -67,7 +67,7 @@ class About extends React.Component {
                       <DateRange />
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText primary="EMAIL" secondary={data.full_name} />
+                  <ListItemText primary="NAME" secondary={data.full_name} />
                 </ListItem>
                 <ListItem>
                   <ListItemAvatar>
@@ -83,7 +83,7 @@ class About extends React.Component {
                       <LocationOn />
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText primary="TYPE" secondary={data.status} />
+                  <ListItemText primary="START DATE" secondary={data.start_date} />
                 </ListItem>
               </List>
             </PapperBlock>

@@ -209,7 +209,6 @@ const navigationConfig = [
           title: "3",
           bg: "#525E8A",
           fg: "#FFFFFF",
-
         },
         children: [
           {
@@ -251,7 +250,6 @@ const navigationConfig = [
           title: "3",
           bg: "#525E8A",
           fg: "#FFFFFF",
-
         },
         children: [
           {

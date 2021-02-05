@@ -89,7 +89,7 @@ class Course extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<SchoolIcon />} label="TOIPCS" />
+              <Tab icon={<SchoolIcon />} label="TOPICS" />
             </Tabs>
           </Hidden>
         </AppBar>
