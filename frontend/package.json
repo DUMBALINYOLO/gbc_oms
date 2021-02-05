@@ -91,6 +91,7 @@
     "react-to-print": "^2.12.1",
     "react-trello": "^2.2.8",
     "react-ultimate-pagination": "^1.2.0",
+    "react-whatsapp": "^0.2.0",
     "recharts": "^1.8.5",
     "recompose": "^0.30.0",
     "redux": "^4.0.5",

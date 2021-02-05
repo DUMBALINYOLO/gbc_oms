@@ -38,7 +38,7 @@ import AdminAttendance from './it/attendance/AdminAttendance';
 import AdminExcercise from './it/gradings/AdminExcercise';
 import AdminAssignment from './it/gradings/AdminAssignment';
 import BursarLog from './test/BursarLog';
-import StudentLog from './test/StudentLog';
+import TeacherLog from './test/TeacherLog';
 import Login from './auth/Login';
 
 import TeacherUpcomingCourses from './teacher/courses/courses/TeacherUpcomingCourses';
@@ -100,7 +100,7 @@ class App extends React.Component {
               <Route exact path='/login' component={Login} />
               <Route exact path='/itdashboard' component={InformationTechnologyHome} />
               <Route exact path='/bursardashboard' component={BursarLog} />
-              <Route exact path='/studentdashboard' component={StudentLog} />
+              <Route exact path='/wa' component={TeacherLog} />
               <Route exact path='/teacherdashboard' component={TeacherHome} />
               <Route exact path='/teacherdashboard/attendance' component={TeacherAttendances} />
               <Route exact path='/teacherdashboard/attendance/:id' component={TeacherAttendance} />

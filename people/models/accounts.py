@@ -5,7 +5,7 @@ from datetime import date
 from django.utils import timezone
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import (
-        BaseUserManager, 
+        BaseUserManager,
         AbstractBaseUser,
         PermissionsMixin
     )
@@ -22,7 +22,7 @@ from basedata.constants import (
 
 
 class UserManager(BaseUserManager):
-    
+
 
     def create_user(self, email, is_superuser=False, password=None, is_active=True, is_staff=False, is_admin=False):
         if not email:
@@ -44,7 +44,7 @@ class UserManager(BaseUserManager):
             password = password,
             is_staff = True,
             is_admin =True,
-            is_superuser=True, 
+            is_superuser=True,
             **extra_fields
         )
         return user
@@ -57,10 +57,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     base_type = 'none'
 
-    
+
     email = models.EmailField(
-                        unique=True, 
-                        blank=True, 
+                        unique=True,
+                        blank=True,
                         null=True,
                         max_length=355
                     )
@@ -71,12 +71,19 @@ class User(AbstractBaseUser, PermissionsMixin):
     type = models.CharField(max_length=341, choices = USER_TYPE_CHOICES, default=base_type)
     username = models.CharField(max_length=341, unique=True)
 
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.type = self.base_type
+        super(User, self).save(*args, **kwargs)
+
+
     def __str__(self):
         if self.username is not None:
             return self.username
         return self.email
 
-        
+
 
     objects = UserManager()
 
@@ -92,7 +99,7 @@ class User(AbstractBaseUser, PermissionsMixin):
             'exp': int(time.mktime(dt.timetuple()))
         }, settings.SECRET_KEY, algorithm='HS256')
         return token.decode('utf-8')
-        
+
 
     def get_full_name(self):
         return self.email
@@ -104,7 +111,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return True
 
     def has_module_perms(self, app_label):
-        return True 
+        return True
 
     @property
     def is_staff(self):
@@ -119,5 +126,3 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def is_active(self):
         return self.active
-
-

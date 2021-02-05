@@ -1,4 +1,5 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, generics, permissions
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from setup.models import (
 		Institution,
 	)
@@ -9,6 +10,8 @@ from setup.serializers import (
 
 
 class InstitutionViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 	queryset = Institution.objects.all()
 
@@ -17,24 +20,3 @@ class InstitutionViewSet(viewsets.ModelViewSet):
 		if self.action in ['create', 'put']:
 			return InstitutionCreateUpdateSerializer
 		return InstitutionListDetailSerializer
-
-
-
-
-
-
-
-
-
-
-		
-
-
-
-
-
-
-
-
-
-

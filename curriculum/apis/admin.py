@@ -1,4 +1,5 @@
-from rest_framework import viewsets 
+from rest_framework import viewsets, generics, permissions
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from curriculum.models import (
 			Curriculum,
 			Subject,
@@ -18,6 +19,8 @@ from curriculum.serializers import (
 
 
 class CurriculumViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 	queryset = Curriculum.objects.all()
 
@@ -31,9 +34,11 @@ class CurriculumViewSet(viewsets.ModelViewSet):
 
 
 class SubjectViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
-	
-	
+
+
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'put', 'patch', 'update']:
 			SubjectCreateUpdateSerializer
@@ -45,29 +50,3 @@ class SubjectViewSet(viewsets.ModelViewSet):
 		user = self.request.user
 		print(user)
 		return queryset
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

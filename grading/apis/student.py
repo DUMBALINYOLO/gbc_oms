@@ -1,4 +1,5 @@
-from rest_framework import viewsets 
+from rest_framework import viewsets, generics, permissions
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from grading.models import Record
 from django.db.models import Q as ComplexQueryFilter
 from grading.serializers import StudentRecordListDetailSerializer
@@ -6,6 +7,8 @@ from grading.serializers import StudentRecordListDetailSerializer
 
 class StudentTestViewSet(viewsets.ModelViewSet):
 	serializer_class = StudentRecordListDetailSerializer
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 
 	def get_queryset(self, *args, **kwargs):
@@ -25,6 +28,8 @@ class StudentTestViewSet(viewsets.ModelViewSet):
 
 class StudentExcerciseViewSet(viewsets.ModelViewSet):
 	serializer_class = StudentRecordListDetailSerializer
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 
 	def get_queryset(self, *args, **kwargs):
@@ -45,6 +50,8 @@ class StudentExcerciseViewSet(viewsets.ModelViewSet):
 
 class StudentAsignmentViewSet(viewsets.ModelViewSet):
 	serializer_class = StudentRecordListDetailSerializer
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 
 	def get_queryset(self, *args, **kwargs):

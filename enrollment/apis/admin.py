@@ -1,4 +1,5 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, generics, permissions
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from enrollment.models import Admission
 from django.db.models import Q as CompleLookUp
 from enrollment.serializers import (
@@ -9,6 +10,8 @@ from enrollment.serializers import (
 
 
 class PendingAdminApplicationViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 	def get_serializer_class(self, *args, **kwargs):
 
@@ -33,6 +36,8 @@ class PendingAdminApplicationViewSet(viewsets.ModelViewSet):
 
 
 class RejectedAdminAdmissionViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 	def get_serializer_class(self, *args, **kwargs):
 
@@ -58,6 +63,8 @@ class RejectedAdminAdmissionViewSet(viewsets.ModelViewSet):
 
 
 class CallForAdminAdmissionViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 	def get_serializer_class(self, *args, **kwargs):
 
@@ -82,6 +89,8 @@ class CallForAdminAdmissionViewSet(viewsets.ModelViewSet):
 
 
 class AcceptedAdminAdmissionViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 	def get_serializer_class(self, *args, **kwargs):
 
@@ -103,9 +112,3 @@ class AcceptedAdminAdmissionViewSet(viewsets.ModelViewSet):
 			querset.append(appliation)
 
 		return querset
-
-
-
-
-
-

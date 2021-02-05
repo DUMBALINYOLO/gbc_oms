@@ -1,4 +1,5 @@
-from rest_framework import viewsets 
+from rest_framework import viewsets, generics, permissions
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from grading.models import GeneralGrade
 from django.db.models import Q as ComplexQueryFilter
 from grading.serializers import (
@@ -9,6 +10,8 @@ from grading.serializers import (
 
 
 class TeacherGeneralGradeTestViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 
 	def get_serializer_class(self, *args, **kwargs):
@@ -37,12 +40,14 @@ class TeacherGeneralGradeTestViewSet(viewsets.ModelViewSet):
 
 
 
-	def perform_create(self, serializer, *args, **kwargs):
-		user = self.request.user
-		return serializer.save(type='test', recorded_by=user.staffuser)
+	# def perform_create(self, serializer, *args, **kwargs):
+	# 	user = self.request.user
+	# 	return serializer.save(type='test', recorded_by=user.staffuser)
 
 
 class TeacherGeneralGradeExcerciseViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 
 	def get_serializer_class(self, *args, **kwargs):
@@ -69,12 +74,14 @@ class TeacherGeneralGradeExcerciseViewSet(viewsets.ModelViewSet):
 		return queryset
 
 
-	def perform_create(self, serializer, *args, **kwargs):
-		user = self.request.user
-		return serializer.save(type='excercise', recorded_by=user.staffuser)
+	# def perform_create(self, serializer, *args, **kwargs):
+	# 	user = self.request.user
+	# 	return serializer.save(type='excercise', recorded_by=user.staffuser)
 
 
 class TeacherGeneralGradeAssignmentViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 
 	def get_serializer_class(self, *args, **kwargs):
@@ -102,7 +109,6 @@ class TeacherGeneralGradeAssignmentViewSet(viewsets.ModelViewSet):
 
 
 
-	def perform_create(self, serializer, *args, **kwargs):
-		user = self.request.user
-		return serializer.save(type='asignment', recorded_by=user.staffuser)
-
+	# def perform_create(self, serializer, *args, **kwargs):
+	# 	user = self.request.user
+	# 	return serializer.save(type='asignment', recorded_by=user.staffuser)

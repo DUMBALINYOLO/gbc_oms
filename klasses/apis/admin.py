@@ -1,4 +1,5 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, generics, permissions
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from django.shortcuts import get_object_or_404
 from klasses.models import (
 				StudentClass,
@@ -25,11 +26,15 @@ from curriculum.models import (
 class StreamViewSet(viewsets.ModelViewSet):
 	queryset = Stream.objects.all()
 	serializer_class = AdminStreamSerializer
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 
 
 class StudentClassViewSet(viewsets.ModelViewSet):
 	queryset = StudentClass.objects.all()
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 
 	def get_serializer_class(self, *args, **kwargs):
@@ -45,6 +50,8 @@ def get_class(class_id):
 
 
 class ClassStudiedSubjectsViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'put', 'patch', 'update']:
@@ -62,6 +69,8 @@ class ClassStudiedSubjectsViewSet(viewsets.ModelViewSet):
 
 
 class ClassStudentsViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'put', 'patch', 'update']:
@@ -88,6 +97,8 @@ class ClassStudentsViewSet(viewsets.ModelViewSet):
 
 
 class StudentEnrollmentViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
 	queryset = StudentEnrollment.objects.all().order_by('-id').prefetch_related(
 																	'enr_klass',
 																	'stdnt',
@@ -97,7 +108,3 @@ class StudentEnrollmentViewSet(viewsets.ModelViewSet):
 		if self.action in ['create', 'put', 'patch', 'update']:
 			return StudentEnrollmentCreateUpdateSerializer
 		return StudentEnrollmentListDetailSerializer
-
-
-
-	

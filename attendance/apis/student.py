@@ -1,22 +1,22 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, generics, permissions
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
 from attendance.models import AttendanceRecord
 from attendance.serializers import (
 			StudentAttendanceRecordListSerializer
 	)
 
 
+
+
+
 class StudentAttendanceViewSet(viewsets.ModelViewSet):
-	
-
-
-	def get_serializer_class(self, *args, **kwargs):
-		if self.action == 'retrieve':
-			return TeacherAttendanceDetailSerializer
-		return TeacherAttendanceListSerializer
+	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
+	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	serializer_class = StudentAttendanceRecordListSerializer
 
 	def get_queryset(self, *args, **kwargs):
 		student = self.request.user
 		queryset = student.attendance
 		return queryset
-
