@@ -38,14 +38,12 @@ import {
 
 // Get
 export const getTestRecords = (token) => dispatch => {
-		const config =  {
-				headers: {
+		const headers ={
 					"Content-Type": "application/json",
 					Authorization: `Token ${token}`,
 					'Accept': 'application/json',
-				}
 		};
-    axios.get(gradingtestrecordsURL,config)
+    axios.get(gradingtestrecordsURL, headers)
         .then(res => {
             dispatch({
                 type: GET_TEST_RECORDS,
@@ -55,14 +53,12 @@ export const getTestRecords = (token) => dispatch => {
 }
 
 export const getAssignmentRecords = (token) => dispatch => {
-		const config =  {
-				headers: {
+		const headers ={
 					"Content-Type": "application/json",
 					Authorization: `Token ${token}`,
 					'Accept': 'application/json',
-				}
 		};
-    axios.get(gradingasignmentrecordsURL,config)
+    axios.get(gradingasignmentrecordsURL,headers)
         .then(res => {
             dispatch({
                 type: GET_ASSIGNMENT_RECORDS,
@@ -72,14 +68,12 @@ export const getAssignmentRecords = (token) => dispatch => {
 }
 
 export const getExcerciseRecords = (token) => dispatch => {
-		const config =  {
-				headers: {
+		const headers ={
 					"Content-Type": "application/json",
 					Authorization: `Token ${token}`,
 					'Accept': 'application/json',
-				}
 		};
-    axios.get(gradingexcerciserecordsURL,config)
+    axios.get(gradingexcerciserecordsURL,headers)
         .then(res => {
             dispatch({
                 type: GET_EXCERCISE_RECORDS,
@@ -89,15 +83,13 @@ export const getExcerciseRecords = (token) => dispatch => {
 }
 
 export const editTestRecord = (id, grade, token) => dispatch => {
-		const config =  {
-				headers: {
+		const headers ={
 					"Content-Type": "application/json",
 					Authorization: `Token ${token}`,
 					'Accept': 'application/json',
-				}
 		};
     JSON.stringify(id, null, 3)
-    axios.patch(`${gradingtestrecordsURL}${id}/`, grade,config)
+    axios.patch(`${gradingtestrecordsURL}${id}/`, grade,headers)
         .then(res => {
             dispatch({
                 type: EDIT_TEST_RECORD,
@@ -107,15 +99,13 @@ export const editTestRecord = (id, grade, token) => dispatch => {
 }
 
 export const editAssignmentRecord = (id, grade, token) => dispatch => {
-		const config =  {
-				headers: {
+		const headers ={
 					"Content-Type": "application/json",
 					Authorization: `Token ${token}`,
 					'Accept': 'application/json',
-				}
 		};
     JSON.stringify(id, null, 3)
-    axios.patch(`${gradingasignmentrecordsURL}${id}/`, grade,config)
+    axios.patch(`${gradingasignmentrecordsURL}${id}/`, grade,headers)
         .then(res => {
             dispatch({
                 type: EDIT_ASSIGNMENT_RECORD,
@@ -125,15 +115,13 @@ export const editAssignmentRecord = (id, grade, token) => dispatch => {
 }
 
 export const editExcerciseRecord = (id, grade, token) => dispatch => {
-		const config =  {
-				headers: {
+		const headers ={
 					"Content-Type": "application/json",
 					Authorization: `Token ${token}`,
 					'Accept': 'application/json',
-				}
 		};
     JSON.stringify(id, null, 3)
-    axios.patch(`${gradingexcerciserecordsURL}${id}/`, grade,config)
+    axios.patch(`${gradingexcerciserecordsURL}${id}/`, grade,headers)
         .then(res => {
             dispatch({
                 type: EDIT_EXCERCISE_RECORD,
@@ -145,14 +133,12 @@ export const editExcerciseRecord = (id, grade, token) => dispatch => {
 
 // Get
 export const getAdminStudentTests = (token) => dispatch => {
-		const config =  {
-				headers: {
+		const headers ={
 					"Content-Type": "application/json",
 					Authorization: `Token ${token}`,
 					'Accept': 'application/json',
-				}
 		};
-    axios.get(adminstudenttestsURL,config)
+    axios.get(adminstudenttestsURL,headers)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDENT_TESTS,
@@ -162,14 +148,12 @@ export const getAdminStudentTests = (token) => dispatch => {
 }
 
 export const getAdminStudentExcercises = (token) => dispatch => {
-		const config =  {
-				headers: {
+		const headers ={
 					"Content-Type": "application/json",
 					Authorization: `Token ${token}`,
 					'Accept': 'application/json',
-				}
 		};
-    axios.get(adminstudentexcercisesURL,config)
+    axios.get(adminstudentexcercisesURL,headers)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDENT_EXCERCISES,
@@ -179,14 +163,12 @@ export const getAdminStudentExcercises = (token) => dispatch => {
 }
 
 export const getAdminStudentAssignments = (token) => dispatch => {
-		const config =  {
-				headers: {
+		const headers ={
 					"Content-Type": "application/json",
 					Authorization: `Token ${token}`,
 					'Accept': 'application/json',
-				}
 		};
-    axios.get(adminstudentassignmentsURL,config)
+    axios.get(adminstudentassignmentsURL,headers)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDENT_ASSIGNMENTS,
@@ -197,14 +179,12 @@ export const getAdminStudentAssignments = (token) => dispatch => {
 
 // Get
 export const getTeacherStudentTests = (token) => dispatch => {
-		const config =  {
-				headers: {
+		const headers ={
 					"Content-Type": "application/json",
 					Authorization: `Token ${token}`,
 					'Accept': 'application/json',
-				}
 		};
-    axios.get(teacherstudenttestsURL,config)
+    axios.get(teacherstudenttestsURL,headers)
         .then(res => {
             dispatch({
                 type: GET_TEACHER_STUDENT_TESTS,
@@ -213,14 +193,12 @@ export const getTeacherStudentTests = (token) => dispatch => {
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 export const getTeacherStudentExcercises = (token) => dispatch => {
-		const config =  {
-				headers: {
+		const headers ={
 					"Content-Type": "application/json",
 					Authorization: `Token ${token}`,
 					'Accept': 'application/json',
-				}
 		};
-    axios.get(teacherstudentexcercisesURL,config)
+    axios.get(teacherstudentexcercisesURL,headers)
         .then(res => {
             dispatch({
                 type: GET_TEACHER_STUDENT_EXCERCISES,
@@ -230,14 +208,12 @@ export const getTeacherStudentExcercises = (token) => dispatch => {
 }
 
 export const getTeacherStudentAssignments = (token) => dispatch => {
-		const config =  {
-				headers: {
+		const headers ={
 					"Content-Type": "application/json",
 					Authorization: `Token ${token}`,
 					'Accept': 'application/json',
-				}
 		};
-    axios.get(teacherstudentassignmentsURL,config)
+    axios.get(teacherstudentassignmentsURL,headers)
         .then(res => {
             dispatch({
                 type: GET_TEACHER_STUDENT_ASSIGNMENTS,
@@ -247,14 +223,12 @@ export const getTeacherStudentAssignments = (token) => dispatch => {
 }
 
 export const getAdminStudentTest = (id, token) => dispatch =>{
-	const config =  {
-			headers: {
+	const headers ={
 				"Content-Type": "application/json",
 				Authorization: `Token ${token}`,
 				'Accept': 'application/json',
-			}
 	};
-	axios.get(`${adminstudenttestsURL}${id}/`,config)
+	axios.get(`${adminstudenttestsURL}${id}/`,headers)
 	  .then(res => {
 		  dispatch({
 			  type: GET_ADMIN_STUDENT_TEST,
@@ -266,14 +240,12 @@ export const getAdminStudentTest = (id, token) => dispatch =>{
 
 
 export const getAdminStudentExcercise = (id,token) => dispatch =>{
-	const config =  {
-			headers: {
+	const headers ={
 				"Content-Type": "application/json",
 				Authorization: `Token ${token}`,
 				'Accept': 'application/json',
-			}
 	};
-	axios.get(`${adminstudentexcercisesURL}${id}/`,config)
+	axios.get(`${adminstudentexcercisesURL}${id}/`,headers)
 	  .then(res => {
 		  dispatch({
 			  type: GET_ADMIN_STUDENT_EXCERCISE,
@@ -285,14 +257,12 @@ export const getAdminStudentExcercise = (id,token) => dispatch =>{
 
 
 export const getAdminStudentAssignment = (id, token) => dispatch =>{
-	const config =  {
-			headers: {
+	const headers ={
 				"Content-Type": "application/json",
 				Authorization: `Token ${token}`,
 				'Accept': 'application/json',
-			}
 	};
-	axios.get(`${adminstudentassignmentsURL}${id}/`, config)
+	axios.get(`${adminstudentassignmentsURL}${id}/`, headers)
 	  .then(res => {
 		  dispatch({
 			  type: GET_ADMIN_STUDENT_ASSIGNMENT,
@@ -305,14 +275,12 @@ export const getAdminStudentAssignment = (id, token) => dispatch =>{
 
 
 export const getTeacherStudentTest = (id, token) => dispatch =>{
-	const config =  {
-			headers: {
+	const headers ={
 				"Content-Type": "application/json",
 				Authorization: `Token ${token}`,
 				'Accept': 'application/json',
-			}
 	};
-	axios.get(`${teacherstudenttestsURL}${id}/`,config)
+	axios.get(`${teacherstudenttestsURL}${id}/`,headers)
 	  .then(res => {
 		  dispatch({
 			  type: GET_TEACHER_STUDENT_TEST,
@@ -324,14 +292,12 @@ export const getTeacherStudentTest = (id, token) => dispatch =>{
 
 
 export const getTeacherStudentExcercise = (id,token) => dispatch =>{
-	const config =  {
-			headers: {
+	const headers ={
 				"Content-Type": "application/json",
 				Authorization: `Token ${token}`,
 				'Accept': 'application/json',
-			}
 	};
-	axios.get(`${teacherstudentexcercisesURL}${id}/`,config)
+	axios.get(`${teacherstudentexcercisesURL}${id}/`,headers)
 	  .then(res => {
 		  dispatch({
 			  type: GET_TEACHER_STUDENT_EXCERCISE,
@@ -343,14 +309,12 @@ export const getTeacherStudentExcercise = (id,token) => dispatch =>{
 
 
 export const getTeacherStudentAssignment = (id,token) => dispatch =>{
-	const config =  {
-			headers: {
+	const headers ={
 				"Content-Type": "application/json",
 				Authorization: `Token ${token}`,
 				'Accept': 'application/json',
-			}
 	};
-	axios.get(`${teacherstudentassignmentsURL}${id}/`,config)
+	axios.get(`${teacherstudentassignmentsURL}${id}/`,headers)
 	  .then(res => {
 		  dispatch({
 			  type: GET_TEACHER_STUDENT_ASSIGNMENT,
@@ -365,14 +329,12 @@ export const getTeacherStudentAssignment = (id,token) => dispatch =>{
 
 // Add
 export const addGrade = (grade,token) => dispatch => {
-		const config =  {
-				headers: {
+		const headers ={
 					"Content-Type": "application/json",
 					Authorization: `Token ${token}`,
 					'Accept': 'application/json',
-				}
 		};
-    axios.post(teacherstudenttestsURL, grade,config)
+    axios.post(teacherstudenttestsURL, grade,headers)
         .then(res => {
             dispatch({
                 type: ADD_STUDENT_GRADE,
@@ -385,15 +347,13 @@ export const addGrade = (grade,token) => dispatch => {
 
 //Edit
 export const editGrade = (id, grade,token) => dispatch => {
-		const config =  {
-				headers: {
+		const headers ={
 					"Content-Type": "application/json",
 					Authorization: `Token ${token}`,
 					'Accept': 'application/json',
-				}
 		};
     JSON.stringify(id, null, 3)
-    axios.patch(`${teacherstudentassignmentsURL}${id}/`, grade,config)
+    axios.patch(`${teacherstudentassignmentsURL}${id}/`, grade,headers)
         .then(res => {
             dispatch({
                 type: EDIT_STUDENT_GRADE,

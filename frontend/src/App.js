@@ -90,10 +90,6 @@ const alertOptions = {
 class App extends React.Component {
 	constructor(props) {
     super(props);
-		this.state ={
-			token: null,
-			email: null,
-		}
   }
 
 
@@ -101,12 +97,6 @@ class App extends React.Component {
 
   componentDidMount() {
     this.props.onTryAutoSignup();
-		const {token, email} = this.state;
-		this.setState({
-			token: this.props.token,
-			email: this.props.email,
-		})
-		store.dispatch(loadUser(token, email));
   }
 
   render() {

@@ -24,14 +24,12 @@ import { createMessage, returnErrors } from './messages';
 
 // Get
 export const getAdmissions = (token) => dispatch => {
-    const config =  {
-        headers: {
+    const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
-        }
     };
-    axios.get(studentadmissionsURL, config)
+    axios.get(studentadmissionsURL, headers)
         .then(res => {
             dispatch({
                 type: GET_ADMISSIONS,
@@ -43,14 +41,12 @@ export const getAdmissions = (token) => dispatch => {
 //Delete
 
 export const addAdmission = (admission, token) => dispatch => {
-    const config =  {
-        headers: {
+    const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
-        }
     };
-    axios.post(studentadmissionsURL, admission, config)
+    axios.post(studentadmissionsURL, admission, headers)
         .then(res => {
             dispatch({
                 type: ADD_ADMISSION,
@@ -61,14 +57,12 @@ export const addAdmission = (admission, token) => dispatch => {
 
 
 export const getPendingAdmissions = (token) => dispatch => {
-    const config =  {
-        headers: {
+    const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
-        }
     };
-    axios.get(pendingstudentadmissionsURL, config)
+    axios.get(pendingstudentadmissionsURL, headers)
         .then(res => {
             dispatch({
                 type: GET_PENDING_ADMISSIONS,
@@ -78,14 +72,12 @@ export const getPendingAdmissions = (token) => dispatch => {
 }
 
 export const getRejectedAdmissions = (token) => dispatch => {
-    const config =  {
-        headers: {
+    const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
-        }
     };
-    axios.get(rejectedstudentadmissionsURL, config)
+    axios.get(rejectedstudentadmissionsURL, headers)
         .then(res => {
             dispatch({
                 type: GET_REJECTED_ADMISSIONS,
@@ -96,14 +88,12 @@ export const getRejectedAdmissions = (token) => dispatch => {
 
 
 export const getMeetingAdmissions = (token) => dispatch => {
-    const config =  {
-        headers: {
+    const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
-        }
     };
-    axios.get(meetingstudentadmissionsURL, config)
+    axios.get(meetingstudentadmissionsURL, headers)
         .then(res => {
             dispatch({
                 type: GET_MEETING_ADMISSIONS,
@@ -114,14 +104,12 @@ export const getMeetingAdmissions = (token) => dispatch => {
 
 
 export const getAcceptedAdmissions = (token) => dispatch => {
-    const config =  {
-        headers: {
+    const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
-        }
     };
-    axios.get(acceptedstudentadmissionsURL, config)
+    axios.get(acceptedstudentadmissionsURL, headers)
         .then(res => {
             dispatch({
                 type: GET_ACCEPTED_ADMISSIONS,
@@ -133,15 +121,13 @@ export const getAcceptedAdmissions = (token) => dispatch => {
 
 //Edit
 export const editPendingAdmission = (id, admission, token) => dispatch => {
-    const config =  {
-        headers: {
+    const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
-        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`${pendingstudentadmissionsURL}${id}/`, admission, config)
+    axios.patch(`${pendingstudentadmissionsURL}${id}/`, admission, headers)
         .then(res => {
             dispatch({
                 type: EDIT_PENDING_ADMISSIONS,
@@ -152,9 +138,14 @@ export const editPendingAdmission = (id, admission, token) => dispatch => {
 
 
 
-export const editRejectedAdmission = (id, admission) => dispatch => {
+export const editRejectedAdmission = (id, admission, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
     JSON.stringify(id, null, 3)
-    axios.patch(`${rejectedstudentadmissionsURL}${id}/`, admission, config)
+    axios.patch(`${rejectedstudentadmissionsURL}${id}/`, admission, headers)
         .then(res => {
             dispatch({
                 type: EDIT_REJECTED_ADMISSIONS,
@@ -165,15 +156,13 @@ export const editRejectedAdmission = (id, admission) => dispatch => {
 
 
 export const editMeetingAdmission = (id, admission, token) => dispatch => {
-    const config =  {
-        headers: {
+    const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
-        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`${meetingstudentadmissionsURL}${id}/`, admission, config)
+    axios.patch(`${meetingstudentadmissionsURL}${id}/`, admission, headers)
         .then(res => {
             dispatch({
                 type: EDIT_MEETING_ADMISSIONS,
@@ -184,15 +173,13 @@ export const editMeetingAdmission = (id, admission, token) => dispatch => {
 
 
 export const editAcceptedAdmission = (id, admission, token) => dispatch => {
-    const config =  {
-        headers: {
+    const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
-        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`${acceptedstudentadmissionsURL}${id}/`, admission, config)
+    axios.patch(`${acceptedstudentadmissionsURL}${id}/`, admission, headers)
         .then(res => {
             dispatch({
                 type: EDIT_ACCEPTED_ADMISSIONS,

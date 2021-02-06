@@ -71,6 +71,9 @@ export class Alerts extends Component {
       if (error.msg.finished_goods) alert.error(`FINISHED GOODS: ${error.msg.finished_goods.join()}`);
       if (error.msg.inventory_product) alert.error(`INVENTORY PRODUCT: ${error.msg.inventory_product.join()}`);
       if (error.msg.product_list) alert.error(`PRODUCT LIST: ${error.msg.product_list.join()}`);
+      if (error.msg.klass) alert.error(`STUDENT CLASS: ${error.msg.klass.join()}`);
+      if (error.msg.date) alert.error(`DATE: ${error.msg.date.join()}`);
+      if (error.msg.recorded_by) alert.error(`DATE: ${error.msg.recorded_by.join()}`);
       if (error.msg.non_field_errors) alert.error(error.msg.non_field_errors.join());
     }
 
