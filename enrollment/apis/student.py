@@ -9,8 +9,8 @@ from enrollment.serializers import (
 
 
 class StudentAdmissionViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	def get_serializer_class(self, *args, **kwargs):
 

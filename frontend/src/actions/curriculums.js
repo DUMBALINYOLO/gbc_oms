@@ -12,54 +12,75 @@ import {
     EDIT_SUBJECT,
 } from '../types/curriculumTypes';
 import { subjectsURL, curriculumsURL } from '../constants';
+import { createMessage, returnErrors } from './messages';
 
 // Get
-export const getCurriculums = () => dispatch => {
+export const getCurriculums = (token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(curriculumsURL)
         .then(res => {
             dispatch({
                 type: GET_CURRICULUMS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 //Delete
-export const deleteCurriculum = (id) => dispatch => {
+export const deleteCurriculum = (id, token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.delete(curriculumsURL, id)
         .then(res => {
             dispatch({
                 type: DELETE_CURRICULUM,
                 payload: id
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 // Add
-export const addCurriculum = (curriculum) => dispatch => {
+export const addCurriculum = (curriculum, token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.post(curriculumsURL, curriculum)
         .then(res => {
             dispatch({
                 type: ADD_CURRICULUM,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 //get
-export const getCurriculum = id => dispatch =>{
+export const getCurriculum = (id, token) => dispatch =>{
+      axios.defaults.headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`
+      };
       axios.get(`${curriculumsURL}${id}/`)
         .then(res => {
             dispatch({
                 type: GET_CURRICULUM,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }
 
 //Edit
-export const editCurriculum = (id, curriculum) => dispatch => {
+export const editCurriculum = (id, curriculum, token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     JSON.stringify(id, null, 3)
     axios.patch(`${curriculumsURL}${id}/`, curriculum)
         .then(res => {
@@ -67,59 +88,79 @@ export const editCurriculum = (id, curriculum) => dispatch => {
                 type: EDIT_CURRICULUM,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }
 
 
 
 // Get
-export const getSubjects = () => dispatch => {
+export const getSubjects = (token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.get(subjectsURL)
         .then(res => {
             dispatch({
                 type: GET_SUBJECTS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 //Delete
-export const deleteSubject = (id) => dispatch => {
+export const deleteSubject = (id, token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.delete(subjectsURL, id)
         .then(res => {
             dispatch({
                 type: DELETE_SUBJECT,
                 payload: id
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 // Add
-export const addSubject = (subject) => dispatch => {
+export const addSubject = (subject, token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     axios.post(subjectsURL, subject)
         .then(res => {
             dispatch({
                 type: ADD_SUBJECT,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 //get
-export const getSubject = id => dispatch =>{
+export const getSubject = (id, token) => dispatch =>{
+      axios.defaults.headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`
+      };
       axios.get(`${subjectsURL}${id}/`)
         .then(res => {
             dispatch({
                 type: GET_SUBJECT,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }
 
 //Edit
-export const editSubject = (id, subject) => dispatch => {
+export const editSubject = (id, subject, token) => dispatch => {
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
     JSON.stringify(id, null, 3)
     axios.patch(`${subjectsURL}${id}/`, subject)
         .then(res => {
@@ -127,6 +168,6 @@ export const editSubject = (id, subject) => dispatch => {
                 type: EDIT_SUBJECT,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }

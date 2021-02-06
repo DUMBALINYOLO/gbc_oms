@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import {  editAttendanceRecord, addAttendanceRecord } from '../../actions/attendances';
+import {  editAttendanceRecord, addAttendanceRecord, getAdminAttendanceRecords } from '../../actions/attendances';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -57,10 +57,9 @@ const Records = props => {
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
-    const [records, setRecords] = useState([])
-    const {token} = props;
-
+    const {token, records} = props;
     const {id} =props.data
+
 
 
 
@@ -70,28 +69,19 @@ const Records = props => {
       if (fee.id > 0)
         props.editAttendanceRecord(fee.id, fee, token)
       else
-        console.log(fee, token)        //
+        console.log(fee)        //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-
-    const fetchData = async () => {
-        try {
-            const res = await axios.get(`http://127.0.0.1:8000/api/attendance/student-attendance-records/?id=${id}`);
-
-            setRecords(res.data);
-        }
-        catch (err) {
-
-        }
+    if(!props.fetched) {
+        props.getAdminAttendanceRecords(id,token);
     }
+    console.log('mount it!');
 
-        fetchData();
-    }, []);
+  }, []);
 
 
 
@@ -186,10 +176,11 @@ const Records = props => {
 
 
 const mapStateToProps = state =>({
+    records: state.adminattendances.attendandancerecords,
     token: state.auth.token,
 })
 
 export default connect(
-  mapStateToProps,
+  null,
   {editAttendanceRecord, addAttendanceRecord} )
   (Records);

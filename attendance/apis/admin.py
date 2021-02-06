@@ -21,8 +21,8 @@ def get_attendance(attendance_id):
 
 
 class AdminAttendanceViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	queryset = Attendance.objects.all().order_by('-id')
 
@@ -39,8 +39,8 @@ class AdminAttendanceViewSet(viewsets.ModelViewSet):
 
 
 class AdminAttendanceRecordViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get_serializer_class(self, *args, **kwargs):

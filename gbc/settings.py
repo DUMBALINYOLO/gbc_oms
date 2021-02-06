@@ -19,6 +19,7 @@ SECRET_KEY = 'k$i=2jy+1s5t(+^3_me23xvqr!6e03p53rvg8t+$v9(s&6))5q'
 ALLOWED_HOSTS = []
 
 
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -52,6 +53,9 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'knox',
     'psycopg2',
+    # 'allauth',
+    # 'allauth.account',
+    # 'rest_auth.registration',
 
 
 ]
@@ -127,13 +131,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        'rest_framework.permissions.IsAuthenticated',
     ],
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'knox.auth.TokenAuthentication',
-        # 'rest_framework.authentication.BasicAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
-    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': 'knox.auth.TokenAuthentication',
+
 
 
     'DATE_INPUT_FORMATS': ['iso-8601', '%Y-%m-%dT%H:%M:%S.%fZ'],
@@ -149,7 +150,7 @@ REST_FRAMEWORK = {
 # }
 
 
-
+REST_USE_JWT = True
 
 LANGUAGE_CODE = 'en-us'
 

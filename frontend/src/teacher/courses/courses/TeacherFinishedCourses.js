@@ -52,7 +52,10 @@ const TeacherOngoingCourses = props => {
   const [openPopup, setOpenPopup] = useState(false)
   const [listView, setListView] = useState('grid')
   const history = useHistory();
-  const {token} = props;
+  const {
+      courseData,
+      token
+    } = props;
 
   useEffect(() => {
     if(!props.fetched) {
@@ -105,9 +108,7 @@ const TeacherOngoingCourses = props => {
     history.push(`/teacherdashboard/finishedcourses/${id}`)
   }
 
-  const {
-      courseData
-    } = props;
+
 
   return (
     <TeacherLayout>

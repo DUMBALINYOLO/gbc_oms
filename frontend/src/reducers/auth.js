@@ -5,6 +5,9 @@ import {
   AUTH_LOGOUT,
   AUTH_FAIL,
   AUTH_START,
+  USER_LOADED,
+  USER_LOADING,
+  AUTH_ERROR,
 
 } from '../types/authTypes';
 
@@ -14,7 +17,10 @@ const initialState = {
   email: null,
   userRole: null,
   error: null,
-  loading: false
+  loading: false,
+  user: null,
+  isAuthenticated:null,
+  isLoading: null,
 };
 
 const authStart = (state, action) => {
@@ -57,6 +63,18 @@ const reducer = (state = initialState, action) => {
       return authFail(state, action);
     case AUTH_LOGOUT:
       return authLogout(state, action);
+    case USER_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case USER_LOADED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        isLoading: false,
+        user: action.payload,
+      };
     default:
       return state;
   }

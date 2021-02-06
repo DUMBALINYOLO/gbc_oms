@@ -87,680 +87,1108 @@ import {
   coursestatuschoicesURL,
   adminpublishersURL
 } from '../constants';
+import { createMessage, returnErrors } from './messages';
 
 
 
-export const getCourseStatus = () => dispatch => {
-    axios.get(coursestatuschoicesURL)
+export const getCourseStatus = (token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(coursestatuschoicesURL, config)
         .then(res => {
             dispatch({
                 type: GET_COURSE_STATUS_CHOICES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const getAdminUpcomingCourses = () => dispatch => {
-    axios.get(adminupcomingcoursesURL)
+export const getAdminUpcomingCourses = (token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(adminupcomingcoursesURL, config)
         .then(res => {
             dispatch({
                 type: GET_UPCOMING_COURSES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getAdminUpcomingCourse = (id) => dispatch => {
-    axios.get(`${adminupcomingcoursesURL}${id}/`)
+export const getAdminUpcomingCourse = (id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${adminupcomingcoursesURL}${id}/`, config)
         .then(res => {
             dispatch({
                 type: GET_UPCOMING_COURSE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getAdminOngoingCourses = () => dispatch => {
-    axios.get(adminongoingcoursesURL)
+export const getAdminOngoingCourses = (token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(adminongoingcoursesURL, config)
         .then(res => {
             dispatch({
                 type: GET_ONGOING_COURSES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getAdminOngoingCourse = (id) => dispatch => {
-    axios.get(`${adminongoingcoursesURL}${id}/`)
+export const getAdminOngoingCourse = (id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${adminongoingcoursesURL}${id}/`, config)
         .then(res => {
             dispatch({
                 type: GET_ONGOING_COURSE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
 
-export const getAdminFinishedCourses = () => dispatch => {
-    axios.get(adminfinishedcoursesURL)
+export const getAdminFinishedCourses = (token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(adminfinishedcoursesURL, config)
         .then(res => {
             dispatch({
                 type: GET_FINISHED_COURSES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getAdminFinishedCourse= (id) => dispatch => {
-    axios.get(`${adminfinishedcoursesURL}${id}/`)
+export const getAdminFinishedCourse= (id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${adminfinishedcoursesURL}${id}/`, config)
         .then(res => {
             dispatch({
                 type: GET_FINISHED_COURSE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const getAdminInactiveCourses = () => dispatch => {
-    axios.get(admininactivecoursesURL)
+export const getAdminInactiveCourses = (token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(admininactivecoursesURL, config)
         .then(res => {
             dispatch({
                 type: GET_INACTIVE_COURSES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getAdminInactiveCourse= (id) => dispatch => {
-    axios.get(`${admininactivecoursesURL}${id}/`)
+export const getAdminInactiveCourse= (id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${admininactivecoursesURL}${id}/`, config)
         .then(res => {
             dispatch({
                 type: GET_INACTIVE_COURSE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const addCourse = (course) => dispatch => {
-    axios.post(adminupcomingcoursesURL, course)
+export const addCourse = (course, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.post(adminupcomingcoursesURL, course, config)
         .then(res => {
             dispatch({
                 type: ADD_COURSE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const editCourse = (id, course) => dispatch => {
+export const editCourse = (id, course, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
     JSON.stringify(id, null, 3)
-    axios.patch(`${adminupcomingcoursesURL}${id}/`, course)
+    axios.patch(`${adminupcomingcoursesURL}${id}/`, course, config)
         .then(res => {
             dispatch({
                 type: EDIT_COURSE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const getAdminTopics = (course_id) => dispatch => {
-    axios.get(`${admintopicsURL}?id=${course_id}`)
+export const getAdminTopics = (course_id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${admintopicsURL}?id=${course_id}`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_TOPICS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getAdminTopic= (id) => dispatch => {
-    axios.get(`${admintopicsURL}${id}/`)
+export const getAdminTopic= (id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${admintopicsURL}${id}/`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_TOPIC,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const addTopic = (topic) => dispatch => {
-    axios.post(admintopicsURL, topic)
+export const addTopic = (topic, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.post(admintopicsURL, topic, config)
         .then(res => {
             dispatch({
                 type: ADD_TOPIC,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
 
-export const editTopic = (id, topic) => dispatch => {
+export const editTopic = (id, topic, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
     JSON.stringify(id, null, 3)
-    axios.patch(`${admintopicsURL}${id}/`, topic)
+    axios.patch(`${admintopicsURL}${id}/`, topic, config)
         .then(res => {
             dispatch({
                 type: EDIT_TOPIC,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const getAdminReviews = (course_id) => dispatch => {
-    axios.get(`${adminreviewsURL}?id=${course_id}`)
+export const getAdminReviews = (course_id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${adminreviewsURL}?id=${course_id}`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_REVIEWS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const getAdminTopicObjectives = (topic_id) => dispatch => {
-    axios.get(`${admintopicobjectivesURL}?id=${topic_id}`)
+export const getAdminTopicObjectives = (topic_id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${admintopicobjectivesURL}?id=${topic_id}`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_TOPIC_OBJECTIVES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getAdminTopicObjective = (id) => dispatch => {
-    axios.get(`${admintopicobjectivesURL}/${id}/`)
+export const getAdminTopicObjective = (id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${admintopicobjectivesURL}/${id}/`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_TOPIC_OBJECTIVE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const addTopicObjective = (objective) => dispatch => {
-    axios.post(admintopicobjectivesURL, objective)
+export const addTopicObjective = (objective, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.post(admintopicobjectivesURL, objective, config)
         .then(res => {
             dispatch({
                 type: ADD_TOPIC_OBJECTIVE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const editTopicObjective = (id, objective) => dispatch => {
+export const editTopicObjective = (id, objective, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
     JSON.stringify(id, null, 3)
-    axios.patch(`${admintopicobjectivesURL}${id}/`, objective)
+    axios.patch(`${admintopicobjectivesURL}${id}/`, objective,config)
         .then(res => {
             dispatch({
                 type: EDIT_TOPIC_OBJECTIVE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
 
-export const getAdminTopicGuidelines = (topic_id) => dispatch => {
-    axios.get(`${admintopicguidelinesURL}?id=${topic_id}`)
+export const getAdminTopicGuidelines = (topic_id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${admintopicguidelinesURL}?id=${topic_id}`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_TOPIC_GUIDELINES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getAdminTopicGuideline = (id) => dispatch => {
-    axios.get(`${admintopicguidelinesURL}${id}/`)
+export const getAdminTopicGuideline = (id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${admintopicguidelinesURL}${id}/`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_TOPIC_GUIDELINE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const addTopicGuideLine = (guideline) => dispatch => {
-    axios.post(admintopicguidelinesURL, guideline)
+export const addTopicGuideLine = (guideline, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.post(admintopicguidelinesURL, guideline, config)
         .then(res => {
             dispatch({
                 type: ADD_TOPIC_GUIDELINE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const editTopicGuideline = (id, guideline) => dispatch => {
+export const editTopicGuideline = (id, guideline, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
     JSON.stringify(id, null, 3)
-    axios.patch(`${admintopicguidelinesURL}${id}/`, guideline)
+    axios.patch(`${admintopicguidelinesURL}${id}/`, guideline, config)
         .then(res => {
             dispatch({
                 type: EDIT_TOPIC_GUIDELINE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
 
-export const getAdminSubTopics = (topic_id) => dispatch => {
-    axios.get(`${adminsubtopicsURL}?id=${topic_id}`)
+export const getAdminSubTopics = (topic_id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${adminsubtopicsURL}?id=${topic_id}`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_SUBTOPICS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getAdminSubTopic = (id) => dispatch => {
-    axios.get(`${adminsubtopicsURL}${id}/`)
+export const getAdminSubTopic = (id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${adminsubtopicsURL}${id}/`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_SUBTOPIC,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const addSubTopic = (subtopic) => dispatch => {
-    axios.post(adminsubtopicsURL, subtopic)
+export const addSubTopic = (subtopic, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.post(adminsubtopicsURL, subtopic, config)
         .then(res => {
             dispatch({
                 type: ADD_SUBTOPIC,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const editSubTopic = (id, subtopic) => dispatch => {
+export const editSubTopic = (id, subtopic, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
     JSON.stringify(id, null, 3)
-    axios.patch(`${adminsubtopicsURL}${id}/`, subtopic)
+    axios.patch(`${adminsubtopicsURL}${id}/`, subtopic,config)
         .then(res => {
             dispatch({
                 type: EDIT_SUBTOPIC,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const getStudyNotes = (topic_id) => dispatch => {
-    axios.get(`${adminstudynotesURL}?id=${topic_id}`)
+export const getStudyNotes = (topic_id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${adminstudynotesURL}?id=${topic_id}`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getStudyNote = (id) => dispatch => {
-    axios.get(`${adminstudynotesURL}${id}/`)
+export const getStudyNote = (id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${adminstudynotesURL}${id}/`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const addStudyNote = (note) => dispatch => {
-    axios.post(adminstudynotesURL, note)
+export const addStudyNote = (note, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.post(adminstudynotesURL, note, config)
         .then(res => {
             dispatch({
                 type: ADD_STUDY_NOTE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const editStudyNote = (id, note) => dispatch => {
+export const editStudyNote = (id, note, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
     JSON.stringify(id, null, 3)
-    axios.patch(`${adminstudynotesURL}${id}/`, note)
+    axios.patch(`${adminstudynotesURL}${id}/`, note, config)
         .then(res => {
             dispatch({
                 type: EDIT_STUDY_NOTE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const getStudyNoteVideos = (note_id) => dispatch => {
-    axios.get(`${adminstudynotesvideosURL}?id=${note_id}`)
+export const getStudyNoteVideos = (note_id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${adminstudynotesvideosURL}?id=${note_id}`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTES_VIDEOS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getStudyNoteVideo = (id) => dispatch => {
-    axios.get(`${adminstudynotesvideosURL}${id}/`)
+export const getStudyNoteVideo = (id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${adminstudynotesvideosURL}${id}/`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTE_VIDEO,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const addStudyNoteVideo = (video) => dispatch => {
-    axios.post(adminstudynotesvideosURL, video)
+export const addStudyNoteVideo = (video, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.post(adminstudynotesvideosURL, video,token)
         .then(res => {
             dispatch({
                 type: ADD_STUDY_NOTE_VIDEO,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const editStudyNoteVideo = (id, video) => dispatch => {
+export const editStudyNoteVideo = (id, video, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
     JSON.stringify(id, null, 3)
-    axios.patch(`${adminstudynotesvideosURL}${id}/`, video)
+    axios.patch(`${adminstudynotesvideosURL}${id}/`, video,config)
         .then(res => {
             dispatch({
                 type: EDIT_STUDY_NOTE_VIDEO,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getStudyNoteImages = (note_id) => dispatch => {
-    axios.get(`${adminstudynotesimagesURL}?id=${note_id}`)
+export const getStudyNoteImages = (note_id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${adminstudynotesimagesURL}?id=${note_id}`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTES_IMAGES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getStudyNoteImage = (id) => dispatch => {
-    axios.get(`${adminstudynotesimagesURL}${id}/`)
+export const getStudyNoteImage = (id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${adminstudynotesimagesURL}${id}/`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTE_IMAGE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const addStudyNoteImage = (image) => dispatch => {
-    axios.post(adminstudynotesimagesURL, image)
+export const addStudyNoteImage = (image, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.post(adminstudynotesimagesURL, image,config)
         .then(res => {
             dispatch({
                 type: ADD_STUDY_NOTE_IMAGE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const editStudyNoteImage = (id, image) => dispatch => {
+export const editStudyNoteImage = (id, image, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
     JSON.stringify(id, null, 3)
-    axios.patch(`${adminstudynotesimagesURL}${id}/`, image)
+    axios.patch(`${adminstudynotesimagesURL}${id}/`, image, config)
         .then(res => {
             dispatch({
                 type: EDIT_STUDY_NOTE_IMAGE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const getStudyNoteNotes = (note_id) => dispatch => {
-    axios.get(`${adminstudynotesnotesURL}?id=${note_id}`)
+export const getStudyNoteNotes = (note_id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${adminstudynotesnotesURL}?id=${note_id}`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTES_NOTES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getStudyNoteNote = (id) => dispatch => {
-    axios.get(`${adminstudynotesnotesURL}${id}/`)
+export const getStudyNoteNote = (id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${adminstudynotesnotesURL}${id}/`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTE_NOTE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const addStudyNoteNote = (note) => dispatch => {
-    axios.post(adminstudynotesnotesURL, note)
+export const addStudyNoteNote = (note, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.post(adminstudynotesnotesURL, note,config)
         .then(res => {
             dispatch({
                 type: ADD_STUDY_NOTE_NOTE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const editStudyNoteNote = (id, note) => dispatch => {
+export const editStudyNoteNote = (id, note, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
     JSON.stringify(id, null, 3)
-    axios.patch(`${adminstudynotesnotesURL}${id}/`, note)
+    axios.patch(`${adminstudynotesnotesURL}${id}/`, note, config)
         .then(res => {
             dispatch({
                 type: EDIT_STUDY_NOTE_NOTE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const getStudyNoteFiles = (note_id) => dispatch => {
-    axios.get(`${adminstudynotesfilesURL}?id=${note_id}`)
+export const getStudyNoteFiles = (note_id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${adminstudynotesfilesURL}?id=${note_id}`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTES_FILES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getStudyNoteFile = (id) => dispatch => {
-    axios.get(`${adminstudynotesfilesURL}${id}/`)
+export const getStudyNoteFile = (id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${adminstudynotesfilesURL}${id}/`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTE_FILE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const addStudyNoteFile = (file) => dispatch => {
-    axios.post(adminstudynotesfilesURL, file)
+export const addStudyNoteFile = (file, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.post(adminstudynotesfilesURL, file,config)
         .then(res => {
             dispatch({
                 type: ADD_STUDY_NOTE_FILE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const editStudyNoteFile = (id, file) => dispatch => {
+export const editStudyNoteFile = (id, file, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
     JSON.stringify(id, null, 3)
-    axios.patch(`${adminstudynotesfilesURL}${id}/`, file)
+    axios.patch(`${adminstudynotesfilesURL}${id}/`, file,config)
         .then(res => {
             dispatch({
                 type: EDIT_STUDY_NOTE_FILE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const getStudyNoteReferences = (note_id) => dispatch => {
-    axios.get(`${adminstudynotesreferencesURL}?id=${note_id}`)
+export const getStudyNoteReferences = (note_id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${adminstudynotesreferencesURL}?id=${note_id}`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTES_REFERENCES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getStudyNoteReference = (id) => dispatch => {
-    axios.get(`${adminstudynotesreferencesURL}${id}/`)
+export const getStudyNoteReference = (id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(`${adminstudynotesreferencesURL}${id}/`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTE_REFERENCE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const addStudyNoteReference = (reference) => dispatch => {
+export const addStudyNoteReference = (reference, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
     axios.post(adminstudynotesfilesURL, reference)
         .then(res => {
             dispatch({
                 type: ADD_STUDY_NOTE_REFERENCE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const editStudyNoteReference = (id, reference) => dispatch => {
+export const editStudyNoteReference = (id, reference, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
     JSON.stringify(id, null, 3)
-    axios.patch(`${adminstudynotesfilesURL}${id}/`, reference)
+    axios.patch(`${adminstudynotesfilesURL}${id}/`, reference, config)
         .then(res => {
             dispatch({
                 type: EDIT_STUDY_NOTE_REFERENCE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const getAuthors = () => dispatch => {
-    axios.get(adminauthorsURL)
+export const getAuthors = (token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(adminauthorsURL,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_AUTHORS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
 
-export const addAuthor = (author) => dispatch => {
-    axios.post(adminauthorsURL, author)
+export const addAuthor = (author, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.post(adminauthorsURL, author,config)
         .then(res => {
             dispatch({
                 type: ADD_AUTHOR,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const editAuthor = (id, author) => dispatch => {
+export const editAuthor = (id, author, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
     JSON.stringify(id, null, 3)
-    axios.patch(`${adminauthorsURL}${id}/`, author)
+    axios.patch(`${adminauthorsURL}${id}/`, author,config)
         .then(res => {
             dispatch({
                 type: EDIT_AUTHOR,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const getPublisherCities = () => dispatch => {
-    axios.get(adminpublishercitiesURL)
+export const getPublisherCities = (token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(adminpublishercitiesURL, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_PUBLISHER_CITIES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
 
-export const addPublisherCity = (city) => dispatch => {
-    axios.post(adminpublishercitiesURL, city)
+export const addPublisherCity = (city, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.post(adminpublishercitiesURL, city,config)
         .then(res => {
             dispatch({
                 type: ADD_PUBLISHER_CITY,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const editPublisherCity = (id, city) => dispatch => {
+export const editPublisherCity = (id, city, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
     JSON.stringify(id, null, 3)
-    axios.patch(`${adminpublishercitiesURL}${id}/`, city)
+    axios.patch(`${adminpublishercitiesURL}${id}/`, city,config)
         .then(res => {
             dispatch({
                 type: EDIT_PUBLISHER_CITY,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const getPublishers= () => dispatch => {
-    axios.get(adminpublishersURL)
+export const getPublishers= (token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.get(adminpublishersURL,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_PUBLISHERS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
 
-export const addPublisher = (publisher) => dispatch => {
-    axios.post(adminpublishersURL, publisher)
+export const addPublisher = (publisher, id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
+    axios.post(adminpublishersURL, publisher,config)
         .then(res => {
             dispatch({
                 type: ADD_PUBLISHER,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const editPublisher = (id, publisher) => dispatch => {
+export const editPublisher = (id, publisher, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
     JSON.stringify(id, null, 3)
-    axios.patch(`${adminpublishersURL}${id}/`, publisher)
+    axios.patch(`${adminpublishersURL}${id}/`, publisher,config)
         .then(res => {
             dispatch({
                 type: EDIT_PUBLISHER,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }

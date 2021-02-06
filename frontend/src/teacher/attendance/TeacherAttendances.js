@@ -62,7 +62,7 @@ const TeacherAttendances = props => {
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
-    const {token} = props;
+    const {records, token} = props;
 
 
   useEffect(() => {
@@ -79,14 +79,14 @@ const TeacherAttendances = props => {
         props.editAdminAttendance(fee.id, fee, token)
       else
         props.addAdminAttendance(fee, token)
-        console.log(fee, token)
+        console.log(fee)
         //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-  const {records} = props;
+
 
   const {
       TblContainer,

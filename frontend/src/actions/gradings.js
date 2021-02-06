@@ -22,6 +22,7 @@ import {
 	EDIT_EXCERCISE_RECORD,
 
 } from '../types/gradingTypes';
+import { createMessage, returnErrors } from './messages';
 
 import {
 	adminstudenttestsURL,
@@ -36,199 +37,326 @@ import {
 } from '../constants';
 
 // Get
-export const getTestRecords = () => dispatch => {
-    axios.get(gradingtestrecordsURL)
+export const getTestRecords = (token) => dispatch => {
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
+		};
+    axios.get(gradingtestrecordsURL,config)
         .then(res => {
             dispatch({
                 type: GET_TEST_RECORDS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getAssignmentRecords = () => dispatch => {
-    axios.get(gradingasignmentrecordsURL)
+export const getAssignmentRecords = (token) => dispatch => {
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
+		};
+    axios.get(gradingasignmentrecordsURL,config)
         .then(res => {
             dispatch({
                 type: GET_ASSIGNMENT_RECORDS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getExcerciseRecords = () => dispatch => {
-    axios.get(gradingexcerciserecordsURL)
+export const getExcerciseRecords = (token) => dispatch => {
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
+		};
+    axios.get(gradingexcerciserecordsURL,config)
         .then(res => {
             dispatch({
                 type: GET_EXCERCISE_RECORDS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const editTestRecord = (id, grade) => dispatch => {
+export const editTestRecord = (id, grade, token) => dispatch => {
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
+		};
     JSON.stringify(id, null, 3)
-		axios.patch(`${gradingtestrecordsURL}${id}/`, grade)
+    axios.patch(`${gradingtestrecordsURL}${id}/`, grade,config)
         .then(res => {
             dispatch({
                 type: EDIT_TEST_RECORD,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const editAssignmentRecord = (id, grade) => dispatch => {
+export const editAssignmentRecord = (id, grade, token) => dispatch => {
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
+		};
     JSON.stringify(id, null, 3)
-		axios.patch(`${gradingasignmentrecordsURL}${id}/`, grade)
+    axios.patch(`${gradingasignmentrecordsURL}${id}/`, grade,config)
         .then(res => {
             dispatch({
                 type: EDIT_ASSIGNMENT_RECORD,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const editExcerciseRecord = (id, grade) => dispatch => {
+export const editExcerciseRecord = (id, grade, token) => dispatch => {
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
+		};
     JSON.stringify(id, null, 3)
-		axios.patch(`${gradingexcerciserecordsURL}${id}/`, grade)
+    axios.patch(`${gradingexcerciserecordsURL}${id}/`, grade,config)
         .then(res => {
             dispatch({
                 type: EDIT_EXCERCISE_RECORD,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
 // Get
-export const getAdminStudentTests = () => dispatch => {
-    axios.get(adminstudenttestsURL)
+export const getAdminStudentTests = (token) => dispatch => {
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
+		};
+    axios.get(adminstudenttestsURL,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDENT_TESTS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
-export const getAdminStudentExcercises = () => dispatch => {
-    axios.get(adminstudentexcercisesURL)
+
+export const getAdminStudentExcercises = (token) => dispatch => {
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
+		};
+    axios.get(adminstudentexcercisesURL,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDENT_EXCERCISES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getAdminStudentAssignments = () => dispatch => {
-    axios.get(adminstudentassignmentsURL)
+export const getAdminStudentAssignments = (token) => dispatch => {
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
+		};
+    axios.get(adminstudentassignmentsURL,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDENT_ASSIGNMENTS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 // Get
-export const getTeacherStudentTests = () => dispatch => {
-    axios.get(teacherstudenttestsURL)
+export const getTeacherStudentTests = (token) => dispatch => {
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
+		};
+    axios.get(teacherstudenttestsURL,config)
         .then(res => {
             dispatch({
                 type: GET_TEACHER_STUDENT_TESTS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
-export const getTeacherStudentExcercises = () => dispatch => {
-    axios.get(teacherstudentexcercisesURL)
+export const getTeacherStudentExcercises = (token) => dispatch => {
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
+		};
+    axios.get(teacherstudentexcercisesURL,config)
         .then(res => {
             dispatch({
                 type: GET_TEACHER_STUDENT_EXCERCISES,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getTeacherStudentAssignments = () => dispatch => {
-    axios.get(teacherstudentassignmentsURL)
+export const getTeacherStudentAssignments = (token) => dispatch => {
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
+		};
+    axios.get(teacherstudentassignmentsURL,config)
         .then(res => {
             dispatch({
                 type: GET_TEACHER_STUDENT_ASSIGNMENTS,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-export const getAdminStudentTest = id => dispatch =>{
-	axios.get(`${adminstudenttestsURL}${id}/`)
+export const getAdminStudentTest = (id, token) => dispatch =>{
+	const config =  {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Token ${token}`,
+				'Accept': 'application/json',
+			}
+	};
+	axios.get(`${adminstudenttestsURL}${id}/`,config)
 	  .then(res => {
 		  dispatch({
 			  type: GET_ADMIN_STUDENT_TEST,
 			  payload: res.data
 		  });
-	  }).catch(err => console.log(err))
+	  }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }
 
 
-export const getAdminStudentExcercise = id => dispatch =>{
-	axios.get(`${adminstudentexcercisesURL}${id}/`)
+export const getAdminStudentExcercise = (id,token) => dispatch =>{
+	const config =  {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Token ${token}`,
+				'Accept': 'application/json',
+			}
+	};
+	axios.get(`${adminstudentexcercisesURL}${id}/`,config)
 	  .then(res => {
 		  dispatch({
 			  type: GET_ADMIN_STUDENT_EXCERCISE,
 			  payload: res.data
 		  });
-	  }).catch(err => console.log(err))
+	  }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }
 
 
-export const getAdminStudentAssignment = id => dispatch =>{
-	axios.get(`${adminstudentassignmentsURL}${id}/`)
+export const getAdminStudentAssignment = (id, token) => dispatch =>{
+	const config =  {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Token ${token}`,
+				'Accept': 'application/json',
+			}
+	};
+	axios.get(`${adminstudentassignmentsURL}${id}/`, config)
 	  .then(res => {
 		  dispatch({
 			  type: GET_ADMIN_STUDENT_ASSIGNMENT,
 			  payload: res.data
 		  });
-	  }).catch(err => console.log(err))
+	  }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }
 
 
 
-export const getTeacherStudentTest = id => dispatch =>{
-	axios.get(`${teacherstudenttestsURL}${id}/`)
+export const getTeacherStudentTest = (id, token) => dispatch =>{
+	const config =  {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Token ${token}`,
+				'Accept': 'application/json',
+			}
+	};
+	axios.get(`${teacherstudenttestsURL}${id}/`,config)
 	  .then(res => {
 		  dispatch({
 			  type: GET_TEACHER_STUDENT_TEST,
 			  payload: res.data
 		  });
-	  }).catch(err => console.log(err))
+	  }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }
 
 
-export const getTeacherStudentExcercise = id => dispatch =>{
-	axios.get(`${teacherstudentexcercisesURL}${id}/`)
+export const getTeacherStudentExcercise = (id,token) => dispatch =>{
+	const config =  {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Token ${token}`,
+				'Accept': 'application/json',
+			}
+	};
+	axios.get(`${teacherstudentexcercisesURL}${id}/`,config)
 	  .then(res => {
 		  dispatch({
 			  type: GET_TEACHER_STUDENT_EXCERCISE,
 			  payload: res.data
 		  });
-	  }).catch(err => console.log(err))
+	  }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }
 
 
-export const getTeacherStudentAssignment = id => dispatch =>{
-	axios.get(`${teacherstudentassignmentsURL}${id}/`)
+export const getTeacherStudentAssignment = (id,token) => dispatch =>{
+	const config =  {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Token ${token}`,
+				'Accept': 'application/json',
+			}
+	};
+	axios.get(`${teacherstudentassignmentsURL}${id}/`,config)
 	  .then(res => {
 		  dispatch({
 			  type: GET_TEACHER_STUDENT_ASSIGNMENT,
 			  payload: res.data
 		  });
-	  }).catch(err => console.log(err))
+	  }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
 }
 
@@ -236,26 +364,40 @@ export const getTeacherStudentAssignment = id => dispatch =>{
 
 
 // Add
-export const addGrade = (grade) => dispatch => {
-    axios.post(teacherstudenttestsURL, grade)
+export const addGrade = (grade,token) => dispatch => {
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
+		};
+    axios.post(teacherstudenttestsURL, grade,config)
         .then(res => {
             dispatch({
                 type: ADD_STUDENT_GRADE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
 
 //Edit
-export const editGrade = (id, grade) => dispatch => {
+export const editGrade = (id, grade,token) => dispatch => {
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
+		};
     JSON.stringify(id, null, 3)
-		axios.patch(`${teacherstudentassignmentsURL}${id}/`, grade)
+    axios.patch(`${teacherstudentassignmentsURL}${id}/`, grade,config)
         .then(res => {
             dispatch({
                 type: EDIT_STUDENT_GRADE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }

@@ -10,8 +10,8 @@ from grading.serializers import (
 
 
 class TeacherGeneralGradeTestViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get_serializer_class(self, *args, **kwargs):
@@ -46,8 +46,8 @@ class TeacherGeneralGradeTestViewSet(viewsets.ModelViewSet):
 
 
 class TeacherGeneralGradeExcerciseViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get_serializer_class(self, *args, **kwargs):
@@ -80,8 +80,8 @@ class TeacherGeneralGradeExcerciseViewSet(viewsets.ModelViewSet):
 
 
 class TeacherGeneralGradeAssignmentViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get_serializer_class(self, *args, **kwargs):

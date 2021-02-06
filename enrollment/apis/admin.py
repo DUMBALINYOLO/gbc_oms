@@ -10,8 +10,8 @@ from enrollment.serializers import (
 
 
 class PendingAdminApplicationViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	def get_serializer_class(self, *args, **kwargs):
 
@@ -36,8 +36,8 @@ class PendingAdminApplicationViewSet(viewsets.ModelViewSet):
 
 
 class RejectedAdminAdmissionViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	def get_serializer_class(self, *args, **kwargs):
 
@@ -63,8 +63,8 @@ class RejectedAdminAdmissionViewSet(viewsets.ModelViewSet):
 
 
 class CallForAdminAdmissionViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	def get_serializer_class(self, *args, **kwargs):
 
@@ -89,8 +89,8 @@ class CallForAdminAdmissionViewSet(viewsets.ModelViewSet):
 
 
 class AcceptedAdminAdmissionViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	def get_serializer_class(self, *args, **kwargs):
 

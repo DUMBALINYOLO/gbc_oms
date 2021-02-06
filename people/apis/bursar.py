@@ -17,7 +17,7 @@ from people.serializers import (
 
 class BursarStudentViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	permission_classes = [permissions.AllowAny,]
 	queryset = Student.objects.all()
 	serializer_class = BursarStudentListDetailSerializer
 
@@ -25,7 +25,7 @@ class BursarStudentViewSet(viewsets.ModelViewSet):
 
 class BursarParentViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	permission_classes = [permissions.AllowAny,]
 	queryset = Parent.objects.all()
 	serializer_class = BursarParentListDetailSerializer
 
@@ -33,7 +33,7 @@ class BursarParentViewSet(viewsets.ModelViewSet):
 
 class BursarViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	permission_classes = [permissions.AllowAny,]
 	serializer_class = BursarListDetailSerializer
 
 
