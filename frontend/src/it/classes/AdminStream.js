@@ -6,14 +6,14 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
-import { 
-  Paper, 
-  makeStyles, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  Toolbar, 
-  InputAdornment } 
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment }
 from '@material-ui/core';
 import AddStream from './AddStream';
 import  Controls  from "../../components/formcontrols/Controls";
@@ -44,9 +44,6 @@ const headCells = [
 ]
 
 
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -56,30 +53,31 @@ const AdminStream = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getStreams();
+        props.getStreams(token);
     }
     console.log('mount it!');
 
-    
+
   }, []);
 
 
-  const addOrEdit = (stream, resetForm) => {
+  const addOrEdit = (stream, resetForm, token) => {
       if (stream.id > 0)
-        props.editStream(stream.id, stream)    
+        props.editStream(stream.id, stream, token)
       else
-        props.addStream(stream)
-        //   
+        props.addStream(stream, token)
+        //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-  
-  
+
+
   const {records} = props;
 
   const {
@@ -162,7 +160,7 @@ const AdminStream = props => {
       >
         <AddStream
             recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit} 
+            addOrEdit={addOrEdit}
         />
       </Popup>
     </InformationTechnologyLayout>
@@ -171,9 +169,10 @@ const AdminStream = props => {
 
 const mapStateToProps = state =>({
     records: state.classes.streams,
+    token: state.auth.token,
 })
 
 export default connect(
-  mapStateToProps, 
-  {getStreams, addStream, editStream } ) 
+  mapStateToProps,
+  {getStreams, addStream, editStream } )
   (AdminStream);

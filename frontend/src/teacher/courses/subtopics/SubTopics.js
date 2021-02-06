@@ -59,10 +59,11 @@ const SubTopics = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const {id} =props.data;
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminSubTopics(id);
+        props.getAdminSubTopics(id, token);
     }
     console.log('mount it!');
 
@@ -70,11 +71,11 @@ const SubTopics = props => {
   }, []);
 
 
-  const addOrEdit = (fee, resetForm) => {
+  const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0)
-        props.editSubTopic(fee.id, fee)
+        props.editSubTopic(fee.id, fee, token)
       else
-        props.addSubTopic(fee)
+        props.addSubTopic(fee, token)
         //
       resetForm()
       setRecordForEdit(null)
@@ -182,6 +183,7 @@ const SubTopics = props => {
 
 const mapStateToProps = state =>({
     records: state.courses.adminsubtopics,
+    token: state.auth.token,
 })
 
 export default connect(

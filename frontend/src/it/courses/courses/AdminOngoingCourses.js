@@ -42,11 +42,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-
-
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -58,10 +53,11 @@ const AdminOngoingCourses = props => {
   const [openPopup, setOpenPopup] = useState(false)
   const [listView, setListView] = useState('grid')
   const history = useHistory();
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminOngoingCourses();
+        props.getAdminOngoingCourses(token);
     }
     console.log('mount it!');
 
@@ -69,20 +65,16 @@ const AdminOngoingCourses = props => {
   }, []);
 
 
-  const addOrEdit = (fee, resetForm) => {
+  const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0)
-        props.editCourse(fee.id, fee)
+        props.editCourse(fee.id, fee, token)
       else
-        props.addCourse(fee)
+        props.addCourse(fee, token)
         //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
-
-
-
-
 
   const handleSearch = e => {
       let target = e.target;
@@ -176,6 +168,7 @@ const AdminOngoingCourses = props => {
 
 const mapStateToProps = state =>({
     courseData: state.courses.adminongoingcourses,
+    token: state.auth.token,
 })
 
 export default connect(

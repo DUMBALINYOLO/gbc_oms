@@ -6,14 +6,14 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
-import { 
-  Paper, 
-  makeStyles, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  Toolbar, 
-  InputAdornment } 
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment }
 from '@material-ui/core';
 import AddBursar from './AddBursar';
 import  Controls  from "../../components/formcontrols/Controls";
@@ -59,29 +59,30 @@ const AdminPrincipals = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminPrincipals();
+        props.getAdminPrincipals(token);
     }
     console.log('mount it!');
 
-    
+
   }, []);
 
 
-  const addOrEdit = (bursar, resetForm) => {
+  const addOrEdit = (bursar, resetForm, token) => {
       if (bursar.id > 0)
         console.log('gosso')
       else
-        props.addPrincipal(bursar)       //   
+        props.addPrincipal(bursar, token)       //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-  
-  
+
+
   const {records} = props;
 
   const {
@@ -166,7 +167,7 @@ const AdminPrincipals = props => {
       >
         <AddBursar
             recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit} 
+            addOrEdit={addOrEdit}
         />
       </Popup>
     </InformationTechnologyLayout>
@@ -175,11 +176,10 @@ const AdminPrincipals = props => {
 
 const mapStateToProps = state =>({
     records: state.people.adminprincipals,
+    token: state.auth.token,
 })
 
 export default connect(
-  mapStateToProps, 
-  {getAdminPrincipals, addPrincipal} ) 
+  mapStateToProps,
+  {getAdminPrincipals, addPrincipal} )
   (AdminPrincipals);
-
-  

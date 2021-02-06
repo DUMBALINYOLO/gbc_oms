@@ -6,14 +6,14 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
-import { 
-  Paper, 
-  makeStyles, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  Toolbar, 
-  InputAdornment } 
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment }
 from '@material-ui/core';
 import AddBursar from '../staff/AddBursar';
 import  Controls  from "../../components/formcontrols/Controls";
@@ -45,10 +45,6 @@ const headCells = [
   { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
-
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -59,29 +55,30 @@ const AdminParents = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminParents();
+        props.getAdminParents(token);
     }
     console.log('mount it!');
 
-    
+
   }, []);
 
 
-  const addOrEdit = (bursar, resetForm) => {
+  const addOrEdit = (bursar, resetForm, token) => {
       if (bursar.id > 0)
         console.log('gosso')
       else
-        props.addBursar(bursar)       //   
+        props.addBursar(bursar, token)       //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-  
-  
+
+
   const {records} = props;
 
   const {
@@ -166,7 +163,7 @@ const AdminParents = props => {
       >
         <AddBursar
             recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit} 
+            addOrEdit={addOrEdit}
         />
       </Popup>
     </InformationTechnologyLayout>
@@ -175,9 +172,10 @@ const AdminParents = props => {
 
 const mapStateToProps = state =>({
     records: state.people.adminparents,
+    token: state.auth.token,
 })
 
 export default connect(
-  mapStateToProps, 
-  {getAdminParents, addBursar} ) 
+  mapStateToProps,
+  {getAdminParents, addBursar} )
   (AdminParents);

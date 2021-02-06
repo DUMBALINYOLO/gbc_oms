@@ -6,14 +6,14 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
-import { 
-  Paper, 
-  makeStyles, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  Toolbar, 
-  InputAdornment } 
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment }
 from '@material-ui/core';
 import AddSubject from './AddSubject';
 import  Controls  from "../../components/formcontrols/Controls";
@@ -47,8 +47,6 @@ const headCells = [
 
 
 
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -59,30 +57,31 @@ const SubjectAdminView = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getSubjects();
+        props.getSubjects(token);
     }
     console.log('mount it!');
 
-    
+
   }, []);
 
 
-  const addOrEdit = (subject, resetForm) => {
+  const addOrEdit = (subject, resetForm, token) => {
       if (subject.id > 0)
-        props.editSubject(subject.id, subject)    
+        props.editSubject(subject.id, subject, token)
       else
-        props.addSubject(subject)
-        //   
+        props.addSubject(subject, token)
+        //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-  
-  
+
+
   const {records} = props;
 
   const {
@@ -167,7 +166,7 @@ const SubjectAdminView = props => {
       >
         <AddSubject
             recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit} 
+            addOrEdit={addOrEdit}
         />
       </Popup>
     </InformationTechnologyLayout>
@@ -176,9 +175,10 @@ const SubjectAdminView = props => {
 
 const mapStateToProps = state =>({
     records: state.curriculums.subjects,
+    token: state.auth.token,
 })
 
 export default connect(
-  mapStateToProps, 
-  {getSubjects, addSubject, editSubject} ) 
+  mapStateToProps,
+  {getSubjects, addSubject, editSubject} )
   (SubjectAdminView);

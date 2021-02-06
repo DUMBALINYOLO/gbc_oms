@@ -6,14 +6,14 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
 import { useHistory } from 'react-router-dom';
-import { 
-  Paper, 
-  makeStyles, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  Toolbar, 
-  InputAdornment } 
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment }
 from '@material-ui/core';
 import MarkRegister from './AddAttendance';
 import  Controls  from "../../components/formcontrols/Controls";
@@ -62,23 +62,24 @@ const AdminAttendances = props => {
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
+    const {token} = props;
 
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminAttendances();
+        props.getAdminAttendances(token);
     }
     console.log('mount it!');
-    
+
   }, []);
 
 
-  const addOrEdit = (fee, resetForm) => {
+  const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0)
-        props.editAdminAttendance(fee.id, fee)    
+        props.editAdminAttendance(fee.id, fee, token)
       else
-        props.addAdminAttendance(fee)
-        //   
+        props.addAdminAttendance(fee, token)
+        //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -114,7 +115,7 @@ const AdminAttendances = props => {
     history.push(`/itdashboard/attendance/${id}`)
   }
 
-  
+
   return (
     <InformationTechnologyLayout>
       <Paper className={classes.pageContent}>
@@ -177,7 +178,7 @@ const AdminAttendances = props => {
       >
         <MarkRegister
             recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit} 
+            addOrEdit={addOrEdit}
         />
       </Popup>
     </InformationTechnologyLayout>
@@ -186,9 +187,10 @@ const AdminAttendances = props => {
 
 const mapStateToProps = state =>({
     records: state.adminattendances.adminattendances,
+    token: state.auth.token,
 })
 
 export default connect(
-  mapStateToProps, 
-  {getAdminAttendances, editAdminAttendance, addAdminAttendance} ) 
+  mapStateToProps,
+  {getAdminAttendances, editAdminAttendance, addAdminAttendance} )
   (AdminAttendances);

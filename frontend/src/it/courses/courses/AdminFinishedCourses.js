@@ -58,10 +58,11 @@ const AdminOngoingCourses = props => {
   const [openPopup, setOpenPopup] = useState(false)
   const [listView, setListView] = useState('grid')
   const history = useHistory();
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminFinishedCourses();
+        props.getAdminFinishedCourses(token);
     }
     console.log('mount it!');
 
@@ -69,11 +70,11 @@ const AdminOngoingCourses = props => {
   }, []);
 
 
-  const addOrEdit = (fee, resetForm) => {
+  const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0)
-        props.editCourse(fee.id, fee)
+        props.editCourse(fee.id, fee, token)
       else
-        props.addCourse(fee)
+        props.addCourse(fee, token)
         //
       resetForm()
       setRecordForEdit(null)
@@ -176,6 +177,7 @@ const AdminOngoingCourses = props => {
 
 const mapStateToProps = state =>({
     courseData: state.courses.adminfinishedcourses,
+    token: state.auth.token,
 })
 
 export default connect(

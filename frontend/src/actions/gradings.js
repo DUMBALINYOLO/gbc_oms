@@ -25,7 +25,7 @@ import {
 
 import {
 	adminstudenttestsURL,
-	adminstudentassignmentsURL, 
+	adminstudentassignmentsURL,
 	adminstudentexcercisesURL,
 	teacherstudenttestsURL,
 	teacherstudentexcercisesURL,
@@ -68,7 +68,7 @@ export const getExcerciseRecords = () => dispatch => {
 
 export const editTestRecord = (id, grade) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/grading/grading-test-records/${id}/`, grade)
+		axios.patch(`${gradingtestrecordsURL}${id}/`, grade)
         .then(res => {
             dispatch({
                 type: EDIT_TEST_RECORD,
@@ -79,7 +79,7 @@ export const editTestRecord = (id, grade) => dispatch => {
 
 export const editAssignmentRecord = (id, grade) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/grading/asignment-test-records/${id}/`, grade)
+		axios.patch(`${gradingasignmentrecordsURL}${id}/`, grade)
         .then(res => {
             dispatch({
                 type: EDIT_ASSIGNMENT_RECORD,
@@ -90,7 +90,7 @@ export const editAssignmentRecord = (id, grade) => dispatch => {
 
 export const editExcerciseRecord = (id, grade) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/grading/grading-excercise-records/${id}/`, grade)
+		axios.patch(`${gradingexcerciserecordsURL}${id}/`, grade)
         .then(res => {
             dispatch({
                 type: EDIT_EXCERCISE_RECORD,
@@ -161,7 +161,7 @@ export const getTeacherStudentAssignments = () => dispatch => {
 }
 
 export const getAdminStudentTest = id => dispatch =>{
-	axios.get(`http://127.0.0.1:8000/api/grading/admin-student-tests/${id}`)
+	axios.get(`${adminstudenttestsURL}${id}/`)
 	  .then(res => {
 		  dispatch({
 			  type: GET_ADMIN_STUDENT_TEST,
@@ -173,7 +173,7 @@ export const getAdminStudentTest = id => dispatch =>{
 
 
 export const getAdminStudentExcercise = id => dispatch =>{
-	axios.get(`http://127.0.0.1:8000/api/grading/admin-student-excercises/${id}`)
+	axios.get(`${adminstudentexcercisesURL}${id}/`)
 	  .then(res => {
 		  dispatch({
 			  type: GET_ADMIN_STUDENT_EXCERCISE,
@@ -185,7 +185,7 @@ export const getAdminStudentExcercise = id => dispatch =>{
 
 
 export const getAdminStudentAssignment = id => dispatch =>{
-	axios.get(`http://127.0.0.1:8000/api/grading/admin-student-assignments/${id}`)
+	axios.get(`${adminstudentassignmentsURL}${id}/`)
 	  .then(res => {
 		  dispatch({
 			  type: GET_ADMIN_STUDENT_ASSIGNMENT,
@@ -198,7 +198,7 @@ export const getAdminStudentAssignment = id => dispatch =>{
 
 
 export const getTeacherStudentTest = id => dispatch =>{
-	axios.get(`http://127.0.0.1:8000/api/grading/teacher-student-tests/${id}`)
+	axios.get(`${teacherstudenttestsURL}${id}/`)
 	  .then(res => {
 		  dispatch({
 			  type: GET_TEACHER_STUDENT_TEST,
@@ -210,7 +210,7 @@ export const getTeacherStudentTest = id => dispatch =>{
 
 
 export const getTeacherStudentExcercise = id => dispatch =>{
-	axios.get(`http://127.0.0.1:8000/api/grading/teacher-student-excercises/${id}`)
+	axios.get(`${teacherstudentexcercisesURL}${id}/`)
 	  .then(res => {
 		  dispatch({
 			  type: GET_TEACHER_STUDENT_EXCERCISE,
@@ -222,7 +222,7 @@ export const getTeacherStudentExcercise = id => dispatch =>{
 
 
 export const getTeacherStudentAssignment = id => dispatch =>{
-	axios.get(`http://127.0.0.1:8000/api/grading/teacher-student-assignments/${id}`)
+	axios.get(`${teacherstudentassignmentsURL}${id}/`)
 	  .then(res => {
 		  dispatch({
 			  type: GET_TEACHER_STUDENT_ASSIGNMENT,
@@ -251,7 +251,7 @@ export const addGrade = (grade) => dispatch => {
 //Edit
 export const editGrade = (id, grade) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/grading/teacher-student-assignments/${id}/`, grade)
+		axios.patch(`${teacherstudentassignmentsURL}${id}/`, grade)
         .then(res => {
             dispatch({
                 type: EDIT_STUDENT_GRADE,

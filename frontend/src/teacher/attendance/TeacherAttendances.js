@@ -62,23 +62,24 @@ const TeacherAttendances = props => {
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
+    const {token} = props;
 
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminAttendances();
+        props.getAdminAttendances(token);
     }
     console.log('mount it!');
 
   }, []);
 
 
-  const addOrEdit = (fee, resetForm) => {
+  const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0)
-        props.editAdminAttendance(fee.id, fee)
+        props.editAdminAttendance(fee.id, fee, token)
       else
-        props.addAdminAttendance(fee)
-        console.log(fee)
+        props.addAdminAttendance(fee, token)
+        console.log(fee, token)
         //
       resetForm()
       setRecordForEdit(null)
@@ -186,6 +187,7 @@ const TeacherAttendances = props => {
 
 const mapStateToProps = state =>({
     records: state.adminattendances.adminattendances,
+    token: state.auth.token,
 })
 
 export default connect(

@@ -6,14 +6,14 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
-import { 
-  Paper, 
-  makeStyles, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  Toolbar, 
-  InputAdornment } 
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment }
 from '@material-ui/core';
 import AddCurriculum from './AddCurriculum';
 import  Controls  from "../../components/formcontrols/Controls";
@@ -58,30 +58,31 @@ const FeeItView = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getCurriculums();
+        props.getCurriculums(token);
     }
     console.log('mount it!');
 
-    
+
   }, []);
 
 
-  const addOrEdit = (curriculum, resetForm) => {
+  const addOrEdit = (curriculum, resetForm, token) => {
       if (curriculum.id > 0)
-        props.editCurriculum(curriculum.id, curriculum)    
+        props.editCurriculum(curriculum.id, curriculum, token)
       else
-        props.addCurriculum(curriculum)
-        //   
+        props.addCurriculum(curriculum, token)
+        //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-  
-  
+
+
   const {records} = props;
 
   const {
@@ -165,7 +166,7 @@ const FeeItView = props => {
       >
         <AddCurriculum
             recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit} 
+            addOrEdit={addOrEdit}
         />
       </Popup>
     </InformationTechnologyLayout>
@@ -173,10 +174,11 @@ const FeeItView = props => {
 };
 
 const mapStateToProps = state =>({
-    records: state.curriculums.curriculums
+    records: state.curriculums.curriculums,
+    token: state.auth.token,
 })
 
 export default connect(
-  mapStateToProps, 
-  {getCurriculums, addCurriculum, editCurriculum} ) 
+  mapStateToProps,
+  {getCurriculums, addCurriculum, editCurriculum} )
   (FeeItView);

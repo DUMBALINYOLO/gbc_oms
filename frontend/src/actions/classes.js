@@ -8,8 +8,8 @@ import {
         GET_STREAMS,
         EDIT_STREAM,
     } from '../types/classTypes';
-import { 
-    classesURL, 
+import {
+    classesURL,
     classstreamsURL,
     classsubjectsURL,
     classstudentsURL,
@@ -40,7 +40,7 @@ export const addClass = (classi) => dispatch => {
 
 //get
 export const getClass = id => dispatch =>{
-      axios.get(`http://127.0.0.1:8000/api/classes/classes/${id}`)
+      axios.get(`${classesURL}${id}/`)
         .then(res => {
             dispatch({
                 type: GET_CLASS,
@@ -53,7 +53,7 @@ export const getClass = id => dispatch =>{
 //Edit
 export const editClass = (id, classi) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/classes/classes/${id}/`, classi)
+    axios.patch(`${classesURL}${id}/`, classi)
         .then(res => {
             dispatch({
                 type: EDIT_CLASS,
@@ -89,7 +89,7 @@ export const addStream = (stream) => dispatch => {
 //Edit
 export const editStream = (id, stream) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/classes/class-streams/${id}/`, stream)
+    axios.patch(`${classstreamsURL}${id}/`, stream)
         .then(res => {
             dispatch({
                 type: EDIT_STREAM,
@@ -97,6 +97,3 @@ export const editStream = (id, stream) => dispatch => {
             });
         }).catch(err => console.log(err))
 }
-
-
-

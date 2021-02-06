@@ -58,10 +58,11 @@ const Notes = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const {id} =props.data;
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getStudyNotes(id);
+        props.getStudyNotes(id, token);
     }
     console.log('mount it!');
 
@@ -69,11 +70,11 @@ const Notes = props => {
   }, []);
 
 
-  const addOrEdit = (fee, resetForm) => {
+  const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0)
-        props.editStudyNote(fee.id, fee)
+        props.editStudyNote(fee.id, fee, token)
       else
-        props.addStudyNote(fee)
+        props.addStudyNote(fee, token)
         //
       resetForm()
       setRecordForEdit(null)
@@ -183,6 +184,7 @@ const Notes = props => {
 
 const mapStateToProps = state =>({
     records: state.courses.adminstudynotes,
+    token: state.auth.token,
 })
 
 export default connect(

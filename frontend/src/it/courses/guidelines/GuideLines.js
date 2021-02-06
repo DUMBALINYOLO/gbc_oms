@@ -58,10 +58,11 @@ const GuideLines = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const {id} =props.data;
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminTopicGuidelines(id);
+        props.getAdminTopicGuidelines(id, token);
     }
     console.log('mount it!');
 
@@ -69,11 +70,11 @@ const GuideLines = props => {
   }, []);
 
 
-  const addOrEdit = (fee, resetForm) => {
+  const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0)
-        props.editTopicGuideline(fee.id, fee)
+        props.editTopicGuideline(fee.id, fee, token)
       else
-        props.addTopicGuideLine(fee)
+        props.addTopicGuideLine(fee, token)
         //
       resetForm()
       setRecordForEdit(null)
@@ -174,6 +175,7 @@ const GuideLines = props => {
 
 const mapStateToProps = state =>({
     records: state.courses.admintopicguidelines,
+    token: state.auth.token,
 })
 
 export default connect(

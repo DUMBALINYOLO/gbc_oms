@@ -6,14 +6,14 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
-import { 
-  Paper, 
-  makeStyles, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  Toolbar, 
-  InputAdornment } 
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment }
 from '@material-ui/core';
 import AddAccount from './AddAccount';
 import  Controls  from "../../components/formcontrols/Controls";
@@ -60,30 +60,31 @@ const AccountsAdminView = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAccounts();
+        props.getAccounts(token);
     }
     console.log('mount it!');
 
-    
+
   }, []);
 
 
-  const addOrEdit = (account, resetForm) => {
+  const addOrEdit = (account, resetForm, token) => {
       if (account.id > 0)
-        props.editAccount(account.id, account)    
+        props.editAccount(account.id, account, token)
       else
-        props.addAccount(account)
-        //   
+        props.addAccount(account, token)
+        //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-  
-  
+
+
   const {records} = props;
 
   const {
@@ -170,7 +171,7 @@ const AccountsAdminView = props => {
       >
         <AddAccount
             recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit} 
+            addOrEdit={addOrEdit}
         />
       </Popup>
     </InformationTechnologyLayout>
@@ -178,10 +179,11 @@ const AccountsAdminView = props => {
 };
 
 const mapStateToProps = state =>({
-    records: state.accounts.accounts
+    records: state.accounts.accounts,
+    token: state.auth.token,
 })
 
 export default connect(
-  mapStateToProps, 
-  {getAccounts, editAccount, addAccount} ) 
+  mapStateToProps,
+  {getAccounts, editAccount, addAccount} )
   (AccountsAdminView);

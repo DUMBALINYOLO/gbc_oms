@@ -6,14 +6,14 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import { useHistory } from 'react-router-dom';
 import { Search } from "@material-ui/icons";
-import { 
-  Paper, 
-  makeStyles, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  Toolbar, 
-  InputAdornment } 
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment }
 from '@material-ui/core';
 import  Controls  from "../../components/formcontrols/Controls";
 import  useTable  from "../../components/table/useTable";
@@ -56,23 +56,18 @@ const TeacherStudents = props => {
   const history = useHistory();
   const classes = useStyles();
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
- 
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminStudents();
+        props.getAdminStudents(token);
     }
     console.log('mount it!');
 
-    
+
   }, []);
 
-  
 
-
-
-  
-  
   const {records} = props;
 
   const {
@@ -152,9 +147,10 @@ const TeacherStudents = props => {
 
 const mapStateToProps = state =>({
     records: state.people.adminstudents,
+    token: state.auth.token,
 })
 
 export default connect(
-  mapStateToProps, 
-  {getAdminStudents, addBursar} ) 
+  mapStateToProps,
+  {getAdminStudents, addBursar} )
   (TeacherStudents);

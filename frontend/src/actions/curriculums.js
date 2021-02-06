@@ -48,7 +48,7 @@ export const addCurriculum = (curriculum) => dispatch => {
 
 //get
 export const getCurriculum = id => dispatch =>{
-      axios.get(`http://127.0.0.1:8000/api/curriculum/curriculums/${id}`)
+      axios.get(`${curriculumsURL}${id}/`)
         .then(res => {
             dispatch({
                 type: GET_CURRICULUM,
@@ -61,7 +61,7 @@ export const getCurriculum = id => dispatch =>{
 //Edit
 export const editCurriculum = (id, curriculum) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/curriculum/curriculums/${id}/`, curriculum)
+    axios.patch(`${curriculumsURL}${id}/`, curriculum)
         .then(res => {
             dispatch({
                 type: EDIT_CURRICULUM,
@@ -108,7 +108,7 @@ export const addSubject = (subject) => dispatch => {
 
 //get
 export const getSubject = id => dispatch =>{
-      axios.get(`http://127.0.0.1:8000/api/curriculum/subjects/${id}`)
+      axios.get(`${subjectsURL}${id}/`)
         .then(res => {
             dispatch({
                 type: GET_SUBJECT,
@@ -121,7 +121,7 @@ export const getSubject = id => dispatch =>{
 //Edit
 export const editSubject = (id, subject) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/curriculum/subjects/${id}/`, subject)
+    axios.patch(`${subjectsURL}${id}/`, subject)
         .then(res => {
             dispatch({
                 type: EDIT_SUBJECT,

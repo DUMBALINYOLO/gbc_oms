@@ -6,14 +6,14 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
-import { 
-  Paper, 
-  makeStyles, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  Toolbar, 
-  InputAdornment } 
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment }
 from '@material-ui/core';
 import AddClass from './AddClass';
 import  Controls  from "../../components/formcontrols/Controls";
@@ -59,30 +59,31 @@ const AdminClass = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getClasses();
+        props.getClasses(token);
     }
     console.log('mount it!');
 
-    
+
   }, []);
 
 
-  const addOrEdit = (classi, resetForm) => {
+  const addOrEdit = (classi, resetForm, token) => {
       if (classi.id > 0)
-        props.editClass(classi.id, classi)    
+        props.editClass(classi.id, classi, token)
       else
-        props.addClass(classi)
-        //   
+        props.addClass(classi, token)
+        //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-  
-  
+
+
   const {records} = props;
 
   const {
@@ -168,7 +169,7 @@ const AdminClass = props => {
       >
         <AddClass
             recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit} 
+            addOrEdit={addOrEdit}
         />
       </Popup>
     </InformationTechnologyLayout>
@@ -177,9 +178,10 @@ const AdminClass = props => {
 
 const mapStateToProps = state =>({
     records: state.classes.classes,
+    token: state.auth.token,
 })
 
 export default connect(
-  mapStateToProps, 
-  {getClasses, addClass, editClass } ) 
+  mapStateToProps,
+  {getClasses, addClass, editClass } )
   (AdminClass);

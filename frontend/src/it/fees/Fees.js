@@ -6,14 +6,14 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
-import { 
-  Paper, 
-  makeStyles, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  Toolbar, 
-  InputAdornment } 
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment }
 from '@material-ui/core';
 import AddFee from './AddFee';
 import  Controls  from "../../components/formcontrols/Controls";
@@ -60,30 +60,31 @@ const FeeItView = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getFees();
+        props.getFees(token);
     }
     console.log('mount it!');
 
-    
+
   }, []);
 
 
-  const addOrEdit = (fee, resetForm) => {
+  const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0)
-        props.editFee(fee.id, fee)    
+        props.editFee(fee.id, fee, token)
       else
-        props.addFee(fee)
-        //   
+        props.addFee(fee, token)
+        //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-  
-  
+
+
   const {records} = props;
 
   const {
@@ -169,7 +170,7 @@ const FeeItView = props => {
       >
         <AddFee
             recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit} 
+            addOrEdit={addOrEdit}
         />
       </Popup>
     </InformationTechnologyLayout>
@@ -177,10 +178,11 @@ const FeeItView = props => {
 };
 
 const mapStateToProps = state =>({
-    records: state.fees.fees
+    records: state.fees.fees,
+    token: state.auth.token,
 })
 
 export default connect(
-  mapStateToProps, 
-  {getFees, addFee, editFee} ) 
+  mapStateToProps,
+  {getFees, addFee, editFee} )
   (FeeItView);

@@ -6,14 +6,14 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
-import { 
-  Paper, 
-  makeStyles, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  Toolbar, 
-  InputAdornment } 
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment }
 from '@material-ui/core';
 import Apply from './AddAdmission';
 import  Controls  from "../../components/formcontrols/Controls";
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 const headCells = [
   { id: 'id', label: 'ID' },
   { id: 'application_number', label: 'CODE' },
-  { id: 'student', label: 'APPLICANT' }, 
+  { id: 'student', label: 'APPLICANT' },
   { id: 'klass', label: 'CLASS' },
   { id: 'status', label: 'STATUS' },
   { id: 'actions', label: 'Actions', disableSorting: true }
@@ -60,30 +60,31 @@ const AdminPendingAdmissions = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+    const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getPendingAdmissions();
+        props.getPendingAdmissions(token);
     }
     console.log('mount it!');
 
-    
+
   }, []);
 
 
-  const addOrEdit = (fee, resetForm) => {
+  const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0)
-        props.editPendingAdmission(fee.id, fee)    
+        props.editPendingAdmission(fee.id, fee, token)
       else
-        props.addAdmission(fee)
-        //   
+        props.addAdmission(fee, token)
+        //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-  
-  
+
+
   const {records} = props;
 
   const {
@@ -169,7 +170,7 @@ const AdminPendingAdmissions = props => {
       >
         <Apply
             recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit} 
+            addOrEdit={addOrEdit}
         />
       </Popup>
     </InformationTechnologyLayout>
@@ -178,9 +179,10 @@ const AdminPendingAdmissions = props => {
 
 const mapStateToProps = state =>({
     records: state.admissions.pendingadmissions,
+    token: state.auth.token,
 })
 
 export default connect(
-  mapStateToProps, 
-  {getPendingAdmissions, addAdmission, editPendingAdmission } ) 
+  mapStateToProps,
+  {getPendingAdmissions, addAdmission, editPendingAdmission } )
   (AdminPendingAdmissions);

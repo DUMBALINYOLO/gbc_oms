@@ -10,14 +10,14 @@ import {
     EDIT_ACCEPTED_ADMISSIONS,
     GET_MEETING_ADMISSIONS,
     EDIT_MEETING_ADMISSIONS
-        
+
 } from '../types/admissionTypes';
-import { 
+import {
     studentadmissionsURL,
     pendingstudentadmissionsURL,
     rejectedstudentadmissionsURL,
     meetingstudentadmissionsURL,
-    acceptedstudentadmissionsURL, 
+    acceptedstudentadmissionsURL,
 } from '../constants';
 
 // Get
@@ -90,7 +90,7 @@ export const getAcceptedAdmissions = () => dispatch => {
 //Edit
 export const editPendingAdmission = (id, admission) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.put(`http://127.0.0.1:8000/api/admissions/pending-student-admissions/${id}/`, admission)
+    axios.patch(`${pendingstudentadmissionsURL}${id}/`, admission)
         .then(res => {
             dispatch({
                 type: EDIT_PENDING_ADMISSIONS,
@@ -100,9 +100,10 @@ export const editPendingAdmission = (id, admission) => dispatch => {
 }
 
 
+
 export const editRejectedAdmission = (id, admission) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.put(`http://127.0.0.1:8000/api/admissions/rejected-student-admissions/${id}/`, admission)
+    axios.patch(`${rejectedstudentadmissionsURL}${id}/`, admission)
         .then(res => {
             dispatch({
                 type: EDIT_REJECTED_ADMISSIONS,
@@ -114,7 +115,7 @@ export const editRejectedAdmission = (id, admission) => dispatch => {
 
 export const editMeetingAdmission = (id, admission) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.put(`http://127.0.0.1:8000/api/admissions/meeting-student-admissions/${id}/`, admission)
+    axios.patch(`${meetingstudentadmissionsURL}${id}/`, admission)
         .then(res => {
             dispatch({
                 type: EDIT_MEETING_ADMISSIONS,
@@ -126,7 +127,7 @@ export const editMeetingAdmission = (id, admission) => dispatch => {
 
 export const editAcceptedAdmission = (id, admission) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.put(`http://127.0.0.1:8000/api/admissions/accepted-student-admissions/${id}/`, admission)
+    axios.patch(`${acceptedstudentadmissionsURL}${id}/`, admission)
         .then(res => {
             dispatch({
                 type: EDIT_ACCEPTED_ADMISSIONS,
@@ -134,14 +135,3 @@ export const editAcceptedAdmission = (id, admission) => dispatch => {
             });
         }).catch(err => console.log(err))
 }
-
-
-
-
-
-
-
-
-
-
-

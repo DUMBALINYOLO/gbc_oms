@@ -6,14 +6,14 @@ import CloseIcon from '@material-ui/icons/Close';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
 import axios from 'axios';
-import { 
-  Paper, 
-  makeStyles, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  Toolbar, 
-  InputAdornment } 
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment }
 from '@material-ui/core';
 import EditRecord from './EditRecord';
 import  Controls  from "../../components/formcontrols/Controls";
@@ -58,15 +58,16 @@ const TestRecords = props => {
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
     const [records, setRecords] = useState([])
+    const {token} = props;
 
     const {id} =props.data
 
 
-  const addOrEdit = (fee, resetForm) => {
+  const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0)
-        props.editTestRecord(fee.id, fee)    
+        props.editTestRecord(fee.id, fee, token)
       else
-        console.log(fee)        //   
+        console.log(fee, token)        //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -167,15 +168,18 @@ const TestRecords = props => {
       >
         <EditRecord
             recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit} 
+            addOrEdit={addOrEdit}
         />
       </Popup>
     </>
   );
 };
 
+const mapStateToProps = state =>({
+    token: state.auth.token,
+})
 
 export default connect(
-  null, 
-  { editTestRecord} ) 
+  mapStateToProps,
+  {editTestRecord} )
   (TestRecords);

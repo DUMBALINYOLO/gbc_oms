@@ -46,9 +46,6 @@ const headCells = [
 ]
 
 
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -75,11 +72,11 @@ const AdminPrincipals = props => {
 
 
 
-  const addOrEdit = (bursar, resetForm) => {
+  const addOrEdit = (bursar, resetForm, token) => {
       if (bursar.id > 0)
-        console.log('gosso')
+         console.log('gosso')
       else
-        props.addPrincipal(bursar)       //
+        props.addPrincipal(bursar, token)       //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)

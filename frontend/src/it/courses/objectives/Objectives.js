@@ -44,9 +44,6 @@ const headCells = [
 ]
 
 
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -58,10 +55,11 @@ const Objectives = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const {id} =props.data;
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminTopicObjectives(id);
+        props.getAdminTopicObjectives(id, token);
     }
     console.log('mount it!');
 
@@ -69,11 +67,11 @@ const Objectives = props => {
   }, []);
 
 
-  const addOrEdit = (fee, resetForm) => {
+  const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0)
-        props.editTopicObjective(fee.id, fee)
+        props.editTopicObjective(fee.id, fee, token)
       else
-        props.addTopicObjective(fee)
+        props.addTopicObjective(fee, token)
         //
       resetForm()
       setRecordForEdit(null)
@@ -174,6 +172,7 @@ const Objectives = props => {
 
 const mapStateToProps = state =>({
     records: state.courses.admintopicobjectives,
+    token: state.auth.token,
 })
 
 export default connect(

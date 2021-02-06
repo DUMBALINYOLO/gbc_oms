@@ -42,11 +42,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-
-
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -59,10 +54,11 @@ const Topics = props => {
   const [listView, setListView] = useState('grid')
   const history = useHistory();
   const {id} =props.data;
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminTopics(id);
+        props.getAdminTopics(id, token);
     }
     console.log('mount it!');
 
@@ -70,11 +66,11 @@ const Topics = props => {
   }, []);
 
 
-  const addOrEdit = (topic, resetForm) => {
+  const addOrEdit = (topic, resetForm, token) => {
       if (topic.id > 0)
-        props.editTopic(topic.id, topic)
+        props.editTopic(topic.id, topic, token)
       else
-        props.addTopic(topic)
+        props.addTopic(topic, token)
         console.log(topic)  //
       resetForm()
       setRecordForEdit(null)
@@ -173,6 +169,7 @@ const Topics = props => {
 
 const mapStateToProps = state =>({
     courseData: state.courses.admintopics,
+    token: state.auth.token,
 })
 
 export default connect(

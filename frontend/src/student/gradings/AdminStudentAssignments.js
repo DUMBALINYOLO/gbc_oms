@@ -8,14 +8,14 @@ import { useHistory } from 'react-router-dom';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
-import { 
-  Paper, 
-  makeStyles, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  Toolbar, 
-  InputAdornment } 
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment }
 from '@material-ui/core';
 import AddGrade from './AddGrade';
 import  Controls  from "../../components/formcontrols/Controls";
@@ -63,30 +63,31 @@ const AdminStudentAssignments = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminStudentAssignments();
+        props.getAdminStudentAssignments(token);
     }
     console.log('mount it!');
 
-    
+
   }, []);
 
 
-  const addOrEdit = (fee, resetForm) => {
+  const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0)
-        props.editGrade(fee.id, fee)    
+        props.editGrade(fee.id, fee, token)
       else
-        props.addGrade(fee)
-        //   
+        props.addGrade(fee, token)
+        //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-  
-  
+
+
   const {records} = props;
 
   const {
@@ -179,7 +180,7 @@ const AdminStudentAssignments = props => {
       >
         <AddGrade
             recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit} 
+            addOrEdit={addOrEdit}
         />
       </Popup>
     </InformationTechnologyLayout>
@@ -188,9 +189,10 @@ const AdminStudentAssignments = props => {
 
 const mapStateToProps = state =>({
     records: state.gradings.adminstudentassignments,
+    token: state.auth.token,
 })
 
 export default connect(
-  mapStateToProps, 
-  {getAdminStudentAssignments, addGrade, editGrade} ) 
+  mapStateToProps,
+  {getAdminStudentAssignments, addGrade, editGrade} )
   (AdminStudentAssignments);

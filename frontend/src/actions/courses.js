@@ -453,7 +453,7 @@ export const getStudyNoteVideos = (note_id) => dispatch => {
 }
 
 export const getStudyNoteVideo = (id) => dispatch => {
-    axios.get(`http://127.0.0.1:8000/api/courses/admin-study-notes-videos/${id}/`)
+    axios.get(`${adminstudynotesvideosURL}${id}/`)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTE_VIDEO,
@@ -476,7 +476,7 @@ export const addStudyNoteVideo = (video) => dispatch => {
 
 export const editStudyNoteVideo = (id, video) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/courses/admin-study-notes-videos/${id}/`, video)
+    axios.patch(`${adminstudynotesvideosURL}${id}/`, video)
         .then(res => {
             dispatch({
                 type: EDIT_STUDY_NOTE_VIDEO,
@@ -496,7 +496,7 @@ export const getStudyNoteImages = (note_id) => dispatch => {
 }
 
 export const getStudyNoteImage = (id) => dispatch => {
-    axios.get(`http://127.0.0.1:8000/api/courses/admin-study-notes-images/${id}/`)
+    axios.get(`${adminstudynotesimagesURL}${id}/`)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTE_IMAGE,
@@ -519,7 +519,7 @@ export const addStudyNoteImage = (image) => dispatch => {
 
 export const editStudyNoteImage = (id, image) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/courses/admin-study-notes-images/${id}/`, image)
+    axios.patch(`${adminstudynotesimagesURL}${id}/`, image)
         .then(res => {
             dispatch({
                 type: EDIT_STUDY_NOTE_IMAGE,
@@ -540,7 +540,7 @@ export const getStudyNoteNotes = (note_id) => dispatch => {
 }
 
 export const getStudyNoteNote = (id) => dispatch => {
-    axios.get(`http://127.0.0.1:8000/api/courses/admin-study-notes-notes/${id}/`)
+    axios.get(`${adminstudynotesnotesURL}${id}/`)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTE_NOTE,
@@ -563,7 +563,7 @@ export const addStudyNoteNote = (note) => dispatch => {
 
 export const editStudyNoteNote = (id, note) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/courses/admin-study-notes-notes/${id}/`, note)
+    axios.patch(`${adminstudynotesnotesURL}${id}/`, note)
         .then(res => {
             dispatch({
                 type: EDIT_STUDY_NOTE_NOTE,
@@ -584,7 +584,7 @@ export const getStudyNoteFiles = (note_id) => dispatch => {
 }
 
 export const getStudyNoteFile = (id) => dispatch => {
-    axios.get(`http://127.0.0.1:8000/api/courses/admin-study-notes-files/${id}/`)
+    axios.get(`${adminstudynotesfilesURL}${id}/`)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTE_FILE,
@@ -607,7 +607,7 @@ export const addStudyNoteFile = (file) => dispatch => {
 
 export const editStudyNoteFile = (id, file) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/courses/admin-study-notes-files/${id}/`, file)
+    axios.patch(`${adminstudynotesfilesURL}${id}/`, file)
         .then(res => {
             dispatch({
                 type: EDIT_STUDY_NOTE_FILE,
@@ -628,7 +628,7 @@ export const getStudyNoteReferences = (note_id) => dispatch => {
 }
 
 export const getStudyNoteReference = (id) => dispatch => {
-    axios.get(`http://127.0.0.1:8000/api/courses/admin-study-notes-references/${id}/`)
+    axios.get(`${adminstudynotesreferencesURL}${id}/`)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTE_REFERENCE,
@@ -651,7 +651,7 @@ export const addStudyNoteReference = (reference) => dispatch => {
 
 export const editStudyNoteReference = (id, reference) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/courses/admin-study-notes-references/${id}/`, reference)
+    axios.patch(`${adminstudynotesfilesURL}${id}/`, reference)
         .then(res => {
             dispatch({
                 type: EDIT_STUDY_NOTE_REFERENCE,
@@ -686,7 +686,7 @@ export const addAuthor = (author) => dispatch => {
 
 export const editAuthor = (id, author) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/courses/admin-authors/${id}/`, author)
+    axios.patch(`${adminauthorsURL}${id}/`, author)
         .then(res => {
             dispatch({
                 type: EDIT_AUTHOR,
@@ -721,7 +721,7 @@ export const addPublisherCity = (city) => dispatch => {
 
 export const editPublisherCity = (id, city) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/courses/admin-publisher-cities/${id}/`, city)
+    axios.patch(`${adminpublishercitiesURL}${id}/`, city)
         .then(res => {
             dispatch({
                 type: EDIT_PUBLISHER_CITY,
@@ -756,7 +756,7 @@ export const addPublisher = (publisher) => dispatch => {
 
 export const editPublisher = (id, publisher) => dispatch => {
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/courses/admin-publishers/${id}/`, publisher)
+    axios.patch(`${adminpublishersURL}${id}/`, publisher)
         .then(res => {
             dispatch({
                 type: EDIT_PUBLISHER,

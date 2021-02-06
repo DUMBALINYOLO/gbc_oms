@@ -43,7 +43,7 @@ export const addCompanyBranch = (branch) => dispatch => {
 
 //get
 export const getCompanyBranch = id => dispatch =>{
-      axios.get(`http://127.0.0.1:8000/api/setup/headoffice-companies-view/${id}`)
+      axios.get(`${configurationsURL}${id}/`)
         .then(res => {
             dispatch({
                 type: GET_COMPANY_BRANCH,
@@ -55,7 +55,7 @@ export const getCompanyBranch = id => dispatch =>{
 
 //Edit
 export const editCompanyBranch = (id, branch) => dispatch => {
-    axios.put(`http://127.0.0.1:8000/api/setup/headoffice-companies-view/${id}`, branch)
+    axios.patch(`${configurationsURL}${id}/`, branch)
         .then(res => {
             dispatch({
                 type: EDIT_COMPANY_BRANCH,

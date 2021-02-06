@@ -25,8 +25,6 @@ import SearchCourse from "./SearchCourse";
 import CourseCard from "./CourseCard";
 
 
-
-
 const useStyles = makeStyles(theme => ({
   pageContent: {
       margin: theme.spacing(5),
@@ -41,12 +39,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-
-
-
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -58,10 +50,11 @@ const AdminUpcomingCourses = props => {
   const [openPopup, setOpenPopup] = useState(false)
   const [listView, setListView] = useState('grid')
   const history = useHistory();
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminUpcomingCourses();
+        props.getAdminUpcomingCourses(token);
     }
     console.log('mount it!');
 
@@ -69,11 +62,11 @@ const AdminUpcomingCourses = props => {
   }, []);
 
 
-  const addOrEdit = (fee, resetForm) => {
+  const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0)
-        props.editCourse(fee.id, fee)
+        props.editCourse(fee.id, fee, token)
       else
-        props.addCourse(fee)
+        props.addCourse(fee, token)
         console.log(fee)
         //
       resetForm()
@@ -177,6 +170,7 @@ const AdminUpcomingCourses = props => {
 
 const mapStateToProps = state =>({
     courseData: state.courses.adminupcomingcourses,
+    token: state.auth.token,
 })
 
 export default connect(

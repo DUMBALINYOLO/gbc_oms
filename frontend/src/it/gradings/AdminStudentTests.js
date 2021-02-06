@@ -7,14 +7,14 @@ import BorderColorIcon from '@material-ui/icons/BorderColor';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
 import { useHistory } from 'react-router-dom';
-import { 
-  Paper, 
-  makeStyles, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  Toolbar, 
-  InputAdornment } 
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment }
 from '@material-ui/core';
 import AddGrade from './AddGrade';
 import  Controls  from "../../components/formcontrols/Controls";
@@ -48,9 +48,6 @@ const headCells = [
 ]
 
 
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -61,31 +58,32 @@ const AdminStudentTests = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
-  
+  const {token} = props;
+
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminStudentTests();
+        props.getAdminStudentTests(token);
     }
     console.log('mount it!');
 
-    
+
   }, []);
 
 
-  const addOrEdit = (fee, resetForm) => {
+  const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0)
-        props.editGrade(fee.id, fee)    
+        props.editGrade(fee.id, fee, token)
       else
-        props.addGrade(fee)
-        //   
+        props.addGrade(fee, token)
+        //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-  
-  
+
+
   const {records} = props;
 
   const {
@@ -177,7 +175,7 @@ const AdminStudentTests = props => {
       >
         <AddGrade
             recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit} 
+            addOrEdit={addOrEdit}
         />
       </Popup>
     </InformationTechnologyLayout>
@@ -186,9 +184,10 @@ const AdminStudentTests = props => {
 
 const mapStateToProps = state =>({
     records: state.gradings.adminstudenttests,
+    token: state.auth.token,
 })
 
 export default connect(
-  mapStateToProps, 
-  {getAdminStudentTests, addGrade, editGrade} ) 
+  mapStateToProps,
+  {getAdminStudentTests, addGrade, editGrade} )
   (AdminStudentTests);

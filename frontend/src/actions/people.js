@@ -175,7 +175,7 @@ export const getBursarStudents = () => dispatch => {
 
 
 export const getAdminStudent = id => dispatch =>{
-    axios.get(`http://127.0.0.1:8000/api/people/admin-students/${id}`)
+    axios.get(`${adminstudentsURL}${id}/`)
       .then(res => {
           dispatch({
               type: GET_ADMIN_STUDENT,
@@ -186,7 +186,7 @@ export const getAdminStudent = id => dispatch =>{
 }
 
 export const getBursarStudent = id => dispatch =>{
-    axios.get(`http://127.0.0.1:8000/api/people/bursar-students/${id}`)
+    axios.get(`${bursarstudentsURL}${id}/`)
       .then(res => {
           dispatch({
               type: GET_BURSAR_STUDENT,
@@ -197,7 +197,7 @@ export const getBursarStudent = id => dispatch =>{
 }
 
 export const getAdminParent = id => dispatch =>{
-    axios.get(`http://127.0.0.1:8000/api/people/admin-parents/${id}`)
+    axios.get(`${adminparentsURL}${id}/`)
       .then(res => {
           dispatch({
               type: GET_ADMIN_PARENT,
@@ -208,7 +208,7 @@ export const getAdminParent = id => dispatch =>{
 }
 
 export const getBursarParent = id => dispatch =>{
-    axios.get(`http://127.0.0.1:8000/api/people/bursar-parents/${id}`)
+    axios.get(`${bursarparentsURL}${id}/`)
       .then(res => {
           dispatch({
               type: GET_BURSAR_PARENT,
@@ -219,7 +219,7 @@ export const getBursarParent = id => dispatch =>{
 }
 
 export const getAdminBursar = id => dispatch =>{
-    axios.get(`http://127.0.0.1:8000/api/people/admin-bursars/${id}`)
+    axios.get(`${adminbursarsURL}${id}/`)
       .then(res => {
           dispatch({
               type: GET_ADMIN_BURSAR,
@@ -230,7 +230,7 @@ export const getAdminBursar = id => dispatch =>{
 }
 
 export const getAdminPrincipal = id => dispatch =>{
-    axios.get(`http://127.0.0.1:8000/api/people/admin-principals/${id}`)
+    axios.get(`${adminprincipalsURL}${id}/`)
       .then(res => {
           dispatch({
               type: GET_ADMIN_PRINCIPAL,
@@ -241,7 +241,7 @@ export const getAdminPrincipal = id => dispatch =>{
 }
 
 export const getAdminTeacher = id => dispatch =>{
-    axios.get(`http://127.0.0.1:8000/api/people/admin-teachers/${id}`)
+    axios.get(`${adminteachersURL}${id}/`)
       .then(res => {
           dispatch({
               type: GET_ADMIN_TEACHER,

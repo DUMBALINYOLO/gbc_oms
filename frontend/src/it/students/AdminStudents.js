@@ -7,14 +7,14 @@ import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import { useHistory } from 'react-router-dom';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
-import { 
-  Paper, 
-  makeStyles, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  Toolbar, 
-  InputAdornment } 
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment }
 from '@material-ui/core';
 import AddBursar from '../staff/AddBursar';
 import  Controls  from "../../components/formcontrols/Controls";
@@ -48,9 +48,6 @@ const headCells = [
 ]
 
 
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -61,31 +58,32 @@ const AdminStudents = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminStudents();
+        props.getAdminStudents(token);
     }
     console.log('mount it!');
 
-    
+
   }, []);
 
-  
 
 
-  const addOrEdit = (bursar, resetForm) => {
+
+  const addOrEdit = (bursar, resetForm,token) => {
       if (bursar.id > 0)
         console.log('gosso')
       else
-        props.addBursar(bursar)       //   
+        props.addBursar(bursar, token)       //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-  
-  
+
+
   const {records} = props;
 
   const {
@@ -177,7 +175,7 @@ const AdminStudents = props => {
       >
         <AddBursar
             recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit} 
+            addOrEdit={addOrEdit}
         />
       </Popup>
     </InformationTechnologyLayout>
@@ -186,9 +184,10 @@ const AdminStudents = props => {
 
 const mapStateToProps = state =>({
     records: state.people.adminstudents,
+    token: state.auth.token,
 })
 
 export default connect(
-  mapStateToProps, 
-  {getAdminStudents, addBursar} ) 
+  mapStateToProps,
+  {getAdminStudents, addBursar} )
   (AdminStudents);
