@@ -55,7 +55,7 @@ class AdminAttendanceCreateSerializer(serializers.ModelSerializer):
 
     	]
     def create(self, validated_data):
-        print(validated_data.errors)
+        # print(validated_data.errors)
         user_email = validated_data['recorded_by']
         user = get_user(email=user_email)
         attendance = Attendance(
