@@ -1,22 +1,24 @@
 from rest_framework import viewsets, generics, status, views
 from rest_framework.response import Response
+from rest_framework import viewsets, generics, permissions
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 
 
 from .constants import (
 				ACCOUNT_TYPES_CATEGORY_CHOICES,
 				ACCOUNT_TYPES_CLASSIFICATION_CHOICES,
-				ASSET_DEPRECIATION_METHOD_CHOICES, 
-				ASSET_TYPE_CHOICES, 
+				ASSET_DEPRECIATION_METHOD_CHOICES,
+				ASSET_TYPE_CHOICES,
 				STUDENT_PAYMENT_METHODS_CHOICES,
-				ACCOUNTING_PERIODS_CHOICES, 
+				ACCOUNTING_PERIODS_CHOICES,
 				JOURNAL_ENTRY_TYPES_CHOICES,
-				EMPLOYEES_GENDER_CHOICES, 
-				INVENTORY_TYPES_CHOICES, 
+				EMPLOYEES_GENDER_CHOICES,
+				INVENTORY_TYPES_CHOICES,
 				PRODUCT_COMPONENT_PRICING_CHOICES,
 				EQUIPMENT_COMPONENT_CONDITION_CHOICES,
 				INVENTORY_ORDER_STATUS_CHOICES,
 				INVOICE_SALE_STATUS_CHOICES,
-				INVOCE_LINE_CHOICES, 
+				INVOCE_LINE_CHOICES,
 				PROCCES_RATE_UNIT_TIME_CHOICES,
 				MANUFACTURING_PRODUCT_TYPES,
 				BILL_OF_MATERIALS_LINE_CHOICES,
@@ -33,7 +35,7 @@ from .constants import (
 				EMPLOYEE_PAYROLL_DATE_CHOICES,
 				EMPLOYEE_PAYSLIP_STATUS_CHOICES,
 				EMPLOYEE_TIMESHEET_MONTH_CHOICES,
-				EMPLOYEE_YEAR_CHOICES, 
+				EMPLOYEE_YEAR_CHOICES,
 				EMPLOYEE_PAYROLL_TAX_CHOICES,
 				EVENT_REMINDER_CHOICES,
 				EVENT_TIME_CHOICES,
@@ -100,11 +102,13 @@ from .constants import (
 				FEES_TARGETS_CHOICES,
 				FEES_TYPE_CHOICES,
 				ACCOUNT_STATUS_CHOICES,
-				
+
 			)
 
 
 class AccountStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -119,6 +123,8 @@ class AccountStatusChoicesAPIView(views.APIView):
 
 
 class FeeTargetsChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -132,6 +138,8 @@ class FeeTargetsChoicesAPIView(views.APIView):
 		return Response(my_choices, status=status.HTTP_200_OK)
 
 class FeeTypeChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -147,6 +155,8 @@ class FeeTypeChoicesAPIView(views.APIView):
 
 
 class BillPaymentMethodsChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -161,6 +171,8 @@ class BillPaymentMethodsChoicesAPIView(views.APIView):
 
 
 class InventoryOrderPaymentMethodsChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -175,6 +187,8 @@ class InventoryOrderPaymentMethodsChoicesAPIView(views.APIView):
 
 
 class BillFrequencyChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -190,6 +204,8 @@ class BillFrequencyChoicesAPIView(views.APIView):
 
 
 class AccountBalanceSheetCategoriesChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -204,6 +220,8 @@ class AccountBalanceSheetCategoriesChoicesAPIView(views.APIView):
 
 
 class AccountTypeChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -219,6 +237,8 @@ class AccountTypeChoicesAPIView(views.APIView):
 
 
 class InterestIntervalAccountChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -234,6 +254,8 @@ class InterestIntervalAccountChoicesAPIView(views.APIView):
 
 
 class AccountInterestMethodChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -248,6 +270,8 @@ class AccountInterestMethodChoicesAPIView(views.APIView):
 
 
 class InventoryValuationPeriodChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -263,6 +287,8 @@ class InventoryValuationPeriodChoicesAPIView(views.APIView):
 
 
 class InventoryValuationMethodsChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -277,6 +303,8 @@ class InventoryValuationMethodsChoicesAPIView(views.APIView):
 
 
 class InventoryCheckFrequencyChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -292,6 +320,8 @@ class InventoryCheckFrequencyChoicesAPIView(views.APIView):
 
 
 class InventoryCheckDateChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -307,6 +337,8 @@ class InventoryCheckDateChoicesAPIView(views.APIView):
 
 
 class UnitOfMeasureChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -321,6 +353,8 @@ class UnitOfMeasureChoicesAPIView(views.APIView):
 
 
 class CustomerAddressTypeChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -335,6 +369,8 @@ class CustomerAddressTypeChoicesAPIView(views.APIView):
 
 
 class EmployeesAttendanceStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -350,6 +386,8 @@ class EmployeesAttendanceStatusChoicesAPIView(views.APIView):
 
 
 class EmployeesTypeChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -365,6 +403,8 @@ class EmployeesTypeChoicesAPIView(views.APIView):
 
 
 class BillPaymentStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -379,6 +419,8 @@ class BillPaymentStatusChoicesAPIView(views.APIView):
 
 
 class SupplierAddressTypeChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -394,6 +436,8 @@ class SupplierAddressTypeChoicesAPIView(views.APIView):
 
 
 class SupplierStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -408,6 +452,8 @@ class SupplierStatusChoicesAPIView(views.APIView):
 
 
 class CustomerStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -423,6 +469,8 @@ class CustomerStatusChoicesAPIView(views.APIView):
 
 
 class BillingChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -438,6 +486,8 @@ class BillingChoicesAPIView(views.APIView):
 
 
 class InvoiceSalesTypesChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -453,6 +503,8 @@ class InvoiceSalesTypesChoicesAPIView(views.APIView):
 
 
 class ManufacturingShiftTimeChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -467,6 +519,8 @@ class ManufacturingShiftTimeChoicesAPIView(views.APIView):
 
 
 class EventPriorityChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -482,6 +536,8 @@ class EventPriorityChoicesAPIView(views.APIView):
 
 
 class EventParticipantTypesChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -496,6 +552,8 @@ class EventParticipantTypesChoicesAPIView(views.APIView):
 
 
 class EventReminderChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -510,6 +568,8 @@ class EventReminderChoicesAPIView(views.APIView):
 
 
 class EventTimeChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -524,6 +584,8 @@ class EventTimeChoicesAPIView(views.APIView):
 
 
 class EventIconChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -538,6 +600,8 @@ class EventIconChoicesAPIView(views.APIView):
 
 
 class EventRepeatChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -554,6 +618,8 @@ class EventRepeatChoicesAPIView(views.APIView):
 
 
 class EmployeePayrollTaxChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -568,6 +634,8 @@ class EmployeePayrollTaxChoicesAPIView(views.APIView):
 
 
 class NatureOfEmploymentChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -582,6 +650,8 @@ class NatureOfEmploymentChoicesAPIView(views.APIView):
 
 
 class EmploymentContractTerminationReasonsAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -596,6 +666,8 @@ class EmploymentContractTerminationReasonsAPIView(views.APIView):
 
 
 class EmployeeCategoryChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -610,6 +682,8 @@ class EmployeeCategoryChoicesAPIView(views.APIView):
 
 
 class EmployeeLeaveCategoryChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -625,6 +699,8 @@ class EmployeeLeaveCategoryChoicesAPIView(views.APIView):
 
 
 class EmployeeLeaveStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -639,6 +715,8 @@ class EmployeeLeaveStatusChoicesAPIView(views.APIView):
 
 
 class EmployeeLunchChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -653,6 +731,8 @@ class EmployeeLunchChoicesAPIView(views.APIView):
 
 
 class EmployeePayFrequenciesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -668,6 +748,9 @@ class EmployeePayFrequenciesAPIView(views.APIView):
 
 
 class EmployeeDeductionMethodsAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
+
 	def get(self, request, format=None):
 
 		my_choices = []
@@ -682,6 +765,9 @@ class EmployeeDeductionMethodsAPIView(views.APIView):
 
 
 class EmployeePayrollDateChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
+
 	def get(self, request, format=None):
 
 		my_choices = []
@@ -695,6 +781,9 @@ class EmployeePayrollDateChoicesAPIView(views.APIView):
 
 
 class EmployeePayslipStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
+
 	def get(self, request, format=None):
 
 		my_choices = []
@@ -707,6 +796,10 @@ class EmployeePayslipStatusChoicesAPIView(views.APIView):
 
 
 class EmployeeTimesheetMonthChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
+
+
 	def get(self, request, format=None):
 
 		my_choices = []
@@ -719,6 +812,10 @@ class EmployeeTimesheetMonthChoicesAPIView(views.APIView):
 
 
 class EmployeeYearChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
+
+
 	def get(self, request, format=None):
 
 		my_choices = []
@@ -732,7 +829,8 @@ class EmployeeYearChoicesAPIView(views.APIView):
 
 
 class AccountTypesCategoryChoicesAPIView(views.APIView):
-
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	def get(self, request, format=None):
 
@@ -750,6 +848,8 @@ class AccountTypesCategoryChoicesAPIView(views.APIView):
 
 
 class AccountTypesClassificationChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -765,6 +865,8 @@ class AccountTypesClassificationChoicesAPIView(views.APIView):
 
 
 class AssetsDepreciationMethodChoicesAPIView(generics.GenericAPIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	def get(self, request, format=None):
 
@@ -782,6 +884,8 @@ class AssetsDepreciationMethodChoicesAPIView(generics.GenericAPIView):
 
 
 class AssetTypesChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	def get(self, request, format=None):
 
@@ -798,6 +902,8 @@ class AssetTypesChoicesAPIView(views.APIView):
 
 
 class AccountingPeriodsChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -813,6 +919,8 @@ class AccountingPeriodsChoicesAPIView(views.APIView):
 
 
 class JournalEntryTypesChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	def get(self, request, format=None):
 
@@ -828,6 +936,8 @@ class JournalEntryTypesChoicesAPIView(views.APIView):
 
 
 class EmployeesGenderChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -843,6 +953,8 @@ class EmployeesGenderChoicesAPIView(views.APIView):
 
 
 class InventoryTypesChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	def get(self, request, format=None):
 
@@ -857,6 +969,8 @@ class InventoryTypesChoicesAPIView(views.APIView):
 
 
 class ProductComponentPricingChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	def get(self, request, format=None):
 
@@ -871,6 +985,8 @@ class ProductComponentPricingChoicesAPIView(views.APIView):
 
 
 class EquipmentComponentConditionChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	def get(self, request, format=None):
 
@@ -884,6 +1000,8 @@ class EquipmentComponentConditionChoicesAPIView(views.APIView):
 
 
 class InventoryOrderStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -899,6 +1017,8 @@ class InventoryOrderStatusChoicesAPIView(views.APIView):
 
 
 class InvoiceSaleStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	def get(self, request, format=None):
 
@@ -913,6 +1033,8 @@ class InvoiceSaleStatusChoicesAPIView(views.APIView):
 
 
 class InvoiceLineChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	def get(self, request, format=None):
 
@@ -928,6 +1050,8 @@ class InvoiceLineChoicesAPIView(views.APIView):
 
 
 class CustomerPaymentMethodsChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	def get(self, request, format=None):
 
@@ -943,6 +1067,8 @@ class CustomerPaymentMethodsChoicesAPIView(views.APIView):
 
 
 class ProcessRateUnitTimeChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	def get(self, request, format=None):
 
@@ -958,6 +1084,8 @@ class ProcessRateUnitTimeChoicesAPIView(views.APIView):
 
 
 class ManufacturingProductTypesChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	def get(self, request, format=None):
 
@@ -971,6 +1099,8 @@ class ManufacturingProductTypesChoicesAPIView(views.APIView):
 
 
 class BillOfMaterialsLineChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -985,6 +1115,8 @@ class BillOfMaterialsLineChoicesAPIView(views.APIView):
 
 
 class ProcessedProductsStockStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1000,6 +1132,8 @@ class ProcessedProductsStockStatusChoicesAPIView(views.APIView):
 
 
 class ManufacturingProcessChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1016,6 +1150,8 @@ class ManufacturingProcessChoicesAPIView(views.APIView):
 
 
 class GeneralGradingTypeChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1030,6 +1166,8 @@ class GeneralGradingTypeChoicesAPIView(views.APIView):
 
 
 class CourseGradingTypeChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1045,6 +1183,8 @@ class CourseGradingTypeChoicesAPIView(views.APIView):
 
 
 class CourseRatingChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1061,6 +1201,8 @@ class CourseRatingChoicesAPIView(views.APIView):
 
 
 class CourseLayoutChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1078,6 +1220,8 @@ class CourseLayoutChoicesAPIView(views.APIView):
 
 
 class CourseGroupsChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1093,6 +1237,8 @@ class CourseGroupsChoicesAPIView(views.APIView):
 
 
 class FilesUploadsChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1121,6 +1267,8 @@ class FilesUploadsChoicesAPIView(views.APIView):
 
 
 class NumberOfAnnouncementsChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1135,6 +1283,8 @@ class NumberOfAnnouncementsChoicesAPIView(views.APIView):
 
 
 class CourseFormatChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1149,6 +1299,8 @@ class CourseFormatChoicesAPIView(views.APIView):
 
 
 class LanguageChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1163,6 +1315,8 @@ class LanguageChoicesAPIView(views.APIView):
 
 
 class BooleanChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1178,6 +1332,8 @@ class BooleanChoicesAPIView(views.APIView):
 
 
 class StudentClassStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1192,6 +1348,8 @@ class StudentClassStatusChoicesAPIView(views.APIView):
 
 
 class UserStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1206,6 +1364,8 @@ class UserStatusChoicesAPIView(views.APIView):
 
 
 class YearChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1220,6 +1380,8 @@ class YearChoicesAPIView(views.APIView):
 
 
 class UserTitleChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1235,6 +1397,8 @@ class UserTitleChoicesAPIView(views.APIView):
 
 
 class GenderChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1249,6 +1413,8 @@ class GenderChoicesAPIView(views.APIView):
 
 
 class StudyNotesApprovalStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1263,6 +1429,8 @@ class StudyNotesApprovalStatusChoicesAPIView(views.APIView):
 
 
 class StaffTypeChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1276,6 +1444,8 @@ class StaffTypeChoicesAPIView(views.APIView):
 		return Response(my_choices, status=status.HTTP_200_OK)
 
 class StudyNotesStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1291,6 +1461,8 @@ class StudyNotesStatusChoicesAPIView(views.APIView):
 
 
 class CoursesStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1306,6 +1478,8 @@ class CoursesStatusChoicesAPIView(views.APIView):
 
 
 class AttendanceStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1320,6 +1494,8 @@ class AttendanceStatusChoicesAPIView(views.APIView):
 
 
 class OnlineAdmissionStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1334,6 +1510,8 @@ class OnlineAdmissionStatusChoicesAPIView(views.APIView):
 
 
 class SchoolHeadReportStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1350,6 +1528,8 @@ class SchoolHeadReportStatusChoicesAPIView(views.APIView):
 
 
 class TermChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1364,6 +1544,8 @@ class TermChoicesAPIView(views.APIView):
 
 
 class PsychomotorChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1379,6 +1561,8 @@ class PsychomotorChoicesAPIView(views.APIView):
 
 
 class InstitutionTypeChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1394,6 +1578,8 @@ class InstitutionTypeChoicesAPIView(views.APIView):
 
 
 class InstitutionStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1408,6 +1594,8 @@ class InstitutionStatusChoicesAPIView(views.APIView):
 
 
 class SchoolNoticeBoardStatusChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1422,6 +1610,8 @@ class SchoolNoticeBoardStatusChoicesAPIView(views.APIView):
 
 
 class SchoolNoticeTypeChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
@@ -1436,6 +1626,8 @@ class SchoolNoticeTypeChoicesAPIView(views.APIView):
 
 
 class StudyChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get(self, request, format=None):
