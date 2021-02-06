@@ -93,7 +93,7 @@ import {
     GET_ACCOUNT_STATUS_CHOICES,
 
 } from '../types/choiceTypes';
-import { 
+import {
     generalgradingtypechoicesURL,
     coursegradingtypechoicesURL,
     courseratingchoicesURL,
@@ -127,8 +127,14 @@ import {
     accountstatuschoicesURL,
 } from '../constants';
 
-export const getAccountStatusChoices = () => dispatch => {
-    axios.get(accountstatuschoicesURL)
+
+export const getAccountStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(accountstatuschoicesURL, headers)
         .then(res => {
             dispatch({
                 type: GET_ACCOUNT_STATUS_CHOICES,
@@ -138,8 +144,13 @@ export const getAccountStatusChoices = () => dispatch => {
 }
 
 
-export const getFeeTargetsChoices = () => dispatch => {
-    axios.get(feetargetschoicesURL)
+export const getFeeTargetsChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(feetargetschoicesURL, headers)
         .then(res => {
             dispatch({
                 type: GET_FEE_TARGETS_CHOICES,
@@ -148,8 +159,13 @@ export const getFeeTargetsChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getFeeTypeChoices = () => dispatch => {
-    axios.get(feetypechoicesURL)
+export const getFeeTypeChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(feetypechoicesURL, headers)
         .then(res => {
             dispatch({
                 type: GET_FEE_TYPE_CHOICES,
@@ -159,8 +175,13 @@ export const getFeeTypeChoices = () => dispatch => {
 }
 
 
-export const getProcessedProductsStockStatusChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/processed-products-stock-status-choices/')
+export const getProcessedProductsStockStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/processed-products-stock-status-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_PROCESSED_PRODUCTS_STOCK_STATUS_CHOICES,
@@ -169,8 +190,13 @@ export const getProcessedProductsStockStatusChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getBillOfMaterialsLineChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/bill-of-materials-line-choices/')
+export const getBillOfMaterialsLineChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/bill-of-materials-line-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_BILL_OF_MATERIALS_LINE_CHOICES,
@@ -179,8 +205,13 @@ export const getBillOfMaterialsLineChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getManufacturingProductTypesChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/manufacturing-product-types-choices/')
+export const getManufacturingProductTypesChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/manufacturing-product-types-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_MANUFACTURING_PRODUCT_TYPES_CHOICES,
@@ -189,8 +220,13 @@ export const getManufacturingProductTypesChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getProcessRateUnitTimeChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/process-rate-unit-time-choices/')
+export const getProcessRateUnitTimeChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/process-rate-unit-time-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_PROCESS_RATE_UNIT_TIME_CHOICES,
@@ -199,8 +235,13 @@ export const getProcessRateUnitTimeChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getCustomerPaymentMethodsChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/customer-payment-methods-choices/')
+export const getCustomerPaymentMethodsChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/customer-payment-methods-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_CUSTOMER_PAYMENT_METHODS_CHOICES,
@@ -209,8 +250,13 @@ export const getCustomerPaymentMethodsChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getManufacturingProcessChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/manufacturing-process-choices/')
+export const getManufacturingProcessChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/manufacturing-process-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_MANUFACTURING_PROCESS_CHOICES,
@@ -219,8 +265,13 @@ export const getManufacturingProcessChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getInvoiceLineChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/invoice-line-choices/')
+export const getInvoiceLineChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/invoice-line-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_INVOICE_LINE_CHOICES,
@@ -229,8 +280,13 @@ export const getInvoiceLineChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getInvoiceSalesChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/invoice-sales-choices/')
+export const getInvoiceSalesChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/invoice-sales-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_INVOICE_SALES_CHOICES,
@@ -239,8 +295,13 @@ export const getInvoiceSalesChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getInventoryOrderStatusChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/inventory-order-status-choices/')
+export const getInventoryOrderStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/inventory-order-status-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_INVENTORY_ORDER_STATUS_CHOICES,
@@ -249,8 +310,13 @@ export const getInventoryOrderStatusChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEquipmentComponentConditionChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/equipment-component-condition-choices/')
+export const getEquipmentComponentConditionChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/equipment-component-condition-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EQUIPMENT_COMPONENT_CONDITION_CHOICES,
@@ -259,8 +325,13 @@ export const getEquipmentComponentConditionChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getProductComponentPricingChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/product-component-pricing-choices/')
+export const getProductComponentPricingChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/product-component-pricing-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_PRODUCT_COMPONENT_PRICING_CHOICES,
@@ -269,8 +340,13 @@ export const getProductComponentPricingChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getInventoryTypesChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/inventory-types-choices/')
+export const getInventoryTypesChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/inventory-types-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_INVENTORY_TYPES_CHOICES,
@@ -279,8 +355,13 @@ export const getInventoryTypesChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEmployeesGenderChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/employees-gender-choices/')
+export const getEmployeesGenderChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/employees-gender-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEES_GENDER_CHOICES,
@@ -289,8 +370,13 @@ export const getEmployeesGenderChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getJournalEntryTypesChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/journal-entry-types-choices/')
+export const getJournalEntryTypesChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/journal-entry-types-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_JOURNAL_ENTRY_TYPES_CHOICES,
@@ -299,8 +385,13 @@ export const getJournalEntryTypesChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getAccountingPeriodsChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/accounting-periods-choices/')
+export const getAccountingPeriodsChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/accounting-periods-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_ACCOUNTING_PERIODS_CHOICES,
@@ -309,8 +400,13 @@ export const getAccountingPeriodsChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEmploymentContractTerminationReasons = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/employment-contract-termination-reasons/')
+export const getEmploymentContractTerminationReasons = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/employment-contract-termination-reasons/', headers)
         .then(res => {
             dispatch({
                 type: GET_EMPLOYMENT_CONTRACT_TERMINATION_REASONS,
@@ -319,8 +415,13 @@ export const getEmploymentContractTerminationReasons = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEmployeeCategoryChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/employee-category-choices/')
+export const getEmployeeCategoryChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-category-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_CATEGORY_CHOICES,
@@ -329,8 +430,13 @@ export const getEmployeeCategoryChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEmployeeLeaveCategoryChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/employee-leave-category-choices/')
+export const getEmployeeLeaveCategoryChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-leave-category-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_LEAVE_CATEGORY_CHOICES,
@@ -339,8 +445,13 @@ export const getEmployeeLeaveCategoryChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEmployeeLeaveStatusChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/employee-leave-status-choices/')
+export const getEmployeeLeaveStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-leave-status-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_LEAVE_STATUS_CHOICES,
@@ -349,8 +460,13 @@ export const getEmployeeLeaveStatusChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEmployeeLunchChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/employee-lunch-choices/')
+export const getEmployeeLunchChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-lunch-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_LUNCH_CHOICES,
@@ -359,8 +475,13 @@ export const getEmployeeLunchChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEmployeePayFrequencies = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/employee-pay-frequencies/')
+export const getEmployeePayFrequencies = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-pay-frequencies/', headers)
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_PAY_FREQUENCIES,
@@ -369,8 +490,13 @@ export const getEmployeePayFrequencies = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEmployeeDeductionMethods = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/employee-deduction-methods/')
+export const getEmployeeDeductionMethods = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-deduction-methods/', headers)
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_DEDUCTION_METHODS,
@@ -379,8 +505,13 @@ export const getEmployeeDeductionMethods = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEmployeePayrollDateChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/employee-payroll-date-choices/')
+export const getEmployeePayrollDateChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-payroll-date-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_PAYROLL_DATE_CHOICES,
@@ -389,8 +520,13 @@ export const getEmployeePayrollDateChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEmployeePayslipStatusChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/employee-payslip-status-choices/')
+export const getEmployeePayslipStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-payslip-status-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_PAYSLIP_STATUS_CHOICES,
@@ -399,8 +535,13 @@ export const getEmployeePayslipStatusChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEmployeeTimesheetMonthChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/employee-timesheet-month-choices/')
+export const getEmployeeTimesheetMonthChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-timesheet-month-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_TIMESHEET_MONTH_CHOICES,
@@ -409,8 +550,13 @@ export const getEmployeeTimesheetMonthChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEmployeeYearChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/employee-year-choices/')
+export const getEmployeeYearChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-year-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_YEAR_CHOICES,
@@ -419,8 +565,13 @@ export const getEmployeeYearChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getNatureOfEmploymentChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/nature-of-employment-choices/')
+export const getNatureOfEmploymentChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/nature-of-employment-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_NATURE_OF_EMPLOYMENT_CHOICES,
@@ -429,8 +580,13 @@ export const getNatureOfEmploymentChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEmployeePayrollTaxChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/employee-payroll-tax-choices/')
+export const getEmployeePayrollTaxChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/employee-payroll-tax-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEE_PAYROLL_TAX_CHOICES,
@@ -440,8 +596,13 @@ export const getEmployeePayrollTaxChoices = () => dispatch => {
 }
 
 
-export const getEventRepeatChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/event-repeat-choices/')
+export const getEventRepeatChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/event-repeat-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EVENT_REPEAT_CHOICES,
@@ -450,8 +611,13 @@ export const getEventRepeatChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEventIconChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/event-icon-choices/')
+export const getEventIconChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/event-icon-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EVENT_ICON_CHOICES,
@@ -460,8 +626,13 @@ export const getEventIconChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEventTimeChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/event-time-choices/')
+export const getEventTimeChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/event-time-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EVENT_TIME_CHOICES,
@@ -470,8 +641,13 @@ export const getEventTimeChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEventReminderChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/event-reminder-choices/')
+export const getEventReminderChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/event-reminder-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EVENT_REMINDER_CHOICES,
@@ -480,8 +656,13 @@ export const getEventReminderChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEventParticipantTypesChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/event-participant-types-choices/')
+export const getEventParticipantTypesChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/event-participant-types-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EVENT_PARTICIPANT_TYPES_CHOICES,
@@ -490,8 +671,13 @@ export const getEventParticipantTypesChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEventPriorityChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/event-priority-choices/')
+export const getEventPriorityChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/event-priority-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EVENT_PRIORITY_CHOICES,
@@ -500,8 +686,13 @@ export const getEventPriorityChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getManufacturingShiftTimeChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/manufactring-shift-time-choices/')
+export const getManufacturingShiftTimeChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/manufactring-shift-time-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_MANUFACTURING_SHIFT_TIME_CHOICES,
@@ -510,8 +701,13 @@ export const getManufacturingShiftTimeChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getInventoryOrderPaymentMethodsChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/inventory-order-payment-methods-choices/')
+export const getInventoryOrderPaymentMethodsChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/inventory-order-payment-methods-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_INVENTORY_ORDER_PAYMENT_METHODS_CHOICES,
@@ -520,8 +716,13 @@ export const getInventoryOrderPaymentMethodsChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getInvoiceSalesTypesChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/invoice-sales-types-choices/')
+export const getInvoiceSalesTypesChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/invoice-sales-types-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_INVOICE_SALES_TYPES_CHOICES,
@@ -530,8 +731,13 @@ export const getInvoiceSalesTypesChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getBillPaymentMethodsChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/bill-payment-methods-choices/')
+export const getBillPaymentMethodsChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/bill-payment-methods-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_BILL_PAYMENT_METHODS_CHOICES,
@@ -540,8 +746,13 @@ export const getBillPaymentMethodsChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getBillingChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/billing-choices/')
+export const getBillingChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/billing-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_BILLING_CHOICES,
@@ -551,8 +762,13 @@ export const getBillingChoices = () => dispatch => {
 }
 
 
-export const getCustomerStatusChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/customer-status-choices/')
+export const getCustomerStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/customer-status-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_CUSTOMER_STATUS_CHOICES,
@@ -561,8 +777,13 @@ export const getCustomerStatusChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getSupplierStatusChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/supplier-status-choices/')
+export const getSupplierStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/supplier-status-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_SUPPLIER_STATUS_CHOICES,
@@ -571,8 +792,13 @@ export const getSupplierStatusChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getSupplierAddressTypeChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/supplier-address-type-choices/')
+export const getSupplierAddressTypeChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/supplier-address-type-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_SUPPLIER_ADDRESS_TYPE_CHOICES,
@@ -581,8 +807,13 @@ export const getSupplierAddressTypeChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getBillPaymentStatusChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/bill-payment-status-choices/')
+export const getBillPaymentStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/bill-payment-status-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_BILL_PAYMENT_STATUS_CHOICES,
@@ -591,8 +822,13 @@ export const getBillPaymentStatusChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEmployeesTypeChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/employees-type-choices/')
+export const getEmployeesTypeChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/employees-type-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEES_TYPE_CHOICES,
@@ -601,8 +837,13 @@ export const getEmployeesTypeChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getEmployeesAttendanceStatusChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/employees-attendance-status-choices/')
+export const getEmployeesAttendanceStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/employees-attendance-status-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_EMPLOYEES_ATTENDANCE_STATUS_CHOICES,
@@ -611,8 +852,13 @@ export const getEmployeesAttendanceStatusChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getCustomerAddressTypeChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/customer-address-type-choices/')
+export const getCustomerAddressTypeChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/customer-address-type-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_CUSTOMER_ADDRESS_TYPE_CHOICES,
@@ -621,8 +867,13 @@ export const getCustomerAddressTypeChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getUnitOfMeasureChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/unit-of-measure-choices/')
+export const getUnitOfMeasureChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/unit-of-measure-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_UNIT_OF_MEASURE_CHOICES,
@@ -631,8 +882,13 @@ export const getUnitOfMeasureChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getInventoryCheckDateChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/inventory-check-date-choices/')
+export const getInventoryCheckDateChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/inventory-check-date-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_INVENTORY_CHECK_DATE_CHOICES,
@@ -641,8 +897,13 @@ export const getInventoryCheckDateChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getInventoryCheckFrequencyChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/inventory-check-frequency-choices/')
+export const getInventoryCheckFrequencyChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/inventory-check-frequency-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_INVENTORY_CHECK_FREQUENCY_CHOICES,
@@ -651,8 +912,13 @@ export const getInventoryCheckFrequencyChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getInventoryValuationMethodsChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/inventory-valuation-methods-choices/')
+export const getInventoryValuationMethodsChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/inventory-valuation-methods-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_INVENTORY_VALUATION_METHODS_CHOICES,
@@ -661,8 +927,13 @@ export const getInventoryValuationMethodsChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getInventoryValuationPeriodChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/inventory-valuation-period-choices/')
+export const getInventoryValuationPeriodChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/inventory-valuation-period-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_INVENTORY_VALUATION_PERIOD_CHOICES,
@@ -671,8 +942,13 @@ export const getInventoryValuationPeriodChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getAccountInterestMethodChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/account-interest-method-choices/')
+export const getAccountInterestMethodChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/account-interest-method-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_ACCOUNT_INTEREST_METHOD_CHOICES,
@@ -681,8 +957,13 @@ export const getAccountInterestMethodChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getInterestIntervalAccountChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/interest-interval-account-choices/')
+export const getInterestIntervalAccountChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/interest-interval-account-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_INTEREST_INTERVAL_ACCOUNT_CHOICES,
@@ -691,8 +972,13 @@ export const getInterestIntervalAccountChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getAccountBalanceSheetCategoriesChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/account-balance-sheet-categories-choices/')
+export const getAccountBalanceSheetCategoriesChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/account-balance-sheet-categories-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_ACCOUNT_BALANCE_SHEET_CATEGORIES_CHOICES,
@@ -701,8 +987,13 @@ export const getAccountBalanceSheetCategoriesChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getBillFrequencyChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/bill-frequency-choices/')
+export const getBillFrequencyChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/bill-frequency-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_BILL_FREQUENCY_CHOICES,
@@ -712,8 +1003,13 @@ export const getBillFrequencyChoices = () => dispatch => {
 }
 
 
-export const getAccountTypeChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/account-type-choices/')
+export const getAccountTypeChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/account-type-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_ACCOUNT_TYPE_CHOICES,
@@ -722,8 +1018,13 @@ export const getAccountTypeChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getAssetTypesChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/asset-types-choices/')
+export const getAssetTypesChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/asset-types-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_ASSET_TYPES_CHOICES,
@@ -732,8 +1033,13 @@ export const getAssetTypesChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getAssetsDepriciationMethodChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/assets-depriciation-method-choices/')
+export const getAssetsDepriciationMethodChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/assets-depriciation-method-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_ASSETS_DEPRECIATION_METHOD_CHOICES,
@@ -742,8 +1048,13 @@ export const getAssetsDepriciationMethodChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getAccountTypesCategoryChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/account-types-category-choices/')
+export const getAccountTypesCategoryChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/account-types-category-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_ACCOUNT_TYPES_CATEGORY_CHOICES,
@@ -752,8 +1063,13 @@ export const getAccountTypesCategoryChoices = () => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getAccountTypesClassificationChoices = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/basedata/account-types-classification-choices/')
+export const getAccountTypesClassificationChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get('http://127.0.0.1:8000/api/basedata/account-types-classification-choices/', headers)
         .then(res => {
             dispatch({
                 type: GET_ACCOUNT_TYPES_CLASSIFICATION_CHOICES,
@@ -764,8 +1080,13 @@ export const getAccountTypesClassificationChoices = () => dispatch => {
 
 
 
-export const getGeneralGradingTypeChoices = () => dispatch => {
-    axios.get(generalgradingtypechoicesURL)
+export const getGeneralGradingTypeChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(generalgradingtypechoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_GENERAL_GRADING_TYPE_CHOICES,
@@ -774,8 +1095,13 @@ export const getGeneralGradingTypeChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getCourseGradingTypeChoices = () => dispatch => {
-    axios.get(coursegradingtypechoicesURL)
+export const getCourseGradingTypeChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(coursegradingtypechoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_COURSE_GRADING_TYPE_CHOICES,
@@ -784,8 +1110,13 @@ export const getCourseGradingTypeChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getCourseRatingChoices = () => dispatch => {
-    axios.get(courseratingchoicesURL)
+export const getCourseRatingChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(courseratingchoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_COURSE_RATING_CHOICES,
@@ -794,8 +1125,13 @@ export const getCourseRatingChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getCourseLayoutChoices = () => dispatch => {
-    axios.get(courselayoutchoicesURL)
+export const getCourseLayoutChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(courselayoutchoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_COURSE_LAYOUT_CHOICES,
@@ -804,8 +1140,13 @@ export const getCourseLayoutChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getCourseGroupsChoices = () => dispatch => {
-    axios.get(coursegroupschoicesURL)
+export const getCourseGroupsChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(coursegroupschoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_COURSE_GROUPS_CHOICES,
@@ -814,8 +1155,13 @@ export const getCourseGroupsChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getFileUploadsChoices = () => dispatch => {
-    axios.get(fileuploadschoicesURL)
+export const getFileUploadsChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(fileuploadschoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_FILE_UPLOADS_CHOICES,
@@ -824,8 +1170,13 @@ export const getFileUploadsChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getNumberOfAnnouncementsChoices = () => dispatch => {
-    axios.get(numberofannouncementschoicesURL)
+export const getNumberOfAnnouncementsChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(numberofannouncementschoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_NUMBER_OF_ANNOUNCEMENTS_CHOICES,
@@ -834,8 +1185,13 @@ export const getNumberOfAnnouncementsChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getCourseFormatChoices = () => dispatch => {
-    axios.get(courseformatchoicesURL)
+export const getCourseFormatChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(courseformatchoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_COURSE_FORMAT_CHOICES,
@@ -844,8 +1200,13 @@ export const getCourseFormatChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getLanguageChoices = () => dispatch => {
-    axios.get(languagechoicesURL)
+export const getLanguageChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(languagechoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_LANGUAGE_CHOICES,
@@ -854,8 +1215,13 @@ export const getLanguageChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getBooleanChoices = () => dispatch => {
-    axios.get(booleanchoicesURL)
+export const getBooleanChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(booleanchoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_BOOLEAN_CHOICES,
@@ -864,8 +1230,13 @@ export const getBooleanChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getUserStatusChoices = () => dispatch => {
-    axios.get(userstatuschoicesURL)
+export const getUserStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(userstatuschoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_USER_STATUS_CHOICES,
@@ -874,8 +1245,13 @@ export const getUserStatusChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getYearChoices = () => dispatch => {
-    axios.get(yearchoicesURL)
+export const getYearChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(yearchoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_YEAR_CHOICES,
@@ -884,8 +1260,13 @@ export const getYearChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getStudyChoices = () => dispatch => {
-    axios.get(studychoicesURL)
+export const getStudyChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(studychoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_STUDY_CHOICES,
@@ -894,8 +1275,13 @@ export const getStudyChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getSchoolNoticeTypeChoices = () => dispatch => {
-    axios.get(schoolnoticetypechoicesURL)
+export const getSchoolNoticeTypeChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(schoolnoticetypechoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_SCHOOL_NOTICE_TYPE_CHOICES,
@@ -904,8 +1290,13 @@ export const getSchoolNoticeTypeChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getSchoolNoticeboardStausChoices = () => dispatch => {
-    axios.get(schoolnoticeboardstauschoicesURL)
+export const getSchoolNoticeboardStausChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(schoolnoticeboardstauschoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_SCHOOL_NOTICEBOARD_STATUS_CHOICES,
@@ -914,8 +1305,13 @@ export const getSchoolNoticeboardStausChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getInstitutionsStatusChoices = () => dispatch => {
-    axios.get(institutionsstatuschoicesURL)
+export const getInstitutionsStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(institutionsstatuschoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_INSTITUTIONS_STATUS_CHOICES,
@@ -924,8 +1320,13 @@ export const getInstitutionsStatusChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getInstitutionTypeChoices = () => dispatch => {
-    axios.get(institutiontypechoicesURL)
+export const getInstitutionTypeChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(institutiontypechoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_INSTITUTION_TYPE_CHOICES,
@@ -934,8 +1335,13 @@ export const getInstitutionTypeChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getPsychomotorChoices = () => dispatch => {
-    axios.get(psychomotorchoicesURL)
+export const getPsychomotorChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(psychomotorchoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_PSYCHOMOTOR_CHOICES,
@@ -944,8 +1350,13 @@ export const getPsychomotorChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getTermChoices = () => dispatch => {
-    axios.get(termchoicesURL)
+export const getTermChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(termchoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_TERM_CHOICES,
@@ -954,8 +1365,13 @@ export const getTermChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getSchoolHeadReportStatusChoices = () => dispatch => {
-    axios.get(schoolheadreportstatuschoicesURL)
+export const getSchoolHeadReportStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(schoolheadreportstatuschoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_SCHOOL_HEAD_REPORT_STATUS_CHOICES,
@@ -964,8 +1380,13 @@ export const getSchoolHeadReportStatusChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getOnlineAdmissionStatusChoices = () => dispatch => {
-    axios.get(onlineadmissionstatuschoicesURL)
+export const getOnlineAdmissionStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(onlineadmissionstatuschoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_ONLINE_ADMISSION_STATUS_CHOICES,
@@ -974,8 +1395,13 @@ export const getOnlineAdmissionStatusChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getAttendanceStatusChoices = () => dispatch => {
-    axios.get(attendancestatuschoicesURL)
+export const getAttendanceStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(attendancestatuschoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_ATTENDANCE_STATUS_CHOICES,
@@ -984,8 +1410,13 @@ export const getAttendanceStatusChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getGenderChoices = () => dispatch => {
-    axios.get(genderchoicesURL)
+export const getGenderChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(genderchoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_GENDER_CHOICES,
@@ -994,8 +1425,13 @@ export const getGenderChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getStudentsClassStatusChoices = () => dispatch => {
-    axios.get(studentsclassstatuschoicesURL)
+export const getStudentsClassStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(studentsclassstatuschoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_STUDENTS_CLASS_STATUS_CHOICES,
@@ -1004,8 +1440,13 @@ export const getStudentsClassStatusChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getStudyNotesApprovalStatusChoices = () => dispatch => {
-    axios.get(studynotesapprovalstatuschoicesURL)
+export const getStudyNotesApprovalStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(studynotesapprovalstatuschoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_STUDY_NOTES_APPROVAL_STATUS_CHOICES,
@@ -1014,8 +1455,13 @@ export const getStudyNotesApprovalStatusChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getStaffTypeChoices = () => dispatch => {
-    axios.get(stafftypechoicesURL)
+export const getStaffTypeChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(stafftypechoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_STAFF_TYPE_CHOICES,
@@ -1024,8 +1470,13 @@ export const getStaffTypeChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getCourseStatusChoices = () => dispatch => {
-    axios.get(coursestatuschoicesURL)
+export const getCourseStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(coursestatuschoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_COURSES_STATUS_CHOICES,
@@ -1034,8 +1485,13 @@ export const getCourseStatusChoices = () => dispatch => {
     }).catch(err => console.log(err))
 }
 
-export const getStudynotesStatusChoices = () => dispatch => {
-    axios.get(studynotesstatuschoicesURL)
+export const getStudynotesStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(studynotesstatuschoicesURL, headers)
     .then(res => {
         dispatch({
             type: GET_STUDYNOTES_STATUS_CHOICES,
@@ -1043,5 +1499,3 @@ export const getStudynotesStatusChoices = () => dispatch => {
         });
     }).catch(err => console.log(err))
 }
-
-

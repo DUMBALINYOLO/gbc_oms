@@ -14,13 +14,15 @@ import {
 import { subjectsURL, curriculumsURL } from '../constants';
 import { createMessage, returnErrors } from './messages';
 
+
 // Get
 export const getCurriculums = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
     };
-    axios.get(curriculumsURL)
+    axios.get(curriculumsURL, headers)
         .then(res => {
             dispatch({
                 type: GET_CURRICULUMS,
@@ -31,11 +33,12 @@ export const getCurriculums = (token) => dispatch => {
 
 //Delete
 export const deleteCurriculum = (id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
     };
-    axios.delete(curriculumsURL, id)
+    axios.delete(curriculumsURL, id, headers)
         .then(res => {
             dispatch({
                 type: DELETE_CURRICULUM,
@@ -46,11 +49,12 @@ export const deleteCurriculum = (id, token) => dispatch => {
 
 // Add
 export const addCurriculum = (curriculum, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
     };
-    axios.post(curriculumsURL, curriculum)
+    axios.post(curriculumsURL, curriculum, headers)
         .then(res => {
             dispatch({
                 type: ADD_CURRICULUM,
@@ -61,11 +65,12 @@ export const addCurriculum = (curriculum, token) => dispatch => {
 
 //get
 export const getCurriculum = (id, token) => dispatch =>{
-      axios.defaults.headers = {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+      const headers ={
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
+            'Accept': 'application/json',
       };
-      axios.get(`${curriculumsURL}${id}/`)
+      axios.get(`${curriculumsURL}${id}/`, headers)
         .then(res => {
             dispatch({
                 type: GET_CURRICULUM,
@@ -77,12 +82,13 @@ export const getCurriculum = (id, token) => dispatch =>{
 
 //Edit
 export const editCurriculum = (id, curriculum, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`${curriculumsURL}${id}/`, curriculum)
+    axios.patch(`${curriculumsURL}${id}/`, curriculum, headers)
         .then(res => {
             dispatch({
                 type: EDIT_CURRICULUM,
@@ -96,11 +102,12 @@ export const editCurriculum = (id, curriculum, token) => dispatch => {
 
 // Get
 export const getSubjects = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
     };
-    axios.get(subjectsURL)
+    axios.get(subjectsURL, headers)
         .then(res => {
             dispatch({
                 type: GET_SUBJECTS,
@@ -111,11 +118,12 @@ export const getSubjects = (token) => dispatch => {
 
 //Delete
 export const deleteSubject = (id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
     };
-    axios.delete(subjectsURL, id)
+    axios.delete(subjectsURL, id, headers)
         .then(res => {
             dispatch({
                 type: DELETE_SUBJECT,
@@ -126,11 +134,12 @@ export const deleteSubject = (id, token) => dispatch => {
 
 // Add
 export const addSubject = (subject, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
     };
-    axios.post(subjectsURL, subject)
+    axios.post(subjectsURL, subject, headers)
         .then(res => {
             dispatch({
                 type: ADD_SUBJECT,
@@ -141,11 +150,12 @@ export const addSubject = (subject, token) => dispatch => {
 
 //get
 export const getSubject = (id, token) => dispatch =>{
-      axios.defaults.headers = {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+      const headers ={
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
+            'Accept': 'application/json',
       };
-      axios.get(`${subjectsURL}${id}/`)
+      axios.get(`${subjectsURL}${id}/`, headers)
         .then(res => {
             dispatch({
                 type: GET_SUBJECT,
@@ -157,12 +167,13 @@ export const getSubject = (id, token) => dispatch =>{
 
 //Edit
 export const editSubject = (id, subject, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`${subjectsURL}${id}/`, subject)
+    axios.patch(`${subjectsURL}${id}/`, subject, headers)
         .then(res => {
             dispatch({
                 type: EDIT_SUBJECT,

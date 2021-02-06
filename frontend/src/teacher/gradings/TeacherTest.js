@@ -35,7 +35,8 @@ TabContainer.propTypes = {
 
 export class TeacherTest extends React.Component {
   state = {
-    value: 0
+    value: 0,
+    token: null
   };
 
   componentDidMount() {
@@ -44,8 +45,8 @@ export class TeacherTest extends React.Component {
 
 
 
-  handleChange = (event, value) => {
-    this.setState({ value });
+  handleChange = (event, value, token) => {
+    this.setState({ value, token });
   };
 
   render() {
@@ -59,7 +60,7 @@ export class TeacherTest extends React.Component {
 
     return (
       <GradingBag>
-        
+
         <Helmet>
           <title>{adminstudenttest.name}</title>
           <meta name="description" content={adminstudenttest.name} />
@@ -115,6 +116,7 @@ TeacherTest.propTypes = {
 const mapStateToProps = state => ({
   force: state, // force state from reducer
   adminstudenttest: state.gradings.adminstudenttest,
+  token: state.auth.token
 });
 
 
@@ -125,5 +127,3 @@ const AdminGradingTestMapped = connect(
 )(TeacherTest);
 
 export default withStyles(styles)( AdminGradingTestMapped );
-
-
