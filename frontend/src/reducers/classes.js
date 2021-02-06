@@ -1,18 +1,31 @@
 import {
-    ADD_CLASS,
-    GET_CLASSES,
-    GET_CLASS,
-    EDIT_CLASS,
-    ADD_STREAM,
-    GET_STREAMS,
-    EDIT_STREAM,
-} from '../types/classTypes';
+        ADD_CLASS,
+        GET_CLASSES,
+        GET_CLASS,
+        EDIT_CLASS,
+        ADD_CLASS_SUBJECT,
+        GET_CLASS_SUBJECTS,
+        GET_CLASS_SUBJECT,
+        EDIT_CLASS_SUBJECT,
+        GET_CLASS_STUDENTS,
+        GET_CLASS_STUDENT,
+        ADD_STREAM,
+        GET_STREAMS,
+        EDIT_STREAM,
+        ADD_ENROLLMENT,
+        GET_ENROLLMENTS,
+        EDIT_ENROLLMENT,
+    } from '../types/classTypes';
 import { GET_STUDENTS_CLASS_STATUS_CHOICES } from '../types/choiceTypes';
 
 const initialState = {
     classes: [],
     streams: [],
     classi: [],
+    subjects: [],
+    subject: [],
+    student: [],
+    students: [],
     studentclassstatuschoices: [],
     loading: false
 }
@@ -62,6 +75,38 @@ switch(action.type){
         return {
             ...state,
             classes: sarrayList,
+        };
+    case GET_STUDENTS:
+        return {
+            ...state,
+            students: action.payload
+        };
+    case GET_STUDENT:
+        return {
+            ...state,
+            student: action.payload
+        };
+    case GET_SUBJECTS:
+        return {
+            ...state,
+            subjects: action.payload
+        };
+    case GET_SUBJECT:
+        return {
+            ...state,
+            subject: action.payload
+        };
+    case ADD_SUBJECT:
+        return {
+            ...state,
+            subject: [...state.subjects, action.payload]
+        };
+    case EDIT_SUBJECT:
+        const jarrayList = state.subjects;
+        arrayList.splice(arrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
+        return {
+            ...state,
+            subjects: arrayList,
         };
     default:
         return state;

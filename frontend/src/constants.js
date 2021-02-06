@@ -48,7 +48,6 @@ export const processedproductstocktakesURL = `${endpoint}/manufacture/processed-
 export const manufacturedstockitemsURL = `${endpoint}/manufacture/manufactured-stock-items/`
 export const productionprocessesURL = `${endpoint}/manufacture/production-processes/`
 
-
 //inventory
 export const inventorycategoriesURL = `${endpoint}/inventory/inventory-categories/`
 export const debitnotesURL = `${endpoint}/inventory/debit-notes/`
@@ -113,7 +112,6 @@ export const authorisedemployeeleavesURL= `${endpoint}/employees/authorised-empl
 export const declinedemployeeleavesURL= `${endpoint}/employees/declined-employee-leaves/`
 
 //fees
-
 export const adminpaymentsURL = `${endpoint}/fees/admin-payments/`
 export const invoicesURL= `${endpoint}/fees/invoices/`
 export const adminreceiptsURL= `${endpoint}/fees/admin-receipts/`
@@ -129,9 +127,7 @@ export const feesconfigURL= `${endpoint}/fees/fees-config/`
 export const studentinvoicesURL= `${endpoint}/fees/student-invoices/`
 export const studentreceiptsURL= `${endpoint}/fees/student-receipts/`
 
-
 //basedata
-
 export const generalgradingtypechoicesURL = `${endpoint}/basedata/general-grading-type-choices/`
 export const coursegradingtypechoicesURL = `${endpoint}/basedata/course-grading-type-choices/`
 export const courseratingchoicesURL = `${endpoint}/basedata/course-rating-choices/`
@@ -182,8 +178,6 @@ export const teacherprofilesURL = `${endpoint}/people/teacher-profiles/`
 export const bursarprofilesURL = `${endpoint}/people/bursar-profiles/`
 export const studentprofilesURL = `${endpoint}/people/student-profiles/`
 
-
-
 //courses
 export const adminupcomingcoursesURL = `${endpoint}/courses/admin-upcoming-courses/`
 export const adminongoingcoursesURL = `${endpoint}/courses/admin-ongoing-courses/`
@@ -204,23 +198,18 @@ export const adminauthorsURL = `${endpoint}/courses/admin-authors/`
 export const adminpublishercitiesURL = `${endpoint}/courses/admin-publisher-cities/`
 export const adminpublishersURL = `${endpoint}/courses/admin-publishers/`
 
-
-
-//courses
+//classes
 export const classesURL = `${endpoint}/classes/classes/`
 export const classstreamsURL = `${endpoint}/classes/class-streams/`
 export const classsubjectsURL = `${endpoint}/classes/class-subjects/`
 export const classstudentsURL = `${endpoint}/classes/class-students/`
-
-
+export const enrollmentsURL = `${endpoint}/classes/enrollments/`
 
 //attendance
 export const adminattendancesURL = `${endpoint}/attendance/admin-attendances/`
 export const teacherattendancesURL = `${endpoint}/attendance/teacher-attendances/`
 export const studentattendancesURL = `${endpoint}/attendance/student-attendances/`
 export const studentattendancerecordsURL = `${endpoint}/attendance/student-attendance-records/`
-
-
 
 //gradings
 export const adminstudenttestsURL = `${endpoint}/grading/admin-student-tests/`
@@ -236,15 +225,9 @@ export const gradingasignmentrecordsURL = `${endpoint}/grading/grading-asignment
 export const gradingtestrecordsURL = `${endpoint}/grading/grading-test-records/`
 export const gradingexcerciserecordsURL = `${endpoint}/grading/grading-excercise-records/`
 
-
-
-
-
-
 //curriculum
 export const subjectsURL = `${endpoint}/curriculum/subjects/`
 export const curriculumsURL = `${endpoint}/curriculum/curriculums/`
-
 
 //reports
 export const statscountersURL = `${endpoint}/reports/stats-counters`
