@@ -18,14 +18,12 @@ import { createMessage, returnErrors } from './messages';
 
 // Get
 export const getClasses = (token) => dispatch => {
-    const config =  {
-        headers: {
+    const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
-        }
     };
-    axios.get(classesURL, config)
+    axios.get(classesURL, headers)
         .then(res => {
             dispatch({
                 type: GET_CLASSES,
@@ -37,14 +35,12 @@ export const getClasses = (token) => dispatch => {
 
 // Add
 export const addClass = (classi, token) => dispatch => {
-    const config =  {
-        headers: {
+    const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
-        }
     };
-    axios.post(classesURL, classi,config)
+    axios.post(classesURL, classi,headers)
         .then(res => {
             dispatch({
                 type: ADD_CLASS,
@@ -55,14 +51,12 @@ export const addClass = (classi, token) => dispatch => {
 
 //get
 export const getClass = (id, token) => dispatch =>{
-      const config =  {
-          headers: {
+      const headers ={
             "Content-Type": "application/json",
             Authorization: `Token ${token}`,
             'Accept': 'application/json',
-          }
       };
-      axios.get(`${classesURL}${id}/`, config)
+      axios.get(`${classesURL}${id}/`, headers)
         .then(res => {
             dispatch({
                 type: GET_CLASS,
@@ -74,15 +68,13 @@ export const getClass = (id, token) => dispatch =>{
 
 //Edit
 export const editClass = (id, classi, token) => dispatch => {
-    const config =  {
-        headers: {
+    const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
-        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`${classesURL}${id}/`, classi, config)
+    axios.patch(`${classesURL}${id}/`, classi, headers)
         .then(res => {
             dispatch({
                 type: EDIT_CLASS,
@@ -93,14 +85,12 @@ export const editClass = (id, classi, token) => dispatch => {
 
 
 export const getStreams = (token) => dispatch => {
-    const config =  {
-        headers: {
+    const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
-        }
     };
-    axios.get(classstreamsURL, config)
+    axios.get(classstreamsURL, headers)
         .then(res => {
             dispatch({
                 type: GET_STREAMS,
@@ -112,14 +102,12 @@ export const getStreams = (token) => dispatch => {
 
 // Add
 export const addStream = (stream, token) => dispatch => {
-    const config =  {
-        headers: {
+    const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
-        }
     };
-    axios.post(classstreamsURL, stream, config)
+    axios.post(classstreamsURL, stream, headers)
         .then(res => {
             dispatch({
                 type: ADD_STREAM,
@@ -131,15 +119,13 @@ export const addStream = (stream, token) => dispatch => {
 
 //Edit
 export const editStream = (id, stream, token) => dispatch => {
-    const config =  {
-        headers: {
+    const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
-        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`${classstreamsURL}${id}/`, stream, config)
+    axios.patch(`${classstreamsURL}${id}/`, stream, headers)
         .then(res => {
             dispatch({
                 type: EDIT_STREAM,
