@@ -1,9 +1,12 @@
 from django.contrib.auth.password_validation import validate_password
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import generics, permissions
 from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
+from django.contrib.auth import get_user_model
 from people.models import User
 from rest_framework import viewsets
 from rest_framework import status
@@ -40,16 +43,29 @@ from people.serializers import (
 )
 
 # Get User API
-class UserAPI(generics.RetrieveAPIView):
 
-    permission_classes = [permissions.IsAuthenticated]
+User = get_user_model()
+
+
+def get_user(email):
+    user = get_object_or_404(User, email)
+    return user
+
+
+class UserAPI(generics.RetrieveAPIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = [permissions.AllowAny,]
     serializer_class = UserSerializer
 
     def get_object(self):
         """
         get user object
         """
-        return self.request.user
+        email = self.request.query_params.get('email', None)
+        if email is not None:
+            user = get_user(email=email)
+            return user
+        return None
 
 
 
@@ -176,6 +192,8 @@ class ForgotPassAPI(generics.UpdateAPIView):
 
 class LoginView(generics.GenericAPIView):
     permission_classes = [permissions.AllowAny]
+    authentication_classes = (TokenAuthentication,)
+
 
     serializer_class = LoginSerializer
 

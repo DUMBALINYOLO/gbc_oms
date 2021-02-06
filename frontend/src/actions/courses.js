@@ -92,11 +92,14 @@ import { createMessage, returnErrors } from './messages';
 
 
 export const getCourseStatus = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(coursestatuschoicesURL)
+    axios.get(coursestatuschoicesURL, config)
         .then(res => {
             dispatch({
                 type: GET_COURSE_STATUS_CHOICES,
@@ -107,11 +110,14 @@ export const getCourseStatus = (token) => dispatch => {
 
 
 export const getAdminUpcomingCourses = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(adminupcomingcoursesURL)
+    axios.get(adminupcomingcoursesURL, config)
         .then(res => {
             dispatch({
                 type: GET_UPCOMING_COURSES,
@@ -121,11 +127,14 @@ export const getAdminUpcomingCourses = (token) => dispatch => {
 }
 
 export const getAdminUpcomingCourse = (id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${adminupcomingcoursesURL}${id}/`)
+    axios.get(`${adminupcomingcoursesURL}${id}/`, config)
         .then(res => {
             dispatch({
                 type: GET_UPCOMING_COURSE,
@@ -135,11 +144,14 @@ export const getAdminUpcomingCourse = (id, token) => dispatch => {
 }
 
 export const getAdminOngoingCourses = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(adminongoingcoursesURL)
+    axios.get(adminongoingcoursesURL, config)
         .then(res => {
             dispatch({
                 type: GET_ONGOING_COURSES,
@@ -149,11 +161,14 @@ export const getAdminOngoingCourses = (token) => dispatch => {
 }
 
 export const getAdminOngoingCourse = (id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${adminongoingcoursesURL}${id}/`)
+    axios.get(`${adminongoingcoursesURL}${id}/`, config)
         .then(res => {
             dispatch({
                 type: GET_ONGOING_COURSE,
@@ -165,11 +180,14 @@ export const getAdminOngoingCourse = (id, token) => dispatch => {
 
 
 export const getAdminFinishedCourses = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(adminfinishedcoursesURL)
+    axios.get(adminfinishedcoursesURL, config)
         .then(res => {
             dispatch({
                 type: GET_FINISHED_COURSES,
@@ -179,11 +197,14 @@ export const getAdminFinishedCourses = (token) => dispatch => {
 }
 
 export const getAdminFinishedCourse= (id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${adminfinishedcoursesURL}${id}/`)
+    axios.get(`${adminfinishedcoursesURL}${id}/`, config)
         .then(res => {
             dispatch({
                 type: GET_FINISHED_COURSE,
@@ -194,11 +215,14 @@ export const getAdminFinishedCourse= (id, token) => dispatch => {
 
 
 export const getAdminInactiveCourses = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(admininactivecoursesURL)
+    axios.get(admininactivecoursesURL, config)
         .then(res => {
             dispatch({
                 type: GET_INACTIVE_COURSES,
@@ -208,11 +232,14 @@ export const getAdminInactiveCourses = (token) => dispatch => {
 }
 
 export const getAdminInactiveCourse= (id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${admininactivecoursesURL}${id}/`)
+    axios.get(`${admininactivecoursesURL}${id}/`, config)
         .then(res => {
             dispatch({
                 type: GET_INACTIVE_COURSE,
@@ -223,11 +250,14 @@ export const getAdminInactiveCourse= (id, token) => dispatch => {
 
 
 export const addCourse = (course, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(adminupcomingcoursesURL, course)
+    axios.post(adminupcomingcoursesURL, course, config)
         .then(res => {
             dispatch({
                 type: ADD_COURSE,
@@ -238,12 +268,15 @@ export const addCourse = (course, token) => dispatch => {
 
 
 export const editCourse = (id, course, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`${adminupcomingcoursesURL}${id}/`, course)
+    axios.patch(`${adminupcomingcoursesURL}${id}/`, course, config)
         .then(res => {
             dispatch({
                 type: EDIT_COURSE,
@@ -254,11 +287,14 @@ export const editCourse = (id, course, token) => dispatch => {
 
 
 export const getAdminTopics = (course_id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${admintopicsURL}?id=${course_id}`)
+    axios.get(`${admintopicsURL}?id=${course_id}`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_TOPICS,
@@ -268,11 +304,14 @@ export const getAdminTopics = (course_id, token) => dispatch => {
 }
 
 export const getAdminTopic= (id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${admintopicsURL}${id}/`)
+    axios.get(`${admintopicsURL}${id}/`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_TOPIC,
@@ -283,11 +322,14 @@ export const getAdminTopic= (id, token) => dispatch => {
 
 
 export const addTopic = (topic, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(admintopicsURL, topic)
+    axios.post(admintopicsURL, topic, config)
         .then(res => {
             dispatch({
                 type: ADD_TOPIC,
@@ -299,12 +341,15 @@ export const addTopic = (topic, token) => dispatch => {
 
 
 export const editTopic = (id, topic, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`${admintopicsURL}${id}/`, topic)
+    axios.patch(`${admintopicsURL}${id}/`, topic, config)
         .then(res => {
             dispatch({
                 type: EDIT_TOPIC,
@@ -315,11 +360,14 @@ export const editTopic = (id, topic, token) => dispatch => {
 
 
 export const getAdminReviews = (course_id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${adminreviewsURL}?id=${course_id}`)
+    axios.get(`${adminreviewsURL}?id=${course_id}`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_REVIEWS,
@@ -330,11 +378,14 @@ export const getAdminReviews = (course_id, token) => dispatch => {
 
 
 export const getAdminTopicObjectives = (topic_id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${admintopicobjectivesURL}?id=${topic_id}`)
+    axios.get(`${admintopicobjectivesURL}?id=${topic_id}`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_TOPIC_OBJECTIVES,
@@ -344,11 +395,14 @@ export const getAdminTopicObjectives = (topic_id, token) => dispatch => {
 }
 
 export const getAdminTopicObjective = (id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${admintopicobjectivesURL}/${id}/`)
+    axios.get(`${admintopicobjectivesURL}/${id}/`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_TOPIC_OBJECTIVE,
@@ -359,11 +413,14 @@ export const getAdminTopicObjective = (id, token) => dispatch => {
 
 
 export const addTopicObjective = (objective, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(admintopicobjectivesURL, objective)
+    axios.post(admintopicobjectivesURL, objective, config)
         .then(res => {
             dispatch({
                 type: ADD_TOPIC_OBJECTIVE,
@@ -374,12 +431,15 @@ export const addTopicObjective = (objective, token) => dispatch => {
 
 
 export const editTopicObjective = (id, objective, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`${admintopicobjectivesURL}${id}/`, objective)
+    axios.patch(`${admintopicobjectivesURL}${id}/`, objective,config)
         .then(res => {
             dispatch({
                 type: EDIT_TOPIC_OBJECTIVE,
@@ -391,11 +451,14 @@ export const editTopicObjective = (id, objective, token) => dispatch => {
 
 
 export const getAdminTopicGuidelines = (topic_id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${admintopicguidelinesURL}?id=${topic_id}`)
+    axios.get(`${admintopicguidelinesURL}?id=${topic_id}`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_TOPIC_GUIDELINES,
@@ -405,11 +468,14 @@ export const getAdminTopicGuidelines = (topic_id, token) => dispatch => {
 }
 
 export const getAdminTopicGuideline = (id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${admintopicguidelinesURL}${id}/`)
+    axios.get(`${admintopicguidelinesURL}${id}/`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_TOPIC_GUIDELINE,
@@ -420,11 +486,14 @@ export const getAdminTopicGuideline = (id, token) => dispatch => {
 
 
 export const addTopicGuideLine = (guideline, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(admintopicguidelinesURL, guideline)
+    axios.post(admintopicguidelinesURL, guideline, config)
         .then(res => {
             dispatch({
                 type: ADD_TOPIC_GUIDELINE,
@@ -435,12 +504,15 @@ export const addTopicGuideLine = (guideline, token) => dispatch => {
 
 
 export const editTopicGuideline = (id, guideline, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`${admintopicguidelinesURL}${id}/`, guideline)
+    axios.patch(`${admintopicguidelinesURL}${id}/`, guideline, config)
         .then(res => {
             dispatch({
                 type: EDIT_TOPIC_GUIDELINE,
@@ -452,11 +524,14 @@ export const editTopicGuideline = (id, guideline, token) => dispatch => {
 
 
 export const getAdminSubTopics = (topic_id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${adminsubtopicsURL}?id=${topic_id}`)
+    axios.get(`${adminsubtopicsURL}?id=${topic_id}`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_SUBTOPICS,
@@ -466,11 +541,14 @@ export const getAdminSubTopics = (topic_id, token) => dispatch => {
 }
 
 export const getAdminSubTopic = (id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${adminsubtopicsURL}${id}/`)
+    axios.get(`${adminsubtopicsURL}${id}/`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_SUBTOPIC,
@@ -481,11 +559,14 @@ export const getAdminSubTopic = (id, token) => dispatch => {
 
 
 export const addSubTopic = (subtopic, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(adminsubtopicsURL, subtopic)
+    axios.post(adminsubtopicsURL, subtopic, config)
         .then(res => {
             dispatch({
                 type: ADD_SUBTOPIC,
@@ -496,12 +577,15 @@ export const addSubTopic = (subtopic, token) => dispatch => {
 
 
 export const editSubTopic = (id, subtopic, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`${adminsubtopicsURL}${id}/`, subtopic)
+    axios.patch(`${adminsubtopicsURL}${id}/`, subtopic,config)
         .then(res => {
             dispatch({
                 type: EDIT_SUBTOPIC,
@@ -512,11 +596,14 @@ export const editSubTopic = (id, subtopic, token) => dispatch => {
 
 
 export const getStudyNotes = (topic_id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${adminstudynotesURL}?id=${topic_id}`)
+    axios.get(`${adminstudynotesURL}?id=${topic_id}`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTES,
@@ -526,11 +613,14 @@ export const getStudyNotes = (topic_id, token) => dispatch => {
 }
 
 export const getStudyNote = (id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${adminstudynotesURL}${id}/`)
+    axios.get(`${adminstudynotesURL}${id}/`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTE,
@@ -541,11 +631,14 @@ export const getStudyNote = (id, token) => dispatch => {
 
 
 export const addStudyNote = (note, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(adminstudynotesURL, note)
+    axios.post(adminstudynotesURL, note, config)
         .then(res => {
             dispatch({
                 type: ADD_STUDY_NOTE,
@@ -556,12 +649,15 @@ export const addStudyNote = (note, token) => dispatch => {
 
 
 export const editStudyNote = (id, note, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`${adminstudynotesURL}${id}/`, note)
+    axios.patch(`${adminstudynotesURL}${id}/`, note, config)
         .then(res => {
             dispatch({
                 type: EDIT_STUDY_NOTE,
@@ -572,11 +668,14 @@ export const editStudyNote = (id, note, token) => dispatch => {
 
 
 export const getStudyNoteVideos = (note_id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${adminstudynotesvideosURL}?id=${note_id}`)
+    axios.get(`${adminstudynotesvideosURL}?id=${note_id}`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTES_VIDEOS,
@@ -586,9 +685,12 @@ export const getStudyNoteVideos = (note_id, token) => dispatch => {
 }
 
 export const getStudyNoteVideo = (id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     axios.get(`http://127.0.0.1:8000/api/courses/admin-study-notes-videos/${id}/`)
         .then(res => {
@@ -601,11 +703,14 @@ export const getStudyNoteVideo = (id, token) => dispatch => {
 
 
 export const addStudyNoteVideo = (video, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(adminstudynotesvideosURL, video)
+    axios.post(adminstudynotesvideosURL, video,token)
         .then(res => {
             dispatch({
                 type: ADD_STUDY_NOTE_VIDEO,
@@ -616,12 +721,15 @@ export const addStudyNoteVideo = (video, token) => dispatch => {
 
 
 export const editStudyNoteVideo = (id, video, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/courses/admin-study-notes-videos/${id}/`, video)
+    axios.patch(`http://127.0.0.1:8000/api/courses/admin-study-notes-videos/${id}/`, video,config)
         .then(res => {
             dispatch({
                 type: EDIT_STUDY_NOTE_VIDEO,
@@ -631,11 +739,14 @@ export const editStudyNoteVideo = (id, video, token) => dispatch => {
 }
 
 export const getStudyNoteImages = (note_id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${adminstudynotesimagesURL}?id=${note_id}`)
+    axios.get(`${adminstudynotesimagesURL}?id=${note_id}`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTES_IMAGES,
@@ -645,11 +756,14 @@ export const getStudyNoteImages = (note_id, token) => dispatch => {
 }
 
 export const getStudyNoteImage = (id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`http://127.0.0.1:8000/api/courses/admin-study-notes-images/${id}/`)
+    axios.get(`http://127.0.0.1:8000/api/courses/admin-study-notes-images/${id}/`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTE_IMAGE,
@@ -660,11 +774,14 @@ export const getStudyNoteImage = (id, token) => dispatch => {
 
 
 export const addStudyNoteImage = (image, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(adminstudynotesimagesURL, image)
+    axios.post(adminstudynotesimagesURL, image,config)
         .then(res => {
             dispatch({
                 type: ADD_STUDY_NOTE_IMAGE,
@@ -675,12 +792,15 @@ export const addStudyNoteImage = (image, token) => dispatch => {
 
 
 export const editStudyNoteImage = (id, image, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/courses/admin-study-notes-images/${id}/`, image)
+    axios.patch(`http://127.0.0.1:8000/api/courses/admin-study-notes-images/${id}/`, image, config)
         .then(res => {
             dispatch({
                 type: EDIT_STUDY_NOTE_IMAGE,
@@ -691,11 +811,14 @@ export const editStudyNoteImage = (id, image, token) => dispatch => {
 
 
 export const getStudyNoteNotes = (note_id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${adminstudynotesnotesURL}?id=${note_id}`)
+    axios.get(`${adminstudynotesnotesURL}?id=${note_id}`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTES_NOTES,
@@ -705,11 +828,14 @@ export const getStudyNoteNotes = (note_id, token) => dispatch => {
 }
 
 export const getStudyNoteNote = (id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`http://127.0.0.1:8000/api/courses/admin-study-notes-notes/${id}/`)
+    axios.get(`http://127.0.0.1:8000/api/courses/admin-study-notes-notes/${id}/`, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTE_NOTE,
@@ -720,11 +846,14 @@ export const getStudyNoteNote = (id, token) => dispatch => {
 
 
 export const addStudyNoteNote = (note, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(adminstudynotesnotesURL, note)
+    axios.post(adminstudynotesnotesURL, note,config)
         .then(res => {
             dispatch({
                 type: ADD_STUDY_NOTE_NOTE,
@@ -735,12 +864,15 @@ export const addStudyNoteNote = (note, token) => dispatch => {
 
 
 export const editStudyNoteNote = (id, note, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/courses/admin-study-notes-notes/${id}/`, note)
+    axios.patch(`http://127.0.0.1:8000/api/courses/admin-study-notes-notes/${id}/`, note, config)
         .then(res => {
             dispatch({
                 type: EDIT_STUDY_NOTE_NOTE,
@@ -751,11 +883,14 @@ export const editStudyNoteNote = (id, note, token) => dispatch => {
 
 
 export const getStudyNoteFiles = (note_id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${adminstudynotesfilesURL}?id=${note_id}`)
+    axios.get(`${adminstudynotesfilesURL}?id=${note_id}`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTES_FILES,
@@ -765,11 +900,14 @@ export const getStudyNoteFiles = (note_id, token) => dispatch => {
 }
 
 export const getStudyNoteFile = (id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`http://127.0.0.1:8000/api/courses/admin-study-notes-files/${id}/`)
+    axios.get(`http://127.0.0.1:8000/api/courses/admin-study-notes-files/${id}/`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTE_FILE,
@@ -780,11 +918,14 @@ export const getStudyNoteFile = (id, token) => dispatch => {
 
 
 export const addStudyNoteFile = (file, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(adminstudynotesfilesURL, file)
+    axios.post(adminstudynotesfilesURL, file,config)
         .then(res => {
             dispatch({
                 type: ADD_STUDY_NOTE_FILE,
@@ -795,12 +936,15 @@ export const addStudyNoteFile = (file, token) => dispatch => {
 
 
 export const editStudyNoteFile = (id, file, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/courses/admin-study-notes-files/${id}/`, file)
+    axios.patch(`http://127.0.0.1:8000/api/courses/admin-study-notes-files/${id}/`, file,config)
         .then(res => {
             dispatch({
                 type: EDIT_STUDY_NOTE_FILE,
@@ -811,11 +955,14 @@ export const editStudyNoteFile = (id, file, token) => dispatch => {
 
 
 export const getStudyNoteReferences = (note_id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`${adminstudynotesreferencesURL}?id=${note_id}`)
+    axios.get(`${adminstudynotesreferencesURL}?id=${note_id}`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTES_REFERENCES,
@@ -825,11 +972,14 @@ export const getStudyNoteReferences = (note_id, token) => dispatch => {
 }
 
 export const getStudyNoteReference = (id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`http://127.0.0.1:8000/api/courses/admin-study-notes-references/${id}/`)
+    axios.get(`http://127.0.0.1:8000/api/courses/admin-study-notes-references/${id}/`,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDY_NOTE_REFERENCE,
@@ -840,9 +990,12 @@ export const getStudyNoteReference = (id, token) => dispatch => {
 
 
 export const addStudyNoteReference = (reference, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     axios.post(adminstudynotesfilesURL, reference)
         .then(res => {
@@ -855,12 +1008,15 @@ export const addStudyNoteReference = (reference, token) => dispatch => {
 
 
 export const editStudyNoteReference = (id, reference, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/courses/admin-study-notes-references/${id}/`, reference)
+    axios.patch(`http://127.0.0.1:8000/api/courses/admin-study-notes-references/${id}/`, reference, config)
         .then(res => {
             dispatch({
                 type: EDIT_STUDY_NOTE_REFERENCE,
@@ -871,11 +1027,14 @@ export const editStudyNoteReference = (id, reference, token) => dispatch => {
 
 
 export const getAuthors = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(adminauthorsURL)
+    axios.get(adminauthorsURL,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_AUTHORS,
@@ -887,11 +1046,14 @@ export const getAuthors = (token) => dispatch => {
 
 
 export const addAuthor = (author, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(adminauthorsURL, author)
+    axios.post(adminauthorsURL, author,config)
         .then(res => {
             dispatch({
                 type: ADD_AUTHOR,
@@ -902,12 +1064,15 @@ export const addAuthor = (author, token) => dispatch => {
 
 
 export const editAuthor = (id, author, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/courses/admin-authors/${id}/`, author)
+    axios.patch(`http://127.0.0.1:8000/api/courses/admin-authors/${id}/`, author,config)
         .then(res => {
             dispatch({
                 type: EDIT_AUTHOR,
@@ -918,11 +1083,14 @@ export const editAuthor = (id, author, token) => dispatch => {
 
 
 export const getPublisherCities = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(adminpublishercitiesURL)
+    axios.get(adminpublishercitiesURL, config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_PUBLISHER_CITIES,
@@ -934,11 +1102,14 @@ export const getPublisherCities = (token) => dispatch => {
 
 
 export const addPublisherCity = (city, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(adminpublishercitiesURL, city)
+    axios.post(adminpublishercitiesURL, city,config)
         .then(res => {
             dispatch({
                 type: ADD_PUBLISHER_CITY,
@@ -949,12 +1120,15 @@ export const addPublisherCity = (city, token) => dispatch => {
 
 
 export const editPublisherCity = (id, city, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/courses/admin-publisher-cities/${id}/`, city)
+    axios.patch(`http://127.0.0.1:8000/api/courses/admin-publisher-cities/${id}/`, city,config)
         .then(res => {
             dispatch({
                 type: EDIT_PUBLISHER_CITY,
@@ -965,11 +1139,14 @@ export const editPublisherCity = (id, city, token) => dispatch => {
 
 
 export const getPublishers= (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(adminpublishersURL)
+    axios.get(adminpublishersURL,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_PUBLISHERS,
@@ -981,11 +1158,14 @@ export const getPublishers= (token) => dispatch => {
 
 
 export const addPublisher = (publisher, id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(adminpublishersURL, publisher)
+    axios.post(adminpublishersURL, publisher,config)
         .then(res => {
             dispatch({
                 type: ADD_PUBLISHER,
@@ -996,12 +1176,15 @@ export const addPublisher = (publisher, id, token) => dispatch => {
 
 
 export const editPublisher = (id, publisher, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/courses/admin-publishers/${id}/`, publisher)
+    axios.patch(`http://127.0.0.1:8000/api/courses/admin-publishers/${id}/`, publisher,config)
         .then(res => {
             dispatch({
                 type: EDIT_PUBLISHER,

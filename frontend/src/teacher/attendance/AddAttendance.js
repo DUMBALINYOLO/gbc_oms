@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
 
 const MarkRegister = props => {
   const { addOrEdit, recordForEdit } = props;
-  const {email} =props;
+  const {email, token} =props;
 
 
   const initialFValues = {
@@ -78,8 +78,8 @@ const MarkRegister = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getTeacherProfiles();
-        props.getClasses();
+        props.getTeacherProfiles(token);
+        props.getClasses(token);
     }
     if (recordForEdit != null)
             setValues({
@@ -123,6 +123,7 @@ const mapStateToProps = state =>({
     classes: state.classes.classes,
     teacherprofiles: state.people.teacherprofiles,
     email: state.auth.email,
+    token: state.auth.token,
 
 })
 

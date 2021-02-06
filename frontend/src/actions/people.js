@@ -48,12 +48,15 @@ import { createMessage, returnErrors } from './messages';
 
 
 export const getPrincipalProfiles = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
 
-    axios.get(principalprofilesURL)
+    axios.get(principalprofilesURL,config)
         .then(res => {
             dispatch({
                 type: GET_PRINCIPAL_PROFILES,
@@ -63,11 +66,14 @@ export const getPrincipalProfiles = (token) => dispatch => {
 }
 
 export const getBursarProfiles = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(bursarprofilesURL)
+    axios.get(bursarprofilesURL,config)
         .then(res => {
             dispatch({
                 type: GET_BURSAR_PROFILES,
@@ -77,11 +83,14 @@ export const getBursarProfiles = (token) => dispatch => {
 }
 
 export const getTeacherProfiles = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(teacherprofilesURL)
+    axios.get(teacherprofilesURL, config)
         .then(res => {
             dispatch({
                 type: GET_TEACHER_PROFILES,
@@ -91,11 +100,14 @@ export const getTeacherProfiles = (token) => dispatch => {
 }
 
 export const getParentProfiles = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(parentprofilesURL)
+    axios.get(parentprofilesURL,config)
         .then(res => {
             dispatch({
                 type: GET_PARENT_PROFILES,
@@ -105,11 +117,14 @@ export const getParentProfiles = (token) => dispatch => {
 }
 
 export const getStudentProfiles = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(studentprofilesURL)
+    axios.get(studentprofilesURL,config)
         .then(res => {
             dispatch({
                 type: GET_STUDENT_PROFILES,
@@ -121,11 +136,14 @@ export const getStudentProfiles = (token) => dispatch => {
 
 
 export const getAdminStudents = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(adminstudentsURL)
+    axios.get(adminstudentsURL,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDENTS,
@@ -135,11 +153,14 @@ export const getAdminStudents = (token) => dispatch => {
 }
 
 export const getAdminParents = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(adminparentsURL)
+    axios.get(adminparentsURL,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_PARENTS,
@@ -149,11 +170,14 @@ export const getAdminParents = (token) => dispatch => {
 }
 
 export const getAdminPrincipals = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(adminprincipalsURL)
+    axios.get(adminprincipalsURL,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_PRINCIPALS,
@@ -163,11 +187,14 @@ export const getAdminPrincipals = (token) => dispatch => {
 }
 
 export const getAdminBursars = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(adminbursarsURL)
+    axios.get(adminbursarsURL,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_BURSARS,
@@ -177,11 +204,14 @@ export const getAdminBursars = (token) => dispatch => {
 }
 
 export const getAdminTeachers = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(adminteachersURL)
+    axios.get(adminteachersURL,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_TEACHERS,
@@ -192,11 +222,14 @@ export const getAdminTeachers = (token) => dispatch => {
 
 
 export const getBursarParents = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(bursarparentsURL)
+    axios.get(bursarparentsURL,token)
         .then(res => {
             dispatch({
                 type: GET_BURSAR_PARENTS,
@@ -206,11 +239,14 @@ export const getBursarParents = (token) => dispatch => {
 }
 
 export const getBursarStudents = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(bursarstudentsURL)
+    axios.get(bursarstudentsURL,config)
         .then(res => {
             dispatch({
                 type: GET_BURSAR_STUDENTS,
@@ -221,11 +257,14 @@ export const getBursarStudents = (token) => dispatch => {
 
 
 export const getAdminStudent = (id, token ) => dispatch =>{
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`http://127.0.0.1:8000/api/people/admin-students/${id}`)
+    axios.get(`http://127.0.0.1:8000/api/people/admin-students/${id}`,config)
       .then(res => {
           dispatch({
               type: GET_ADMIN_STUDENT,
@@ -236,11 +275,14 @@ export const getAdminStudent = (id, token ) => dispatch =>{
 }
 
 export const getBursarStudent = (id, token) => dispatch =>{
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`http://127.0.0.1:8000/api/people/bursar-students/${id}`)
+    axios.get(`http://127.0.0.1:8000/api/people/bursar-students/${id}`, config)
       .then(res => {
           dispatch({
               type: GET_BURSAR_STUDENT,
@@ -251,11 +293,14 @@ export const getBursarStudent = (id, token) => dispatch =>{
 }
 
 export const getAdminParent = (id, token) => dispatch =>{
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`http://127.0.0.1:8000/api/people/admin-parents/${id}`)
+    axios.get(`http://127.0.0.1:8000/api/people/admin-parents/${id}`,config)
       .then(res => {
           dispatch({
               type: GET_ADMIN_PARENT,
@@ -266,11 +311,14 @@ export const getAdminParent = (id, token) => dispatch =>{
 }
 
 export const getBursarParent = (id, token) => dispatch =>{
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`http://127.0.0.1:8000/api/people/bursar-parents/${id}`)
+    axios.get(`http://127.0.0.1:8000/api/people/bursar-parents/${id}`, config)
       .then(res => {
           dispatch({
               type: GET_BURSAR_PARENT,
@@ -281,11 +329,14 @@ export const getBursarParent = (id, token) => dispatch =>{
 }
 
 export const getAdminBursar = (id, token) => dispatch =>{
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`http://127.0.0.1:8000/api/people/admin-bursars/${id}`)
+    axios.get(`http://127.0.0.1:8000/api/people/admin-bursars/${id}`, config)
       .then(res => {
           dispatch({
               type: GET_ADMIN_BURSAR,
@@ -296,11 +347,14 @@ export const getAdminBursar = (id, token) => dispatch =>{
 }
 
 export const getAdminPrincipal = (id, token) => dispatch =>{
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`http://127.0.0.1:8000/api/people/admin-principals/${id}`)
+    axios.get(`http://127.0.0.1:8000/api/people/admin-principals/${id}`, config)
       .then(res => {
           dispatch({
               type: GET_ADMIN_PRINCIPAL,
@@ -311,11 +365,14 @@ export const getAdminPrincipal = (id, token) => dispatch =>{
 }
 
 export const getAdminTeacher = (id, token) => dispatch =>{
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(`http://127.0.0.1:8000/api/people/admin-teachers/${id}`)
+    axios.get(`http://127.0.0.1:8000/api/people/admin-teachers/${id}`, config)
       .then(res => {
           dispatch({
               type: GET_ADMIN_TEACHER,
@@ -328,11 +385,14 @@ export const getAdminTeacher = (id, token) => dispatch =>{
 
 // Add
 export const addPrincipal = (principal, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(createprincipalURL, principal)
+    axios.post(createprincipalURL, principal, config)
         .then(res => {
             dispatch({
                 type: CREATE_PRINCIPAL,
@@ -342,11 +402,14 @@ export const addPrincipal = (principal, token) => dispatch => {
 }
 
 export const addBursar = (bursar, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(createbursarURL, bursar)
+    axios.post(createbursarURL, bursar, config)
         .then(res => {
             dispatch({
                 type: CREATE_BURSAR,
@@ -356,11 +419,14 @@ export const addBursar = (bursar, token) => dispatch => {
 }
 
 export const addTeacher = (teacher, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(createteacherURL, teacher)
+    axios.post(createteacherURL, teacher, config)
         .then(res => {
             dispatch({
                 type: CREATE_TEACHER,

@@ -11,8 +11,9 @@ from attendance.serializers import (
 
 
 class TeacherAttendanceViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
+	queryset = Attendance.objects.all()
 
 	def get_serializer_class(self, *args, **kwargs):
 
@@ -26,8 +27,8 @@ class TeacherAttendanceViewSet(viewsets.ModelViewSet):
 
 
 
-	def get_queryset(self, *args, **kwargs):
-		teacher = self.request.user
-		queryset =teacher.registerrecords.all().order_by('-id')
-
-		return queryset
+	# def get_queryset(self, *args, **kwargs):
+	# 	teacher = self.request.user
+	# 	queryset =teacher.registerrecords.all().order_by('-id')
+	#
+	# 	return queryset

@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react"
-import {  editAttendanceRecord, addAttendanceRecord } from '../../actions/attendances';
+import {  editAttendanceRecord, addAttendanceRecord, getAdminAttendanceRecords } from '../../actions/attendances';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
 import axios from 'axios';
-import { 
-  Paper, 
-  makeStyles, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  Toolbar, 
-  InputAdornment } 
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment }
 from '@material-ui/core';
 import AddRecord from './AddRecord';
 import  Controls  from "../../components/formcontrols/Controls";
@@ -57,40 +57,30 @@ const Records = props => {
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
-    const [records, setRecords] = useState([])
-
+    const {token, records} = props;
     const {id} =props.data
 
 
-  
+
 
 
   const addOrEdit = (fee, resetForm) => {
       if (fee.id > 0)
-        props.editAttendanceRecord(fee.id, fee)    
+        props.editAttendanceRecord(fee.id, fee, token)
       else
-        console.log(fee)        //   
+        console.log(fee)        //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-
-    const fetchData = async () => {
-        try {
-            const res = await axios.get(`http://127.0.0.1:8000/api/attendance/student-attendance-records/?id=${id}`);
-
-            setRecords(res.data);
-        }
-        catch (err) {
-
-        }
+    if(!props.fetched) {
+        props.getAdminAttendanceRecords(id,token);
     }
+    console.log('mount it!');
 
-        fetchData();
-    }, []);
+  }, []);
 
 
 
@@ -176,7 +166,7 @@ const Records = props => {
       >
         <AddRecord
             recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit} 
+            addOrEdit={addOrEdit}
         />
       </Popup>
     </>
@@ -184,7 +174,12 @@ const Records = props => {
 };
 
 
+const mapStateToProps = state =>({
+    records: state.adminattendances.attendandancerecords,
+    token: state.auth.token,
+})
+
 export default connect(
-  null, 
-  {editAttendanceRecord, addAttendanceRecord} ) 
+  null,
+  {editAttendanceRecord, addAttendanceRecord} )
   (Records);

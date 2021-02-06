@@ -18,11 +18,14 @@ import { createMessage, returnErrors } from './messages';
 
 // Get
 export const getClasses = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(classesURL)
+    axios.get(classesURL, config)
         .then(res => {
             dispatch({
                 type: GET_CLASSES,
@@ -34,11 +37,14 @@ export const getClasses = (token) => dispatch => {
 
 // Add
 export const addClass = (classi, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(classesURL, classi)
+    axios.post(classesURL, classi,config)
         .then(res => {
             dispatch({
                 type: ADD_CLASS,
@@ -49,11 +55,14 @@ export const addClass = (classi, token) => dispatch => {
 
 //get
 export const getClass = (id, token) => dispatch =>{
-      axios.defaults.headers = {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+      const config =  {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
+            'Accept': 'application/json',
+          }
       };
-      axios.get(`http://127.0.0.1:8000/api/classes/classes/${id}`)
+      axios.get(`http://127.0.0.1:8000/api/classes/classes/${id}`, config)
         .then(res => {
             dispatch({
                 type: GET_CLASS,
@@ -65,12 +74,15 @@ export const getClass = (id, token) => dispatch =>{
 
 //Edit
 export const editClass = (id, classi, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/classes/classes/${id}/`, classi)
+    axios.patch(`http://127.0.0.1:8000/api/classes/classes/${id}/`, classi, config)
         .then(res => {
             dispatch({
                 type: EDIT_CLASS,
@@ -81,11 +93,14 @@ export const editClass = (id, classi, token) => dispatch => {
 
 
 export const getStreams = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(classstreamsURL)
+    axios.get(classstreamsURL, config)
         .then(res => {
             dispatch({
                 type: GET_STREAMS,
@@ -97,11 +112,14 @@ export const getStreams = (token) => dispatch => {
 
 // Add
 export const addStream = (stream, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(classstreamsURL, stream)
+    axios.post(classstreamsURL, stream, config)
         .then(res => {
             dispatch({
                 type: ADD_STREAM,
@@ -113,8 +131,15 @@ export const addStream = (stream, token) => dispatch => {
 
 //Edit
 export const editStream = (id, stream, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
+    };
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/classes/class-streams/${id}/`, stream)
+    axios.patch(`http://127.0.0.1:8000/api/classes/class-streams/${id}/`, stream, config)
         .then(res => {
             dispatch({
                 type: EDIT_STREAM,

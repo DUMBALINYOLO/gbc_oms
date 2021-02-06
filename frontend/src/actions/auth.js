@@ -4,8 +4,12 @@ import {
   AUTH_LOGOUT,
   AUTH_FAIL,
   AUTH_START,
+  USER_LOADED,
+  USER_LOADING,
+  AUTH_ERROR,
 
 } from '../types/authTypes';
+import { createMessage, returnErrors } from './messages';
 
 export const authStart = () => {
   return {
@@ -87,4 +91,49 @@ export const authCheckState = () => {
       }
     }
   };
+};
+
+
+// Setup config with token - helper function
+export const tokenConfig = (getState) => {
+  // Get token from state
+  const token = getState().auth.token;
+
+  // Headers
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  // If token, add to headers config
+  if (token) {
+    config.headers['Authorization'] = `Token ${token}`;
+  }
+
+  return config;
+};
+
+// CHECK TOKEN & LOAD USER
+export const loadUser = (token, email) => (dispatch, getState) => {
+  // User Loading
+  dispatch({ type: USER_LOADING });
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Token ${token}`
+  };
+  axios
+    .get(`http://127.0.0.1:8000/api/people/user/?email=${email}`, headers)
+    .then((res) => {
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: AUTH_ERROR,
+      });
+    });
 };

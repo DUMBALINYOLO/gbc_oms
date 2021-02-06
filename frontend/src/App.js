@@ -72,11 +72,12 @@ import AdminStudyNote from './it/courses/notes/AdminStudyNote';
 import AdminFinishedCourse from './it/courses/courses/AdminFinishedCourse';
 import AdminOngoingCourse from './it/courses/courses/AdminOngoingCourse';
 import AdminInactiveCourse from './it/courses/courses/AdminInactiveCourse';
-import {authCheckState} from './actions/auth';
+import {authCheckState, loadUser} from './actions/auth';
 import TeacherTopic from './teacher/courses/topics/TeacherTopic';
 import TeacherSubTopic from './teacher/courses/subtopics/TeacherSubTopic';
 import TeacherStudyNote from './teacher/courses/notes/TeacherStudyNote';
 import Alerts from './Alert';
+import store from './store';
 
 
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
@@ -87,16 +88,31 @@ const alertOptions = {
 }
 
 class App extends React.Component {
-  componentDidMount() {
-    this.props.onTryAutoSignup();
+	constructor(props) {
+    super(props);
+		this.state ={
+			token: null,
+			email: null,
+		}
   }
 
-  constructor(props) {
-    super(props);
+
+
+
+  componentDidMount() {
+    this.props.onTryAutoSignup();
+		const {token, email} = this.state;
+		this.setState({
+			token: this.props.token,
+			email: this.props.email,
+		})
+		store.dispatch(loadUser(token, email));
   }
+
   render() {
-    const {authenticated} = this.props;
-    console.log(authenticated)
+    const {user} = this.props;
+
+    console.log(user);
     return (
       <ThemeWrapper>
         <AppContext.Consumer>
@@ -185,7 +201,9 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    authenticated: state.auth.token
+    token: state.auth.token,
+		user: state.auth.user,
+		email: state.auth.email,
   };
 };
 

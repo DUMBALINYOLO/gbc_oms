@@ -12,8 +12,8 @@ from attendance.serializers import (
 
 
 class StudentAttendanceViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 	serializer_class = StudentAttendanceRecordListSerializer
 
 	def get_queryset(self, *args, **kwargs):

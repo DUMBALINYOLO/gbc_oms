@@ -19,8 +19,8 @@ from curriculum.serializers import (
 
 
 class CurriculumViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	queryset = Curriculum.objects.all()
 
@@ -34,8 +34,8 @@ class CurriculumViewSet(viewsets.ModelViewSet):
 
 
 class SubjectViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 

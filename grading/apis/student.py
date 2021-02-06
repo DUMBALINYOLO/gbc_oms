@@ -7,8 +7,8 @@ from grading.serializers import StudentRecordListDetailSerializer
 
 class StudentTestViewSet(viewsets.ModelViewSet):
 	serializer_class = StudentRecordListDetailSerializer
-	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get_queryset(self, *args, **kwargs):
@@ -28,8 +28,8 @@ class StudentTestViewSet(viewsets.ModelViewSet):
 
 class StudentExcerciseViewSet(viewsets.ModelViewSet):
 	serializer_class = StudentRecordListDetailSerializer
-	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get_queryset(self, *args, **kwargs):
@@ -50,8 +50,8 @@ class StudentExcerciseViewSet(viewsets.ModelViewSet):
 
 class StudentAsignmentViewSet(viewsets.ModelViewSet):
 	serializer_class = StudentRecordListDetailSerializer
-	authentication_classes = (TokenAuthentication,SessionAuthentication, BasicAuthentication)
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly,]
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 
 	def get_queryset(self, *args, **kwargs):

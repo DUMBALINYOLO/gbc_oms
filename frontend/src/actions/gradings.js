@@ -38,11 +38,14 @@ import {
 
 // Get
 export const getTestRecords = (token) => dispatch => {
-		axios.defaults.headers = {
-			"Content-Type": "application/json",
-			Authorization: `Token ${token}`
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
 		};
-    axios.get(gradingtestrecordsURL)
+    axios.get(gradingtestrecordsURL,config)
         .then(res => {
             dispatch({
                 type: GET_TEST_RECORDS,
@@ -52,11 +55,14 @@ export const getTestRecords = (token) => dispatch => {
 }
 
 export const getAssignmentRecords = (token) => dispatch => {
-		axios.defaults.headers = {
-			"Content-Type": "application/json",
-			Authorization: `Token ${token}`
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
 		};
-    axios.get(gradingasignmentrecordsURL)
+    axios.get(gradingasignmentrecordsURL,config)
         .then(res => {
             dispatch({
                 type: GET_ASSIGNMENT_RECORDS,
@@ -66,11 +72,14 @@ export const getAssignmentRecords = (token) => dispatch => {
 }
 
 export const getExcerciseRecords = (token) => dispatch => {
-		axios.defaults.headers = {
-			"Content-Type": "application/json",
-			Authorization: `Token ${token}`
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
 		};
-    axios.get(gradingexcerciserecordsURL)
+    axios.get(gradingexcerciserecordsURL,config)
         .then(res => {
             dispatch({
                 type: GET_EXCERCISE_RECORDS,
@@ -80,12 +89,15 @@ export const getExcerciseRecords = (token) => dispatch => {
 }
 
 export const editTestRecord = (id, grade, token) => dispatch => {
-		axios.defaults.headers = {
-			"Content-Type": "application/json",
-			Authorization: `Token ${token}`
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
 		};
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/grading/grading-test-records/${id}/`, grade)
+    axios.patch(`http://127.0.0.1:8000/api/grading/grading-test-records/${id}/`, grade,config)
         .then(res => {
             dispatch({
                 type: EDIT_TEST_RECORD,
@@ -95,12 +107,15 @@ export const editTestRecord = (id, grade, token) => dispatch => {
 }
 
 export const editAssignmentRecord = (id, grade, token) => dispatch => {
-		axios.defaults.headers = {
-			"Content-Type": "application/json",
-			Authorization: `Token ${token}`
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
 		};
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/grading/asignment-test-records/${id}/`, grade)
+    axios.patch(`http://127.0.0.1:8000/api/grading/asignment-test-records/${id}/`, grade,config)
         .then(res => {
             dispatch({
                 type: EDIT_ASSIGNMENT_RECORD,
@@ -110,12 +125,15 @@ export const editAssignmentRecord = (id, grade, token) => dispatch => {
 }
 
 export const editExcerciseRecord = (id, grade, token) => dispatch => {
-		axios.defaults.headers = {
-			"Content-Type": "application/json",
-			Authorization: `Token ${token}`
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
 		};
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/grading/grading-excercise-records/${id}/`, grade)
+    axios.patch(`http://127.0.0.1:8000/api/grading/grading-excercise-records/${id}/`, grade,config)
         .then(res => {
             dispatch({
                 type: EDIT_EXCERCISE_RECORD,
@@ -127,11 +145,14 @@ export const editExcerciseRecord = (id, grade, token) => dispatch => {
 
 // Get
 export const getAdminStudentTests = (token) => dispatch => {
-		axios.defaults.headers = {
-			"Content-Type": "application/json",
-			Authorization: `Token ${token}`
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
 		};
-    axios.get(adminstudenttestsURL)
+    axios.get(adminstudenttestsURL,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDENT_TESTS,
@@ -139,12 +160,16 @@ export const getAdminStudentTests = (token) => dispatch => {
             });
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
+
 export const getAdminStudentExcercises = (token) => dispatch => {
-		axios.defaults.headers = {
-			"Content-Type": "application/json",
-			Authorization: `Token ${token}`
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
 		};
-    axios.get(adminstudentexcercisesURL)
+    axios.get(adminstudentexcercisesURL,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDENT_EXCERCISES,
@@ -154,11 +179,14 @@ export const getAdminStudentExcercises = (token) => dispatch => {
 }
 
 export const getAdminStudentAssignments = (token) => dispatch => {
-		axios.defaults.headers = {
-			"Content-Type": "application/json",
-			Authorization: `Token ${token}`
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
 		};
-    axios.get(adminstudentassignmentsURL)
+    axios.get(adminstudentassignmentsURL,config)
         .then(res => {
             dispatch({
                 type: GET_ADMIN_STUDENT_ASSIGNMENTS,
@@ -169,11 +197,14 @@ export const getAdminStudentAssignments = (token) => dispatch => {
 
 // Get
 export const getTeacherStudentTests = (token) => dispatch => {
-		axios.defaults.headers = {
-			"Content-Type": "application/json",
-			Authorization: `Token ${token}`
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
 		};
-    axios.get(teacherstudenttestsURL)
+    axios.get(teacherstudenttestsURL,config)
         .then(res => {
             dispatch({
                 type: GET_TEACHER_STUDENT_TESTS,
@@ -182,11 +213,14 @@ export const getTeacherStudentTests = (token) => dispatch => {
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 export const getTeacherStudentExcercises = (token) => dispatch => {
-		axios.defaults.headers = {
-			"Content-Type": "application/json",
-			Authorization: `Token ${token}`
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
 		};
-    axios.get(teacherstudentexcercisesURL)
+    axios.get(teacherstudentexcercisesURL,config)
         .then(res => {
             dispatch({
                 type: GET_TEACHER_STUDENT_EXCERCISES,
@@ -196,11 +230,14 @@ export const getTeacherStudentExcercises = (token) => dispatch => {
 }
 
 export const getTeacherStudentAssignments = (token) => dispatch => {
-		axios.defaults.headers = {
-			"Content-Type": "application/json",
-			Authorization: `Token ${token}`
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
 		};
-    axios.get(teacherstudentassignmentsURL)
+    axios.get(teacherstudentassignmentsURL,config)
         .then(res => {
             dispatch({
                 type: GET_TEACHER_STUDENT_ASSIGNMENTS,
@@ -210,11 +247,14 @@ export const getTeacherStudentAssignments = (token) => dispatch => {
 }
 
 export const getAdminStudentTest = (id, token) => dispatch =>{
-	axios.defaults.headers = {
-		"Content-Type": "application/json",
-		Authorization: `Token ${token}`
+	const config =  {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Token ${token}`,
+				'Accept': 'application/json',
+			}
 	};
-	axios.get(`http://127.0.0.1:8000/api/grading/admin-student-tests/${id}`)
+	axios.get(`http://127.0.0.1:8000/api/grading/admin-student-tests/${id}`,config)
 	  .then(res => {
 		  dispatch({
 			  type: GET_ADMIN_STUDENT_TEST,
@@ -226,11 +266,14 @@ export const getAdminStudentTest = (id, token) => dispatch =>{
 
 
 export const getAdminStudentExcercise = (id,token) => dispatch =>{
-	axios.defaults.headers = {
-		"Content-Type": "application/json",
-		Authorization: `Token ${token}`
+	const config =  {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Token ${token}`,
+				'Accept': 'application/json',
+			}
 	};
-	axios.get(`http://127.0.0.1:8000/api/grading/admin-student-excercises/${id}`)
+	axios.get(`http://127.0.0.1:8000/api/grading/admin-student-excercises/${id}`,config)
 	  .then(res => {
 		  dispatch({
 			  type: GET_ADMIN_STUDENT_EXCERCISE,
@@ -242,11 +285,14 @@ export const getAdminStudentExcercise = (id,token) => dispatch =>{
 
 
 export const getAdminStudentAssignment = (id, token) => dispatch =>{
-	axios.defaults.headers = {
-		"Content-Type": "application/json",
-		Authorization: `Token ${token}`
+	const config =  {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Token ${token}`,
+				'Accept': 'application/json',
+			}
 	};
-	axios.get(`http://127.0.0.1:8000/api/grading/admin-student-assignments/${id}`)
+	axios.get(`http://127.0.0.1:8000/api/grading/admin-student-assignments/${id}`, config)
 	  .then(res => {
 		  dispatch({
 			  type: GET_ADMIN_STUDENT_ASSIGNMENT,
@@ -259,11 +305,14 @@ export const getAdminStudentAssignment = (id, token) => dispatch =>{
 
 
 export const getTeacherStudentTest = (id, token) => dispatch =>{
-	axios.defaults.headers = {
-		"Content-Type": "application/json",
-		Authorization: `Token ${token}`
+	const config =  {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Token ${token}`,
+				'Accept': 'application/json',
+			}
 	};
-	axios.get(`http://127.0.0.1:8000/api/grading/teacher-student-tests/${id}`)
+	axios.get(`http://127.0.0.1:8000/api/grading/teacher-student-tests/${id}`,config)
 	  .then(res => {
 		  dispatch({
 			  type: GET_TEACHER_STUDENT_TEST,
@@ -275,11 +324,14 @@ export const getTeacherStudentTest = (id, token) => dispatch =>{
 
 
 export const getTeacherStudentExcercise = (id,token) => dispatch =>{
-	axios.defaults.headers = {
-		"Content-Type": "application/json",
-		Authorization: `Token ${token}`
+	const config =  {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Token ${token}`,
+				'Accept': 'application/json',
+			}
 	};
-	axios.get(`http://127.0.0.1:8000/api/grading/teacher-student-excercises/${id}`)
+	axios.get(`http://127.0.0.1:8000/api/grading/teacher-student-excercises/${id}`,config)
 	  .then(res => {
 		  dispatch({
 			  type: GET_TEACHER_STUDENT_EXCERCISE,
@@ -291,11 +343,14 @@ export const getTeacherStudentExcercise = (id,token) => dispatch =>{
 
 
 export const getTeacherStudentAssignment = (id,token) => dispatch =>{
-	axios.defaults.headers = {
-		"Content-Type": "application/json",
-		Authorization: `Token ${token}`
+	const config =  {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Token ${token}`,
+				'Accept': 'application/json',
+			}
 	};
-	axios.get(`http://127.0.0.1:8000/api/grading/teacher-student-assignments/${id}`)
+	axios.get(`http://127.0.0.1:8000/api/grading/teacher-student-assignments/${id}`,config)
 	  .then(res => {
 		  dispatch({
 			  type: GET_TEACHER_STUDENT_ASSIGNMENT,
@@ -310,11 +365,14 @@ export const getTeacherStudentAssignment = (id,token) => dispatch =>{
 
 // Add
 export const addGrade = (grade,token) => dispatch => {
-		axios.defaults.headers = {
-			"Content-Type": "application/json",
-			Authorization: `Token ${token}`
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
 		};
-    axios.post(teacherstudenttestsURL, grade)
+    axios.post(teacherstudenttestsURL, grade,config)
         .then(res => {
             dispatch({
                 type: ADD_STUDENT_GRADE,
@@ -327,12 +385,15 @@ export const addGrade = (grade,token) => dispatch => {
 
 //Edit
 export const editGrade = (id, grade,token) => dispatch => {
-		axios.defaults.headers = {
-			"Content-Type": "application/json",
-			Authorization: `Token ${token}`
+		const config =  {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Token ${token}`,
+					'Accept': 'application/json',
+				}
 		};
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/grading/teacher-student-assignments/${id}/`, grade)
+    axios.patch(`http://127.0.0.1:8000/api/grading/teacher-student-assignments/${id}/`, grade,config)
         .then(res => {
             dispatch({
                 type: EDIT_STUDENT_GRADE,

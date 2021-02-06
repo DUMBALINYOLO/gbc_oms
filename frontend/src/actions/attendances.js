@@ -21,11 +21,14 @@ import { createMessage, returnErrors } from './messages';
 
 // Get
 export const getAdminAttendances = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(adminattendancesURL)
+    axios.get(adminattendancesURL, config)
         .then(res => {
             dispatch({
                 type: GET_ATTENDANCES,
@@ -36,11 +39,14 @@ export const getAdminAttendances = (token) => dispatch => {
 
 //Delete
 export const deleteAdminAttendance = (id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.delete(adminattendancesURL, id)
+    axios.delete(adminattendancesURL, config)
         .then(res => {
             dispatch({
                 type: DELETE_ATTENDANCE,
@@ -51,12 +57,15 @@ export const deleteAdminAttendance = (id, token) => dispatch => {
 
 // Add
 export const addAdminAttendance = (attendance, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
 
-    axios.post(adminattendancesURL, attendance)
+    axios.post(adminattendancesURL, attendance, config)
         .then(res => {
             dispatch({
                 type: ADD_ATTENDANCE,
@@ -67,11 +76,14 @@ export const addAdminAttendance = (attendance, token) => dispatch => {
 
 //get
 export const getAdminAttendance = (id, token) => dispatch =>{
-      axios.defaults.headers = {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+      const config =  {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
+            'Accept': 'application/json',
+          }
       };
-      axios.get(`http://127.0.0.1:8000/api/attendance/admin-attendances/${id}`)
+      axios.get(`http://127.0.0.1:8000/api/attendance/admin-attendances/${id}`, config)
         .then(res => {
             dispatch({
                 type: GET_ATTENDANCE,
@@ -83,12 +95,15 @@ export const getAdminAttendance = (id, token) => dispatch =>{
 
 //Edit
 export const editAdminAttendance = (id, attendance, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/attendance/admin-attendances/${id}/`, attendance)
+    axios.patch(`http://127.0.0.1:8000/api/attendance/admin-attendances/${id}/`, attendance, config)
         .then(res => {
             dispatch({
                 type: EDIT_ATTENDANCE,
@@ -101,11 +116,14 @@ export const editAdminAttendance = (id, attendance, token) => dispatch => {
 
 // Get
 export const getTeacherAttendances = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(teacherattendancesURL)
+    axios.get(teacherattendancesURL, config)
         .then(res => {
             dispatch({
                 type: GET_ATTENDANCES,
@@ -116,11 +134,14 @@ export const getTeacherAttendances = (token) => dispatch => {
 
 //Delete
 export const deleteTeacherAttendance = (id, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.delete(teacherattendancesURL, id)
+    axios.delete(teacherattendancesURL, id, config)
         .then(res => {
             dispatch({
                 type: DELETE_ATTENDANCE,
@@ -131,11 +152,14 @@ export const deleteTeacherAttendance = (id, token) => dispatch => {
 
 // Add
 export const addTeacherAttendance = (attendance, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(teacherattendancesURL, attendance)
+    axios.post(teacherattendancesURL, attendance, config)
         .then(res => {
             dispatch({
                 type: ADD_ATTENDANCE,
@@ -146,11 +170,14 @@ export const addTeacherAttendance = (attendance, token) => dispatch => {
 
 //get
 export const getTeacherAttendance = (id, token) => dispatch =>{
-      axios.defaults.headers = {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+      const config =  {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
+            'Accept': 'application/json',
+          }
       };
-      axios.get(`http://127.0.0.1:8000/api/attendance/teacher-attendances/${id}`)
+      axios.get(`http://127.0.0.1:8000/api/attendance/teacher-attendances/${id}`, config)
         .then(res => {
             dispatch({
                 type: GET_ATTENDANCE,
@@ -162,12 +189,15 @@ export const getTeacherAttendance = (id, token) => dispatch =>{
 
 //Edit
 export const editTeacherAttendance = (id, attendance, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/attendance/teacher-attendances/${id}/`, attendance)
+    axios.patch(`http://127.0.0.1:8000/api/attendance/teacher-attendances/${id}/`, attendance, config)
         .then(res => {
             dispatch({
                 type: EDIT_ATTENDANCE,
@@ -180,11 +210,14 @@ export const editTeacherAttendance = (id, attendance, token) => dispatch => {
 
 // Get
 export const getStudentAttendances = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(studentattendancesURL)
+    axios.get(studentattendancesURL, token)
         .then(res => {
             dispatch({
                 type: GET_STUDENT_ATTENDANCES,
@@ -197,12 +230,15 @@ export const getStudentAttendances = (token) => dispatch => {
 
 
 // Get
-export const getAdminAttendanceRecords = (token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+export const getAdminAttendanceRecords = (attendance_id, token) => dispatch => {
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.get(studentattendancerecordsURL)
+    axios.get(`${studentattendancerecordsURL}?id=${attendance_id}`, config)
         .then(res => {
             dispatch({
                 type: GET_ATTENDANCE_RECORDS,
@@ -213,11 +249,14 @@ export const getAdminAttendanceRecords = (token) => dispatch => {
 
 // Add
 export const addAttendanceRecord = (record, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
-    axios.post(studentattendancerecordsURL, record)
+    axios.post(studentattendancerecordsURL, record, config)
         .then(res => {
             dispatch({
                 type: ADD_ATTENDANCE_RECORD,
@@ -228,12 +267,15 @@ export const addAttendanceRecord = (record, token) => dispatch => {
 
 //Edit
 export const editAttendanceRecord = (id, record, token) => dispatch => {
-    axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
+    const config =  {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        }
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`http://127.0.0.1:8000/api/attendance/student-attendance-records/${id}/`, record)
+    axios.patch(`http://127.0.0.1:8000/api/attendance/student-attendance-records/${id}/`, record, config)
         .then(res => {
             dispatch({
                 type: EDIT_ATTENDANCE_RECORD,
