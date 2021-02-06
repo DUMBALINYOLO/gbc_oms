@@ -76,32 +76,32 @@ switch(action.type){
             ...state,
             classes: sarrayList,
         };
-    case GET_STUDENTS:
+    case GET_CLASS_STUDENTS:
         return {
             ...state,
             students: action.payload
         };
-    case GET_STUDENT:
+    case GET_CLASS_STUDENT:
         return {
             ...state,
             student: action.payload
         };
-    case GET_SUBJECTS:
+    case GET_CLASS_SUBJECTS:
         return {
             ...state,
             subjects: action.payload
         };
-    case GET_SUBJECT:
+    case GET_CLASS_SUBJECT:
         return {
             ...state,
             subject: action.payload
         };
-    case ADD_SUBJECT:
+    case ADD_CLASS_SUBJECT:
         return {
             ...state,
             subject: [...state.subjects, action.payload]
         };
-    case EDIT_SUBJECT:
+    case EDIT_CLASS_SUBJECT:
         const jarrayList = state.subjects;
         arrayList.splice(arrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
         return {

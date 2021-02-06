@@ -155,7 +155,7 @@ export const getSubjects = (token) => dispatch => {
     axios.get(classsubjectsURL, headers)
         .then(res => {
             dispatch({
-                type: GET_SUBJECTS,
+                type: GET_CLASS_SUBJECTS,
                 payload: res.data
             });
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
@@ -171,7 +171,7 @@ export const addSubject = (subject, token) => dispatch => {
     axios.post(classsubjectsURL, subject,headers)
         .then(res => {
             dispatch({
-                type: ADD_SUBJECT,
+                type: ADD_CLASS_SUBJECT,
                 payload: res.data
             });
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
@@ -187,7 +187,7 @@ export const getSubject = (id, token) => dispatch =>{
       axios.get(`${classsubjectsURL}${id}/`, headers)
         .then(res => {
             dispatch({
-                type: GET_SUBJECT,
+                type: GET_CLASS_SUBJECT,
                 payload: res.data
             });
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
@@ -205,7 +205,7 @@ export const editSubject = (id, subject, token) => dispatch => {
     axios.patch(`${classsubjectsURL}${id}/`, subject, headers)
         .then(res => {
             dispatch({
-                type: EDIT_SUBJECT,
+                type: EDIT_CLASS_SUBJECT,
                 payload: res.data
             });
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
@@ -221,7 +221,7 @@ export const getStudents = (token) => dispatch => {
     axios.get(classstudentsURL, headers)
         .then(res => {
             dispatch({
-                type: GET_STUDENTS,
+                type: GET_CLASS_STUDENTS,
                 payload: res.data
             });
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
@@ -237,7 +237,7 @@ export const getStudent = (id, token) => dispatch =>{
       axios.get(`${classstudentsURL}${id}/`, headers)
         .then(res => {
             dispatch({
-                type: GET_STUDENT,
+                type: GET_CLASS_STUDENT,
                 payload: res.data
             });
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
