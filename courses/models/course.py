@@ -42,8 +42,8 @@ class Course(SoftDeletionModel):
     short_name = models.CharField(max_length=100)
     status = models.CharField(max_length=300, choices=COURSES_STATUS_CHOICES)
     created = models.DateTimeField(auto_now_add=True)
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    start_date = models.DateField()
+    end_date = models.DateField()
     course_number = models.CharField(max_length=200, unique=True, blank=True, null=True)
     description = models.TextField()
 

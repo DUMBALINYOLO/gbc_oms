@@ -57,12 +57,10 @@ const Records = props => {
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
-    const {token, records} = props;
+    const {token} = props;
     const {id} =props.data
-
-
-
-
+    console.log(id)
+    const [records, setRecords] = useState([])
 
 
   const addOrEdit = (fee, resetForm, token) => {
@@ -76,11 +74,20 @@ const Records = props => {
   }
 
   useEffect(() => {
-    if(!props.fetched) {
-        props.getAdminAttendanceRecords(id,token);
-    }
-    console.log('mount it!');
+    window.scrollTo(0, 0);
 
+    const fetchData = async () => {
+        try {
+            const res = await axios.get(`http://127.0.0.1:8000/api/attendance/student-attendance-records/?id=${id}`);
+
+            setRecords(res.data);
+        }
+        catch (err) {
+
+          }
+      }
+
+      fetchData();
   }, []);
 
 
@@ -182,5 +189,5 @@ const mapStateToProps = state =>({
 
 export default connect(
   null,
-  {editAttendanceRecord, addAttendanceRecord} )
+  {editAttendanceRecord, addAttendanceRecord, getAdminAttendanceRecords} )
   (Records);

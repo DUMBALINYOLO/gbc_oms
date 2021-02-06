@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {
         ADD_ATTENDANCE,
+        ADD_TEACHER_ATTENDANCE,
         GET_ATTENDANCES,
         DELETE_ATTENDANCE,
         GET_ATTENDANCE,
@@ -144,7 +145,7 @@ export const addTeacherAttendance = (attendance, token) => dispatch => {
     axios.post(teacherattendancesURL, attendance, headers)
         .then(res => {
             dispatch({
-                type: ADD_ATTENDANCE,
+                type: ADD_TEACHER_ATTENDANCE,
                 payload: res.data
             });
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));

@@ -23,6 +23,8 @@ class Attendance(SoftDeletionModel):
 
 
 	def save(self, *args, **kwargs):
+		if self.recorded_by is None:
+			self.recorded_by = self.klass.class_teacher
 		super(Attendance, self).save(*args, **kwargs)
 		if self.records.count() <= 0:
 			for student in self.klass.students.all():

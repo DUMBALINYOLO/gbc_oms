@@ -44,7 +44,6 @@ const MarkRegister = props => {
 
   const initialFValues = {
       klass: '',
-      recorded_by: email,
   }
 
   const validate = (fieldValues = values) => {

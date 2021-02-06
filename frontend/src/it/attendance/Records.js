@@ -80,8 +80,13 @@ const Records = props => {
     window.scrollTo(0, 0);
 
     const fetchData = async () => {
+        const headers ={
+              "Content-Type": "application/json",
+              Authorization: `Token ${token}`,
+              'Accept': 'application/json',
+        };
         try {
-            const res = await axios.get(`http://127.0.0.1:8000/api/attendance/student-attendance-records/?id=${id}`);
+            const res = await axios.get(`http://127.0.0.1:8000/api/attendance/student-attendance-records/?id=${id}`, headers);
 
             setRecords(res.data);
         }

@@ -18,6 +18,12 @@ def get_user(email):
     user_profile = get_object_or_404(TeacherProfile, user=user)
     return user_profile
 
+
+class TeacherProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ['id', 'user']
+        model = TeacherProfile
+
 class AttendanceRecordUpdateSerializer(serializers.ModelSerializer):
 
 	class Meta:
@@ -58,9 +64,11 @@ class AdminAttendanceCreateSerializer(serializers.ModelSerializer):
         # print(validated_data.errors)
         user_email = validated_data['recorded_by']
         user = get_user(email=user_email)
+        user_s = TeacherProfileSerializer(user)
+        print(user_s)
         attendance = Attendance(
         			klass = validated_data['klass'],
-                    recorded_by = user,
+                    recorded_by = user_s.id,
         		)
         attendance.save()
         return attendance

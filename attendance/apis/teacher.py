@@ -16,13 +16,8 @@ class TeacherAttendanceViewSet(viewsets.ModelViewSet):
 	queryset = Attendance.objects.all()
 
 	def get_serializer_class(self, *args, **kwargs):
-
-		if self.action == 'create':
+		if self.action in ['put', 'create', 'patch', 'update']:
 			return TeacherAttendanceCreateSerializer
-		elif self.action in ['put', 'patch', 'update']:
-			return TeacherAttendanceUpdateSerializer
-		elif self.action == 'retrieve':
-			return TeacherAttendanceDetailSerializer
 		return TeacherAttendanceListSerializer
 
 

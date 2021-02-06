@@ -4,6 +4,7 @@ import {
     DELETE_ATTENDANCE,
     GET_ATTENDANCE,
     EDIT_ATTENDANCE,
+    ADD_TEACHER_ATTENDANCE
 
 
 } from '../types/attendanceTypes';
@@ -26,7 +27,7 @@ export default function(state = initialState, action){
                 ...state,
                 teacherattendance: state.teacherattendances.filter(account=> account.id !== action.payload)
             };
-        case ADD_ATTENDANCE:
+        case ADD_TEACHER_ATTENDANCE:
             return {
                 ...state,
                 teacherattendance: [...state.teacherattendances, action.payload]

@@ -275,7 +275,7 @@ class StudentGeneralGradeExcerciseViewSet(viewsets.ModelViewSet):
 
 
 class StudentGeneralGradeAssignmentViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,permissions.AllowAny,)
+	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.AllowAny,]
 	serializer_class = AdminStudentGradingRecordsListDetailSerializer
 

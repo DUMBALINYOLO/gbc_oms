@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import TeacherLayout from "../layout/TeacherLayout";
-import { getAdminAttendances, editAdminAttendance, addAdminAttendance } from '../../actions/attendances';
+import { getAdminAttendances, editAdminAttendance, addTeacherAttendance } from '../../actions/attendances';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { Search } from "@material-ui/icons";
@@ -78,7 +78,7 @@ const TeacherAttendances = props => {
       if (fee.id > 0)
         props.editAdminAttendance(fee.id, fee, token)
       else
-        props.addAdminAttendance(fee, token)
+        props.addTeacherAttendance(fee, token)
         console.log(fee)
         //
       resetForm()
@@ -192,5 +192,5 @@ const mapStateToProps = state =>({
 
 export default connect(
   mapStateToProps,
-  {getAdminAttendances, editAdminAttendance, addAdminAttendance} )
+  {getAdminAttendances, editAdminAttendance, addTeacherAttendance} )
   (TeacherAttendances);

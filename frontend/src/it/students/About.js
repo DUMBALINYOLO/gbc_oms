@@ -31,10 +31,10 @@ class About extends React.Component {
         >
           <Grid item md={7} xs={12}>
             <div>
-              <h1>Soon....</h1>  
+              <h1>Soon....</h1>
             </div>
           </Grid>
-  
+
           <Grid item md={5} xs={12}>
             {/* Profile Progress */}
             <div className={classes.progressRoot}>
@@ -58,7 +58,7 @@ class About extends React.Component {
             </div>
             {/* ----------------------------------------------------------------------*/}
             {/* About Me */}
-            <PapperBlock title='USERNAME' icon="ios-contact-outline" whiteBg noMargin desc={data.username.toUpperCase()}>
+            <PapperBlock title='USERNAME' icon="ios-contact-outline" whiteBg noMargin desc={data.username}>
               <Divider className={classes.divider} />
               <List dense className={classes.profileList}>
                 <ListItem>
@@ -88,12 +88,12 @@ class About extends React.Component {
               </List>
             </PapperBlock>
             <Divider className={classes.divider} />
-            
+
           </Grid>
         </Grid>
       );
     }
   }
-  
+
 
   export default withStyles(styles)(About);
