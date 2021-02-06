@@ -35,10 +35,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const initialFValues = {
-    status: '', 
+    status: '',
 }
-
-
 
 const MarkRegister = props => {
   const { addOrEdit, recordForEdit } = props
@@ -64,7 +62,7 @@ const MarkRegister = props => {
       resetForm
   } = useForm(initialFValues, true, validate);
 
-  
+
   const handleSubmit = e => {
       e.preventDefault()
       if (validate()) {
@@ -95,10 +93,10 @@ const MarkRegister = props => {
                             onChange={handleInputChange}
                             options={props.attendancestatuschoices}
                             error={errors.status}
-                    />              
+                    />
                   </Grid>
                   <Grid item xs={6}>
- 
+
                       <div>
                           <Controls.Button
                               type="submit"

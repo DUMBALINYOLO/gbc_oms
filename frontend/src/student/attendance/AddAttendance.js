@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const initialFValues = {
-    klass: '', 
+    klass: '',
     recorded_by: '',
 }
 
@@ -67,7 +67,7 @@ const MarkRegister = props => {
       resetForm
   } = useForm(initialFValues, true, validate);
 
-  
+
   const handleSubmit = e => {
       e.preventDefault()
       if (validate()) {
@@ -86,8 +86,6 @@ const MarkRegister = props => {
             })
   }, [recordForEdit]);
 
-
-
   return (
         <Form onSubmit={handleSubmit}>
               <Grid container>
@@ -99,7 +97,7 @@ const MarkRegister = props => {
                             onChange={handleInputChange}
                             options={props.classes}
                             error={errors.klass}
-                    />              
+                    />
                   </Grid>
                   <Grid item xs={6}>
                       <Controls.UserSelect
@@ -110,7 +108,7 @@ const MarkRegister = props => {
                           options={props.teacherprofiles}
                           error={errors.recorded_by}
                       />
- 
+
                       <div>
                           <Controls.Button
                               type="submit"

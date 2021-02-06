@@ -38,8 +38,6 @@ const initialFValues = {
 
 }
 
-
-
 const AddCurriculum = props => {
   const { addOrEdit, recordForEdit } = props
   const classes = useStyles();
@@ -65,7 +63,7 @@ const AddCurriculum = props => {
       resetForm
   } = useForm(initialFValues, true, validate);
 
-  
+
   const handleSubmit = e => {
       e.preventDefault()
       if (validate()) {
@@ -92,10 +90,10 @@ const AddCurriculum = props => {
                           value={values.name}
                           onChange={handleInputChange}
                           error={errors.fullName}
-                      />               
+                      />
                   </Grid>
                   <Grid item xs={6}>
- 
+
                       <div>
                           <Controls.Button
                               type="submit"

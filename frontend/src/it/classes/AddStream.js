@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   p1: {
     padding: ".85rem"
   }
-  
+
 }));
 
 const initialFValues = {
@@ -57,7 +57,7 @@ const AddStream = props => {
       resetForm
   } = useForm(initialFValues, true, validate);
 
-  
+
   const handleSubmit = e => {
       e.preventDefault()
       if (validate()) {
@@ -73,7 +73,6 @@ const AddStream = props => {
   }, [recordForEdit]);
 
 
-
   return (
         <Form onSubmit={handleSubmit}>
               <Grid container>
@@ -84,7 +83,7 @@ const AddStream = props => {
                           value={values.grade}
                           onChange={handleInputChange}
                           error={errors.grade}
-                      />             
+                      />
                   </Grid>
                   <Grid item xs={6}>
                       <div>

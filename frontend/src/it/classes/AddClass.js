@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   p1: {
     padding: ".85rem"
   }
-  
+
 }));
 
 const initialFValues = {
@@ -79,7 +79,7 @@ const AddClass = props => {
       resetForm
   } = useForm(initialFValues, true, validate);
 
-  
+
   const handleSubmit = e => {
       e.preventDefault()
       if (validate()) {
@@ -98,8 +98,6 @@ const AddClass = props => {
                 ...recordForEdit
             })
   }, [recordForEdit]);
-
-
 
   return (
         <Form onSubmit={handleSubmit}>
@@ -126,7 +124,7 @@ const AddClass = props => {
                           onChange={handleInputChange}
                           options={props.studentclassstatuschoices}
                           error={errors.status}
-                      />               
+                      />
                   </Grid>
                   <Grid item xs={6}>
                       <Controls.GradeSelect
@@ -176,6 +174,6 @@ const mapStateToProps = state =>({
 })
 
 export default connect(
-    mapStateToProps, 
-    {getStudentsClassStatusChoices, getStreams, getAdminTeachers } ) 
+    mapStateToProps,
+    {getStudentsClassStatusChoices, getStreams, getAdminTeachers } )
     (AddClass);

@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const initialFValues = {
-    klass: '', 
+    klass: '',
     student: '',
 }
 
@@ -67,7 +67,7 @@ const Apply = props => {
       resetForm
   } = useForm(initialFValues, true, validate);
 
-  
+
   const handleSubmit = e => {
       e.preventDefault()
       if (validate()) {
@@ -99,7 +99,7 @@ const Apply = props => {
                             onChange={handleInputChange}
                             options={props.classes}
                             error={errors.klass}
-                    />              
+                    />
                   </Grid>
                   <Grid item xs={6}>
                       <Controls.UserSelect
@@ -110,7 +110,7 @@ const Apply = props => {
                           options={props.studentprofiles}
                           error={errors.student}
                       />
- 
+
                       <div>
                           <Controls.Button
                               type="submit"
@@ -133,5 +133,3 @@ const mapStateToProps = state =>({
 })
 
 export default connect(mapStateToProps, {getClasses, getStudentProfiles} ) (Apply);
-
-

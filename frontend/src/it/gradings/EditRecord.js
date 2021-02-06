@@ -34,10 +34,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const initialFValues = {
-    score: '', 
+    score: '',
 }
-
-
 
 const EditRecord = props => {
   const { addOrEdit, recordForEdit } = props
@@ -63,7 +61,7 @@ const EditRecord = props => {
       resetForm
   } = useForm(initialFValues, true, validate);
 
-  
+
   const handleSubmit = e => {
       e.preventDefault()
       if (validate()) {
@@ -90,10 +88,10 @@ const EditRecord = props => {
                             value={values.score}
                             onChange={handleInputChange}
                             error={errors.score}
-                    />              
+                    />
                   </Grid>
                   <Grid item xs={6}>
- 
+
                       <div>
                           <Controls.Button
                               type="submit"

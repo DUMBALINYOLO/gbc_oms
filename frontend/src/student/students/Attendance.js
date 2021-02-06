@@ -3,14 +3,14 @@ import axios from 'axios';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import { Search } from "@material-ui/icons";
-import { 
-  Paper, 
-  makeStyles, 
-  TableBody, 
-  TableRow, 
-  TableCell, 
-  Toolbar, 
-  InputAdornment } 
+import {
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment }
 from '@material-ui/core';
 import  Controls  from "../../components/formcontrols/Controls";
 import  useTable  from "../../components/table/useTable";
@@ -38,11 +38,6 @@ const headCells = [
   { id: 'status', label: 'STATUS' },
   { id: 'actions', label: 'Actions', disableSorting: true }
 ]
-
-
-
-
-
 
 
 const Attendance = props => {
@@ -138,5 +133,3 @@ const Attendance = props => {
 
 
 export default Attendance;
-
-  

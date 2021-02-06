@@ -41,8 +41,6 @@ const initialFValues = {
 
 }
 
-
-
 const AddGrade = props => {
   const { addOrEdit, recordForEdit } = props
   const classes = useStyles();
@@ -78,7 +76,7 @@ const AddGrade = props => {
       resetForm
   } = useForm(initialFValues, true, validate);
 
-  
+
   const handleSubmit = e => {
       e.preventDefault()
       if (validate()) {
@@ -126,7 +124,7 @@ const AddGrade = props => {
                           onChange={handleInputChange}
                           options={props.generalgradingtypechoices}
                           error={errors.type}
-                      />                
+                      />
                   </Grid>
                   <Grid item xs={6}>
                       <Controls.Select
@@ -153,7 +151,7 @@ const AddGrade = props => {
                           options={props.teacherprofiles}
                           error={errors.recorded_by}
                       />
- 
+
                       <div>
                           <Controls.Button
                               type="submit"
@@ -179,6 +177,6 @@ const mapStateToProps = state =>({
 })
 
 export default connect(
-    mapStateToProps, 
-    {getClasses, getGeneralGradingTypeChoices, getTeacherProfiles, getSubjects} ) 
+    mapStateToProps,
+    {getClasses, getGeneralGradingTypeChoices, getTeacherProfiles, getSubjects} )
     (AddGrade);

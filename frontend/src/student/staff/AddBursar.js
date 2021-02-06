@@ -41,8 +41,6 @@ const initialFValues = {
 
 }
 
-
-
 const AddBursar = props => {
   const { addOrEdit } = props
   const classes = useStyles();
@@ -72,16 +70,13 @@ const AddBursar = props => {
       resetForm
   } = useForm(initialFValues, true, validate);
 
-  
+
   const handleSubmit = e => {
       e.preventDefault()
       if (validate()) {
           addOrEdit(values, resetForm);
       }
   }
-
-
-
 
   return (
         <Form onSubmit={handleSubmit}>
@@ -100,7 +95,7 @@ const AddBursar = props => {
                           value={values.username}
                           onChange={handleInputChange}
                           error={errors.username}
-                      />                
+                      />
                   </Grid>
                   <Grid item xs={6}>
                     <Controls.Input
@@ -109,7 +104,7 @@ const AddBursar = props => {
                         value={values.password}
                         onChange={handleInputChange}
                         error={errors.password}
-                    /> 
+                    />
                       <div>
                           <Controls.Button
                               type="submit"
@@ -126,4 +121,3 @@ const AddBursar = props => {
 };
 
 export default AddBursar;
-
