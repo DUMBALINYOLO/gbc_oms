@@ -1078,13 +1078,13 @@ export const editPublisher = (id, publisher, token) => dispatch => {
 
 
 // Get
-export const getStudentCourseEnrollments = (token) => dispatch => {
+export const getStudentCourseEnrollments = (id,token) => dispatch => {
     const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
         };
-    axios.get(studentcourseenrollmentsURL, headers)
+    axios.get(`${studentcourseenrollmentsURL}?id=${id}`, headers)
         .then(res => {
             dispatch({
                 type: GET_STUDENT_COURSE_ENROLLMENTS,
