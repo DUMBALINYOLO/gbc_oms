@@ -18,7 +18,7 @@ def get_student(email):
 
 class StudentCourseViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)#SessionAuthentication, BasicAuthentication)
-	permission_classes = [permissions.AllowAny,]
+    permission_classes = [permissions.AllowAny,]
     serializer_class = CourseListDetailSerializer
 
 
