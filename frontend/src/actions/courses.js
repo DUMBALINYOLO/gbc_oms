@@ -63,7 +63,11 @@ import {
   GET_ADMIN_PUBLISHER,
   EDIT_PUBLISHER,
   ADD_PUBLISHER,
-  GET_COURSE_STATUS_CHOICES
+  GET_COURSE_STATUS_CHOICES,
+  ADD_STUDENT_COURSE_ENROLLMENT,
+  GET_STUDENT_COURSE_ENROLLMENTS,
+  GET_STUDENT_COURSE_ENROLLMENT,
+  EDIT_STUDENT_COURSE_ENROLLMENT,
 
 } from '../types/courseTypes';
 import {
@@ -85,7 +89,8 @@ import {
   adminauthorsURL,
   adminpublishercitiesURL,
   coursestatuschoicesURL,
-  adminpublishersURL
+  adminpublishersURL,
+  studentcourseenrollmentsURL
 } from '../constants';
 import { createMessage, returnErrors } from './messages';
 
@@ -1066,6 +1071,74 @@ export const editPublisher = (id, publisher, token) => dispatch => {
         .then(res => {
             dispatch({
                 type: EDIT_PUBLISHER,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+
+// Get
+export const getStudentCourseEnrollments = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        };
+    axios.get(studentcourseenrollmentsURL, headers)
+        .then(res => {
+            dispatch({
+                type: GET_STUDENT_COURSE_ENROLLMENTS,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+// Add
+export const addStudentCourseEnrollment = (studentcourseenrollment, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+
+    axios.post(studentcourseenrollmentsURL, studentcourseenrollment, headers)
+        .then(res => {
+            dispatch({
+                type: ADD_STUDENT_COURSE_ENROLLMENT,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+
+//get
+export const getStudentCourseEnrollment = (id, token) => dispatch =>{
+      const headers ={
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
+            'Accept': 'application/json',
+      };
+      axios.get(`${studentcourseenrollmentsURL}${id}/`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_STUDENT_COURSE_ENROLLMENT,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+//Edit
+export const editStudentCourseEnrollment = (id, studentcourseenrollment, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    JSON.stringify(id, null, 3)
+    axios.patch(`${studentcourseenrollmentsURL}${id}/`, studentcourseenrollment, headers)
+        .then(res => {
+            dispatch({
+                type: EDIT_STUDENT_COURSE_ENROLLMENT,
                 payload: res.data
             });
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));

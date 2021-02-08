@@ -197,6 +197,7 @@ export const adminstudynotesreferencesURL = `${endpoint}/courses/admin-study-not
 export const adminauthorsURL = `${endpoint}/courses/admin-authors/`
 export const adminpublishercitiesURL = `${endpoint}/courses/admin-publisher-cities/`
 export const adminpublishersURL = `${endpoint}/courses/admin-publishers/`
+export const studentcourseenrollmentsURL = `${endpoint}/courses/student-course-enrollments/`
 
 //classes
 export const classesURL = `${endpoint}/classes/classes/`

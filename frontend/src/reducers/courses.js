@@ -63,6 +63,10 @@ import {
   EDIT_PUBLISHER,
   ADD_PUBLISHER,
   GET_COURSE_STATUS_CHOICES,
+    ADD_STUDENT_COURSE_ENROLLMENT,
+    GET_STUDENT_COURSE_ENROLLMENTS,
+    GET_STUDENT_COURSE_ENROLLMENT,
+    EDIT_STUDENT_COURSE_ENROLLMENT,
 
 } from '../types/courseTypes';
 
@@ -94,6 +98,8 @@ const initialState = {
     adminauthors: [],
     adminpublishers: [],
     adminpublishercities: [],
+    studentcourseenrollments: [],
+    studentcourseenrollment: [],
     loading: false
 }
 
@@ -427,6 +433,28 @@ export default function courses(state = initialState, action){
             return {
                 ...state,
                 adminpublishers: pparstarrayList,
+            };
+        case GET_STUDENT_COURSE_ENROLLMENTS:
+        return {
+            ...state,
+            studentcourseenrollments: action.payload
+        };
+        case ADD_STUDENT_COURSE_ENROLLMENT:
+            return {
+                ...state,
+                studentcourseenrollment: [...state.studentcourseenrollments, action.payload]
+            }
+        case GET_STUDENT_COURSE_ENROLLMENT:
+            return {
+                ...state,
+                studentcourseenrollment:action.payload
+                };
+        case EDIT_STUDENT_COURSE_ENROLLMENT:
+            const subarrayList = state.studentcourseenrollments;
+            subarrayList.splice(subarrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
+            return {
+                ...state,
+                studentcourseenrollments: subarrayList,
             };
         default:
             return state;
