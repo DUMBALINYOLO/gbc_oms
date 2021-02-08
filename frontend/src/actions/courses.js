@@ -410,7 +410,7 @@ export const editTopicObjective = (id, objective, token) => dispatch => {
                 type: EDIT_TOPIC_OBJECTIVE,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 
@@ -475,7 +475,7 @@ export const editTopicGuideline = (id, guideline, token) => dispatch => {
                 type: EDIT_TOPIC_GUIDELINE,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 
@@ -540,7 +540,7 @@ export const editSubTopic = (id, subtopic, token) => dispatch => {
                 type: EDIT_SUBTOPIC,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 
@@ -604,7 +604,7 @@ export const editStudyNote = (id, note, token) => dispatch => {
                 type: EDIT_STUDY_NOTE,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 
@@ -668,7 +668,7 @@ export const editStudyNoteVideo = (id, video, token) => dispatch => {
                 type: EDIT_STUDY_NOTE_VIDEO,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 export const getStudyNoteImages = (note_id, token) => dispatch => {
@@ -731,7 +731,7 @@ export const editStudyNoteImage = (id, image, token) => dispatch => {
                 type: EDIT_STUDY_NOTE_IMAGE,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 
@@ -795,7 +795,7 @@ export const editStudyNoteNote = (id, note, token) => dispatch => {
                 type: EDIT_STUDY_NOTE_NOTE,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 
@@ -859,7 +859,7 @@ export const editStudyNoteFile = (id, file, token) => dispatch => {
                 type: EDIT_STUDY_NOTE_FILE,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 
@@ -923,7 +923,7 @@ export const editStudyNoteReference = (id, reference, token) => dispatch => {
                 type: EDIT_STUDY_NOTE_REFERENCE,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 
@@ -973,7 +973,7 @@ export const editAuthor = (id, author, token) => dispatch => {
                 type: EDIT_AUTHOR,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 
@@ -1023,7 +1023,7 @@ export const editPublisherCity = (id, city, token) => dispatch => {
                 type: EDIT_PUBLISHER_CITY,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 
@@ -1073,7 +1073,7 @@ export const editPublisher = (id, publisher, token) => dispatch => {
                 type: EDIT_PUBLISHER,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 
@@ -1141,5 +1141,5 @@ export const editStudentCourseEnrollment = (id, studentcourseenrollment, token) 
                 type: EDIT_STUDENT_COURSE_ENROLLMENT,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }

@@ -151,7 +151,7 @@ export const editTestRecord = (id, grade, token) => dispatch => {
                 type: EDIT_TEST_RECORD,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 export const editAssignmentRecord = (id, grade, token) => dispatch => {
@@ -167,7 +167,7 @@ export const editAssignmentRecord = (id, grade, token) => dispatch => {
                 type: EDIT_ASSIGNMENT_RECORD,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 export const editExcerciseRecord = (id, grade, token) => dispatch => {
@@ -183,7 +183,7 @@ export const editExcerciseRecord = (id, grade, token) => dispatch => {
                 type: EDIT_EXCERCISE_RECORD,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 
@@ -415,5 +415,5 @@ export const editGrade = (id, grade,token) => dispatch => {
                 type: EDIT_STUDENT_GRADE,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }

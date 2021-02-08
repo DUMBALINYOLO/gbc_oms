@@ -57,7 +57,7 @@ const AdminOngoingCourses = props => {
   const courseData = useSelector((state) => state.courses.adminongoingcourses);
   const dispatch = useDispatch();
   const {token} = props;
-  // const {courseData } = props;
+
 
   useEffect(() => {
     if(!props.fetched) {
@@ -110,7 +110,6 @@ const AdminOngoingCourses = props => {
   const handleClick = id =>{
     history.push(`/itdashboard/ongoingcourses/${id}`)
   }
-
 
 
   return (
