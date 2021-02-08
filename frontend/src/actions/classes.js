@@ -108,7 +108,7 @@ export const editClass = (id, classi, token) => dispatch => {
                 type: EDIT_CLASS,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 
@@ -159,7 +159,7 @@ export const editStream = (id, stream, token) => dispatch => {
                 type: EDIT_STREAM,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 //get
@@ -225,7 +225,7 @@ export const editSubject = (id, subject, token) => dispatch => {
                 type: EDIT_CLASS_SUBJECT,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 // Get
@@ -293,5 +293,4 @@ export const editEnrollment = (id, enrollment, token) => dispatch => {
                 type: EDIT_ENROLLMENT,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
-}
+        }).catch(err => console.log(err))

@@ -133,7 +133,7 @@ export const editPendingAdmission = (id, admission, token) => dispatch => {
                 type: EDIT_PENDING_ADMISSIONS,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 
@@ -151,7 +151,7 @@ export const editRejectedAdmission = (id, admission, token) => dispatch => {
                 type: EDIT_REJECTED_ADMISSIONS,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 
@@ -168,7 +168,7 @@ export const editMeetingAdmission = (id, admission, token) => dispatch => {
                 type: EDIT_MEETING_ADMISSIONS,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 
@@ -185,5 +185,5 @@ export const editAcceptedAdmission = (id, admission, token) => dispatch => {
                 type: EDIT_ACCEPTED_ADMISSIONS,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }

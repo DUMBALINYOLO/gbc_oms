@@ -54,6 +54,8 @@ const AdminOngoingCourses = props => {
   const [listView, setListView] = useState('grid')
   const history = useHistory();
   const {token} = props;
+  const {courseData} = props;
+
 
   useEffect(() => {
     if(!props.fetched) {
@@ -103,9 +105,6 @@ const AdminOngoingCourses = props => {
     history.push(`/itdashboard/ongoingcourses/${id}`)
   }
 
-  const {
-      courseData
-    } = props;
 
   return (
     <InformationTechnologyLayout>

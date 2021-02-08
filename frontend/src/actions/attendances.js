@@ -101,7 +101,7 @@ export const editAdminAttendance = (id, attendance, token) => dispatch => {
                 type: EDIT_ATTENDANCE,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 // Get
@@ -183,7 +183,7 @@ export const editTeacherAttendance = (id, attendance, token) => dispatch => {
                 type: EDIT_ATTENDANCE,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 // Get
@@ -248,5 +248,5 @@ export const editAttendanceRecord = (id, record, token) => dispatch => {
                 type: EDIT_ATTENDANCE_RECORD,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }

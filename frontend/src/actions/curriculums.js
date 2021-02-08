@@ -94,7 +94,7 @@ export const editCurriculum = (id, curriculum, token) => dispatch => {
                 type: EDIT_CURRICULUM,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 
 }
 
@@ -179,6 +179,6 @@ export const editSubject = (id, subject, token) => dispatch => {
                 type: EDIT_SUBJECT,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 
 }
