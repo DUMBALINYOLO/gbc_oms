@@ -21,12 +21,13 @@ from courses.apis import (
 		AdminPublisherCityViewSet,
 		AdminPublisherViewSet,
 		StudentCourseEnrollementViewSet,
-		StudentCourseViewSet,
-
+		StudentUpcomingCourseViewSet,
+		StudentOngoingCourseViewSet,
 	)
 
 
 router = DefaultRouter()
+
 
 router.register('admin-upcoming-courses', AdminUpcomingCourseViewSet, basename='admin-upcoming-courses')
 router.register('admin-ongoing-courses', AdminOngoingCourseViewSet, basename='admin-ongoing-courses')
@@ -47,6 +48,8 @@ router.register('admin-authors', AdminAuthorViewSet, basename='admin-authors')
 router.register('admin-publisher-cities', AdminPublisherCityViewSet, basename='admin-publisher-cities')
 router.register('admin-publishers', AdminPublisherViewSet, basename='admin-publishers')
 router.register('student-course-enrollments', StudentCourseEnrollementViewSet, basename='student-course-enrollments')
-router.register('student-courses', StudentCourseViewSet, basename='student-courses')
+router.register('upcoming-student-courses', StudentUpcomingCourseViewSet, basename='upcoming-student-courses')
+router.register('ongoing-student-courses', StudentOngoingCourseViewSet, basename='ongoing-student-courses')
+
 
 urlpatterns = router.urls

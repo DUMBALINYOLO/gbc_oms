@@ -63,10 +63,14 @@ import {
   EDIT_PUBLISHER,
   ADD_PUBLISHER,
   GET_COURSE_STATUS_CHOICES,
-    ADD_STUDENT_COURSE_ENROLLMENT,
-    GET_STUDENT_COURSE_ENROLLMENTS,
-    GET_STUDENT_COURSE_ENROLLMENT,
-    EDIT_STUDENT_COURSE_ENROLLMENT,
+  ADD_STUDENT_COURSE_ENROLLMENT,
+  GET_STUDENT_COURSE_ENROLLMENTS,
+  GET_STUDENT_COURSE_ENROLLMENT,
+  EDIT_STUDENT_COURSE_ENROLLMENT,
+  GET_STUDENT_UPCOMING_COURSES,
+  GET_STUDENT_UPCOMING_COURSE,
+  GET_STUDENT_ONGOING_COURSES,
+  GET_STUDENT_ONGOING_COURSE,
 
 } from '../types/courseTypes';
 
@@ -100,17 +104,41 @@ const initialState = {
     adminpublishercities: [],
     studentcourseenrollments: [],
     studentcourseenrollment: {},
+    studentupcomingcourses: [],
+    studentupcomingcourses: {},
+    studentongoingcourses: [],
+    studentongoingcourses: {},
     loading: false
 }
 
 export default function courses(state = initialState, action){
     switch(action.type){
+        case GET_STUDENT_UPCOMING_COURSES:
+            return {
+                ...state,
+                studentupcomingcourses : action.payload
+            };
+        case GET_STUDENT_UPCOMING_COURSE:
+            return {
+                ...state,
+                studentupcomingcourse : action.payload
+            };
+        case GET_STUDENT_ONGOING_COURSES:
+            return {
+                ...state,
+                studentongoingcourses : action.payload
+            };
+        case GET_STUDENT_ONGOING_COURSE:
+            return {
+                ...state,
+                studentongoingcourse : action.payload
+            };
 
-      case GET_COURSE_STATUS_CHOICES:
-          return {
-              ...state,
-              coursestatuschoices : action.payload
-          };
+        case GET_COURSE_STATUS_CHOICES:
+            return {
+                ...state,
+                coursestatuschoices : action.payload
+            };
 
         case GET_UPCOMING_COURSES:
             return {
