@@ -221,6 +221,8 @@ def get_course(course_id):
 
 
 class StudentCourseEnrollementViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'patch', 'put', 'updating']:
