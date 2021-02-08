@@ -199,6 +199,8 @@ export const adminpublishercitiesURL = `${endpoint}/courses/admin-publisher-citi
 export const adminpublishersURL = `${endpoint}/courses/admin-publishers/`
 export const studentcourseenrollmentsURL = `${endpoint}/courses/student-course-enrollments/`
 export const courseenrollmentstatuschoicesURL = `${endpoint}/basedata/course-enrollment-status-choices/`
+export const upcomingstudentcoursesURL = `${endpoint}/courses/upcoming-student-courses/`
+export const ongoingstudentcoursesURL = `${endpoint}/courses/ongoing-student-courses/`
 
 //classes
 export const classesURL = `${endpoint}/classes/classes/`

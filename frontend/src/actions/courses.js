@@ -68,6 +68,10 @@ import {
   GET_STUDENT_COURSE_ENROLLMENTS,
   GET_STUDENT_COURSE_ENROLLMENT,
   EDIT_STUDENT_COURSE_ENROLLMENT,
+  GET_STUDENT_UPCOMING_COURSES,
+  GET_STUDENT_UPCOMING_COURSE,
+  GET_STUDENT_ONGOING_COURSES,
+  GET_STUDENT_ONGOING_COURSE
 
 } from '../types/courseTypes';
 import {
@@ -90,9 +94,77 @@ import {
   adminpublishercitiesURL,
   coursestatuschoicesURL,
   adminpublishersURL,
-  studentcourseenrollmentsURL
+  studentcourseenrollmentsURL,
+  upcomingstudentcoursesURL,
+  ongoingstudentcoursesURL
 } from '../constants';
 import { createMessage, returnErrors } from './messages';
+
+
+
+export const getUpcomingStudentCourses = (email, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(`${upcomingstudentcoursesURL}?email=${email}`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_STUDENT_UPCOMING_COURSES,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+
+export const getStudentUpcomingCourse = (id, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(`${upcomingstudentcoursesURL}${id}/`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_STUDENT_UPCOMING_COURSE,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+
+export const getOngoingStudentCourses = (email, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(`${ongoingstudentcoursesURL}?email=${email}`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_STUDENT_ONGOING_COURSES,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+
+export const getStudentOngoingCourse = (id, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(`${ongoingstudentcoursesURL}${id}/`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_STUDENT_ONGOING_COURSE,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
 
 
 

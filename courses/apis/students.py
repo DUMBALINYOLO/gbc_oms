@@ -16,7 +16,7 @@ def get_student(email):
 
 
 
-class StudentCourseViewSet(viewsets.ModelViewSet):
+class StudentUpcomingCourseViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)#SessionAuthentication, BasicAuthentication)
     permission_classes = [permissions.AllowAny,]
     serializer_class = CourseListDetailSerializer
@@ -27,7 +27,9 @@ class StudentCourseViewSet(viewsets.ModelViewSet):
                                         'amastudents',
                                         'topics',
                                         'reviews',
-                                    )
+                                    ).filter(
+                                        ~ComplexQueryLookUp(status__in=['ongoing', 'finished', 'inactive'])
+                                    ).order_by('-id')
         email = self.request.query_params.get('email', None)
         if email is not None:
             student = get_student(email=email)
@@ -35,5 +37,34 @@ class StudentCourseViewSet(viewsets.ModelViewSet):
                                             'amastudents',
                                             'topics',
                                             'reviews',
-                                        )
+                                        ).filter(
+                                            ~ComplexQueryLookUp(status__in=['ongoing', 'finished', 'inactive'])
+                                        ).order_by('-id')
+        return queryset
+
+
+class StudentOngoingCourseViewSet(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)#SessionAuthentication, BasicAuthentication)
+    permission_classes = [permissions.AllowAny,]
+    serializer_class = CourseListDetailSerializer
+
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = Course.objects.prefetch_related(
+                                        'amastudents',
+                                        'topics',
+                                        'reviews',
+                                    ).filter(
+                                        ~ComplexQueryLookUp(status__in=['upcoming', 'finished', 'inactive'])
+                                    ).order_by('-id')
+        email = self.request.query_params.get('email', None)
+        if email is not None:
+            student = get_student(email=email)
+            queryset = student.taken_courses.prefetch_related(
+                                            'amastudents',
+                                            'topics',
+                                            'reviews',
+                                        ).filter(
+                                            ~ComplexQueryLookUp(status__in=['upcoming', 'finished', 'inactive'])
+                                        ).order_by('-id')
         return queryset
