@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react"
-import InformationTechnologyLayout from "../../layout/InformationTechnologyLayout";
-import { getAdminTopics, addTopic, editTopic } from '../../../actions/courses';
+import { getStudentCourseEnrollments, addStudentCourseEnrollment, editStudentCourseEnrollment  } from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
-import Grid from '@material-ui/core/Grid';
-import { useHistory } from 'react-router-dom';
 import {
   Paper,
   makeStyles,
@@ -17,12 +14,10 @@ import {
   Toolbar,
   InputAdornment }
 from '@material-ui/core';
-import AddTopic from './AddTopic';
-import {Link} from 'react-router-dom';
+import AddEnrollment from './AddEnrollment';
 import  Controls  from "../../../components/formcontrols/Controls";
 import  Popup  from "../../../components/formcontrols/Popup";
-import SearchTopic from "./SearchTopic";
-import TopicCard from "./TopicCard";
+import  useTable  from "../../../components/table/useTable";
 
 
 
@@ -41,23 +36,30 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
+const headCells = [
+  { id: 'id', label: 'ID' },
+  { id: 'student', label: 'NAME' },
+  { id: 'date_enrolled', label: 'DATE' },
+  { id: 'actions', label: 'Actions', disableSorting: true }
+]
+
+
 const options = {
   filterType: "checkbox"
 };
 
-const Topics = props => {
+const Enrollments = props => {
+  const { history } = props;
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
-  const [listView, setListView] = useState('grid')
-  const history = useHistory();
   const {id} =props.data;
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminTopics(id, token);
+        props.getStudentCourseEnrollments(id, token);
     }
     console.log('mount it!');
 
@@ -65,17 +67,27 @@ const Topics = props => {
   }, []);
 
 
-  const addOrEdit = (topic, resetForm, token) => {
-      if (topic.id > 0)
-        props.editTopic(topic.id, topic, token)
+  const addOrEdit = (fee, resetForm, token) => {
+      if (fee.id > 0)
+        props.editStudentCourseEnrollment(fee.id, fee, token)
       else
-        props.addTopic(topic, token)
-        console.log(topic)  //
+        props.addStudentCourseEnrollment(fee, token)
+        //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
+
+
+  const {records} = props;
+
+  const {
+      TblContainer,
+      TblHead,
+      TblPagination,
+      recordsAfterPagingAndSorting
+  } = useTable(records, headCells, filterFn);
 
   const handleSearch = e => {
       let target = e.target;
@@ -89,30 +101,25 @@ const Topics = props => {
       })
   }
 
-
-
   const openInPopup = item => {
       setRecordForEdit(item)
       setOpenPopup(true)
   }
-
-  const handleSwitchView = (event, value) => {
-    setListView(value)
-  }
-
-  const handleClick = id =>{
-    history.push(`/itdashboard/topics/${id}`)
-  }
-
-  const {
-      courseData
-    } = props;
 
   return (
     <>
       <Paper className={classes.pageContent}>
 
       <Toolbar>
+          <Controls.Input
+              label="Search Objective"
+              className={classes.searchInput}
+              InputProps={{
+                  startAdornment: (<InputAdornment position="start">
+                      <Search />
+                  </InputAdornment>)
+              }}
+          />
           <Controls.Button
               text="Add New"
               variant="outlined"
@@ -121,42 +128,40 @@ const Topics = props => {
               onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
           />
       </Toolbar>
-        <SearchTopic
-            courseData={courseData}
-            listView={listView}
-            handleSwitchView={handleSwitchView}
-          />
-          <Grid
-            container
-            alignItems="flex-start"
-            justify="flex-start"
-            direction="row"
-            spacing={3}
-          >
-            {
-              courseData.map((topic) => {
-                return (
-                  <Grid item md={listView === 'list' ? 12 : 4} sm={listView === 'list' ? 12 : 6} xs={12} key={topic.id}>
-                    <TopicCard
-                      list={listView === 'list'}
-                      full_name={topic.title}
-                      description={topic.assessment_overview}
-                      status={topic.id}
-                      detailOpen={() => handleClick(topic.id)}
-                      editItem={() => openInPopup(topic)}
-                    />
-                  </Grid>
-                );
-              })
-            }
-          </Grid>
+      <TblContainer>
+          <TblHead />
+          <TableBody>
+              {
+                  recordsAfterPagingAndSorting().map(item =>
+                      (<TableRow key={item.id}>
+                          <TableCell>{item.id}</TableCell>
+                          <TableCell>{item.student}</TableCell>
+                          <TableCell>{item.date_enrolled}</TableCell>
+                          <TableCell>
+                              <Controls.ActionButton
+                                  color="primary"
+                                  onClick={() => { openInPopup(item) }}>
+                                  <EditOutlinedIcon fontSize="small" />
+                                  EDIT
+                              </Controls.ActionButton>
+                              <Controls.ActionButton
+                                  color="secondary">
+                                  <CloseIcon fontSize="small" />
+                              </Controls.ActionButton>
+                          </TableCell>
+                      </TableRow>)
+                  )
+              }
+          </TableBody>
+      </TblContainer>
+      <TblPagination />
       </Paper>
       <Popup
-      title="Topic Form"
+      title="Fee Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >
-        <AddTopic
+        <AddEnrollment
             recordForEdit={recordForEdit}
             addOrEdit={addOrEdit}
             id={id}
@@ -167,11 +172,11 @@ const Topics = props => {
 };
 
 const mapStateToProps = state =>({
-    courseData: state.courses.admintopics,
+    records: state.courses.studentcourseenrollments,
     token: state.auth.token,
 })
 
 export default connect(
   mapStateToProps,
-  {getAdminTopics, addTopic, editTopic} )
-  (Topics);
+  {getStudentCourseEnrollments, addStudentCourseEnrollment, editStudentCourseEnrollment} )
+  (Enrollments);

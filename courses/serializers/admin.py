@@ -723,15 +723,15 @@ class StudentCourseEnrollmentCreateUpdateSerializer(serializers.ModelSerializer)
 			'course',
 		]
 
-	def create(self, validate_data):
-		course=  get_course(course_id=validated_data['course'])
+	def create(self, validated_data):
+		# course=  get_course(course_id=validated_data['course'])
 		enrollmment = StudentCourseEnrollment(
-								course=course,
+								course=validated_data['course'],
 								status = validated_data['status'],
 								student = validated_data['student']
 							)
-		student.save()
-		return student
+		enrollmment.save()
+		return enrollmment
 
 
 class StudentCourseEnrollmentListDetailSerializer(serializers.ModelSerializer):

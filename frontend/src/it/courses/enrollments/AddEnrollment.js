@@ -39,6 +39,7 @@ const AddEnrollment = props => {
   const { addOrEdit, recordForEdit } = props;
   const classes = useStyles();
   const { id } = props;
+  const { token } = props;
 
   const initialFValues = {
 
@@ -133,6 +134,7 @@ const AddEnrollment = props => {
 const mapStateToProps = state =>({
     statuschoices: state.feechoices.courseenrollmentstatuschoices,
     students: state.people.studentprofiles,
+    token: state.auth.token,
 
 })
 

@@ -265,7 +265,7 @@ export const editCourse = (id, course, token) => dispatch => {
                 type: EDIT_COURSE,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 
@@ -330,7 +330,7 @@ export const editTopic = (id, topic, token) => dispatch => {
                 type: EDIT_TOPIC,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 

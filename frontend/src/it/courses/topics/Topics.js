@@ -70,7 +70,6 @@ const Topics = props => {
         props.editTopic(topic.id, topic, token)
       else
         props.addTopic(topic, token)
-        console.log(topic)  //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import InformationTechnologyLayout from "../../layout/InformationTechnologyLayout";
 import { getAdminOngoingCourses, addCourse, editCourse } from '../../../actions/courses';
 import { connect } from 'react-redux';
@@ -53,23 +54,30 @@ const AdminOngoingCourses = props => {
   const [openPopup, setOpenPopup] = useState(false)
   const [listView, setListView] = useState('grid')
   const history = useHistory();
+  const courseData = useSelector((state) => state.courses.adminongoingcourses);
+  const dispatch = useDispatch();
   const {token} = props;
+  // const {courseData } = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminOngoingCourses(token);
+        dispatch(getAdminOngoingCourses(token));
     }
     console.log('mount it!');
-
 
   }, []);
 
 
+
+
+
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editCourse(fee.id, fee, token)
+      }
       else
         props.addCourse(fee, token)
+
         //
       resetForm()
       setRecordForEdit(null)
@@ -103,9 +111,7 @@ const AdminOngoingCourses = props => {
     history.push(`/itdashboard/ongoingcourses/${id}`)
   }
 
-  const {
-      courseData
-    } = props;
+
 
   return (
     <InformationTechnologyLayout>
@@ -167,11 +173,11 @@ const AdminOngoingCourses = props => {
 };
 
 const mapStateToProps = state =>({
-    courseData: state.courses.adminongoingcourses,
+    // courseData: state.courses.adminongoingcourses,
     token: state.auth.token,
 })
 
 export default connect(
   mapStateToProps,
-  {getAdminOngoingCourses, addCourse, editCourse} )
+  { addCourse, editCourse} )
   (AdminOngoingCourses);

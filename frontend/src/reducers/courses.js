@@ -99,7 +99,7 @@ const initialState = {
     adminpublishers: [],
     adminpublishercities: [],
     studentcourseenrollments: [],
-    studentcourseenrollment: [],
+    studentcourseenrollment: {},
     loading: false
 }
 
