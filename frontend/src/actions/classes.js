@@ -16,6 +16,7 @@ import {
         ADD_ENROLLMENT,
         GET_ENROLLMENTS,
         EDIT_ENROLLMENT,
+        GET_STUDY_MODE_CHOICES,
     } from '../types/classTypes';
 import {
     classesURL,
@@ -23,9 +24,25 @@ import {
     classsubjectsURL,
     classstudentsURL,
     enrollmentsURL,
+    studymodechoicesURL
 } from '../constants';
 import { createMessage, returnErrors } from './messages';
 
+
+export const getStudyModeChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(studymodechoicesURL, headers)
+        .then(res => {
+            dispatch({
+                type: GET_STUDY_MODE_CHOICES,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
 
 // Get
 export const getClasses = (token) => dispatch => {
@@ -146,13 +163,13 @@ export const editStream = (id, stream, token) => dispatch => {
 }
 
 //get
-export const getSubjects = (token) => dispatch => {
+export const getSubjects = (id, token) => dispatch => {
     const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
     };
-    axios.get(classsubjectsURL, headers)
+    axios.get(`${classsubjectsURL}?id=${id}`, headers)
         .then(res => {
             dispatch({
                 type: GET_CLASS_SUBJECTS,
@@ -212,13 +229,13 @@ export const editSubject = (id, subject, token) => dispatch => {
 }
 
 // Get
-export const getStudents = (token) => dispatch => {
+export const getStudents = (id,token) => dispatch => {
     const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
     };
-    axios.get(classstudentsURL, headers)
+    axios.get(`${classstudentsURL}?id=${id}`, headers)
         .then(res => {
             dispatch({
                 type: GET_CLASS_STUDENTS,
@@ -227,22 +244,7 @@ export const getStudents = (token) => dispatch => {
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
-//get
-export const getStudent = (id, token) => dispatch =>{
-      const headers ={
-            "Content-Type": "application/json",
-            Authorization: `Token ${token}`,
-            'Accept': 'application/json',
-      };
-      axios.get(`${classstudentsURL}${id}/`, headers)
-        .then(res => {
-            dispatch({
-                type: GET_CLASS_STUDENT,
-                payload: res.data
-            });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 
-}
 
 export const getEnrollments = (token) => dispatch => {
     const headers ={

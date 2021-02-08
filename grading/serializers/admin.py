@@ -33,6 +33,9 @@ class RecordListDetailSerializer(serializers.ModelSerializer):
 			'student',
 			'score',
 			'totalmarks',
+			'subject',
+			'recorded_by',
+			'klass',
 		]
 
 
@@ -92,31 +95,3 @@ class AdminGeneralListDetailSerializer(serializers.ModelSerializer):
 			'recorded_by',
 			# 'records',
 		]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

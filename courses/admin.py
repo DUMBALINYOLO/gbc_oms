@@ -11,7 +11,6 @@ from courses.models import (
 						SubTopic,
 						Topic,
 						StudentCourseEnrollment,
-						AddCourseToSchool,
 						Author,
 						PublisherCity,
 						Publisher,
@@ -27,11 +26,9 @@ admin.site.register(File)
 admin.site.register(Image)
 admin.site.register(Video)
 admin.site.register(StudyNote)
-
 admin.site.register(TopicObjective)
 admin.site.register(TopicGuideLine)
 admin.site.register(Topic)
 admin.site.register(Course)
 admin.site.register(SubTopic)
 admin.site.register(StudentCourseEnrollment)
-admin.site.register(AddCourseToSchool)

@@ -24,8 +24,6 @@ class StudentRecordListDetailSerializer(serializers.ModelSerializer):
 			'student',
 			'score',
 			'totalmarks',
+			'name',
 			'subject',
 		]
-
-
-

@@ -15,6 +15,7 @@ import {
         ADD_ENROLLMENT,
         GET_ENROLLMENTS,
         EDIT_ENROLLMENT,
+        GET_STUDY_MODE_CHOICES,
     } from '../types/classTypes';
 import { GET_STUDENTS_CLASS_STATUS_CHOICES } from '../types/choiceTypes';
 
@@ -27,11 +28,17 @@ const initialState = {
     student: [],
     students: [],
     studentclassstatuschoices: [],
+    studymodechoices: [],
     loading: false
 }
 
 export default function aa(state = initialState, action){
 switch(action.type){
+    case GET_STUDY_MODE_CHOICES:
+        return {
+            ...state,
+            studymodechoices: action.payload
+        };
     case GET_CLASSES:
         return {
             ...state,

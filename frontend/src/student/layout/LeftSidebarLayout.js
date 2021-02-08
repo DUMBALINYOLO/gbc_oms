@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { PropTypes } from 'prop-types';
 import classNames from 'classnames';
 import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
@@ -7,7 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import BreadCrumb from '../../components/BreadCrumb/BreadCrumb';
 import Header from '../../components/Header/Header';
 import Sidebar from './Sidebar';
-import navigationConfig from '../navigations/navigationConfig';
 import Decoration from '../../containers/Templates/Decoration';
 import styles from './appStyles-jss';
 
@@ -27,7 +25,6 @@ class LeftSidebarLayout extends React.Component {
       bgPosition,
       changeMode,
       place,
-      titleException,
       handleOpenGuide
     } = this.props;
     return (

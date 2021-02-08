@@ -129,6 +129,7 @@ class AdminStudentProfileListDetailSerializer(serializers.ModelSerializer):
 			# 'date_of_birth',
 			'phone_number',
 			'whatsapp_number',
+			'name',
 		]
 
 	def get_gender(self, obj):
@@ -150,6 +151,7 @@ class AdminParentProfileListDetailSerializer(serializers.ModelSerializer):
 			# 'date_of_birth',
 			'phone_number',
 			'whatsapp_number',
+			'name',
 
 		]
 
@@ -176,6 +178,7 @@ class AdminBursarProfileListDetailSerializer(serializers.ModelSerializer):
 			# 'date_of_birth',
 			'phone_number',
 			'whatsapp_number',
+			'name',
 
 		]
 
@@ -202,6 +205,7 @@ class AdminTeacherProfileListDetailSerializer(serializers.ModelSerializer):
 			# 'date_of_birth',
 			'phone_number',
 			'whatsapp_number',
+			'name',
 
 		]
 
@@ -228,6 +232,7 @@ class AdminPrincipalProfileListDetailSerializer(serializers.ModelSerializer):
 			# 'date_of_birth',
 			'phone_number',
 			'whatsapp_number',
+			'name',
 
 		]
 
@@ -305,6 +310,7 @@ class AdminPrincipalListDetailSerializer(serializers.ModelSerializer):
 			'email',
 			'profile',
 			'type',
+
 		]
 
 	def get_type(self, obj):

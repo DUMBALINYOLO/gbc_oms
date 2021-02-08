@@ -20,6 +20,9 @@ import {
 	EDIT_TEST_RECORD,
 	EDIT_ASSIGNMENT_RECORD,
 	EDIT_EXCERCISE_RECORD,
+	GET_STUDENT_TESTS,
+	GET_STUDENT_ASSIGNMENTS,
+	GET_STUDENT_EXCERCISES,
 
 } from '../types/gradingTypes';
 import { createMessage, returnErrors } from './messages';
@@ -34,7 +37,60 @@ import {
 	gradingasignmentrecordsURL,
 	gradingtestrecordsURL,
 	gradingexcerciserecordsURL,
+	studentexcercisesURL,
+	studenttestsURL,
+	studentassignmentsURL,
 } from '../constants';
+
+
+// Get
+export const getStudentTests = (email, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(`${studenttestsURL}?email=${email}`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_STUDENT_TESTS,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+// Get
+export const getStudentAssignments = (email, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(`${studentassignmentsURL}?email=${email}`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_STUDENT_ASSIGNMENTS,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+
+// Get
+export const getStudentExcercises = (email, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(`${studentexcercisesURL}?email=${email}`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_STUDENT_EXCERCISES,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
 
 // Get
 export const getTestRecords = (token) => dispatch => {

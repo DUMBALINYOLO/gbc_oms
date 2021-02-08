@@ -1,5 +1,5 @@
 import {
-    GET_STUDENT_ATTENDANCES ,
+    GET_STUDENT_ATTENDANCE_RECORDS,
 
 
 } from '../types/attendanceTypes';
@@ -11,7 +11,7 @@ const initialState = {
 
 export default function(state = initialState, action){
     switch(action.type){
-        case GET_STUDENT_ATTENDANCES:
+        case GET_STUDENT_ATTENDANCE_RECORDS:
             return {
                 ...state,
                 studentattendances: action.payload

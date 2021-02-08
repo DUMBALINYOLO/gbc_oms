@@ -25,9 +25,11 @@ from basedata.constants import (
 
 
 class Course(SoftDeletionModel):
-    students = models.ManyToManyField(
+    amastudents = models.ManyToManyField(
                         'people.StudentProfile',
-                        related_name='taken_courses', blank=True
+                        through='courses.StudentCourseEnrollment',
+                         blank=True,
+                        related_name='taken_courses'
                     )
     topics = models.ManyToManyField(
                         'courses.Topic',
@@ -194,6 +196,6 @@ class Review(SoftDeletionModel):
     comment = models.CharField(max_length=200)
     rating = models.IntegerField(choices=COURSE_RATING_CHOICES)
     course_id = models.IntegerField(blank=True, null=True)
-
+    
     def __str__(self):
         return self.reviewer.__str__()

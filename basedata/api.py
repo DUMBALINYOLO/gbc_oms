@@ -102,6 +102,7 @@ from .constants import (
 				FEES_TARGETS_CHOICES,
 				FEES_TYPE_CHOICES,
 				ACCOUNT_STATUS_CHOICES,
+				STUDY_MODE_CHOICES,
 
 			)
 
@@ -121,6 +122,21 @@ class AccountStatusChoicesAPIView(views.APIView):
 			my_choices.append(itered_dict)
 		return Response(my_choices, status=status.HTTP_200_OK)
 
+
+class StudyModeChoicesAPIView(views.APIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
+
+
+	def get(self, request, format=None):
+
+		my_choices = []
+		choice_dict = dict(STUDY_MODE_CHOICES)
+		for key, value in choice_dict.items():
+
+			itered_dict = {"key": key, "value": value}
+			my_choices.append(itered_dict)
+		return Response(my_choices, status=status.HTTP_200_OK)
 
 class FeeTargetsChoicesAPIView(views.APIView):
 	authentication_classes = (TokenAuthentication,)

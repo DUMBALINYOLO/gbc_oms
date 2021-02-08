@@ -95,7 +95,8 @@ from .api import (
             GeneralGradingTypeChoicesAPIView,
             FeeTargetsChoicesAPIView,
             FeeTypeChoicesAPIView,
-            AccountStatusChoicesAPIView
+            AccountStatusChoicesAPIView,
+            StudyModeChoicesAPIView
 
 
         )
@@ -114,6 +115,7 @@ urlpatterns = [
     path('account-status-choices/', AccountStatusChoicesAPIView.as_view(), name='account-status-choices'),
     #make redux state from here
     path('account-type-choices/', AccountTypeChoicesAPIView.as_view(), name='account-type-choices'),
+    path('study-mode-choices/', StudyModeChoicesAPIView.as_view(), name='study-mode-choices'),
     path('bill-frequency-choices/', BillFrequencyChoicesAPIView.as_view(), name='bill-frequency-choices'),
     path('account-balance-sheet-categories-choices/', AccountBalanceSheetCategoriesChoicesAPIView.as_view(), name='account-balance-sheet-categories-choices'),
     path('interest-innterval-account-choices/', InterestIntervalAccountChoicesAPIView.as_view(), name='interest-innterval-account-choices'),
@@ -195,7 +197,7 @@ urlpatterns = [
     path('school-head-report-status-choices/', SchoolHeadReportStatusChoicesAPIView.as_view(), name='school-head-report-status-choices'),
     path('online-admission-status-choices/', OnlineAdmissionStatusChoicesAPIView.as_view(), name='online-admission-status-choices'),
     path('attendance-status-choices/', AttendanceStatusChoicesAPIView.as_view(), name='attendance-status-choices'),
-    path('gender-choices/', GenderChoicesAPIView.as_view(), name='gender-choices'),      
+    path('gender-choices/', GenderChoicesAPIView.as_view(), name='gender-choices'),
     path('students-class-status-choices/', StudentClassStatusChoicesAPIView.as_view(), name='students-class-status-choices'),
     path('study-notes-approval-status-choices/', StudyNotesApprovalStatusChoicesAPIView.as_view(), name='study-notes-approval-status-choices'),
     path('staff-type-choices/', StaffTypeChoicesAPIView.as_view(), name='staff-type-choices'),
@@ -203,4 +205,4 @@ urlpatterns = [
     path('studynotes-status-choices/', StudyNotesStatusChoicesAPIView.as_view(), name='studynotes-status-choices'),
 
 
-] 
+]

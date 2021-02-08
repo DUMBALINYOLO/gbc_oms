@@ -10,6 +10,7 @@ import {
         ADD_ATTENDANCE_RECORD,
         GET_ATTENDANCE_RECORDS,
         EDIT_ATTENDANCE_RECORD,
+        GET_STUDENT_ATTENDANCE_RECORDS,
     } from '../types/attendanceTypes';
 import {
     adminattendancesURL,
@@ -186,16 +187,16 @@ export const editTeacherAttendance = (id, attendance, token) => dispatch => {
 }
 
 // Get
-export const getStudentAttendances = (token) => dispatch => {
+export const getStudentAttendances = (email, token) => dispatch => {
     const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
     };
-    axios.get(studentattendancesURL, headers)
+    axios.get(`${studentattendancesURL}?email=${email}`, headers)
         .then(res => {
             dispatch({
-                type: GET_STUDENT_ATTENDANCES,
+                type: GET_STUDENT_ATTENDANCE_RECORDS,
                 payload: res.data
             });
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));

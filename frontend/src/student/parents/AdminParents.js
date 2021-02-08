@@ -63,7 +63,7 @@ const AdminParents = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminParents(tokens);
+        props.getAdminParents(token);
     }
     console.log('mount it!');
 
@@ -75,7 +75,7 @@ const AdminParents = props => {
       if (bursar.id > 0)
         console.log('gosso')
       else
-        props.addBursar(bursar, token)       //
+        props.addBursar(bursar,token)       //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)

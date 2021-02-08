@@ -71,3 +71,8 @@ class TeacherProfile(SoftDeletionModel):
 
     def __str__(self):
         return self.user.__str__()
+
+
+    @property
+    def name(self):
+        return self.user.username

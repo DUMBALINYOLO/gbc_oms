@@ -204,6 +204,9 @@ export const classstreamsURL = `${endpoint}/classes/class-streams/`
 export const classsubjectsURL = `${endpoint}/classes/class-subjects/`
 export const classstudentsURL = `${endpoint}/classes/class-students/`
 export const enrollmentsURL = `${endpoint}/classes/enrollments/`
+export const studymodechoicesURL = `${endpoint}/basedata/study-mode-choices/`
+
+
 
 //attendance
 export const adminattendancesURL = `${endpoint}/attendance/admin-attendances/`

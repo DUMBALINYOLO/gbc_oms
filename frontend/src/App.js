@@ -78,6 +78,13 @@ import TeacherSubTopic from './teacher/courses/subtopics/TeacherSubTopic';
 import TeacherStudyNote from './teacher/courses/notes/TeacherStudyNote';
 import Alerts from './Alert';
 import store from './store';
+import AdminStudentClass from './it/classes/AdminStudentClass';
+import StudentHome from './student/dashboard/StudentHome';
+import StudentAttendanceRecords from './student/attendance/StudentAttendanceRecords';
+import StudentTestRecords from './student/gradings/StudentTestRecords';
+import StudentExcerciseRecords from './student/gradings/StudentExcerciseRecords';
+import StudentAssignmentRecords from './student/gradings/StudentAssignmentRecords';
+import Error from './errors/Error';
 
 
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
@@ -113,6 +120,11 @@ class App extends React.Component {
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/itdashboard' component={InformationTechnologyHome} />
                 <Route exact path='/bursardashboard' component={BursarLog} />
+								<Route exact path='/studentdashboard' component={StudentHome} />
+								<Route exact path='/studentdashboard/attendance' component={StudentAttendanceRecords} />
+								<Route exact path='/studentdashboard/tests' component={StudentTestRecords} />
+								<Route exact path='/studentdashboard/excercises' component={StudentExcerciseRecords} />
+								<Route exact path='/studentdashboard/assignments' component={StudentAssignmentRecords} />
                 <Route exact path='/wa' component={TeacherLog} />
                 <Route exact path='/teacherdashboard' component={TeacherHome} />
                 <Route exact path='/teacherdashboard/attendance' component={TeacherAttendances} />
@@ -159,6 +171,7 @@ class App extends React.Component {
                 <Route exact path='/itdashboard/principals' component={AdminPrincipals} />
                 <Route exact path='/itdashboard/streams' component={AdminStream} />
                 <Route exact path='/itdashboard/classes' component={AdminClass} />
+								<Route exact path='/itdashboard/classes/:id' component={AdminStudentClass} />
                 <Route exact path='/itdashboard/ledgers' component={AdminLedgers} />
                 <Route exact path='/itdashboard/workbooks' component={AdminWorkBooks} />
                 <Route exact path='/itdashboard/currencies' component={AdminCurrencies} />
@@ -179,6 +192,7 @@ class App extends React.Component {
                 <Route exact path='/itdashboard/inactive-accounts' component={AdminInActiveAccounts} />
                 <Route exact path='/blog' component={BlogPage} />
                 <Route exact path='/profile' component={CompanyProfile} />
+								<Route component={Error} />
               </Switch>
             </AlertProvider>
           )}

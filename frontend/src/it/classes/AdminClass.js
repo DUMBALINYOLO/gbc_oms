@@ -6,6 +6,8 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
+import { useHistory } from 'react-router-dom';
+import BorderColorIcon from '@material-ui/icons/BorderColor';
 import {
   Paper,
   makeStyles,
@@ -19,6 +21,7 @@ import AddClass from './AddClass';
 import  Controls  from "../../components/formcontrols/Controls";
 import  Popup  from "../../components/formcontrols/Popup";
 import  useTable  from "../../components/table/useTable";
+
 
 
 
@@ -59,6 +62,7 @@ const AdminClass = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const history = useHistory();
   const {token} = props;
 
   useEffect(() => {
@@ -109,6 +113,9 @@ const AdminClass = props => {
       setRecordForEdit(item)
       setOpenPopup(true)
   }
+  const handleClick = id =>{
+    history.push(`/itdashboard/classes/${id}`)
+  }
 
   return (
     <InformationTechnologyLayout>
@@ -145,15 +152,19 @@ const AdminClass = props => {
                           <TableCell>{item.status}</TableCell>
                           <TableCell>{item.year}</TableCell>
                           <TableCell>
-                              <Controls.ActionButton
-                                  color="primary"
-                                  onClick={() => { openInPopup(item) }}>
-                                  <EditOutlinedIcon fontSize="small" />
-                              </Controls.ActionButton>
-                              <Controls.ActionButton
-                                  color="secondary">
-                                  <CloseIcon fontSize="small" />
-                              </Controls.ActionButton>
+                            <Controls.ActionButton
+                                color="primary"
+                                onClick={() => { openInPopup(item) }}>
+                                <EditOutlinedIcon fontSize="small" />
+                                EDIT
+                            </Controls.ActionButton>
+                            <Controls.ActionButton
+                                color="secondary"
+                                onClick={() => { handleClick(item.id) }}
+                              >
+                                <BorderColorIcon fontSize="small" />
+                                OPEN
+                            </Controls.ActionButton>
                           </TableCell>
                       </TableRow>)
                   )

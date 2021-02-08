@@ -6,9 +6,14 @@ from attendance.models import AttendanceRecord
 from attendance.serializers import (
 			StudentAttendanceRecordListSerializer
 	)
+from people.models import Student, StudentProfile
 
 
 
+def get_student(email):
+	user = get_object_or_404(Student, email=email)
+	student = get_object_or_404(StudentProfile, user=user)
+	return student
 
 
 class StudentAttendanceViewSet(viewsets.ModelViewSet):
@@ -17,6 +22,13 @@ class StudentAttendanceViewSet(viewsets.ModelViewSet):
 	serializer_class = StudentAttendanceRecordListSerializer
 
 	def get_queryset(self, *args, **kwargs):
-		student = self.request.user
-		queryset = student.attendance
+		email = self.request.query_params.get('email', None)
+		queryset = []
+		if email is not None:
+			student = get_student(email=email)
+			queryset = student.attendancerecords.select_related(
+														'attendance',
+														'student'
+													)
+
 		return queryset
