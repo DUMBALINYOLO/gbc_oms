@@ -11,11 +11,13 @@ import {
     GET_INVENTORY_CHECK_FREQUENCY_CHOICES,
     GET_STUDYNOTES_STATUS_CHOICES,
     GET_STUDY_NOTES_APPROVAL_STATUS_CHOICES,
+    GET_COURSES_ENROLLMENT_STATUS_CHOICES,
 
 } from '../types/choiceTypes'
 
 const initialState = {
     feetypechoices: [],
+    courseenrollmentstatuschoices: [],
     feetargetschoices: [],
     accountstatuschoices: [],
     accountbalancesheetcategorieschoices : [],
@@ -37,6 +39,11 @@ const initialState = {
                 ...state,
                 studynotesstatuschoices: action.payload
             };
+        case GET_COURSES_ENROLLMENT_STATUS_CHOICES:
+        return {
+            ...state,
+            courseenrollmentstatuschoices: action.payload
+        };
         case GET_STUDY_NOTES_APPROVAL_STATUS_CHOICES:
             return {
                 ...state,

@@ -26,3 +26,4 @@ class StudentCourseEnrollment(SoftDeletionModel):
 
     def __str__(self):
         return self.student.__str__()
+

@@ -198,6 +198,7 @@ export const adminauthorsURL = `${endpoint}/courses/admin-authors/`
 export const adminpublishercitiesURL = `${endpoint}/courses/admin-publisher-cities/`
 export const adminpublishersURL = `${endpoint}/courses/admin-publishers/`
 export const studentcourseenrollmentsURL = `${endpoint}/courses/student-course-enrollments/`
+export const courseenrollmentstatuschoicesURL = `${endpoint}/basedata/course-enrollment-status-choices/`
 
 //classes
 export const classesURL = `${endpoint}/classes/classes/`

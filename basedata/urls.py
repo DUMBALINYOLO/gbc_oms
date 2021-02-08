@@ -96,7 +96,8 @@ from .api import (
             FeeTargetsChoicesAPIView,
             FeeTypeChoicesAPIView,
             AccountStatusChoicesAPIView,
-            StudyModeChoicesAPIView
+            StudyModeChoicesAPIView,
+            CourseEnrollmentStatusChoicesAPIView
 
 
         )
@@ -113,6 +114,7 @@ urlpatterns = [
     path('fee-targets-choices/', FeeTargetsChoicesAPIView.as_view(), name='fee-targets-choices'),
     path('fee-type-choices/', FeeTypeChoicesAPIView.as_view(), name='fee-type-choices'),
     path('account-status-choices/', AccountStatusChoicesAPIView.as_view(), name='account-status-choices'),
+    path('course-enrollment-status-choices/', CourseEnrollmentStatusChoicesAPIView.as_view(), name='course-enrollment-status-choices'),
     #make redux state from here
     path('account-type-choices/', AccountTypeChoicesAPIView.as_view(), name='account-type-choices'),
     path('study-mode-choices/', StudyModeChoicesAPIView.as_view(), name='study-mode-choices'),

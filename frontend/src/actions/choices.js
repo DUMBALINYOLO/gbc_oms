@@ -91,6 +91,7 @@ import {
     GET_FEE_TARGETS_CHOICES,
     GET_FEE_TYPE_CHOICES,
     GET_ACCOUNT_STATUS_CHOICES,
+    GET_COURSES_ENROLLMENT_STATUS_CHOICES,
 
 } from '../types/choiceTypes';
 import {
@@ -125,8 +126,24 @@ import {
     feetargetschoicesURL,
     feetypechoicesURL,
     accountstatuschoicesURL,
+    courseenrollmentstatuschoicesURL,
 } from '../constants';
 
+
+export const getCourseEnrollmentStatusChoices = (token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(courseenrollmentstatuschoicesURL, headers)
+        .then(res => {
+            dispatch({
+                type: GET_COURSES_ENROLLMENT_STATUS_CHOICES,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
 
 export const getAccountStatusChoices = (token) => dispatch => {
     const headers ={
