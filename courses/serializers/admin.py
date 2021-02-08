@@ -709,3 +709,39 @@ class ItCourseDetailSerializer(serializers.ModelSerializer):
 
 	def get_status(self, obj):
 		return obj.get_status_display()
+
+
+
+class StudentCourseEnrollmentCreateUpdateSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = StudentCourseEnrollment
+		fields = [
+			'id',
+			'status',
+			'student',
+			'course',
+		]
+
+	def create(self, validate_data):
+		course=  get_course(course_id=validated_data['course'])
+		enrollmment = StudentCourseEnrollment(
+								course=course,
+								status = validated_data['status'],
+								student = validated_data['student']
+							)
+		student.save()
+		return student
+
+
+class StudentCourseEnrollmentListDetailSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = StudentCourseEnrollment
+		fields = [
+			'id',
+			'status',
+			'student',
+			'course',
+			'date_enrolled',
+		]

@@ -20,6 +20,7 @@ from courses.apis import (
 		AdminAuthorViewSet,
 		AdminPublisherCityViewSet,
 		AdminPublisherViewSet,
+		StudentCourseEnrollementViewSet,
 
 	)
 
@@ -44,5 +45,6 @@ router.register('admin-study-notes-references', AdminReferenceViewSet, basename=
 router.register('admin-authors', AdminAuthorViewSet, basename='admin-authors')
 router.register('admin-publisher-cities', AdminPublisherCityViewSet, basename='admin-publisher-cities')
 router.register('admin-publishers', AdminPublisherViewSet, basename='admin-publishers')
+router.register('student-course-enrollments', StudentCourseEnrollementViewSet, basename='student-course-enrollments')
 
 urlpatterns = router.urls

@@ -65,6 +65,9 @@ from courses.serializers import (
 			ItPublisherListSerializer,
 			ItPublisherCityCreateUpdateSerializer,
 			ItPublisherCityListSerializer,
+			StudentCourseEnrollmentCreateUpdateSerializer,
+			StudentCourseEnrollmentListDetailSerializer,
+
 	)
 
 
@@ -214,6 +217,30 @@ class AdminInactiveCourseViewSet(viewsets.ModelViewSet):
 def get_course(course_id):
 	course = get_object_or_404(Course, id=course_id)
 	return course
+
+
+
+class StudentCourseEnrollementViewSet(viewsets.ModelViewSet):
+
+	def get_serializer_class(self, *args, **kwargs):
+		if self.action in ['create', 'patch', 'put', 'updating']:
+			return StudentCourseEnrollmentCreateUpdateSerializer
+		return StudentCourseEnrollmentListDetailSerializer
+
+
+	def get_queryset(self, *args, **kwargs):
+		queryset = StudentCourseEnrollment.objects.select_related(
+														'course',
+														'student'
+													).order_by('-id')
+		course_id = self.request.query_params.get('id', None)
+		if course_id is not None:
+			course = get_course(course_id=course_id)
+			queryset = course.studentcourseenrollment_set.select_related(
+																'course',
+																'student'
+															).order_by('-id')
+		return queryset
 
 
 class AdminTopicViewSet(viewsets.ModelViewSet):

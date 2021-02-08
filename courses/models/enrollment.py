@@ -15,7 +15,7 @@ class StudentCourseEnrollment(SoftDeletionModel):
                 )
     course = models.ForeignKey('courses.Course', on_delete=models.PROTECT)
     date_enrolled = models.DateField(auto_now_add=True)
-    final_grade = models.CharField(max_length=340, blank=True, null=True)
+
 
 
 
