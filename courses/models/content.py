@@ -8,7 +8,7 @@ from basedata.constants import (
 
 
 class ItemBase(SoftDeletionModel):
-	title = models.CharField(max_length=250)
+	title = models.CharField(max_length=250, unique=True)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
 	note_id = models.IntegerField(blank=True, null=True)

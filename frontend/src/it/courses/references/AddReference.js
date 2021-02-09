@@ -1,11 +1,8 @@
-import React, {  useEffect } from "react";
+import React, {  useEffect, useState } from "react";
 import { connect } from 'react-redux';
 import {  Grid, makeStyles,  } from "@material-ui/core";
 import {Form, useForm } from "../../../components/formcontrols/useForm";
 import  Controls  from "../../../components/formcontrols/Controls";
-import { getPublisherCities } from '../../../actions/courses';
-import TextField from '@material-ui/core/TextField';
-
 
 
 const useStyles = makeStyles(theme => ({
@@ -27,25 +24,36 @@ const useStyles = makeStyles(theme => ({
   p1: {
     padding: ".85rem"
   }
+  // demoEditor: {
+  //   border: "1px solid #eee",
+  //   padding: "5px",
+  //   borderRadius: "2px",
+  //   height: "350px"
+  // }
 }));
 
-const initialFValues = {
-  name: '',
-  city: '',
-}
 
 
 
-const AddPublisher = props => {
-  const { addOrEdit, recordForEdit } = props
+const AddNote = props => {
+  const { addOrEdit, recordForEdit } = props;
   const classes = useStyles();
+  const { id } = props;
+
+
+  const initialFValues = {
+
+    title: '',
+    content: '',
+    note_id: id,
+  }
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors }
-    if ('name' in fieldValues)
-        temp.name = fieldValues.name ? "" : "This field is required."
-    if ('city' in fieldValues)
-        temp.city = fieldValues.city ? "" : "This field is required."
+    if ('title' in fieldValues)
+        temp.title = fieldValues.title ? "" : "This field is required."
+    if ('content' in fieldValues)
+        temp.content = fieldValues.content? "" : "This field is required."
     setErrors({
         ...temp
     })
@@ -53,7 +61,6 @@ const AddPublisher = props => {
     if (fieldValues === values)
         return Object.values(temp).every(x => x === "")
   }
-
 
   const {
       values,
@@ -73,9 +80,6 @@ const AddPublisher = props => {
   }
 
   useEffect(() => {
-    if(!props.fetched) {
-        props.getPublisherCities(props.token);
-    }
     if (recordForEdit != null)
             setValues({
                 ...recordForEdit
@@ -87,22 +91,21 @@ const AddPublisher = props => {
               <Grid container>
                   <Grid item xs={6}>
                       <Controls.Input
-                          name="name"
-                          label="NAME"
-                          value={values.name}
+                          name="title"
+                          label="TITLE"
+                          value={values.title}
                           onChange={handleInputChange}
-                          error={errors.name}
+                          error={errors.title}
                       />
                   </Grid>
                   <Grid item xs={6}>
-                      <Controls.Select
-                          name="city"
-                          label="PUBLISHER CITY"
-                          value={values.city}
-                          onChange={handleInputChange}
-                          options={props.adminpublishercities}
-                          error={errors.city}
-                      />
+                    <Controls.Input
+                        name="content"
+                        label="CONTENT"
+                        value={values.content}
+                        onChange={handleInputChange}
+                        error={errors.content}
+                    />
                       <div>
                           <Controls.Button
                               type="submit"
@@ -118,10 +121,5 @@ const AddPublisher = props => {
   );
 };
 
-const mapStateToProps = state =>({
-    adminpublishercities: state.courses.adminpublishercities,
-    token: state.auth.token,
 
-})
-
-export default connect(mapStateToProps, {getPublisherCities} ) (AddPublisher);
+export default AddNote;

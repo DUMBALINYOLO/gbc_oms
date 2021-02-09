@@ -110,7 +110,7 @@ class ItListAuthorSerializer(serializers.ModelSerializer):
 		model = Author
 		fields = [
 				'id',
-				'author_number'
+				'author_number',
 				'name'
 			]
 
@@ -194,6 +194,7 @@ class ItTextCreateUpdateSerializer(serializers.ModelSerializer):
 
 
 class ItTextListDetailSerializer(serializers.ModelSerializer):
+	created = serializers.DateTimeField(format="%d-%m-%Y")
 
 	class Meta:
 		model = Text

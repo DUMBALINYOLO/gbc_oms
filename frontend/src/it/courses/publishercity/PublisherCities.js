@@ -18,6 +18,7 @@ import AddPublisherCity from './AddPublisherCity';
 import  Controls  from "../../../components/formcontrols/Controls";
 import  Popup  from "../../../components/formcontrols/Popup";
 import  useTable  from "../../../components/table/useTable";
+import InformationTechnologyLayout from '../../layout/InformationTechnologyLayout';
 
 
 
@@ -57,12 +58,11 @@ const PublisherCities = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
-  const {id} =props.data;
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getPublisherCities(id, token);
+        props.getPublisherCities(token);
     }
     console.log('mount it!');
 
@@ -110,7 +110,7 @@ const PublisherCities = props => {
   }
 
   return (
-    <>
+    <InformationTechnologyLayout>
       <Paper className={classes.pageContent}>
 
       <Toolbar>
@@ -166,10 +166,9 @@ const PublisherCities = props => {
         <AddPublisherCity
             recordForEdit={recordForEdit}
             addOrEdit={addOrEdit}
-            id={id}
         />
       </Popup>
-    </>
+    </InformationTechnologyLayout>
   );
 };
 

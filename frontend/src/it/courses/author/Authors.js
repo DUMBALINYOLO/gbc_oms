@@ -18,6 +18,7 @@ import AddAuthor from './AddAuthor';
 import  Controls  from "../../../components/formcontrols/Controls";
 import  Popup  from "../../../components/formcontrols/Popup";
 import  useTable  from "../../../components/table/useTable";
+import InformationTechnologyLayout from '../../layout/InformationTechnologyLayout';
 
 
 
@@ -54,12 +55,11 @@ const Authors = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
-  const {id} =props.data;
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAuthors(id, token);
+        props.getAuthors(token);
     }
     console.log('mount it!');
 
@@ -107,7 +107,7 @@ const Authors = props => {
   }
 
   return (
-    <>
+    <InformationTechnologyLayout>
       <Paper className={classes.pageContent}>
 
       <Toolbar>
@@ -163,10 +163,9 @@ const Authors = props => {
         <AddAuthor
             recordForEdit={recordForEdit}
             addOrEdit={addOrEdit}
-            id={id}
         />
       </Popup>
-    </>
+    </InformationTechnologyLayout>
   );
 };
 

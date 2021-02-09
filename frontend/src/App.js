@@ -92,7 +92,10 @@ import StudentUpcomingCourse from './student/courses/courses/StudentUpcomingCour
 import StudentTopic from './student/courses/topics/StudentTopic';
 import StudentSubTopic from './student/courses/subtopics/StudentSubTopic';
 import StudentStudyNote from './student/courses/notes/StudentStudyNote';
-import InnerNotes from './it/courses/innernotes/InnerNotes';
+import Authors from './it/courses/author/Authors';
+import Publishers from './it/courses/publisher/Publishers';
+import Cities from './it/courses/publishercity/PublisherCities';
+
 
 
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
@@ -125,7 +128,6 @@ class App extends React.Component {
             <AlertProvider template={AlertTemplate} {...alertOptions} >
               <Switch>
                 <Route exact path='/' component={LandingPage} />
-								<Route exact path='/notes' component={InnerNotes} />
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/itdashboard' component={InformationTechnologyHome} />
                 <Route exact path='/bursardashboard' component={BursarLog} />
@@ -175,6 +177,9 @@ class App extends React.Component {
                 <Route exact path='/itdashboard/meeting-admissions' component={AdminMeetingAdmissions} />
                 <Route exact path='/itdashboard/rejected-admissions' component={AdminRejectedAdmissions} />
                 <Route exact path='/itdashboard/students' component={AdminStudents} />
+								<Route exact path='/itdashboard/authors' component={Authors} />
+								<Route exact path='/itdashboard/publishers' component={Publishers} />
+								<Route exact path='/itdashboard/cities' component={Cities} />
                 <Route exact path="/itdashboard/students/:id" component={StudentProfile} />
                 <Route exact path='/itdashboard/tests' component={AdminStudentTests} />
                 <Route exact path='/itdashboard/tests/:id' component={AdminGradingTest} />

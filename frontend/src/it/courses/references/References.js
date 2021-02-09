@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { getPublishers, addPublisher, editPublisher } from '../../../actions/courses';
+import { getAdminTopicObjectives, addTopicObjective, editTopicObjective } from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -14,11 +14,11 @@ import {
   Toolbar,
   InputAdornment }
 from '@material-ui/core';
-import AddPublisher from './AddPublisher';
+import AddObjective from './AddObjective';
 import  Controls  from "../../../components/formcontrols/Controls";
 import  Popup  from "../../../components/formcontrols/Popup";
 import  useTable  from "../../../components/table/useTable";
-import InformationTechnologyLayout from '../../layout/InformationTechnologyLayout';
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -39,8 +39,7 @@ const useStyles = makeStyles(theme => ({
 const headCells = [
   { id: 'id', label: 'ID' },
   { id: 'name', label: 'NAME' },
-  { id: 'city', label: 'CITY' },
-  { id: 'number', label: 'NUMBER' },
+  { id: 'description', label: 'DESCRIPTION' },
   { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
@@ -49,17 +48,18 @@ const options = {
   filterType: "checkbox"
 };
 
-const Publishers = props => {
+const Objectives = props => {
   const { history } = props;
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const {id} =props.data;
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getPublishers(token);
+        props.getAdminTopicObjectives(id, token);
     }
     console.log('mount it!');
 
@@ -69,9 +69,9 @@ const Publishers = props => {
 
   const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0)
-        props.editPublisher(fee.id, fee, token)
+        props.editTopicObjective(fee.id, fee, token)
       else
-        props.addPublisher(fee, token)
+        props.addTopicObjective(fee, token)
         //
       resetForm()
       setRecordForEdit(null)
@@ -107,7 +107,7 @@ const Publishers = props => {
   }
 
   return (
-    <InformationTechnologyLayout>
+    <>
       <Paper className={classes.pageContent}>
 
       <Toolbar>
@@ -136,8 +136,7 @@ const Publishers = props => {
                       (<TableRow key={item.id}>
                           <TableCell>{item.id}</TableCell>
                           <TableCell>{item.name}</TableCell>
-                          <TableCell>{item.city}</TableCell>
-                          <TableCell>{item.number}</TableCell>
+                          <TableCell>{item.description}</TableCell>
                           <TableCell>
                               <Controls.ActionButton
                                   color="primary"
@@ -157,25 +156,26 @@ const Publishers = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Guideline Form"
+      title="Fee Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >
-        <AddPublisher
+        <AddObjective
             recordForEdit={recordForEdit}
             addOrEdit={addOrEdit}
+            id={id}
         />
       </Popup>
-    </InformationTechnologyLayout>
+    </>
   );
 };
 
 const mapStateToProps = state =>({
-    records: state.courses.adminpublishers,
+    records: state.courses.admintopicobjectives,
     token: state.auth.token,
 })
 
 export default connect(
   mapStateToProps,
-  {getPublishers, addPublisher, editPublisher} )
-  (Publishers);
+  {getAdminTopicObjectives, addTopicObjective, editTopicObjective} )
+  (Objectives);

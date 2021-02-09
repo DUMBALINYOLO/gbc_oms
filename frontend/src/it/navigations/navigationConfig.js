@@ -68,34 +68,6 @@ const navigationConfig = [
         ],
       },
       {
-        id: "configs",
-        title: "CONFIGURATIONS",
-        type: "collapse",
-        icon: <Brightness5Icon />,
-        badge: {
-          title: "1",
-          bg: "#525E8A",
-          fg: "#FFFFFF",
-
-        },
-        children: [
-          {
-            id: "all configs",
-            title: "All Posts",
-            type: "item",
-            url: "/pages/posts",
-            exact: true,
-          },
-          {
-            id: "add config",
-            title: "Add Post",
-            type: "item",
-            url: "/pages/posts/add-post",
-            exact: true,
-          },
-        ],
-      },
-      {
         id: "users",
         title: "STAFF USERS",
         type: "collapse",
@@ -201,6 +173,41 @@ const navigationConfig = [
         ],
       },
       {
+        id: "references",
+        title: "BIBLIOGRAPHY",
+        type: "collapse",
+        icon: <BusinessIcon />,
+        badge: {
+          title: "3",
+          bg: "#525E8A",
+          fg: "#FFFFFF",
+
+        },
+        children: [
+          {
+            id: "authors",
+            title: "AUTHORS",
+            type: "item",
+            url: "/itdashboard/authors",
+            exact: true,
+          },
+          {
+            id: "publishers",
+            title: "PUBLISHERS",
+            type: "item",
+            url: "/itdashboard/publishers",
+            exact: true,
+          },
+          {
+            id: "cities",
+            title: "CITIES",
+            type: "item",
+            url: "/itdashboard/cities",
+            exact: true,
+          },
+        ],
+      },
+      {
         id: "courses",
         title: "COURSES",
         type: "collapse",
@@ -241,26 +248,7 @@ const navigationConfig = [
           },
         ],
       },
-      {
-        id: "fees",
-        title: "FEES",
-        type: "collapse",
-        icon: <BusinessIcon />,
-        badge: {
-          title: "3",
-          bg: "#525E8A",
-          fg: "#FFFFFF",
-        },
-        children: [
-          {
-            id: "fees",
-            title: "Fees",
-            type: "item",
-            url: "/itdashboard/fees",
-            exact: true,
-          },
-        ],
-      },
+
       {
         id: "curriculums",
         title: "CURRICULUMS",
