@@ -660,7 +660,7 @@ export const addStudyNote = (note, token) => dispatch => {
                 type: ADD_STUDY_NOTE,
                 payload: res.data
             });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+        }).catch(err => console.log(err))
 }
 
 
@@ -778,6 +778,7 @@ export const getStudyNoteImage = (id, token) => dispatch => {
 export const addStudyNoteImage = (image, token) => dispatch => {
     const headers ={
           "Content-Type": "application/json",
+          'content-type': 'multipart/image',
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
     };
@@ -822,6 +823,8 @@ export const getStudyNoteNotes = (note_id, token) => dispatch => {
             });
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
+
+
 
 export const getStudyNoteNote = (id, token) => dispatch => {
     const headers ={

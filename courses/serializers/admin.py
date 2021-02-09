@@ -21,6 +21,7 @@ from courses.models import (
 		)
 from setup.models import Institution
 from people.models import Student
+from .images import Base64ImageField
 
 
 
@@ -174,6 +175,7 @@ class ItTextCreateUpdateSerializer(serializers.ModelSerializer):
 				'id',
 				'title',
 				'content',
+				'note_id',
 			]
 		read_only_fields = ('id',)
 
@@ -205,15 +207,15 @@ class ItTextListDetailSerializer(serializers.ModelSerializer):
 
 
 
-class ItTextListDetailSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = File
-		fields = [
-				'id',
-				'title',
-				'file',
-			]
+# class ItTextListDetailSerializer(serializers.ModelSerializer):
+#
+# 	class Meta:
+# 		model = File
+# 		fields = [
+# 				'id',
+# 				'title',
+# 				'file',
+# 			]
 
 
 
@@ -256,6 +258,7 @@ class ItFileCreateUpdateSerializer(serializers.ModelSerializer):
 
 
 class ItImageCreateUpdateSerializer(serializers.ModelSerializer):
+	file = Base64ImageField(max_length=None, use_url=True,)
 
 	class Meta:
 		model = Image

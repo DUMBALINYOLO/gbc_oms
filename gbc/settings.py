@@ -138,9 +138,12 @@ REST_FRAMEWORK = {
 
 
     'DATE_INPUT_FORMATS': ['iso-8601', '%Y-%m-%dT%H:%M:%S.%fZ'],
-    # "DATE_INPUT_FORMATS": ["%d-%m-%Y"],
-    # 'DATE_FORMAT': ["%d-%m-%Y"],
-    # 'DATETIME_FORMAT': ["%d-%m-%Y %H:%M:%S"],
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser',
+    ),
+
 }
 #
 # SIMPLE_JWT = {

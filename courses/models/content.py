@@ -33,7 +33,7 @@ class File(ItemBase):
 
 
 class Image(ItemBase):
-    file = models.FileField(upload_to='photos/%Y/%m/%d/')
+    file = models.ImageField(upload_to='photos/%Y/%m/%d/')
 
 class Video(ItemBase):
     url = models.URLField()

@@ -41,27 +41,6 @@ const navigationConfig = [
         icon: <HomeIcon />
       },
       {
-        id: "students",
-        title: "STUDENTS",
-        type: "collapse",
-        icon: <Brightness5Icon />,
-        badge: {
-          title: "1",
-          bg: "#525E8A",
-          fg: "#FFFFFF",
-
-        },
-        children: [
-          {
-            id: "students",
-            title: "STUDENTS",
-            type: "item",
-            url: "/teacherdashboard/students",
-            exact: true,
-          },
-        ],
-      },
-      {
         id: "dashes",
         title: "ATTENDANCE",
         type: "collapse",
