@@ -71,6 +71,14 @@ import {
   GET_STUDENT_UPCOMING_COURSE,
   GET_STUDENT_ONGOING_COURSES,
   GET_STUDENT_ONGOING_COURSE,
+  ADD_FINISHED_COURSE,
+  EDIT_FINISHED_COURSE,
+  ADD_ONGOING_COURSE,
+  EDIT_ONGOING_COURSE,
+  ADD_INACTIVE_COURSE,
+  EDIT_INACTIVE_COURSE,
+  ADD_UPCOMING_COURSE,
+  EDIT_UPCOMING_COURSE,
 
 } from '../types/courseTypes';
 
@@ -190,18 +198,56 @@ export default function courses(state = initialState, action){
                 admininactivecourse : action.payload
             };
 
-        case ADD_COURSE:
+        case ADD_UPCOMING_COURSE:
             return {
                 ...state,
                 course: [...state.adminupcomingcourses, action.payload]
             }
 
-        case EDIT_COURSE:
+        case EDIT_UPCOMING_COURSE:
             const eearrayList = state.adminupcomingcourses;
             eearrayList.splice(eearrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
             return {
                 ...state,
                 adminupcomingcourses: eearrayList,
+            };
+        case ADD_FINISHED_COURSE:
+        return {
+            ...state,
+            course: [...state.adminfinishedcourses, action.payload]
+        }
+
+        case EDIT_FINISHED_COURSE:
+            const jarrayList = state.adminfinishedcourses;
+            jarrayList.splice(jarrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
+            return {
+                ...state,
+                adminfinishedcourses: jarrayList,
+            };
+        case ADD_ONGOING_COURSE:
+        return {
+            ...state,
+            course: [...state.adminongoingcourses, action.payload]
+        }
+        case EDIT_ONGOING_COURSE:
+            const oarrayList = state.adminongoingcourses;
+            oarrayList.splice(oarrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
+            return {
+                ...state,
+                adminongoingcourses: oarrayList,
+            };
+        case ADD_INACTIVE_COURSE:
+        return {
+            ...state,
+            course: [...state.admininactivecourses, action.payload]
+        }
+
+        case EDIT_INACTIVE_COURSE:
+            const iarrayList = state.admininactivecourses;
+            iarrayList.splice(iarrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
+            return {
+                ...state,
+                admininactivecourses: iarrayList,
             };
         case GET_ADMIN_REVIEWS:
             return {
@@ -247,11 +293,11 @@ export default function courses(state = initialState, action){
             }
 
         case EDIT_TOPIC_OBJECTIVE:
-            const oarrayList = state.admintopicobjectives;
-            oarrayList.splice(oarrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
+            const oparrayList = state.admintopicobjectives;
+            oparrayList.splice(oparrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
             return {
                 ...state,
-                admintopicobjectives: oarrayList,
+                admintopicobjectives: oparrayList,
             };
         case GET_ADMIN_TOPIC_GUIDELINES:
             return {

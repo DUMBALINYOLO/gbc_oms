@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import TeacherLayout from "../../layout/TeacherLayout";
-import { getAdminInactiveCourses, addCourse, editCourse } from '../../../actions/courses';
+import { getAdminInactiveCourses, addInactiveCourse, editInactiveCourse } from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -65,9 +65,9 @@ const TeacherUpcomingCourses = props => {
 
   const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0)
-        props.editCourse(fee.id, fee, token)
+        props.editInactiveCourse(fee.id, fee, token)
       else
-        props.addCourse(fee, token)
+        props.addInactiveCourse(fee, token)
         //
       resetForm()
       setRecordForEdit(null)
@@ -171,5 +171,5 @@ const mapStateToProps = state =>({
 
 export default connect(
   mapStateToProps,
-  {getAdminInactiveCourses, addCourse, editCourse} )
+  {getAdminInactiveCourses, addInactiveCourse, editInactiveCourse} )
   (TeacherUpcomingCourses);

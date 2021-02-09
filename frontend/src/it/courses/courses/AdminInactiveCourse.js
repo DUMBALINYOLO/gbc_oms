@@ -38,7 +38,17 @@ class Course extends React.Component {
   };
 
   componentDidMount() {
-    this.props.getAdminInactiveCourse(this.props.match.params.id);
+    if (this.props.token !== undefined && this.props.token !== null) {
+      this.props.getAdminInactiveCourse(this.props.match.params.id, this.props.token);
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.token !== this.props.token) {
+      if (newProps.token !== undefined && newProps.token !== null) {
+        this.props.getAdminInactiveCourse( this.props.match.params.id, newProps.token);
+      }
+    }
   }
 
   handleChange = (event, value) => {
@@ -107,8 +117,8 @@ class Course extends React.Component {
 
 
 const mapStateToProps = state => ({
-  force: state, // force state from reducer
   course: state.courses.admininactivecourse,
+  token: state.auth.token
 });
 
 

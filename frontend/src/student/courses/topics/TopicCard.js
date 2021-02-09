@@ -51,16 +51,6 @@ class CourseCard extends React.Component {
           </Typography>
         </CardContent>
         <CardActions className={classes.price}>
-          <Typography variant="h5">
-            <Button
-              size="small"
-              variant="outlined"
-              color="secondary"
-              onClick={editItem}
-            >
-              Edit
-            </Button>
-          </Typography>
           <div className={classes.rightAction}>
             <Button
               size="small"

@@ -71,7 +71,16 @@ import {
   GET_STUDENT_UPCOMING_COURSES,
   GET_STUDENT_UPCOMING_COURSE,
   GET_STUDENT_ONGOING_COURSES,
-  GET_STUDENT_ONGOING_COURSE
+  GET_STUDENT_ONGOING_COURSE,
+  ADD_FINISHED_COURSE,
+  EDIT_FINISHED_COURSE,
+  ADD_ONGOING_COURSE,
+  EDIT_ONGOING_COURSE,
+  ADD_INACTIVE_COURSE,
+  EDIT_INACTIVE_COURSE,
+  ADD_UPCOMING_COURSE,
+  EDIT_UPCOMING_COURSE,
+
 
 } from '../types/courseTypes';
 import {
@@ -99,7 +108,6 @@ import {
   ongoingstudentcoursesURL
 } from '../constants';
 import { createMessage, returnErrors } from './messages';
-
 
 
 
@@ -309,7 +317,7 @@ export const getAdminInactiveCourse= (id, token) => dispatch => {
 }
 
 
-export const addCourse = (course, token) => dispatch => {
+export const addUpComingCourse = (course, token) => dispatch => {
     const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
@@ -318,14 +326,14 @@ export const addCourse = (course, token) => dispatch => {
     axios.post(adminupcomingcoursesURL, course, headers)
         .then(res => {
             dispatch({
-                type: ADD_COURSE,
+                type: ADD_UPCOMING_COURSE,
                 payload: res.data
             });
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 
-export const editCourse = (id, course, token) => dispatch => {
+export const editUpComingCourse = (id, course, token) => dispatch => {
     const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
@@ -335,7 +343,103 @@ export const editCourse = (id, course, token) => dispatch => {
     axios.patch(`${adminupcomingcoursesURL}${id}/`, course, headers)
         .then(res => {
             dispatch({
-                type: EDIT_COURSE,
+                type: EDIT_UPCOMING_COURSE,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+export const addFinishedCourse = (course, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.post(adminfinishedcoursesURL, course, headers)
+        .then(res => {
+            dispatch({
+                type: ADD_FINISHED_COURSE,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+
+export const editFinishedCourse = (id, course, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    JSON.stringify(id, null, 3)
+    axios.patch(`${adminfinishedcoursesURL}${id}/`, course, headers)
+        .then(res => {
+            dispatch({
+                type: EDIT_FINISHED_COURSE,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+export const addOngoingCourse = (course, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.post(adminongoingcoursesURL, course, headers)
+        .then(res => {
+            dispatch({
+                type: ADD_ONGOING_COURSE,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+
+export const editOngoingCourse = (id, course, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    JSON.stringify(id, null, 3)
+    axios.patch(`${adminongoingcoursesURL}${id}/`, course, headers)
+        .then(res => {
+            dispatch({
+                type: EDIT_ONGOING_COURSE,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+export const addInactiveCourse = (course, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.post(admininactivecoursesURL, course, headers)
+        .then(res => {
+            dispatch({
+                type: ADD_INACTIVE_COURSE,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+
+export const editInactiveCourse = (id, course, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    JSON.stringify(id, null, 3)
+    axios.patch(`${admininactivecoursesURL}${id}/`, course, headers)
+        .then(res => {
+            dispatch({
+                type: EDIT_INACTIVE_COURSE,
                 payload: res.data
             });
         }).catch(err => console.log(err))

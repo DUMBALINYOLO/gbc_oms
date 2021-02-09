@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import InformationTechnologyLayout from "../../layout/InformationTechnologyLayout";
-import { getAdminUpcomingCourses, addCourse, editCourse } from '../../../actions/courses';
+import { getAdminUpcomingCourses, addUpComingCourse, editUpComingCourse } from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -64,9 +64,9 @@ const AdminUpcomingCourses = props => {
 
   const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0)
-        props.editCourse(fee.id, fee, token)
+        props.editUpComingCourse(fee.id, fee, token)
       else
-        props.addCourse(fee, token)
+        props.addUpComingCourse(fee, token)
         console.log(fee)
         //
       resetForm()
@@ -175,5 +175,5 @@ const mapStateToProps = state =>({
 
 export default connect(
   mapStateToProps,
-  {getAdminUpcomingCourses, addCourse, editCourse} )
+  {getAdminUpcomingCourses, addUpComingCourse, editUpComingCourse} )
   (AdminUpcomingCourses);

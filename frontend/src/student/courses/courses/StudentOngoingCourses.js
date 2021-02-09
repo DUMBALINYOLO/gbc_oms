@@ -119,7 +119,6 @@ const StudentOngoingCourses = props => {
                       description={course.description}
                       status={course.status}
                       detailOpen={() => handleClick(course.id)}
-
                     />
                   </Grid>
                 );
