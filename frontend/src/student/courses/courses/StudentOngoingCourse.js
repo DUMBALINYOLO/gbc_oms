@@ -11,12 +11,12 @@ import { connect } from 'react-redux';
 import Cover from '../../../components/SocialMedia/Cover';
 import bgCover from '../../../images/petal_bg.svg';
 import styles from '../../../components/SocialMedia/jss/cover-jss';
-import { getAdminOngoingCourse } from '../../../actions/courses';
+import { getStudentOngoingCourse } from '../../../actions/courses';
 import About from './About';
 import CourseBag from './CourseBag';
 import SchoolIcon from '@material-ui/icons/School';
 import Topics from '../topics/Topics';
-import Enrollments from '../enrollments/Enrollments';
+// import Enrollments from '../enrollments/Enrollments';
 
 
 function TabContainer(props) {
@@ -34,12 +34,23 @@ TabContainer.propTypes = {
 
 class Course extends React.Component {
   state = {
-    value: 0
+    value: 0,
   };
 
   componentDidMount() {
-    this.props.getAdminOngoingCourse(this.props.match.params.id);
+    if (this.props.token !== undefined && this.props.token !== null) {
+      this.props.getStudentOngoingCourse(this.props.match.params.id, this.props.token);
+    }
   }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.token !== this.props.token) {
+      if (newProps.token !== undefined && newProps.token !== null) {
+        this.props.getStudentOngoingCourse( this.props.match.params.id, newProps.token);
+      }
+    }
+  }
+
 
   handleChange = (event, value) => {
     this.setState({ value });
@@ -78,7 +89,6 @@ class Course extends React.Component {
             >
               <Tab icon={<AccountCircle />} />
               <Tab icon={<SchoolIcon />} />
-              <Tab icon={<SchoolIcon />} />
             </Tabs>
           </Hidden>
           <Hidden smDown>
@@ -91,14 +101,12 @@ class Course extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<SchoolIcon />} label="TOIPCS" />
-              <Tab icon={<SchoolIcon />} label="ENROLLMENTS" />
+              <Tab icon={<SchoolIcon />} label="TOPICS" />
             </Tabs>
           </Hidden>
         </AppBar>
         {value === 0 && <TabContainer><About data={course}/></TabContainer>}
         {value === 1 && <TabContainer><Topics data={course}/></TabContainer>}
-        {value === 2 && <TabContainer><Enrollments data={course}/></TabContainer>}
       </CourseBag >
     );
   }
@@ -107,15 +115,15 @@ class Course extends React.Component {
 
 
 const mapStateToProps = state => ({
-  force: state, // force state from reducer
-  course: state.courses.adminongoingcourse,
+  course: state.courses.studentongoingcourse,
+  token: state.auth.token,
 });
 
 
 
 const AttendanceMapped = connect(
   mapStateToProps,
-  {getAdminOngoingCourse}
+  {getStudentOngoingCourse}
 )(Course);
 
 export default withStyles(styles)(AttendanceMapped);

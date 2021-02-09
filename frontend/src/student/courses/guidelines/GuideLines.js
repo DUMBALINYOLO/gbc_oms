@@ -14,7 +14,6 @@ import {
   Toolbar,
   InputAdornment }
 from '@material-ui/core';
-import AddGuideLine from './AddGuideLine';
 import  Controls  from "../../../components/formcontrols/Controls";
 import  Popup  from "../../../components/formcontrols/Popup";
 import  useTable  from "../../../components/table/useTable";
@@ -70,16 +69,6 @@ const GuideLines = props => {
   }, []);
 
 
-  const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
-        props.editTopicGuideline(fee.id, fee, token)
-      else
-        props.addTopicGuideLine(fee, token)
-        //
-      resetForm()
-      setRecordForEdit(null)
-      setOpenPopup(false)
-  }
 
 
 
@@ -122,13 +111,6 @@ const GuideLines = props => {
                       <Search />
                   </InputAdornment>)
               }}
-          />
-          <Controls.Button
-              text="Add New"
-              variant="outlined"
-              startIcon={<AddIcon />}
-              className={classes.newButton}
-              onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
           />
       </Toolbar>
       <TblContainer>

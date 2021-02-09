@@ -12,7 +12,7 @@ from courses.models import Course
 def get_student(email):
     user = get_object_or_404(Student, email=email)
     student = get_object_or_404(StudentProfile, user=user)
-    return user
+    return student
 
 
 

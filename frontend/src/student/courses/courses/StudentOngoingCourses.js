@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react"
 import StudentLayout from "../../layout/StudentLayout";
-import { getAdminOngoingCourses, addCourse, editCourse } from '../../../actions/courses';
+import { getOngoingStudentCourses } from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -18,7 +17,6 @@ import {
   Toolbar,
   InputAdornment }
 from '@material-ui/core';
-import AddCourse from './AddCourse';
 import {Link} from 'react-router-dom';
 import  Controls  from "../../../components/formcontrols/Controls";
 import  Popup  from "../../../components/formcontrols/Popup";
@@ -40,7 +38,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-
 const options = {
   filterType: "checkbox"
 };
@@ -52,35 +49,17 @@ const StudentOngoingCourses = props => {
   const [openPopup, setOpenPopup] = useState(false)
   const [listView, setListView] = useState('grid')
   const history = useHistory();
-  const courseData = useSelector((state) => state.courses.adminongoingcourses);
-  const dispatch = useDispatch();
-  const {token} = props;
-
+  const {email,token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        dispatch(getAdminOngoingCourses(token));
+        props.getOngoingStudentCourses(email,token);
     }
     console.log('mount it!');
 
+
   }, []);
 
-
-
-
-
-  const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0){
-        props.editCourse(fee.id, fee, token)
-      }
-      else
-        props.addCourse(fee, token)
-
-        //
-      resetForm()
-      setRecordForEdit(null)
-      setOpenPopup(false)
-  }
 
   const handleSearch = e => {
       let target = e.target;
@@ -109,20 +88,13 @@ const StudentOngoingCourses = props => {
     history.push(`/studentdashboard/ongoingcourses/${id}`)
   }
 
+  const {
+      courseData
+    } = props;
 
   return (
     <StudentLayout>
       <Paper className={classes.pageContent}>
-
-      <Toolbar>
-          <Controls.Button
-              text="Add New"
-              variant="outlined"
-              startIcon={<AddIcon />}
-              className={classes.newButton}
-              onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
-          />
-      </Toolbar>
         <SearchCourse
             courseData={courseData}
             listView={listView}
@@ -147,6 +119,7 @@ const StudentOngoingCourses = props => {
                       description={course.description}
                       status={course.status}
                       detailOpen={() => handleClick(course.id)}
+
                     />
                   </Grid>
                 );
@@ -159,11 +132,12 @@ const StudentOngoingCourses = props => {
 };
 
 const mapStateToProps = state =>({
-    // courseData: state.courses.adminongoingcourses,
+    courseData: state.courses.studentongoingcourses,
     token: state.auth.token,
+    email: state.auth.email
 })
 
 export default connect(
   mapStateToProps,
-  { addCourse, editCourse} )
+  {getOngoingStudentCourses} )
   (StudentOngoingCourses);

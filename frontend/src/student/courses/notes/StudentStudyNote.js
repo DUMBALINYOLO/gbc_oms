@@ -25,6 +25,7 @@ function TabContainer(props) {
   );
 }
 
+
 TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
@@ -35,7 +36,17 @@ class StudentStudyNote extends React.Component {
   };
 
   componentDidMount() {
-    this.props.getStudyNote(this.props.match.params.id);
+    if (this.props.token !== undefined && this.props.token !== null) {
+      this.props.getStudyNote(this.props.match.params.id, this.props.token);
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.token !== this.props.token) {
+      if (newProps.token !== undefined && newProps.token !== null) {
+        this.props.getStudyNote( this.props.match.params.id, newProps.token);
+      }
+    }
   }
 
   handleChange = (event, value) => {
@@ -100,6 +111,7 @@ class StudentStudyNote extends React.Component {
 const mapStateToProps = state => ({
   force: state, // force state from reducer
   note: state.courses.adminstudynote,
+  token: state.auth.token,
 });
 
 

@@ -16,7 +16,6 @@ import {
 from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
-import AddSubTopic from './AddSubTopic';
 import  Controls  from "../../../components/formcontrols/Controls";
 import  Popup  from "../../../components/formcontrols/Popup";
 import  useTable  from "../../../components/table/useTable";
@@ -67,16 +66,6 @@ const SubTopics = props => {
   }, []);
 
 
-  const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
-        props.editSubTopic(fee.id, fee, token)
-      else
-        props.addSubTopic(fee, token)
-        //
-      resetForm()
-      setRecordForEdit(null)
-      setOpenPopup(false)
-  }
 
   const {records} = props;
 
@@ -121,13 +110,6 @@ const SubTopics = props => {
                       <Search />
                   </InputAdornment>)
               }}
-          />
-          <Controls.Button
-              text="Add New"
-              variant="outlined"
-              startIcon={<AddIcon />}
-              className={classes.newButton}
-              onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
           />
       </Toolbar>
       <TblContainer>

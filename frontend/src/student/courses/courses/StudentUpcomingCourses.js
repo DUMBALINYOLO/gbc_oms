@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import StudentLayout from "../../layout/StudentLayout";
-import { getAdminUpcomingCourses, addCourse, editCourse } from '../../../actions/courses';
+import { getUpcomingStudentCourses } from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -17,13 +17,11 @@ import {
   Toolbar,
   InputAdornment }
 from '@material-ui/core';
-import AddCourse from './AddCourse';
 import {Link} from 'react-router-dom';
 import  Controls  from "../../../components/formcontrols/Controls";
 import  Popup  from "../../../components/formcontrols/Popup";
 import SearchCourse from "./SearchCourse";
 import CourseCard from "./CourseCard";
-
 
 
 const useStyles = makeStyles(theme => ({
@@ -44,39 +42,23 @@ const options = {
   filterType: "checkbox"
 };
 
-const StudentUpcomingCourses = props => {
+const StudentOngoingCourses = props => {
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [listView, setListView] = useState('grid')
   const history = useHistory();
-  const {token} = props;
+  const {email,token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminUpcomingCourses(token);
+        props.getUpcomingStudentCourses(email,token);
     }
     console.log('mount it!');
 
 
   }, []);
-
-
-  const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
-        props.editCourse(fee.id, fee, token)
-      else
-        props.addCourse(fee, token)
-        console.log(fee)
-        //
-      resetForm()
-      setRecordForEdit(null)
-      setOpenPopup(false)
-  }
-
-
-
 
 
   const handleSearch = e => {
@@ -103,7 +85,7 @@ const StudentUpcomingCourses = props => {
   }
 
   const handleClick = id =>{
-    history.push(`/itdashboard/upcomingcourses/${id}`)
+    history.push(`/studentdashboard/upcomingcourses/${id}`)
   }
 
   const {
@@ -113,16 +95,6 @@ const StudentUpcomingCourses = props => {
   return (
     <StudentLayout>
       <Paper className={classes.pageContent}>
-
-      <Toolbar>
-          <Controls.Button
-              text="Add New"
-              variant="outlined"
-              startIcon={<AddIcon />}
-              className={classes.newButton}
-              onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
-          />
-      </Toolbar>
         <SearchCourse
             courseData={courseData}
             listView={listView}
@@ -147,7 +119,7 @@ const StudentUpcomingCourses = props => {
                       description={course.description}
                       status={course.status}
                       detailOpen={() => handleClick(course.id)}
-                      editItem={() => openInPopup(course)}
+
                     />
                   </Grid>
                 );
@@ -155,26 +127,17 @@ const StudentUpcomingCourses = props => {
             }
           </Grid>
       </Paper>
-      <Popup
-      title="Fee Form"
-      openPopup={openPopup}
-      setOpenPopup={setOpenPopup}
-      >
-        <AddCourse
-            recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit}
-        />
-      </Popup>
     </StudentLayout>
   );
 };
 
 const mapStateToProps = state =>({
-    courseData: state.courses.adminupcomingcourses,
+    courseData: state.courses.studentupcomingcourses,
     token: state.auth.token,
+    email: state.auth.email
 })
 
 export default connect(
   mapStateToProps,
-  {getAdminUpcomingCourses, addCourse, editCourse} )
-  (StudentUpcomingCourses);
+  {getUpcomingStudentCourses} )
+  (StudentOngoingCourses);

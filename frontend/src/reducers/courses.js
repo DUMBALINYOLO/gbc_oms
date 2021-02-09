@@ -75,6 +75,8 @@ import {
 } from '../types/courseTypes';
 
 
+
+
 const initialState = {
     coursestatuschoices: [],
     adminupcomingcourses: [],
@@ -105,9 +107,9 @@ const initialState = {
     studentcourseenrollments: [],
     studentcourseenrollment: {},
     studentupcomingcourses: [],
-    studentupcomingcourses: {},
+    studentupcomingcourse: {},
     studentongoingcourses: [],
-    studentongoingcourses: {},
+    studentongoingcourse: {},
     loading: false
 }
 

@@ -37,12 +37,23 @@ class StudentSubTopic extends React.Component {
   };
 
   componentDidMount() {
-    this.props.getAdminSubTopic(this.props.match.params.id);
+    if (this.props.token !== undefined && this.props.token !== null) {
+      this.props.getAdminSubTopic(this.props.match.params.id, this.props.token);
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.token !== this.props.token) {
+      if (newProps.token !== undefined && newProps.token !== null) {
+        this.props.getAdminSubTopic( this.props.match.params.id, newProps.token);
+      }
+    }
   }
 
   handleChange = (event, value) => {
     this.setState({ value });
   };
+
 
   render() {
     const {  classes } = this.props;
@@ -105,6 +116,7 @@ class StudentSubTopic extends React.Component {
 const mapStateToProps = state => ({
   force: state, // force state from reducer
   subtopic: state.courses.adminsubtopic,
+  token: state.auth.token,
 });
 
 

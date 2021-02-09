@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
-import InformationTechnologyLayout from "../../layout/InformationTechnologyLayout";
-import { getAdminTopics, addTopic, editTopic } from '../../../actions/courses';
+import { getAdminTopics } from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -17,7 +16,6 @@ import {
   Toolbar,
   InputAdornment }
 from '@material-ui/core';
-import AddTopic from './AddTopic';
 import {Link} from 'react-router-dom';
 import  Controls  from "../../../components/formcontrols/Controls";
 import  Popup  from "../../../components/formcontrols/Popup";
@@ -65,15 +63,6 @@ const Topics = props => {
   }, []);
 
 
-  const addOrEdit = (topic, resetForm, token) => {
-      if (topic.id > 0)
-        props.editTopic(topic.id, topic, token)
-      else
-        props.addTopic(topic, token)
-      resetForm()
-      setRecordForEdit(null)
-      setOpenPopup(false)
-  }
 
 
   const handleSearch = e => {
@@ -110,16 +99,6 @@ const Topics = props => {
   return (
     <>
       <Paper className={classes.pageContent}>
-
-      <Toolbar>
-          <Controls.Button
-              text="Add New"
-              variant="outlined"
-              startIcon={<AddIcon />}
-              className={classes.newButton}
-              onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
-          />
-      </Toolbar>
         <SearchTopic
             courseData={courseData}
             listView={listView}
@@ -160,5 +139,5 @@ const mapStateToProps = state =>({
 
 export default connect(
   mapStateToProps,
-  {getAdminTopics, addTopic, editTopic} )
+  {getAdminTopics} )
   (Topics);

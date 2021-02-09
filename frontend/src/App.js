@@ -85,6 +85,13 @@ import StudentTestRecords from './student/gradings/StudentTestRecords';
 import StudentExcerciseRecords from './student/gradings/StudentExcerciseRecords';
 import StudentAssignmentRecords from './student/gradings/StudentAssignmentRecords';
 import Error from './errors/Error';
+import StudentOngoingCourses from './student/courses/courses/StudentOngoingCourses';
+import StudentOngoingCourse from './student/courses/courses/StudentOngoingCourse';
+import StudentUpcomingCourses from './student/courses/courses/StudentUpcomingCourses';
+import StudentUpcomingCourse from './student/courses/courses/StudentUpcomingCourse';
+import StudentTopic from './student/courses/topics/StudentTopic';
+import StudentSubTopic from './student/courses/subtopics/StudentSubTopic';
+import StudentStudyNote from './student/courses/notes/StudentStudyNote';
 
 
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
@@ -125,6 +132,13 @@ class App extends React.Component {
 								<Route exact path='/studentdashboard/tests' component={StudentTestRecords} />
 								<Route exact path='/studentdashboard/excercises' component={StudentExcerciseRecords} />
 								<Route exact path='/studentdashboard/assignments' component={StudentAssignmentRecords} />
+								<Route exact path='/studentdashboard/ongoingcourses' component={StudentOngoingCourses} />
+								<Route exact path='/studentdashboard/ongoingcourses/:id' component={StudentOngoingCourse} />
+								<Route exact path='/studentdashboard/upcomingcourses' component={StudentUpcomingCourses} />
+								<Route exact path='/studentdashboard/upcomingcourses/:id' component={StudentUpcomingCourse} />
+								<Route exact path='/studentdashboard/topics/:id' component={StudentTopic} />
+								<Route exact path='/studentdashboard/subtopics/:id' component={StudentSubTopic} />
+								<Route exact path='/studentdashboard/notes/:id' component={StudentStudyNote} />
                 <Route exact path='/wa' component={TeacherLog} />
                 <Route exact path='/teacherdashboard' component={TeacherHome} />
                 <Route exact path='/teacherdashboard/attendance' component={TeacherAttendances} />

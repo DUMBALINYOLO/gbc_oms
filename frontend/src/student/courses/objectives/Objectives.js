@@ -14,7 +14,6 @@ import {
   Toolbar,
   InputAdornment }
 from '@material-ui/core';
-import AddObjective from './AddObjective';
 import  Controls  from "../../../components/formcontrols/Controls";
 import  Popup  from "../../../components/formcontrols/Popup";
 import  useTable  from "../../../components/table/useTable";
@@ -67,16 +66,6 @@ const Objectives = props => {
   }, []);
 
 
-  const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
-        props.editTopicObjective(fee.id, fee, token)
-      else
-        props.addTopicObjective(fee, token)
-        //
-      resetForm()
-      setRecordForEdit(null)
-      setOpenPopup(false)
-  }
 
 
 
@@ -120,13 +109,7 @@ const Objectives = props => {
                   </InputAdornment>)
               }}
           />
-          <Controls.Button
-              text="Add New"
-              variant="outlined"
-              startIcon={<AddIcon />}
-              className={classes.newButton}
-              onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
-          />
+
       </Toolbar>
       <TblContainer>
           <TblHead />

@@ -14,7 +14,6 @@ import {
   Toolbar,
   InputAdornment }
 from '@material-ui/core';
-import AddNote from './AddNote';
 import  Controls  from "../../../components/formcontrols/Controls";
 import  Popup  from "../../../components/formcontrols/Popup";
 import  useTable  from "../../../components/table/useTable";
@@ -70,16 +69,7 @@ const Notes = props => {
   }, []);
 
 
-  const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
-        props.editStudyNote(fee.id, fee, token)
-      else
-        props.addStudyNote(fee, token)
-        //
-      resetForm()
-      setRecordForEdit(null)
-      setOpenPopup(false)
-  }
+
 
 
 
@@ -126,13 +116,6 @@ const Notes = props => {
                       <Search />
                   </InputAdornment>)
               }}
-          />
-          <Controls.Button
-              text="Add New"
-              variant="outlined"
-              startIcon={<AddIcon />}
-              className={classes.newButton}
-              onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
           />
       </Toolbar>
       <TblContainer>

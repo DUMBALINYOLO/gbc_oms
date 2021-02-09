@@ -21,6 +21,7 @@ import styles from '../../../components/Profile/profile-jss';
 class About extends React.Component {
     render() {
       const { classes, data } = this.props;
+      console.log(data)
       return (
         <Grid
           container
