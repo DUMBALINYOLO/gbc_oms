@@ -392,6 +392,26 @@ export default function courses(state = initialState, action){
                 adminstudynotesfiles: fstarrayList,
             };
 
+        case GET_ADMIN_STUDY_NOTES_NOTES:
+            return {
+                ...state,
+                adminstudynotesnotes : action.payload
+            };
+
+        case ADD_STUDY_NOTE_NOTE:
+            return {
+                ...state,
+                file: [...state.adminstudynotesnotes, action.payload]
+            }
+
+        case EDIT_STUDY_NOTE_NOTE:
+            const fsstarrayList = state.adminstudynotesnotes;
+            fsstarrayList.splice(fsstarrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
+            return {
+                ...state,
+                adminstudynotesnotes: fsstarrayList,
+            };
+
         case GET_ADMIN_STUDY_NOTES_VIDEOS:
             return {
                 ...state,

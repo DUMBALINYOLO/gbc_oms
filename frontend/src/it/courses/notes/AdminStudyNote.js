@@ -13,6 +13,8 @@ import bgCover from '../../../images/petal_bg.svg';
 import styles from '../../../components/SocialMedia/jss/cover-jss';
 import { getStudyNote } from '../../../actions/courses';
 import About from './About';
+import Images from '../images/Images';
+import InnerNotes from '../innernotes/InnerNotes';
 import NoteBag from './NoteBag';
 import SchoolIcon from '@material-ui/icons/School';
 
@@ -74,6 +76,8 @@ class AdminStudyNote extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} />
+              <Tab icon={<AccountCircle />} />
+              <Tab icon={<AccountCircle />} />
             </Tabs>
           </Hidden>
           <Hidden smDown>
@@ -86,10 +90,14 @@ class AdminStudyNote extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} label="ABOUT" />
+              <Tab icon={<AccountCircle />} label="IMAGES" />
+              <Tab icon={<AccountCircle />} label="NOTES" />
             </Tabs>
           </Hidden>
         </AppBar>
         {value === 0 && <TabContainer><About data={note}/></TabContainer>}
+        {value === 1 && <TabContainer><Images data={note}/></TabContainer>}
+        {value === 2 && <TabContainer><InnerNotes data={note}/></TabContainer>}
       </NoteBag >
     );
   }

@@ -92,6 +92,7 @@ import StudentUpcomingCourse from './student/courses/courses/StudentUpcomingCour
 import StudentTopic from './student/courses/topics/StudentTopic';
 import StudentSubTopic from './student/courses/subtopics/StudentSubTopic';
 import StudentStudyNote from './student/courses/notes/StudentStudyNote';
+import InnerNotes from './it/courses/innernotes/InnerNotes';
 
 
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
@@ -124,6 +125,7 @@ class App extends React.Component {
             <AlertProvider template={AlertTemplate} {...alertOptions} >
               <Switch>
                 <Route exact path='/' component={LandingPage} />
+								<Route exact path='/notes' component={InnerNotes} />
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/itdashboard' component={InformationTechnologyHome} />
                 <Route exact path='/bursardashboard' component={BursarLog} />
