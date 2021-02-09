@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { getAdminTopicObjectives, addTopicObjective, editTopicObjective } from '../../../actions/courses';
+import { getStudyNoteReferences, addStudyNoteReference, editStudyNoteReference } from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -14,11 +14,11 @@ import {
   Toolbar,
   InputAdornment }
 from '@material-ui/core';
-import AddObjective from './AddObjective';
+import AddReferences from './AddReference';
 import  Controls  from "../../../components/formcontrols/Controls";
 import  Popup  from "../../../components/formcontrols/Popup";
 import  useTable  from "../../../components/table/useTable";
-
+import InformationTechnologyLayout from '../../layout/InformationTechnologyLayout';
 
 
 const useStyles = makeStyles(theme => ({
@@ -48,7 +48,7 @@ const options = {
   filterType: "checkbox"
 };
 
-const Objectives = props => {
+const References = props => {
   const { history } = props;
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null)
@@ -59,7 +59,7 @@ const Objectives = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminTopicObjectives(id, token);
+        props.getStudyNoteReferences(id, token);
     }
     console.log('mount it!');
 
@@ -69,9 +69,9 @@ const Objectives = props => {
 
   const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0)
-        props.editTopicObjective(fee.id, fee, token)
+        props.editStudyNoteReference(fee.id, fee, token)
       else
-        props.addTopicObjective(fee, token)
+        props.addStudyNoteReference(fee, token)
         //
       resetForm()
       setRecordForEdit(null)
@@ -107,7 +107,7 @@ const Objectives = props => {
   }
 
   return (
-    <>
+    <InformationTechnologyLayout>
       <Paper className={classes.pageContent}>
 
       <Toolbar>
@@ -160,22 +160,22 @@ const Objectives = props => {
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >
-        <AddObjective
+        <AddReferences
             recordForEdit={recordForEdit}
             addOrEdit={addOrEdit}
             id={id}
         />
       </Popup>
-    </>
+    </InformationTechnologyLayout>
   );
 };
 
 const mapStateToProps = state =>({
-    records: state.courses.admintopicobjectives,
+    records: state.courses.adminstudynotesreferences,
     token: state.auth.token,
 })
 
 export default connect(
   mapStateToProps,
-  {getAdminTopicObjectives, addTopicObjective, editTopicObjective} )
-  (Objectives);
+  {getStudyNoteReferences, addStudyNoteReference, editStudyNoteReference} )
+  (References);

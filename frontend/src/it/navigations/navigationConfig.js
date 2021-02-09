@@ -205,6 +205,13 @@ const navigationConfig = [
             url: "/itdashboard/cities",
             exact: true,
           },
+          {
+            id: "references",
+            title: "REFERENCES",
+            type: "item",
+            url: "/itdashboard/references",
+            exact: true,
+          },
         ],
       },
       {

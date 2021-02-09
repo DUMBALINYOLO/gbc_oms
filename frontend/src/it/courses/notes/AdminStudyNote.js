@@ -17,6 +17,7 @@ import Images from '../images/Images';
 import InnerNotes from '../innernotes/InnerNotes';
 import NoteBag from './NoteBag';
 import SchoolIcon from '@material-ui/icons/School';
+import References from '../references/References'
 
 function TabContainer(props) {
   const { children } = props;
@@ -37,7 +38,17 @@ class AdminStudyNote extends React.Component {
   };
 
   componentDidMount() {
-    this.props.getStudyNote(this.props.match.params.id);
+    if (this.props.token !== undefined && this.props.token !== null) {
+      this.props.getStudyNote(this.props.match.params.id, this.props.token);
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.token !== this.props.token) {
+      if (newProps.token !== undefined && newProps.token !== null) {
+        this.props.getStudyNote( this.props.match.params.id, newProps.token);
+      }
+    }
   }
 
   handleChange = (event, value) => {
@@ -78,6 +89,7 @@ class AdminStudyNote extends React.Component {
               <Tab icon={<AccountCircle />} />
               <Tab icon={<AccountCircle />} />
               <Tab icon={<AccountCircle />} />
+              <Tab icon={<AccountCircle />} />
             </Tabs>
           </Hidden>
           <Hidden smDown>
@@ -92,12 +104,14 @@ class AdminStudyNote extends React.Component {
               <Tab icon={<AccountCircle />} label="ABOUT" />
               <Tab icon={<AccountCircle />} label="IMAGES" />
               <Tab icon={<AccountCircle />} label="NOTES" />
+              <Tab icon={<AccountCircle />} label="STUDY REFERENCES" />
             </Tabs>
           </Hidden>
         </AppBar>
         {value === 0 && <TabContainer><About data={note}/></TabContainer>}
         {value === 1 && <TabContainer><Images data={note}/></TabContainer>}
         {value === 2 && <TabContainer><InnerNotes data={note}/></TabContainer>}
+        {value === 3 && <TabContainer><References data={note}/></TabContainer>}
       </NoteBag >
     );
   }
@@ -106,8 +120,8 @@ class AdminStudyNote extends React.Component {
 
 
 const mapStateToProps = state => ({
-  force: state, // force state from reducer
   note: state.courses.adminstudynote,
+  token: state.auth.token,
 });
 
 
