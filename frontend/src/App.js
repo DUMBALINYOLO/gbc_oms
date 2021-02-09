@@ -95,8 +95,9 @@ import StudentStudyNote from './student/courses/notes/StudentStudyNote';
 import Authors from './it/courses/author/Authors';
 import Publishers from './it/courses/publisher/Publishers';
 import Cities from './it/courses/publishercity/PublisherCities';
-import References from './it/courses/references/References';
-import PrivateRoute from "./PrivateRoute"
+import StudentRoute from './routes/StudentRoute';
+import TeacherRoute from './routes/TeacherRoute';
+import AdminRoute from './routes/AdminRoute';
 
 
 
@@ -130,6 +131,7 @@ class App extends React.Component {
             <AlertProvider template={AlertTemplate} {...alertOptions} >
               <Switch>
                 <Route exact path='/' component={LandingPage} />
+
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/itdashboard' component={InformationTechnologyHome} />
                 <Route exact path='/bursardashboard' component={BursarLog} />
@@ -165,7 +167,7 @@ class App extends React.Component {
                 <Route exact path='/teacherdashboard/finishedcourses' component={TeacherFinishedCourses} />
                 <Route exact path='/teacherdashboard/finishedcourses/:id' component={TeacherFinishedCourse} />
                 <Route exact path='/teacherdashboard/inactivecourses' component={TeacherInactiveCourses} />
-                <Route exact path='/teacherdashboard/inactivecourses/:id' component={TeacherInactiveCourse} />
+                <Route exact  path='/teacherdashboard/inactivecourses/:id' component={TeacherInactiveCourse} />
                 <Route exact path='/teacherdashboard/upcomingcourses' component={TeacherUpcomingCourses} />
                 <Route exact path='/teacherdashboard/upcomingcourses/:id' component={TeacherUpcomingCourse} />
                 <Route exact path='/itdashboard/fees' component={Fees} />
@@ -182,7 +184,6 @@ class App extends React.Component {
 				<Route exact path='/itdashboard/authors' component={Authors} />
 				<Route exact path='/itdashboard/publishers' component={Publishers} />
 				<Route exact path='/itdashboard/cities' component={Cities} />
-                <Route exact path='/itdashboard/references' component={References} />
                 <Route exact path="/itdashboard/students/:id" component={StudentProfile} />
                 <Route exact path='/itdashboard/tests' component={AdminStudentTests} />
                 <Route exact path='/itdashboard/tests/:id' component={AdminGradingTest} />
@@ -217,6 +218,7 @@ class App extends React.Component {
                 <Route exact path='/blog' component={BlogPage} />
                 <Route exact path='/profile' component={CompanyProfile} />
 				<Route component={Error} />
+
               </Switch>
             </AlertProvider>
           )}
