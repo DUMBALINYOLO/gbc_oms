@@ -704,7 +704,7 @@ class AdminPublisherViewSet(viewsets.ModelViewSet):
 		return ItPublisherListSerializer
 
 	def get_queryset(self, *args, **kwargs):
-		queryset = PublisherCity.objects.all().order_by('-id')
+		queryset = Publisher.objects.all().order_by('-id')
 		deep_query = self.request.query_params.get('q', None)
 		if deep_query is not None:
 			queryset = queryset.filter(

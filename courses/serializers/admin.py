@@ -65,10 +65,10 @@ class ItReferenceSourceCreateUpdateSerializer(serializers.ModelSerializer):
 
 	def create(self, validated_data):
 		note_id = validated_data['note_id']
-		reference = Text(
+		reference = ReferrenceSource(
 					title= validated_data['title'],
 					author= validated_data['author'],
-					publisher= validated_data['author'],
+					publisher= validated_data['publisher'],
 					date_published = validated_data['date_published'],
 					note_id= validated_data['note_id'],
 				)

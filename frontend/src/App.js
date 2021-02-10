@@ -135,18 +135,18 @@ class App extends React.Component {
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/itdashboard' component={InformationTechnologyHome} />
                 <Route exact path='/bursardashboard' component={BursarLog} />
-				<Route exact path='/studentdashboard' component={StudentHome} />
-				<Route exact path='/studentdashboard/attendance' component={StudentAttendanceRecords} />
-				<Route exact path='/studentdashboard/tests' component={StudentTestRecords} />
-				<Route exact path='/studentdashboard/excercises' component={StudentExcerciseRecords} />
-				<Route exact path='/studentdashboard/assignments' component={StudentAssignmentRecords} />
-				<Route exact path='/studentdashboard/ongoingcourses' component={StudentOngoingCourses} />
-				<Route exact path='/studentdashboard/ongoingcourses/:id' component={StudentOngoingCourse} />
-				<Route exact path='/studentdashboard/upcomingcourses' component={StudentUpcomingCourses} />
-				<Route exact path='/studentdashboard/upcomingcourses/:id' component={StudentUpcomingCourse} />
-				<Route exact path='/studentdashboard/topics/:id' component={StudentTopic} />
-				<Route exact path='/studentdashboard/subtopics/:id' component={StudentSubTopic} />
-				<Route exact path='/studentdashboard/notes/:id' component={StudentStudyNote} />
+								<Route exact path='/studentdashboard' component={StudentHome} />
+								<Route exact path='/studentdashboard/attendance' component={StudentAttendanceRecords} />
+								<Route exact path='/studentdashboard/tests' component={StudentTestRecords} />
+								<Route exact path='/studentdashboard/excercises' component={StudentExcerciseRecords} />
+								<Route exact path='/studentdashboard/assignments' component={StudentAssignmentRecords} />
+								<Route exact path='/studentdashboard/ongoingcourses' component={StudentOngoingCourses} />
+								<Route exact path='/studentdashboard/ongoingcourses/:id' component={StudentOngoingCourse} />
+								<Route exact path='/studentdashboard/upcomingcourses' component={StudentUpcomingCourses} />
+								<Route exact path='/studentdashboard/upcomingcourses/:id' component={StudentUpcomingCourse} />
+								<Route exact path='/studentdashboard/topics/:id' component={StudentTopic} />
+								<Route exact path='/studentdashboard/subtopics/:id' component={StudentSubTopic} />
+								<Route exact path='/studentdashboard/notes/:id' component={StudentStudyNote} />
                 <Route exact path='/wa' component={TeacherLog} />
                 <Route exact path='/teacherdashboard' component={TeacherHome} />
                 <Route exact path='/teacherdashboard/attendance' component={TeacherAttendances} />
@@ -181,9 +181,9 @@ class App extends React.Component {
                 <Route exact path='/itdashboard/meeting-admissions' component={AdminMeetingAdmissions} />
                 <Route exact path='/itdashboard/rejected-admissions' component={AdminRejectedAdmissions} />
                 <Route exact path='/itdashboard/students' component={AdminStudents} />
-				<Route exact path='/itdashboard/authors' component={Authors} />
-				<Route exact path='/itdashboard/publishers' component={Publishers} />
-				<Route exact path='/itdashboard/cities' component={Cities} />
+								<Route exact path='/itdashboard/authors' component={Authors} />
+								<Route exact path='/itdashboard/publishers' component={Publishers} />
+								<Route exact path='/itdashboard/cities' component={Cities} />
                 <Route exact path="/itdashboard/students/:id" component={StudentProfile} />
                 <Route exact path='/itdashboard/tests' component={AdminStudentTests} />
                 <Route exact path='/itdashboard/tests/:id' component={AdminGradingTest} />
@@ -196,7 +196,7 @@ class App extends React.Component {
                 <Route exact path='/itdashboard/principals' component={AdminPrincipals} />
                 <Route exact path='/itdashboard/streams' component={AdminStream} />
                 <Route exact path='/itdashboard/classes' component={AdminClass} />
-				<Route exact path='/itdashboard/classes/:id' component={AdminStudentClass} />
+								<Route exact path='/itdashboard/classes/:id' component={AdminStudentClass} />
                 <Route exact path='/itdashboard/ledgers' component={AdminLedgers} />
                 <Route exact path='/itdashboard/workbooks' component={AdminWorkBooks} />
                 <Route exact path='/itdashboard/currencies' component={AdminCurrencies} />
@@ -217,7 +217,7 @@ class App extends React.Component {
                 <Route exact path='/itdashboard/inactive-accounts' component={AdminInActiveAccounts} />
                 <Route exact path='/blog' component={BlogPage} />
                 <Route exact path='/profile' component={CompanyProfile} />
-				<Route component={Error} />
+								<Route component={Error} />
 
               </Switch>
             </AlertProvider>

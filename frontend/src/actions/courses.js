@@ -1080,7 +1080,7 @@ export const addStudyNoteReference = (reference, token) => dispatch => {
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
     };
-    axios.post(adminstudynotesfilesURL, reference, headers)
+    axios.post(adminstudynotesreferencesURL, reference, headers)
         .then(res => {
             dispatch({
                 type: ADD_STUDY_NOTE_REFERENCE,
@@ -1097,7 +1097,7 @@ export const editStudyNoteReference = (id, reference, token) => dispatch => {
           'Accept': 'application/json',
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`${adminstudynotesfilesURL}${id}/`, reference, headers)
+    axios.patch(`${adminstudynotesreferencesURL}${id}/`, reference, headers)
         .then(res => {
             dispatch({
                 type: EDIT_STUDY_NOTE_REFERENCE,

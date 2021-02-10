@@ -18,7 +18,7 @@ import AddReferences from './AddReference';
 import  Controls  from "../../../components/formcontrols/Controls";
 import  Popup  from "../../../components/formcontrols/Popup";
 import  useTable  from "../../../components/table/useTable";
-import InformationTechnologyLayout from '../../layout/InformationTechnologyLayout';
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -38,8 +38,10 @@ const useStyles = makeStyles(theme => ({
 
 const headCells = [
   { id: 'id', label: 'ID' },
-  { id: 'name', label: 'NAME' },
-  { id: 'description', label: 'DESCRIPTION' },
+  { id: 'title', label: 'NAME' },
+  { id: 'author', label: 'AUTHOR' },
+  { id: 'publisher', label: 'PUBLISHER' },
+  { id: 'date_published', label: 'PUBLICATION DATE' },
   { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
@@ -107,7 +109,7 @@ const References = props => {
   }
 
   return (
-    <InformationTechnologyLayout>
+    <>
       <Paper className={classes.pageContent}>
 
       <Toolbar>
@@ -135,8 +137,10 @@ const References = props => {
                   recordsAfterPagingAndSorting().map(item =>
                       (<TableRow key={item.id}>
                           <TableCell>{item.id}</TableCell>
-                          <TableCell>{item.name}</TableCell>
-                          <TableCell>{item.description}</TableCell>
+                          <TableCell>{item.title}</TableCell>
+                          <TableCell>{item.author}</TableCell>
+                          <TableCell>{item.publisher}</TableCell>
+                          <TableCell>{item.date_published}</TableCell>
                           <TableCell>
                               <Controls.ActionButton
                                   color="primary"
@@ -166,7 +170,7 @@ const References = props => {
             id={id}
         />
       </Popup>
-    </InformationTechnologyLayout>
+    </>
   );
 };
 
