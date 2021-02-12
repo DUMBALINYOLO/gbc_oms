@@ -24,6 +24,18 @@ import Brightness5Icon from '@material-ui/icons/Brightness5';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
 import BusinessIcon from '@material-ui/icons/Business';
 import PersonIcon from '@material-ui/icons/Person';
+import SchoolIcon from '@material-ui/icons/School';
+import PermIcon from '@material-ui/icons/People';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import ClassIcon from '@material-ui/icons/Museum';
+import BioIcon from '@material-ui/icons/LocalLibrary';
+import CourseIcon from '@material-ui/icons/MenuBook';
+import CurrIcon from '@material-ui/icons/PostAdd';
+import AttIcon from '@material-ui/icons/Spellcheck';
+import SwapIcon from '@material-ui/icons/SwapVerticalCircle';
+import AdmIcon from '@material-ui/icons/VpnKey';
+
+
 
 
 const navigationConfig = [
@@ -106,7 +118,7 @@ const navigationConfig = [
         id: "classes",
         title: "CLASSES",
         type: "collapse",
-        icon: <BusinessIcon />,
+        icon: <ClassIcon />,
         badge: {
           title: "3",
           bg: "#525E8A",
@@ -134,9 +146,9 @@ const navigationConfig = [
         id: "parents",
         title: "PARENTS",
         type: "collapse",
-        icon: <BusinessIcon />,
+        icon: <PermIcon />,
         badge: {
-          title: "3",
+          title: "4",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -155,9 +167,9 @@ const navigationConfig = [
         id: "students",
         title: "STUDENTS",
         type: "collapse",
-        icon: <BusinessIcon />,
+        icon: <PeopleAltIcon />,
         badge: {
-          title: "3",
+          title: "5",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -176,9 +188,9 @@ const navigationConfig = [
         id: "references",
         title: "BIBLIOGRAPHY",
         type: "collapse",
-        icon: <BusinessIcon />,
+        icon: <BioIcon />,
         badge: {
-          title: "3",
+          title: "6",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -205,22 +217,15 @@ const navigationConfig = [
             url: "/itdashboard/cities",
             exact: true,
           },
-          {
-            id: "references",
-            title: "REFERENCES",
-            type: "item",
-            url: "/itdashboard/references",
-            exact: true,
-          },
         ],
       },
       {
         id: "courses",
         title: "COURSES",
         type: "collapse",
-        icon: <BusinessIcon />,
+        icon: <CourseIcon />,
         badge: {
-          title: "3",
+          title: "7",
           bg: "#525E8A",
           fg: "#FFFFFF",
         },
@@ -260,9 +265,9 @@ const navigationConfig = [
         id: "curriculums",
         title: "CURRICULUMS",
         type: "collapse",
-        icon: <BusinessIcon />,
+        icon: <CurrIcon />,
         badge: {
-          title: "3",
+          title: "8",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -288,9 +293,9 @@ const navigationConfig = [
         id: "attendance",
         title: "ATTENDANCE",
         type: "collapse",
-        icon: <BusinessIcon />,
+        icon: <AttIcon />,
         badge: {
-          title: "3",
+          title: "9",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -309,9 +314,9 @@ const navigationConfig = [
         id: "grading",
         title: "GRADING",
         type: "collapse",
-        icon: <BusinessIcon />,
+        icon: <SwapIcon />,
         badge: {
-          title: "3",
+          title: "10",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -344,9 +349,9 @@ const navigationConfig = [
         id: "admissions",
         title: "ADMISSION",
         type: "collapse",
-        icon: <BusinessIcon />,
+        icon: <AdmIcon />,
         badge: {
-          title: "3",
+          title: "11",
           bg: "#525E8A",
           fg: "#FFFFFF",
 

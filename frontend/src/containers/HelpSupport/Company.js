@@ -25,7 +25,7 @@ class Company extends React.Component {
     const { expanded } = this.state;
 
     return (
-      <PapperBlock title="About Flexible Measurements" icon="ios-help-circle-outline" whiteBg desc="Sed imperdiet enim ligula, vitae viverra justo porta vel.">
+      <PapperBlock title="About GERERE BUSINESS COLLEGE" icon="ios-help-circle-outline" whiteBg desc="Sed imperdiet enim ligula, vitae viverra justo porta vel.">
         <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography className={classes.heading}>Pellentesque ac bibendum tortor?</Typography>

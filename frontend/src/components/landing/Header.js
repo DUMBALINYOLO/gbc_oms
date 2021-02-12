@@ -32,10 +32,10 @@ class Header extends React.Component {
   state = {
     open: false,
     menuList: [
-      createData('showcase', '#showcase'),
-      createData('testimonials', '#testimonials'),
-      createData('technology', '#tech'),
-      createData('pricing', '#pricing'),
+      createData('core values', '#showcase'),
+      createData('team', '#testimonials'),
+      createData('portfolio', '#tech'),
+      createData('our belief', '#pricing'),
       createData('contact', '#contact'),
     ]
   }
@@ -87,23 +87,17 @@ class Header extends React.Component {
                 <img src={logo} alt={brand.name} />
                 {brand.name}
               </NavLink>
-              <NavLink to="/profile" className={classes.brand}>
-                ABOUT US
-              </NavLink>
-              <NavLink to="/" className={classes.brand}>
-                SERVICES
-              </NavLink>
-              <NavLink to="/blog" className={classes.brand}>
-                NEWSLETTER
-              </NavLink>
               <Hidden mdDown>
                 <nav>
-                  <Scrollspy items={[ 'showcase', 'testimonials', 'tech', 'pricing', 'contact']} currentClassName="active">
+                  <Scrollspy items={['core values', 'testimonials', 'tech', 'pricing', 'contact', 'login']} currentClassName="active">
                     { menuList.map(item => (
                       <li key={item.id.toString()}>
                         <Button component={AnchorLink} href={item.url}>{item.name}</Button>
                       </li>
                     )) }
+                    <NavLink to="/login">
+                      <Button size="large" color="secondary">LogIn</Button>
+                    </NavLink>
                   </Scrollspy>
                 </nav>
               </Hidden>

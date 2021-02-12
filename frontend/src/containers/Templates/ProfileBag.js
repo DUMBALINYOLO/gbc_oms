@@ -5,8 +5,9 @@ import { withStyles } from '@material-ui/core/styles';
 import { bindActionCreators } from 'redux';
 import { toggleAction, playTransitionAction } from '../../actions/uiactions';
 import styles from './appStyles-jss';
-import Header from '../../components/landing/Header';
-import Decoration from './Decoration';
+import InformationTechnologyLayout from '../../public/layout/InformationTechnologyLayout';
+
+
 
 class ProfileBag extends React.Component {
   state = {
@@ -48,30 +49,20 @@ class ProfileBag extends React.Component {
     const {
       classes,
       children,
-      mode,
-      gradient,
-      deco,
-      layout,
 
     } = this.props;
   
     return (
       <>
-      <Header /> 
+      <InformationTechnologyLayout>
         <div className={classes.appFrameLanding} id="mainContent">
-          
-          <Decoration
-            mode={mode}
-            gradient={gradient}
-            decoration={deco}
-            bgPosition="header"
-            horizontalMenu={layout === 'top-navigation' || layout === 'mega-menu'}
-          />
-
           <div className={classes.blogWrap}>
             {children}
           </div>
         </div>
+      </InformationTechnologyLayout>
+
+        
     </>
     );
   }

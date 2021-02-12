@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
+import { connect } from 'react-redux';
 import {  Grid, makeStyles,  } from "@material-ui/core";
 import {Form, useForm } from "../../components/formcontrols/useForm";
 import  Controls  from "../../components/formcontrols/Controls";
-
 
 
 const useStyles = makeStyles(theme => ({
@@ -43,6 +43,7 @@ const initialFValues = {
 const AddCurriculum = props => {
   const { addOrEdit, recordForEdit } = props
   const classes = useStyles();
+  const {token} = props;
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors }
@@ -69,7 +70,7 @@ const AddCurriculum = props => {
   const handleSubmit = e => {
       e.preventDefault()
       if (validate()) {
-          addOrEdit(values, resetForm);
+          addOrEdit(values, resetForm, token);
       }
   }
 
@@ -109,6 +110,8 @@ const AddCurriculum = props => {
   );
 };
 
+const mapStateToProps = state =>({
+    token: state.auth.token
+})
 
-
-export default  AddCurriculum;
+export default connect(mapStateToProps) (AddCurriculum);

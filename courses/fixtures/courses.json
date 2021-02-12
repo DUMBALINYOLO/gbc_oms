@@ -1,0 +1,82 @@
+[
+    
+    {
+        "model": "courses.course",
+        "pk": 1000, 
+        "fields": {
+            "full_name": "IT",
+            "start_date": 11/02/2021,
+            "description": "The primary course for operating activites. Used to deposit revenue and pay expenses",
+            "topics": "asset",
+        }
+    },
+    {
+        "model": "courses.course",
+        "pk": 2000,
+        "fields": {
+            "full_name": "Development Studies",
+            "start_date": 11/02/2021,
+            "description": "Tracks the money the organization owes its vendors, suppliers consultants and the like. The payments must be made in less than a year.",
+            "topics": "liability",
+        }
+    },
+    {
+        "model": "courses.course",
+        "pk": 4006,
+        "fields": {
+            "full_name": "Marketing",
+            "start_date": 11/02/2021,
+            "description": "Relates to purchases the business intends to sell",
+            "topics": "cost-of-sales",
+        }
+    },
+    {
+        "model": "courses.course",
+        "pk": 1003,
+        "fields": {
+            "full_name": "Finance",
+            "start_date": 11/02/2021,
+            "description": "Tracks purchases made by customers on store credit, not purchases made with credit cards.",
+            "topics": "asset",
+        }
+    },
+    {
+        "model": "courses.course",
+        "pk": 3001,
+        "fields": {
+            "full_name": "Sciences",
+            "start_date": 11/02/2021,
+            "description": "Tracks the cumulative profits or losses made by the organization since its formation. Adjusted once every financial year-end.",
+            "topics": "equity",
+        }
+    },
+    {
+        "model": "courses.course",
+        "pk": 4000,
+        "fields": {
+            "full_name": "Law",
+            "start_date": 11/02/2021,
+            "description": "Tracks the all the money earned selling company goods and services",
+            "topics": "income",
+        }
+    },
+    {
+        "model": "courses.course",
+        "pk": 1001,
+        "fields": {
+            "full_name": "Engineering",
+            "start_date": 11/02/2021,
+            "description": "The course for surplus cash, that is cash with no immediate plans in an course that can accrue interest.",
+            "topics": "asset",
+        }
+    },
+    {
+        "model": "courses.course",
+        "pk": 1002,
+        "fields": {
+            "full_name": "Accounting",
+            "start_date": 11/02/2021,
+            "description": "Tracks cash stored at the location of business such as petty cash and in cash registers.",
+            "topics": "asset",        }
+    }
+]

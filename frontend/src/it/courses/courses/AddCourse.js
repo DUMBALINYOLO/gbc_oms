@@ -91,6 +91,7 @@ const AddCourse = props => {
       }
   }
 
+
   useEffect(() => {
     if(!props.fetched) {
         props.getCourseStatus();

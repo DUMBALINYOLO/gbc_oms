@@ -6,6 +6,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Hidden from '@material-ui/core/Hidden';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import GuideIcon from '@material-ui/icons/AssignmentTurnedIn';
+import SubTopicIcon from '@material-ui/icons/AssignmentReturned';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import Cover from '../../../components/SocialMedia/Cover';
@@ -79,8 +81,8 @@ class AdminTopic extends React.Component {
             >
               <Tab icon={<AccountCircle />} />
               <Tab icon={<SchoolIcon />} />
-              <Tab icon={<SchoolIcon />} />
-              <Tab icon={<SchoolIcon />} />
+              <Tab icon={<GuideIcon />} />
+              <Tab icon={<SubTopicIcon />} />
 
             </Tabs>
           </Hidden>
@@ -95,8 +97,8 @@ class AdminTopic extends React.Component {
             >
               <Tab icon={<AccountCircle />} label="ABOUT" />
               <Tab icon={<SchoolIcon />} label="OBJECTIVES" />
-              <Tab icon={<SchoolIcon />} label="GUIDELINES" />
-              <Tab icon={<SchoolIcon />} label="SUBTOPICS" />
+              <Tab icon={<GuideIcon />} label="GUIDELINES" />
+              <Tab icon={<SubTopicIcon />} label="SUBTOPICS" />
             </Tabs>
           </Hidden>
         </AppBar>

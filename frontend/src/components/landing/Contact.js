@@ -30,8 +30,10 @@ class Contact extends React.Component {
       <div className={classNames(classes.contact, !slideMode && classes.withBg)}>
         <div className={classes.container}>
           <div className={classes.contactBubble}>
-            <Title title="Say hello to us" align="left" nomargin />
-            <Typography component="p" className={classes.contactText}>Vivamus et luctus mauris. Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam. Vestibulum feugiat rhoncus metus. In non erat et ipsum molestie porta sit amet ut felis.</Typography>
+            <Title title="Say Hello To Us" align="left" nomargin />
+            <Typography component="p" className={classes.contactText}>Visit us on : www.gererebc.co.za , Email : gererebc@gmail.com, FB : @gererebc,
+Inst : gererebc, Cell : 0824685288 /071 361 1960- Accreditation no: 14132, Company
+Reg no : 2018 / 623149 / 07 - Level 1 BBBEE</Typography>
             <Grid container spacing={3}>
               <Grid item lg={6} xs={12}>
                 <FormControl className={classes.formControl}>

@@ -14,7 +14,9 @@ import styles from '../../../components/SocialMedia/jss/cover-jss';
 import { getStudyNote } from '../../../actions/courses';
 import About from './About';
 import NoteBag from './NoteBag';
-import SchoolIcon from '@material-ui/icons/School';
+import SchoolIcon from '@material-ui/icons/ImportContacts';
+import References from '../references/References'
+
 
 function TabContainer(props) {
   const { children } = props;
@@ -35,7 +37,17 @@ class AdminStudyNote extends React.Component {
   };
 
   componentDidMount() {
-    this.props.getStudyNote(this.props.match.params.id);
+    if (this.props.token !== undefined && this.props.token !== null) {
+      this.props.getStudyNote(this.props.match.params.id, this.props.token);
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.token !== this.props.token) {
+      if (newProps.token !== undefined && newProps.token !== null) {
+        this.props.getStudyNote( this.props.match.params.id, newProps.token);
+      }
+    }
   }
 
   handleChange = (event, value) => {
@@ -74,6 +86,7 @@ class AdminStudyNote extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} />
+              <Tab icon={<AccountCircle />} />
             </Tabs>
           </Hidden>
           <Hidden smDown>
@@ -86,10 +99,12 @@ class AdminStudyNote extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} label="ABOUT" />
+              <Tab icon={<AccountCircle />} label="STUDY REFERENCES" />
             </Tabs>
           </Hidden>
         </AppBar>
         {value === 0 && <TabContainer><About data={note}/></TabContainer>}
+        {value === 1 && <TabContainer><References data={note}/></TabContainer>}
       </NoteBag >
     );
   }
@@ -98,8 +113,8 @@ class AdminStudyNote extends React.Component {
 
 
 const mapStateToProps = state => ({
-  force: state, // force state from reducer
   note: state.courses.adminstudynote,
+  token: state.auth.token
 });
 
 

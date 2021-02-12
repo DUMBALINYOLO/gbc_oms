@@ -16,7 +16,7 @@ import { getAdminAttendance } from '../../actions/attendances';
 import About from './About';
 import Records from './Records';
 import AttendanceBag from './AttendanceBag';
-import SchoolIcon from '@material-ui/icons/School';
+import SchoolIcon from '@material-ui/icons/Today';
 
 
 function TabContainer(props) {
@@ -38,10 +38,18 @@ class AdminAttendance extends React.Component {
   };
 
   componentDidMount() {
-    this.props.getAdminAttendance(this.props.match.params.id);
+    if (this.props.token !== undefined && this.props.token !== null) {
+      this.props.getAdminAttendance(this.props.match.params.id, this.props.token);
+    }
   }
 
-
+  componentWillReceiveProps(newProps) {
+    if (newProps.token !== this.props.token) {
+      if (newProps.token !== undefined && newProps.token !== null) {
+        this.props.getAdminAttendance( this.props.match.params.id, newProps.token);
+      }
+    }
+  }
 
   handleChange = (event, value) => {
     this.setState({ value });
@@ -113,8 +121,8 @@ AdminAttendance.propTypes = {
 
 
 const mapStateToProps = state => ({
-  force: state, // force state from reducer
   adminattendance: state.adminattendances.adminattendance,
+  token: state.auth.token
 });
 
 

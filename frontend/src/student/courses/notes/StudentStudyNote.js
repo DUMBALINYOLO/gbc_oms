@@ -15,6 +15,8 @@ import { getStudyNote } from '../../../actions/courses';
 import About from './About';
 import NoteBag from './NoteBag';
 import SchoolIcon from '@material-ui/icons/School';
+import References from '../references/References'
+
 
 function TabContainer(props) {
   const { children } = props;
@@ -85,6 +87,7 @@ class StudentStudyNote extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} />
+              <Tab icon={<AccountCircle />} />
             </Tabs>
           </Hidden>
           <Hidden smDown>
@@ -97,10 +100,12 @@ class StudentStudyNote extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} label="ABOUT" />
+              <Tab icon={<AccountCircle />} label="STUDY REFERENCES" />
             </Tabs>
           </Hidden>
         </AppBar>
         {value === 0 && <TabContainer><About data={note}/></TabContainer>}
+        {value === 1 && <TabContainer><References data={note}/></TabContainer>}
       </NoteBag >
     );
   }

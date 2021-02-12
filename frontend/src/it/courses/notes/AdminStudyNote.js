@@ -17,7 +17,7 @@ import Images from '../images/Images';
 import InnerNotes from '../innernotes/InnerNotes';
 import NoteBag from './NoteBag';
 import SchoolIcon from '@material-ui/icons/School';
-import References from '../references/References'
+import References from '../references/References';
 
 function TabContainer(props) {
   const { children } = props;

@@ -22,6 +22,7 @@ class RecordCreateUpdateSerializer(serializers.ModelSerializer):
 			'score',
 		]
 
+
 class RecordListDetailSerializer(serializers.ModelSerializer):
 	student = StringSerializer()
 
@@ -34,8 +35,7 @@ class RecordListDetailSerializer(serializers.ModelSerializer):
 			'score',
 			'totalmarks',
 			'subject',
-			'recorded_by',
-			'klass',
+
 		]
 
 

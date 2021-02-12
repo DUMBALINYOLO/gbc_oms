@@ -74,7 +74,7 @@ class Record(SoftDeletionModel):
 
 	@property
 	def subject(self):
-		return self.grade.subject
+		return self.grade.subject.name
 
 	@property
 	def name(self):

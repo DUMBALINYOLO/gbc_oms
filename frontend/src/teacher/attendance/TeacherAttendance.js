@@ -38,7 +38,17 @@ class TeacherAttendance extends React.Component {
   };
 
   componentDidMount() {
-    this.props.getAdminAttendance(this.props.match.params.id);
+    if (this.props.token !== undefined && this.props.token !== null) {
+      this.props.getAdminAttendance(this.props.match.params.id, this.props.token);
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.token !== this.props.token) {
+      if (newProps.token !== undefined && newProps.token !== null) {
+        this.props.getAdminAttendance( this.props.match.params.id, newProps.token);
+      }
+    }
   }
 
 
@@ -113,8 +123,8 @@ TeacherAttendance.propTypes = {
 
 
 const mapStateToProps = state => ({
-  force: state, // force state from reducer
   adminattendance: state.adminattendances.adminattendance,
+  token: state.auth.token
 });
 
 
@@ -125,5 +135,6 @@ const AttendanceMapped = connect(
 )(TeacherAttendance);
 
 export default withStyles(styles)(AttendanceMapped);
+
 
 

@@ -39,11 +39,10 @@ const DecorationStyled = withStyles(styles)(Decoration);
 class Footer extends React.Component {
   state = {
     menuList: [
-      createData('feature', '#feature'),
-      createData('showcase', '#showcase'),
-      createData('terstimonials', '#testi'),
-      createData('technology', '#tech'),
-      createData('pricing', '#pricing'),
+      createData('core values', '#showcase'),
+      createData('team', '#testimonials'),
+      createData('portfolio', '#tech'),
+      createData('our belief', '#pricing'),
       createData('contact', '#contact'),
     ]
   }
@@ -73,7 +72,7 @@ class Footer extends React.Component {
         </div>
         <div className={classes.copyright}>
           <div className={classes.container}>
-            <p>&copy; devloped by featherless biped@flexible  All Right Reserved </p>
+            <p>&copy; devloped by almux</p>
             <span>
               <IconButton color="primary" className={classes.button} href={link.twitter} target="_blank"><i className="ion-social-twitter" /></IconButton>
               <IconButton color="primary" className={classes.button} href={link.pinterest} target="_blank"><i className="ion-social-pinterest" /></IconButton>

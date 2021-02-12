@@ -85,46 +85,46 @@ class Showcase extends React.Component {
         {!slideMode && <ParallaxDecoStyled />}
         <div className={classes.container}>
           <Grid container className={classes.root} spacing={5}>
-            <Grid item sm={6} md={4} xs={12}>
+            <Grid item sm={12} md={4} xs={12}>
               <Title 
-                title="Our Services" 
-                align={width === 'lg' ? 'left' : 'center'} 
+                title="OUR PORTFOLIO" 
+                align={width === 'lg' ? 'center' : 'center'} 
                 monocolor={slideMode && true} 
               />
               <ShowcaseCard
-                title="Information Technology"
-                desc="We develop systems that connect all your systems"
+                title="WE LEAD"
+                desc="Our clients are our lifetime partners, we grow and reach unthinkable heights with them. We help our clients not only to level the play field but catapult them into trend-setters. We value relationships more than profits!"
                 action="Try Us"
                 image={four}
               />
               <ShowcaseCard
-                title="Industrial Systems"
-                desc="We integrate all your Industrial Systems "
+                title="WE PIONEER"
+                desc="At Gerere Business College, our learners ‘overall best interest would always come first, and everything we do is guided by our values and professional ethics. We allocate professional tutors/lectures in all encounters, who are well experienced and passionate in imparting knowledge to learners at various learning ladders."
                 action="Visit Us"
                 image={five}
               />
             </Grid>
             <Grid item sm={6} md={4} xs={12}>
               <ShowcaseCard
-                title="Energy Renewal Systems"
-                desc="We are the kings in Energy Systems"
+                title="ACCOUNTABILITY"
+                desc="We hold ourselves accountable to the highest standards, by meeting our learners’ needs precisely and completely. We cultivate a working environment that provides a humane, sustainable approach to earning a living, and living in our world, for our partners, employees and for our students."
                 action="Get in touch"
                 image={six}
               />
               <ShowcaseCard
-                title="IIoT & SCADA/HMI/DCS"
-                desc="Industrial Internet of Thins Experts"
-                action="LETS GO IIoT"
+                title="ENTREPRENEURSHIP"
+                desc="We are a solution to small and medium businesses that cannot afford the offers from lager institutions, yet we surpass any imaginable value. Our products and services remain vivid in the minds of those we service."
+                action="LETS GO"
                 image={eight}
               />
             </Grid>
             <Grid item sm={6} md={4} xs={12}>
               <div className={classes.lastShowcase}>
                 <ShowcaseCard
-                  title="Industrial Computing Systems"
-                  desc="Making your job easier"
-                  action="At your Service"
-                  image={seven}
+                  title="STANDARDS"
+                  desc="We PIONEER we set TRENDS we LEAD! ... and so, do our clients!"
+                  action="LETS GO"
+                  image={six}
                 />
               </div>
             </Grid>

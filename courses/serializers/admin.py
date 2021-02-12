@@ -687,9 +687,12 @@ class ItOwnersSerializer(serializers.ModelSerializer):
 
 
 
+
 class ItCourseDetailSerializer(serializers.ModelSerializer):
 	status = serializers.SerializerMethodField()
 	stream = serializers.SerializerMethodField()
+	start_date = serializers.DateTimeField(format="%d-%m-%Y")
+	end_date = serializers.DateTimeField(format="%d-%m-%Y")
 
 	class Meta:
 		model = Course

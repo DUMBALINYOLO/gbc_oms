@@ -15,8 +15,10 @@ import { withStyles } from '@material-ui/core/styles';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Cover from '../../components/SocialMedia/Cover';
+
 import Connection from '../../components/Profile/Connection';
 import About from '../../components/Profile/About';
+
 import Favorites from '../../components/Profile/Favorites';
 import Albums from '../../components/Profile/Albums';
 import bgCover from '../../images/petal_bg.svg';
@@ -39,7 +41,7 @@ TabContainer.propTypes = {
 
 class CompanyProfile extends React.Component {
   state = {
-    value: 0,
+    value: 0.001
   };
 
   componentDidMount() {
@@ -69,9 +71,7 @@ class CompanyProfile extends React.Component {
         </Helmet>
         <Cover
           coverImg={bgCover}
-          avatar={dummy.user.avatar}
           name={dummy.user.name}
-          desc="Consectetur adipiscing elit."
         />
         <AppBar position="static" className={classes.profileTab}>
           <Hidden mdUp>
@@ -85,7 +85,6 @@ class CompanyProfile extends React.Component {
             >
               <Tab icon={<AccountCircle />} />
               <Tab icon={<SupervisorAccount />} />
-              <Tab icon={<Favorite />} />
               <Tab icon={<PhotoLibrary />} />
             </Tabs>
           </Hidden>
@@ -100,15 +99,13 @@ class CompanyProfile extends React.Component {
             >
               <Tab icon={<AccountCircle />} label="ABOUT" />
               <Tab icon={<SupervisorAccount />} label="OUR TEAM" />
-              <Tab icon={<Favorite />} label="CUSTOMER FEEDBACK" />
               <Tab icon={<PhotoLibrary />} label="AT WORK" />
             </Tabs>
           </Hidden>
         </AppBar>
         {value === 0 && <TabContainer><About data={dataProps} /></TabContainer>}
         {value === 1 && <TabContainer><Connection /></TabContainer>}
-        {value === 2 && <TabContainer><Favorites /></TabContainer>}
-        {value === 3 && <TabContainer><Albums /></TabContainer>}
+        {value === 2 && <TabContainer><Albums /></TabContainer>}
       </div>
     );
   }
