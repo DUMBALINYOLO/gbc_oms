@@ -6,6 +6,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Hidden from '@material-ui/core/Hidden';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import RateReviewIcon from '@material-ui/icons/RateReview';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import Cover from '../../../components/SocialMedia/Cover';
@@ -17,6 +19,7 @@ import CourseBag from './CourseBag';
 import SchoolIcon from '@material-ui/icons/School';
 import Topics from '../topics/Topics';
 import Enrollments from '../enrollments/Enrollments';
+
 
 
 function TabContainer(props) {
@@ -87,8 +90,8 @@ class Course extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} />
-              <Tab icon={<SchoolIcon />} />
-              <Tab icon={<SchoolIcon />} />
+              <Tab icon={<RateReviewIcon />} />
+              <Tab icon={<VpnKeyIcon />} />
             </Tabs>
           </Hidden>
           <Hidden smDown>
@@ -101,8 +104,8 @@ class Course extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<SchoolIcon />} label="TOIPCS" />
-              <Tab icon={<SchoolIcon />} label="ENROLLMENTS" />
+              <Tab icon={<RateReviewIcon />} label="TOPICS" />
+              <Tab icon={<VpnKeyIcon />} label="ENROLLMENTS" />
             </Tabs>
           </Hidden>
         </AppBar>

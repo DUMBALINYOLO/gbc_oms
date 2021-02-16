@@ -53,6 +53,7 @@ const Topics = props => {
   const [listView, setListView] = useState('grid')
   const history = useHistory();
   const {id} =props.data;
+  const [newtopic, setNewTopic] = useState({})
   const {token} = props;
 
   useEffect(() => {
@@ -62,14 +63,18 @@ const Topics = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newtopic]);
 
 
   const addOrEdit = (topic, resetForm, token) => {
-      if (topic.id > 0)
+      if (topic.id > 0){
         props.editTopic(topic.id, topic, token)
-      else
+        setNewTopic(topic)
+      }else{
         props.addTopic(topic, token)
+        setNewTopic(topic)
+        props.getAdminTopics(id, token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -87,7 +92,6 @@ const Topics = props => {
           }
       })
   }
-
 
 
   const openInPopup = item => {

@@ -8,6 +8,7 @@ import LandingPage from './containers/landing/LandingPage'
 import BlogPage from './containers/Blog/BlogPage';
 import CompanyProfile from './containers/Profile/CompanyProfile';
 import InformationTechnologyHome from './it/dashboard/InformationTechnologyHome';
+import PublicDash from './public/dashboard/PublicDash';
 import Fees from './it/fees/Fees';
 import Curriculum from './it/curriculum/Curriculum';
 import SubjectsAdminView from './it/curriculum/SubjectsAdminView';
@@ -42,6 +43,8 @@ import AdminAssignment from './it/gradings/AdminAssignment';
 import BursarLog from './test/BursarLog';
 import TeacherLog from './test/TeacherLog';
 import Login from './auth/Login';
+import GerereLogin from "./auth/GerereLogin";
+import Posts from './containers/newsletter/Posts';
 import TeacherUpcomingCourses from './teacher/courses/courses/TeacherUpcomingCourses';
 import TeacherUpcomingCourse from './teacher/courses/courses/TeacherUpcomingCourse';
 import TeacherOngoingCourses from './teacher/courses/courses/TeacherOngoingCourses';
@@ -95,7 +98,17 @@ import StudentStudyNote from './student/courses/notes/StudentStudyNote';
 import Authors from './it/courses/author/Authors';
 import Publishers from './it/courses/publisher/Publishers';
 import Cities from './it/courses/publishercity/PublisherCities';
+import StudentAuthors from './student/courses/author/Authors';
+import StudentPublishers from './student/courses/publisher/Publishers';
+import StudentCities from './student/courses/publishercity/PublisherCities';
+import TeacherAuthors from './teacher/courses/author/Authors';
+import TeacherPublishers from './teacher/courses/publisher/Publishers';
+import TeacherCities from './teacher/courses/publishercity/PublisherCities';
+import  PuclicOfferedCourses from "./public/courses/PublicOfferedCourses";
 import AddAdmission from './student/admissions/AddAdmission';
+import AdminCourseAdverts from './it/adverts/AdminCourseAdverts';
+import GerereRegister  from './auth/GerereRegister';
+
 
 
 
@@ -110,8 +123,6 @@ class App extends React.Component {
 	constructor(props) {
     super(props);
   }
-
-
 
 
   componentDidMount() {
@@ -129,9 +140,11 @@ class App extends React.Component {
             <AlertProvider template={AlertTemplate} {...alertOptions} >
               <Switch>
                 <Route exact path='/' component={LandingPage} />
-
-                <Route exact path='/login' component={Login} />
+                <Route exact path='/login' component={GerereLogin} />
+								<Route exact path='/signup' component={GerereRegister} />
+                <Route exact path='/coursesoffered' component={PuclicOfferedCourses} />
                 <Route exact path='/itdashboard' component={InformationTechnologyHome} />
+                <Route exact path='/publicdashboard' component={PublicDash} />
                 <Route exact path='/bursardashboard' component={BursarLog} />
 								<Route exact path='/studentdashboard' component={StudentHome} />
 								<Route exact path='/studentdashboard/add-admission' component={AddAdmission} />
@@ -146,6 +159,9 @@ class App extends React.Component {
 								<Route exact path='/studentdashboard/topics/:id' component={StudentTopic} />
 								<Route exact path='/studentdashboard/subtopics/:id' component={StudentSubTopic} />
 								<Route exact path='/studentdashboard/notes/:id' component={StudentStudyNote} />
+                                <Route exact path='/studentdashboard/authors' component={StudentAuthors} />
+                                <Route exact path='/studentdashboard/publishers' component={StudentPublishers} />
+                                <Route exact path='/studentdashboard/cities' component={StudentCities} />
                 <Route exact path='/wa' component={TeacherLog} />
                 <Route exact path='/teacherdashboard' component={TeacherHome} />
                 <Route exact path='/teacherdashboard/attendance' component={TeacherAttendances} />
@@ -169,6 +185,9 @@ class App extends React.Component {
                 <Route exact  path='/teacherdashboard/inactivecourses/:id' component={TeacherInactiveCourse} />
                 <Route exact path='/teacherdashboard/upcomingcourses' component={TeacherUpcomingCourses} />
                 <Route exact path='/teacherdashboard/upcomingcourses/:id' component={TeacherUpcomingCourse} />
+                                <Route exact path='/teacherdashboard/authors' component={TeacherAuthors} />
+                                <Route exact path='/teacherdashboard/publishers' component={TeacherPublishers} />
+                                <Route exact path='/teacherdashboard/cities' component={TeacherCities} />
                 <Route exact path='/itdashboard/fees' component={Fees} />
                 <Route exact path='/itdashboard/curriculums' component={Curriculum} />
                 <Route exact path='/itdashboard/taxes' component={AdminTaxes} />
@@ -183,6 +202,7 @@ class App extends React.Component {
 								<Route exact path='/itdashboard/authors' component={Authors} />
 								<Route exact path='/itdashboard/publishers' component={Publishers} />
 								<Route exact path='/itdashboard/cities' component={Cities} />
+								<Route exact path='/itdashboard/course-ads' component={AdminCourseAdverts} />
                 <Route exact path="/itdashboard/students/:id" component={StudentProfile} />
                 <Route exact path='/itdashboard/tests' component={AdminStudentTests} />
                 <Route exact path='/itdashboard/tests/:id' component={AdminGradingTest} />
@@ -216,6 +236,7 @@ class App extends React.Component {
                 <Route exact path='/itdashboard/inactive-accounts' component={AdminInActiveAccounts} />
                 <Route exact path='/blog' component={BlogPage} />
                 <Route exact path='/profile' component={CompanyProfile} />
+                <Route exact path='/blog' component={Posts} />
 								<Route component={Error} />
 
               </Switch>

@@ -48,7 +48,7 @@ class SideNavMobile extends React.Component {
             </Scrollspy>
           </List>
           <Typography variant="caption" className={classes.copyright}>
-            &copy; 2020 Flexible Designs
+            &copy; 2021 Flexible Designs
             <br />
             All Right Reserved
           </Typography>

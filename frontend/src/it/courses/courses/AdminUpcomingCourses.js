@@ -51,6 +51,7 @@ const AdminUpcomingCourses = props => {
   const [listView, setListView] = useState('grid')
   const history = useHistory();
   const {token} = props;
+  const [newcourse, setNewCourse] = useState({})
 
   useEffect(() => {
     if(!props.fetched) {
@@ -59,15 +60,19 @@ const AdminUpcomingCourses = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newcourse]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editUpComingCourse(fee.id, fee, token)
-      else
+        setNewCourse(fee)
+        props.getAdminUpcomingCourses(token);
+      }else{
         props.addUpComingCourse(fee, token)
-        console.log(fee)
+        setNewCourse(fee)
+        props.getAdminUpcomingCourses(token);
+      }
         //
       resetForm()
       setRecordForEdit(null)

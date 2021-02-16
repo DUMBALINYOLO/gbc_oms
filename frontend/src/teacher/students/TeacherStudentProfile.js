@@ -21,6 +21,8 @@ import Excercises from './Excercises';
 import Tests from './Tests';
 import ProfileBag from './ProfileBag';
 import SchoolIcon from '@material-ui/icons/School';
+import AttIcon from '@material-ui/icons/HowToReg';
+import TestIcon from '@material-ui/icons/MenuBook';
 
 
 function TabContainer(props) {
@@ -87,9 +89,9 @@ class TeacherStudentProfile extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} />
-              <Tab icon={<GradientIcon />} />
-              <Tab icon={<SchoolIcon />} />
-              <Tab icon={<SchoolIcon />} />
+              <Tab icon={<TestIcon />} />
+              <Tab icon={<AttIcon />} />
+              <Tab icon={<TestIcon />} />
               <Tab icon={<SchoolIcon />} />
             </Tabs>
           </Hidden>
@@ -103,9 +105,9 @@ class TeacherStudentProfile extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<GradientIcon />} label="ATTENDANCE" />
-              <Tab icon={<SchoolIcon />} label="TESTS" />
-              <Tab icon={<SchoolIcon />} label="EXCERCISES" />
+              <Tab icon={<AttIcon />} label="ATTENDANCE" />
+              <Tab icon={<TestIcon />} label="TESTS" />
+              <Tab icon={<TestIcon />} label="EXCERCISES" />
               <Tab icon={<SchoolIcon />} label="ASSIGNMENTS" />
             </Tabs>
           </Hidden>

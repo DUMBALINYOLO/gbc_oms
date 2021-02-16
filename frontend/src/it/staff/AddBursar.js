@@ -2,6 +2,7 @@ import React from "react";
 import {  Grid, makeStyles,  } from "@material-ui/core";
 import {Form, useForm } from "../../components/formcontrols/useForm";
 import  Controls  from "../../components/formcontrols/Controls";
+import TextField from '@material-ui/core/TextField';
 
 
 
@@ -99,13 +100,16 @@ const AddBursar = props => {
                       />
                   </Grid>
                   <Grid item xs={6}>
-                    <Controls.Input
-                        label="PASSWORD"
-                        name="password"
-                        value={values.password}
-                        onChange={handleInputChange}
-                        error={errors.password}
-                    />
+                    <TextField
+                      fullWidth
+                      onChange={handleInputChange}
+                      value={values.password}
+                      label="PASSWORD"
+                      name="password"
+                      size="small"
+                      type="password"
+                      variant="outlined"
+                    /> 
                       <div>
                           <Controls.Button
                               type="submit"
@@ -122,3 +126,4 @@ const AddBursar = props => {
 };
 
 export default AddBursar;
+

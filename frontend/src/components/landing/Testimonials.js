@@ -19,17 +19,17 @@ import leven from './leven.jpg';
 
 const content = [
   {
-    title: 'With Flexible Measurements you will never go wrong',
+    title: 'The buck stops here',
     image: nine,
     user: '',
   },
   {
-    title: 'They care, they listen and solve your roblem',
+    title: 'The buck stops here',
     image: ten,
     user: '',
   },
   {
-    title: 'Offering the best is what they do best',
+    title: 'The buck stops here',
     image: leven,
     user: '',
   }
@@ -94,7 +94,7 @@ class Testimonials extends React.Component {
       <div className={classes.testimonials}>
         {!slideMode && (<ParallaxDecoStyled />)}
         <div className={!slideMode ? classes.container : classes.fullSliderContent}>
-          <Title title="What people said" align="center" monocolor={slideMode && true} />
+          <Title title="OUR TEAM" align="center" monocolor={slideMode && true} />
           <div className={classes.sliderWrap}>
             <Slider className="slider-wrapper">
               {content.map((item, index) => (

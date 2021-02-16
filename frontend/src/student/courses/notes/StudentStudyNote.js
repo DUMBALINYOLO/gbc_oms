@@ -14,7 +14,9 @@ import styles from '../../../components/SocialMedia/jss/cover-jss';
 import { getStudyNote } from '../../../actions/courses';
 import About from './About';
 import NoteBag from './NoteBag';
-import SchoolIcon from '@material-ui/icons/School';
+import RefIcon from '@material-ui/icons/AssignmentInd';
+import References from '../references/References'
+
 
 function TabContainer(props) {
   const { children } = props;
@@ -85,6 +87,7 @@ class StudentStudyNote extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} />
+              <Tab icon={<RefIcon />} />
             </Tabs>
           </Hidden>
           <Hidden smDown>
@@ -97,10 +100,12 @@ class StudentStudyNote extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} label="ABOUT" />
+              <Tab icon={<RefIcon />} label="STUDY REFERENCES" />
             </Tabs>
           </Hidden>
         </AppBar>
         {value === 0 && <TabContainer><About data={note}/></TabContainer>}
+        {value === 1 && <TabContainer><References data={note}/></TabContainer>}
       </NoteBag >
     );
   }

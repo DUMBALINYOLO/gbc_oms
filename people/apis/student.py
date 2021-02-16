@@ -1,4 +1,5 @@
 from rest_framework import viewsets, generics, permissions
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.response import Response
 from people.models import (
 					Student,
@@ -8,7 +9,10 @@ from people.serializers import (
 					)
 
 
+
 class CreateStudentAPI(generics.GenericAPIView):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
 	serializer_class = StudentCreateSerializer
 
@@ -19,5 +23,3 @@ class CreateStudentAPI(generics.GenericAPIView):
 		return Response({
 				"user": StudentCreateSerializer(user, context=self.get_serializer_context()).data
 			})
-
-

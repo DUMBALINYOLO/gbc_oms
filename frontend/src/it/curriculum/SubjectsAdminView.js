@@ -57,6 +57,7 @@ const SubjectAdminView = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const [newcurriculum, setNewCurriculum] = useState({})
   const {token} = props;
 
   useEffect(() => {
@@ -66,15 +67,18 @@ const SubjectAdminView = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newcurriculum]);
 
 
   const addOrEdit = (subject, resetForm, token) => {
-      if (subject.id > 0)
+      if (subject.id > 0){
         props.editSubject(subject.id, subject, token)
-      else
+        setNewCurriculum(subject)
+      }else{
         props.addSubject(subject, token)
-        //
+        setNewCurriculum(subject)
+        props.getSubjects(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)

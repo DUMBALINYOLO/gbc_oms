@@ -25,11 +25,13 @@ import courses from './courses';
 import reports from './reports';
 import messages from './messages';
 import errors from './errors';
+import adverts from './adverts';
 
 
 
 
 export default combineReducers({
+    errors,
     ui: uiReducer,
   	timelines,
   	subMenuOpen,
@@ -55,5 +57,6 @@ export default combineReducers({
     courses,
     reports,
     messages,
-    errors,
+    adverts,
+
 });

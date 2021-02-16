@@ -22,6 +22,7 @@ const ExpansionPanel = withStyles({
     expanded: {},
 })(MuiExpansionPanel)
 
+
 const ExpansionPanelDetails = withStyles((theme) => ({
     root: {
         padding: theme.spacing(2),

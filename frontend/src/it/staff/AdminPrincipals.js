@@ -57,6 +57,7 @@ const AdminPrincipals = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const [newstaff, setNewStaff] = useState({})
   const {token, email} = props;
 
 
@@ -69,15 +70,19 @@ const AdminPrincipals = props => {
 
 
 
-  }, []);
+  }, [newstaff]);
 
 
 
   const addOrEdit = (bursar, resetForm, token) => {
-      if (bursar.id > 0)
-         console.log('gosso')
-      else
-        props.addPrincipal(bursar, token)       //
+      if (bursar.id > 0){
+        //console.log('gosso')
+        setNewStaff(bursar)
+      }else{
+        props.addPrincipal(bursar, token)
+        setNewStaff(bursar)
+        props.getAdminPrincipals(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)

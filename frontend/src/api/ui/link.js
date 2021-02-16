@@ -1,6 +1,7 @@
 module.exports = {
   dashboard: '/app',
   login: '/login',
+  signup: '/signup',
   market: '#',
   email: '/app/pages/email',
   profile: '/app/pages/user-profile',

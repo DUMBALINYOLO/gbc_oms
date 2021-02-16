@@ -24,6 +24,7 @@ export const authSuccess = user => {
   };
 };
 
+
 export const authFail = error => {
   return {
     type: AUTH_FAIL,

@@ -12,6 +12,7 @@ import LeftSidebarBigLayout from './LeftSidebarBigLayout';
 import DropMenuLayout from './DropMenuLayout';
 import MegaMenuLayout from './MegaMenuLayout';
 import styles from './appStyles-jss';
+import Login from '../../auth/Login';
 
 class TeacherLayout extends React.Component {
   // Initial header style
@@ -63,7 +64,9 @@ class TeacherLayout extends React.Component {
     const titleException = ['/', '/', '/'];
 
     if (!this.props.token){
-      return <Redirect to="/login" />
+      return (
+        <Login />
+      );
     }
     if(this.props.token !== null){
       if (this.props.userRole !== 'principal'){

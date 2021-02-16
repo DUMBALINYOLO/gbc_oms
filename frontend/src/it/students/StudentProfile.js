@@ -7,7 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Hidden from '@material-ui/core/Hidden';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import GradientIcon from '@material-ui/icons/Gradient';
+import SchoolIcon from '@material-ui/icons/Assignment';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import Cover from '../../components/SocialMedia/Cover';
@@ -20,7 +20,9 @@ import Attendance from './Attendance';
 import Excercises from './Excercises';
 import Tests from './Tests';
 import ProfileBag from './ProfileBag';
-import SchoolIcon from '@material-ui/icons/School';
+import AttIcon from '@material-ui/icons/HowToReg';
+import TestIcon from '@material-ui/icons/MenuBook';
+
 
 
 function TabContainer(props) {
@@ -87,10 +89,10 @@ class CompanyProfile extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} />
-              <Tab icon={<GradientIcon />} />
+              <Tab icon={<AttIcon />} />
               <Tab icon={<SchoolIcon />} />
-              <Tab icon={<SchoolIcon />} />
-              <Tab icon={<SchoolIcon />} />
+              <Tab icon={<TestIcon />} />
+              <Tab icon={<TestIcon />} />
             </Tabs>
           </Hidden>
           <Hidden smDown>
@@ -103,9 +105,9 @@ class CompanyProfile extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<GradientIcon />} label="ATTENDANCE" />
-              <Tab icon={<SchoolIcon />} label="TESTS" />
-              <Tab icon={<SchoolIcon />} label="EXCERCISES" />
+              <Tab icon={<AttIcon />} label="ATTENDANCE" />
+              <Tab icon={<TestIcon />} label="TESTS" />
+              <Tab icon={<TestIcon />} label="EXCERCISES" />
               <Tab icon={<SchoolIcon />} label="ASSIGNMENTS" />
             </Tabs>
           </Hidden>

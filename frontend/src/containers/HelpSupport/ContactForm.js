@@ -22,7 +22,7 @@ class ContactForm extends Component {
       classes,
     } = this.props;
     return (
-      <PapperBlock title="Ask a question" whiteBg icon="ios-call-outline" desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed urna in justo euismod condimentum.">
+      <PapperBlock title="Want To Know More" whiteBg icon="ios-call-outline" desc="Ask us a question">
         <Grid>
           <FormControl className={classes.formControl}>
             <TextField

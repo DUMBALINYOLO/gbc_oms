@@ -24,6 +24,12 @@ import Brightness5Icon from '@material-ui/icons/Brightness5';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
 import BusinessIcon from '@material-ui/icons/Business';
 import PersonIcon from '@material-ui/icons/Person';
+import SchoolIcon from '@material-ui/icons/School';
+import PermIcon from '@material-ui/icons/People';
+import AttIcon from '@material-ui/icons/Spellcheck';
+import CourseIcon from '@material-ui/icons/MenuBook';
+import SwapIcon from '@material-ui/icons/SwapVerticalCircle';
+import BioIcon from '@material-ui/icons/LocalLibrary';
 
 
 
@@ -44,7 +50,7 @@ const navigationConfig = [
         id: "students",
         title: "STUDENTS",
         type: "collapse",
-        icon: <Brightness5Icon />,
+        icon: <PermIcon />,
         badge: {
           title: "1",
           bg: "#525E8A",
@@ -65,9 +71,9 @@ const navigationConfig = [
         id: "dashes",
         title: "ATTENDANCE",
         type: "collapse",
-        icon: <Brightness5Icon />,
+        icon: <AttIcon />,
         badge: {
-          title: "1",
+          title: "2",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -86,7 +92,7 @@ const navigationConfig = [
         id: "courses",
         title: "COURSES",
         type: "collapse",
-        icon: <BusinessIcon />,
+        icon: <CourseIcon />,
         badge: {
           title: "3",
           bg: "#525E8A",
@@ -128,9 +134,9 @@ const navigationConfig = [
         id: "gradings",
         title: "GRADING",
         type: "collapse",
-        icon: <Brightness5Icon />,
+        icon: <SwapIcon />,
         badge: {
-          title: "1",
+          title: "4",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -157,9 +163,44 @@ const navigationConfig = [
             url: "/teacherdashboard/assignments",
             exact: true,
           },
-        ],
+        ]
       },
+      {
+        id: "references",
+        title: "BIBLIOGRAPHY",
+        type: "collapse",
+        icon: <BioIcon />,
+        badge: {
+          title: "5",
+          bg: "#525E8A",
+          fg: "#FFFFFF",
 
+        },
+        children: [
+          {
+            id: "authors",
+            title: "AUTHORS",
+            type: "item",
+            url: "/teacherdashboard/authors",
+            exact: true,
+          },
+          
+          {
+            id: "publishers",
+            title: "PUBLISHERS",
+            type: "item",
+            url: "/teacherdashboard/publishers",
+            exact: true,
+          },
+          {
+            id: "cities",
+            title: "CITIES",
+            type: "item",
+            url: "/teacherdashboard/cities",
+            exact: true,
+          },
+        ]
+      },  
     ],
   },
 ];

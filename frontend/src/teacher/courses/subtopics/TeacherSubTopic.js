@@ -14,7 +14,7 @@ import styles from '../../../components/SocialMedia/jss/cover-jss';
 import { getAdminSubTopic } from '../../../actions/courses';
 import About from './About';
 import SubTopicBag from './SubTopicBag';
-import SchoolIcon from '@material-ui/icons/School';
+import SchoolIcon from '@material-ui/icons/ImportContacts';
 import Notes from '../notes/Notes';
 
 

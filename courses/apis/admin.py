@@ -134,8 +134,6 @@ class AdminOngoingCourseViewSet(viewsets.ModelViewSet):
 				ComplexQueryLookUp(status__icontains=deep_query) |
 				ComplexQueryLookUp(overview__icontains=deep_query) |
 				ComplexQueryLookUp(created__icontains=deep_query) |
-				ComplexQueryLookUp(start_date__icontains=deep_query) |
-				ComplexQueryLookUp(end_date__icontains=deep_query) |
 				ComplexQueryLookUp(course_number__icontains=deep_query) |
 				ComplexQueryLookUp(description__icontains=deep_query)
 			)

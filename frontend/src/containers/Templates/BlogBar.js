@@ -43,7 +43,7 @@ export default function BlogBar() {
           </ThemeProvider> */}
           <ThemeProvider theme={theme}>
             <Button variant="contained" color="primary" className={classes.title}>
-            <Link style={{ textDecoration: 'none' }} to='/'>Flexible Dimensions</Link>
+            <Link style={{ textDecoration: 'none' }} to='/'>GERERE BUSINESS COLLEGE</Link>
             </Button>
           </ThemeProvider>
         </Toolbar>

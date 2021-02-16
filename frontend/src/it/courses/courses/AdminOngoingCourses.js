@@ -56,6 +56,7 @@ const AdminOngoingCourses = props => {
   const history = useHistory();
   const courseData = useSelector((state) => state.courses.adminongoingcourses);
   const dispatch = useDispatch();
+  const [newcourse, setNewCourse] = useState({})
   const {token} = props;
 
 
@@ -65,20 +66,17 @@ const AdminOngoingCourses = props => {
     }
     console.log('mount it!');
 
-  }, []);
-
-
-
-
+  }, [newcourse]);
 
   const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0){
         props.editOngoingCourse(fee.id, fee, token)
-      }
-      else
+        setNewCourse(fee)
+      }else{
         props.addOngoingCourse(fee, token)
-
-        //
+        setNewCourse(fee)
+        dispatch(getAdminOngoingCourses(token));
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)

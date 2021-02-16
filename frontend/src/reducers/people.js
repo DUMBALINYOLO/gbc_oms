@@ -1,14 +1,14 @@
 import {
-    GET_ADMIN_STUDENTS, 
+    GET_ADMIN_STUDENTS,
     GET_ADMIN_STUDENT,
     GET_ADMIN_BURSARS,
-    GET_ADMIN_BURSAR, 
+    GET_ADMIN_BURSAR,
     GET_ADMIN_PARENTS,
     GET_ADMIN_PARENT,
-    GET_ADMIN_PRINCIPALS, 
+    GET_ADMIN_PRINCIPALS,
     GET_ADMIN_PRINCIPAL,
     GET_ADMIN_TEACHERS,
-    GET_ADMIN_TEACHER, 
+    GET_ADMIN_TEACHER,
     CREATE_TEACHER,
     CREATE_BURSAR,
     CREATE_PRINCIPAL,
@@ -21,6 +21,7 @@ import {
     GET_TEACHER_PROFILES,
     GET_PARENT_PROFILES,
     GET_STUDENT_PROFILES,
+    CREATE_STUDENT,
 
 } from '../types/peopleTypes';
 
@@ -153,6 +154,11 @@ export default function a(state = initialState, action){
             return {
                 ...state,
                 adminbursar: [...state.adminbursars, action.payload]
+            }
+        case CREATE_STUDENT:
+            return {
+                ...state,
+                adminstudent: [...state.adminstudents, action.payload]
             }
         case CREATE_TEACHER:
             return {

@@ -59,6 +59,7 @@ const AdminBursars = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const [newstaff, setNewStaff] = useState({})
   const {token} = props;
 
   useEffect(() => {
@@ -66,14 +67,18 @@ const AdminBursars = props => {
         props.getAdminBursars(token);
     }
     console.log('mount it!');
-  }, []);
+  }, [newstaff]);
 
 
   const addOrEdit = (bursar, resetForm, token) => {
-      if (bursar.id > 0)
-         console.log('gosso')
-      else
-        props.addBursar(bursar, token)       //
+      if (bursar.id > 0){
+        //console.log('gosso')
+        setNewStaff(bursar)
+      }else{
+        props.addBursar(bursar, token) 
+        setNewStaff(bursar)
+        props.getAdminBursars(token);      //
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)

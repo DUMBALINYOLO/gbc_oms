@@ -19,4 +19,5 @@ urlpatterns = [
     re_path(r'api/classes/', include('klasses.urls')),
     re_path(r'api/courses/', include('courses.urls')),
     re_path(r'api/reports/', include('reports.urls')),
+    re_path(r'api/adverts/', include('adverts.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

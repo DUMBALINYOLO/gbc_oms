@@ -12,30 +12,30 @@ class Pricing extends React.Component {
     return (
       <div className={classes.pricing}>
         <div className={slideMode ? classes.fullWidth : classes.container}>
-          <Title title="Pricing" desc="Talk to us and we will understand" align="center" monocolor={slideMode && true} />
+          <Title title="WE SPECIALIZE IN" desc="Learning and development including:" align="center" monocolor={slideMode && true} />
           <Grid container className={classes.root} spacing={5}>
             <Grid item md={4} xs={12}>
               <PricingCard
-                title="Affordability"
-                price="LEAN"
+                title="TRAIN"
+                price="Train"
                 tier="lean"
-                feature={['']}
+                feature={[]}
               />
             </Grid>
             <Grid item md={4} xs={12}>
               <PricingCard
-                title="ROI"
-                price="roi"
-                tier="cheap"
-                feature={['',]}
-              />
-            </Grid>
-            <Grid item md={4} xs={12}>
-              <PricingCard
-                title="Customer Friendlieness"
-                price="cf"
+                title="DEVELOPMENT"
+                price="Develop"
                 tier="cf"
-                feature={['']}
+                feature={[]}
+              />
+            </Grid>
+            <Grid item md={4} xs={12}>
+              <PricingCard
+                title="NQF (level 1 - 8)"
+                price="SETAs"
+                tier="cf"
+                feature={[]}
               />
             </Grid>
           </Grid>

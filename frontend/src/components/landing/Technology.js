@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 import Title from './Title';
+import {Link} from 'react-router-dom';
 import styles from './landingStyle-jss';
 import lineSide3 from '../../images/decoration/lineSide3.svg';
 import lineSide4 from '../../images/decoration/lineSide4.svg';
@@ -17,6 +18,7 @@ import fort from './fort.jpg';
 import fift from './fift.jpg';
 import sixt from './sixt.jpg';
 import two from './two.jpg'
+
 
 
 function ParallaxDeco(props) {
@@ -78,20 +80,20 @@ class Technology extends React.Component {
       <div className={classes.tech}>
         {!slideMode && (<ParallaxDecoStyled />)}
         <div className={slideMode ? classes.fullWidth : classes.container}>
-          <Title title="The technologies" desc="Cras convallis lacus orci, tristique tincidunt magna consequat in." align="center" monocolor={slideMode && true} />
+          <Title title='OUR SERVICES' desc="WE TRAIN YOUR EMPLOYEES ON-SITE AND OFF-SITE" align="center" monocolor={slideMode && true} />
           <Grid container className={classes.root} spacing={3}>
             <Grid item sm={4} xs={12}>
               <div className={classNames(classes.wool, slideMode && classes.slideMode)}>
                 <figure>
                   <img src={twelv} alt="react" />
                 </figure>
-                <Typography variant="h5" className={classes.react}>MQTT</Typography>
+                <Typography variant="h5" className={classes.react}>FACILITATION</Typography>
               </div>
               <div className={classNames(classes.wool, slideMode && classes.slideMode)}>
                 <figure>
                   <img src={thirt} alt="react router" />
                 </figure>
-                <Typography variant="h5" className={classes.router}>INDUSTRIAL SETUPS</Typography>
+                <Typography variant="h5" className={classes.router}>ASSESSMENTS</Typography>
               </div>
             </Grid>
             <Grid item sm={4} xs={12}>
@@ -100,16 +102,18 @@ class Technology extends React.Component {
                   <figure>
                     <img src={fort} alt="redux" />
                   </figure>
-                  <Typography variant="h5" className={classes.redux}>INDUSTRIAL PLANTS</Typography>
+                  <Typography variant="h5" className={classes.redux}>MODERATIONS</Typography>
                 </div>
                 <Hidden smDown>
-                  <Button variant="contained" size="large" color="secondary">Request To Implement Technology</Button>
+                  <Link style={{ textDecoration: 'none', color: 'white' }} to="/profile">
+                    <Button variant="contained" size="large" color="secondary">CLICK TO SEE MORE</Button>
+                  </Link>
                 </Hidden>
                 <div className={classNames(classes.wool, slideMode && classes.slideMode)}>
                   <figure>
                     <img src={fift} alt="webpack" />
                   </figure>
-                  <Typography variant="h5" className={classes.webpack}>Automation</Typography>
+                  <Typography variant="h5" className={classes.webpack}>BUSINESS COACHING</Typography>
                 </div>
               </div>
             </Grid>
@@ -118,13 +122,13 @@ class Technology extends React.Component {
                 <figure>
                   <img src={sixt} alt="mui" />
                 </figure>
-                <Typography variant="h5" className={classes.mui}>Weighbridge Management</Typography>
+                <Typography variant="h5" className={classes.mui}>WE REGISTER</Typography>
               </div>
               <div className={classNames(classes.wool, slideMode && classes.slideMode)}>
                 <figure>
                   <img src={two} alt="jss" />
                 </figure>
-                <Typography variant="h5" className={classes.jss}>Diesel Plants</Typography>
+                <Typography variant="h5" className={classes.jss}>SUSTAINABILITY</Typography>
               </div>
             </Grid>
           </Grid>

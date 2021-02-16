@@ -55,6 +55,7 @@ const AdminParents = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const [newparent, setNewParent] = useState({})
   const {token} = props;
 
   useEffect(() => {
@@ -64,14 +65,18 @@ const AdminParents = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newparent]);
 
 
   const addOrEdit = (bursar, resetForm, token) => {
-      if (bursar.id > 0)
-        console.log('gosso')
-      else
-        props.addBursar(bursar, token)       //
+      if (bursar.id > 0){
+        //console.log('gosso')
+        setNewParent(bursar)
+      }else{
+        props.addBursar(bursar, token) 
+        setNewParent(bursar)
+        props.getAdminParents(token);      //
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)

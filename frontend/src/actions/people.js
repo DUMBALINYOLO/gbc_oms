@@ -22,6 +22,7 @@ import {
         GET_TEACHER_PROFILES,
         GET_PARENT_PROFILES,
         GET_STUDENT_PROFILES,
+        CREATE_STUDENT,
 
     } from '../types/peopleTypes';
 import {
@@ -32,7 +33,7 @@ import {
     adminparentsURL,
     bursarparentsURL,
     bursarstudentsURL,
-    // createstudentURL,
+    createstudentURL,
     createbursarURL,
     createprincipalURL,
     createteacherURL,
@@ -375,6 +376,19 @@ export const addBursar = (bursar, token) => dispatch => {
             });
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
+
+
+export const addStudent = (bursar) => dispatch => {
+    axios.post(createstudentURL, bursar)
+        .then(res => {
+            dispatch({
+                type: CREATE_STUDENT,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+
 
 export const addTeacher = (teacher, token) => dispatch => {
     const headers ={

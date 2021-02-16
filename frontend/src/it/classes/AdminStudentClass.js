@@ -6,7 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Hidden from '@material-ui/core/Hidden';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import GradientIcon from '@material-ui/icons/Gradient';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import Cover from '../../components/SocialMedia/Cover';
@@ -88,7 +88,7 @@ class AdminStudentClass extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} />
-              <Tab icon={<SchoolIcon />} />
+              <Tab icon={<PermIdentityIcon />} />
               <Tab icon={<SchoolIcon />} />
             </Tabs>
           </Hidden>
@@ -102,7 +102,7 @@ class AdminStudentClass extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<SchoolIcon />} label="STUDENTS" />
+              <Tab icon={<PermIdentityIcon />} label="STUDENTS" />
               <Tab icon={<SchoolIcon />} label="SUBJECTS" />
             </Tabs>
           </Hidden>

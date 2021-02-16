@@ -43,6 +43,7 @@ const initialFValues = {
 const AddSubject = props => {
   const { addOrEdit, recordForEdit } = props
   const classes = useStyles();
+  const {token} = props;
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors }
@@ -77,14 +78,13 @@ const AddSubject = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getCurriculums();
+        props.getCurriculums(token);
     }
     if (recordForEdit != null)
             setValues({
                 ...recordForEdit
             })
   }, [recordForEdit]);
-
 
 
   return (
@@ -126,7 +126,8 @@ const AddSubject = props => {
 };
 
 const mapStateToProps = state =>({
-    curriculums: state.curriculums.curriculums
+    curriculums: state.curriculums.curriculums,
+    token: state.auth.token
 
 })
 

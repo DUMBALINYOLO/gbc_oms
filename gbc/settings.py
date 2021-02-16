@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'klasses',
     'communication',
     'reports',
+    'adverts',
     #third part apps
     'django_extensions',
     'solo.apps.SoloAppConfig',

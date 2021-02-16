@@ -239,6 +239,9 @@ export const curriculumsURL = `${endpoint}/curriculum/curriculums/`
 //reports
 export const statscountersURL = `${endpoint}/reports/stats-counters`
 
+//adverts
+export const courseadvertsURL = `${endpoint}/adverts/course-adverts/`
+
 //admissions
 export const studentadmissionsURL = `${endpoint}/admissions/student-admissions/`
 export const pendingstudentadmissionsURL = `${endpoint}/admissions/pending-student-admissions/`
