@@ -8,7 +8,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import classNames from 'classnames';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
-import logo from '../../images/logo.svg';
+import logo from '../../images/icon.jpg';
 import brand from '../../api/dummy/brand';
 import Hidden from '@material-ui/core/Hidden';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -20,6 +20,7 @@ import MegaMenu from './MegaMenu';
 import UserMenu from './UserMenu';
 import styles from './header-jss';
 import SearchUi from '../Search/SearchUi';
+
 
 const elem = document.documentElement;
 

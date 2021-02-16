@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import logo from '../../images/logo.svg';
+import logo from '../../images/icon.jpg';
 import brand from '../../api/dummy/brand';
 import link from '../../api/ui/link';
 

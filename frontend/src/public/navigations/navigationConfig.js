@@ -24,7 +24,7 @@ import Brightness5Icon from '@material-ui/icons/Brightness5';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
 import BusinessIcon from '@material-ui/icons/Business';
 import PersonIcon from '@material-ui/icons/Person';
-
+import { FaRocket, FaSignInAlt } from "react-icons/fa";
 
 const navigationConfig = [
   {
@@ -40,14 +40,6 @@ const navigationConfig = [
         icon: <SupervisorAccountIcon/>
       },
       {
-        id: "bbc",
-        title: "GERERE BUSINESS COLLEGE",
-        type: "item",
-        url: "/profile",
-        exact: true,
-        icon: <AccountBalanceIcon/>
-      },
-      {
         id: "course",
         title: "COURSES OFFERED",
         type: "item",
@@ -61,7 +53,7 @@ const navigationConfig = [
         type: "item",
         url: "/login",
         exact: true,
-        icon: <ShutterSpeedIcon  />
+        icon: <FaRocket  />
       },
       {
         id: "register",
@@ -69,7 +61,7 @@ const navigationConfig = [
         type: "item",
         url: "/signup",
         exact: true,
-        icon: <ShutterSpeedIcon  />
+        icon: <FaSignInAlt  />
       },
     ],
   },

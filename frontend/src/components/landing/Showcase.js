@@ -15,12 +15,12 @@ import thumb3 from '../../images/screen/thumb3.jpg';
 import thumb5 from '../../images/screen/thumb5.jpg';
 import thumb2 from '../../images/screen/thumb2.jpg';
 import thumb4 from '../../images/screen/thumb4.jpg';
-
-import four from './four.jpg';
-import six from './six.jpg';
-import seven from './seven.jpg';
-import eight from './eight.jpg';
-import five from './five.png';
+import four from './1.jpg';
+import six from './3.jpg';
+import seven from './4.jpg';
+import eight from './8.png';
+import five from './7.jpg';
+import fiv from './6.jpg';
 
 
 function ParallaxDeco(props) {
@@ -124,7 +124,7 @@ class Showcase extends React.Component {
                   title="STANDARDS"
                   desc="We PIONEER we set TRENDS we LEAD! ... and so, do our clients!"
                   action="LETS GO"
-                  image={six}
+                  image={fiv}
                 />
               </div>
             </Grid>

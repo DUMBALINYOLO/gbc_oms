@@ -12,12 +12,12 @@ import {Link} from 'react-router-dom';
 import styles from './landingStyle-jss';
 import lineSide3 from '../../images/decoration/lineSide3.svg';
 import lineSide4 from '../../images/decoration/lineSide4.svg';
-import twelv from './twelv.jpg';
-import thirt from './thirt.jpg';
-import fort from './fort.jpg';
-import fift from './fift.jpg';
-import sixt from './sixt.jpg';
-import two from './two.jpg'
+import twelv from './1.jpg';
+import thirt from './2.jpg';
+import fort from './5.jpg';
+import fift from './4.jpg';
+import sixt from './7.jpg';
+import two from './3.jpg'
 
 
 

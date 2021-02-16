@@ -13,9 +13,9 @@ import Title from './Title';
 import styles from './landingStyle-jss';
 import lineside1 from '../../images/decoration/lineSide1.svg';
 import lineside2 from '../../images/decoration/lineSide2.svg';
-import nine from './nine.jpg';
-import ten from './ten.jpg';
-import leven from './leven.jpg';
+import nine from './5.jpg';
+import ten from './6.jpg';
+import leven from './7.jpg';
 
 const content = [
   {

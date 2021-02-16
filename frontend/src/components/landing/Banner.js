@@ -10,9 +10,10 @@ import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 import { withStyles } from '@material-ui/core/styles';
 import link from '../../api/ui/link';
 import styles from './landingStyle-jss';
-import one from './one.jpg';
-import two from './two.jpg';
-import three from './three.jpg';
+import one from './2.jpg';
+import two from './6.jpg';
+import three from './5.jpg';
+
 
 function ParallaxDeco(props) {
   const { classes } = props;
