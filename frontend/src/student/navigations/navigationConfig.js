@@ -41,6 +41,27 @@ const navigationConfig = [
         icon: <HomeIcon />
       },
       {
+        id: "admissions",
+        title: "APPLICATION",
+        type: "collapse",
+        icon: <Brightness5Icon />,
+        badge: {
+          title: "1",
+          bg: "#525E8A",
+          fg: "#FFFFFF",
+
+        },
+        children: [
+          {
+            id: "add-add",
+            title: "Add",
+            type: "item",
+            url: "/studentdashboard/add-admission",
+            exact: true,
+          },
+        ],
+      },
+      {
         id: "dashes",
         title: "ATTENDANCE",
         type: "collapse",

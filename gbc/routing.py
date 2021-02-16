@@ -1,13 +1,15 @@
+from channels.routing import ProtocolTypeRouter,URLRouter
 from channels.auth import AuthMiddlewareStack
-from channels.routing import ProtocolTypeRouter, URLRouter
 
+from django.urls import path
+from weighing import consumer
 
-application = ProtocolTypeRouter({
-#   "websocket": AuthMiddlewareStack(
-#         # URLRouter(
-#         #     # chat.routing.websocket_urlpatterns
-#         # )
-#     ),
+websocket_urlPattern=[
+    path('ws/polData/',consumer.ScaleWeightConsumer),
+]
+
+application=ProtocolTypeRouter({
+    # 'http':
+    'websocket':AuthMiddlewareStack(URLRouter(websocket_urlPattern))
+
 })
-
-

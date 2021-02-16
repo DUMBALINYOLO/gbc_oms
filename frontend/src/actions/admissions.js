@@ -56,6 +56,8 @@ export const addAdmission = (admission, token) => dispatch => {
 }
 
 
+
+
 export const getPendingAdmissions = (token) => dispatch => {
     const headers ={
           "Content-Type": "application/json",

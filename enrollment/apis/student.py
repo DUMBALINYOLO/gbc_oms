@@ -1,4 +1,5 @@
-from rest_framework import viewsets, generics, permissions
+from rest_framework import viewsets, generics, permissions, status
+from rest_framework.response import Response
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from enrollment.models import Admission
 from django.db.models import Q as CompleLookUp
@@ -26,6 +27,17 @@ class StudentAdmissionViewSet(viewsets.ModelViewSet):
 		return StudentAdmissionListDetailSerializer
 
 
+	def create(self, request, *args, **kwargs):
+		draft_request_data = request.data.copy()
+		draft_request_data["klass"] = draft_request_data.get('klass')
+		student = get_student(email=draft_request_data.get('student'))
+		draft_request_data["student"] = student.pk
+		serializer = self.get_serializer(data=draft_request_data)
+		serializer.is_valid(raise_exception=True)
+		self.perform_create(serializer)
+		headers = self.get_success_headers(serializer.data)
+		return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
 	# def get_object(self):
     #     movie_id = self.kwargs['pk']
     #     return self.get_queryset().filter(id=movie_id)
@@ -43,5 +55,3 @@ class StudentAdmissionViewSet(viewsets.ModelViewSet):
 				queryset = {}
 			queryset = student.application
 		return queryset
-	# def perform_create(self, serializer, *args, **kwargs):
-	# 	return serializer.create(student=self.request.user, status='pending')

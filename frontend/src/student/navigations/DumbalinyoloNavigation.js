@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Avatar from '@material-ui/core/Avatar';
@@ -19,7 +20,7 @@ class DumbalinyoloNavigation extends React.Component {
   state = {
     transform: 0,
   };
-  
+
 
   componentDidMount = () => {
     // Scroll content to top
@@ -53,7 +54,8 @@ class DumbalinyoloNavigation extends React.Component {
       openMenuStatus,
       closeMenuStatus,
       changeStatus,
-      isLogin
+      isLogin,
+      userName,
     } = this.props;
     const { transform } = this.state;
 
@@ -72,8 +74,8 @@ class DumbalinyoloNavigation extends React.Component {
     return (
       <div className={classNames(classes.drawerInner, !drawerPaper ? classes.drawerPaperClose : '')}>
         <div className={classes.drawerHeader}>
-          <NavLink to="/" className={classNames(classes.brand, classes.brandBar, turnDarker && classes.darker)}>
-            {brand.name}
+          <NavLink to="/studentdashboard" className={classNames(classes.brand, classes.brandBar, turnDarker && classes.darker)}>
+            {userName}
           </NavLink>
           {isLogin && (
             <div
@@ -128,8 +130,8 @@ class DumbalinyoloNavigation extends React.Component {
           }
         >
           <Navigation
-            loadTransition={loadTransition} 
-            toggleDrawerOpen={toggleDrawerOpen} 
+            loadTransition={loadTransition}
+            toggleDrawerOpen={toggleDrawerOpen}
           />
         </div>
       </div>
@@ -161,4 +163,15 @@ DumbalinyoloNavigation.defaultProps = {
   isLogin: true,
 };
 
-export default withStyles(styles)(DumbalinyoloNavigation);
+const mapStateToProps = state => ({
+  userName: state.auth.userName,
+});
+
+
+
+const NavigationMapped = connect(
+  mapStateToProps,
+  {},
+)(DumbalinyoloNavigation);
+
+export default withStyles(styles)(NavigationMapped );

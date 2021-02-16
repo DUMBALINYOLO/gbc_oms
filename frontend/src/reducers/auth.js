@@ -16,6 +16,7 @@ const initialState = {
   token: null,
   email: null,
   userRole: null,
+  userName: null,
   error: null,
   loading: false,
   user: null,
@@ -35,6 +36,7 @@ const authSuccess = (state, action) => {
     token: action.user.token,
     email: action.user.email,
     userRole: action.user.userRole,
+    userName: action.user.userName,
     error: null,
     loading: false
   });

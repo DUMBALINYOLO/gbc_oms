@@ -49,13 +49,14 @@ INSTALLED_APPS = [
     'solo.apps.SoloAppConfig',
     'rest_framework',
     'corsheaders',
-    'channels',
+    # 'channels',
     'django_celery_beat',
     'knox',
     'psycopg2',
     # 'allauth',
     # 'allauth.account',
     # 'rest_auth.registration',
+
 
 
 ]
@@ -91,7 +92,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'gbc.wsgi.application'
-ASGI_APPLICATION = "gbc.routing.application"
+# ASGI_APPLICATION = "gbc.routing.application"
 
 
 # Database
@@ -175,14 +176,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
-        },
-    },
-}
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [('127.0.0.1', 6379)],
+#         },
+#     },
+# }
 
 
 

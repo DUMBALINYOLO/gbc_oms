@@ -60,6 +60,7 @@ export const authLogin = (email, password) => {
           email,
           userRole: res.data.user.type,
           userID: res.data.user.id,
+          userName: res.data.user.username,
           expirationDate: new Date(new Date().getTime() + 3600 * 1000)
         };
         localStorage.setItem("user", JSON.stringify(user));

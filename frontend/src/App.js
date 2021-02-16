@@ -95,9 +95,7 @@ import StudentStudyNote from './student/courses/notes/StudentStudyNote';
 import Authors from './it/courses/author/Authors';
 import Publishers from './it/courses/publisher/Publishers';
 import Cities from './it/courses/publishercity/PublisherCities';
-import StudentRoute from './routes/StudentRoute';
-import TeacherRoute from './routes/TeacherRoute';
-import AdminRoute from './routes/AdminRoute';
+import AddAdmission from './student/admissions/AddAdmission';
 
 
 
@@ -136,6 +134,7 @@ class App extends React.Component {
                 <Route exact path='/itdashboard' component={InformationTechnologyHome} />
                 <Route exact path='/bursardashboard' component={BursarLog} />
 								<Route exact path='/studentdashboard' component={StudentHome} />
+								<Route exact path='/studentdashboard/add-admission' component={AddAdmission} />
 								<Route exact path='/studentdashboard/attendance' component={StudentAttendanceRecords} />
 								<Route exact path='/studentdashboard/tests' component={StudentTestRecords} />
 								<Route exact path='/studentdashboard/excercises' component={StudentExcerciseRecords} />
