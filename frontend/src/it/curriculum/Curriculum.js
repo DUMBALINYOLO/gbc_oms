@@ -55,6 +55,7 @@ const FeeItView = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const [newcurriculum, setNewCurriculum] = useState({})
   const {token} = props;
 
   useEffect(() => {
@@ -64,15 +65,18 @@ const FeeItView = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newcurriculum]);
 
 
   const addOrEdit = (curriculum, resetForm, token) => {
-      if (curriculum.id > 0)
+      if (curriculum.id > 0){
         props.editCurriculum(curriculum.id, curriculum, token)
-      else
+        setNewCurriculum(curriculum)
+      }else{
         props.addCurriculum(curriculum, token)
-        //
+        setNewCurriculum(curriculum)
+        props.getCurriculums(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)

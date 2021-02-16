@@ -57,15 +57,19 @@ const AssignmentRecords = props => {
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
     const [records, setRecords] = useState([])
+    const [newgrading, setNewGrading] = useState({})
     const {token} = props;
 
     const {id} =props.data
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editAssignmentRecord(fee.id, fee, token)
-      else
-        console.log(fee, token)        //
+        setNewGrading(fee)
+      }else{
+        console.log(fee, token)
+        setNewGrading(fee)
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -86,7 +90,7 @@ const AssignmentRecords = props => {
     }
 
         fetchData();
-    }, []);
+    }, [newgrading]);
 
 
 

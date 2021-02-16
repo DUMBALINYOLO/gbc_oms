@@ -77,7 +77,7 @@ class Banner extends React.Component {
       >
         {!slideMode && <ParallaxDecoStyled />}
         <div className={!slideMode ? classes.container : ''}>
-          <Typography component="h2" variant="h2" gutterBottom>GERERE BUSINESS COLLEGE</Typography>
+          <Typography component="h2" variant="h2" gutterBottom>GERERE ONLINE PLATFORM</Typography>
           <Typography component="p" variant="h4" gutterBottom>BELLUM GERERE IN CEREBRUM PAUPERTAS</Typography>
           <Typography component="p" variant="h5" gutterBottom>“waging war against brain poverty”</Typography>
           <div className={classes.btnArea}>
@@ -85,16 +85,20 @@ class Banner extends React.Component {
               size="large"
               variant="outlined"
               className={classNames(classes.button, classes.btnLight)}
+              component={Link}
+              to={link.register}
             >
-              Visit Us
+              Sign Up
             </Button>
             <Button
               size="large"
               variant="contained"
               color="secondary"
               className={classes.button}
+              component={Link}
+              to={link.login}
             >
-              We Serve
+              Login
             </Button>
           </div>
           <div className={classes.previewApp}>
@@ -117,6 +121,7 @@ class Banner extends React.Component {
     );
   }
 }
+
 
 Banner.propTypes = {
   classes: PropTypes.object.isRequired,

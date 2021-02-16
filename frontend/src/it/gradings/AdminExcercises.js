@@ -59,6 +59,7 @@ const AdminStudentExcercises = props => {
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
+    const [newgrading, setNewGrading] = useState({})
     const {token} = props;
 
   useEffect(() => {
@@ -68,15 +69,18 @@ const AdminStudentExcercises = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newgrading]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editGrade(fee.id, fee, token)
-      else
+        setNewGrading(fee)
+      }else{
         props.addGrade(fee, token)
-        //
+        setNewGrading(fee)
+        props.getAdminStudentExcercises(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)

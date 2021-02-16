@@ -89,15 +89,12 @@ class Header extends React.Component {
               </NavLink>
               <Hidden mdDown>
                 <nav>
-                  <Scrollspy items={['core values', 'testimonials', 'tech', 'pricing', 'contact', 'login']} currentClassName="active">
+                  <Scrollspy items={['core values', 'testimonials', 'tech', 'pricing', 'contact']} currentClassName="active">
                     { menuList.map(item => (
                       <li key={item.id.toString()}>
                         <Button component={AnchorLink} href={item.url}>{item.name}</Button>
                       </li>
                     )) }
-                    <NavLink to="/login">
-                      <Button size="large" color="secondary">LogIn</Button>
-                    </NavLink>
                   </Scrollspy>
                 </nav>
               </Hidden>

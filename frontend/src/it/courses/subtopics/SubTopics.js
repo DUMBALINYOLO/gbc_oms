@@ -55,6 +55,7 @@ const SubTopics = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const {id} =props.data;
+  const [newtopic, setNewTopic] = useState({})
   const {token} = props;
 
   useEffect(() => {
@@ -64,15 +65,18 @@ const SubTopics = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newtopic]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editSubTopic(fee.id, fee, token)
-      else
+        setNewTopic(fee)
+      }else{
         props.addSubTopic(fee, token)
-        //
+        setNewTopic(fee)
+        props.getAdminSubTopics(id, token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)

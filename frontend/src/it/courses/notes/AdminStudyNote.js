@@ -16,7 +16,8 @@ import About from './About';
 import Images from '../images/Images';
 import InnerNotes from '../innernotes/InnerNotes';
 import NoteBag from './NoteBag';
-import SchoolIcon from '@material-ui/icons/School';
+import NotesIcon from '@material-ui/icons/AssignmentTurnedIn';
+import RefIcon from '@material-ui/icons/AssignmentInd';
 import References from '../references/References';
 
 function TabContainer(props) {
@@ -87,9 +88,8 @@ class AdminStudyNote extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} />
-              <Tab icon={<AccountCircle />} />
-              <Tab icon={<AccountCircle />} />
-              <Tab icon={<AccountCircle />} />
+              <Tab icon={<NotesIcon />} />
+              <Tab icon={<RefIcon />} />
             </Tabs>
           </Hidden>
           <Hidden smDown>
@@ -102,16 +102,14 @@ class AdminStudyNote extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<AccountCircle />} label="IMAGES" />
-              <Tab icon={<AccountCircle />} label="NOTES" />
-              <Tab icon={<AccountCircle />} label="STUDY REFERENCES" />
+              <Tab icon={<NotesIcon />} label="NOTES" />
+              <Tab icon={<RefIcon />} label="STUDY REFERENCES" />
             </Tabs>
           </Hidden>
         </AppBar>
         {value === 0 && <TabContainer><About data={note}/></TabContainer>}
-        {value === 1 && <TabContainer><Images data={note}/></TabContainer>}
-        {value === 2 && <TabContainer><InnerNotes data={note}/></TabContainer>}
-        {value === 3 && <TabContainer><References data={note}/></TabContainer>}
+        {value === 1 && <TabContainer><InnerNotes data={note}/></TabContainer>}
+        {value === 2 && <TabContainer><References data={note}/></TabContainer>}
       </NoteBag >
     );
   }

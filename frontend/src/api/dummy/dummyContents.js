@@ -1,7 +1,7 @@
 import avatarApi from '../images/avatars';
 const dummyContents = {
   user: {
-    name: 'Flexible Measurements',
+    name: 'GERERE BUSINESS COLLEGE',
     title: 'Flexie',
     avatar: avatarApi[6],
     status: 'online'
@@ -16,3 +16,4 @@ const dummyContents = {
 };
 
 export default dummyContents;
+
