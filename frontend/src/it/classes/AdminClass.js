@@ -64,6 +64,7 @@ const AdminClass = props => {
   const [openPopup, setOpenPopup] = useState(false)
   const history = useHistory();
   const {token} = props;
+  
 
   useEffect(() => {
     if(!props.fetched) {
