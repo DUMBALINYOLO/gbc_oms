@@ -51,7 +51,7 @@ export const authLogin = (email, password) => {
   return dispatch => {
     dispatch(authStart());
     axios
-      .post("http://127.0.0.1:8000/api/people/login/", {
+      .post("https://www.gererebusinesscollege.co.za/api/people/login/", {
         email: email,
         password: password
       })
