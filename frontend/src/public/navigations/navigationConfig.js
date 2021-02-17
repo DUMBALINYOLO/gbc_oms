@@ -39,14 +39,7 @@ const navigationConfig = [
         exact: true,
         icon: <SupervisorAccountIcon/>
       },
-      {
-        id: "course",
-        title: "COURSES OFFERED",
-        type: "item",
-        url: "/coursesoffered",
-        exact: true,
-        icon: <AccountBalanceIcon/>
-      },
+
       {
         id: "login",
         title: "LOGIN",
