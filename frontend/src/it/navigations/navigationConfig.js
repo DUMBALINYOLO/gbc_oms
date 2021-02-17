@@ -52,34 +52,6 @@ const navigationConfig = [
         icon: <HomeIcon />
       },
       {
-        id: "dashes",
-        title: "DASHBOARDS",
-        type: "collapse",
-        icon: <Brightness5Icon />,
-        badge: {
-          title: "1",
-          bg: "#525E8A",
-          fg: "#FFFFFF",
-
-        },
-        children: [
-          {
-            id: "all stats",
-            title: "All Posts",
-            type: "item",
-            url: "/pages/posts",
-            exact: true,
-          },
-          {
-            id: "stats",
-            title: "Add Post",
-            type: "item",
-            url: "/pages/posts/add-post",
-            exact: true,
-          },
-        ],
-      },
-      {
         id: "users",
         title: "STAFF USERS",
         type: "collapse",
