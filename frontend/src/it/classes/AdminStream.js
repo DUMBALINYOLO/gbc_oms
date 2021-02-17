@@ -53,6 +53,7 @@ const AdminStream = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const [newclass, setNewClass] = useState({})
   const {token} = props;
 
   useEffect(() => {
@@ -62,15 +63,18 @@ const AdminStream = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newclass]);
 
 
   const addOrEdit = (stream, resetForm, token) => {
-      if (stream.id > 0)
+      if (stream.id > 0){
         props.editStream(stream.id, stream, token)
-      else
+        setNewClass(stream)
+      }else{
         props.addStream(stream, token)
-        //
+        setNewClass(stream)
+        props.getStreams(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)

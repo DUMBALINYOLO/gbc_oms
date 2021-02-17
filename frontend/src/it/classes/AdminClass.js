@@ -57,12 +57,14 @@ const options = {
   filterType: "checkbox"
 };
 
+
 const AdminClass = props => {
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const history = useHistory();
+  const [newclass, setNewClass] = useState({})
   const {token} = props;
 
   useEffect(() => {
@@ -72,15 +74,18 @@ const AdminClass = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newclass]);
 
 
   const addOrEdit = (classi, resetForm, token) => {
-      if (classi.id > 0)
+      if (classi.id > 0){
         props.editClass(classi.id, classi, token)
-      else
+        setNewClass(classi)
+      }else{
         props.addClass(classi, token)
-        //
+        setNewClass(classi)
+        props.getClasses(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
