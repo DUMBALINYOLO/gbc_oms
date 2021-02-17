@@ -55,7 +55,7 @@ const Subjects = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
-  const [newclass, setNewClass] = useState({})
+  const [newsubject, setNewSubject] = useState({})
   const {id} =props.data;
   const {token} = props;
 
@@ -65,16 +65,18 @@ const Subjects = props => {
     }
     console.log('mount it!');
 
-  }, [newclass]);
+  }, [newsubject]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0){
         props.editSubject(fee.id, fee, token)
-        setNewClass(fee)
+        setNewSubject(fee)
+        props.getSubjects(id, token);
+        console.log(fee)
       }else{
         props.addSubject(fee, token)
-        setNewClass(fee)
+        setNewSubject(fee)
         props.getSubjects(id, token);
       }
       resetForm()

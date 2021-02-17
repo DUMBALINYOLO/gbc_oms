@@ -66,6 +66,7 @@ const AdminClass = props => {
   const history = useHistory();
   const [newclass, setNewClass] = useState({})
   const {token} = props;
+  
 
   useEffect(() => {
     if(!props.fetched) {

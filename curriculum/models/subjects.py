@@ -35,14 +35,15 @@ class KlassStudiedSubject(SoftDeletionModel):
     subject = models.ForeignKey('Subject', on_delete=models.PROTECT)
     klass = models.ForeignKey('klasses.StudentClass', on_delete=models.PROTECT)
     subject_teacher = models.ForeignKey(
-                            'people.TeacherProfile', 
+                            'people.TeacherProfile',
+
                             on_delete=models.SET_NULL,
                             related_name="taught_subjects",
                             blank=True,
                             null=True,
                         )
     courses = models.ManyToManyField(
-                            'courses.Course', 
+                            'courses.Course',
                             related_name="subject",
                             through='AddCourseToSubject',
                         )
@@ -52,7 +53,7 @@ class KlassStudiedSubject(SoftDeletionModel):
         unique_together = [['klass', 'subject']]
         verbose_name_plural = 'KlassStudiedSubjects'
 
-    
+
 
     def __str__(self):
         return f'{self.subject.__str__()} {self.klass.__str__()}'
@@ -68,7 +69,7 @@ class StudentStudySubject(SoftDeletionModel):
         unique_together = [['student', 'subject']]
         verbose_name_plural = 'StudentStudySubjects'
 
-    
+
 
     def __str__(self):
         return f'{self.subject.__str__()} {self.student.__str__()}'
@@ -82,12 +83,12 @@ class AddCourseToSubject(SoftDeletionModel):
     subject = models.ForeignKey('KlassStudiedSubject', on_delete=models.PROTECT)
     date = models.DateField(auto_now_add=True)
     status = models.CharField(max_length=200, choices=COURSE_TO_SUBJECT_STATUS_CHOICES)
-    
+
     class Meta:
         unique_together = [['course', 'subject']]
         verbose_name_plural = 'AddCourseToSubject'
 
-    
+
 
     def __str__(self):
         return f'{self.course.__str__()} {self.subject.__str__()}'

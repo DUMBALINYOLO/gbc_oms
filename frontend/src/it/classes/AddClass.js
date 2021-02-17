@@ -5,7 +5,7 @@ import {Form, useForm } from "../../components/formcontrols/useForm";
 import  Controls  from "../../components/formcontrols/Controls";
 import { getStudentsClassStatusChoices } from '../../actions/choices';
 import { getStreams } from '../../actions/classes';
-import { getAdminTeachers } from '../../actions/people';
+import {  getTeacherProfiles } from '../../actions/people';
 
 
 
@@ -89,9 +89,9 @@ const AddClass = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getStudentsClassStatusChoices();
-        props.getStreams();
-        props.getAdminTeachers();
+        props.getStudentsClassStatusChoices(props.token);
+        props.getStreams(props.token);
+        props.getTeacherProfiles(props.token);
     }
     if (recordForEdit != null)
             setValues({
@@ -169,11 +169,12 @@ const AddClass = props => {
 const mapStateToProps = state =>({
     streams: state.classes.streams,
     studentclassstatuschoices: state.classes.studentclassstatuschoices,
-    adminteachers: state.people.adminteachers,
+    adminteachers: state.people.teacherprofiles,
+    token: state.auth.token
 
 })
 
 export default connect(
     mapStateToProps,
-    {getStudentsClassStatusChoices, getStreams, getAdminTeachers } )
+    { getTeacherProfiles, getStreams, getStudentsClassStatusChoices } )
     (AddClass);
