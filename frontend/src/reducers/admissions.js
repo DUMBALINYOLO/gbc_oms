@@ -9,12 +9,13 @@ import {
     EDIT_ACCEPTED_ADMISSIONS,
     GET_MEETING_ADMISSIONS,
     EDIT_MEETING_ADMISSIONS
-        
+
 } from '../types/admissionTypes';
 
 
 const initialState = {
     admissions: [],
+    applications: [],
     pendingadmissions: [],
     rejectedadmissions: [],
     meetingadmissions: [],

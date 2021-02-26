@@ -10,6 +10,7 @@ import {
 
 } from '../types/authTypes';
 import { createMessage, returnErrors } from './messages';
+import {loginURL} from '../constants';
 
 export const authStart = () => {
   return {
@@ -51,7 +52,7 @@ export const authLogin = (email, password) => {
   return dispatch => {
     dispatch(authStart());
     axios
-      .post("https://www.gererebusinesscollege.co.za/api/people/login/", {
+      .post(loginURL, {
         email: email,
         password: password
       })

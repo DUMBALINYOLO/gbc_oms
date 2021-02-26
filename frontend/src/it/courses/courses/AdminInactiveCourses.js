@@ -3,6 +3,7 @@ import InformationTechnologyLayout from "../../layout/InformationTechnologyLayou
 import { getAdminInactiveCourses, addInactiveCourse, editInactiveCourse } from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+
 import CloseIcon from '@material-ui/icons/Close';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';

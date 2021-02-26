@@ -18,6 +18,7 @@ import {
     rejectedstudentadmissionsURL,
     meetingstudentadmissionsURL,
     acceptedstudentadmissionsURL,
+    applicationsURL,
 } from '../constants';
 import { createMessage, returnErrors } from './messages';
 
@@ -129,7 +130,7 @@ export const editPendingAdmission = (id, admission, token) => dispatch => {
           'Accept': 'application/json',
     };
     JSON.stringify(id, null, 3)
-    axios.patch(`${pendingstudentadmissionsURL}${id}/`, admission, headers)
+    axios.patch(`${applicationsURL}${id}/`, admission, headers)
         .then(res => {
             dispatch({
                 type: EDIT_PENDING_ADMISSIONS,
@@ -137,6 +138,8 @@ export const editPendingAdmission = (id, admission, token) => dispatch => {
             });
         }).catch(err => console.log(err))
 }
+
+
 
 
 

@@ -9,6 +9,21 @@ from enrollment.serializers import (
 
 
 
+class ApplicationsViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
+	queryset = Admission.objects.all()
+
+	def get_serializer_class(self, *args, **kwargs):
+
+		if self.action in ['create', 'put', 'patch', 'update']:
+			return AdminAdmissionCreateUpdateSerializer
+		return AdminAdmissionListDetailSerializer
+
+
+
+
+
 class PendingAdminApplicationViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.AllowAny,]
