@@ -36,20 +36,27 @@ const useStyles = makeStyles(theme => ({
 
 const initialFValues = {
     klass: '',
-    student: '',
+    status: '',
 }
+
+const genderOptions = [
+  {key: 'pending', value: 'PENDING'},
+  {key: 'approved', value:'APPROVED'},
+  {key: 'declined', value:'DECLINED'},
+  {key: 'meeting', value:'REQUESTING A MEETING'},
+]
 
 
 
 const Apply = props => {
-  const { addOrEdit, recordForEdit } = props
+  const { recordForEdit, addOrEdit } = props;
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors }
     if ('klass' in fieldValues)
         temp.klass = fieldValues.klass ? "" : "This field is required."
-    if ('student' in fieldValues)
-        temp.student = fieldValues.student ? "" : "This field is required."
+    if ('status' in fieldValues)
+        temp.status = fieldValues.status ? "" : "This field is required."
     setErrors({
         ...temp
     })
@@ -68,6 +75,9 @@ const Apply = props => {
   } = useForm(initialFValues, true, validate);
 
 
+
+
+
   const handleSubmit = e => {
       e.preventDefault()
       if (validate()) {
@@ -77,7 +87,6 @@ const Apply = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getStudentProfiles();
         props.getClasses();
     }
     if (recordForEdit != null)
@@ -102,13 +111,13 @@ const Apply = props => {
                     />
                   </Grid>
                   <Grid item xs={6}>
-                      <Controls.UserSelect
-                          name="student"
-                          label="APPLICANT"
-                          value={values.student}
+                      <Controls.DictSelect
+                          name="status"
+                          label="STATUS"
+                          value={values.status}
                           onChange={handleInputChange}
-                          options={props.studentprofiles}
-                          error={errors.student}
+                          options={genderOptions}
+                          error={errors.status}
                       />
 
                       <div>
@@ -128,8 +137,7 @@ const Apply = props => {
 
 const mapStateToProps = state =>({
     classes: state.classes.classes,
-    studentprofiles: state.people.studentprofiles,
 
 })
 
-export default connect(mapStateToProps, {getClasses, getStudentProfiles} ) (Apply);
+export default connect(mapStateToProps, {getClasses} ) (Apply);

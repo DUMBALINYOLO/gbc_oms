@@ -8,7 +8,8 @@ import {
     GET_ACCEPTED_ADMISSIONS,
     EDIT_ACCEPTED_ADMISSIONS,
     GET_MEETING_ADMISSIONS,
-    EDIT_MEETING_ADMISSIONS
+    EDIT_MEETING_ADMISSIONS,
+    PROCESS_ADMISSION,
 
 } from '../types/admissionTypes';
 
@@ -25,6 +26,11 @@ const initialState = {
 
 export default function admissions(state = initialState, action){
     switch(action.type){
+        case PROCESS_ADMISSION:
+            return {
+                ...state,
+                admission: [...state.admissions, action.payload]
+            }
         case GET_ADMISSIONS:
             return {
                 ...state,

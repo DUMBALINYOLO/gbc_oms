@@ -60,7 +60,7 @@ const AdminPendingAdmissions = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
-    const {token} = props;
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
@@ -72,16 +72,19 @@ const AdminPendingAdmissions = props => {
   }, []);
 
 
-  const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
-        props.editPendingAdmission(fee.id, fee, token)
-      else
-        props.addAdmission(fee, token)
-        //
+  const addOrEdit = (admission, resetForm, token) => {
+      if (admission.id > 0){
+        props.editPendingAdmission(admission.id, admission, token)
+      }else{
+        console.log('nada')
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
+
+
+
 
 
 
@@ -164,7 +167,7 @@ const AdminPendingAdmissions = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Fee Form"
+      title="Admission Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >
