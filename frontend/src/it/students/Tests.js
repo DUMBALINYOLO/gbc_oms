@@ -96,7 +96,7 @@ const Tests = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Attendance"
+              label="Search Test"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">

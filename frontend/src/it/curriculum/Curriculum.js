@@ -123,7 +123,6 @@ const FeeItView = props => {
                       <Search />
                   </InputAdornment>)
               }}
-              onChange={handleSearch}
           />
           <Controls.Button
               text="Add New"

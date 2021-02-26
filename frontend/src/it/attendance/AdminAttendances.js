@@ -56,12 +56,12 @@ const options = {
 };
 
 const AdminAttendances = props => {
-    // const [records, setRecords] = useState([])
     const history = useHistory();
     const classes = useStyles();
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
+    const [newattendance, setNewAttendance] = useState({})
     const {token} = props;
 
 
@@ -71,15 +71,19 @@ const AdminAttendances = props => {
     }
     console.log('mount it!');
 
-  }, []);
+  }, [newattendance]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editAdminAttendance(fee.id, fee, token)
-      else
+        setNewAttendance(fee)
+      }
+      else{
         props.addAdminAttendance(fee, token)
-        //
+        setNewAttendance(fee)
+        props.getAdminAttendances(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -122,14 +126,13 @@ const AdminAttendances = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Fee"
+              label="Search Attendance"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
-              onChange={handleSearch}
           />
           <Controls.Button
               text="Add New"
@@ -172,7 +175,7 @@ const AdminAttendances = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Register Form"
+      title="Attendance Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

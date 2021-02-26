@@ -160,7 +160,7 @@ const AdminUpcomingCourses = props => {
           </Grid>
       </Paper>
       <Popup
-      title="Fee Form"
+      title="UpComing Course Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

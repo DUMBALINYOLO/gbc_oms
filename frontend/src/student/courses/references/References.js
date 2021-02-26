@@ -57,6 +57,7 @@ const References = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const {id} =props.data;
+  const [newstudent, setNewStudent] = useState({})
   const {token} = props;
 
   useEffect(() => {
@@ -66,15 +67,19 @@ const References = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newstudent]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editStudyNoteReference(fee.id, fee, token)
-      else
+        setNewStudent(fee)
+      }
+      else{
         props.addStudyNoteReference(fee, token)
-        //
+        setNewStudent(fee)
+        props.getStudyNoteReferences(id, token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -114,7 +119,7 @@ const References = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Objective"
+              label="Search Reference"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
@@ -160,7 +165,7 @@ const References = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Fee Form"
+      title="Reference Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

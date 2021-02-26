@@ -58,6 +58,7 @@ const PublisherCities = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const [newstudent, setNewStudent] = useState({})
   const {token} = props;
 
   useEffect(() => {
@@ -67,15 +68,19 @@ const PublisherCities = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newstudent]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editPublisherCity(fee.id, fee, token)
-      else
+        setNewStudent(fee)
+      }
+      else{
         props.addPublisherCity(fee, token)
-        //
+        setNewStudent(fee)
+        props.getPublisherCities(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)

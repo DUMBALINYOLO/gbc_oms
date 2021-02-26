@@ -74,7 +74,6 @@ const AdminTeachers = props => {
 
   const addOrEdit = (bursar, resetForm, token) => {
       if (bursar.id > 0){
-        //console.log('gosso')
         setNewStaff(bursar)
       }else{
         props.addTeacher(bursar, token) 
@@ -127,7 +126,6 @@ const AdminTeachers = props => {
                       <Search />
                   </InputAdornment>)
               }}
-              onChange={handleSearch}
           />
           <Controls.Button
               text="Add New"

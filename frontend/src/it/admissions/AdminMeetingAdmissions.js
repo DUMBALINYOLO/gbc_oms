@@ -21,7 +21,6 @@ import  Popup  from "../../components/formcontrols/Popup";
 import  useTable  from "../../components/table/useTable";
 
 
-
 const useStyles = makeStyles(theme => ({
   pageContent: {
       margin: theme.spacing(5),
@@ -60,6 +59,7 @@ const AdminMeetingAdmissions = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const [newadmission, setNewAdmission] = useState({})
   const {token} = props;
 
   useEffect(() => {
@@ -69,15 +69,19 @@ const AdminMeetingAdmissions = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newadmission]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editMeetingAdmission(fee.id, fee, token)
-      else
+        setNewAdmission(fee)
+      }
+      else{
         props.addAdmission(fee, token)
-        //
+        setNewAdmission(fee)
+        props.getMeetingAdmissions(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -117,14 +121,13 @@ const AdminMeetingAdmissions = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Fee"
+              label="Search Meeting Admission"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
-              onChange={handleSearch}
           />
           <Controls.Button
               text="Add New"
@@ -164,7 +167,7 @@ const AdminMeetingAdmissions = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Fee Form"
+      title="Meeting Admission Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

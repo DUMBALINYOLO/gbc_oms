@@ -60,22 +60,28 @@ const AdminApprovedAdmissions = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const [newadmission, setNewAdmission] = useState({})
   const {token} = props;
+
 
   useEffect(() => {
     if(!props.fetched) {
         props.getAcceptedAdmissions(token);
     }
     console.log('mount it!');
-  }, []);
+  }, [newadmission]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editFee(fee.id, fee, token)
-      else
+        setNewAdmission(fee)
+      }
+      else{
         props.addFee(fee, token)
-        //
+        setNewAdmission(fee)
+        props.getAcceptedAdmissions(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -115,14 +121,13 @@ const AdminApprovedAdmissions = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Fee"
+              label="Search Approved Admission"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
-              onChange={handleSearch}
           />
           <Controls.Button
               text="Add New"
@@ -162,7 +167,7 @@ const AdminApprovedAdmissions = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Fee Form"
+      title="Approved Admission Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

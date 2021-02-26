@@ -47,22 +47,18 @@ const headCells = [
   { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
-
-
-
-
 const options = {
   filterType: "checkbox"
 };
 
 const TeacherAttendances = props => {
-    // const [records, setRecords] = useState([])
     const history = useHistory();
     const classes = useStyles();
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
     const {records, token} = props;
+    const [newattendance, setNewAttendance] = useState({})
 
 
   useEffect(() => {
@@ -71,16 +67,19 @@ const TeacherAttendances = props => {
     }
     console.log('mount it!');
 
-  }, []);
+  }, [newattendance]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editAdminAttendance(fee.id, fee, token)
-      else
+        setNewAttendance(fee)
+      }
+      else{
         props.addTeacherAttendance(fee, token)
-        console.log(fee)
-        //
+        setNewAttendance(fee)
+        props.getAdminAttendances(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -172,7 +171,7 @@ const TeacherAttendances = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Register Form"
+      title="Attendance Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

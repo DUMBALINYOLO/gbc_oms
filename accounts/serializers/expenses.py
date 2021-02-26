@@ -7,8 +7,6 @@ class StringSerializer(serializers.StringRelatedField):
     def to_internal_value(self, value):
         return value
 
-
-
 class BillLineSerializer(serializers.ModelSerializer):
     class Meta:
         model = BillLine
@@ -18,19 +16,13 @@ class BillLineSerializer(serializers.ModelSerializer):
         ]
 
 
-
-
 class BillCreateSerializer(serializers.ModelSerializer):
     lines = BillLineSerializer(many=True)
 
     class Meta:
         model = Bill
         fields = ['category', 'bill_frequency_type', 'payment_status', 'vendor', 'date', 'due', 'memo', 'reference', 'lines']
-
             
-
-
-
 class BillSerializer(serializers.ModelSerializer):
     vendor = StringSerializer()
     entry = StringSerializer()
@@ -49,8 +41,6 @@ class BillSerializer(serializers.ModelSerializer):
             'lines',
             'total'
         ]
-
-
 
 
 class BillPaymentSerializer(serializers.ModelSerializer):

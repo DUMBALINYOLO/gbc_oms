@@ -60,8 +60,6 @@ class CompanyProfile extends React.Component {
     const {adminstudent} = this.props;
     const { id } = adminstudent;
 
-    console.log(adminstudent)
-    console.log(id)
 
     return (
       <ProfileBag>

@@ -62,9 +62,6 @@ class AdminAttendance extends React.Component {
     const {adminattendance} = this.props;
     const { id } = adminattendance;
 
-    console.log(adminattendance)
-    console.log(id)
-
     return (
       <AttendanceBag>
         

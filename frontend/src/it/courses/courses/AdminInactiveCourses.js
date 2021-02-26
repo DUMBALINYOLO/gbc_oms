@@ -41,12 +41,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-
-
-
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -86,9 +80,6 @@ const AdminUpcomingCourses = props => {
   }
 
 
-
-
-
   const handleSearch = e => {
       let target = e.target;
       setFilterFn({
@@ -100,7 +91,6 @@ const AdminUpcomingCourses = props => {
           }
       })
   }
-
 
 
   const openInPopup = item => {
@@ -166,7 +156,7 @@ const AdminUpcomingCourses = props => {
           </Grid>
       </Paper>
       <Popup
-      title="Fee Form"
+      title="Inactive Course Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

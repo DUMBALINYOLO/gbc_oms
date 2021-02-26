@@ -46,10 +46,6 @@ const headCells = [
   { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
-
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -60,6 +56,7 @@ const AdminRejectedAdmissions = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const [newadmission, setNewAdmission] = useState({})
   const {token} = props;
 
   useEffect(() => {
@@ -69,15 +66,19 @@ const AdminRejectedAdmissions = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newadmission]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editRejectedAdmission(fee.id, fee, token)
-      else
+        setNewAdmission(fee)
+      }
+      else{
         props.addAdmission(fee, token)
-        //
+        setNewAdmission(fee)
+        props.getRejectedAdmissions(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -117,14 +118,13 @@ const AdminRejectedAdmissions = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Fee"
+              label="Search Rejected Admission"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
-              onChange={handleSearch}
           />
           <Controls.Button
               text="Add New"
@@ -164,7 +164,7 @@ const AdminRejectedAdmissions = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Fee Form"
+      title="Rejected Admission Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >
