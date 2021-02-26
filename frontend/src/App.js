@@ -110,8 +110,6 @@ import AdminCourseAdverts from './it/adverts/AdminCourseAdverts';
 import GerereRegister  from './auth/GerereRegister';
 
 
-
-
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
 const alertOptions = {
