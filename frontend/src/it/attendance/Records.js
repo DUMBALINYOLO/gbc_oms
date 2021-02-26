@@ -58,19 +58,19 @@ const Records = props => {
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
     const [records, setRecords] = useState([])
+    const [newrecord, setNewRecord] = useState({})
     const {token} = props;
 
     const {id} =props.data
 
-
-
-
-
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editAttendanceRecord(fee.id, fee, token)
-      else
-        console.log(fee, token)        //
+        setNewRecord(fee)
+      }
+      else{
+        setNewRecord(fee)     
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -96,7 +96,7 @@ const Records = props => {
     }
 
         fetchData();
-    }, []);
+    }, [newrecord]);
 
 
 
@@ -176,7 +176,7 @@ const Records = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Edit Record"
+      title="Record Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

@@ -45,9 +45,6 @@ const headCells = [
 ]
 
 
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -59,6 +56,7 @@ const PublisherCities = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const {token} = props;
+  const [newcourse, setNewCourse] = useState({})
 
   useEffect(() => {
     if(!props.fetched) {
@@ -67,15 +65,19 @@ const PublisherCities = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newcourse]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editPublisherCity(fee.id, fee, token)
-      else
+        setNewCourse(fee)
+      }
+      else{
         props.addPublisherCity(fee, token)
-        //
+        setNewCourse(fee)
+        props.getPublisherCities(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -115,7 +117,7 @@ const PublisherCities = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Objective"
+              label="Search City"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
@@ -159,7 +161,7 @@ const PublisherCities = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Guideline Form"
+      title="Publisher City Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

@@ -55,6 +55,7 @@ const Enrollments = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const {id} =props.data;
+  const [newcourse, setNewCourse] = useState({})
   const {token} = props;
 
   useEffect(() => {
@@ -64,15 +65,19 @@ const Enrollments = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newcourse]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editStudentCourseEnrollment(fee.id, fee, token)
-      else
+        setNewCourse(fee)
+      }
+      else{
         props.addStudentCourseEnrollment(fee, token)
-        //
+        setNewCourse(fee)
+        props.getStudentCourseEnrollments(id, token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -112,7 +117,7 @@ const Enrollments = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Objective"
+              label="Search Enrollment"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
@@ -157,7 +162,7 @@ const Enrollments = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Fee Form"
+      title="Enrollment Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

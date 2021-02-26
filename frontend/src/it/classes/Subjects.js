@@ -73,7 +73,6 @@ const Subjects = props => {
         props.editSubject(fee.id, fee, token)
         setNewSubject(fee)
         props.getSubjects(id, token);
-        console.log(fee)
       }else{
         props.addSubject(fee, token)
         setNewSubject(fee)
@@ -116,7 +115,7 @@ const Subjects = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Objective"
+              label="Search Subject"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">

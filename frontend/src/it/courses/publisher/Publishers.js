@@ -56,6 +56,7 @@ const Publishers = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const {token} = props;
+  const [newcourse, setNewCourse] = useState({})
 
   useEffect(() => {
     if(!props.fetched) {
@@ -64,15 +65,19 @@ const Publishers = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newcourse]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editPublisher(fee.id, fee, token)
-      else
+        setNewCourse(fee)
+      }
+      else{
         props.addPublisher(fee, token)
-        //
+        setNewCourse(fee)
+        props.getPublishers(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -112,7 +117,7 @@ const Publishers = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Objective"
+              label="Search Publisher"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
@@ -157,7 +162,7 @@ const Publishers = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Guideline Form"
+      title="Publisher Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

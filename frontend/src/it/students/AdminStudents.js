@@ -75,7 +75,6 @@ const AdminStudents = props => {
 
   const addOrEdit = (bursar, resetForm,token) => {
       if (bursar.id > 0){
-        console.log('gosso')
         setNewStudent(bursar)
       }else{
         props.addBursar(bursar, token)      
@@ -126,14 +125,13 @@ const AdminStudents = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Teacher"
+              label="Search Student"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
-              onChange={handleSearch}
           />
           <Controls.Button
               text="Add New"
@@ -174,7 +172,7 @@ const AdminStudents = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="BURSAR Form"
+      title="Student Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

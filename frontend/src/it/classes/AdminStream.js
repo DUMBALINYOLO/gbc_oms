@@ -114,14 +114,13 @@ const AdminStream = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Class"
+              label="Search Stream"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
-              onChange={handleSearch}
           />
           <Controls.Button
               text="Add New"

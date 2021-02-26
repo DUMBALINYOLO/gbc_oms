@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import { HeaderLanding } from 'dan-components';
+import Header from '../../components/landing/Header';
 import Hidden from '@material-ui/core/Hidden';
 import styles from './appStyles-jss';
 
@@ -39,7 +39,7 @@ class Parallax extends React.Component {
     return (
       <div className={classNames(classes.appFrameSlider, gradient ? classes.gradientBg : classes.solidBg)}>
         <Hidden only="lg">
-          <HeaderLanding turnDarker={transform > 30} />
+          <Header turnDarker={transform > 30} />
         </Hidden>
         {children}
       </div>
@@ -55,7 +55,7 @@ Parallax.propTypes = {
 
 const reducer = 'ui';
 const mapStateToProps = state => ({
-  gradient: state.getIn([reducer, 'gradient']),
+  gradient: state.gradient,
   ...state,
 });
 

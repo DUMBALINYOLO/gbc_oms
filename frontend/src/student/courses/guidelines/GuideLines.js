@@ -104,7 +104,7 @@ const GuideLines = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Objective"
+              label="Search Guidelines"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">

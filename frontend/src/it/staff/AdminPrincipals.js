@@ -64,7 +64,6 @@ const AdminPrincipals = props => {
   useEffect(() => {
     if(!props.fetched) {
           props.getAdminPrincipals(token);
-        // setRecords(adminprincipals)
     }
     console.log('mount it!');
 
@@ -76,7 +75,6 @@ const AdminPrincipals = props => {
 
   const addOrEdit = (bursar, resetForm, token) => {
       if (bursar.id > 0){
-        //console.log('gosso')
         setNewStaff(bursar)
       }else{
         props.addPrincipal(bursar, token)
@@ -88,8 +86,6 @@ const AdminPrincipals = props => {
       setOpenPopup(false)
   }
 
-  //
-  //
   const {records} = props;
 
   const {
@@ -129,7 +125,6 @@ const AdminPrincipals = props => {
                       <Search />
                   </InputAdornment>)
               }}
-              onChange={handleSearch}
           />
           <Controls.Button
               text="Add New"

@@ -118,14 +118,13 @@ const SubjectAdminView = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Curriculum"
+              label="Search Subject"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
-              onChange={handleSearch}
           />
           <Controls.Button
               text="Add New"
@@ -164,7 +163,7 @@ const SubjectAdminView = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Curriculum Form"
+      title="Subject Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

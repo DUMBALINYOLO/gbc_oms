@@ -156,7 +156,7 @@ const AdminOngoingCourses = props => {
           </Grid>
       </Paper>
       <Popup
-      title="Fee Form"
+      title="Ongoing Course Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

@@ -58,6 +58,7 @@ const InnerNotes = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const {id} =props.data;
+  const [newcourse, setNewCourse] = useState({})
   const {token} = props;
   const [expanded, setExpanded] = useState('panel_0')
 
@@ -68,16 +69,19 @@ const InnerNotes = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newcourse]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editStudyNoteNote(fee.id, fee, token)
-      else
+        setNewCourse(fee)
+      }
+      else{
         props.addStudyNoteNote(fee, token)
-        console.log(fee)
-        //
+        setNewCourse(fee)
+        props.getStudyNoteNotes(id, token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -118,7 +122,7 @@ const InnerNotes = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Images"
+              label="Search InnerNotes"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
@@ -139,7 +143,7 @@ const InnerNotes = props => {
         </div>
       </Paper>
       <Popup
-      title="Note Form"
+      title="Notes Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

@@ -47,9 +47,6 @@ const headCells = [
 ]
 
 
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -60,6 +57,7 @@ const AdminPendingAdmissions = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const [newadmission, setNewAdmission] = useState({})
   const {token} = props;
 
   useEffect(() => {
@@ -69,14 +67,18 @@ const AdminPendingAdmissions = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newadmission]);
 
 
-  const addOrEdit = (admission, resetForm, token) => {
-      if (admission.id > 0){
-        props.editPendingAdmission(admission.id, admission, token)
-      }else{
-        console.log('nada')
+  const addOrEdit = (fee, resetForm, token) => {
+      if (fee.id > 0){
+        props.editPendingAdmission(fee.id, fee, token)
+        setNewAdmission(fee)
+      }
+      else{
+        props.addAdmission(fee, token)
+        setNewAdmission(fee)
+        props.getPendingAdmissions(token);
       }
       resetForm()
       setRecordForEdit(null)
@@ -120,14 +122,13 @@ const AdminPendingAdmissions = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Fee"
+              label="Search Pending Admission"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
-              onChange={handleSearch}
           />
           <Controls.Button
               text="Add New"
@@ -167,7 +168,7 @@ const AdminPendingAdmissions = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Admission Form"
+      title="Pending Admission Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >
