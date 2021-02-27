@@ -28,12 +28,6 @@ const useStyles = makeStyles(theme => ({
   p1: {
     padding: ".85rem"
   }
-  // demoEditor: {
-  //   border: "1px solid #eee",
-  //   padding: "5px",
-  //   borderRadius: "2px",
-  //   height: "350px"
-  // }
 }));
 
 
@@ -96,7 +90,7 @@ const AddAdmission = props => {
         <Paper>
           <Form onSubmit={handleSubmit}>
                 <Grid container>
-                    <Grid item xs={6}>
+                    <Grid item xs={12}>
                       <Controls.Select
                           name="klass"
                           label="CLASS"

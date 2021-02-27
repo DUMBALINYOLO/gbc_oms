@@ -57,6 +57,7 @@ const Objectives = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const [newcourse, setNewCourse] = useState({})
   const {id} =props.data;
   const {token} = props;
 
@@ -67,15 +68,19 @@ const Objectives = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newcourse]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editTopicObjective(fee.id, fee, token)
-      else
+        setNewCourse(fee)
+      }
+      else{
         props.addTopicObjective(fee, token)
-        //
+        setNewCourse(fee)
+        props.getAdminTopicObjectives(id, token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -159,7 +164,7 @@ const Objectives = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Fee Form"
+      title="Objective Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

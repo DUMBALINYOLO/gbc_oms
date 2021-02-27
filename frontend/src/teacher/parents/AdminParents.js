@@ -122,7 +122,6 @@ const AdminParents = props => {
                       <Search />
                   </InputAdornment>)
               }}
-              onChange={handleSearch}
           />
           <Controls.Button
               text="Add New"

@@ -71,7 +71,7 @@ const navigationConfig = [
         type: "collapse",
         icon: <AttIcon />,
         badge: {
-          title: "1",
+          title: "2",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -92,7 +92,7 @@ const navigationConfig = [
         type: "collapse",
         icon: <CourseIcon />,
         badge: {
-          title: "2",
+          title: "3",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -120,7 +120,7 @@ const navigationConfig = [
         type: "collapse",
         icon: <SwapIcon />,
         badge: {
-          title: "3",
+          title: "4",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -155,7 +155,7 @@ const navigationConfig = [
         type: "collapse",
         icon: <BioIcon />,
         badge: {
-          title: "4",
+          title: "5",
           bg: "#525E8A",
           fg: "#FFFFFF",
 

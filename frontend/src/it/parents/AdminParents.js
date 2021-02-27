@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import InformationTechnologyLayout from "../layout/InformationTechnologyLayout";
-import { getAdminParents, addBursar } from '../../actions/people';
+import { getAdminParents, addParent } from '../../actions/people';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -15,7 +15,7 @@ import {
   Toolbar,
   InputAdornment }
 from '@material-ui/core';
-import AddBursar from '../staff/AddBursar';
+import AddParent from './AddParent';
 import  Controls  from "../../components/formcontrols/Controls";
 import  Popup  from "../../components/formcontrols/Popup";
 import  useTable  from "../../components/table/useTable";
@@ -73,9 +73,9 @@ const AdminParents = props => {
         //console.log('gosso')
         setNewParent(bursar)
       }else{
-        props.addBursar(bursar, token) 
+        props.addParent(bursar, token) 
         setNewParent(bursar)
-        props.getAdminParents(token);      //
+        props.getAdminParents(token);   
       }
       resetForm()
       setRecordForEdit(null)
@@ -116,7 +116,7 @@ const AdminParents = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Teacher"
+              label="Search Parent"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
@@ -162,11 +162,11 @@ const AdminParents = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="BURSAR Form"
+      title="Parent Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >
-        <AddBursar
+        <AddParent
             recordForEdit={recordForEdit}
             addOrEdit={addOrEdit}
         />
@@ -182,5 +182,5 @@ const mapStateToProps = state =>({
 
 export default connect(
   mapStateToProps,
-  {getAdminParents, addBursar} )
+  {getAdminParents, addParent} )
   (AdminParents);

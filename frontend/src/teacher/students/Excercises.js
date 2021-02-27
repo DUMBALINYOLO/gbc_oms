@@ -14,6 +14,7 @@ import {
 from '@material-ui/core';
 import  Controls  from "../../components/formcontrols/Controls";
 import  useTable  from "../../components/table/useTable";
+import {excerciserecordsURL} from "../../constants"
 
 
 
@@ -42,13 +43,11 @@ const headCells = [
 ]
 
 
-
-
 const Excercises = props => {
   const classes = useStyles();
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [records, setRecords] = useState([])
-
+  const {token} = props;
   const {id} =props.data
 
 
@@ -56,8 +55,13 @@ const Excercises = props => {
     window.scrollTo(0, 0);
 
     const fetchData = async () => {
+      const headers ={
+              "Content-Type": "application/json",
+              Authorization: `Token ${token}`,
+              'Accept': 'application/json',
+        };
         try {
-            const res = await axios.get(`http://127.0.0.1:8000/api/people/excercise-records/?id=${id}`);
+            const res = await axios.get(`${excerciserecordsURL}?id=${id}`, headers);
 
             setRecords(res.data);
         }
@@ -96,7 +100,7 @@ const Excercises = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Attendance"
+              label="Search Excercise"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">

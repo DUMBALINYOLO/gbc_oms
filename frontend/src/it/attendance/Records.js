@@ -19,7 +19,7 @@ import AddRecord from './AddRecord';
 import  Controls  from "../../components/formcontrols/Controls";
 import  Popup  from "../../components/formcontrols/Popup";
 import  useTable  from "../../components/table/useTable";
-
+import {studentattendancerecordsURL} from "../../constants"
 
 
 const useStyles = makeStyles(theme => ({
@@ -52,7 +52,6 @@ const options = {
 };
 
 const Records = props => {
-    // const [records, setRecords] = useState([])
     const classes = useStyles();
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
@@ -86,7 +85,7 @@ const Records = props => {
               'Accept': 'application/json',
         };
         try {
-            const res = await axios.get(`http://127.0.0.1:8000/api/attendance/student-attendance-records/?id=${id}`, headers);
+            const res = await axios.get(`${studentattendancerecordsURL}?id=${id}`, headers);
 
             setRecords(res.data);
         }
@@ -97,7 +96,6 @@ const Records = props => {
 
         fetchData();
     }, [newrecord]);
-
 
 
   const {

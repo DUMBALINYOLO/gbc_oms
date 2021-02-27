@@ -1,9 +1,8 @@
-import React, {  useEffect } from "react";
-import { connect } from 'react-redux';
+import React from "react";
 import {  Grid, makeStyles,  } from "@material-ui/core";
 import {Form, useForm } from "../../components/formcontrols/useForm";
 import  Controls  from "../../components/formcontrols/Controls";
-import { getAttendanceStatusChoices } from '../../actions/choices';
+import TextField from '@material-ui/core/TextField';
 
 
 
@@ -29,18 +28,26 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const initialFValues = {
-    status: '',
+
+  email: '',
+  username: '',
+  password: '',
+
+
 }
 
-
-
-const MarkRegister = props => {
-  const { addOrEdit, recordForEdit } = props
+const AddParent = props => {
+  const { addOrEdit } = props
+  const classes = useStyles();
 
   const validate = (fieldValues = values) => {
     let temp = { ...errors }
-    if ('status' in fieldValues)
-        temp.status = fieldValues.status ? "" : "This field is required."
+    if ('email' in fieldValues)
+        temp.email = fieldValues.email ? "" : "This field is required."
+    if ('username' in fieldValues)
+        temp.username = fieldValues.username ? "" : "This field is required."
+    if ('password' in fieldValues)
+        temp.password = fieldValues.password ? "" : "This field is required."
     setErrors({
         ...temp
     })
@@ -66,33 +73,37 @@ const MarkRegister = props => {
       }
   }
 
-  useEffect(() => {
-    if(!props.fetched) {
-        props.getAttendanceStatusChoices();
-    }
-    if (recordForEdit != null)
-            setValues({
-                ...recordForEdit
-            })
-  }, [recordForEdit]);
-
-
 
   return (
         <Form onSubmit={handleSubmit}>
               <Grid container>
                   <Grid item xs={6}>
-                    <Controls.DictSelect
-                            name="status"
-                            label="ATTENDANCE STATUS"
-                            value={values.status}
-                            onChange={handleInputChange}
-                            options={props.attendancestatuschoices}
-                            error={errors.status}
-                    />
+                      <Controls.Input
+                          name="email"
+                          label="EMAIL"
+                          value={values.email}
+                          onChange={handleInputChange}
+                          error={errors.email}
+                      />
+                      <Controls.Input
+                          label="USERNAME"
+                          name="username"
+                          value={values.username}
+                          onChange={handleInputChange}
+                          error={errors.username}
+                      />
                   </Grid>
                   <Grid item xs={6}>
-
+                    <TextField
+                      fullWidth
+                      onChange={handleInputChange}
+                      value={values.password}
+                      label="PASSWORD"
+                      name="password"
+                      size="small"
+                      type="password"
+                      variant="outlined"
+                    /> 
                       <div>
                           <Controls.Button
                               type="submit"
@@ -108,8 +119,5 @@ const MarkRegister = props => {
   );
 };
 
-const mapStateToProps = state =>({
-    attendancestatuschoices: state.feechoices.attendancestatuschoices,
-})
+export default AddParent;
 
-export default connect(mapStateToProps, {getAttendanceStatusChoices} ) (MarkRegister);

@@ -14,11 +14,12 @@ import styles from '../../../components/SocialMedia/jss/cover-jss';
 import { getAdminTopic } from '../../../actions/courses';
 import About from './About';
 import TopicBag from './TopicBag';
-import SchoolIcon from '@material-ui/icons/School';
 import Objectives from '../objectives/Objectives';
 import GuideLines from '../guidelines/GuideLines';
 import SubTopics from '../subtopics/SubTopics';
-
+import Assignment from '@material-ui/icons/Assignment';
+import CreditCard from '@material-ui/icons/CreditCard';
+import AssignmentReturned from '@material-ui/icons/AssignmentReturned';
 
 function TabContainer(props) {
   const { children } = props;
@@ -88,9 +89,9 @@ class StudentTopic extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} />
-              <Tab icon={<SchoolIcon />} />
-              <Tab icon={<SchoolIcon />} />
-              <Tab icon={<SchoolIcon />} />
+              <Tab icon={<CreditCard />} />
+              <Tab icon={<Assignment />} />
+              <Tab icon={<AssignmentReturned />} />
 
             </Tabs>
           </Hidden>
@@ -104,9 +105,9 @@ class StudentTopic extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<SchoolIcon />} label="OBJECTIVES" />
-              <Tab icon={<SchoolIcon />} label="GUIDELINES" />
-              <Tab icon={<SchoolIcon />} label="SUBTOPICS" />
+              <Tab icon={<CreditCard />} label="OBJECTIVES" />
+              <Tab icon={<Assignment />} label="GUIDELINES" />
+              <Tab icon={<AssignmentReturned />} label="SUBTOPICS" />
             </Tabs>
           </Hidden>
         </AppBar>
@@ -135,3 +136,4 @@ const AttendanceMapped = connect(
 )(StudentTopic);
 
 export default withStyles(styles)(AttendanceMapped);
+

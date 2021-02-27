@@ -19,7 +19,7 @@ import AddRecord from './AddRecord';
 import  Controls  from "../../components/formcontrols/Controls";
 import  Popup  from "../../components/formcontrols/Popup";
 import  useTable  from "../../components/table/useTable";
-
+import {studentattendancerecordsURL} from "../../constants"
 
 
 const useStyles = makeStyles(theme => ({
@@ -80,8 +80,13 @@ const Records = props => {
     window.scrollTo(0, 0);
 
     const fetchData = async () => {
+      const headers ={
+              "Content-Type": "application/json",
+              Authorization: `Token ${token}`,
+              'Accept': 'application/json',
+        };
         try {
-            const res = await axios.get(`http://127.0.0.1:8000/api/attendance/student-attendance-records/?id=${id}`);
+            const res = await axios.get(`${studentattendancerecordsURL}?id=${id}`, headers);
 
             setRecords(res.data);
         }
@@ -92,7 +97,6 @@ const Records = props => {
 
       fetchData();
   }, [newattendance]);
-
 
 
   const {

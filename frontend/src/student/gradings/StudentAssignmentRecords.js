@@ -97,7 +97,7 @@ const StudentAssigmentRecords = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Attendance"
+              label="Search Assigment Record"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
@@ -118,11 +118,6 @@ const StudentAssigmentRecords = props => {
                           <TableCell>{item.totalmarks}</TableCell>
                           <TableCell>{item.score}</TableCell>
                           <TableCell>
-                              <Controls.ActionButton
-                                  color="primary"
-                                  >
-                                  <EditOutlinedIcon fontSize="small" />
-                              </Controls.ActionButton>
                               <Controls.ActionButton
                                   color="secondary">
                                   <CloseIcon fontSize="small" />

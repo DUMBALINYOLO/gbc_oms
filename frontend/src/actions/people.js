@@ -23,6 +23,7 @@ import {
         GET_PARENT_PROFILES,
         GET_STUDENT_PROFILES,
         CREATE_STUDENT,
+        CREATE_PARENT,
 
     } from '../types/peopleTypes';
 import {
@@ -400,6 +401,21 @@ export const addTeacher = (teacher, token) => dispatch => {
         .then(res => {
             dispatch({
                 type: CREATE_TEACHER,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+export const addParent = (parent, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.post(adminparentsURL, parent, headers)
+        .then(res => {
+            dispatch({
+                type: CREATE_PARENT,
                 payload: res.data
             });
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));

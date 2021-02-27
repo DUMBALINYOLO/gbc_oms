@@ -51,6 +51,7 @@ const TeacherOngoingCourses = props => {
   const [openPopup, setOpenPopup] = useState(false)
   const [listView, setListView] = useState('grid')
   const history = useHistory();
+  const [newcourse, setNewCourse] = useState({})
   const {token} = props;
 
   useEffect(() => {
@@ -60,15 +61,19 @@ const TeacherOngoingCourses = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newcourse]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editOngoingCourse(fee.id, fee, token)
-      else
+        setNewCourse(fee)
+      }
+      else{
         props.addOngoingCourse(fee, token)
-        //
+        setNewCourse(fee)
+        props.getAdminOngoingCourses(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -155,7 +160,7 @@ const TeacherOngoingCourses = props => {
           </Grid>
       </Paper>
       <Popup
-      title="Fee Form"
+      title="Ongoing Course Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

@@ -34,8 +34,7 @@ import CurrIcon from '@material-ui/icons/PostAdd';
 import AttIcon from '@material-ui/icons/Spellcheck';
 import SwapIcon from '@material-ui/icons/SwapVerticalCircle';
 import AdmIcon from '@material-ui/icons/VpnKey';
-
-
+import AccountTree from '@material-ui/icons/AccountTree';
 
 
 const navigationConfig = [
@@ -57,7 +56,7 @@ const navigationConfig = [
         type: "collapse",
         icon: <HowToRegIcon />,
         badge: {
-          title: "2",
+          title: "1",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -92,7 +91,7 @@ const navigationConfig = [
         type: "collapse",
         icon: <ClassIcon />,
         badge: {
-          title: "3",
+          title: "2",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -120,7 +119,7 @@ const navigationConfig = [
         type: "collapse",
         icon: <PermIcon />,
         badge: {
-          title: "4",
+          title: "3",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -141,7 +140,7 @@ const navigationConfig = [
         type: "collapse",
         icon: <PeopleAltIcon />,
         badge: {
-          title: "5",
+          title: "4",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -162,7 +161,7 @@ const navigationConfig = [
         type: "collapse",
         icon: <BioIcon />,
         badge: {
-          title: "6",
+          title: "5",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -197,7 +196,7 @@ const navigationConfig = [
         type: "collapse",
         icon: <CourseIcon />,
         badge: {
-          title: "7",
+          title: "6",
           bg: "#525E8A",
           fg: "#FFFFFF",
         },
@@ -239,7 +238,7 @@ const navigationConfig = [
         type: "collapse",
         icon: <CurrIcon />,
         badge: {
-          title: "8",
+          title: "7",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -267,7 +266,7 @@ const navigationConfig = [
         type: "collapse",
         icon: <AttIcon />,
         badge: {
-          title: "9",
+          title: "8",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -288,7 +287,7 @@ const navigationConfig = [
         type: "collapse",
         icon: <SwapIcon />,
         badge: {
-          title: "10",
+          title: "9",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -321,7 +320,7 @@ const navigationConfig = [
         id: "adds",
         title: "ADVERTS",
         type: "collapse",
-        icon: <SwapIcon />,
+        icon: <AccountTree />,
         badge: {
           title: "10",
           bg: "#525E8A",

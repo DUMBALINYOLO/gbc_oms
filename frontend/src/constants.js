@@ -181,6 +181,11 @@ export const bursarprofilesURL = `${endpoint}/people/bursar-profiles/`
 export const studentprofilesURL = `${endpoint}/people/student-profiles/`
 export const loginURL = `${endpoint}/people/login/`
 
+export const testrecordsURL = `${endpoint}/people/test-records/`
+export const excerciserecordsURL = `${endpoint}/people/excercise-records/`
+export const assignmentrecordsURL = `${endpoint}/people/assignment-records/`
+export const attendancerecordsURL = `${endpoint}/people/attendance-records/`
+
 //courses
 export const adminupcomingcoursesURL = `${endpoint}/courses/admin-upcoming-courses/`
 export const adminongoingcoursesURL = `${endpoint}/courses/admin-ongoing-courses/`

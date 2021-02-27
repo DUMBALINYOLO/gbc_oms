@@ -40,7 +40,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-
 const options = {
   filterType: "checkbox"
 };
@@ -51,7 +50,9 @@ const TeacherOngoingCourses = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [listView, setListView] = useState('grid')
+  const [newcourse, setNewCourse] = useState({})
   const history = useHistory();
+
   const {
       courseData,
       token
@@ -64,14 +65,19 @@ const TeacherOngoingCourses = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newcourse]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editFinishedCourse(fee.id, fee, token)
-      else
+        setNewCourse(fee)
+      }
+      else{
         props.addFinishedCourse(fee, token)
+        setNewCourse(fee)
+        props.getAdminFinishedCourses(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -156,7 +162,7 @@ const TeacherOngoingCourses = props => {
           </Grid>
       </Paper>
       <Popup
-      title="Fee Form"
+      title="Finished Course Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

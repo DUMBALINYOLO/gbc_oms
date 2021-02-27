@@ -14,6 +14,7 @@ import {
 from '@material-ui/core';
 import  Controls  from "../../components/formcontrols/Controls";
 import  useTable  from "../../components/table/useTable";
+import {attendancerecordsURL} from "../../constants"
 
 
 
@@ -45,7 +46,7 @@ const Attendance = props => {
   const classes = useStyles();
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [records, setRecords] = useState([])
-
+  const {token} = props;
   const {id} =props.data
 
 
@@ -53,8 +54,13 @@ const Attendance = props => {
     window.scrollTo(0, 0);
 
     const fetchData = async () => {
+      const headers ={
+              "Content-Type": "application/json",
+              Authorization: `Token ${token}`,
+              'Accept': 'application/json',
+        };
         try {
-            const res = await axios.get(`http://127.0.0.1:8000/api/people/attendance-records/?id=${id}`);
+            const res = await axios.get(`${attendancerecordsURL}?id=${id}`, headers);
 
             setRecords(res.data);
         }
@@ -62,6 +68,7 @@ const Attendance = props => {
 
         }
     }
+
 
     fetchData();
 }, []);

@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'Gerere Online Platform',
+  name: 'GERERE BUSINESS COLLEGE',
   desc: 'Gerere Business College',
   prefix: 'Gerere Business College',
   footerText: 'Gerere Business College',

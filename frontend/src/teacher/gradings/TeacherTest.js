@@ -55,9 +55,6 @@ export class TeacherTest extends React.Component {
     const { adminstudenttest } = this.props;
     const { id } = adminstudenttest;
 
-    console.log(adminstudenttest)
-    console.log(id)
-
     return (
       <GradingBag>
 
