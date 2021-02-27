@@ -9,7 +9,8 @@ import {
     GET_ACCEPTED_ADMISSIONS,
     EDIT_ACCEPTED_ADMISSIONS,
     GET_MEETING_ADMISSIONS,
-    EDIT_MEETING_ADMISSIONS
+    EDIT_MEETING_ADMISSIONS,
+    PROCESS_ADMISSION
 
 } from '../types/admissionTypes';
 import {
@@ -21,6 +22,23 @@ import {
     applicationsURL,
 } from '../constants';
 import { createMessage, returnErrors } from './messages';
+
+
+export const processAdmission = (id, admission, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.post(`${pendingstudentadmissionsURL}${id}/process_admission/`, admission, headers)
+        .then(res => {
+            dispatch({
+                type: PROCESS_ADMISSION,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
 
 
 // Get

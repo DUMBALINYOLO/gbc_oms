@@ -1,5 +1,6 @@
 from rest_framework import viewsets, generics, permissions
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from rest_framework.decorators import action
 from enrollment.models import Admission
 from django.db.models import Q as CompleLookUp
 from enrollment.serializers import (
@@ -43,11 +44,20 @@ class PendingAdminApplicationViewSet(viewsets.ModelViewSet):
 									).prefetch_related(
 												'student',
 												'klass'
-											).order_by('id')
+											).order_by('-id')
 		for appliation in pending_applications:
 			querset.append(appliation)
 
 		return querset
+
+	@action(detail=True, methods=['get', 'post', 'list'])
+	def process_admission(self, request, *args, **kwargs):
+		admission = self.get_object()
+		draft_request_data = request.data.copy()
+		admission.status = draft_request_data.get('status')
+		admission.klass = draft_request_data.get('klass')
+		admission.save()
+		return Response({"msg": 'Admission Successfully Proccessed'})
 
 
 class RejectedAdminAdmissionViewSet(viewsets.ModelViewSet):
@@ -69,7 +79,7 @@ class RejectedAdminAdmissionViewSet(viewsets.ModelViewSet):
 									).prefetch_related(
 												'student',
 												'klass'
-											).order_by('id')
+											).order_by('-id')
 		for appliation in rejected_applications:
 			querset.append(appliation)
 
@@ -96,7 +106,7 @@ class CallForAdminAdmissionViewSet(viewsets.ModelViewSet):
 									).prefetch_related(
 												'student',
 												'klass'
-											).order_by('id')
+											).order_by('-id')
 		for appliation in meeting_applications:
 			querset.append(appliation)
 
@@ -122,7 +132,7 @@ class AcceptedAdminAdmissionViewSet(viewsets.ModelViewSet):
 									).prefetch_related(
 												'student',
 												'klass'
-											).order_by('id')
+											).order_by('-id')
 		for appliation in accepted_applications:
 			querset.append(appliation)
 

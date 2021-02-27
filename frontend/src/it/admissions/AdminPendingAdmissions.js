@@ -58,7 +58,7 @@ const AdminPendingAdmissions = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [newadmission, setNewAdmission] = useState({})
-    const {token} = props;
+  const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
@@ -84,6 +84,9 @@ const AdminPendingAdmissions = props => {
       setRecordForEdit(null)
       setOpenPopup(false)
   }
+
+
+
 
 
 
