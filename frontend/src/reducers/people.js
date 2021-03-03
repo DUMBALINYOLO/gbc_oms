@@ -22,6 +22,16 @@ import {
     GET_PARENT_PROFILES,
     GET_STUDENT_PROFILES,
     CREATE_STUDENT,
+    GET_STUDENT_PROFILE,
+    EDIT_STUDENT_PROFILE,
+    GET_TEACHER_PROFILE,
+    EDIT_TEACHER_PROFILE,
+    GET_PARENT_PROFILE,
+    EDIT_PARENT_PROFILE,
+    GET_PRINCIPAL_PROFILE,
+    EDIT_PRINCIPAL_PROFILE,
+    GET_BURSAR_PROFILE,
+    EDIT_BURSAR_PROFILE,
 
 } from '../types/peopleTypes';
 
@@ -41,15 +51,69 @@ const initialState = {
     adminteachers: [],
     adminteacher: {},
     bursarprofiles: [],
+    bursarprofile: {},
     principalprofiles: [],
+    principalprofile: {},
     teacherprofiles: [],
+    teacherprofile: {},
     parentprofiles: [],
+    parentprofile: {},
     studentprofiles: [],
-
+    studentprofile: {},
 }
 
 export default function a(state = initialState, action){
     switch(action.type){
+        case EDIT_BURSAR_PROFILE:
+            return {
+                ...state,
+                bursarprofile: [...state.bursarprofiles, action.payload]
+            };
+        case GET_BURSAR_PROFILE:
+            return {
+                ...state,
+                bursarprofile: action.payload
+            };
+        case EDIT_PRINCIPAL_PROFILE:
+            return {
+                ...state,
+                principalprofile: [...state.principalprofiles, action.payload]
+            };
+        case GET_PRINCIPAL_PROFILE:
+            return {
+                ...state,
+                principalprofile: action.payload
+            };
+        case EDIT_PARENT_PROFILE:
+            return {
+                ...state,
+                parentprofile: [...state.parentprofiles, action.payload]
+            };
+        case GET_PARENT_PROFILE:
+            return {
+                ...state,
+                parentprofile: action.payload
+            };
+        case EDIT_TEACHER_PROFILE:
+            return {
+                ...state,
+                teacherprofile: [...state.teacherprofiles, action.payload]
+            };
+        case GET_TEACHER_PROFILE:
+            return {
+                ...state,
+                teacherprofile: action.payload
+            };
+        case EDIT_STUDENT_PROFILE:
+            return {
+                ...state,
+                studentprofile: [...state.studentprofiles, action.payload]
+            };
+        case GET_STUDENT_PROFILE:
+            return {
+                ...state,
+                studentprofile: action.payload
+            };
         case GET_STUDENT_PROFILES:
             return {
                 ...state,

@@ -46,9 +46,6 @@ const headCells = [
 ]
 
 
-
-
-
 const options = {
   filterType: "checkbox"
 };

@@ -3,7 +3,7 @@ import InformationTechnologyLayout from "../layout/InformationTechnologyLayout";
 import { getAdminParents, addParent } from '../../actions/people';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import CloseIcon from '@material-ui/icons/Close';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
 import {
@@ -110,6 +110,10 @@ const AdminParents = props => {
       setOpenPopup(true)
   }
 
+  const handleClick = id =>{
+    history.push(`/itdashboard/parents/${id}`)
+  }
+
   return (
     <InformationTechnologyLayout>
       <Paper className={classes.pageContent}>
@@ -150,8 +154,10 @@ const AdminParents = props => {
                                   <EditOutlinedIcon fontSize="small" />
                               </Controls.ActionButton>
                               <Controls.ActionButton
-                                  color="secondary">
-                                  <CloseIcon fontSize="small" />
+                                  color="secondary"
+                                  onClick={() => { handleClick(item.id) }}
+                                >
+                                  <PermIdentityIcon fontSize="small" />
                               </Controls.ActionButton>
                           </TableCell>
                       </TableRow>)

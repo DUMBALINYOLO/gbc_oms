@@ -18,13 +18,16 @@ import AdminTaxes  from './it/accounting/AdminTaxes';
 import AdminCurrencies from './it/accounting/AdminCurrencies';
 import AdminWorkBooks from './it/accounting/AdminWorkBooks';
 import AdminLedgers from './it/accounting/AdminLedger';
-// import JournalsAdminView from './it/accounting/JournalsAdminView';
 import AssetsAdminView from './it/accounting/AssetsAdminView';
 import AdminClass from './it/classes/AdminClass';
 import AdminStream from './it/classes/AdminStream';
 import AdminBursars from './it/staff/AdminBursars';
 import AdminTeachers from './it/staff/AdminTeachers';
 import AdminPrincipals from './it/staff/AdminPrincipals';
+import BursarProfile from './it/staff/bursars/BursarProfile';
+import TeacherProfile from './it/staff/teachers/TeacherProfile';
+import PrincipalProfile from './it/staff/principals/PrincipalProfile';
+import ParentProfile from './it/parents/ParentProfile';
 import AdminStudents from './it/students/AdminStudents';
 import AdminParents from './it/parents/AdminParents';
 import AdminAttendances from './it/attendance/AdminAttendances';
@@ -108,7 +111,16 @@ import  PuclicOfferedCourses from "./public/courses/PublicOfferedCourses";
 import AddAdmission from './student/admissions/AddAdmission';
 import AdminCourseAdverts from './it/adverts/AdminCourseAdverts';
 import GerereRegister  from './auth/GerereRegister';
+import UserDeques from './it/settings/UserDeques';
+import CourseDeques from './it/settings/CourseDeques';
+import BioDeques from './it/settings/BioDeques';
+import AdmissionDeques from './it/settings/AdmissionDeques';
 
+import TeacherCourseDeques from './teacher/settings/CourseDeques';
+import TeacherBioDeques from './teacher/settings/BioDeques';
+
+import StudentCourseDeques from './student/settings/CourseDeques';
+import StudentBioDeques from './student/settings/BioDeques';
 
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
@@ -140,6 +152,14 @@ class App extends React.Component {
                 <Route exact path='/' component={LandingPage} />
                 <Route exact path='/login' component={GerereLogin} />
 								<Route exact path='/signup' component={GerereRegister} />
+                                <Route exact path='/itdashboard/users' component={UserDeques} />
+                                <Route exact path='/itdashboard/courses' component={CourseDeques} />
+                                <Route exact path='/itdashboard/bio' component={BioDeques} />
+                                <Route exact path='/itdashboard/admissions' component={AdmissionDeques} />
+                                <Route exact path='/teacherdashboard/courses' component={TeacherCourseDeques} />
+                                <Route exact path='/teacherdashboard/bio' component={TeacherBioDeques} />
+                                <Route exact path='/studentdashboard/courses' component={StudentCourseDeques} />
+                                <Route exact path='/studentdashboard/bio' component={StudentBioDeques} />
                 <Route exact path='/coursesoffered' component={PuclicOfferedCourses} />
                 <Route exact path='/itdashboard' component={InformationTechnologyHome} />
                 <Route exact path='/publicdashboard' component={PublicDash} />
@@ -175,6 +195,7 @@ class App extends React.Component {
                 <Route exact path='/teacherdashboard/topics/:id' component={TeacherTopic} />
                 <Route exact path='/teacherdashboard/subtopics/:id' component={TeacherSubTopic} />
                 <Route exact path='/teacherdashboard/notes/:id' component={TeacherStudyNote} />
+
                 <Route exact path='/teacherdashboard/ongoingcourses' component={TeacherOngoingCourses} />
                 <Route exact path='/teacherdashboard/ongoingcourses/:id' component={TeacherOngoingCourse} />
                 <Route exact path='/teacherdashboard/finishedcourses' component={TeacherFinishedCourses} />
@@ -192,6 +213,7 @@ class App extends React.Component {
                 <Route exact path='/itdashboard/bursars' component={AdminBursars} />
                 <Route exact path='/itdashboard/parents' component={AdminParents} />
                 <Route exact path='/itdashboard/teachers' component={AdminTeachers} />
+
                 <Route exact path='/itdashboard/approved-admissions' component={AdminApprovedAdmissions} />
                 <Route exact path='/itdashboard/pending-admissions' component={AdminPendingAdmissions} />
                 <Route exact path='/itdashboard/meeting-admissions' component={AdminMeetingAdmissions} />
@@ -202,6 +224,12 @@ class App extends React.Component {
 								<Route exact path='/itdashboard/cities' component={Cities} />
 								<Route exact path='/itdashboard/course-ads' component={AdminCourseAdverts} />
                 <Route exact path="/itdashboard/students/:id" component={StudentProfile} />
+
+                <Route exact path="/itdashboard/bursars/:id" component={BursarProfile} />
+                <Route exact path="/itdashboard/teachers/:id" component={TeacherProfile} />
+                <Route exact path="/itdashboard/principals/:id" component={PrincipalProfile} />
+                <Route exact path="/itdashboard/parents/:id" component={ParentProfile} />
+
                 <Route exact path='/itdashboard/tests' component={AdminStudentTests} />
                 <Route exact path='/itdashboard/tests/:id' component={AdminGradingTest} />
                 <Route exact path='/itdashboard/excercises' component={AdminStudentExcercises} />

@@ -1,4 +1,3 @@
-
 export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
 export const OPEN_MENU = 'OPEN_MENU';
 export const CLOSE_MENU = 'CLOSE_MENU';
@@ -13,6 +12,5 @@ export const CHANGE_LAYOUT = 'CHANGE_LAYOUT';
 export const CHANGE_DIRECTION = 'CHANGE_DIRECTION';
 export const LOAD_PAGE = 'LOAD_PAGE';
 export const FETCH_TIMELINE_DATA = 'FETCH_TIMELINE_DATA';
-
-
+export const EDIT_ACTION = 'EDIT_ACTION';
 

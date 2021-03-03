@@ -52,7 +52,7 @@ const navigationConfig = [
       },
       {
         id: "users",
-        title: "STAFF USERS",
+        title: "USERS",
         type: "collapse",
         icon: <HowToRegIcon />,
         badge: {
@@ -63,24 +63,10 @@ const navigationConfig = [
         },
         children: [
           {
-            id: "principals",
-            title: "ADMINSTRATORS",
+            id: "operators",
+            title: "USERS",
             type: "item",
-            url: "/itdashboard/principals",
-            exact: true,
-          },
-          {
-            id: "bursars",
-            title: "BURSARS",
-            type: "item",
-            url: "/itdashboard/bursars",
-            exact: true,
-          },
-          {
-            id: "teachers",
-            title: "TEACHERS",
-            type: "item",
-            url: "/itdashboard/teachers",
+            url: "/itdashboard/users",
             exact: true,
           },
         ],
@@ -114,10 +100,10 @@ const navigationConfig = [
         ],
       },
       {
-        id: "parents",
-        title: "PARENTS",
+        id: "references",
+        title: "BIBLIOGRAPHY",
         type: "collapse",
-        icon: <PermIcon />,
+        icon: <BioIcon />,
         badge: {
           title: "3",
           bg: "#525E8A",
@@ -126,66 +112,10 @@ const navigationConfig = [
         },
         children: [
           {
-            id: "parents",
-            title: "PARENTS",
+            id: "bio",
+            title: "BIO",
             type: "item",
-            url: "/itdashboard/parents",
-            exact: true,
-          },
-        ],
-      },
-      {
-        id: "students",
-        title: "STUDENTS",
-        type: "collapse",
-        icon: <PeopleAltIcon />,
-        badge: {
-          title: "4",
-          bg: "#525E8A",
-          fg: "#FFFFFF",
-
-        },
-        children: [
-          {
-            id: "students",
-            title: "STUDENTS",
-            type: "item",
-            url: "/itdashboard/students",
-            exact: true,
-          },
-        ],
-      },
-      {
-        id: "references",
-        title: "BIBLIOGRAPHY",
-        type: "collapse",
-        icon: <BioIcon />,
-        badge: {
-          title: "5",
-          bg: "#525E8A",
-          fg: "#FFFFFF",
-
-        },
-        children: [
-          {
-            id: "authors",
-            title: "AUTHORS",
-            type: "item",
-            url: "/itdashboard/authors",
-            exact: true,
-          },
-          {
-            id: "publishers",
-            title: "PUBLISHERS",
-            type: "item",
-            url: "/itdashboard/publishers",
-            exact: true,
-          },
-          {
-            id: "cities",
-            title: "CITIES",
-            type: "item",
-            url: "/itdashboard/cities",
+            url: '/itdashboard/bio',
             exact: true,
           },
         ],
@@ -196,37 +126,16 @@ const navigationConfig = [
         type: "collapse",
         icon: <CourseIcon />,
         badge: {
-          title: "6",
+          title: "4",
           bg: "#525E8A",
           fg: "#FFFFFF",
         },
         children: [
           {
-            id: "activeaccounts",
-            title: "UPCOMING",
+            id: "activecourses",
+            title: "COURSES",
             type: "item",
-            url: "/itdashboard/upcomingcourses",
-            exact: true,
-          },
-          {
-            id: "ongoings",
-            title: "ONGOING",
-            type: "item",
-            url: "/itdashboard/ongoingcourses",
-            exact: true,
-          },
-          {
-            id: "finished",
-            title: "FINSHED",
-            type: "item",
-            url: "/itdashboard/finishedcourses",
-            exact: true,
-          },
-          {
-            id: "inactive",
-            title: "INACTIVE",
-            type: "item",
-            url: "/itdashboard/inactivecourses",
+            url: '/itdashboard/courses',
             exact: true,
           },
         ],
@@ -238,7 +147,7 @@ const navigationConfig = [
         type: "collapse",
         icon: <CurrIcon />,
         badge: {
-          title: "7",
+          title: "5",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -266,7 +175,7 @@ const navigationConfig = [
         type: "collapse",
         icon: <AttIcon />,
         badge: {
-          title: "8",
+          title: "6",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -287,7 +196,7 @@ const navigationConfig = [
         type: "collapse",
         icon: <SwapIcon />,
         badge: {
-          title: "9",
+          title: "7",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -322,7 +231,7 @@ const navigationConfig = [
         type: "collapse",
         icon: <AccountTree />,
         badge: {
-          title: "10",
+          title: "8",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -343,38 +252,17 @@ const navigationConfig = [
         type: "collapse",
         icon: <AdmIcon />,
         badge: {
-          title: "11",
+          title: "9",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
         },
         children: [
           {
-            id: "accepted",
-            title: "ACCEPTED",
+            id: "see",
+            title: "ADMISSIONS",
             type: "item",
-            url: "/itdashboard/approved-admissions",
-            exact: true,
-          },
-          {
-            id: "pending",
-            title: "PENDING",
-            type: "item",
-            url: "/itdashboard/pending-admissions",
-            exact: true,
-          },
-          {
-            id: "meeting",
-            title: "MEETING",
-            type: "item",
-            url: "/itdashboard/meeting-admissions",
-            exact: true,
-          },
-          {
-            id: "rejected",
-            title: "REJECTED",
-            type: "item",
-            url: "/itdashboard/rejected-admissions",
+            url: '/itdashboard/admissions',
             exact: true,
           },
         ],

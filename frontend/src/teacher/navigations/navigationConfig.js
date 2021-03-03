@@ -97,35 +97,13 @@ const navigationConfig = [
           title: "3",
           bg: "#525E8A",
           fg: "#FFFFFF",
-
         },
         children: [
           {
-            id: "activeaccounts",
-            title: "UPCOMING",
+            id: "activecourses",
+            title: "COURSES",
             type: "item",
-            url: "/teacherdashboard/upcomingcourses",
-            exact: true,
-          },
-          {
-            id: "ongoings",
-            title: "ONGOING",
-            type: "item",
-            url: "/teacherdashboard/ongoingcourses",
-            exact: true,
-          },
-          {
-            id: "finished",
-            title: "FINSHED",
-            type: "item",
-            url: "/teacherdashboard/finishedcourses",
-            exact: true,
-          },
-          {
-            id: "inactive",
-            title: "INACTIVE",
-            type: "item",
-            url: "/teacherdashboard/inactivecourses",
+            url: '/teacherdashboard/courses',
             exact: true,
           },
         ],
@@ -178,29 +156,14 @@ const navigationConfig = [
         },
         children: [
           {
-            id: "authors",
-            title: "AUTHORS",
+            id: "bio",
+            title: "BIO",
             type: "item",
-            url: "/teacherdashboard/authors",
+            url: '/teacherdashboard/bio',
             exact: true,
           },
-          
-          {
-            id: "publishers",
-            title: "PUBLISHERS",
-            type: "item",
-            url: "/teacherdashboard/publishers",
-            exact: true,
-          },
-          {
-            id: "cities",
-            title: "CITIES",
-            type: "item",
-            url: "/teacherdashboard/cities",
-            exact: true,
-          },
-        ]
-      },  
+        ],
+      }, 
     ],
   },
 ];

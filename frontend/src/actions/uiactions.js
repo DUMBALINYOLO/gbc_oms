@@ -4,7 +4,6 @@ export const toggleAction = { type: types.TOGGLE_SIDEBAR };
 export const openMenuAction = { type: types.OPEN_MENU };
 export const closeMenuAction = { type: types.CLOSE_MENU };
 
-
 export const openAction = initialLocation => ({
   type: types.OPEN_SUBMENU,
   payload: initialLocation
@@ -44,4 +43,9 @@ export const changeDirectionAction = direction => ({
 export const playTransitionAction = isLoaded => ({
   type: types.LOAD_PAGE,
   payload: isLoaded
+});
+
+export const editAction = item => ({
+  type: types.EDIT_ACTION,
+  payload: item
 });

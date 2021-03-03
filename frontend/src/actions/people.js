@@ -24,6 +24,16 @@ import {
         GET_STUDENT_PROFILES,
         CREATE_STUDENT,
         CREATE_PARENT,
+        GET_STUDENT_PROFILE,
+        EDIT_STUDENT_PROFILE,
+        GET_TEACHER_PROFILE,
+        EDIT_TEACHER_PROFILE,
+        GET_PARENT_PROFILE,
+        EDIT_PARENT_PROFILE,
+        GET_PRINCIPAL_PROFILE,
+        EDIT_PRINCIPAL_PROFILE,
+        GET_BURSAR_PROFILE,
+        EDIT_BURSAR_PROFILE
 
     } from '../types/peopleTypes';
 import {
@@ -126,6 +136,35 @@ export const getStudentProfiles = (token) => dispatch => {
 }
 
 
+export const getStudentProfile = (id,token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(`${adminstudentsURL}${id}/profile/`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_STUDENT_PROFILE,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+export const editStudentProfile = (id, profile, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.post(`${adminstudentsURL}${id}/edit_profile/`, profile, headers)
+        .then(res => {
+            dispatch({
+                type: EDIT_STUDENT_PROFILE,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
 
 export const getAdminStudents = (token) => dispatch => {
     const headers ={
@@ -140,6 +179,126 @@ export const getAdminStudents = (token) => dispatch => {
                 payload: res.data
             });
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+export const getTeacherProfile = (id,token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(`${adminteachersURL}${id}/profile/`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_TEACHER_PROFILE,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+export const editTeacherProfile = (id, profile, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.post(`${adminteachersURL}${id}/edit_profile/`, profile, headers)
+        .then(res => {
+            dispatch({
+                type: EDIT_TEACHER_PROFILE,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+export const getParentProfile = (id,token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(`${adminparentsURL}${id}/profile/`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_PARENT_PROFILE,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+export const editParentProfile = (id, profile, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.post(`${adminparentsURL}${id}/edit_profile/`, profile, headers)
+        .then(res => {
+            dispatch({
+                type: EDIT_PARENT_PROFILE,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+export const getPrincipalProfile = (id,token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(`${adminprincipalsURL}${id}/profile/`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_PRINCIPAL_PROFILE,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+export const editPrincipalProfile = (id, profile, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.post(`${adminprincipalsURL}${id}/edit_profile/`, profile, headers)
+        .then(res => {
+            dispatch({
+                type: EDIT_PRINCIPAL_PROFILE,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+export const getBursarProfile = (id,token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.get(`${adminbursarsURL}${id}/profile/`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_BURSAR_PROFILE,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+export const editBursarProfile = (id, profile, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+    };
+    axios.post(`${adminbursarsURL}${id}/edit_profile/`, profile, headers)
+        .then(res => {
+            dispatch({
+                type: EDIT_BURSAR_PROFILE,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
 }
 
 export const getAdminParents = (token) => dispatch => {

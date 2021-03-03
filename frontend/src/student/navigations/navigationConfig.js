@@ -30,7 +30,6 @@ import SwapIcon from '@material-ui/icons/SwapVerticalCircle';
 import BioIcon from '@material-ui/icons/LocalLibrary';
 
 
-
 const navigationConfig = [
   {
     id: "Main",
@@ -95,21 +94,13 @@ const navigationConfig = [
           title: "3",
           bg: "#525E8A",
           fg: "#FFFFFF",
-
         },
         children: [
           {
-            id: "activeaccounts",
-            title: "UPCOMING",
+            id: "activecourses",
+            title: "COURSES",
             type: "item",
-            url: "/studentdashboard/upcomingcourses",
-            exact: true,
-          },
-          {
-            id: "ongoings",
-            title: "ONGOING",
-            type: "item",
-            url: "/studentdashboard/ongoingcourses",
+            url: '/studentdashboard/courses',
             exact: true,
           },
         ],
@@ -162,28 +153,14 @@ const navigationConfig = [
         },
         children: [
           {
-            id: "authors",
-            title: "AUTHORS",
+            id: "bio",
+            title: "BIO",
             type: "item",
-            url: "/studentdashboard/authors",
-            exact: true,
-          },
-          {
-            id: "publishers",
-            title: "PUBLISHERS",
-            type: "item",
-            url: "/studentdashboard/publishers",
-            exact: true,
-          },
-          {
-            id: "cities",
-            title: "CITIES",
-            type: "item",
-            url: "/studentdashboard/cities",
+            url: '/studentdashboard/bio',
             exact: true,
           },
         ],
-      },
+      }, 
     ],
   },
 ];

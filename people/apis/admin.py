@@ -1,6 +1,7 @@
 from rest_framework import viewsets, generics, permissions
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from django.shortcuts import get_object_or_404
+from rest_framework.decorators import action
 from django.contrib.auth import get_user_model
 from rest_framework.response import Response
 from people.models import (
@@ -98,6 +99,46 @@ class AdminStudentViewSet(viewsets.ModelViewSet):
 	queryset = Student.objects.all()
 	serializer_class = AdminStudentListDetailSerializer
 
+	@action(detail=True, methods=['get', 'list'])
+	def profile(self, request, pk=None):
+	    student = self.get_object()
+	    profile = student.profile
+	    serialized_profile = AdminStudentProfileListDetailSerializer(profile)
+
+	    return Response(serialized_profile.data)
+
+
+	@action(detail=True, methods=['get', 'post', 'list'])
+	def edit_profile(self, request, *args, **kwargs):
+		student = self.get_object()
+		profile = student.profile
+		draft_request_data = request.data.copy()
+		gender = draft_request_data.get('gender')
+		date_of_birth = draft_request_data.get('date_of_birth')
+		first_name = draft_request_data.get('first_name')
+		middle_name = draft_request_data.get('middle_name')
+		last_name = draft_request_data.get('last_name')
+		phone_number = draft_request_data.get('phone_number')
+		whatsapp_number = draft_request_data.get('whatsapp_number')
+		if gender != '':
+			profile.gender = gender
+		if date_of_birth != '':
+			profile.date_of_birth = date_of_birth
+		if first_name != '':
+			profile.first_name = first_name
+		if middle_name != '':
+			profile.middle_name = middle_name
+		if last_name != '':
+			profile.last_name = last_name
+		if phone_number != '':
+			profile.phone_number = phone_number
+		if whatsapp_number != '':
+			profile.whatsapp_number = whatsapp_number
+		profile.save()
+		serialized_profile = AdminStudentProfileListDetailSerializer(profile)
+		return Response(serialized_profile.data)
+
+
 
 class AdminPrincipalViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
@@ -108,10 +149,49 @@ class AdminPrincipalViewSet(viewsets.ModelViewSet):
 		queryset = Principal.objects.all()
 		user = self.request.user
 		API_key = self.request.META.get('HTTP_AUTHORIZATION')
-		print(user)
-		print(API_key)
 		return queryset
 
+	@action(detail=True, methods=['get', 'list'])
+	def profile(self, request, pk=None):
+	    principal = self.get_object()
+	    profile = principal.profile
+	    serialized_profile = AdminPrincipalProfileListDetailSerializer(profile)
+
+	    return Response(serialized_profile.data)
+
+
+	@action(detail=True, methods=['get', 'post', 'list'])
+	def edit_profile(self, request, *args, **kwargs):
+		principal = self.get_object()
+		profile = principal.profile
+		draft_request_data = request.data.copy()
+		gender = draft_request_data.get('gender')
+		title = draft_request_data.get('title')
+		id_number = draft_request_data.get('id_number')
+		first_name = draft_request_data.get('first_name')
+		middle_name = draft_request_data.get('middle_name')
+		last_name = draft_request_data.get('last_name')
+		phone_number = draft_request_data.get('phone_number')
+		whatsapp_number = draft_request_data.get('whatsapp_number')
+		if gender != '':
+			profile.gender = gender
+		if title != '':
+			profile.title = title
+		if id_number != '':
+			profile.id_number = id_number
+		if first_name != '':
+			profile.first_name = first_name
+		if middle_name != '':
+			profile.middle_name = middle_name
+		if last_name != '':
+			profile.last_name = last_name
+		if phone_number != '':
+			profile.phone_number = phone_number
+		if whatsapp_number != '':
+			profile.whatsapp_number = whatsapp_number
+		profile.save()
+		serialized_profile = AdminPrincipalProfileListDetailSerializer(profile)
+		return Response(serialized_profile.data)
 
 class AdminParentViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
@@ -119,7 +199,47 @@ class AdminParentViewSet(viewsets.ModelViewSet):
 	queryset = Parent.objects.all()
 	serializer_class = AdminParentListDetailSerializer
 
+	@action(detail=True, methods=['get', 'list'])
+	def profile(self, request, pk=None):
+	    parent = self.get_object()
+	    profile = parent.profile
+	    serialized_profile = AdminParentProfileListDetailSerializer(profile)
 
+	    return Response(serialized_profile.data)
+
+
+	@action(detail=True, methods=['get', 'post', 'list'])
+	def edit_profile(self, request, *args, **kwargs):
+		parent = self.get_object()
+		profile = parent.profile
+		draft_request_data = request.data.copy()
+		gender = draft_request_data.get('gender')
+		title = draft_request_data.get('title')
+		id_number = draft_request_data.get('id_number')
+		first_name = draft_request_data.get('first_name')
+		middle_name = draft_request_data.get('middle_name')
+		last_name = draft_request_data.get('last_name')
+		phone_number = draft_request_data.get('phone_number')
+		whatsapp_number = draft_request_data.get('whatsapp_number')
+		if gender != '':
+			profile.gender = gender
+		if title != '':
+			profile.title = title
+		if id_number != '':
+			profile.id_number = id_number
+		if first_name != '':
+			profile.first_name = first_name
+		if middle_name != '':
+			profile.middle_name = middle_name
+		if last_name != '':
+			profile.last_name = last_name
+		if phone_number != '':
+			profile.phone_number = phone_number
+		if whatsapp_number != '':
+			profile.whatsapp_number = whatsapp_number
+		profile.save()
+		serialized_profile = AdminParentProfileListDetailSerializer(profile)
+		return Response(serialized_profile.data)
 
 
 
@@ -129,7 +249,47 @@ class AdminTeacherViewSet(viewsets.ModelViewSet):
 	queryset = Teacher.objects.all()
 	serializer_class = AdminTeacherListDetailSerializer
 
+	@action(detail=True, methods=['get', 'list'])
+	def profile(self, request, pk=None):
+	    teacher = self.get_object()
+	    profile = teacher.profile
+	    serialized_profile = AdminTeacherProfileListDetailSerializer(profile)
 
+	    return Response(serialized_profile.data)
+
+
+	@action(detail=True, methods=['get', 'post', 'list'])
+	def edit_profile(self, request, *args, **kwargs):
+		teacher = self.get_object()
+		profile = teacher.profile
+		draft_request_data = request.data.copy()
+		gender = draft_request_data.get('gender')
+		title = draft_request_data.get('title')
+		id_number = draft_request_data.get('id_number')
+		first_name = draft_request_data.get('first_name')
+		middle_name = draft_request_data.get('middle_name')
+		last_name = draft_request_data.get('last_name')
+		phone_number = draft_request_data.get('phone_number')
+		whatsapp_number = draft_request_data.get('whatsapp_number')
+		if gender != '':
+			profile.gender = gender
+		if title != '':
+			profile.title = title
+		if id_number != '':
+			profile.id_number = id_number
+		if first_name != '':
+			profile.first_name = first_name
+		if middle_name != '':
+			profile.middle_name = middle_name
+		if last_name != '':
+			profile.last_name = last_name
+		if phone_number != '':
+			profile.phone_number = phone_number
+		if whatsapp_number != '':
+			profile.whatsapp_number = whatsapp_number
+		profile.save()
+		serialized_profile = AdminTeacherProfileListDetailSerializer(profile)
+		return Response(serialized_profile.data)
 
 
 class AdminBursarViewSet(viewsets.ModelViewSet):
@@ -138,7 +298,47 @@ class AdminBursarViewSet(viewsets.ModelViewSet):
 	queryset = Bursar.objects.all()
 	serializer_class = AdminBursarListDetailSerializer
 
+	@action(detail=True, methods=['get', 'list'])
+	def profile(self, request, pk=None):
+	    bursar = self.get_object()
+	    profile = bursar.profile
+	    serialized_profile = AdminBursarProfileListDetailSerializer(profile)
 
+	    return Response(serialized_profile.data)
+
+
+	@action(detail=True, methods=['get', 'post', 'list'])
+	def edit_profile(self, request, *args, **kwargs):
+		bursar = self.get_object()
+		profile = bursar.profile
+		draft_request_data = request.data.copy()
+		gender = draft_request_data.get('gender')
+		title = draft_request_data.get('title')
+		id_number = draft_request_data.get('id_number')
+		first_name = draft_request_data.get('first_name')
+		middle_name = draft_request_data.get('middle_name')
+		last_name = draft_request_data.get('last_name')
+		phone_number = draft_request_data.get('phone_number')
+		whatsapp_number = draft_request_data.get('whatsapp_number')
+		if gender != '':
+			profile.gender = gender
+		if title != '':
+			profile.title = title
+		if id_number != '':
+			profile.id_number = id_number
+		if first_name != '':
+			profile.first_name = first_name
+		if middle_name != '':
+			profile.middle_name = middle_name
+		if last_name != '':
+			profile.last_name = last_name
+		if phone_number != '':
+			profile.phone_number = phone_number
+		if whatsapp_number != '':
+			profile.whatsapp_number = whatsapp_number
+		profile.save()
+		serialized_profile = AdminBursarProfileListDetailSerializer(profile)
+		return Response(serialized_profile.data)
 
 class BursarProfileViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)

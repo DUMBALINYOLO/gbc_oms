@@ -3,7 +3,7 @@ import InformationTechnologyLayout from "../layout/InformationTechnologyLayout";
 import { getAdminTeachers, addTeacher } from '../../actions/people';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import CloseIcon from '@material-ui/icons/Close';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
 import {
@@ -113,13 +113,17 @@ const AdminTeachers = props => {
       setOpenPopup(true)
   }
 
+  const handleClick = id =>{
+    history.push(`/itdashboard/teachers/${id}`)
+  }
+
   return (
     <InformationTechnologyLayout>
       <Paper className={classes.pageContent}>
 
       <Toolbar>
           <Controls.Input
-              label="Search Principal"
+              label="Search Teacher"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
@@ -152,8 +156,10 @@ const AdminTeachers = props => {
                                   <EditOutlinedIcon fontSize="small" />
                               </Controls.ActionButton>
                               <Controls.ActionButton
-                                  color="secondary">
-                                  <CloseIcon fontSize="small" />
+                                  color="secondary"
+                                  onClick={() => { handleClick(item.id) }}
+                                >
+                                  <PermIdentityIcon fontSize="small" />
                               </Controls.ActionButton>
                           </TableCell>
                       </TableRow>)
@@ -164,7 +170,7 @@ const AdminTeachers = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Principal Form"
+      title="Teacher Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >
