@@ -104,11 +104,6 @@ class Technology extends React.Component {
                   </figure>
                   <Typography variant="h5" className={classes.redux}>MODERATIONS</Typography>
                 </div>
-                <Hidden smDown>
-                  <Link style={{ textDecoration: 'none', color: 'white' }} to="/profile">
-                    <Button variant="contained" size="large" color="secondary">CLICK TO SEE MORE</Button>
-                  </Link>
-                </Hidden>
                 <div className={classNames(classes.wool, slideMode && classes.slideMode)}>
                   <figure>
                     <img src={fift} alt="webpack" />
