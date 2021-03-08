@@ -736,6 +736,7 @@ export const getStudyNotes = (topic_id, token) => dispatch => {
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
+
 export const getStudyNote = (id, token) => dispatch => {
     const headers ={
           "Content-Type": "application/json",
@@ -927,6 +928,7 @@ export const getStudyNoteNotes = (note_id, token) => dispatch => {
             });
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
+
 
 
 

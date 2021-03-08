@@ -72,6 +72,11 @@ from courses.serializers import (
 
 
 
+def get_note(note_id):
+	note = get_object_or_404(StudyNote, id=note_id)
+	return note
+
+
 class AdminUpcomingCourseViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)#SessionAuthentication, BasicAuthentication)
 	permission_classes = [permissions.AllowAny,]
@@ -477,9 +482,6 @@ class AdminStudyNoteViewSet(viewsets.ModelViewSet):
 		return queryset
 
 
-def get_note(note_id):
-	note = get_object_or_404(StudyNote, id=note_id)
-	return note
 
 class AdminImageViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
@@ -523,22 +525,15 @@ class AdminNoteViewSet(viewsets.ModelViewSet):
 
 
 	def get_queryset(self, *args, **kwargs):
-		queryset = Text.objects.all().order_by('-id')
-		deep_query = self.request.query_params.get('q', None)
-		if deep_query is not None:
-			queryset = queryset.filter(
-                ComplexQueryLookUp(title__icontains=deep_query)
-            )
-		note_id = self.request.query_params.get('q', None)
+		queryset = Text.objects.all()
+
+		note_id = self.request.query_params.get('id', None)
 		if note_id is not None:
 			note = get_note(note_id=note_id)
-			queryset = note.notes.all().order_by('-id')
-			if deep_query is not None:
-				queryset = queryset.filter(
-	                ComplexQueryLookUp(title__icontains=deep_query)
-	            )
-
+			queryset = note.notes.all()
 		return queryset
+
+
 
 
 class AdminFileViewSet(viewsets.ModelViewSet):
