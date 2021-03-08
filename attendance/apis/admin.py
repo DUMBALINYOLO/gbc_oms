@@ -1,6 +1,7 @@
 from rest_framework import viewsets, generics, permissions
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from django.shortcuts import get_object_or_404
+from django.db.models import Q as ComplexQueryLookUp
 from rest_framework.response import Response
 from attendance.models import  Attendance, AttendanceRecord
 from attendance.serializers import (

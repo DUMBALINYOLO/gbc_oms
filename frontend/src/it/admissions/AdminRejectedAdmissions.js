@@ -57,11 +57,12 @@ const AdminRejectedAdmissions = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [newadmission, setNewAdmission] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getRejectedAdmissions(token);
+        props.getRejectedAdmissions(query, token);
     }
     console.log('mount it!');
 
@@ -77,14 +78,19 @@ const AdminRejectedAdmissions = props => {
       else{
         props.addAdmission(fee, token)
         setNewAdmission(fee)
-        props.getRejectedAdmissions(token);
+        props.getRejectedAdmissions(query, token);
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getRejectedAdmissions(query, token)
 
+  }
 
   const {records} = props;
 
@@ -119,12 +125,14 @@ const AdminRejectedAdmissions = props => {
       <Toolbar>
           <Controls.Input
               label="Search Rejected Admission"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

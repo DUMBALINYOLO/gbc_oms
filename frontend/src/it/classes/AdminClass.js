@@ -62,16 +62,15 @@ const AdminClass = props => {
   const [openPopup, setOpenPopup] = useState(false)
   const history = useHistory();
   const [newclass, setNewClass] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
   
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getClasses(token);
+        props.getClasses(query, token);
     }
     console.log('mount it!');
-
-
   }, [newclass]);
 
 
@@ -82,14 +81,18 @@ const AdminClass = props => {
       }else{
         props.addClass(classi, token)
         setNewClass(classi)
-        props.getClasses(token);
+        props.getClasses(query, token);
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getClasses(query,token)
+  }
 
   const {records} = props;
 
@@ -127,13 +130,14 @@ const AdminClass = props => {
       <Toolbar>
           <Controls.Input
               label="Search Class"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
-              onChange={handleSearch}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

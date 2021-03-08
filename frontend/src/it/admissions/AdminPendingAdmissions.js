@@ -58,11 +58,12 @@ const AdminPendingAdmissions = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [newadmission, setNewAdmission] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getPendingAdmissions(token);
+        props.getPendingAdmissions(query, token);
     }
     console.log('mount it!');
 
@@ -78,17 +79,19 @@ const AdminPendingAdmissions = props => {
       else{
         props.addAdmission(fee, token)
         setNewAdmission(fee)
-        props.getPendingAdmissions(token);
+        props.getPendingAdmissions(query, token);
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getPendingAdmissions(query, token)
 
-
-
-
+  }
 
   const {records} = props;
 
@@ -123,12 +126,14 @@ const AdminPendingAdmissions = props => {
       <Toolbar>
           <Controls.Input
               label="Search Pending Admission"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

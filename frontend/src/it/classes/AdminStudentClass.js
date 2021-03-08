@@ -116,18 +116,11 @@ class AdminStudentClass extends React.Component {
 }
 
 
-// CompanyProfile.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
-
-
 const mapStateToProps = state => ({
   force: state, // force state from reducer
   classi: state.classes.classi,
   token: state.auth.token,
 });
-
-
 
 const UserProfileMapped = connect(
   mapStateToProps,

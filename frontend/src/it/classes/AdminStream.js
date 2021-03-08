@@ -54,15 +54,14 @@ const AdminStream = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [newclass, setNewClass] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getStreams(token);
+        props.getStreams(query, token);
     }
     console.log('mount it!');
-
-
   }, [newclass]);
 
 
@@ -73,14 +72,18 @@ const AdminStream = props => {
       }else{
         props.addStream(stream, token)
         setNewClass(stream)
-        props.getStreams(token);
+        props.getStreams(query, token);
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getStreams(query, token)
+  }
 
   const {records} = props;
 
@@ -115,12 +118,14 @@ const AdminStream = props => {
       <Toolbar>
           <Controls.Input
               label="Search Stream"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

@@ -45,8 +45,6 @@ const headCells = [
   { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -58,6 +56,7 @@ const Records = props => {
     const [openPopup, setOpenPopup] = useState(false)
     const [records, setRecords] = useState([])
     const [newrecord, setNewRecord] = useState({})
+    const [query, setQuery] = useState('')
     const {token} = props;
 
     const {id} =props.data
@@ -73,6 +72,11 @@ const Records = props => {
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
+  }
+
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
   }
 
   useEffect(() => {
@@ -129,12 +133,14 @@ const Records = props => {
       <Toolbar>
           <Controls.Input
               label="Search Record"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

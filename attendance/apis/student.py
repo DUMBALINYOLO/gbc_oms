@@ -1,6 +1,7 @@
 from rest_framework import viewsets, generics, permissions
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.response import Response
+from django.db.models import Q as ComplexQueryLookUp
 from django.shortcuts import get_object_or_404
 from attendance.models import AttendanceRecord
 from attendance.serializers import (
@@ -30,5 +31,4 @@ class StudentAttendanceViewSet(viewsets.ModelViewSet):
 														'attendance',
 														'student'
 													)
-
 		return queryset

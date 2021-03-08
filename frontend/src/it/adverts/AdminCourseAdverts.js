@@ -23,8 +23,6 @@ import  useTable  from "../../components/table/useTable";
 import InformationTechnologyLayout from '../layout/InformationTechnologyLayout';
 
 
-
-
 const useStyles = makeStyles(theme => ({
   pageContent: {
       margin: theme.spacing(5),
@@ -40,10 +38,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-
-
-
-
 const AdminCourseAdverts = props => {
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null)
@@ -51,11 +45,12 @@ const AdminCourseAdverts = props => {
   const [openPopup, setOpenPopup] = useState(false)
   const [expanded, setExpanded] = useState('panel_0')
   const [newAdvert, setNewAdvert] = useState({})
+  const [query, setQuery] = useState('')
   const {id} = 1;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getCourseAdverts();
+        props.getCourseAdverts(query);
     }
     console.log('mount it!');
 
@@ -65,14 +60,17 @@ const AdminCourseAdverts = props => {
   const addOrEdit = (fee, resetForm) => {
       props.addCourseAdvert(fee, props.token)
       setNewAdvert(fee)
-      console.log(fee)
-      props.getCourseAdverts()
+      props.getCourseAdverts(query)
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getCourseAdverts(query)
+  }
 
   const {records} = props;
 
@@ -99,12 +97,14 @@ const AdminCourseAdverts = props => {
       <Toolbar>
           <Controls.Input
               label="Search Advert"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

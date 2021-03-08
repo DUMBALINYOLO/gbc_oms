@@ -46,10 +46,6 @@ const headCells = [
   { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
-
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -61,12 +57,13 @@ const AdminApprovedAdmissions = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [newadmission, setNewAdmission] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
 
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAcceptedAdmissions(token);
+        props.getAcceptedAdmissions(query, token);
     }
     console.log('mount it!');
   }, [newadmission]);
@@ -80,13 +77,19 @@ const AdminApprovedAdmissions = props => {
       else{
         props.addFee(fee, token)
         setNewAdmission(fee)
-        props.getAcceptedAdmissions(token);
+        props.getAcceptedAdmissions(query, token);
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getAcceptedAdmissions(query, token)
+
+  }
 
 
   const {records} = props;
@@ -122,12 +125,14 @@ const AdminApprovedAdmissions = props => {
       <Toolbar>
           <Controls.Input
               label="Search Approved Admission"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"
