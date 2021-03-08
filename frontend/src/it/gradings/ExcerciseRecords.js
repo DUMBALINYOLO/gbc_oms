@@ -165,7 +165,7 @@ const ExcerciseRecords = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Edit Record"
+      title="Record Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

@@ -54,8 +54,6 @@ export class AdminAssignment extends React.Component {
     const { adminstudentassignment } = this.props;
     const { id } = adminstudentassignment;
 
-    console.log(adminstudentassignment)
-    console.log(id)
 
     return (
       <GradingBag>

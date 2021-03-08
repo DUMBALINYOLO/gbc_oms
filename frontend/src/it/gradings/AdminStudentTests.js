@@ -173,7 +173,7 @@ const AdminStudentTests = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Grade Form"
+      title="Test Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

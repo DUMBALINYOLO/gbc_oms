@@ -124,14 +124,13 @@ const AdminStudentAssignments = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Fee"
+              label="Search Assignment"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
-              onChange={handleSearch}
           />
           <Controls.Button
               text="Add New"
@@ -174,7 +173,7 @@ const AdminStudentAssignments = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Grade Form"
+      title="Assignment Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >
