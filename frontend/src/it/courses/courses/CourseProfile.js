@@ -36,16 +36,24 @@ const options = {
 
 const ClassProfile = props => {
   const classes = useStyles();
-  const {max_population, population, class_teacher, year, creation_date} = props.data;
+  const {status, created, short_name, end_date, course_number, description} = props.data;
+
+
+
+
+
+
+
 
   return (
     <>
       <Paper className={classes.pageContent}>
-        <h4>MAX POPULATION: {max_population}</h4>
-        <h4>POPULATION: {population}</h4>
-        <h4>CLASS TEACHER: {class_teacher}</h4>
-        <h5>YEAR: {year}</h5>
-        <h5>CREATION DATE: {creation_date}</h5>
+        <h4>STATUS: {status}</h4>
+        <h4>DATE CREATED: {created}</h4>
+        <h4>SHORT NAME: {short_name}</h4>
+        <h4>END DATE: {end_date}</h4>
+        <h4>COURSE NUMBER: {course_number}</h4>
+        <h5>DESCRIPTION: {description}</h5>
       </Paper>
     </>
   );

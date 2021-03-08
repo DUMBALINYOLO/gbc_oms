@@ -34,7 +34,7 @@ class StreamViewSet(viewsets.ModelViewSet):
 
 
 class StudentClassViewSet(viewsets.ModelViewSet):
-	queryset = StudentClass.objects.all()
+	queryset = StudentClass.objects.all().order_by('-id')
 	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.AllowAny,]
 

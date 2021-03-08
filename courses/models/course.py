@@ -43,7 +43,7 @@ class Course(SoftDeletionModel):
     full_name = models.CharField(max_length=500)
     short_name = models.CharField(max_length=100)
     status = models.CharField(max_length=300, choices=COURSES_STATUS_CHOICES)
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateField(auto_now_add=True)
     start_date = models.DateField()
     end_date = models.DateField()
     course_number = models.CharField(max_length=200, unique=True, blank=True, null=True)
@@ -196,6 +196,6 @@ class Review(SoftDeletionModel):
     comment = models.CharField(max_length=200)
     rating = models.IntegerField(choices=COURSE_RATING_CHOICES)
     course_id = models.IntegerField(blank=True, null=True)
-    
+
     def __str__(self):
         return self.reviewer.__str__()

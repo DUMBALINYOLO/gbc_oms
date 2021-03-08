@@ -81,7 +81,7 @@ class AdminUpcomingCourseViewSet(viewsets.ModelViewSet):
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['put', 'patch', 'update', 'create']:
 			return ItCourseCreateUpdateSerializer
-		return ItCourseListSerializer
+		return ItCourseDetailSerializer
 
 
 	def get_queryset(self, *args, **kwargs):
@@ -116,7 +116,7 @@ class AdminOngoingCourseViewSet(viewsets.ModelViewSet):
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['put', 'patch', 'update', 'create']:
 			return ItCourseCreateUpdateSerializer
-		return ItCourseListSerializer
+		return ItCourseDetailSerializer
 
 
 	def get_queryset(self, *args, **kwargs):
@@ -149,7 +149,7 @@ class AdminFinishedCourseViewSet(viewsets.ModelViewSet):
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['put', 'patch', 'update', 'create']:
 			return ItCourseCreateUpdateSerializer
-		return ItCourseListSerializer
+		return ItCourseDetailSerializer
 
 
 	def get_queryset(self, *args, **kwargs):
@@ -184,7 +184,7 @@ class AdminInactiveCourseViewSet(viewsets.ModelViewSet):
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['put', 'patch', 'update', 'create']:
 			return ItCourseCreateUpdateSerializer
-		return ItCourseListSerializer
+		return ItCourseDetailSerializer
 
 
 	def get_queryset(self, *args, **kwargs):

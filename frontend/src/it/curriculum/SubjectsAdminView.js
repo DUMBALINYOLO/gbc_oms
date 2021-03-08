@@ -77,6 +77,7 @@ const SubjectAdminView = props => {
       }else{
         props.addSubject(subject, token)
         setNewCurriculum(subject)
+        console.log(subject)
         props.getSubjects(token);
       }
       resetForm()

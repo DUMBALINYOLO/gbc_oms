@@ -34,18 +34,19 @@ const options = {
   filterType: "checkbox"
 };
 
+
 const ClassProfile = props => {
   const classes = useStyles();
-  const {max_population, population, class_teacher, year, creation_date} = props.data;
+
+
 
   return (
     <>
       <Paper className={classes.pageContent}>
-        <h4>MAX POPULATION: {max_population}</h4>
-        <h4>POPULATION: {population}</h4>
-        <h4>CLASS TEACHER: {class_teacher}</h4>
-        <h5>YEAR: {year}</h5>
-        <h5>CREATION DATE: {creation_date}</h5>
+        <h2>
+          THIS IS A SUBTOPIC WHICH BELONGS TO A COURSE. A SUBTOPIC HAS GOT STUDY CONTENT ATTACHED TO
+          IT, MAY YOU PROCEED TO VIEW STUDY CONTENTS ASSOCIATED WITH THIS SUBTOPIC
+        </h2>
       </Paper>
     </>
   );

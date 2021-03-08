@@ -16,7 +16,7 @@ class StudentClass(SoftDeletionModel):
 				)
 	max_population = models.IntegerField(default=0)
 	population = models.IntegerField(default=0)
-	class_teacher = models.OneToOneField('people.TeacherProfile', on_delete=models.SET_NULL, null=True)
+	class_teacher = models.ForeignKey('people.TeacherProfile', on_delete=models.SET_NULL, null=True)
 	year = models.CharField(max_length=68)
 	creation_date  =   models.DateTimeField(auto_now=False, auto_now_add=True)
 	subjects = models.ManyToManyField(

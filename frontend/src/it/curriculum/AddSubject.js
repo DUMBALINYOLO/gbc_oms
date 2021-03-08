@@ -125,6 +125,8 @@ const AddSubject = props => {
   );
 };
 
+
+
 const mapStateToProps = state =>({
     curriculums: state.curriculums.curriculums,
     token: state.auth.token

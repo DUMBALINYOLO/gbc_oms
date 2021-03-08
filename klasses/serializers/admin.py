@@ -66,7 +66,8 @@ class AdminStudentClassCreateUpdateSerializer(serializers.ModelSerializer):
 
 
 class AdminStudentClassListDetailSerializer(serializers.ModelSerializer):
-	# subjects = KlassStudiedSubjectListSerializer(many=True)
+	class_teacher = StringSerializer()
+	creation_date = serializers.DateTimeField(format="%d-%m-%Y")
 
 	class Meta:
 		model = StudentClass
@@ -78,10 +79,12 @@ class AdminStudentClassListDetailSerializer(serializers.ModelSerializer):
 			'population',
 			'class_teacher',
 			'year',
-			# 'subjects',
 			'creation_date',
 			'status',
 		]
+
+	def get_status(self, obj):
+		return obj.get_status_display()
 
 
 

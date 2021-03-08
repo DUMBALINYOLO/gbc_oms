@@ -46,7 +46,7 @@ class SubjectViewSet(viewsets.ModelViewSet):
 
 
 	def get_queryset(self, *args, **kwargs):
-		queryset = Subject.objects.all()
+		queryset = Subject.objects.all().order_by('-id')
 		user = self.request.user
 		print(user)
 		return queryset
