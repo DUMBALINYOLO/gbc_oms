@@ -5,7 +5,7 @@ import os
 from datetime import timedelta
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DEBUG = False
+DEBUG = True
 if DEBUG:
     from dotenv import load_dotenv
     load_dotenv()

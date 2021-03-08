@@ -17,16 +17,23 @@ import {
         GET_ENROLLMENTS,
         EDIT_ENROLLMENT,
         GET_STUDY_MODE_CHOICES,
+        GET_UNENROLLED_STUDENTS,
     } from '../types/classTypes';
+
+
 import {
     classesURL,
     classstreamsURL,
     classsubjectsURL,
     classstudentsURL,
     enrollmentsURL,
-    studymodechoicesURL
+    studymodechoicesURL,
+    unenrolledstudentsURL,
 } from '../constants';
 import { createMessage, returnErrors } from './messages';
+
+
+
 
 
 export const getStudyModeChoices = (token) => dispatch => {

@@ -8,6 +8,10 @@ from klasses.models import (
 from curriculum.models import (
 			KlassStudiedSubject,
 		)
+from people.models import StudentProfile
+
+
+
 
 
 
@@ -15,6 +19,21 @@ class StringSerializer(serializers.StringRelatedField):
 
 	def to_internal_value(self, value):
 		return self.value
+
+
+class EnrollmentStudentProfileListDetailSerializer(serializers.ModelSerializer):
+	guardian = StringSerializer()
+	gender = serializers.SerializerMethodField()
+
+	class Meta:
+		model = StudentProfile
+		fields = [
+			'id',
+			'name',
+		]
+
+
+
 
 
 class AdminStreamSerializer(serializers.ModelSerializer):
@@ -131,7 +150,6 @@ class StudentEnrollmentListDetailSerializer(serializers.ModelSerializer):
 			'enr_klass',
 		]
 
-	
+
 	def get_status(self, obj):
 		return obj.get_status_display()
-

@@ -9,9 +9,9 @@ class StudentClass(SoftDeletionModel):
 
 	name = models.CharField(max_length=68)
 	stream = models.ForeignKey(
-					'klasses.Stream', 
+					'klasses.Stream',
 					related_name='classes',
-					on_delete=models.SET_NULL, 
+					on_delete=models.SET_NULL,
 					null=True
 				)
 	max_population = models.IntegerField(default=0)
@@ -20,12 +20,12 @@ class StudentClass(SoftDeletionModel):
 	year = models.CharField(max_length=68)
 	creation_date  =   models.DateTimeField(auto_now=False, auto_now_add=True)
 	subjects = models.ManyToManyField(
-	        'curriculum.Subject', 
+	        'curriculum.Subject',
 	    # related_name="courses",
 	        through='curriculum.KlassStudiedSubject',
 	    )
 	students = models.ManyToManyField(
-	    'people.StudentProfile', 
+	    'people.StudentProfile',
 	    related_name="klasses",
 	    through='StudentEnrollment',)
 	status = models.CharField(
@@ -48,18 +48,18 @@ class StudentClass(SoftDeletionModel):
 		self.save()
 		return self.population
 
-    
+
 	def save(self, *args, **kwargs):
 		super(StudentClass, self).save(*args, **kwargs)
 		subjects_count = Subject.objects.count()
 		if self.subjects.count() < subjects_count:
 			for subject in Subject.objects.all():
 				KlassStudiedSubject.objects.create(
-										subject=subject, 
+										subject=subject,
 										status='unstudied',
 										klass = self
 									)
- 
+
     # @property
     # def is_full(self):
     # 	pass
@@ -71,6 +71,3 @@ class StudentClass(SoftDeletionModel):
     # @property
     # def has_place(self):
     # 	pass
-    	
-
-    	
