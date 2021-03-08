@@ -379,6 +379,7 @@ class ItStudyNoteListSerializer(serializers.ModelSerializer):
 			'title',
 			'status',
 			'approval_status',
+			'note',
 
 			]
 
@@ -690,9 +691,8 @@ class ItOwnersSerializer(serializers.ModelSerializer):
 
 class ItCourseDetailSerializer(serializers.ModelSerializer):
 	status = serializers.SerializerMethodField()
-	stream = serializers.SerializerMethodField()
-	start_date = serializers.DateTimeField(format="%d-%m-%Y")
-	end_date = serializers.DateTimeField(format="%d-%m-%Y")
+	# start_date = serializers.DateTimeField(format="%d-%m-%Y")
+	# end_date = serializers.DateTimeField(format="%d-%m-%Y")
 
 	class Meta:
 		model = Course
@@ -700,9 +700,7 @@ class ItCourseDetailSerializer(serializers.ModelSerializer):
 			'id',
 			'full_name',
 			'short_name',
-			'stream',
 			'status',
-			'overview',
 			'start_date',
 			'end_date',
 			'course_number',
@@ -711,8 +709,6 @@ class ItCourseDetailSerializer(serializers.ModelSerializer):
 		]
 
 
-	def get_stream(self, obj):
-		return obj.get_stream_display()
 
 	def get_status(self, obj):
 		return obj.get_status_display()

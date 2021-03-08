@@ -26,6 +26,7 @@ module.exports = {
   approved: '/itdashboard/approved-admissions',
   pending: '/itdashboard/pending-admissions',
   meeting: '/itdashboard/meeting-admissions',
+  enrollments: '/itdashboard/enrollments',
   rejected: '/itdashboard/rejected-admissions',
 
   oncourses: '/teacherdashboard/ongoingcourses',

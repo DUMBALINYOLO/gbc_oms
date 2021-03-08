@@ -179,6 +179,21 @@ class UserDeques extends React.Component {
                       </span>
                     </Button>
                   </Grid>
+                  <Grid item sm={4} xs={12}>
+                    <Button
+                      color="secondary"
+                      className={classes.button}
+                      component={Link}
+                      to={link.enrollments}
+                    >
+                      <span className={classes.text}>
+                        ENROLLMENTS
+                        <Typography variant="caption" className={classes.info}>
+                          <CancelPresentation/>
+                        </Typography>
+                      </span>
+                    </Button>
+                  </Grid>
               </Grid>
             </section>
           </Paper>

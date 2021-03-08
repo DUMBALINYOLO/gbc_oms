@@ -8,6 +8,10 @@ from klasses.models import (
 from curriculum.models import (
 			KlassStudiedSubject,
 		)
+from people.models import StudentProfile
+
+
+
 
 
 
@@ -15,6 +19,21 @@ class StringSerializer(serializers.StringRelatedField):
 
 	def to_internal_value(self, value):
 		return self.value
+
+
+class EnrollmentStudentProfileListDetailSerializer(serializers.ModelSerializer):
+	guardian = StringSerializer()
+	gender = serializers.SerializerMethodField()
+
+	class Meta:
+		model = StudentProfile
+		fields = [
+			'id',
+			'name',
+		]
+
+
+
 
 
 class AdminStreamSerializer(serializers.ModelSerializer):
@@ -47,7 +66,8 @@ class AdminStudentClassCreateUpdateSerializer(serializers.ModelSerializer):
 
 
 class AdminStudentClassListDetailSerializer(serializers.ModelSerializer):
-	# subjects = KlassStudiedSubjectListSerializer(many=True)
+	class_teacher = StringSerializer()
+	creation_date = serializers.DateTimeField(format="%d-%m-%Y")
 
 	class Meta:
 		model = StudentClass
@@ -59,10 +79,12 @@ class AdminStudentClassListDetailSerializer(serializers.ModelSerializer):
 			'population',
 			'class_teacher',
 			'year',
-			# 'subjects',
 			'creation_date',
 			'status',
 		]
+
+	def get_status(self, obj):
+		return obj.get_status_display()
 
 
 
@@ -131,7 +153,6 @@ class StudentEnrollmentListDetailSerializer(serializers.ModelSerializer):
 			'enr_klass',
 		]
 
-	
+
 	def get_status(self, obj):
 		return obj.get_status_display()
-

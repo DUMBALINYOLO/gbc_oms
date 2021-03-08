@@ -13,13 +13,15 @@ from klasses.serializers import (
 				KlassStudiedSubjectCreateUpdateSerializer,
 				KlassStudiedSubjectListSerializer,
 				StudentEnrollmentListDetailSerializer,
-				StudentEnrollmentCreateUpdateSerializer
+				StudentEnrollmentCreateUpdateSerializer,
+				EnrollmentStudentProfileListDetailSerializer
 			)
 from curriculum.models import (
 			KlassStudiedSubject,
 			StudentStudySubject,
 
 	)
+from people.models import StudentProfile
 
 
 
@@ -32,7 +34,7 @@ class StreamViewSet(viewsets.ModelViewSet):
 
 
 class StudentClassViewSet(viewsets.ModelViewSet):
-	queryset = StudentClass.objects.all()
+	queryset = StudentClass.objects.all().order_by('-id')
 	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.AllowAny,]
 
@@ -108,3 +110,11 @@ class StudentEnrollmentViewSet(viewsets.ModelViewSet):
 		if self.action in ['create', 'put', 'patch', 'update']:
 			return StudentEnrollmentCreateUpdateSerializer
 		return StudentEnrollmentListDetailSerializer
+
+
+
+class UnEnrolledStudentViewSet(viewsets.ViewSet):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
+	queryset = StudentProfile.objects.filter(application__isnull=True)
+	serializer_class = EnrollmentStudentProfileListDetailSerializer

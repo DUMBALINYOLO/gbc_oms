@@ -61,6 +61,7 @@ class SubjectListDetailSerializer(serializers.ModelSerializer):
 		]
 
 
+
 class KlassStudiedSubjectCreateUpdateSerializer(serializers.ModelSerializer):
 
 
@@ -125,4 +126,3 @@ class StudentStudySubjectListDetailSerializer(serializers.ModelSerializer):
 			'subject',
 			'status',
 		]
-

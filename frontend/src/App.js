@@ -121,6 +121,7 @@ import TeacherBioDeques from './teacher/settings/BioDeques';
 
 import StudentCourseDeques from './student/settings/CourseDeques';
 import StudentBioDeques from './student/settings/BioDeques';
+import Enrollments from './it/admissions/Enrollments';
 
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
@@ -152,14 +153,14 @@ class App extends React.Component {
                 <Route exact path='/' component={LandingPage} />
                 <Route exact path='/login' component={GerereLogin} />
 								<Route exact path='/signup' component={GerereRegister} />
-                                <Route exact path='/itdashboard/users' component={UserDeques} />
-                                <Route exact path='/itdashboard/courses' component={CourseDeques} />
-                                <Route exact path='/itdashboard/bio' component={BioDeques} />
-                                <Route exact path='/itdashboard/admissions' component={AdmissionDeques} />
-                                <Route exact path='/teacherdashboard/courses' component={TeacherCourseDeques} />
-                                <Route exact path='/teacherdashboard/bio' component={TeacherBioDeques} />
-                                <Route exact path='/studentdashboard/courses' component={StudentCourseDeques} />
-                                <Route exact path='/studentdashboard/bio' component={StudentBioDeques} />
+                <Route exact path='/itdashboard/users' component={UserDeques} />
+                <Route exact path='/itdashboard/courses' component={CourseDeques} />
+                <Route exact path='/itdashboard/bio' component={BioDeques} />
+                <Route exact path='/itdashboard/admissions' component={AdmissionDeques} />
+                <Route exact path='/teacherdashboard/courses' component={TeacherCourseDeques} />
+                <Route exact path='/teacherdashboard/bio' component={TeacherBioDeques} />
+                <Route exact path='/studentdashboard/courses' component={StudentCourseDeques} />
+                <Route exact path='/studentdashboard/bio' component={StudentBioDeques} />
                 <Route exact path='/coursesoffered' component={PuclicOfferedCourses} />
                 <Route exact path='/itdashboard' component={InformationTechnologyHome} />
                 <Route exact path='/publicdashboard' component={PublicDash} />
@@ -177,9 +178,9 @@ class App extends React.Component {
 								<Route exact path='/studentdashboard/topics/:id' component={StudentTopic} />
 								<Route exact path='/studentdashboard/subtopics/:id' component={StudentSubTopic} />
 								<Route exact path='/studentdashboard/notes/:id' component={StudentStudyNote} />
-                                <Route exact path='/studentdashboard/authors' component={StudentAuthors} />
-                                <Route exact path='/studentdashboard/publishers' component={StudentPublishers} />
-                                <Route exact path='/studentdashboard/cities' component={StudentCities} />
+                <Route exact path='/studentdashboard/authors' component={StudentAuthors} />
+                <Route exact path='/studentdashboard/publishers' component={StudentPublishers} />
+                <Route exact path='/studentdashboard/cities' component={StudentCities} />
                 <Route exact path='/wa' component={TeacherLog} />
                 <Route exact path='/teacherdashboard' component={TeacherHome} />
                 <Route exact path='/teacherdashboard/attendance' component={TeacherAttendances} />
@@ -213,7 +214,7 @@ class App extends React.Component {
                 <Route exact path='/itdashboard/bursars' component={AdminBursars} />
                 <Route exact path='/itdashboard/parents' component={AdminParents} />
                 <Route exact path='/itdashboard/teachers' component={AdminTeachers} />
-
+								<Route exact path='/itdashboard/enrollments' component={Enrollments} />
                 <Route exact path='/itdashboard/approved-admissions' component={AdminApprovedAdmissions} />
                 <Route exact path='/itdashboard/pending-admissions' component={AdminPendingAdmissions} />
                 <Route exact path='/itdashboard/meeting-admissions' component={AdminMeetingAdmissions} />

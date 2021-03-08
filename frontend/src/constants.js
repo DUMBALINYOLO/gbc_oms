@@ -31,6 +31,7 @@ export const currenciesURL = `${endpoint}/accounting/currencies/`
 export const billsURL = `${endpoint}/accounting/bills/`
 export const billpaymentsURL = `${endpoint}/accounting/bill-payments/`
 
+
 //manufacture
 export const unverifiedproductionprocessesURL = `${endpoint}/manufacture/unverified-production-processes/`
 export const verifiedproductionprocessesURL = `${endpoint}/manufacture/verified-production-processes/`
@@ -217,6 +218,8 @@ export const classsubjectsURL = `${endpoint}/classes/class-subjects/`
 export const classstudentsURL = `${endpoint}/classes/class-students/`
 export const enrollmentsURL = `${endpoint}/classes/enrollments/`
 export const studymodechoicesURL = `${endpoint}/basedata/study-mode-choices/`
+export const unenrolledstudentsURL = `${endpoint}/classes/unenrolled-students/`
+
 
 
 

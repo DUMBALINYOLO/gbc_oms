@@ -17,6 +17,7 @@ import Chip from '@material-ui/core/Chip';
 import Check from '@material-ui/icons/Check';
 import PapperBlock from '../../components/PapperBlock/PapperBlock';
 import styles from '../../components/Profile/profile-jss';
+import Profile from './Profile';
 
 class About extends React.Component {
     render() {
@@ -31,7 +32,7 @@ class About extends React.Component {
         >
           <Grid item md={7} xs={12}>
             <div>
-              <h1>Soon....</h1>
+              <h1><Profile data={data}/></h1>
             </div>
           </Grid>
 

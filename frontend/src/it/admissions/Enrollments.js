@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import InformationTechnologyLayout from "../layout/InformationTechnologyLayout";
-import { getSubjects, addSubject, editSubject } from '../../actions/curriculums';
+import { getEnrollments, addEnrollment } from '../../actions/classes';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -15,10 +15,10 @@ import {
   Toolbar,
   InputAdornment }
 from '@material-ui/core';
-import AddSubject from './AddSubject';
 import  Controls  from "../../components/formcontrols/Controls";
 import  Popup  from "../../components/formcontrols/Popup";
 import  useTable  from "../../components/table/useTable";
+import Apply from './AddEnrollment'
 
 
 
@@ -39,50 +39,42 @@ const useStyles = makeStyles(theme => ({
 
 const headCells = [
   { id: 'id', label: 'ID' },
-  { id: 'name', label: 'NAME' },
-  { id: 'subject_code', label: 'CODE' },
-  { id: 'curriculum', label: 'CURRICULUM' },
+  { id: 'stdnt', label: 'APPLICANT' },
+  { id: 'enr_klass', label: 'CLASS' },
+  { id: 'status', label: 'STATUS' },
   { id: 'actions', label: 'Actions', disableSorting: true }
 ]
-
-
 
 const options = {
   filterType: "checkbox"
 };
 
-const SubjectAdminView = props => {
+const Enrollments = props => {
   const { history } = props;
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
-  const [newcurriculum, setNewCurriculum] = useState({})
+  const [newadmission, setNewAdmission] = useState({})
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getSubjects(token);
+        props.getEnrollments(token);
     }
     console.log('mount it!');
 
 
-  }, [newcurriculum]);
+  }, [newadmission]);
 
 
-  const addOrEdit = (subject, resetForm, token) => {
-      if (subject.id > 0){
-        props.editSubject(subject.id, subject, token)
-        setNewCurriculum(subject)
-      }else{
-        props.addSubject(subject, token)
-        setNewCurriculum(subject)
-        console.log(subject)
-        props.getSubjects(token);
-      }
-      resetForm()
-      setRecordForEdit(null)
-      setOpenPopup(false)
+  const addOrEdit = (fee, resetForm, token) => {
+        props.addEnrollment(fee, token)
+        setNewAdmission(fee)
+        props.getEnrollments(token);
+        resetForm()
+        setRecordForEdit(null)
+        setOpenPopup(false)
   }
 
 
@@ -119,7 +111,7 @@ const SubjectAdminView = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Subject"
+              label="Search Rejected Admission"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
@@ -142,9 +134,9 @@ const SubjectAdminView = props => {
                   recordsAfterPagingAndSorting().map(item =>
                       (<TableRow key={item.id}>
                           <TableCell>{item.id}</TableCell>
-                          <TableCell>{item.name}</TableCell>
-                          <TableCell>{item.subject_code}</TableCell>
-                          <TableCell>{item.curriculum}</TableCell>
+                          <TableCell>{item.stdnt}</TableCell>
+                          <TableCell>{item.enr_klass}</TableCell>
+                          <TableCell>{item.status}</TableCell>
                           <TableCell>
                               <Controls.ActionButton
                                   color="primary"
@@ -164,11 +156,11 @@ const SubjectAdminView = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Subject Form"
+      title="Rejected Admission Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >
-        <AddSubject
+        <Apply
             recordForEdit={recordForEdit}
             addOrEdit={addOrEdit}
         />
@@ -178,11 +170,11 @@ const SubjectAdminView = props => {
 };
 
 const mapStateToProps = state =>({
-    records: state.curriculums.subjects,
-    token: state.auth.token,
+    records: state.classes.enrollments,
+    token: state.auth.token
 })
 
 export default connect(
   mapStateToProps,
-  {getSubjects, addSubject, editSubject} )
-  (SubjectAdminView);
+  {getEnrollments, addEnrollment} )
+  (Enrollments);

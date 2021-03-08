@@ -29,11 +29,22 @@ const initialState = {
     students: [],
     studentclassstatuschoices: [],
     studymodechoices: [],
-    loading: false
+    loading: false,
+    enrollments: [],
 }
 
 export default function aa(state = initialState, action){
 switch(action.type){
+    case GET_ENROLLMENTS:
+        return {
+            ...state,
+            enrollments: action.payload
+        };
+    case ADD_ENROLLMENT:
+        return {
+            ...state,
+            enrollment: [...state.enrollments, action.payload]
+        };
     case GET_STUDY_MODE_CHOICES:
         return {
             ...state,
