@@ -191,6 +191,27 @@ const navigationConfig = [
         ],
       },
       {
+        id: "admissions",
+        title: "ADMISSION",
+        type: "collapse",
+        icon: <AdmIcon />,
+        badge: {
+          title: "9",
+          bg: "#525E8A",
+          fg: "#FFFFFF",
+
+        },
+        children: [
+          {
+            id: "see",
+            title: "ADMISSIONS",
+            type: "item",
+            url: '/itdashboard/admissions',
+            exact: true,
+          },
+        ],
+      },
+      {
         id: "grading",
         title: "GRADING",
         type: "collapse",
@@ -225,27 +246,7 @@ const navigationConfig = [
           },
         ],
       },
-      {
-        id: "admissions",
-        title: "ADMISSION",
-        type: "collapse",
-        icon: <AdmIcon />,
-        badge: {
-          title: "9",
-          bg: "#525E8A",
-          fg: "#FFFFFF",
 
-        },
-        children: [
-          {
-            id: "see",
-            title: "ADMISSIONS",
-            type: "item",
-            url: '/itdashboard/admissions',
-            exact: true,
-          },
-        ],
-      },
 
     ],
   },
