@@ -8,8 +8,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import LocalPhone from '@material-ui/icons/LocalPhone';
-import DateRange from '@material-ui/icons/DateRange';
+import Fingerprint from '@material-ui/icons/Fingerprint';
+import School from '@material-ui/icons/School';
 import LocationOn from '@material-ui/icons/LocationOn';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Divider from '@material-ui/core/Divider';
@@ -64,7 +64,7 @@ class About extends React.Component {
                 <ListItem>
                   <ListItemAvatar>
                     <Avatar>
-                      <DateRange />
+                      <School />
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText primary="STREAM" secondary={data.stream} />
@@ -72,7 +72,7 @@ class About extends React.Component {
                 <ListItem>
                   <ListItemAvatar>
                     <Avatar>
-                      <LocalPhone />
+                      <Fingerprint />
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText primary="ID" secondary={data.id} />
@@ -88,7 +88,6 @@ class About extends React.Component {
               </List>
             </PapperBlock>
             <Divider className={classes.divider} />
-
           </Grid>
         </Grid>
       );

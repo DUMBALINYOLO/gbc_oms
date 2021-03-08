@@ -37,11 +37,8 @@ class Settings extends React.Component {
           <meta property="twitter:description" content={description} />
         </Helmet>
         <Grid container spacing={2} direction={isWidthUp('md', width) ? 'row' : 'column-reverse'}>
-          <Grid item md={6} xs={12}>
+          <Grid item md={12} xs={12}>
             <Qna />
-          </Grid>
-          <Grid item md={6} xs={12}>
-            <ContactForm onSubmit={(values) => this.showResult(values)} />
           </Grid>
         </Grid>
       </div>

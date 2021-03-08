@@ -47,10 +47,6 @@ const headCells = [
   { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
-
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -61,6 +57,7 @@ const TeacherTests = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const [newgrading, setNewGrading] = useState({})
   const {token} = props;
 
 
@@ -71,15 +68,19 @@ const TeacherTests = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newgrading]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editGrade(fee.id, fee, token)
-      else
+        setNewGrading(fee)
+      }
+      else{
         props.addGrade(fee, token)
-        //
+        setNewGrading(fee)
+        props.getAdminStudentTests(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -172,7 +173,7 @@ const TeacherTests = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Grade Form"
+      title="Test Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

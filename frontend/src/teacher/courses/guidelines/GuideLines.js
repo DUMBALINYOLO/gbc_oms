@@ -57,6 +57,7 @@ const GuideLines = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const [newcourse, setNewCourse] = useState({})
   const {id} =props.data;
   const {token} = props;
 
@@ -67,15 +68,19 @@ const GuideLines = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newcourse]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editTopicGuideline(fee.id, fee, token)
-      else
+        setNewCourse(fee)
+      }
+      else{
         props.addTopicGuideLine(fee, token)
-        //
+        setNewCourse(fee)
+        props.getAdminTopicGuidelines(id, token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -115,7 +120,7 @@ const GuideLines = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Objective"
+              label="Search Guidelines"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">

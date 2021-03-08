@@ -8,8 +8,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import LocalPhone from '@material-ui/icons/LocalPhone';
-import DateRange from '@material-ui/icons/DateRange';
+import Fingerprint from '@material-ui/icons/Fingerprint';
+import Mail from '@material-ui/icons/Mail';
 import LocationOn from '@material-ui/icons/LocationOn';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Divider from '@material-ui/core/Divider';
@@ -17,10 +17,12 @@ import Chip from '@material-ui/core/Chip';
 import Check from '@material-ui/icons/Check';
 import PapperBlock from '../../components/PapperBlock/PapperBlock';
 import styles from '../../components/Profile/profile-jss';
+import Profile from './Profile';
 
 class About extends React.Component {
     render() {
       const { classes, data } = this.props;
+      const{id} =data;
       return (
         <Grid
           container
@@ -31,10 +33,10 @@ class About extends React.Component {
         >
           <Grid item md={7} xs={12}>
             <div>
-              <h1>Soon....</h1>
+              <Profile id={id}/>
             </div>
           </Grid>
-
+  
           <Grid item md={5} xs={12}>
             {/* Profile Progress */}
             <div className={classes.progressRoot}>
@@ -64,7 +66,7 @@ class About extends React.Component {
                 <ListItem>
                   <ListItemAvatar>
                     <Avatar>
-                      <DateRange />
+                      <Mail />
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText primary="EMAIL" secondary={data.email} />
@@ -72,7 +74,7 @@ class About extends React.Component {
                 <ListItem>
                   <ListItemAvatar>
                     <Avatar>
-                      <LocalPhone />
+                      <Fingerprint />
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText primary="ID" secondary={data.id} />
@@ -88,12 +90,12 @@ class About extends React.Component {
               </List>
             </PapperBlock>
             <Divider className={classes.divider} />
-
+            
           </Grid>
         </Grid>
       );
     }
   }
-
+  
 
   export default withStyles(styles)(About);

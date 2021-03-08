@@ -11,7 +11,8 @@ import {
   LOAD_PAGE,
   TOGGLE_SIDEBAR,
   OPEN_MENU,
-  CLOSE_MENU
+  CLOSE_MENU,
+  EDIT_ACTION
 } from '.././types/uitypes';
 
 const initialState = {
@@ -52,6 +53,11 @@ const initialState = {
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
+    case EDIT_ACTION:
+      return  {
+        ...state,
+        profile: action.payload,
+      };
     case TOGGLE_SIDEBAR:
       return  {
         ...state,

@@ -98,7 +98,7 @@ const AdminCourseAdverts = props => {
       <Paper className={classes.pageContent}>
       <Toolbar>
           <Controls.Input
-              label="Search Courses"
+              label="Search Advert"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
@@ -119,7 +119,7 @@ const AdminCourseAdverts = props => {
         </div>
       </Paper>
       <Popup
-      title="Note Form"
+      title="Advert Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

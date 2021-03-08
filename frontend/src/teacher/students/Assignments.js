@@ -14,6 +14,7 @@ import {
 from '@material-ui/core';
 import  Controls  from "../../components/formcontrols/Controls";
 import  useTable  from "../../components/table/useTable";
+import {assignmentrecordsURL} from "../../constants"
 
 
 
@@ -41,23 +42,24 @@ const headCells = [
   { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
-
-
-
-const Asignments = props => {
+const Assignments = props => {
   const classes = useStyles();
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [records, setRecords] = useState([])
-
   const {id} =props.data
-
+  const {token} = props;
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
     const fetchData = async () => {
+      const headers ={
+              "Content-Type": "application/json",
+              Authorization: `Token ${token}`,
+              'Accept': 'application/json',
+        };
         try {
-            const res = await axios.get(`http://127.0.0.1:8000/api/people/assignment-records/?id=${id}`);
+            const res = await axios.get(`${assignmentrecordsURL}?id=${id}`, headers);
 
             setRecords(res.data);
         }
@@ -68,7 +70,6 @@ const Asignments = props => {
 
         fetchData();
     }, []);
-
 
   const {
       TblContainer,
@@ -96,7 +97,7 @@ const Asignments = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Attendance"
+              label="Search Assignment"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
@@ -138,4 +139,4 @@ const Asignments = props => {
 };
 
 
-export default Asignments;
+export default Assignments;

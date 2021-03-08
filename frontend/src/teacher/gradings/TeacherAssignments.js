@@ -48,10 +48,6 @@ const headCells = [
   { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
-
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -62,6 +58,7 @@ const AdminStudentAssignments = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const [newgrading, setNewGrading] = useState({})
   const {token} = props;
 
   useEffect(() => {
@@ -71,15 +68,19 @@ const AdminStudentAssignments = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newgrading]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editGrade(fee.id, fee, token)
-      else
+        setNewGrading(fee)
+      }
+      else{
         props.addGrade(fee, token)
-        //
+        setNewGrading(fee)
+        props.getAdminStudentAssignments(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -123,7 +124,7 @@ const AdminStudentAssignments = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Fee"
+              label="Search Assignment"
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
@@ -172,7 +173,7 @@ const AdminStudentAssignments = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Grade Form"
+      title="Assignment Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

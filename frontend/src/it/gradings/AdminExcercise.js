@@ -54,8 +54,6 @@ export class AdminGradingExcercise extends React.Component {
     const { adminstudentexcercise } = this.props;
     const { id } = adminstudentexcercise;
 
-    console.log(adminstudentexcercise)
-    console.log(id)
 
     return (
       <GradingBag>

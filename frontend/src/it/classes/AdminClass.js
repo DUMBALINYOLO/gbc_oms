@@ -50,9 +50,6 @@ const headCells = [
 ]
 
 
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -180,7 +177,7 @@ const AdminClass = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Fee Form"
+      title="Class Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

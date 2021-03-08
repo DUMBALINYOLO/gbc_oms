@@ -125,13 +125,6 @@ const Publishers = props => {
                   </InputAdornment>)
               }}
           />
-          <Controls.Button
-              text="Add New"
-              variant="outlined"
-              startIcon={<AddIcon />}
-              className={classes.newButton}
-              onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
-          />
       </Toolbar>
       <TblContainer>
           <TblHead />
@@ -145,11 +138,6 @@ const Publishers = props => {
                           <TableCell>{item.number}</TableCell>
                           <TableCell>
                               <Controls.ActionButton
-                                  color="primary"
-                                  onClick={() => { openInPopup(item) }}>
-                                  <EditOutlinedIcon fontSize="small" />
-                              </Controls.ActionButton>
-                              <Controls.ActionButton
                                   color="secondary">
                                   <CloseIcon fontSize="small" />
                               </Controls.ActionButton>
@@ -161,16 +149,6 @@ const Publishers = props => {
       </TblContainer>
       <TblPagination />
       </Paper>
-      <Popup
-      title="Publisher Form"
-      openPopup={openPopup}
-      setOpenPopup={setOpenPopup}
-      >
-        <AddPublisher
-            recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit}
-        />
-      </Popup>
     </StudentLayout>
   );
 };

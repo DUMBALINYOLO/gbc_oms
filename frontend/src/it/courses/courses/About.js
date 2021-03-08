@@ -8,7 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import LocalPhone from '@material-ui/icons/LocalPhone';
+import Fingerprint from '@material-ui/icons/Fingerprint';
 import DateRange from '@material-ui/icons/DateRange';
 import LocationOn from '@material-ui/icons/LocationOn';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -64,15 +64,7 @@ class About extends React.Component {
                 <ListItem>
                   <ListItemAvatar>
                     <Avatar>
-                      <DateRange />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText primary="NAME" secondary={data.full_name} />
-                </ListItem>
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <LocalPhone />
+                      <Fingerprint />
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText primary="ID" secondary={data.id} />
@@ -80,7 +72,7 @@ class About extends React.Component {
                 <ListItem>
                   <ListItemAvatar>
                     <Avatar>
-                      <LocationOn />
+                      <DateRange />
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText primary="START DATE" secondary={data.start_date} />

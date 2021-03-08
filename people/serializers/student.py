@@ -25,7 +25,6 @@ class StudentProfileListDetailSerializer(serializers.ModelSerializer):
 			'last_name',
 			'guardian',
 			'gender',
-			'guardian',
 			'date_of_birth',
 			'phone_number',
 			'whatsapp_number',

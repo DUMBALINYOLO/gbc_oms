@@ -57,6 +57,7 @@ const Notes = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const [newcourse, setNewCourse] = useState({})
   const {id} =props.data;
   const {token} = props;
 
@@ -67,15 +68,19 @@ const Notes = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newcourse]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editStudyNote(fee.id, fee, token)
-      else
+        setNewCourse(fee)
+      }
+      else{
         props.addStudyNote(fee, token)
-        //
+        setNewCourse(fee)
+        props.getStudyNotes(id, token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -168,7 +173,7 @@ const Notes = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Fee Form"
+      title="Notes Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

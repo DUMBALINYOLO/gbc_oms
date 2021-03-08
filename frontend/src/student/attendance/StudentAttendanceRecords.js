@@ -115,11 +115,6 @@ const StudentAttendanceRecords = props => {
                           <TableCell>{item.status}</TableCell>
                           <TableCell>
                               <Controls.ActionButton
-                                  color="primary"
-                                  >
-                                  <EditOutlinedIcon fontSize="small" />
-                              </Controls.ActionButton>
-                              <Controls.ActionButton
                                   color="secondary">
                                   <CloseIcon fontSize="small" />
                               </Controls.ActionButton>

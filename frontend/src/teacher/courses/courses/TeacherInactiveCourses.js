@@ -51,6 +51,7 @@ const TeacherUpcomingCourses = props => {
   const [openPopup, setOpenPopup] = useState(false)
   const [listView, setListView] = useState('grid')
   const history = useHistory();
+  const [newcourse, setNewCourse] = useState({})
   const {token} = props;
 
   useEffect(() => {
@@ -60,15 +61,19 @@ const TeacherUpcomingCourses = props => {
     console.log('mount it!');
 
 
-  }, []);
+  }, [newcourse]);
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editInactiveCourse(fee.id, fee, token)
-      else
+        setNewCourse(fee)
+      }
+      else{
         props.addInactiveCourse(fee, token)
-        //
+        setNewCourse(fee)
+        props.getAdminInactiveCourses(token);
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -151,7 +156,7 @@ const TeacherUpcomingCourses = props => {
           </Grid>
       </Paper>
       <Popup
-      title="Fee Form"
+      title="Inactive Course Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

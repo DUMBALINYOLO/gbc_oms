@@ -22,7 +22,6 @@ from courses.models import (
 			PublisherCity,
 			Publisher,
 			ReferrenceSource,
-
 		)
 
 from courses.serializers import (
@@ -426,6 +425,7 @@ class AdminSubTopicViewSet(viewsets.ModelViewSet):
 def get_subtopic(subtopic_id):
 	subtopic = get_object_or_404(SubTopic, id=subtopic_id)
 	return subtopic
+
 
 
 class AdminStudyNoteViewSet(viewsets.ModelViewSet):

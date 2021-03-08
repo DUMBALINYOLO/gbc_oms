@@ -89,7 +89,7 @@ const AddAdvert = props => {
                   <Grid item xs={6}>
                       <Controls.Input
                           name="name"
-                          label="NAMWE"
+                          label="NAME"
                           value={values.name}
                           onChange={handleInputChange}
                           error={errors.name}

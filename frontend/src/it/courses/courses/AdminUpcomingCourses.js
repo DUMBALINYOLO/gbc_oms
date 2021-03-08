@@ -73,7 +73,6 @@ const AdminUpcomingCourses = props => {
         setNewCourse(fee)
         props.getAdminUpcomingCourses(token);
       }
-        //
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)

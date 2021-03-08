@@ -74,7 +74,7 @@ const AdminApprovedAdmissions = props => {
 
   const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0){
-        props.editFee(fee.id, fee, token)
+        props.editAcceptedAdmission(fee.id, fee, token)
         setNewAdmission(fee)
       }
       else{

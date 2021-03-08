@@ -27,12 +27,6 @@ const useStyles = makeStyles(theme => ({
   p1: {
     padding: ".85rem"
   }
-  // demoEditor: {
-  //   border: "1px solid #eee",
-  //   padding: "5px",
-  //   borderRadius: "2px",
-  //   height: "350px"
-  // }
 }));
 
 const initialFValues = {

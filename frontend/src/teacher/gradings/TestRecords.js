@@ -46,8 +46,6 @@ const headCells = [
   { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -58,16 +56,20 @@ const TestRecords = props => {
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
     const [records, setRecords] = useState([])
+    const [newgrading, setNewGrading] = useState({})
     const {token} = props;
 
     const {id} =props.data
 
 
   const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0)
+      if (fee.id > 0){
         props.editTestRecord(fee.id, fee, token)
-      else
-        console.log(fee, token)        //
+        setNewGrading(fee)
+      }
+      else{
+        setNewGrading(fee)     
+      }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -162,7 +164,7 @@ const TestRecords = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Edit Record"
+      title="Record Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >
