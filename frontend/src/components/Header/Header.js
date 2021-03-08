@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography';
@@ -11,9 +12,11 @@ import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Button from '@material-ui/core/Button';
 import UserMenu from './UserMenu';
 import SearchUi from '../Search/SearchUi';
 import styles from './header-jss';
+import {logout} from '../../actions/auth';
 
 const elem = document.documentElement;
 
@@ -99,7 +102,7 @@ class Header extends React.Component {
       mode,
       title,
       openGuide,
-      history
+      logout
     } = this.props;
     const {
       fullScreen,
@@ -162,14 +165,6 @@ class Header extends React.Component {
               </Typography>
             </div>
           </Hidden>
-          <div className={classes.searchWrapper}>
-            <div className={classNames(classes.wrapper, classes.light)}>
-              <div className={classes.search}>
-                <SearchIcon />
-              </div>
-              <SearchUi history={history} />
-            </div>
-          </div>
           <Hidden xsDown>
             <span className={classes.separatorV} />
           </Hidden>
@@ -179,17 +174,22 @@ class Header extends React.Component {
   }
 }
 
-Header.propTypes = {
-  // classes: PropTypes.object.isRequired,
-  // toggleDrawerOpen: PropTypes.func.isRequired,
-  // margin: PropTypes.bool.isRequired,
-  // gradient: PropTypes.bool.isRequired,
-  // position: PropTypes.string.isRequired,
-  // mode: PropTypes.string.isRequired,
-  // title: PropTypes.string.isRequired,
-  // changeMode: PropTypes.func.isRequired,
-  // openGuide: PropTypes.func.isRequired,
-  // history: PropTypes.object.isRequired,
+const mapStateToProps = state => ({
+  userName: state.auth.userName,
+  isAuthenticated: state.auth.token !== null,
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch(logout()),
+  };
 };
+
+
+
+const NavigationMapped = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Header);
 
 export default withStyles(styles)(Header);

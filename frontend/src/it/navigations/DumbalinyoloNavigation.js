@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Avatar from '@material-ui/core/Avatar';
@@ -11,6 +12,8 @@ import brand from '../../api/dummy/brand';
 import dummy from '../../api/dummy/dummyContents';
 import logo from '../../images/logo.svg';
 import Navigation from './Navigation';
+import {logout} from '../../actions/auth'
+
 
 
 import styles from '../layout/sidebar-jss';
@@ -53,7 +56,8 @@ class DumbalinyoloNavigation extends React.Component {
       openMenuStatus,
       closeMenuStatus,
       changeStatus,
-      isLogin
+      isLogin,
+      userName,
     } = this.props;
     const { transform } = this.state;
 
@@ -71,7 +75,22 @@ class DumbalinyoloNavigation extends React.Component {
     };
     return (
       <div className={classNames(classes.drawerInner, !drawerPaper ? classes.drawerPaperClose : '')}>
-        
+        <div className={classes.drawerHeader}>
+          {isLogin && (
+            <div
+              className={classNames(classes.profile, classes.user)}
+              style={{ opacity: 1 - (transform / 100), marginTop: transform * -0.3 }}
+            >
+              <Button onClick={() => this.props.logout()}>
+                <span>LOGOUT</span>
+              </Button>
+            </div>
+          )}
+        </div>
+
+
+
+
         <div
           id="sidebar"
           className={
@@ -116,4 +135,25 @@ DumbalinyoloNavigation.defaultProps = {
   isLogin: true,
 };
 
-export default withStyles(styles)(DumbalinyoloNavigation);
+const mapStateToProps = state => ({
+  userName: state.auth.userName,
+  isAuthenticated: state.auth.token !== null,
+});
+
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     logout: () => dispatch(logout()),
+//   };
+// };
+
+
+
+
+
+const NavigationMapped = connect(
+  mapStateToProps,
+  {logout},
+)(DumbalinyoloNavigation);
+
+export default withStyles(styles)(NavigationMapped );

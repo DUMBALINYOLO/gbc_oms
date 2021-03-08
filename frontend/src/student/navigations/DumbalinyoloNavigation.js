@@ -12,6 +12,8 @@ import brand from '../../api/dummy/brand';
 import dummy from '../../api/dummy/dummyContents';
 import logo from '../../images/logo.svg';
 import Navigation from './Navigation';
+import {logout} from '../../actions/auth'
+
 
 
 import styles from '../layout/sidebar-jss';
@@ -74,51 +76,21 @@ class DumbalinyoloNavigation extends React.Component {
     return (
       <div className={classNames(classes.drawerInner, !drawerPaper ? classes.drawerPaperClose : '')}>
         <div className={classes.drawerHeader}>
-          <NavLink to="/studentdashboard" className={classNames(classes.brand, classes.brandBar, turnDarker && classes.darker)}>
-            {userName}
-          </NavLink>
           {isLogin && (
             <div
               className={classNames(classes.profile, classes.user)}
               style={{ opacity: 1 - (transform / 100), marginTop: transform * -0.3 }}
             >
-              <Avatar
-                className={classNames(classes.avatar, classes.bigAvatar)}
-              />
-              <div>
-                <Button size="small" onClick={openMenuStatus}>
-                  <i className={classNames(classes.dotStatus, setStatus(status))} />
-                  {status}
-                </Button>
-                <Menu
-                  id="status-menu"
-                  anchorEl={anchorEl}
-                  open={Boolean(anchorEl)}
-                  onClose={closeMenuStatus}
-                  className={classes.statusMenu}
-                >
-                  <MenuItem onClick={() => changeStatus('online')}>
-                    <i className={classNames(classes.dotStatus, classes.online)} />
-                    Online
-                  </MenuItem>
-                  <MenuItem onClick={() => changeStatus('idle')}>
-                    <i className={classNames(classes.dotStatus, classes.idle)} />
-                    Idle
-                  </MenuItem>
-                  <MenuItem onClick={() => changeStatus('bussy')}>
-                    <i className={classNames(classes.dotStatus, classes.bussy)} />
-                    Bussy
-                  </MenuItem>
-                  <MenuItem onClick={() => changeStatus('offline')}>
-                    <i className={classNames(classes.dotStatus, classes.offline)} />
-                    Offline
-                  </MenuItem>
-                </Menu>
-
-              </div>
+              <Button onClick={() => this.props.logout()}>
+                <span>LOGOUT</span>
+              </Button>
             </div>
           )}
         </div>
+
+
+
+
         <div
           id="sidebar"
           className={
@@ -165,13 +137,23 @@ DumbalinyoloNavigation.defaultProps = {
 
 const mapStateToProps = state => ({
   userName: state.auth.userName,
+  isAuthenticated: state.auth.token !== null,
 });
+
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     logout: () => dispatch(logout()),
+//   };
+// };
+
+
 
 
 
 const NavigationMapped = connect(
   mapStateToProps,
-  {},
+  {logout},
 )(DumbalinyoloNavigation);
 
 export default withStyles(styles)(NavigationMapped );
