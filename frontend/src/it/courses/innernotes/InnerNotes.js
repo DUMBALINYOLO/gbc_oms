@@ -80,6 +80,7 @@ const InnerNotes = props => {
       else{
         props.addStudyNoteNote(fee, token)
         setNewCourse(fee)
+        console.log(fee)
         props.getStudyNoteNotes(id, token);
       }
       resetForm()

@@ -167,6 +167,7 @@ class ItPublisherCityListSerializer(serializers.ModelSerializer):
 
 
 
+
 class ItTextCreateUpdateSerializer(serializers.ModelSerializer):
 
 	class Meta:
@@ -190,6 +191,7 @@ class ItTextCreateUpdateSerializer(serializers.ModelSerializer):
 		current_note = get_studynote(note_id)
 		current_note.notes.add(text)
 		return text
+
 
 
 

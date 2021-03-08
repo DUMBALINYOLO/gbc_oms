@@ -62,6 +62,7 @@ const AddNote = props => {
         return Object.values(temp).every(x => x === "")
   }
 
+
   const {
       values,
       setValues,
