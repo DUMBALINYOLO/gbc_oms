@@ -12,7 +12,8 @@ import LeftSidebarBigLayout from './LeftSidebarBigLayout';
 import DropMenuLayout from './DropMenuLayout';
 import MegaMenuLayout from './MegaMenuLayout';
 import styles from './appStyles-jss';
-import Login from '../../auth/Login';
+import Login from '../../auth/GerereLogin';
+
 
 class TeacherLayout extends React.Component {
   // Initial header style

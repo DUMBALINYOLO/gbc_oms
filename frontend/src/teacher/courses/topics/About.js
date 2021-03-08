@@ -17,6 +17,7 @@ import Chip from '@material-ui/core/Chip';
 import Check from '@material-ui/icons/Check';
 import PapperBlock from '../../../components/PapperBlock/PapperBlock';
 import styles from '../../../components/Profile/profile-jss';
+import Profile from './Profile';
 
 class About extends React.Component {
     render() {
@@ -30,9 +31,7 @@ class About extends React.Component {
           spacing={3}
         >
           <Grid item md={7} xs={12}>
-            <div>
-              <h1>Soon....</h1>
-            </div>
+            <Profile data={data} />
           </Grid>
 
           <Grid item md={5} xs={12}>
@@ -85,4 +84,6 @@ class About extends React.Component {
       );
     }
   }
+
+
   export default withStyles(styles)(About);

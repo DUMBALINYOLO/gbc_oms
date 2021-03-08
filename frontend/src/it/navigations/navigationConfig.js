@@ -113,7 +113,7 @@ const navigationConfig = [
         children: [
           {
             id: "bio",
-            title: "BIO",
+            title: "VIEW",
             type: "item",
             url: '/itdashboard/bio',
             exact: true,
