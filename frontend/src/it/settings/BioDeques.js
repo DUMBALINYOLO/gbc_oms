@@ -123,7 +123,7 @@ class CourseDeques extends React.Component {
                       color="secondary"
                       className={classes.button}
                       component={Link}
-                      to={link.author}
+                      to={link.authors}
                     >
                       <span className={classes.text}>
                         AUTHOR
@@ -138,7 +138,7 @@ class CourseDeques extends React.Component {
                       color="secondary"
                       className={classes.button}
                       component={Link}
-                      to={link.publisher}
+                      to={link.publishers}
                     >
                       <span className={classes.text}>
                         PUBLISHER
@@ -153,7 +153,7 @@ class CourseDeques extends React.Component {
                       color="secondary"
                       className={classes.button}
                       component={Link}
-                      to={link.city}
+                      to={link.cities}
                     >
                       <span className={classes.text}>
                         CITY
