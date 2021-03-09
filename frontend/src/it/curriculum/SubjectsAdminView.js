@@ -57,12 +57,13 @@ const SubjectAdminView = props => {
   const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
+  const [query, setQuery] = useState('')
   const [newcurriculum, setNewCurriculum] = useState({})
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getSubjects(token);
+        props.getSubjects(query, token);
     }
     console.log('mount it!');
 
@@ -77,15 +78,18 @@ const SubjectAdminView = props => {
       }else{
         props.addSubject(subject, token)
         setNewCurriculum(subject)
-        console.log(subject)
-        props.getSubjects(token);
+        props.getSubjects(query, token);
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getSubjects(query, token)
+  }
 
   const {records} = props;
 
@@ -120,12 +124,14 @@ const SubjectAdminView = props => {
       <Toolbar>
           <Controls.Input
               label="Search Subject"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

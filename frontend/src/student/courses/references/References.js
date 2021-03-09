@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { getStudyNoteReferences, addStudyNoteReference, editStudyNoteReference } from '../../../actions/courses';
+import { getStudyNoteReferences } from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -14,7 +14,6 @@ import {
   Toolbar,
   InputAdornment }
 from '@material-ui/core';
-import AddReferences from './AddReference';
 import  Controls  from "../../../components/formcontrols/Controls";
 import  Popup  from "../../../components/formcontrols/Popup";
 import  useTable  from "../../../components/table/useTable";
@@ -53,39 +52,26 @@ const options = {
 const References = props => {
   const { history } = props;
   const classes = useStyles();
-  const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
-  const [openPopup, setOpenPopup] = useState(false)
   const {id} =props.data;
   const [newstudent, setNewStudent] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getStudyNoteReferences(id, token);
+        props.getStudyNoteReferences(id, query, token);
     }
     console.log('mount it!');
 
 
-  }, [newstudent]);
+  }, []);
 
-
-  const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0){
-        props.editStudyNoteReference(fee.id, fee, token)
-        setNewStudent(fee)
-      }
-      else{
-        props.addStudyNoteReference(fee, token)
-        setNewStudent(fee)
-        props.getStudyNoteReferences(id, token);
-      }
-      resetForm()
-      setRecordForEdit(null)
-      setOpenPopup(false)
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getStudyNoteReferences(query, token)
   }
-
-
 
   const {records} = props;
 
@@ -108,10 +94,6 @@ const References = props => {
       })
   }
 
-  const openInPopup = item => {
-      setRecordForEdit(item)
-      setOpenPopup(true)
-  }
 
   return (
     <>
@@ -120,12 +102,14 @@ const References = props => {
       <Toolbar>
           <Controls.Input
               label="Search Reference"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
       </Toolbar>
       <TblContainer>
@@ -163,5 +147,5 @@ const mapStateToProps = state =>({
 
 export default connect(
   mapStateToProps,
-  {getStudyNoteReferences, addStudyNoteReference, editStudyNoteReference} )
+  {getStudyNoteReferences} )
   (References);

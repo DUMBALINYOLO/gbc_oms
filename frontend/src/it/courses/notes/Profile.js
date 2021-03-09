@@ -10,7 +10,6 @@ import {
 from '@material-ui/core';
 
 
-
 const useStyles = makeStyles(theme => ({
   pageContent: {
       margin: theme.spacing(5),
@@ -26,11 +25,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-
-
-
-
-
 const ClassProfile = props => {
   const classes = useStyles();
   const {note} = props.data;
@@ -38,7 +32,7 @@ const ClassProfile = props => {
   return (
     <>
       <Paper className={classes.pageContent}>
-        <h4>{note}</h4>
+        <h4>NOTES: {note}</h4>
       </Paper>
     </>
   );

@@ -44,22 +44,26 @@ const options = {
 
 const StudentOngoingCourses = props => {
   const classes = useStyles();
-  const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
-  const [openPopup, setOpenPopup] = useState(false)
   const [listView, setListView] = useState('grid')
   const history = useHistory();
+  const [query, setQuery] = useState('')
   const {email,token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getOngoingStudentCourses(email,token);
+        props.getOngoingStudentCourses(email,query, token);
     }
     console.log('mount it!');
 
 
   }, []);
 
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getOngoingStudentCourses(query, token)
+  }
 
   const handleSearch = e => {
       let target = e.target;
@@ -71,13 +75,6 @@ const StudentOngoingCourses = props => {
                   return items.filter(x => x.name.toLowerCase().includes(target.value))
           }
       })
-  }
-
-
-
-  const openInPopup = item => {
-      setRecordForEdit(item)
-      setOpenPopup(true)
   }
 
   const handleSwitchView = (event, value) => {
@@ -95,6 +92,19 @@ const StudentOngoingCourses = props => {
   return (
     <StudentLayout>
       <Paper className={classes.pageContent}>
+        <Toolbar>
+          <Controls.Input
+              label="Search Ongoing Course"
+              value={query}
+              className={classes.searchInput}
+              InputProps={{
+                  startAdornment: (<InputAdornment position="start">
+                      <Search />
+                  </InputAdornment>)
+              }}
+              onChange={handleQuery}
+          />
+      </Toolbar>
         <SearchCourse
             courseData={courseData}
             listView={listView}

@@ -50,12 +50,13 @@ const AdminUpcomingCourses = props => {
   const [openPopup, setOpenPopup] = useState(false)
   const [listView, setListView] = useState('grid')
   const history = useHistory();
+  const [query, setQuery] = useState('')
   const {token} = props;
   const [newcourse, setNewCourse] = useState({})
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminUpcomingCourses(token);
+        props.getAdminUpcomingCourses(query, token);
     }
     console.log('mount it!');
 
@@ -67,19 +68,22 @@ const AdminUpcomingCourses = props => {
       if (fee.id > 0){
         props.editUpComingCourse(fee.id, fee, token)
         setNewCourse(fee)
-        props.getAdminUpcomingCourses(token);
+        props.getAdminUpcomingCourses(query, token);
       }else{
         props.addUpComingCourse(fee, token)
         setNewCourse(fee)
-        props.getAdminUpcomingCourses(token);
+        props.getAdminUpcomingCourses(query, token);
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getAdminUpcomingCourses(query, token)
+  }
 
 
   const handleSearch = e => {
@@ -93,8 +97,6 @@ const AdminUpcomingCourses = props => {
           }
       })
   }
-
-
 
   const openInPopup = item => {
       setRecordForEdit(item)
@@ -116,8 +118,18 @@ const AdminUpcomingCourses = props => {
   return (
     <InformationTechnologyLayout>
       <Paper className={classes.pageContent}>
-
       <Toolbar>
+        <Controls.Input
+              label="Search UpComing Course"
+              value={query}
+              className={classes.searchInput}
+              InputProps={{
+                  startAdornment: (<InputAdornment position="start">
+                      <Search />
+                  </InputAdornment>)
+              }}
+              onChange={handleQuery}
+          />
           <Controls.Button
               text="Add New"
               variant="outlined"

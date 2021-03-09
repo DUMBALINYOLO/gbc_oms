@@ -53,24 +53,25 @@ const options = {
 const GuideLines = props => {
   const { history } = props;
   const classes = useStyles();
-  const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
-  const [openPopup, setOpenPopup] = useState(false)
   const {id} =props.data;
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminTopicGuidelines(id, token);
+        props.getAdminTopicGuidelines(id, query, token);
     }
     console.log('mount it!');
 
 
   }, []);
 
-
-
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getAdminTopicGuidelines(query, token)
+  }
 
   const {records} = props;
 
@@ -93,24 +94,21 @@ const GuideLines = props => {
       })
   }
 
-  const openInPopup = item => {
-      setRecordForEdit(item)
-      setOpenPopup(true)
-  }
-
   return (
     <>
       <Paper className={classes.pageContent}>
 
       <Toolbar>
           <Controls.Input
-              label="Search Guidelines"
+              label="Search Guideline"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
       </Toolbar>
       <TblContainer>

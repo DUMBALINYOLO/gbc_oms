@@ -53,12 +53,13 @@ const Topics = props => {
   const [listView, setListView] = useState('grid')
   const history = useHistory();
   const {id} =props.data;
+  const [query, setQuery] = useState('')
   const [newtopic, setNewTopic] = useState({})
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminTopics(id, token);
+        props.getAdminTopics(id,query, token);
     }
     console.log('mount it!');
 
@@ -73,7 +74,7 @@ const Topics = props => {
       }else{
         props.addTopic(topic, token)
         setNewTopic(topic)
-        props.getAdminTopics(id, token);
+        props.getAdminTopics(id,query, token);
       }
       resetForm()
       setRecordForEdit(null)
@@ -93,6 +94,12 @@ const Topics = props => {
       })
   }
 
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getAdminTopics(query, token)
+
+  }
 
   const openInPopup = item => {
       setRecordForEdit(item)
@@ -116,6 +123,17 @@ const Topics = props => {
       <Paper className={classes.pageContent}>
 
       <Toolbar>
+          <Controls.Input
+              label="Search Topic"
+              value={query}
+              className={classes.searchInput}
+              InputProps={{
+                  startAdornment: (<InputAdornment position="start">
+                      <Search />
+                  </InputAdornment>)
+              }}
+              onChange={handleQuery}
+          />
           <Controls.Button
               text="Add New"
               variant="outlined"

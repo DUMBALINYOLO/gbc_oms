@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { getAdminSubTopics, addSubTopic, editSubTopic} from '../../../actions/courses';
+import { getAdminSubTopics} from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -50,10 +50,9 @@ const options = {
 const SubTopics = props => {
   const history = useHistory();
   const classes = useStyles();
-  const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
-  const [openPopup, setOpenPopup] = useState(false)
   const {id} =props.data;
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
@@ -61,11 +60,13 @@ const SubTopics = props => {
         props.getAdminSubTopics(id, token);
     }
     console.log('mount it!');
-
-
   }, []);
 
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getAdminSubTopics(query, token)
+  }
 
   const {records} = props;
 
@@ -88,11 +89,6 @@ const SubTopics = props => {
       })
   }
 
-  const openInPopup = item => {
-      setRecordForEdit(item)
-      setOpenPopup(true)
-  }
-
   const handleClick = id =>{
     history.push(`/studentdashboard/subtopics/${id}`)
   }
@@ -103,13 +99,15 @@ const SubTopics = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Topic"
+              label="Search SubTopic"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
       </Toolbar>
       <TblContainer>
@@ -147,5 +145,5 @@ const mapStateToProps = state =>({
 
 export default connect(
   mapStateToProps,
-  {getAdminSubTopics, addSubTopic, editSubTopic} )
+  {getAdminSubTopics} )
   (SubTopics);

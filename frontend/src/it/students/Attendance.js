@@ -47,6 +47,8 @@ const Attendance = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [records, setRecords] = useState([])
   const {token} = props;
+  const [newattendance, setNewAttendance] = useState({})
+  const [query, setQuery] = useState('')
   const {id} =props.data
 
 
@@ -71,8 +73,12 @@ const Attendance = props => {
 
 
     fetchData();
-}, []);
+  }, [newattendance]);
 
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+  }
 
   const {
       TblContainer,
@@ -101,12 +107,14 @@ const Attendance = props => {
       <Toolbar>
           <Controls.Input
               label="Search Attendance"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
       </Toolbar>
       <TblContainer>

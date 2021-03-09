@@ -54,19 +54,24 @@ const options = {
 
 const StudentTestRecords = props => {
     const classes = useStyles();
-    const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
-    const [openPopup, setOpenPopup] = useState(false)
     const {token, email} = props;
+    const [query, setQuery] = useState('')
 
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getStudentTests(email, token);
+        props.getStudentTests(email,query, token);
     }
     console.log('mount it!');
 
   }, []);
+
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getStudentTests(query, token)
+  }
 
 
   const{records} = props;
@@ -98,12 +103,14 @@ const StudentTestRecords = props => {
       <Toolbar>
           <Controls.Input
               label="Search Test Record"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
       </Toolbar>
       <TblContainer>

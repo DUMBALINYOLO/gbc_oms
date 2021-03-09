@@ -60,15 +60,14 @@ const AdminTeachers = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [newstaff, setNewStaff] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminTeachers(token);
+        props.getAdminTeachers(query, token);
     }
     console.log('mount it!');
-
-
   }, [newstaff]);
 
 
@@ -78,14 +77,18 @@ const AdminTeachers = props => {
       }else{
         props.addTeacher(bursar, token) 
         setNewStaff(bursar) 
-        props.getAdminTeachers(token); 
+        props.getAdminTeachers(query, token); 
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getAdminTeachers(query, token)
+  }
 
   const {records} = props;
 
@@ -124,12 +127,14 @@ const AdminTeachers = props => {
       <Toolbar>
           <Controls.Input
               label="Search Teacher"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

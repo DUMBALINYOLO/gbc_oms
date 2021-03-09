@@ -8,7 +8,10 @@ import {
   Toolbar,
   InputAdornment }
 from '@material-ui/core';
-
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 
 
 const useStyles = makeStyles(theme => ({
@@ -26,10 +29,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -41,8 +40,18 @@ const ClassProfile = props => {
   return (
     <>
       <Paper className={classes.pageContent}>
-        <h2>SUBJECT: {subject}</h2>
-        <h2>DATE: {date}</h2>
+        <List>
+          <ListItem>
+            <h4>SUBJECT:</h4>
+            <Divider variant="inset" />
+            <ListItemText primary={subject} />
+          </ListItem>
+          <ListItem>
+            <h4>DATE:</h4>
+            <Divider variant="inset" />
+            <ListItemText primary={date} />
+          </ListItem>
+        </List>
       </Paper>
     </>
   );

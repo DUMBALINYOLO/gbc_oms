@@ -57,12 +57,13 @@ const References = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [newcourse, setNewCourse] = useState({})
+  const [query, setQuery] = useState('')
   const {id} =props.data;
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getStudyNoteReferences(id, token);
+        props.getStudyNoteReferences(id, query, token);
     }
     console.log('mount it!');
 
@@ -78,14 +79,18 @@ const References = props => {
       else{
         props.addStudyNoteReference(fee, token)
         setNewCourse(fee)
-        props.getStudyNoteReferences(id, token);
+        props.getStudyNoteReferences(id, query, token);
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getStudyNoteReferences(query, token)
+  }
 
   const {records} = props;
 
@@ -120,12 +125,14 @@ const References = props => {
       <Toolbar>
           <Controls.Input
               label="Search Reference"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

@@ -47,6 +47,7 @@ const Assignments = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [records, setRecords] = useState([])
   const {id} =props.data
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
@@ -70,6 +71,11 @@ const Assignments = props => {
 
         fetchData();
     }, []);
+
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+  }
 
   const {
       TblContainer,
@@ -98,12 +104,14 @@ const Assignments = props => {
       <Toolbar>
           <Controls.Input
               label="Search Assignment"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
       </Toolbar>
       <TblContainer>
@@ -118,11 +126,6 @@ const Assignments = props => {
                           <TableCell>{item.subject}</TableCell>
                           <TableCell>{item.score}</TableCell>
                           <TableCell>
-                              <Controls.ActionButton
-                                  color="primary"
-                                >
-                                  <EditOutlinedIcon fontSize="small" />
-                              </Controls.ActionButton>
                               <Controls.ActionButton
                                   color="secondary">
                                   <CloseIcon fontSize="small" />

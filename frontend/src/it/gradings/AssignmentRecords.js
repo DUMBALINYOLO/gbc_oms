@@ -18,7 +18,7 @@ import EditRecord from './EditRecord';
 import  Controls  from "../../components/formcontrols/Controls";
 import  Popup  from "../../components/formcontrols/Popup";
 import  useTable  from "../../components/table/useTable";
-
+import {gradingasignmentrecordsURL} from '../../constants'
 
 
 const useStyles = makeStyles(theme => ({
@@ -57,6 +57,7 @@ const AssignmentRecords = props => {
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
     const [records, setRecords] = useState([])
+    const [query, setQuery] = useState('')
     const [newgrading, setNewGrading] = useState({})
     const {token} = props;
 
@@ -67,7 +68,6 @@ const AssignmentRecords = props => {
         props.editAssignmentRecord(fee.id, fee, token)
         setNewGrading(fee)
       }else{
-        console.log(fee, token)
         setNewGrading(fee)
       }
       resetForm()
@@ -75,12 +75,22 @@ const AssignmentRecords = props => {
       setOpenPopup(false)
   }
 
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0);
 
     const fetchData = async () => {
+        const headers ={
+              "Content-Type": "application/json",
+              Authorization: `Token ${token}`,
+              'Accept': 'application/json',
+        };
         try {
-            const res = await axios.get(`http://127.0.0.1:8000/api/grading/grading-asignment-records/?id=${id}`);
+            const res = await axios.get(`${gradingasignmentrecordsURL}?id=${id}`, headers);
 
             setRecords(res.data);
         }
@@ -127,12 +137,14 @@ const AssignmentRecords = props => {
       <Toolbar>
           <Controls.Input
               label="Search Record"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
       </Toolbar>
       <TblContainer>

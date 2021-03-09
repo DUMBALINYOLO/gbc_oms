@@ -56,11 +56,12 @@ const FeeItView = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [newcurriculum, setNewCurriculum] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getCurriculums(token);
+        props.getCurriculums(query, token);
     }
     console.log('mount it!');
 
@@ -75,14 +76,18 @@ const FeeItView = props => {
       }else{
         props.addCurriculum(curriculum, token)
         setNewCurriculum(curriculum)
-        props.getCurriculums(token);
+        props.getCurriculums(query, token);
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getCurriculums(query, token)
+  }
 
   const {records} = props;
 
@@ -117,12 +122,14 @@ const FeeItView = props => {
       <Toolbar>
           <Controls.Input
               label="Search Curriculum"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { getPublisherCities, addPublisherCity, editPublisherCity } from '../../../actions/courses';
+import { getPublisherCities } from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -14,7 +14,6 @@ import {
   Toolbar,
   InputAdornment }
 from '@material-ui/core';
-import AddPublisherCity from './AddPublisherCity';
 import  Controls  from "../../../components/formcontrols/Controls";
 import  Popup  from "../../../components/formcontrols/Popup";
 import  useTable  from "../../../components/table/useTable";
@@ -55,37 +54,25 @@ const options = {
 const PublisherCities = props => {
   const { history } = props;
   const classes = useStyles();
-  const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
-  const [openPopup, setOpenPopup] = useState(false)
   const [newstudent, setNewStudent] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getPublisherCities(token);
+        props.getPublisherCities(query, token);
     }
     console.log('mount it!');
 
 
-  }, [newstudent]);
+  }, []);
 
-
-  const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0){
-        props.editPublisherCity(fee.id, fee, token)
-        setNewStudent(fee)
-      }
-      else{
-        props.addPublisherCity(fee, token)
-        setNewStudent(fee)
-        props.getPublisherCities(token);
-      }
-      resetForm()
-      setRecordForEdit(null)
-      setOpenPopup(false)
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getPublisherCities(query, token)
   }
-
 
 
   const {records} = props;
@@ -109,24 +96,21 @@ const PublisherCities = props => {
       })
   }
 
-  const openInPopup = item => {
-      setRecordForEdit(item)
-      setOpenPopup(true)
-  }
-
   return (
     <StudentLayout>
       <Paper className={classes.pageContent}>
 
       <Toolbar>
           <Controls.Input
-              label="Search Objective"
+              label="Search Publisher City"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
       </Toolbar>
       <TblContainer>
@@ -162,5 +146,5 @@ const mapStateToProps = state =>({
 
 export default connect(
   mapStateToProps,
-  {getPublisherCities, addPublisherCity, editPublisherCity} )
+  {getPublisherCities} )
   (PublisherCities);

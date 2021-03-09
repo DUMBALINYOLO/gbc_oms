@@ -17,6 +17,7 @@ import NoteBag from './NoteBag';
 import RefIcon from '@material-ui/icons/AssignmentInd';
 import References from '../references/References'
 import InnerNotes from '../innernotes/InnerNotes';
+import NotesIcon from '@material-ui/icons/AssignmentTurnedIn';
 
 
 function TabContainer(props) {
@@ -88,7 +89,7 @@ class StudentStudyNote extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} />
-              <Tab icon={<RefIcon />} />
+              <Tab icon={<NotesIcon />} />
               <Tab icon={<RefIcon />} />
             </Tabs>
           </Hidden>
@@ -102,7 +103,7 @@ class StudentStudyNote extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<RefIcon />} label="STUDY NOTES" />
+              <Tab icon={<NotesIcon />} label="STUDY NOTES" />
               <Tab icon={<RefIcon />} label="STUDY REFERENCES" />
             </Tabs>
           </Hidden>
@@ -114,7 +115,6 @@ class StudentStudyNote extends React.Component {
     );
   }
 }
-
 
 
 const mapStateToProps = state => ({

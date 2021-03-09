@@ -57,12 +57,13 @@ const AdminOngoingCourses = props => {
   const courseData = useSelector((state) => state.courses.adminongoingcourses);
   const dispatch = useDispatch();
   const [newcourse, setNewCourse] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
 
 
   useEffect(() => {
     if(!props.fetched) {
-        dispatch(getAdminOngoingCourses(token));
+        dispatch(getAdminOngoingCourses(query, token));
     }
     console.log('mount it!');
 
@@ -75,7 +76,7 @@ const AdminOngoingCourses = props => {
       }else{
         props.addOngoingCourse(fee, token)
         setNewCourse(fee)
-        dispatch(getAdminOngoingCourses(token));
+        dispatch(getAdminOngoingCourses(query, token));
       }
       resetForm()
       setRecordForEdit(null)
@@ -94,7 +95,11 @@ const AdminOngoingCourses = props => {
       })
   }
 
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getAdminOngoingCourses(query, token)
+  }
 
   const openInPopup = item => {
       setRecordForEdit(item)
@@ -115,6 +120,18 @@ const AdminOngoingCourses = props => {
       <Paper className={classes.pageContent}>
 
       <Toolbar>
+          <Controls.Input
+              label="Search Ongoing Course"
+              value={query}
+              className={classes.searchInput}
+              InputProps={{
+                  startAdornment: (<InputAdornment position="start">
+                      <Search />
+                  </InputAdornment>)
+              }}
+              onChange={handleQuery}
+              handleSwitchView={handleSwitchView}
+          />
           <Controls.Button
               text="Add New"
               variant="outlined"
@@ -123,7 +140,7 @@ const AdminOngoingCourses = props => {
               onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
           />
       </Toolbar>
-        <SearchCourse
+          <SearchCourse
             courseData={courseData}
             listView={listView}
             handleSwitchView={handleSwitchView}

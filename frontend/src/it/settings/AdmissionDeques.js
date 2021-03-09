@@ -17,6 +17,7 @@ import Avatar from '@material-ui/core/Avatar';
 import dummy from '../../api/dummy/dummyContents';
 import DetailSettings from './DetailSettings';
 import styles from './settings-jss';
+import Beenhere from '@material-ui/icons/Beenhere';
 import CancelPresentation from '@material-ui/icons/CancelPresentation';
 import CheckCircleOutline from '@material-ui/icons/CheckCircleOutline';
 import RecordVoiceOver from '@material-ui/icons/RecordVoiceOver';
@@ -189,7 +190,7 @@ class UserDeques extends React.Component {
                       <span className={classes.text}>
                         ENROLLMENTS
                         <Typography variant="caption" className={classes.info}>
-                          <CancelPresentation/>
+                          <Beenhere/>
                         </Typography>
                       </span>
                     </Button>
@@ -203,7 +204,6 @@ class UserDeques extends React.Component {
     );
   }
 }
-
 
 
 export default withStyles(styles)(UserDeques);

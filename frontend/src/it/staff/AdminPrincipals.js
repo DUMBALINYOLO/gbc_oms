@@ -58,17 +58,15 @@ const AdminPrincipals = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [newstaff, setNewStaff] = useState({})
+  const [query, setQuery] = useState('')
   const {token, email} = props;
 
 
   useEffect(() => {
     if(!props.fetched) {
-          props.getAdminPrincipals(token);
+          props.getAdminPrincipals(query, token);
     }
     console.log('mount it!');
-
-
-
   }, [newstaff]);
 
 
@@ -79,7 +77,7 @@ const AdminPrincipals = props => {
       }else{
         props.addPrincipal(bursar, token)
         setNewStaff(bursar)
-        props.getAdminPrincipals(token);
+        props.getAdminPrincipals(query, token);
       }
       resetForm()
       setRecordForEdit(null)
@@ -107,6 +105,12 @@ const AdminPrincipals = props => {
       })
   }
 
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getAdminPrincipals(query, token)
+  }
+
   const openInPopup = item => {
       setRecordForEdit(item)
       setOpenPopup(true)
@@ -123,12 +127,14 @@ const AdminPrincipals = props => {
       <Toolbar>
           <Controls.Input
               label="Search Principal"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

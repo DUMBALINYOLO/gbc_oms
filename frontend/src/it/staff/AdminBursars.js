@@ -60,11 +60,12 @@ const AdminBursars = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [newstaff, setNewStaff] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminBursars(token);
+        props.getAdminBursars(query, token);
     }
     console.log('mount it!');
   }, [newstaff]);
@@ -76,13 +77,18 @@ const AdminBursars = props => {
       }else{
         props.addBursar(bursar, token) 
         setNewStaff(bursar)
-        props.getAdminBursars(token);      //
+        props.getAdminBursars(query, token);      //
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getAdminBursars(query, token)
+  }
 
 
   const {records} = props;
@@ -122,12 +128,14 @@ const AdminBursars = props => {
       <Toolbar>
           <Controls.Input
               label="Search Bursar"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

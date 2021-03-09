@@ -56,11 +56,12 @@ const AdminParents = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [newparent, setNewParent] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminParents(token);
+        props.getAdminParents(query, token);
     }
     console.log('mount it!');
 
@@ -70,19 +71,23 @@ const AdminParents = props => {
 
   const addOrEdit = (bursar, resetForm, token) => {
       if (bursar.id > 0){
-        //console.log('gosso')
         setNewParent(bursar)
       }else{
         props.addParent(bursar, token) 
         setNewParent(bursar)
-        props.getAdminParents(token);   
+        props.getAdminParents(query, token);   
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getAdminParents(query, token)
 
+  }
 
   const {records} = props;
 
@@ -121,13 +126,14 @@ const AdminParents = props => {
       <Toolbar>
           <Controls.Input
               label="Search Parent"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
-              onChange={handleSearch}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

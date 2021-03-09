@@ -42,14 +42,6 @@ class SearchCourse extends React.Component {
       <div className={classes.root}>
         <AppBar position="static" color="inherit">
           <Toolbar>
-            <div className={classes.flex}>
-              <div className={classes.wrapper}>
-                <div className={classes.search}>
-                  <SearchIcon />
-                </div>
-                <input className={classes.input} placeholder="Search Course" />
-              </div>
-            </div>
             <Hidden mdDown>
               <div className={classes.toggleContainer}>
                 <ToggleButtonGroup value={listView} exclusive onChange={handleSwitchView}>

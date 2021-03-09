@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { getStudyNotes, addStudyNote, editStudyNote } from '../../../actions/courses';
+import { getStudyNotes } from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -53,25 +53,24 @@ const options = {
 const Notes = props => {
   const history = useHistory();
   const classes = useStyles();
-  const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
-  const [openPopup, setOpenPopup] = useState(false)
+  const [newnote, setNewNote] = useState({})
+  const [query, setQuery] = useState('')
   const {id} =props.data;
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getStudyNotes(id, token);
+        props.getStudyNotes(id, query, token);
     }
     console.log('mount it!');
+  }, [newnote]);
 
-
-  }, []);
-
-
-
-
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getStudyNotes(query, token)
+  }
 
   const {records} = props;
 
@@ -94,11 +93,6 @@ const Notes = props => {
       })
   }
 
-  const openInPopup = item => {
-      setRecordForEdit(item)
-      setOpenPopup(true)
-  }
-
   const handleClick = id =>{
     history.push(`/studentdashboard/notes/${id}`)
   }
@@ -109,13 +103,15 @@ const Notes = props => {
 
       <Toolbar>
           <Controls.Input
-              label="Search Notes"
+              label="Search Note"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
       </Toolbar>
       <TblContainer>
@@ -155,5 +151,5 @@ const mapStateToProps = state =>({
 
 export default connect(
   mapStateToProps,
-  {getStudyNotes, addStudyNote, editStudyNote} )
+  {getStudyNotes} )
   (Notes);

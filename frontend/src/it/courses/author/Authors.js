@@ -56,11 +56,12 @@ const Authors = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [newcourse, setNewCourse] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAuthors(token);
+        props.getAuthors(query, token);
     }
     console.log('mount it!');
 
@@ -76,14 +77,18 @@ const Authors = props => {
       else{
         props.addAuthor(fee, token)
         setNewCourse(fee)
-        props.getAuthors(token);
+        props.getAuthors(query, token);
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getAuthors(query, token)
+  }
 
   const {records} = props;
 
@@ -118,12 +123,14 @@ const Authors = props => {
       <Toolbar>
           <Controls.Input
               label="Search Author"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

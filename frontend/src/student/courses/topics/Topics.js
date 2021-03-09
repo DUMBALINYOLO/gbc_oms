@@ -45,25 +45,27 @@ const options = {
 
 const Topics = props => {
   const classes = useStyles();
-  const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
-  const [openPopup, setOpenPopup] = useState(false)
   const [listView, setListView] = useState('grid')
   const history = useHistory();
+  const [query, setQuery] = useState('')
   const {id} =props.data;
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminTopics(id, token);
+        props.getAdminTopics(id,query, token);
     }
     console.log('mount it!');
 
 
   }, []);
 
-
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getAdminTopics(query, token)
+  }
 
   const handleSearch = e => {
       let target = e.target;
@@ -75,13 +77,6 @@ const Topics = props => {
                   return items.filter(x => x.name.toLowerCase().includes(target.value))
           }
       })
-  }
-
-
-
-  const openInPopup = item => {
-      setRecordForEdit(item)
-      setOpenPopup(true)
   }
 
   const handleSwitchView = (event, value) => {
@@ -99,6 +94,19 @@ const Topics = props => {
   return (
     <>
       <Paper className={classes.pageContent}>
+        <Toolbar>
+          <Controls.Input
+              label="Search Topic"
+              value={query}
+              className={classes.searchInput}
+              InputProps={{
+                  startAdornment: (<InputAdornment position="start">
+                      <Search />
+                  </InputAdornment>)
+              }}
+              onChange={handleQuery}
+          />
+      </Toolbar>
         <SearchTopic
             courseData={courseData}
             listView={listView}

@@ -60,11 +60,12 @@ const AdminStudentExcercises = props => {
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
     const [newgrading, setNewGrading] = useState({})
+    const [query, setQuery] = useState('')
     const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminStudentExcercises(token);
+        props.getAdminStudentExcercises(query, token);
     }
     console.log('mount it!');
 
@@ -79,14 +80,18 @@ const AdminStudentExcercises = props => {
       }else{
         props.addGrade(fee, token)
         setNewGrading(fee)
-        props.getAdminStudentExcercises(token);
+        props.getAdminStudentExcercises(query, token);
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getAdminStudentExcercises(query, token)
+  }
 
   const {records} = props;
 
@@ -125,12 +130,14 @@ const AdminStudentExcercises = props => {
       <Toolbar>
           <Controls.Input
               label="Search Excercise"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

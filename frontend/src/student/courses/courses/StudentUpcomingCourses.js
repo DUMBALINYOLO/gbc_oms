@@ -44,16 +44,15 @@ const options = {
 
 const StudentOngoingCourses = props => {
   const classes = useStyles();
-  const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
-  const [openPopup, setOpenPopup] = useState(false)
   const [listView, setListView] = useState('grid')
   const history = useHistory();
+  const [query, setQuery] = useState('')
   const {email,token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getUpcomingStudentCourses(email,token);
+        props.getUpcomingStudentCourses(email,query, token);
     }
     console.log('mount it!');
 
@@ -73,11 +72,10 @@ const StudentOngoingCourses = props => {
       })
   }
 
-
-
-  const openInPopup = item => {
-      setRecordForEdit(item)
-      setOpenPopup(true)
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getUpcomingStudentCourses(query, token)
   }
 
   const handleSwitchView = (event, value) => {
@@ -95,6 +93,19 @@ const StudentOngoingCourses = props => {
   return (
     <StudentLayout>
       <Paper className={classes.pageContent}>
+        <Toolbar>
+          <Controls.Input
+              label="Search Upcoming Course"
+              value={query}
+              className={classes.searchInput}
+              InputProps={{
+                  startAdornment: (<InputAdornment position="start">
+                      <Search />
+                  </InputAdornment>)
+              }}
+              onChange={handleQuery}
+          />
+      </Toolbar>
         <SearchCourse
             courseData={courseData}
             listView={listView}

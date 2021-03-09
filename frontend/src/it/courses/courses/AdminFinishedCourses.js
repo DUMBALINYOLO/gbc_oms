@@ -59,11 +59,12 @@ const AdminOngoingCourses = props => {
   const [listView, setListView] = useState('grid')
   const history = useHistory();
   const [newcourse, setNewCourse] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminFinishedCourses(token);
+        props.getAdminFinishedCourses(query, token);
     }
     console.log('mount it!');
 
@@ -78,7 +79,7 @@ const AdminOngoingCourses = props => {
       }else{
         props.addFinishedCourse(fee, token)
         setNewCourse(fee)
-        props.getAdminFinishedCourses(token);
+        props.getAdminFinishedCourses(query, token);
       }
       resetForm()
       setRecordForEdit(null)
@@ -86,7 +87,11 @@ const AdminOngoingCourses = props => {
   }
 
 
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getAdminFinishedCourses(query, token)
+  }
 
 
   const handleSearch = e => {
@@ -100,8 +105,6 @@ const AdminOngoingCourses = props => {
           }
       })
   }
-
-
 
   const openInPopup = item => {
       setRecordForEdit(item)
@@ -125,6 +128,17 @@ const AdminOngoingCourses = props => {
       <Paper className={classes.pageContent}>
 
       <Toolbar>
+          <Controls.Input
+              label="Search Finished Course"
+              value={query}
+              className={classes.searchInput}
+              InputProps={{
+                  startAdornment: (<InputAdornment position="start">
+                      <Search />
+                  </InputAdornment>)
+              }}
+              onChange={handleQuery}
+          />
           <Controls.Button
               text="Add New"
               variant="outlined"
@@ -133,7 +147,7 @@ const AdminOngoingCourses = props => {
               onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
           />
       </Toolbar>
-        <SearchCourse
+          <SearchCourse
             courseData={courseData}
             listView={listView}
             handleSwitchView={handleSwitchView}

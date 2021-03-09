@@ -18,7 +18,7 @@ import EditRecord from './EditRecord';
 import  Controls  from "../../components/formcontrols/Controls";
 import  Popup  from "../../components/formcontrols/Popup";
 import  useTable  from "../../components/table/useTable";
-
+import {gradingexcerciserecordsURL} from '../../constants'
 
 
 const useStyles = makeStyles(theme => ({
@@ -57,19 +57,18 @@ const ExcerciseRecords = props => {
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
     const [records, setRecords] = useState([])
+    const [query, setQuery] = useState('')
     const [newgrading, setNewGrading] = useState({})
     const {token} = props;
 
     const {id} =props.data
 
-
   const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0){
         props.editExcerciseRecord(fee.id, fee, token)
         setNewGrading(fee)
-      }
-      else{
-        setNewGrading(fee)    
+      }else{
+        setNewGrading(fee)
       }
       resetForm()
       setRecordForEdit(null)
@@ -80,8 +79,13 @@ const ExcerciseRecords = props => {
     window.scrollTo(0, 0);
 
     const fetchData = async () => {
+        const headers ={
+              "Content-Type": "application/json",
+              Authorization: `Token ${token}`,
+              'Accept': 'application/json',
+        };
         try {
-            const res = await axios.get(`http://127.0.0.1:8000/api/grading/grading-excercise-records/?id=${id}`);
+            const res = await axios.get(`${gradingexcerciserecordsURL}?id=${id}`, headers);
 
             setRecords(res.data);
         }
@@ -93,7 +97,10 @@ const ExcerciseRecords = props => {
         fetchData();
     }, [newgrading]);
 
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+  }
 
   const {
       TblContainer,
@@ -126,12 +133,14 @@ const ExcerciseRecords = props => {
       <Toolbar>
           <Controls.Input
               label="Search Record"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
       </Toolbar>
       <TblContainer>
@@ -165,7 +174,7 @@ const ExcerciseRecords = props => {
       <TblPagination />
       </Paper>
       <Popup
-      title="Excercise Record Form"
+      title="Record Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >

@@ -55,6 +55,8 @@ const StudentAttendanceRecords = props => {
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
+    const [newattendance, setNewAttendance] = useState({})
+    const [query, setQuery] = useState('')
     const {token, email} = props;
 
 
@@ -64,7 +66,12 @@ const StudentAttendanceRecords = props => {
     }
     console.log('mount it!');
 
-  }, []);
+  }, [newattendance]);
+
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+  }
 
 
   const{records} = props;
@@ -96,12 +103,14 @@ const StudentAttendanceRecords = props => {
       <Toolbar>
           <Controls.Input
               label="Search Attendance"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
       </Toolbar>
       <TblContainer>

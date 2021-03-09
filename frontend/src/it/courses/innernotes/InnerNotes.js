@@ -59,12 +59,13 @@ const InnerNotes = props => {
   const [openPopup, setOpenPopup] = useState(false)
   const {id} =props.data;
   const [newcourse, setNewCourse] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
   const [expanded, setExpanded] = useState('panel_0')
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getStudyNoteNotes(id, token);
+        props.getStudyNoteNotes(id,query, token);
     }
     console.log('mount it!');
 
@@ -81,17 +82,20 @@ const InnerNotes = props => {
         props.addStudyNoteNote(fee, token)
         setNewCourse(fee)
         console.log(fee)
-        props.getStudyNoteNotes(id, token);
+        props.getStudyNoteNotes(id,query, token);
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getStudyNoteNotes(query, token)
+  }
 
   const {records} = props;
-  console.log(records)
 
   const {
       TblContainer,
@@ -124,12 +128,14 @@ const InnerNotes = props => {
       <Toolbar>
           <Controls.Input
               label="Search InnerNotes"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

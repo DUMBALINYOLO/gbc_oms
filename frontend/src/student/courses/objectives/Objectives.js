@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { getAdminTopicObjectives, addTopicObjective, editTopicObjective } from '../../../actions/courses';
+import { getAdminTopicObjectives } from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -50,24 +50,23 @@ const options = {
 const Objectives = props => {
   const { history } = props;
   const classes = useStyles();
-  const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
-  const [openPopup, setOpenPopup] = useState(false)
   const {id} =props.data;
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminTopicObjectives(id, token);
+        props.getAdminTopicObjectives(id, query, token);
     }
     console.log('mount it!');
-
-
   }, []);
 
-
-
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getAdminTopicObjectives(query, token)
+  }
 
   const {records} = props;
 
@@ -90,10 +89,6 @@ const Objectives = props => {
       })
   }
 
-  const openInPopup = item => {
-      setRecordForEdit(item)
-      setOpenPopup(true)
-  }
 
   return (
     <>
@@ -102,14 +97,15 @@ const Objectives = props => {
       <Toolbar>
           <Controls.Input
               label="Search Objective"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
-
       </Toolbar>
       <TblContainer>
           <TblHead />
@@ -144,5 +140,5 @@ const mapStateToProps = state =>({
 
 export default connect(
   mapStateToProps,
-  {getAdminTopicObjectives, addTopicObjective, editTopicObjective} )
+  {getAdminTopicObjectives} )
   (Objectives);

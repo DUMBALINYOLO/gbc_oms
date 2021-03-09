@@ -59,11 +59,12 @@ const AdminStudents = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [newstudent, setNewStudent] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminStudents(token);
+        props.getAdminStudents(query, token);
     }
     console.log('mount it!');
 
@@ -79,14 +80,18 @@ const AdminStudents = props => {
       }else{
         props.addBursar(bursar, token)      
         setNewStudent(bursar)
-        props.getAdminStudents(token);
+        props.getAdminStudents(query, token);
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getAdminStudents(query, token)
+  }
 
   const {records} = props;
 
@@ -126,12 +131,14 @@ const AdminStudents = props => {
       <Toolbar>
           <Controls.Input
               label="Search Student"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

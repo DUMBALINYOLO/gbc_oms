@@ -51,6 +51,7 @@ const TeacherOngoingCourses = props => {
   const [openPopup, setOpenPopup] = useState(false)
   const [listView, setListView] = useState('grid')
   const [newcourse, setNewCourse] = useState({})
+  const [query, setQuery] = useState('')
   const history = useHistory();
 
   const {
@@ -60,12 +61,18 @@ const TeacherOngoingCourses = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminFinishedCourses(token);
+        props.getAdminFinishedCourses(query, token);
     }
     console.log('mount it!');
 
 
   }, [newcourse]);
+
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getAdminFinishedCourses(query, token)
+  }
 
 
   const addOrEdit = (fee, resetForm, token) => {
@@ -76,16 +83,12 @@ const TeacherOngoingCourses = props => {
       else{
         props.addFinishedCourse(fee, token)
         setNewCourse(fee)
-        props.getAdminFinishedCourses(token);
+        props.getAdminFinishedCourses(query, token);
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
-
-
-
-
 
   const handleSearch = e => {
       let target = e.target;
@@ -121,6 +124,17 @@ const TeacherOngoingCourses = props => {
       <Paper className={classes.pageContent}>
 
       <Toolbar>
+          <Controls.Input
+              label="Search Finished Course"
+              value={query}
+              className={classes.searchInput}
+              InputProps={{
+                  startAdornment: (<InputAdornment position="start">
+                      <Search />
+                  </InputAdornment>)
+              }}
+              onChange={handleQuery}
+          />
           <Controls.Button
               text="Add New"
               variant="outlined"

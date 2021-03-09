@@ -59,6 +59,7 @@ const Records = props => {
     const {token} = props;
     const {id} =props.data
     const [records, setRecords] = useState([])
+    const [query, setQuery] = useState('')
     const [newattendance, setNewAttendance] = useState({})
 
 
@@ -68,7 +69,6 @@ const Records = props => {
         setNewAttendance(fee)
       }
       else{
-        console.log(fee)
         setNewAttendance(fee)
       }
       resetForm()
@@ -97,6 +97,11 @@ const Records = props => {
 
       fetchData();
   }, [newattendance]);
+
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+  }
 
 
   const {
@@ -130,12 +135,14 @@ const Records = props => {
       <Toolbar>
           <Controls.Input
               label="Search Record"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

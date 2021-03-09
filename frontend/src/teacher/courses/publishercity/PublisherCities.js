@@ -55,15 +55,14 @@ const PublisherCities = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [newcourse, setNewCourse] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getPublisherCities(token);
+        props.getPublisherCities(query, token);
     }
     console.log('mount it!');
-
-
   }, [newcourse]);
 
 
@@ -75,14 +74,18 @@ const PublisherCities = props => {
       else{
         props.addPublisherCity(fee, token)
         setNewCourse(fee)
-        props.getPublisherCities(token);
+        props.getPublisherCities(query, token);
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getPublisherCities(query, token)
+  }
 
   const {records} = props;
 
@@ -117,12 +120,14 @@ const PublisherCities = props => {
       <Toolbar>
           <Controls.Input
               label="Search City"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { getPublishers, addPublisher, editPublisher } from '../../../actions/courses';
+import { getPublishers } from '../../../actions/courses';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -14,7 +14,6 @@ import {
   Toolbar,
   InputAdornment }
 from '@material-ui/core';
-import AddPublisher from './AddPublisher';
 import  Controls  from "../../../components/formcontrols/Controls";
 import  Popup  from "../../../components/formcontrols/Popup";
 import  useTable  from "../../../components/table/useTable";
@@ -52,38 +51,25 @@ const options = {
 const Publishers = props => {
   const { history } = props;
   const classes = useStyles();
-  const [recordForEdit, setRecordForEdit] = useState(null)
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
-  const [openPopup, setOpenPopup] = useState(false)
   const [newstudent, setNewStudent] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getPublishers(token);
+        props.getPublishers(query, token);
     }
     console.log('mount it!');
 
 
-  }, [newstudent]);
+  }, []);
 
-
-  const addOrEdit = (fee, resetForm, token) => {
-      if (fee.id > 0){
-        props.editPublisher(fee.id, fee, token)
-        setNewStudent(fee)
-      }
-      else{
-        props.addPublisher(fee, token)
-        setNewStudent(fee)
-        props.getPublishers(token);
-      }
-      resetForm()
-      setRecordForEdit(null)
-      setOpenPopup(false)
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getPublishers(query, token)
   }
-
-
 
   const {records} = props;
 
@@ -106,11 +92,6 @@ const Publishers = props => {
       })
   }
 
-  const openInPopup = item => {
-      setRecordForEdit(item)
-      setOpenPopup(true)
-  }
-
   return (
     <StudentLayout>
       <Paper className={classes.pageContent}>
@@ -118,12 +99,14 @@ const Publishers = props => {
       <Toolbar>
           <Controls.Input
               label="Search Publisher"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
       </Toolbar>
       <TblContainer>
@@ -160,5 +143,5 @@ const mapStateToProps = state =>({
 
 export default connect(
   mapStateToProps,
-  {getPublishers, addPublisher, editPublisher} )
+  {getPublishers} )
   (Publishers);

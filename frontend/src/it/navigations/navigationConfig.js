@@ -231,7 +231,7 @@ const navigationConfig = [
         type: "collapse",
         icon: <AdmIcon />,
         badge: {
-          title: "9",
+          title: "8",
           bg: "#525E8A",
           fg: "#FFFFFF",
 

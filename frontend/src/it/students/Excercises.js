@@ -48,6 +48,8 @@ const Excercises = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [records, setRecords] = useState([])
   const {token} = props;
+  const [newexercise, setNewExercise] = useState({})
+  const [query, setQuery] = useState('')
   const {id} =props.data
 
 
@@ -71,7 +73,12 @@ const Excercises = props => {
     }
 
     fetchData();
-}, []);
+  }, [newexercise]);
+
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+  }
 
 
   const {
@@ -101,12 +108,14 @@ const Excercises = props => {
       <Toolbar>
           <Controls.Input
               label="Search Excercise"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
       </Toolbar>
       <TblContainer>

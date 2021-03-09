@@ -56,12 +56,13 @@ const Subjects = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [newsubject, setNewSubject] = useState({})
+  const [query, setQuery] = useState('')
   const {id} =props.data;
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getSubjects(id, token);
+        props.getSubjects(id,query, token);
     }
     console.log('mount it!');
 
@@ -72,11 +73,11 @@ const Subjects = props => {
       if (fee.id > 0){
         props.editSubject(fee.id, fee, token)
         setNewSubject(fee)
-        props.getSubjects(id, token);
+        props.getSubjects(id,query, token);
       }else{
         props.addSubject(fee, token)
         setNewSubject(fee)
-        props.getSubjects(id, token);
+        props.getSubjects(id,query, token);
       }
       resetForm()
       setRecordForEdit(null)
@@ -84,6 +85,13 @@ const Subjects = props => {
   }
 
   const {records} = props;
+
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getSubjects(query, token)
+
+  }
 
   const {
       TblContainer,
@@ -116,12 +124,14 @@ const Subjects = props => {
       <Toolbar>
           <Controls.Input
               label="Search Subject"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

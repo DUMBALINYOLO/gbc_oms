@@ -57,6 +57,7 @@ const TeacherStudents = props => {
   const classes = useStyles();
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const {token} = props;
+  const [query, setQuery] = useState('')
 
   useEffect(() => {
     if(!props.fetched) {
@@ -69,6 +70,11 @@ const TeacherStudents = props => {
 
 
   const {records} = props;
+
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+  }
 
   const {
       TblContainer,
@@ -103,12 +109,14 @@ const TeacherStudents = props => {
       <Toolbar>
           <Controls.Input
               label="Search Student"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
       </Toolbar>
       <TblContainer>
@@ -122,11 +130,6 @@ const TeacherStudents = props => {
                           <TableCell>{item.email}</TableCell>
                           <TableCell>{item.type}</TableCell>
                           <TableCell>
-                              <Controls.ActionButton
-                                  color="primary"
-                                >
-                                  <EditOutlinedIcon fontSize="small" />
-                              </Controls.ActionButton>
                               <Controls.ActionButton
                                   color="secondary"
                                   onClick={() => { handleClick(item.id) }}

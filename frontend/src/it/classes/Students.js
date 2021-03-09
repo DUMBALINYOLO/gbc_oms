@@ -57,19 +57,28 @@ const Students = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const {id} =props.data;
+  const [newstudent, setNewStudent] = useState({})
+  const [query, setQuery] = useState('')
   const {token} = props;
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getStudents(id, token);
+        props.getStudents(id,query, token);
     }
     console.log('mount it!');
 
 
-  }, []);
+  }, [newstudent]);
 
 
   const {records} = props;
+
+  const handleQuery = e => {
+    let target = e.target;
+    setQuery(target.value);
+    props.getStudents(query, token)
+
+  }
 
   const {
       TblContainer,
@@ -102,12 +111,14 @@ const Students = props => {
       <Toolbar>
           <Controls.Input
               label="Search Student"
+              value={query}
               className={classes.searchInput}
               InputProps={{
                   startAdornment: (<InputAdornment position="start">
                       <Search />
                   </InputAdornment>)
               }}
+              onChange={handleQuery}
           />
       </Toolbar>
       <TblContainer>
