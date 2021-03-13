@@ -49,26 +49,26 @@ class GerereRegister extends React.Component {
                      <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                     <h2>Student Registration</h2>
                 </Grid>
-                <TextField 
+                <TextField
                   label="Email"
-                  placeholder='Enter Email' 
+                  placeholder='Enter Email'
                   fullWidth required
                   onChange={this.onChange}
                   value={email}
                   name = "email"
                 />
-                <TextField 
+                <TextField
                   label="USERNAME"
-                  placeholder='Enter Username' 
+                  placeholder='Enter Username'
                   fullWidth required
                   name="username"
                   onChange={this.onChange}
                   value={username}
                 />
-                <TextField 
-                  label='Password' 
-                  placeholder='Enter password' 
-                  type='password' 
+                <TextField
+                  label='Password'
+                  placeholder='Enter password'
+                  type='password'
                   fullWidth required
                   onChange={this.onChange}
                   value={password}
@@ -84,11 +84,11 @@ class GerereRegister extends React.Component {
                     label="Remember me"
                  />
                 <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Sign Up</Button>
-                <Typography > Do you have an account ?
-                     <Link to={link.signup} >
-                        Sign In 
+                 Do you have an account ?
+                <Link to='/login' >
+                        Sign In
                 </Link>
-                </Typography>
+                <Typography > By continuing, you agree to Gerere business college's Conditions of Use and Privacy Notice.</Typography>
             </Paper>
         </form>
       </PublicLayout>
@@ -100,4 +100,3 @@ export default connect(
   null,
   {addStudent}
 )(GerereRegister)
-

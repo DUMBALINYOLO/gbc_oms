@@ -1,8 +1,8 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
-import AlertTemplate from 'react-alert-template-basic';
-import { Provider as AlertProvider } from 'react-alert';
+import AlertMUITemplate from "react-alert-template-mui";
+import { positions, transitions, Provider as AlertProvider } from "react-alert";
 import ThemeWrapper, { AppContext } from './theme/ThemeWrapper';
 import LandingPage from './containers/landing/LandingPage'
 import BlogPage from './containers/Blog/BlogPage';
@@ -125,10 +125,11 @@ import Enrollments from './it/admissions/Enrollments';
 
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
-const alertOptions = {
-	timeout: 30000,
-	position: 'top center'
-}
+const options = {
+  position: positions.MIDDLE,
+	timeout: 3000,
+  transition: transitions.SCALE
+};
 
 class App extends React.Component {
 	constructor(props) {
@@ -146,131 +147,132 @@ class App extends React.Component {
     console.log(user);
     return (
       <ThemeWrapper>
-        <AppContext.Consumer>
-            {(changeMode) => (
-            <AlertProvider template={AlertTemplate} {...alertOptions} >
-                <Alerts/>
-              <Switch>
-                <Route exact path='/' component={LandingPage} />
-                <Route exact path='/login' component={GerereLogin} />
-								<Route exact path='/signup' component={GerereRegister} />
-                <Route exact path='/itdashboard/users' component={UserDeques} />
-                <Route exact path='/itdashboard/courses' component={CourseDeques} />
-                <Route exact path='/itdashboard/bio' component={BioDeques} />
-                <Route exact path='/itdashboard/admissions' component={AdmissionDeques} />
-                <Route exact path='/teacherdashboard/courses' component={TeacherCourseDeques} />
-                <Route exact path='/teacherdashboard/bio' component={TeacherBioDeques} />
-                <Route exact path='/studentdashboard/courses' component={StudentCourseDeques} />
-                <Route exact path='/studentdashboard/bio' component={StudentBioDeques} />
-                <Route exact path='/coursesoffered' component={PuclicOfferedCourses} />
-                <Route exact path='/itdashboard' component={InformationTechnologyHome} />
-                <Route exact path='/publicdashboard' component={PublicDash} />
-                <Route exact path='/bursardashboard' component={BursarLog} />
-								<Route exact path='/studentdashboard' component={StudentHome} />
-								<Route exact path='/studentdashboard/add-admission' component={AddAdmission} />
-								<Route exact path='/studentdashboard/attendance' component={StudentAttendanceRecords} />
-								<Route exact path='/studentdashboard/tests' component={StudentTestRecords} />
-								<Route exact path='/studentdashboard/excercises' component={StudentExcerciseRecords} />
-								<Route exact path='/studentdashboard/assignments' component={StudentAssignmentRecords} />
-								<Route exact path='/studentdashboard/ongoingcourses' component={StudentOngoingCourses} />
-								<Route exact path='/studentdashboard/ongoingcourses/:id' component={StudentOngoingCourse} />
-								<Route exact path='/studentdashboard/upcomingcourses' component={StudentUpcomingCourses} />
-								<Route exact path='/studentdashboard/upcomingcourses/:id' component={StudentUpcomingCourse} />
-								<Route exact path='/studentdashboard/topics/:id' component={StudentTopic} />
-								<Route exact path='/studentdashboard/subtopics/:id' component={StudentSubTopic} />
-								<Route exact path='/studentdashboard/notes/:id' component={StudentStudyNote} />
-                <Route exact path='/studentdashboard/authors' component={StudentAuthors} />
-                <Route exact path='/studentdashboard/publishers' component={StudentPublishers} />
-                <Route exact path='/studentdashboard/cities' component={StudentCities} />
-                <Route exact path='/wa' component={TeacherLog} />
-                <Route exact path='/teacherdashboard' component={TeacherHome} />
-                <Route exact path='/teacherdashboard/attendance' component={TeacherAttendances} />
-                <Route exact path='/teacherdashboard/attendance/:id' component={TeacherAttendance} />
-                <Route exact path='/teacherdashboard/tests' component={TeacherTests} />
-                <Route exact path='/teacherdashboard/tests/:id' component={TeacherTest} />
-                <Route exact path='/teacherdashboard/excercises' component={TeacherExcercises} />
-                <Route exact path='/teacherdashboard/excercises/:id' component={TeacherExcercise} />
-                <Route exact path='/teacherdashboard/assignments' component={TeacherAssignments} />
-                <Route exact path='/teacherdashboard/assignments/:id' component={TeacherAssignment} />
-                <Route exact path='/teacherdashboard/students' component={TeacherStudents} />
-                <Route exact path='/teacherdashboard/students/:id' component={TeacherStudentProfile} />
-                <Route exact path='/teacherdashboard/topics/:id' component={TeacherTopic} />
-                <Route exact path='/teacherdashboard/subtopics/:id' component={TeacherSubTopic} />
-                <Route exact path='/teacherdashboard/notes/:id' component={TeacherStudyNote} />
+				<AlertProvider template={AlertMUITemplate} {...options}>
+          <Alerts/>
+		        <AppContext.Consumer>
+		            {(changeMode) => (
+		              <Switch>
+		                <Route exact path='/' component={LandingPage} />
+		                <Route exact path='/login' component={GerereLogin} />
+										<Route exact path='/signup' component={GerereRegister} />
+		                <Route exact path='/itdashboard/users' component={UserDeques} />
+		                <Route exact path='/itdashboard/courses' component={CourseDeques} />
+		                <Route exact path='/itdashboard/bio' component={BioDeques} />
+		                <Route exact path='/itdashboard/admissions' component={AdmissionDeques} />
+		                <Route exact path='/teacherdashboard/courses' component={TeacherCourseDeques} />
+		                <Route exact path='/teacherdashboard/bio' component={TeacherBioDeques} />
+		                <Route exact path='/studentdashboard/courses' component={StudentCourseDeques} />
+		                <Route exact path='/studentdashboard/bio' component={StudentBioDeques} />
+		                <Route exact path='/coursesoffered' component={PuclicOfferedCourses} />
+		                <Route exact path='/itdashboard' component={InformationTechnologyHome} />
+		                <Route exact path='/publicdashboard' component={PublicDash} />
+		                <Route exact path='/bursardashboard' component={BursarLog} />
+										<Route exact path='/studentdashboard' component={StudentHome} />
+										<Route exact path='/studentdashboard/add-admission' component={AddAdmission} />
+										<Route exact path='/studentdashboard/attendance' component={StudentAttendanceRecords} />
+										<Route exact path='/studentdashboard/tests' component={StudentTestRecords} />
+										<Route exact path='/studentdashboard/excercises' component={StudentExcerciseRecords} />
+										<Route exact path='/studentdashboard/assignments' component={StudentAssignmentRecords} />
+										<Route exact path='/studentdashboard/ongoingcourses' component={StudentOngoingCourses} />
+										<Route exact path='/studentdashboard/ongoingcourses/:id' component={StudentOngoingCourse} />
+										<Route exact path='/studentdashboard/upcomingcourses' component={StudentUpcomingCourses} />
+										<Route exact path='/studentdashboard/upcomingcourses/:id' component={StudentUpcomingCourse} />
+										<Route exact path='/studentdashboard/topics/:id' component={StudentTopic} />
+										<Route exact path='/studentdashboard/subtopics/:id' component={StudentSubTopic} />
+										<Route exact path='/studentdashboard/notes/:id' component={StudentStudyNote} />
+		                <Route exact path='/studentdashboard/authors' component={StudentAuthors} />
+		                <Route exact path='/studentdashboard/publishers' component={StudentPublishers} />
+		                <Route exact path='/studentdashboard/cities' component={StudentCities} />
+		                <Route exact path='/wa' component={TeacherLog} />
+		                <Route exact path='/teacherdashboard' component={TeacherHome} />
+		                <Route exact path='/teacherdashboard/attendance' component={TeacherAttendances} />
+		                <Route exact path='/teacherdashboard/attendance/:id' component={TeacherAttendance} />
+		                <Route exact path='/teacherdashboard/tests' component={TeacherTests} />
+		                <Route exact path='/teacherdashboard/tests/:id' component={TeacherTest} />
+		                <Route exact path='/teacherdashboard/excercises' component={TeacherExcercises} />
+		                <Route exact path='/teacherdashboard/excercises/:id' component={TeacherExcercise} />
+		                <Route exact path='/teacherdashboard/assignments' component={TeacherAssignments} />
+		                <Route exact path='/teacherdashboard/assignments/:id' component={TeacherAssignment} />
+		                <Route exact path='/teacherdashboard/students' component={TeacherStudents} />
+		                <Route exact path='/teacherdashboard/students/:id' component={TeacherStudentProfile} />
+		                <Route exact path='/teacherdashboard/topics/:id' component={TeacherTopic} />
+		                <Route exact path='/teacherdashboard/subtopics/:id' component={TeacherSubTopic} />
+		                <Route exact path='/teacherdashboard/notes/:id' component={TeacherStudyNote} />
 
-                <Route exact path='/teacherdashboard/ongoingcourses' component={TeacherOngoingCourses} />
-                <Route exact path='/teacherdashboard/ongoingcourses/:id' component={TeacherOngoingCourse} />
-                <Route exact path='/teacherdashboard/finishedcourses' component={TeacherFinishedCourses} />
-                <Route exact path='/teacherdashboard/finishedcourses/:id' component={TeacherFinishedCourse} />
-                <Route exact path='/teacherdashboard/inactivecourses' component={TeacherInactiveCourses} />
-                <Route exact  path='/teacherdashboard/inactivecourses/:id' component={TeacherInactiveCourse} />
-                <Route exact path='/teacherdashboard/upcomingcourses' component={TeacherUpcomingCourses} />
-                <Route exact path='/teacherdashboard/upcomingcourses/:id' component={TeacherUpcomingCourse} />
-                                <Route exact path='/teacherdashboard/authors' component={TeacherAuthors} />
-                                <Route exact path='/teacherdashboard/publishers' component={TeacherPublishers} />
-                                <Route exact path='/teacherdashboard/cities' component={TeacherCities} />
-                <Route exact path='/itdashboard/fees' component={Fees} />
-                <Route exact path='/itdashboard/curriculums' component={Curriculum} />
-                <Route exact path='/itdashboard/taxes' component={AdminTaxes} />
-                <Route exact path='/itdashboard/bursars' component={AdminBursars} />
-                <Route exact path='/itdashboard/parents' component={AdminParents} />
-                <Route exact path='/itdashboard/teachers' component={AdminTeachers} />
-								<Route exact path='/itdashboard/enrollments' component={Enrollments} />
-                <Route exact path='/itdashboard/approved-admissions' component={AdminApprovedAdmissions} />
-                <Route exact path='/itdashboard/pending-admissions' component={AdminPendingAdmissions} />
-                <Route exact path='/itdashboard/meeting-admissions' component={AdminMeetingAdmissions} />
-                <Route exact path='/itdashboard/rejected-admissions' component={AdminRejectedAdmissions} />
-                <Route exact path='/itdashboard/students' component={AdminStudents} />
-								<Route exact path='/itdashboard/authors' component={Authors} />
-								<Route exact path='/itdashboard/publishers' component={Publishers} />
-								<Route exact path='/itdashboard/cities' component={Cities} />
-								<Route exact path='/itdashboard/course-ads' component={AdminCourseAdverts} />
-                <Route exact path="/itdashboard/students/:id" component={StudentProfile} />
+		                <Route exact path='/teacherdashboard/ongoingcourses' component={TeacherOngoingCourses} />
+		                <Route exact path='/teacherdashboard/ongoingcourses/:id' component={TeacherOngoingCourse} />
+		                <Route exact path='/teacherdashboard/finishedcourses' component={TeacherFinishedCourses} />
+		                <Route exact path='/teacherdashboard/finishedcourses/:id' component={TeacherFinishedCourse} />
+		                <Route exact path='/teacherdashboard/inactivecourses' component={TeacherInactiveCourses} />
+		                <Route exact  path='/teacherdashboard/inactivecourses/:id' component={TeacherInactiveCourse} />
+		                <Route exact path='/teacherdashboard/upcomingcourses' component={TeacherUpcomingCourses} />
+		                <Route exact path='/teacherdashboard/upcomingcourses/:id' component={TeacherUpcomingCourse} />
+		                                <Route exact path='/teacherdashboard/authors' component={TeacherAuthors} />
+		                                <Route exact path='/teacherdashboard/publishers' component={TeacherPublishers} />
+		                                <Route exact path='/teacherdashboard/cities' component={TeacherCities} />
+		                <Route exact path='/itdashboard/fees' component={Fees} />
+		                <Route exact path='/itdashboard/curriculums' component={Curriculum} />
+		                <Route exact path='/itdashboard/taxes' component={AdminTaxes} />
+		                <Route exact path='/itdashboard/bursars' component={AdminBursars} />
+		                <Route exact path='/itdashboard/parents' component={AdminParents} />
+		                <Route exact path='/itdashboard/teachers' component={AdminTeachers} />
+										<Route exact path='/itdashboard/enrollments' component={Enrollments} />
+		                <Route exact path='/itdashboard/approved-admissions' component={AdminApprovedAdmissions} />
+		                <Route exact path='/itdashboard/pending-admissions' component={AdminPendingAdmissions} />
+		                <Route exact path='/itdashboard/meeting-admissions' component={AdminMeetingAdmissions} />
+		                <Route exact path='/itdashboard/rejected-admissions' component={AdminRejectedAdmissions} />
+		                <Route exact path='/itdashboard/students' component={AdminStudents} />
+										<Route exact path='/itdashboard/authors' component={Authors} />
+										<Route exact path='/itdashboard/publishers' component={Publishers} />
+										<Route exact path='/itdashboard/cities' component={Cities} />
+										<Route exact path='/itdashboard/course-ads' component={AdminCourseAdverts} />
+		                <Route exact path="/itdashboard/students/:id" component={StudentProfile} />
 
-                <Route exact path="/itdashboard/bursars/:id" component={BursarProfile} />
-                <Route exact path="/itdashboard/teachers/:id" component={TeacherProfile} />
-                <Route exact path="/itdashboard/principals/:id" component={PrincipalProfile} />
-                <Route exact path="/itdashboard/parents/:id" component={ParentProfile} />
+		                <Route exact path="/itdashboard/bursars/:id" component={BursarProfile} />
+		                <Route exact path="/itdashboard/teachers/:id" component={TeacherProfile} />
+		                <Route exact path="/itdashboard/principals/:id" component={PrincipalProfile} />
+		                <Route exact path="/itdashboard/parents/:id" component={ParentProfile} />
 
-                <Route exact path='/itdashboard/tests' component={AdminStudentTests} />
-                <Route exact path='/itdashboard/tests/:id' component={AdminGradingTest} />
-                <Route exact path='/itdashboard/excercises' component={AdminStudentExcercises} />
-                <Route exact path='/itdashboard/excercises/:id' component={AdminExcercise} />
-                <Route exact path='/itdashboard/assignments' component={AdminStudentAssignments} />
-                <Route exact path='/itdashboard/assignments/:id' component={AdminAssignment} />
-                <Route exact path='/itdashboard/attendance' component={AdminAttendances} />
-                <Route exact path='/itdashboard/attendance/:id' component={AdminAttendance} />
-                <Route exact path='/itdashboard/principals' component={AdminPrincipals} />
-                <Route exact path='/itdashboard/streams' component={AdminStream} />
-                <Route exact path='/itdashboard/classes' component={AdminClass} />
-								<Route exact path='/itdashboard/classes/:id' component={AdminStudentClass} />
-                <Route exact path='/itdashboard/ledgers' component={AdminLedgers} />
-                <Route exact path='/itdashboard/workbooks' component={AdminWorkBooks} />
-                <Route exact path='/itdashboard/currencies' component={AdminCurrencies} />
-                <Route exact path='/itdashboard/assets' component={AssetsAdminView} />
-                <Route exact path='/itdashboard/subjects' component={SubjectsAdminView} />
-                <Route exact path='/itdashboard/upcomingcourses' component={AdminUpcomingCourses} />
-                <Route exact path='/itdashboard/upcomingcourses/:id' component={AdminUpcomingCourse} />
-                <Route exact path='/itdashboard/topics/:id' component={AdminTopic} />
-                <Route exact path='/itdashboard/subtopics/:id' component={AdminSubTopic} />
-                <Route exact path='/itdashboard/notes/:id' component={AdminStudyNote} />
-                <Route exact path='/itdashboard/ongoingcourses' component={AdminOngoingCourses} />
-                <Route exact path='/itdashboard/ongoingcourses/:id' component={AdminOngoingCourse} />
-                <Route exact path='/itdashboard/finishedcourses' component={AdminFinishedCourses} />
-                <Route exact path='/itdashboard/finishedcourses/:id' component={AdminFinishedCourse} />
-                <Route exact path='/itdashboard/inactivecourses' component={AdminInactiveCourses} />
-                <Route exact path='/itdashboard/inactivecourses/:id' component={AdminInactiveCourse} />
-                <Route exact path='/itdashboard/active-accounts' component={AccountsAdminView} />
-                <Route exact path='/itdashboard/inactive-accounts' component={AdminInActiveAccounts} />
-                <Route exact path='/blog' component={BlogPage} />
-                <Route exact path='/profile' component={CompanyProfile} />
-                <Route exact path='/blog' component={Posts} />
-								<Route component={Error} />
+		                <Route exact path='/itdashboard/tests' component={AdminStudentTests} />
+		                <Route exact path='/itdashboard/tests/:id' component={AdminGradingTest} />
+		                <Route exact path='/itdashboard/excercises' component={AdminStudentExcercises} />
+		                <Route exact path='/itdashboard/excercises/:id' component={AdminExcercise} />
+		                <Route exact path='/itdashboard/assignments' component={AdminStudentAssignments} />
+		                <Route exact path='/itdashboard/assignments/:id' component={AdminAssignment} />
+		                <Route exact path='/itdashboard/attendance' component={AdminAttendances} />
+		                <Route exact path='/itdashboard/attendance/:id' component={AdminAttendance} />
+		                <Route exact path='/itdashboard/principals' component={AdminPrincipals} />
+		                <Route exact path='/itdashboard/streams' component={AdminStream} />
+		                <Route exact path='/itdashboard/classes' component={AdminClass} />
+										<Route exact path='/itdashboard/classes/:id' component={AdminStudentClass} />
+		                <Route exact path='/itdashboard/ledgers' component={AdminLedgers} />
+		                <Route exact path='/itdashboard/workbooks' component={AdminWorkBooks} />
+		                <Route exact path='/itdashboard/currencies' component={AdminCurrencies} />
+		                <Route exact path='/itdashboard/assets' component={AssetsAdminView} />
+		                <Route exact path='/itdashboard/subjects' component={SubjectsAdminView} />
+		                <Route exact path='/itdashboard/upcomingcourses' component={AdminUpcomingCourses} />
+		                <Route exact path='/itdashboard/upcomingcourses/:id' component={AdminUpcomingCourse} />
+		                <Route exact path='/itdashboard/topics/:id' component={AdminTopic} />
+		                <Route exact path='/itdashboard/subtopics/:id' component={AdminSubTopic} />
+		                <Route exact path='/itdashboard/notes/:id' component={AdminStudyNote} />
+		                <Route exact path='/itdashboard/ongoingcourses' component={AdminOngoingCourses} />
+		                <Route exact path='/itdashboard/ongoingcourses/:id' component={AdminOngoingCourse} />
+		                <Route exact path='/itdashboard/finishedcourses' component={AdminFinishedCourses} />
+		                <Route exact path='/itdashboard/finishedcourses/:id' component={AdminFinishedCourse} />
+		                <Route exact path='/itdashboard/inactivecourses' component={AdminInactiveCourses} />
+		                <Route exact path='/itdashboard/inactivecourses/:id' component={AdminInactiveCourse} />
+		                <Route exact path='/itdashboard/active-accounts' component={AccountsAdminView} />
+		                <Route exact path='/itdashboard/inactive-accounts' component={AdminInActiveAccounts} />
+		                <Route exact path='/blog' component={BlogPage} />
+		                <Route exact path='/profile' component={CompanyProfile} />
+		                <Route exact path='/blog' component={Posts} />
+										<Route component={Error} />
 
-              </Switch>
-            </AlertProvider>
-          )}
-        </AppContext.Consumer>
+		              </Switch>
+
+	          )}
+	        </AppContext.Consumer>
+				</AlertProvider>
       </ThemeWrapper>
     );
   }

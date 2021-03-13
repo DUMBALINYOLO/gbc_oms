@@ -19,7 +19,7 @@ class GerereLogin extends React.Component {
     email: '',
     password: '',
     }
-    
+
     onSubmit = e =>{
       e.preventDefault();
       this.props.onAuth(this.state.email, this.state.password);
@@ -60,18 +60,18 @@ class GerereLogin extends React.Component {
                      <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                     <h2>Log In</h2>
                 </Grid>
-                <TextField 
+                <TextField
                   label="Email"
-                  placeholder='Enter Email' 
+                  placeholder='Enter Email'
                   fullWidth required
                   onChange={this.onChange}
                   value={email}
                   name = "email"
                 />
-                <TextField 
-                  label='Password' 
-                  placeholder='Enter password' 
-                  type='password' 
+                <TextField
+                  label='Password'
+                  placeholder='Enter password'
+                  type='password'
                   fullWidth required
                   onChange={this.onChange}
                   value={password}
@@ -92,7 +92,6 @@ class GerereLogin extends React.Component {
                         Forgot password ?
                 </Link>
                 </Typography>
-                <Typography > By continuing, you agree to Gerere business college's Conditions of Use and Privacy Notice.</Typography>
             </Paper>
         </form>
       </PublicLayout>
@@ -121,4 +120,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(GerereLogin)
-

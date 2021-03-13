@@ -26,6 +26,8 @@ import reports from './reports';
 import messages from './messages';
 import errors from './errors';
 import adverts from './adverts';
+import messaging from './messaging'
+
 
 
 
@@ -58,5 +60,6 @@ export default combineReducers({
     reports,
     messages,
     adverts,
+    messaging,
 
 });

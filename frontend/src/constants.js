@@ -253,6 +253,10 @@ export const statscountersURL = `${endpoint}/reports/stats-counters`
 //adverts
 export const courseadvertsURL = `${endpoint}/adverts/course-adverts/`
 
+
+//MESSAGING
+export const enquiriesURL = `${endpoint}/messaging/enquiries/`
+
 //admissions
 export const studentadmissionsURL = `${endpoint}/admissions/student-admissions/`
 export const pendingstudentadmissionsURL = `${endpoint}/admissions/pending-student-admissions/`
