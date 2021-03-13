@@ -16,7 +16,9 @@ import About from './About';
 import SubTopicBag from './SubTopicBag';
 import SchoolIcon from '@material-ui/icons/School';
 import Notes from '../notes/Notes';
-
+import { Paper }from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 function TabContainer(props) {
   const { children } = props;
@@ -52,49 +54,64 @@ class AdminSubTopic extends React.Component {
 
     return (
       <SubTopicBag>
+      {this.props.loading ? (
+          <Paper>
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+          </Paper>
+        ) : (
+            <>
 
-        <Helmet>
-          <title>{subtopic.title}</title>
-          <meta name="description" content={subtopic.title} />
-          <meta property="og:title" content={subtopic.title} />
-          <meta property="og:description" content={subtopic.title} />
-          <meta property="twitter:title" content={subtopic.title} />
-          <meta property="twitter:description" content={subtopic.title} />
-        </Helmet>
-        <Cover
-          coverImg={bgCover}
-          name={subtopic.title}
-        />
-        <AppBar position="static" className={classes.profileTab}>
-          <Hidden mdUp>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} />
-              <Tab icon={<SchoolIcon />} />
-            </Tabs>
-          </Hidden>
-          <Hidden smDown>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<SchoolIcon />} label="STUDY CONTENT" />
-            </Tabs>
-          </Hidden>
-        </AppBar>
-        {value === 0 && <TabContainer><About data={subtopic}/></TabContainer>}
-        {value === 1 && <TabContainer><Notes data={subtopic}/></TabContainer>}
+            <Helmet>
+              <title>{subtopic.title}</title>
+              <meta name="description" content={subtopic.title} />
+              <meta property="og:title" content={subtopic.title} />
+              <meta property="og:description" content={subtopic.title} />
+              <meta property="twitter:title" content={subtopic.title} />
+              <meta property="twitter:description" content={subtopic.title} />
+            </Helmet>
+            <Cover
+              coverImg={bgCover}
+              name={subtopic.title}
+            />
+            <AppBar position="static" className={classes.profileTab}>
+              <Hidden mdUp>
+                <Tabs
+                  value={value}
+                  onChange={this.handleChange}
+                  variant="fullWidth"
+                  indicatorColor="primary"
+                  textColor="primary"
+                  centered
+                >
+                  <Tab icon={<AccountCircle />} />
+                  <Tab icon={<SchoolIcon />} />
+                </Tabs>
+              </Hidden>
+              <Hidden smDown>
+                <Tabs
+                  value={value}
+                  onChange={this.handleChange}
+                  variant="fullWidth"
+                  indicatorColor="primary"
+                  textColor="primary"
+                  centered
+                >
+                  <Tab icon={<AccountCircle />} label="ABOUT" />
+                  <Tab icon={<SchoolIcon />} label="STUDY CONTENT" />
+                </Tabs>
+              </Hidden>
+            </AppBar>
+            {value === 0 && <TabContainer><About data={subtopic}/></TabContainer>}
+            {value === 1 && <TabContainer><Notes data={subtopic}/></TabContainer>}
+          </>
+        )}
       </SubTopicBag >
     );
   }
@@ -105,6 +122,7 @@ class AdminSubTopic extends React.Component {
 const mapStateToProps = state => ({
   force: state, // force state from reducer
   subtopic: state.courses.adminsubtopic,
+  loading: state.courses.loading,
 });
 
 

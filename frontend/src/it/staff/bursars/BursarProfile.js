@@ -17,8 +17,10 @@ import { getAdminBursar } from '../../../actions/people';
 import About from './About';
 import ProfileBag from './ProfileBag';
 import AttIcon from '@material-ui/icons/HowToReg';
+import { Paper }from '@material-ui/core';
 import TestIcon from '@material-ui/icons/MenuBook';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 function TabContainer(props) {
@@ -59,46 +61,68 @@ class CompanyProfile extends React.Component {
 
     return (
       <ProfileBag>
+      {this.props.loading ? (
+          <Paper>
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+          </Paper>
+        ) : (
+            <>
         
-        <Helmet>
-          <title>{adminbursar.username}</title>
-          <meta name="description" content={description} />
-          <meta property="og:title" content={adminbursar.username} />
-          <meta property="og:description" content={description} />
-          <meta property="twitter:title" content={adminbursar.username} />
-          <meta property="twitter:description" content={adminbursar.username} />
-        </Helmet>
-        <Cover
-          coverImg={bgCover}
-          name={adminbursar.username}
-        />
-        <AppBar position="static" className={classes.profileTab}>
-          <Hidden mdUp>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} />
-            </Tabs>
-          </Hidden>
-          <Hidden smDown>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} label="ABOUT" />
-            </Tabs>
-          </Hidden>
-        </AppBar>
-        {value === 0 && <TabContainer><About data={adminbursar}/></TabContainer>}
+            <Helmet>
+              <title>{adminbursar.username}</title>
+              <meta name="description" content={description} />
+              <meta property="og:title" content={adminbursar.username} />
+              <meta property="og:description" content={description} />
+              <meta property="twitter:title" content={adminbursar.username} />
+              <meta property="twitter:description" content={adminbursar.username} />
+            </Helmet>
+            <Cover
+              coverImg={bgCover}
+              name={adminbursar.username}
+            />
+            <AppBar position="static" className={classes.profileTab}>
+              <Hidden mdUp>
+                <Tabs
+                  value={value}
+                  onChange={this.handleChange}
+                  variant="fullWidth"
+                  indicatorColor="primary"
+                  textColor="primary"
+                  centered
+                >
+                  <Tab icon={<AccountCircle />} />
+                </Tabs>
+              </Hidden>
+              <Hidden smDown>
+                <Tabs
+                  value={value}
+                  onChange={this.handleChange}
+                  variant="fullWidth"
+                  indicatorColor="primary"
+                  textColor="primary"
+                  centered
+                >
+                  <Tab icon={<AccountCircle />} label="ABOUT" />
+                </Tabs>
+              </Hidden>
+            </AppBar>
+            {value === 0 && <TabContainer><About data={adminbursar}/></TabContainer>}
+          </>
+        )}
       </ProfileBag >
     );
   }
@@ -112,6 +136,7 @@ CompanyProfile.propTypes = {
 const mapStateToProps = state => ({
   force: state, // force state from reducer
   adminbursar: state.people.adminbursar,
+  loading: state.people.loading,
 });
 
 

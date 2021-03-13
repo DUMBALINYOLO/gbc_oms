@@ -19,8 +19,8 @@ import Apply from './AddAdmission';
 import  Controls  from "../../components/formcontrols/Controls";
 import  Popup  from "../../components/formcontrols/Popup";
 import  useTable  from "../../components/table/useTable";
-
-
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const useStyles = makeStyles(theme => ({
   pageContent: {
@@ -59,7 +59,33 @@ const AdminApprovedAdmissions = props => {
   const [newadmission, setNewAdmission] = useState({})
   const [query, setQuery] = useState('')
   const {token} = props;
+  const [progress, setProgress] = React.useState(0);
+  const [buffer, setBuffer] = React.useState(10);
+  const progressRef = React.useRef(() => {});
 
+  useEffect(() => {
+    progressRef.current = () => {
+      if (progress > 100) {
+        setProgress(0);
+        setBuffer(10);
+      } else {
+        const diff = Math.random() * 10;
+        const diff2 = Math.random() * 10;
+        setProgress(progress + diff);
+        setBuffer(progress + diff + diff2);
+      }
+    };
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      progressRef.current();
+    }, 500);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   useEffect(() => {
     if(!props.fetched) {
@@ -121,55 +147,76 @@ const AdminApprovedAdmissions = props => {
   return (
     <InformationTechnologyLayout>
       <Paper className={classes.pageContent}>
+      {props.loading ? (
+          <div className={classes.rootaa}>
+            <CircularProgress variant="determinate" value={progress} />
+            <CircularProgress variant="determinate" value={progress} />
+            <CircularProgress variant="determinate" value={progress} />
+            <CircularProgress variant="determinate" value={progress}/>
+            <CircularProgress variant="determinate" value={progress} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+          </div>
+        ) : (
+          <>
 
-      <Toolbar>
-          <Controls.Input
-              label="Search Approved Admission"
-              value={query}
-              className={classes.searchInput}
-              InputProps={{
-                  startAdornment: (<InputAdornment position="start">
-                      <Search />
-                  </InputAdornment>)
-              }}
-              onChange={handleQuery}
-          />
-          <Controls.Button
-              text="Add New"
-              variant="outlined"
-              startIcon={<AddIcon />}
-              className={classes.newButton}
-              onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
-          />
-      </Toolbar>
-      <TblContainer>
-          <TblHead />
-          <TableBody>
-              {
-                  recordsAfterPagingAndSorting().map(item =>
-                      (<TableRow key={item.id}>
-                          <TableCell>{item.id}</TableCell>
-                          <TableCell>{item.application_number}</TableCell>
-                          <TableCell>{item.student}</TableCell>
-                          <TableCell>{item.klass}</TableCell>
-                          <TableCell>{item.status}</TableCell>
-                          <TableCell>
-                              <Controls.ActionButton
-                                  color="primary"
-                                  onClick={() => { openInPopup(item) }}>
-                                  <EditOutlinedIcon fontSize="small" />
-                              </Controls.ActionButton>
-                              <Controls.ActionButton
-                                  color="secondary">
-                                  <CloseIcon fontSize="small" />
-                              </Controls.ActionButton>
-                          </TableCell>
-                      </TableRow>)
-                  )
-              }
-          </TableBody>
-      </TblContainer>
-      <TblPagination />
+            <Toolbar>
+                <Controls.Input
+                    label="Search Approved Admission"
+                    value={query}
+                    className={classes.searchInput}
+                    InputProps={{
+                        startAdornment: (<InputAdornment position="start">
+                            <Search />
+                        </InputAdornment>)
+                    }}
+                    onChange={handleQuery}
+                />
+                <Controls.Button
+                    text="Add New"
+                    variant="outlined"
+                    startIcon={<AddIcon />}
+                    className={classes.newButton}
+                    onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
+                />
+            </Toolbar>
+            <TblContainer>
+                <TblHead />
+                <TableBody>
+                    {
+                        recordsAfterPagingAndSorting().map(item =>
+                            (<TableRow key={item.id}>
+                                <TableCell>{item.id}</TableCell>
+                                <TableCell>{item.application_number}</TableCell>
+                                <TableCell>{item.student}</TableCell>
+                                <TableCell>{item.klass}</TableCell>
+                                <TableCell>{item.status}</TableCell>
+                                <TableCell>
+                                    <Controls.ActionButton
+                                        color="primary"
+                                        onClick={() => { openInPopup(item) }}>
+                                        <EditOutlinedIcon fontSize="small" />
+                                    </Controls.ActionButton>
+                                    <Controls.ActionButton
+                                        color="secondary">
+                                        <CloseIcon fontSize="small" />
+                                    </Controls.ActionButton>
+                                </TableCell>
+                            </TableRow>)
+                        )
+                    }
+                </TableBody>
+            </TblContainer>
+            <TblPagination />
+          </>
+        )}
       </Paper>
       <Popup
       title="Approved Admission Form"
@@ -188,6 +235,7 @@ const AdminApprovedAdmissions = props => {
 const mapStateToProps = state =>({
     records: state.admissions.acceptedadmissions,
     token: state.auth.token,
+    loading: state.admissions.loading,
 })
 
 export default connect(

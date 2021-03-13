@@ -19,7 +19,8 @@ import  Controls  from "../../components/formcontrols/Controls";
 import  Popup  from "../../components/formcontrols/Popup";
 import  useTable  from "../../components/table/useTable";
 import {gradingexcerciserecordsURL} from '../../constants'
-
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const useStyles = makeStyles(theme => ({
   pageContent: {
@@ -60,8 +61,34 @@ const ExcerciseRecords = props => {
     const [query, setQuery] = useState('')
     const [newgrading, setNewGrading] = useState({})
     const {token} = props;
-
     const {id} =props.data
+    const [progress, setProgress] = React.useState(0);
+    const [buffer, setBuffer] = React.useState(10);
+    const progressRef = React.useRef(() => {});
+
+    useEffect(() => {
+      progressRef.current = () => {
+        if (progress > 100) {
+          setProgress(0);
+          setBuffer(10);
+        } else {
+          const diff = Math.random() * 10;
+          const diff2 = Math.random() * 10;
+          setProgress(progress + diff);
+          setBuffer(progress + diff + diff2);
+        }
+      };
+    });
+
+    useEffect(() => {
+      const timer = setInterval(() => {
+        progressRef.current();
+      }, 500);
+
+      return () => {
+        clearInterval(timer);
+      };
+    }, []);
 
   const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0){
@@ -129,6 +156,25 @@ const ExcerciseRecords = props => {
   return (
     <>
       <Paper className={classes.pageContent}>
+      {props.loading ? (
+          <div className={classes.rootaa}>
+            <CircularProgress variant="determinate" value={progress} />
+            <CircularProgress variant="determinate" value={progress} />
+            <CircularProgress variant="determinate" value={progress} />
+            <CircularProgress variant="determinate" value={progress}/>
+            <CircularProgress variant="determinate" value={progress} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+          </div>
+        ) : (
+          <>
 
       <Toolbar>
           <Controls.Input
@@ -172,6 +218,8 @@ const ExcerciseRecords = props => {
           </TableBody>
       </TblContainer>
       <TblPagination />
+          </>
+        )}
       </Paper>
       <Popup
       title="Record Form"
@@ -189,6 +237,7 @@ const ExcerciseRecords = props => {
 
 const mapStateToProps = state =>({
     token: state.auth.token,
+    loading: state.gradings.loading,
 })
 
 export default connect(

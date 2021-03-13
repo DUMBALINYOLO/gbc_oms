@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import brand from '../../api/dummy/brand';
 import AppBar from '@material-ui/core/AppBar';
+import { Paper }from '@material-ui/core';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Hidden from '@material-ui/core/Hidden';
@@ -17,7 +18,8 @@ import About from './About';
 import Records from './Records';
 import AttendanceBag from './AttendanceBag';
 import SchoolIcon from '@material-ui/icons/Today';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 function TabContainer(props) {
   const { children } = props;
@@ -64,6 +66,26 @@ class AdminAttendance extends React.Component {
 
     return (
       <AttendanceBag>
+      {this.props.loading ? (
+          <Paper>
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+          </Paper>
+        ) : (
+            <>
         
         <Helmet>
           <title>{adminattendance.date}</title>
@@ -107,6 +129,8 @@ class AdminAttendance extends React.Component {
         </AppBar>
         {value === 0 && <TabContainer><About data={adminattendance}/></TabContainer>}
         {value === 1 && <TabContainer><Records data={adminattendance}/></TabContainer>}
+          </>
+        )}
       </AttendanceBag >
     );
   }
@@ -119,7 +143,8 @@ AdminAttendance.propTypes = {
 
 const mapStateToProps = state => ({
   adminattendance: state.adminattendances.adminattendance,
-  token: state.auth.token
+  token: state.auth.token,
+  loading: state.adminattendances.loading,
 });
 
 

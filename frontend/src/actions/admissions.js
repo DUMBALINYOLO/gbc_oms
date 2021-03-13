@@ -1,16 +1,28 @@
 import axios from 'axios';
 import {
-    ADD_ADMISSION,
-    GET_ADMISSIONS,
-    GET_PENDING_ADMISSIONS,
     EDIT_PENDING_ADMISSIONS,
-    GET_REJECTED_ADMISSIONS,
     EDIT_REJECTED_ADMISSIONS,
-    GET_ACCEPTED_ADMISSIONS,
     EDIT_ACCEPTED_ADMISSIONS,
-    GET_MEETING_ADMISSIONS,
     EDIT_MEETING_ADMISSIONS,
-    PROCESS_ADMISSION
+    PROCESS_ADMISSION,
+    GET_ADMISSIONS_START,
+    GET_ADMISSIONS_SUCCESS,
+    GET_ADMISSIONS_FAIL,
+    CREATE_ADMISSION_START,
+    CREATE_ADMISSION_SUCCESS,
+    CREATE_ADMISSION_FAIL,
+    GET_PENDING_ADMISSIONS_START,
+    GET_PENDING_ADMISSIONS_SUCCESS,
+    GET_PENDING_ADMISSIONS_FAIL,
+    GET_REJECTED_ADMISSIONS_START,
+    GET_REJECTED_ADMISSIONS_SUCCESS,
+    GET_REJECTED_ADMISSIONS_FAIL,
+    GET_ACCEPTED_ADMISSIONS_START,
+    GET_ACCEPTED_ADMISSIONS_SUCCESS,
+    GET_ACCEPTED_ADMISSIONS_FAIL,
+    GET_MEETING_ADMISSIONS_START,
+    GET_MEETING_ADMISSIONS_SUCCESS,
+    GET_MEETING_ADMISSIONS_FAIL,
 
 } from '../types/admissionTypes';
 import {
@@ -23,6 +35,245 @@ import {
 } from '../constants';
 import { createMessage, returnErrors } from './messages';
 
+//admissions
+const getAdmissionListStart = () => {
+  return {
+    type: GET_ADMISSIONS_START
+  };
+};
+
+const getAdmissionListSuccess = admissions => {
+  return {
+    type: GET_ADMISSIONS_SUCCESS,
+    admissions
+  };
+};
+
+const getAdmissionListFail = error => {
+  return {
+    type: GET_ADMISSIONS_FAIL,
+    error: error
+  };
+};
+
+const createAdmissionStart = () => {
+  return {
+    type: CREATE_ADMISSION_START
+  };
+};
+
+
+const createAdmissionSuccess = admission => {
+  return {
+    type: CREATE_ADMISSION_SUCCESS,
+    admission
+  };
+};
+
+const createAdmissionFail = error => {
+  return {
+    type: CREATE_ADMISSION_FAIL,
+    error: error
+  };
+};
+
+//pending admissions
+const getPendingAdmissionListStart = () => {
+  return {
+    type: GET_PENDING_ADMISSIONS_START
+  };
+};
+
+const getPendingAdmissionListSuccess = pendingadmissions => {
+  return {
+    type: GET_PENDING_ADMISSIONS_SUCCESS,
+    pendingadmissions
+  };
+};
+
+const getPendingAdmissionListFail = error => {
+  return {
+    type: GET_PENDING_ADMISSIONS_FAIL,
+    error: error
+  };
+};
+
+//rejected admissions
+const getRejectedAdmissionListStart = () => {
+  return {
+    type: GET_REJECTED_ADMISSIONS_START
+  };
+};
+
+const getRejectedAdmissionListSuccess = rejectedadmissions => {
+  return {
+    type: GET_REJECTED_ADMISSIONS_SUCCESS,
+    rejectedadmissions
+  };
+};
+
+const getRejectedAdmissionListFail = error => {
+  return {
+    type: GET_REJECTED_ADMISSIONS_FAIL,
+    error: error
+  };
+};
+
+//accepted admissions
+const getAcceptedAdmissionListStart = () => {
+  return {
+    type: GET_ACCEPTED_ADMISSIONS_START
+  };
+};
+
+const getAcceptedAdmissionListSuccess = acceptedadmissions => {
+  return {
+    type: GET_ACCEPTED_ADMISSIONS_SUCCESS,
+    acceptedadmissions
+  };
+};
+
+const getAcceptedAdmissionListFail = error => {
+  return {
+    type: GET_ACCEPTED_ADMISSIONS_FAIL,
+    error: error
+  };
+};
+
+//meeting admissions
+const getMeetingAdmissionListStart = () => {
+  return {
+    type: GET_MEETING_ADMISSIONS_START
+  };
+};
+
+const getMeetingAdmissionListSuccess = meetingadmissions => {
+  return {
+    type: GET_MEETING_ADMISSIONS_SUCCESS,
+    meetingadmissions
+  };
+};
+
+const getMeetingAdmissionListFail = error => {
+  return {
+    type: GET_MEETING_ADMISSIONS_FAIL,
+    error: error
+  };
+};
+
+
+export const getAdmissions = (query, token) => {
+  return dispatch => {
+      dispatch(getAdmissionListStart());
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`
+      };
+      axios
+        .get(`${studentadmissionsURL}?q=${query}`, headers)
+        .then(res => {
+          const admissions = res.data;
+          dispatch(getAdmissionListSuccess(admissions));
+          })
+        .catch(err => {
+          dispatch(getAdmissionListStart(err));
+        });
+    };
+};
+
+export const addAdmission = (admission, token) => {
+  return dispatch => {
+      dispatch(createAdmissionStart());
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`
+      };
+      axios
+        .post(studentadmissionsURL, admission, headers)
+        .then(res => {
+          dispatch(createAdmissionSuccess(admission));
+        })
+        .catch(err => {
+          dispatch(createAdmissionFail(err));
+        });
+    };
+};
+
+export const getPendingAdmissions = (query, token) => {
+  return dispatch => {
+      dispatch(getPendingAdmissionListStart());
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`
+      };
+      axios
+        .get(`${pendingstudentadmissionsURL}?q=${query}`, headers)
+        .then(res => {
+          const pendingadmissions = res.data;
+          dispatch(getPendingAdmissionListSuccess(pendingadmissions));
+          })
+        .catch(err => {
+          dispatch(getPendingAdmissionListStart(err));
+        });
+    };
+};
+
+export const getRejectedAdmissions = (query, token) => {
+  return dispatch => {
+      dispatch(getRejectedAdmissionListStart());
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`
+      };
+      axios
+        .get(`${rejectedstudentadmissionsURL}?q=${query}`, headers)
+        .then(res => {
+          const rejectedadmissions = res.data;
+          dispatch(getRejectedAdmissionListSuccess(rejectedadmissions));
+          })
+        .catch(err => {
+          dispatch(getRejectedAdmissionListStart(err));
+        });
+    };
+};
+
+export const getMeetingAdmissions = (query, token) => {
+  return dispatch => {
+      dispatch(getMeetingAdmissionListStart());
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`
+      };
+      axios
+        .get(`${meetingstudentadmissionsURL}?q=${query}`, headers)
+        .then(res => {
+          const meetingadmissions = res.data;
+          dispatch(getMeetingAdmissionListSuccess(meetingadmissions));
+          })
+        .catch(err => {
+          dispatch(getMeetingAdmissionListStart(err));
+        });
+    };
+};
+
+export const getAcceptedAdmissions = (query, token) => {
+  return dispatch => {
+      dispatch(getAcceptedAdmissionListStart());
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`
+      };
+      axios
+        .get(`${acceptedstudentadmissionsURL}?q=${query}`, headers)
+        .then(res => {
+          const acceptedadmissions = res.data;
+          dispatch(getAcceptedAdmissionListSuccess(acceptedadmissions));
+          })
+        .catch(err => {
+          dispatch(getAcceptedAdmissionListStart(err));
+        });
+    };
+};
 
 export const processAdmission = (id, admission, token) => dispatch => {
     const headers ={
@@ -38,108 +289,6 @@ export const processAdmission = (id, admission, token) => dispatch => {
             });
         }).catch(err => console.log(err))
 }
-
-
-
-// Get
-export const getAdmissions = (token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
-    };
-    axios.get(studentadmissionsURL, headers)
-        .then(res => {
-            dispatch({
-                type: GET_ADMISSIONS,
-                payload: res.data
-            });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
-}
-
-//Delete
-
-export const addAdmission = (admission, token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
-    };
-    axios.post(studentadmissionsURL, admission, headers)
-        .then(res => {
-            dispatch({
-                type: ADD_ADMISSION,
-                payload: res.data
-            });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
-}
-
-
-
-
-
-export const getPendingAdmissions = (token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
-    };
-    axios.get(pendingstudentadmissionsURL, headers)
-        .then(res => {
-            dispatch({
-                type: GET_PENDING_ADMISSIONS,
-                payload: res.data
-            });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
-}
-
-export const getRejectedAdmissions = (token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
-    };
-    axios.get(rejectedstudentadmissionsURL, headers)
-        .then(res => {
-            dispatch({
-                type: GET_REJECTED_ADMISSIONS,
-                payload: res.data
-            });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
-}
-
-
-export const getMeetingAdmissions = (token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
-    };
-    axios.get(meetingstudentadmissionsURL, headers)
-        .then(res => {
-            dispatch({
-                type: GET_MEETING_ADMISSIONS,
-                payload: res.data
-            });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
-}
-
-
-export const getAcceptedAdmissions = (token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
-    };
-    axios.get(acceptedstudentadmissionsURL, headers)
-        .then(res => {
-            dispatch({
-                type: GET_ACCEPTED_ADMISSIONS,
-                payload: res.data
-            });
-        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
-}
-
 
 //Edit
 export const editPendingAdmission = (id, admission, token) => dispatch => {

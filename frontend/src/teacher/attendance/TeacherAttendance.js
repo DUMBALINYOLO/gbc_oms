@@ -17,7 +17,9 @@ import About from './About';
 import Records from './Records';
 import AttendanceBag from './AttendanceBag';
 import SchoolIcon from '@material-ui/icons/School';
-
+import { Paper }from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 function TabContainer(props) {
   const { children } = props;
@@ -66,6 +68,26 @@ class TeacherAttendance extends React.Component {
 
     return (
       <AttendanceBag>
+      {this.props.loading ? (
+          <Paper>
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+          </Paper>
+        ) : (
+            <>
         
         <Helmet>
           <title>{adminattendance.date}</title>
@@ -109,6 +131,8 @@ class TeacherAttendance extends React.Component {
         </AppBar>
         {value === 0 && <TabContainer><About data={adminattendance}/></TabContainer>}
         {value === 1 && <TabContainer><Records data={adminattendance}/></TabContainer>}
+          </>
+        )}
       </AttendanceBag >
     );
   }
@@ -121,7 +145,8 @@ TeacherAttendance.propTypes = {
 
 const mapStateToProps = state => ({
   adminattendance: state.adminattendances.adminattendance,
-  token: state.auth.token
+  token: state.auth.token,
+  loading: state.adminattendances.loading,
 });
 
 

@@ -45,7 +45,6 @@ import AdminExcercise from './it/gradings/AdminExcercise';
 import AdminAssignment from './it/gradings/AdminAssignment';
 import BursarLog from './test/BursarLog';
 import TeacherLog from './test/TeacherLog';
-import Login from './auth/Login';
 import GerereLogin from "./auth/GerereLogin";
 import Posts from './containers/newsletter/Posts';
 import TeacherUpcomingCourses from './teacher/courses/courses/TeacherUpcomingCourses';
@@ -123,6 +122,7 @@ import StudentCourseDeques from './student/settings/CourseDeques';
 import StudentBioDeques from './student/settings/BioDeques';
 import Enrollments from './it/admissions/Enrollments';
 
+
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
 const alertOptions = {
@@ -149,6 +149,7 @@ class App extends React.Component {
         <AppContext.Consumer>
             {(changeMode) => (
             <AlertProvider template={AlertTemplate} {...alertOptions} >
+                <Alerts/>
               <Switch>
                 <Route exact path='/' component={LandingPage} />
                 <Route exact path='/login' component={GerereLogin} />

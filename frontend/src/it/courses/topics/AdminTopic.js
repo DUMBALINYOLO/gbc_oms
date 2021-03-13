@@ -20,7 +20,9 @@ import SchoolIcon from '@material-ui/icons/School';
 import Objectives from '../objectives/Objectives';
 import GuideLines from '../guidelines/GuideLines';
 import SubTopics from '../subtopics/SubTopics';
-
+import { Paper }from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 function TabContainer(props) {
   const { children } = props;
@@ -56,56 +58,71 @@ class AdminTopic extends React.Component {
 
     return (
       <TopicBag>
+      {this.props.loading ? (
+          <Paper>
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+          </Paper>
+        ) : (
+            <>
 
-        <Helmet>
-          <title>{topic.title}</title>
-          <meta name="description" content={topic.title} />
-          <meta property="og:title" content={topic.title} />
-          <meta property="og:description" content={topic.title} />
-          <meta property="twitter:title" content={topic.title} />
-          <meta property="twitter:description" content={topic.title} />
-        </Helmet>
-        <Cover
-          coverImg={bgCover}
-          name={topic.title}
-        />
-        <AppBar position="static" className={classes.profileTab}>
-          <Hidden mdUp>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} />
-              <Tab icon={<SchoolIcon />} />
-              <Tab icon={<GuideIcon />} />
-              <Tab icon={<SubTopicIcon />} />
+            <Helmet>
+              <title>{topic.title}</title>
+              <meta name="description" content={topic.title} />
+              <meta property="og:title" content={topic.title} />
+              <meta property="og:description" content={topic.title} />
+              <meta property="twitter:title" content={topic.title} />
+              <meta property="twitter:description" content={topic.title} />
+            </Helmet>
+            <Cover
+              coverImg={bgCover}
+              name={topic.title}
+            />
+            <AppBar position="static" className={classes.profileTab}>
+              <Hidden mdUp>
+                <Tabs
+                  value={value}
+                  onChange={this.handleChange}
+                  variant="fullWidth"
+                  indicatorColor="primary"
+                  textColor="primary"
+                  centered
+                >
+                  <Tab icon={<AccountCircle />} />
+                  <Tab icon={<SchoolIcon />} />
+                  <Tab icon={<GuideIcon />} />
+                  <Tab icon={<SubTopicIcon />} />
 
-            </Tabs>
-          </Hidden>
-          <Hidden smDown>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<SchoolIcon />} label="OBJECTIVES" />
-              <Tab icon={<GuideIcon />} label="GUIDELINES" />
-              <Tab icon={<SubTopicIcon />} label="SUBTOPICS" />
-            </Tabs>
-          </Hidden>
-        </AppBar>
-        {value === 0 && <TabContainer><About data={topic}/></TabContainer>}
-        {value === 1 && <TabContainer><Objectives data={topic}/></TabContainer>}
-        {value === 2 && <TabContainer><GuideLines data={topic}/></TabContainer>}
-        {value === 3 && <TabContainer><SubTopics data={topic}/></TabContainer>}
+                </Tabs>
+              </Hidden>
+              <Hidden smDown>
+                <Tabs
+                  value={value}
+                  onChange={this.handleChange}
+                  variant="fullWidth"
+                  indicatorColor="primary"
+                  textColor="primary"
+                  centered
+                >
+                  <Tab icon={<AccountCircle />} label="ABOUT" />
+                  <Tab icon={<SchoolIcon />} label="OBJECTIVES" />
+                  <Tab icon={<GuideIcon />} label="GUIDELINES" />
+                  <Tab icon={<SubTopicIcon />} label="SUBTOPICS" />
+                </Tabs>
+              </Hidden>
+            </AppBar>
+            {value === 0 && <TabContainer><About data={topic}/></TabContainer>}
+            {value === 1 && <TabContainer><Objectives data={topic}/></TabContainer>}
+            {value === 2 && <TabContainer><GuideLines data={topic}/></TabContainer>}
+            {value === 3 && <TabContainer><SubTopics data={topic}/></TabContainer>}
+          </>
+        )}
       </TopicBag >
     );
   }
@@ -116,6 +133,7 @@ class AdminTopic extends React.Component {
 const mapStateToProps = state => ({
   force: state, // force state from reducer
   topic: state.courses.admintopic,
+  loading: state.courses.loading,
 });
 
 

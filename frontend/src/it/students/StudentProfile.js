@@ -22,7 +22,9 @@ import Tests from './Tests';
 import ProfileBag from './ProfileBag';
 import AttIcon from '@material-ui/icons/HowToReg';
 import TestIcon from '@material-ui/icons/MenuBook';
-
+import { Paper }from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 function TabContainer(props) {
@@ -63,58 +65,80 @@ class CompanyProfile extends React.Component {
 
     return (
       <ProfileBag>
+      {this.props.loading ? (
+          <Paper>
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+          </Paper>
+        ) : (
+          <>
         
-        <Helmet>
-          <title>{adminstudent.username}</title>
-          <meta name="description" content={description} />
-          <meta property="og:title" content={adminstudent.username} />
-          <meta property="og:description" content={description} />
-          <meta property="twitter:title" content={adminstudent.username} />
-          <meta property="twitter:description" content={adminstudent.username} />
-        </Helmet>
-        <Cover
-          coverImg={bgCover}
-          name={adminstudent.username}
-        />
-        <AppBar position="static" className={classes.profileTab}>
-          <Hidden mdUp>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} />
-              <Tab icon={<AttIcon />} />
-              <Tab icon={<SchoolIcon />} />
-              <Tab icon={<TestIcon />} />
-              <Tab icon={<TestIcon />} />
-            </Tabs>
-          </Hidden>
-          <Hidden smDown>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<AttIcon />} label="ATTENDANCE" />
-              <Tab icon={<TestIcon />} label="TESTS" />
-              <Tab icon={<TestIcon />} label="EXCERCISES" />
-              <Tab icon={<SchoolIcon />} label="ASSIGNMENTS" />
-            </Tabs>
-          </Hidden>
-        </AppBar>
-        {value === 0 && <TabContainer><About data={adminstudent}/></TabContainer>}
-        {value === 1 && <TabContainer><Attendance data={adminstudent} /></TabContainer>}
-        {value === 2 && <TabContainer><Tests data={adminstudent}/></TabContainer>}
-        {value === 3 && <TabContainer><Excercises data={adminstudent}/></TabContainer>}
-        {value === 4 && <TabContainer><Assignments data={adminstudent}/></TabContainer>}
+            <Helmet>
+              <title>{adminstudent.username}</title>
+              <meta name="description" content={description} />
+              <meta property="og:title" content={adminstudent.username} />
+              <meta property="og:description" content={description} />
+              <meta property="twitter:title" content={adminstudent.username} />
+              <meta property="twitter:description" content={adminstudent.username} />
+            </Helmet>
+            <Cover
+              coverImg={bgCover}
+              name={adminstudent.username}
+            />
+            <AppBar position="static" className={classes.profileTab}>
+              <Hidden mdUp>
+                <Tabs
+                  value={value}
+                  onChange={this.handleChange}
+                  variant="fullWidth"
+                  indicatorColor="primary"
+                  textColor="primary"
+                  centered
+                >
+                  <Tab icon={<AccountCircle />} />
+                  <Tab icon={<AttIcon />} />
+                  <Tab icon={<SchoolIcon />} />
+                  <Tab icon={<TestIcon />} />
+                  <Tab icon={<TestIcon />} />
+                </Tabs>
+              </Hidden>
+              <Hidden smDown>
+                <Tabs
+                  value={value}
+                  onChange={this.handleChange}
+                  variant="fullWidth"
+                  indicatorColor="primary"
+                  textColor="primary"
+                  centered
+                >
+                  <Tab icon={<AccountCircle />} label="ABOUT" />
+                  <Tab icon={<AttIcon />} label="ATTENDANCE" />
+                  <Tab icon={<TestIcon />} label="TESTS" />
+                  <Tab icon={<TestIcon />} label="EXCERCISES" />
+                  <Tab icon={<SchoolIcon />} label="ASSIGNMENTS" />
+                </Tabs>
+              </Hidden>
+            </AppBar>
+            {value === 0 && <TabContainer><About data={adminstudent}/></TabContainer>}
+            {value === 1 && <TabContainer><Attendance data={adminstudent} /></TabContainer>}
+            {value === 2 && <TabContainer><Tests data={adminstudent}/></TabContainer>}
+            {value === 3 && <TabContainer><Excercises data={adminstudent}/></TabContainer>}
+            {value === 4 && <TabContainer><Assignments data={adminstudent}/></TabContainer>}
+          </>
+        )}
       </ProfileBag >
     );
   }
@@ -128,6 +152,7 @@ CompanyProfile.propTypes = {
 const mapStateToProps = state => ({
   force: state, // force state from reducer
   adminstudent: state.people.adminstudent,
+  loading: state.people.loading,
 });
 
 

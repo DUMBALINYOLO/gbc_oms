@@ -21,7 +21,8 @@ import  Controls  from "../../components/formcontrols/Controls";
 import  Popup  from "../../components/formcontrols/Popup";
 import  useTable  from "../../components/table/useTable";
 import InformationTechnologyLayout from '../layout/InformationTechnologyLayout';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const useStyles = makeStyles(theme => ({
   pageContent: {
@@ -47,6 +48,33 @@ const AdminCourseAdverts = props => {
   const [newAdvert, setNewAdvert] = useState({})
   const [query, setQuery] = useState('')
   const {id} = 1;
+  const [progress, setProgress] = React.useState(0);
+  const [buffer, setBuffer] = React.useState(10);
+  const progressRef = React.useRef(() => {});
+
+  useEffect(() => {
+    progressRef.current = () => {
+      if (progress > 100) {
+        setProgress(0);
+        setBuffer(10);
+      } else {
+        const diff = Math.random() * 10;
+        const diff2 = Math.random() * 10;
+        setProgress(progress + diff);
+        setBuffer(progress + diff + diff2);
+      }
+    };
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      progressRef.current();
+    }, 500);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   useEffect(() => {
     if(!props.fetched) {
@@ -94,34 +122,55 @@ const AdminCourseAdverts = props => {
   return (
     <InformationTechnologyLayout>
       <Paper className={classes.pageContent}>
-      <Toolbar>
-          <Controls.Input
-              label="Search Advert"
-              value={query}
-              className={classes.searchInput}
-              InputProps={{
-                  startAdornment: (<InputAdornment position="start">
-                      <Search />
-                  </InputAdornment>)
-              }}
-              onChange={handleQuery}
-          />
-          <Controls.Button
-              text="Add New"
-              variant="outlined"
-              startIcon={<AddIcon />}
-              className={classes.newButton}
-              onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
-          />
-      </Toolbar>
-        <div>
-            {records.map((advert, i) => CustomizedExpansionPanels(advert, i, expanded, setExpanded))}
-        </div>
+      {props.loading ? (
+          <div className={classes.rootaa}>
+            <CircularProgress variant="determinate" value={progress} />
+            <CircularProgress variant="determinate" value={progress} />
+            <CircularProgress variant="determinate" value={progress} />
+            <CircularProgress variant="determinate" value={progress}/>
+            <CircularProgress variant="determinate" value={progress} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+          </div>
+        ) : (
+          <>
+            <Toolbar>
+                <Controls.Input
+                    label="Search Advert"
+                    value={query}
+                    className={classes.searchInput}
+                    InputProps={{
+                        startAdornment: (<InputAdornment position="start">
+                            <Search />
+                        </InputAdornment>)
+                    }}
+                    onChange={handleQuery}
+                />
+                <Controls.Button
+                    text="Add New"
+                    variant="outlined"
+                    startIcon={<AddIcon />}
+                    className={classes.newButton}
+                    onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
+                />
+            </Toolbar>
+              <div>
+                  {records.map((advert, i) => CustomizedExpansionPanels(advert, i, expanded, setExpanded))}
+              </div>
+          </>
+        )}
       </Paper>
       <Popup
-      title="Advert Form"
-      openPopup={openPopup}
-      setOpenPopup={setOpenPopup}
+        title="Advert Form"
+        openPopup={openPopup}
+        setOpenPopup={setOpenPopup}
       >
         <AddAdvert
             recordForEdit={recordForEdit}
@@ -134,7 +183,8 @@ const AdminCourseAdverts = props => {
 
 const mapStateToProps = state =>({
     records: state.adverts.courseadverts,
-    token: state.auth.token
+    token: state.auth.token,
+    loading: state.adverts.loading,
 })
 
 export default connect(

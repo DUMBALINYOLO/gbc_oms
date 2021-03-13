@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-
+import { Paper }from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -17,7 +17,8 @@ import { getAdminStudentTest } from '../../actions/gradings';
 import About from './About';
 import GradingBag from './GradingBag';
 import TestRecords from './TestRecords';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 function TabContainer(props) {
@@ -57,49 +58,71 @@ export class AdminGradingTest extends React.Component {
 
     return (
       <GradingBag>
+      {this.props.loading ? (
+          <Paper>
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+          </Paper>
+        ) : (
+          <>
         
-        <Helmet>
-          <title>{adminstudenttest.name}</title>
-          <meta name="description" content={adminstudenttest.name} />
-          <meta property="og:title" content={adminstudenttest.name} />
-          <meta property="og:description" content={adminstudenttest.name} />
-          <meta property="twitter:title" content={adminstudenttest.name} />
-          <meta property="twitter:description" content={adminstudenttest.name} />
-        </Helmet>
-        <Cover
-          coverImg={bgCover}
-          name={adminstudenttest.name}
-        />
-        <AppBar position="static" className={classes.profileTab}>
-          <Hidden mdUp>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} />
-              <Tab icon={<GradientIcon />} />
-            </Tabs>
-          </Hidden>
-          <Hidden smDown>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<GradientIcon />} label="RECORDS" />
-            </Tabs>
-          </Hidden>
-        </AppBar>
-        {value === 0 && <TabContainer><About data={adminstudenttest}/></TabContainer>}
-        {value === 1 && <TabContainer><TestRecords data={adminstudenttest}/></TabContainer>}
+            <Helmet>
+              <title>{adminstudenttest.name}</title>
+              <meta name="description" content={adminstudenttest.name} />
+              <meta property="og:title" content={adminstudenttest.name} />
+              <meta property="og:description" content={adminstudenttest.name} />
+              <meta property="twitter:title" content={adminstudenttest.name} />
+              <meta property="twitter:description" content={adminstudenttest.name} />
+            </Helmet>
+            <Cover
+              coverImg={bgCover}
+              name={adminstudenttest.name}
+            />
+            <AppBar position="static" className={classes.profileTab}>
+              <Hidden mdUp>
+                <Tabs
+                  value={value}
+                  onChange={this.handleChange}
+                  variant="fullWidth"
+                  indicatorColor="primary"
+                  textColor="primary"
+                  centered
+                >
+                  <Tab icon={<AccountCircle />} />
+                  <Tab icon={<GradientIcon />} />
+                </Tabs>
+              </Hidden>
+              <Hidden smDown>
+                <Tabs
+                  value={value}
+                  onChange={this.handleChange}
+                  variant="fullWidth"
+                  indicatorColor="primary"
+                  textColor="primary"
+                  centered
+                >
+                  <Tab icon={<AccountCircle />} label="ABOUT" />
+                  <Tab icon={<GradientIcon />} label="RECORDS" />
+                </Tabs>
+              </Hidden>
+            </AppBar>
+            {value === 0 && <TabContainer><About data={adminstudenttest}/></TabContainer>}
+            {value === 1 && <TabContainer><TestRecords data={adminstudenttest}/></TabContainer>}
+          </>
+        )}
       </GradingBag>
     );
   }
@@ -113,6 +136,7 @@ AdminGradingTest.propTypes = {
 const mapStateToProps = state => ({
   force: state, // force state from reducer
   adminstudenttest: state.gradings.adminstudenttest,
+  loading: state.gradings.loading,
 });
 
 

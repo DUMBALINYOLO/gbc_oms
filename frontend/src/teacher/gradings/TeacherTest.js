@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-
+import { Paper }from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -17,7 +17,8 @@ import { getAdminStudentTest } from '../../actions/gradings';
 import About from './About';
 import GradingBag from './GradingBag';
 import TestRecords from './TestRecords';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 function TabContainer(props) {
@@ -57,6 +58,26 @@ export class TeacherTest extends React.Component {
 
     return (
       <GradingBag>
+      {this.props.loading ? (
+          <Paper>
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+          </Paper>
+        ) : (
+            <>
 
         <Helmet>
           <title>{adminstudenttest.name}</title>
@@ -100,6 +121,8 @@ export class TeacherTest extends React.Component {
         </AppBar>
         {value === 0 && <TabContainer><About data={adminstudenttest}/></TabContainer>}
         {value === 1 && <TabContainer><TestRecords data={adminstudenttest}/></TabContainer>}
+          </>
+        )}
       </GradingBag>
     );
   }
@@ -113,10 +136,9 @@ TeacherTest.propTypes = {
 const mapStateToProps = state => ({
   force: state, // force state from reducer
   adminstudenttest: state.gradings.adminstudenttest,
-  token: state.auth.token
+  token: state.auth.token,
+  loading: state.gradings.loading,
 });
-
-
 
 const AdminGradingTestMapped = connect(
   mapStateToProps,

@@ -17,8 +17,11 @@ import { getAdminInactiveCourse } from '../../../actions/courses';
 import About from './About';
 import CourseBag from './CourseBag';
 import SchoolIcon from '@material-ui/icons/School';
+import { Paper }from '@material-ui/core';
 import Topics from '../topics/Topics';
 import Enrollments from '../enrollments/Enrollments';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 function TabContainer(props) {
@@ -65,6 +68,19 @@ class Course extends React.Component {
 
     return (
       <CourseBag>
+      {this.props.loading ? (
+          <Paper>
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+          </Paper>
+        ) : (
+            <>
 
         <Helmet>
           <title>{course.full_name}</title>
@@ -111,19 +127,18 @@ class Course extends React.Component {
         {value === 0 && <TabContainer><About data={course}/></TabContainer>}
         {value === 1 && <TabContainer><Topics data={course}/></TabContainer>}
         {value === 2 && <TabContainer><Enrollments data={course}/></TabContainer>}
+          </>
+        )}
       </CourseBag >
     );
   }
 }
 
-
-
 const mapStateToProps = state => ({
   course: state.courses.admininactivecourse,
-  token: state.auth.token
+  token: state.auth.token,
+  loading: state.courses.loading,
 });
-
-
 
 const AttendanceMapped = connect(
   mapStateToProps,

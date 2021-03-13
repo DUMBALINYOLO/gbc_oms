@@ -19,7 +19,9 @@ import CourseBag from './CourseBag';
 import SchoolIcon from '@material-ui/icons/School';
 import Topics from '../topics/Topics';
 import Enrollments from '../enrollments/Enrollments';
-
+import { Paper }from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 function TabContainer(props) {
   const { children } = props;
@@ -65,52 +67,67 @@ class Course extends React.Component {
 
     return (
       <CourseBag>
+      {this.props.loading ? (
+          <Paper>
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+          </Paper>
+        ) : (
+            <>
 
-        <Helmet>
-          <title>{course.full_name}</title>
-          <meta name="description" content={course.full_name} />
-          <meta property="og:title" content={course.full_name} />
-          <meta property="og:description" content={course.full_name} />
-          <meta property="twitter:title" content={course.full_name} />
-          <meta property="twitter:description" content={course.full_name} />
-        </Helmet>
-        <Cover
-          coverImg={bgCover}
-          name={course.full_name}
-        />
-        <AppBar position="static" className={classes.profileTab}>
-          <Hidden mdUp>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} />
-              <Tab icon={<RateReviewIcon />} />
-              <Tab icon={<VpnKeyIcon />} />
-            </Tabs>
-          </Hidden>
-          <Hidden smDown>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<RateReviewIcon />} label="TOPICS" />
-              <Tab icon={<VpnKeyIcon />} label="ENROLLMENTS" />
-            </Tabs>
-          </Hidden>
-        </AppBar>
-        {value === 0 && <TabContainer><About data={course}/></TabContainer>}
-        {value === 1 && <TabContainer><Topics data={course}/></TabContainer>}
-        {value === 2 && <TabContainer><Enrollments data={course}/></TabContainer>}
+            <Helmet>
+              <title>{course.full_name}</title>
+              <meta name="description" content={course.full_name} />
+              <meta property="og:title" content={course.full_name} />
+              <meta property="og:description" content={course.full_name} />
+              <meta property="twitter:title" content={course.full_name} />
+              <meta property="twitter:description" content={course.full_name} />
+            </Helmet>
+            <Cover
+              coverImg={bgCover}
+              name={course.full_name}
+            />
+            <AppBar position="static" className={classes.profileTab}>
+              <Hidden mdUp>
+                <Tabs
+                  value={value}
+                  onChange={this.handleChange}
+                  variant="fullWidth"
+                  indicatorColor="primary"
+                  textColor="primary"
+                  centered
+                >
+                  <Tab icon={<AccountCircle />} />
+                  <Tab icon={<RateReviewIcon />} />
+                  <Tab icon={<VpnKeyIcon />} />
+                </Tabs>
+              </Hidden>
+              <Hidden smDown>
+                <Tabs
+                  value={value}
+                  onChange={this.handleChange}
+                  variant="fullWidth"
+                  indicatorColor="primary"
+                  textColor="primary"
+                  centered
+                >
+                  <Tab icon={<AccountCircle />} label="ABOUT" />
+                  <Tab icon={<RateReviewIcon />} label="TOPICS" />
+                  <Tab icon={<VpnKeyIcon />} label="ENROLLMENTS" />
+                </Tabs>
+              </Hidden>
+            </AppBar>
+            {value === 0 && <TabContainer><About data={course}/></TabContainer>}
+            {value === 1 && <TabContainer><Topics data={course}/></TabContainer>}
+            {value === 2 && <TabContainer><Enrollments data={course}/></TabContainer>}
+          </>
+        )}
       </CourseBag >
     );
   }
@@ -120,7 +137,8 @@ class Course extends React.Component {
 
 const mapStateToProps = state => ({
   course: state.courses.adminongoingcourse,
-  token: state.auth.token
+  token: state.auth.token,
+  loading: state.courses.loading,
 });
 
 

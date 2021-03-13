@@ -1,105 +1,108 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, {  useEffect } from "react";
+import { connect } from 'react-redux';
+import {  Grid, makeStyles,  Paper} from "@material-ui/core";
+import {Form, useForm } from ".././components/formcontrols/useForm";
+import  Controls  from ".././components/formcontrols/Controls";
+import TextField from '@material-ui/core/TextField';
 import { Redirect } from "react-router-dom";
-import {authLogin} from ".././actions/auth";
+import {addStudent} from ".././actions/people";
+import { Avatar, Button, Typography ,Link } from '@material-ui/core'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import PublicLayout from '.././public/layout/InformationTechnologyLayout';
+import link from '../api/ui/link';
 
+class GerereRegister extends React.Component {
 
-
-class Login extends React.Component {
-    state = {
-		email: '',
-		password: '',
+  state = {
+      email: '',
+      username:'',
+      password: '',
     }
-    
+
     onSubmit = e =>{
       e.preventDefault();
-      this.props.onAuth(this.state.email, this.state.password);
-      console.log(this.state.email, this.state.password)
+      const {email,username, password} = this.state;
+      const transaction = {email, username, password}
+      this.props.addStudent(transaction);
+      this.setState({
+        email: '',
+        username:'',
+        password: '',
+      })
     };
 
     onChange = (e) => this.setState({ [e.target.name]: e.target.value });
-  
 
-  render() {
-    const {email, password} = this.state;
-    const { userRole } = this.props;
-    let errorMessage = null;
-    if (this.props.error) {
-      errorMessage = <p>{this.props.error.message}</p>;
-    }
-    console.log(userRole)
-    if (userRole === 'principal'){
-        return <Redirect to="/itdashboard" />;
-    }
-    else if(userRole === 'bursar'){
-        return <Redirect to="/bursardashboard" />;
-    }
-    else if(userRole === 'teacher'){
-        return <Redirect to="/teacherdashboard" />;
-    }
-    else if(userRole === 'student'){
-        return <Redirect to="/studentdashboard" />;
-    }
+    render() {
+      const paperStyle={padding :20,height:'70vh',width:380, margin:"20px auto"}
+      const avatarStyle={backgroundColor:'#1bbd7e'}
+      const btnstyle={margin:'8px 0'}
+      const {email, password, username} = this.state;
 
-    return (
-      <div>
-        {errorMessage}
-        {this.props.loading ? (
-            <h1>Loading....</h1>
-          
-        ) : (
-          <form onSubmit={this.onSubmit} className="login-form">
-                <div className="p-field">
-                    <label>EMAIL</label>
-                    <input
-                    className="form-control"
-                    type="text"
-                    name="email"
-                    onChange={this.onChange}
-                    value={email}
+    return(
+      <PublicLayout>
+        <form onSubmit={this.onSubmit}>
+            <Paper elevation={10} style={paperStyle}>
+                <Grid align='center'>
+                     <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
+                    <h2>Student Registration</h2>
+                </Grid>
+                <TextField 
+                  label="Email"
+                  placeholder='Enter Email' 
+                  fullWidth required
+                  onChange={this.onChange}
+                  value={email}
+                  name = "email"
+                />
+                <TextField 
+                  label="USERNAME"
+                  placeholder='Enter Username' 
+                  fullWidth required
+                  name="username"
+                  onChange={this.onChange}
+                  value={username}
+                />
+                <TextField 
+                  label='Password' 
+                  placeholder='Enter password' 
+                  type='password' 
+                  fullWidth required
+                  onChange={this.onChange}
+                  value={password}
+                  name = "password"
+                />
+                <FormControlLabel
+                    control={
+                    <Checkbox
+                        name="checkedB"
+                        color="primary"
                     />
-                </div>
-                <div className="form-group">
-                    <label>Password</label>
-                    <input
-                    className="form-control"
-                    type="password"
-                    name="password"
-                    onChange={this.onChange}
-                    value={password}
-                    />
-                </div>
-                <button
-                >
-                Login
-                </button>
-
-          </form>
-        )}
-      </div>
-    );
+                    }
+                    label="Remember me"
+                 />
+                <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Sign Up</Button>
+                <Typography >
+                     <Link>
+                        Forgot password ?
+                </Link>
+                </Typography>
+                <Typography > Do you have an account ?
+                     <Link to={link.signup} >
+                        Sign Up 
+                </Link>
+                </Typography>
+            </Paper>
+        </form>
+      </PublicLayout>
+    )
   }
 }
 
-
-
-const mapStateToProps = state => {
-  return {
-    loading: state.auth.loading,
-    error: state.auth.error,
-    userRole: state.auth.userRole,
-    token: state.auth.token,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onAuth: (email, password) =>
-      dispatch(authLogin(email, password))
-  };
-};
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Login);
+  null,
+  {addStudent}
+)(GerereRegister)
+

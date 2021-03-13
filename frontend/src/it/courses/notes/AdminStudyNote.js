@@ -19,6 +19,9 @@ import NoteBag from './NoteBag';
 import NotesIcon from '@material-ui/icons/AssignmentTurnedIn';
 import RefIcon from '@material-ui/icons/AssignmentInd';
 import References from '../references/References';
+import { Paper }from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 function TabContainer(props) {
   const { children } = props;
@@ -64,6 +67,19 @@ class AdminStudyNote extends React.Component {
 
     return (
       <NoteBag>
+      {this.props.loading ? (
+          <Paper>
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+          </Paper>
+        ) : (
+            <>
 
         <Helmet>
           <title>{note.title}</title>
@@ -110,19 +126,18 @@ class AdminStudyNote extends React.Component {
         {value === 0 && <TabContainer><About data={note}/></TabContainer>}
         {value === 1 && <TabContainer><InnerNotes data={note}/></TabContainer>}
         {value === 2 && <TabContainer><References data={note}/></TabContainer>}
+          </>
+        )}
       </NoteBag >
     );
   }
 }
 
-
-
 const mapStateToProps = state => ({
   note: state.courses.adminstudynote,
   token: state.auth.token,
+  loading: state.courses.loading,
 });
-
-
 
 const AttendanceMapped = connect(
   mapStateToProps,

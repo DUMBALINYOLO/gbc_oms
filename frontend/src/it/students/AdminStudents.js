@@ -20,8 +20,8 @@ import AddBursar from '../staff/AddBursar';
 import  Controls  from "../../components/formcontrols/Controls";
 import  Popup  from "../../components/formcontrols/Popup";
 import  useTable  from "../../components/table/useTable";
-
-
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 const useStyles = makeStyles(theme => ({
@@ -61,6 +61,33 @@ const AdminStudents = props => {
   const [newstudent, setNewStudent] = useState({})
   const [query, setQuery] = useState('')
   const {token} = props;
+  const [progress, setProgress] = React.useState(0);
+  const [buffer, setBuffer] = React.useState(10);
+  const progressRef = React.useRef(() => {});
+
+  useEffect(() => {
+    progressRef.current = () => {
+      if (progress > 100) {
+        setProgress(0);
+        setBuffer(10);
+      } else {
+        const diff = Math.random() * 10;
+        const diff2 = Math.random() * 10;
+        setProgress(progress + diff);
+        setBuffer(progress + diff + diff2);
+      }
+    };
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      progressRef.current();
+    }, 500);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   useEffect(() => {
     if(!props.fetched) {
@@ -70,8 +97,6 @@ const AdminStudents = props => {
 
 
   }, [newstudent]);
-
-
 
 
   const addOrEdit = (bursar, resetForm,token) => {
@@ -127,6 +152,25 @@ const AdminStudents = props => {
   return (
     <InformationTechnologyLayout>
       <Paper className={classes.pageContent}>
+      {props.loading ? (
+          <div className={classes.rootaa}>
+            <CircularProgress variant="determinate" value={progress} />
+            <CircularProgress variant="determinate" value={progress} />
+            <CircularProgress variant="determinate" value={progress} />
+            <CircularProgress variant="determinate" value={progress}/>
+            <CircularProgress variant="determinate" value={progress} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+          </div>
+        ) : (
+          <>
 
       <Toolbar>
           <Controls.Input
@@ -177,6 +221,8 @@ const AdminStudents = props => {
           </TableBody>
       </TblContainer>
       <TblPagination />
+          </>
+        )}
       </Paper>
       <Popup
       title="Student Form"
@@ -195,6 +241,7 @@ const AdminStudents = props => {
 const mapStateToProps = state =>({
     records: state.people.adminstudents,
     token: state.auth.token,
+    loading: state.people.loading,
 })
 
 export default connect(

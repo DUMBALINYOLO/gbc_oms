@@ -6,10 +6,16 @@ import  Controls  from ".././components/formcontrols/Controls";
 import TextField from '@material-ui/core/TextField';
 import { Redirect } from "react-router-dom";
 import {authLogin} from ".././actions/auth";
+import { Avatar, Button, Typography ,Link } from '@material-ui/core'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 import PublicLayout from '.././public/layout/InformationTechnologyLayout';
 
+
 class GerereLogin extends React.Component {
-    state = {
+
+  state = {
     email: '',
     password: '',
     }
@@ -21,11 +27,13 @@ class GerereLogin extends React.Component {
     };
 
     onChange = (e) => this.setState({ [e.target.name]: e.target.value });
-  
 
-  render() {
-    const {email, password} = this.state;
-    const { userRole } = this.props;
+    render() {
+      const paperStyle={padding :20,height:'70vh',width:380, margin:"20px auto"}
+      const avatarStyle={backgroundColor:'#1bbd7e'}
+      const btnstyle={margin:'8px 0'}
+      const {email, password} = this.state;
+      const { userRole } = this.props;
     let errorMessage = null;
     if (this.props.error) {
       errorMessage = <p>{this.props.error.message}</p>;
@@ -44,45 +52,54 @@ class GerereLogin extends React.Component {
         return <Redirect to="/studentdashboard" />;
     }
 
-    return (
-        <PublicLayout>
-          <Paper>
-            <Form onSubmit={this.onSubmit}>
-              <Grid container>
-                  <Grid item xs={12}>
-                      <Controls.Input
-                          label="Email"
-                          className="form-control"
-                          name="email"
-                          onChange={this.onChange}
-                          value={email}
-                      />                
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      onChange={this.onChange}
-                      value={password}
-                      label="Password"
-                      name="password"
-                      size="small"
-                      type="password"
-                      variant="outlined"
-                    />                    
-                    <div>
-                      <Controls.Button
-                          type="submit"
-                          text="Submit" />
-                    </div>
-                  </Grid>
-              </Grid>
-            </Form>
-          </Paper>
-        </PublicLayout>
-    );
-
+    return(
+      <PublicLayout>
+        <form onSubmit={this.onSubmit}>
+            <Paper elevation={10} style={paperStyle}>
+                <Grid align='center'>
+                     <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
+                    <h2>Log In</h2>
+                </Grid>
+                <TextField 
+                  label="Email"
+                  placeholder='Enter Email' 
+                  fullWidth required
+                  onChange={this.onChange}
+                  value={email}
+                  name = "email"
+                />
+                <TextField 
+                  label='Password' 
+                  placeholder='Enter password' 
+                  type='password' 
+                  fullWidth required
+                  onChange={this.onChange}
+                  value={password}
+                  name = "password"
+                />
+                <FormControlLabel
+                    control={
+                    <Checkbox
+                        name="checkedB"
+                        color="primary"
+                    />
+                    }
+                    label="Remember me"
+                 />
+                <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Login</Button>
+                <Typography >
+                     <Link>
+                        Forgot password ?
+                </Link>
+                </Typography>
+                <Typography > By continuing, you agree to Gerere business college's Conditions of Use and Privacy Notice.</Typography>
+            </Paper>
+        </form>
+      </PublicLayout>
+    )
   }
-};
+}
+
 
 const mapStateToProps = state => {
   return {
@@ -104,3 +121,4 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(GerereLogin)
+

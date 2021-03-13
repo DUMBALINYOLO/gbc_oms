@@ -13,12 +13,14 @@ import { connect } from 'react-redux';
 import Cover from '../../components/SocialMedia/Cover';
 import bgCover from '../../images/petal_bg.svg';
 import styles from '../../components/SocialMedia/jss/cover-jss';
+import { Paper }from '@material-ui/core';
 import { getAdminParent } from '../../actions/people';
 import About from './About';
 import ProfileBag from './ProfileBag';
 import AttIcon from '@material-ui/icons/HowToReg';
 import TestIcon from '@material-ui/icons/MenuBook';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 function TabContainer(props) {
   const { children } = props;
@@ -56,46 +58,68 @@ class CompanyProfile extends React.Component {
 
     return (
       <ProfileBag>
+      {this.props.loading ? (
+          <Paper>
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+          </Paper>
+        ) : (
+            <>
         
-        <Helmet>
-          <title>{adminparent.username}</title>
-          <meta name="description" content={description} />
-          <meta property="og:title" content={adminparent.username} />
-          <meta property="og:description" content={description} />
-          <meta property="twitter:title" content={adminparent.username} />
-          <meta property="twitter:description" content={adminparent.username} />
-        </Helmet>
-        <Cover
-          coverImg={bgCover}
-          name={adminparent.username}
-        />
-        <AppBar position="static" className={classes.profileTab}>
-          <Hidden mdUp>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} />
-            </Tabs>
-          </Hidden>
-          <Hidden smDown>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} label="ABOUT" />
-            </Tabs>
-          </Hidden>
-        </AppBar>
-        {value === 0 && <TabContainer><About data={adminparent}/></TabContainer>}
+              <Helmet>
+                <title>{adminparent.username}</title>
+                <meta name="description" content={description} />
+                <meta property="og:title" content={adminparent.username} />
+                <meta property="og:description" content={description} />
+                <meta property="twitter:title" content={adminparent.username} />
+                <meta property="twitter:description" content={adminparent.username} />
+              </Helmet>
+              <Cover
+                coverImg={bgCover}
+                name={adminparent.username}
+              />
+              <AppBar position="static" className={classes.profileTab}>
+                <Hidden mdUp>
+                  <Tabs
+                    value={value}
+                    onChange={this.handleChange}
+                    variant="fullWidth"
+                    indicatorColor="primary"
+                    textColor="primary"
+                    centered
+                  >
+                    <Tab icon={<AccountCircle />} />
+                  </Tabs>
+                </Hidden>
+                <Hidden smDown>
+                  <Tabs
+                    value={value}
+                    onChange={this.handleChange}
+                    variant="fullWidth"
+                    indicatorColor="primary"
+                    textColor="primary"
+                    centered
+                  >
+                    <Tab icon={<AccountCircle />} label="ABOUT" />
+                  </Tabs>
+                </Hidden>
+              </AppBar>
+              {value === 0 && <TabContainer><About data={adminparent}/></TabContainer>}
+          </>
+        )}
       </ProfileBag >
     );
   }
@@ -109,6 +133,7 @@ CompanyProfile.propTypes = {
 const mapStateToProps = state => ({
   force: state, // force state from reducer
   adminparent: state.people.adminparent,
+  loading: state.people.loading,
 });
 
 

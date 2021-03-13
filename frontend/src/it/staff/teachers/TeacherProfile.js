@@ -18,7 +18,9 @@ import About from './About';
 import ProfileBag from './ProfileBag';
 import AttIcon from '@material-ui/icons/HowToReg';
 import TestIcon from '@material-ui/icons/MenuBook';
-
+import { Paper }from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 function TabContainer(props) {
   const { children } = props;
@@ -56,6 +58,26 @@ class CompanyProfile extends React.Component {
 
     return (
       <ProfileBag>
+      {this.props.loading ? (
+          <Paper>
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+          </Paper>
+        ) : (
+            <>
         
         <Helmet>
           <title>{adminteacher.username}</title>
@@ -96,6 +118,8 @@ class CompanyProfile extends React.Component {
           </Hidden>
         </AppBar>
         {value === 0 && <TabContainer><About data={adminteacher}/></TabContainer>}
+          </>
+        )}
       </ProfileBag >
     );
   }
@@ -109,6 +133,7 @@ CompanyProfile.propTypes = {
 const mapStateToProps = state => ({
   force: state, // force state from reducer
   adminteacher: state.people.adminteacher,
+  loading: state.people.loading,
 });
 
 

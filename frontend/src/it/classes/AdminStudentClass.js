@@ -18,7 +18,9 @@ import Students from './Students';
 import Subjects from './Subjects';
 import ClassBag from './ClassBag';
 import SchoolIcon from '@material-ui/icons/School';
-
+import { Paper }from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 function TabContainer(props) {
   const { children } = props;
@@ -64,52 +66,66 @@ class AdminStudentClass extends React.Component {
 
     return (
       <ClassBag>
+      {this.props.loading ? (
+          <Paper>
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+          </Paper>
+        ) : (
+            <>
 
-        <Helmet>
-          <title>{classi.name}</title>
-          <meta name="description" content={classi.name} />
-          <meta property="og:title" content={classi.name} />
-          <meta property="og:description" content={classi.name} />
-          <meta property="twitter:title" content={classi.name} />
-          <meta property="twitter:description" content={classi.name} />
-        </Helmet>
-        <Cover
-          coverImg={bgCover}
-          name={classi.name}
-        />
-        <AppBar position="static" className={classes.profileTab}>
-          <Hidden mdUp>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} />
-              <Tab icon={<PermIdentityIcon />} />
-              <Tab icon={<SchoolIcon />} />
-            </Tabs>
-          </Hidden>
-          <Hidden smDown>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<PermIdentityIcon />} label="STUDENTS" />
-              <Tab icon={<SchoolIcon />} label="SUBJECTS" />
-            </Tabs>
-          </Hidden>
-        </AppBar>
-        {value === 0 && <TabContainer><About data={classi}/></TabContainer>}
-        {value === 1 && <TabContainer><Students data={classi}/></TabContainer>}
-        {value === 2 && <TabContainer><Subjects data={classi}/></TabContainer>}
+              <Helmet>
+                <title>{classi.name}</title>
+                <meta name="description" content={classi.name} />
+                <meta property="og:title" content={classi.name} />
+                <meta property="og:description" content={classi.name} />
+                <meta property="twitter:title" content={classi.name} />
+                <meta property="twitter:description" content={classi.name} />
+              </Helmet>
+              <Cover
+                coverImg={bgCover}
+                name={classi.name}
+              />
+              <AppBar position="static" className={classes.profileTab}>
+                <Hidden mdUp>
+                  <Tabs
+                    value={value}
+                    onChange={this.handleChange}
+                    variant="fullWidth"
+                    indicatorColor="primary"
+                    textColor="primary"
+                    centered
+                  >
+                    <Tab icon={<AccountCircle />} />
+                    <Tab icon={<PermIdentityIcon />} />
+                    <Tab icon={<SchoolIcon />} />
+                  </Tabs>
+                </Hidden>
+                <Hidden smDown>
+                  <Tabs
+                    value={value}
+                    onChange={this.handleChange}
+                    variant="fullWidth"
+                    indicatorColor="primary"
+                    textColor="primary"
+                    centered
+                  >
+                    <Tab icon={<AccountCircle />} label="ABOUT" />
+                    <Tab icon={<PermIdentityIcon />} label="STUDENTS" />
+                    <Tab icon={<SchoolIcon />} label="SUBJECTS" />
+                  </Tabs>
+                </Hidden>
+              </AppBar>
+              {value === 0 && <TabContainer><About data={classi}/></TabContainer>}
+              {value === 1 && <TabContainer><Students data={classi}/></TabContainer>}
+              {value === 2 && <TabContainer><Subjects data={classi}/></TabContainer>}
+          </>
+        )}
       </ClassBag >
     );
   }
@@ -120,6 +136,7 @@ const mapStateToProps = state => ({
   force: state, // force state from reducer
   classi: state.classes.classi,
   token: state.auth.token,
+  loading: state.classes.loading,
 });
 
 const UserProfileMapped = connect(

@@ -9,7 +9,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import GradientIcon from '@material-ui/icons/Gradient';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-
+import { Paper }from '@material-ui/core';
 import Cover from '../../components/SocialMedia/Cover';
 import bgCover from '../../images/petal_bg.svg';
 import styles from '../../components/SocialMedia/jss/cover-jss';
@@ -17,7 +17,8 @@ import { getAdminStudentAssignment} from '../../actions/gradings';
 import About from './About';
 import GradingBag from './GradingBag';
 import ExcerciseRecords from './ExcerciseRecords';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 function TabContainer(props) {
@@ -57,49 +58,71 @@ export class AdminAssignment extends React.Component {
 
     return (
       <GradingBag>
+      {this.props.loading ? (
+          <Paper>
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+            <LinearProgress color="secondary" />
+          </Paper>
+        ) : (
+            <>
         
-        <Helmet>
-          <title>{adminstudentassignment.name}</title>
-          <meta name="description" content={adminstudentassignment.name} />
-          <meta property="og:title" content={adminstudentassignment.name} />
-          <meta property="og:description" content={adminstudentassignment.name} />
-          <meta property="twitter:title" content={adminstudentassignment.name} />
-          <meta property="twitter:description" content={adminstudentassignment.name} />
-        </Helmet>
-        <Cover
-          coverImg={bgCover}
-          name={adminstudentassignment.name}
-        />
-        <AppBar position="static" className={classes.profileTab}>
-          <Hidden mdUp>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} />
-              <Tab icon={<GradientIcon />} />
-            </Tabs>
-          </Hidden>
-          <Hidden smDown>
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<GradientIcon />} label="RECORDS" />
-            </Tabs>
-          </Hidden>
-        </AppBar>
-        {value === 0 && <TabContainer><About data={adminstudentassignment}/></TabContainer>}
-        {value === 1 && <TabContainer><ExcerciseRecords data={adminstudentassignment}/></TabContainer>}
+              <Helmet>
+                <title>{adminstudentassignment.name}</title>
+                <meta name="description" content={adminstudentassignment.name} />
+                <meta property="og:title" content={adminstudentassignment.name} />
+                <meta property="og:description" content={adminstudentassignment.name} />
+                <meta property="twitter:title" content={adminstudentassignment.name} />
+                <meta property="twitter:description" content={adminstudentassignment.name} />
+              </Helmet>
+              <Cover
+                coverImg={bgCover}
+                name={adminstudentassignment.name}
+              />
+              <AppBar position="static" className={classes.profileTab}>
+                <Hidden mdUp>
+                  <Tabs
+                    value={value}
+                    onChange={this.handleChange}
+                    variant="fullWidth"
+                    indicatorColor="primary"
+                    textColor="primary"
+                    centered
+                  >
+                    <Tab icon={<AccountCircle />} />
+                    <Tab icon={<GradientIcon />} />
+                  </Tabs>
+                </Hidden>
+                <Hidden smDown>
+                  <Tabs
+                    value={value}
+                    onChange={this.handleChange}
+                    variant="fullWidth"
+                    indicatorColor="primary"
+                    textColor="primary"
+                    centered
+                  >
+                    <Tab icon={<AccountCircle />} label="ABOUT" />
+                    <Tab icon={<GradientIcon />} label="RECORDS" />
+                  </Tabs>
+                </Hidden>
+              </AppBar>
+              {value === 0 && <TabContainer><About data={adminstudentassignment}/></TabContainer>}
+              {value === 1 && <TabContainer><ExcerciseRecords data={adminstudentassignment}/></TabContainer>}
+          </>
+        )}
       </GradingBag>
     );
   }
@@ -113,6 +136,7 @@ AdminAssignment.propTypes = {
 const mapStateToProps = state => ({
   force: state, // force state from reducer
   adminstudentassignment: state.gradings.adminstudentassignment,
+  loading: state.gradings.loading,
 });
 
 

@@ -23,7 +23,8 @@ import  Controls  from "../../../components/formcontrols/Controls";
 import  Popup  from "../../../components/formcontrols/Popup";
 import SearchCourse from "./SearchCourse";
 import CourseCard from "./CourseCard";
-
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 
@@ -41,12 +42,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-
-
-
-
-
-
 const options = {
   filterType: "checkbox"
 };
@@ -61,6 +56,34 @@ const AdminOngoingCourses = props => {
   const [newcourse, setNewCourse] = useState({})
   const [query, setQuery] = useState('')
   const {token} = props;
+  const [progress, setProgress] = React.useState(0);
+  const [buffer, setBuffer] = React.useState(10);
+  const progressRef = React.useRef(() => {});
+
+
+  useEffect(() => {
+    progressRef.current = () => {
+      if (progress > 100) {
+        setProgress(0);
+        setBuffer(10);
+      } else {
+        const diff = Math.random() * 10;
+        const diff2 = Math.random() * 10;
+        setProgress(progress + diff);
+        setBuffer(progress + diff + diff2);
+      }
+    };
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      progressRef.current();
+    }, 500);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   useEffect(() => {
     if(!props.fetched) {
@@ -126,58 +149,79 @@ const AdminOngoingCourses = props => {
   return (
     <InformationTechnologyLayout>
       <Paper className={classes.pageContent}>
+      {props.loading ? (
+          <div className={classes.rootaa}>
+            <CircularProgress variant="determinate" value={progress} />
+            <CircularProgress variant="determinate" value={progress} />
+            <CircularProgress variant="determinate" value={progress} />
+            <CircularProgress variant="determinate" value={progress}/>
+            <CircularProgress variant="determinate" value={progress} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+          </div>
+        ) : (
+          <>
 
-      <Toolbar>
-          <Controls.Input
-              label="Search Finished Course"
-              value={query}
-              className={classes.searchInput}
-              InputProps={{
-                  startAdornment: (<InputAdornment position="start">
-                      <Search />
-                  </InputAdornment>)
-              }}
-              onChange={handleQuery}
-          />
-          <Controls.Button
-              text="Add New"
-              variant="outlined"
-              startIcon={<AddIcon />}
-              className={classes.newButton}
-              onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
-          />
-      </Toolbar>
-          <SearchCourse
-            courseData={courseData}
-            listView={listView}
-            handleSwitchView={handleSwitchView}
-          />
-          <Grid
-            container
-            alignItems="flex-start"
-            justify="flex-start"
-            direction="row"
-            spacing={3}
-          >
-            {
-              courseData.map((course) => {
-                return (
-                  <Grid item md={listView === 'list' ? 12 : 4} sm={listView === 'list' ? 12 : 6} xs={12} key={course.id}>
-                    <CourseCard
-                      list={listView === 'list'}
-                      full_name={course.full_name}
-                      short_name={course.short_name}
-                      thumbnail={course.image}
-                      description={course.description}
-                      status={course.status}
-                      detailOpen={() => handleClick(course.id)}
-                      editItem={() => openInPopup(course)}
-                    />
-                  </Grid>
-                );
-              })
-            }
-          </Grid>
+          <Toolbar>
+              <Controls.Input
+                  label="Search Finished Course"
+                  value={query}
+                  className={classes.searchInput}
+                  InputProps={{
+                      startAdornment: (<InputAdornment position="start">
+                          <Search />
+                      </InputAdornment>)
+                  }}
+                  onChange={handleQuery}
+              />
+              <Controls.Button
+                  text="Add New"
+                  variant="outlined"
+                  startIcon={<AddIcon />}
+                  className={classes.newButton}
+                  onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
+              />
+          </Toolbar>
+              <SearchCourse
+                courseData={courseData}
+                listView={listView}
+                handleSwitchView={handleSwitchView}
+              />
+              <Grid
+                container
+                alignItems="flex-start"
+                justify="flex-start"
+                direction="row"
+                spacing={3}
+              >
+                {
+                  courseData.map((course) => {
+                    return (
+                      <Grid item md={listView === 'list' ? 12 : 4} sm={listView === 'list' ? 12 : 6} xs={12} key={course.id}>
+                        <CourseCard
+                          list={listView === 'list'}
+                          full_name={course.full_name}
+                          short_name={course.short_name}
+                          thumbnail={course.image}
+                          description={course.description}
+                          status={course.status}
+                          detailOpen={() => handleClick(course.id)}
+                          editItem={() => openInPopup(course)}
+                        />
+                      </Grid>
+                    );
+                  })
+                }
+              </Grid>
+          </>
+        )}
       </Paper>
       <Popup
       title="Finished Course Form"
@@ -196,6 +240,7 @@ const AdminOngoingCourses = props => {
 const mapStateToProps = state =>({
     courseData: state.courses.adminfinishedcourses,
     token: state.auth.token,
+    loading: state.courses.loading,
 })
 
 export default connect(
