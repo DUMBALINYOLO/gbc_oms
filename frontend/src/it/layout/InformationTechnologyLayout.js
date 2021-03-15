@@ -67,7 +67,9 @@ class InformationTechnologyLayout extends React.Component {
 
     if (!this.props.token){
       return (
-        <Login />
+        <>
+          <Redirect to="/login" />
+        </>
       );
     }
     if(this.props.token !== null){

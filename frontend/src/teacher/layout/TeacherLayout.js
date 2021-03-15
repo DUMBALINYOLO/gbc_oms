@@ -65,9 +65,7 @@ class TeacherLayout extends React.Component {
     const titleException = ['/', '/', '/'];
 
     if (!this.props.token){
-      return (
-        <Login />
-      );
+      return <Redirect to="/login" />
     }
     if(this.props.token !== null){
       if (this.props.userRole !== 'principal'){

@@ -64,9 +64,7 @@ class StudentLayout extends React.Component {
     const titleException = ['/app', '/app/crm-dashboard', '/app/crypto-dashboard'];
 
     if (!this.props.token){
-      return (
-        <Login />
-      );
+      return <Redirect to="/login" />
     }
     if(this.props.token !== null){
       if (this.props.userRole !== 'student'){
