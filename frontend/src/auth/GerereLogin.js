@@ -38,6 +38,53 @@ class GerereLogin extends React.Component {
     if (this.props.error) {
       errorMessage = <p>{this.props.error.message}</p>;
     }
+    if (!this.props.token) {
+      return(
+        <PublicLayout>
+          <form onSubmit={this.onSubmit}>
+              <Paper elevation={10} style={paperStyle}>
+                  <Grid align='center'>
+                       <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
+                      <h2>Log In</h2>
+                  </Grid>
+                  <TextField
+                    label="Email"
+                    placeholder='Enter Email'
+                    fullWidth required
+                    onChange={this.onChange}
+                    value={email}
+                    name = "email"
+                  />
+                  <TextField
+                    label='Password'
+                    placeholder='Enter password'
+                    type='password'
+                    fullWidth required
+                    onChange={this.onChange}
+                    value={password}
+                    name = "password"
+                  />
+                  <FormControlLabel
+                      control={
+                      <Checkbox
+                          name="checkedB"
+                          color="primary"
+                      />
+                      }
+                      label="Remember me"
+                   />
+                  <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Login</Button>
+                  <Typography >
+                       <Link>
+                          Forgot password ?
+                  </Link>
+                  </Typography>
+              </Paper>
+          </form>
+        </PublicLayout>  
+      );
+
+    }
     console.log(userRole)
     if (userRole === 'principal'){
         return <Redirect to="/itdashboard" />;
