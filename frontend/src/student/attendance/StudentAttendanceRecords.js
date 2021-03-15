@@ -187,6 +187,7 @@ const StudentAttendanceRecords = props => {
   );
 };
 
+
 const mapStateToProps = state =>({
     token: state.auth.token,
     email: state.auth.email,

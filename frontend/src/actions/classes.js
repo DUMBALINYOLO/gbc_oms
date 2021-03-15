@@ -38,6 +38,8 @@ import {
       CREATE_ENROLLMENT_START,
       CREATE_ENROLLMENT_SUCCESS,
       CREATE_ENROLLMENT_FAIL,
+      GET_CLASS_STUDENTS,
+      GET_CLASS_SUBJECTS,
     } from '../types/classTypes';
 
 
@@ -378,24 +380,39 @@ export const addStream = (stream, token) => {
     };
 };
 
-export const getSubjects = (query, token) => {
-  return dispatch => {
-      dispatch(getSubjectListStart());
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`
-      };
-      axios
-        .get(`${classsubjectsURL}?q=${query}`, headers)
-        .then(res => {
-          const subjects = res.data;
-          dispatch(getSubjectListSuccess(subjects));
-          })
-        .catch(err => {
-          dispatch(getSubjectListStart(err));
-        });
+// export const getSubjects = (query, token) => {
+//   return dispatch => {
+//       dispatch(getSubjectListStart());
+//       const headers = {
+//         "Content-Type": "application/json",
+//         Authorization: `Token ${token}`
+//       };
+//       axios
+//         .get(`${classsubjectsURL}?q=${query}`, headers)
+//         .then(res => {
+//           const subjects = res.data;
+//           dispatch(getSubjectListSuccess(subjects));
+//           })
+//         .catch(err => {
+//           dispatch(getSubjectListStart(err));
+//         });
+//     };
+// };
+
+export const getSubjects = (id, token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
     };
-};
+    axios.get(`${classsubjectsURL}?id=${id}`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_CLASS_SUBJECTS,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
 
 
 export const getSubject = (id,token) => {
@@ -472,24 +489,39 @@ export const addEnrollment = (enrollment, token) => {
     };
 };
 
-export const getStudents = (query, token) => {
-  return dispatch => {
-      dispatch(getStudentListStart());
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`
-      };
-      axios
-        .get(`${classstudentsURL}?q=${query}`, headers)
-        .then(res => {
-          const students = res.data;
-          dispatch(getStudentListSuccess(students));
-          })
-        .catch(err => {
-          dispatch(getStudentListStart(err));
-        });
+// export const getStudents = (query, token) => {
+//   return dispatch => {
+//       dispatch(getStudentListStart());
+//       const headers = {
+//         "Content-Type": "application/json",
+//         Authorization: `Token ${token}`
+//       };
+//       axios
+//         .get(`${classstudentsURL}?q=${query}`, headers)
+//         .then(res => {
+//           const students = res.data;
+//           dispatch(getStudentListSuccess(students));
+//           })
+//         .catch(err => {
+//           dispatch(getStudentListStart(err));
+//         });
+//     };
+// };
+
+export const getStudents = (id,token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
     };
-};
+    axios.get(`${classstudentsURL}?id=${id}`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_CLASS_STUDENTS,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
 
 export const getStudyModeChoices = (token) => dispatch => {
     const headers ={

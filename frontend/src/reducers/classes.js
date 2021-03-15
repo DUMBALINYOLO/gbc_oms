@@ -37,6 +37,8 @@ import {
       CREATE_ENROLLMENT_START,
       CREATE_ENROLLMENT_SUCCESS,
       CREATE_ENROLLMENT_FAIL,
+      GET_CLASS_SUBJECTS,
+      GET_CLASS_STUDENTS,
     } from '../types/classTypes';
 import { GET_STUDENTS_CLASS_STATUS_CHOICES } from '../types/choiceTypes';
 import { updateObject } from "../utility";
@@ -301,6 +303,16 @@ const createEnrollmentFail = (state, action) => {
 
 export default function aa(state = initialState, action){
 switch(action.type){
+    case GET_CLASS_SUBJECTS:
+        return {
+            ...state,
+            subjects: action.payload
+        };
+    case GET_CLASS_STUDENTS:
+        return {
+            ...state,
+            students: action.payload
+        };
     case GET_ENROLLMENTS_START:
         return getEnrollmentListStart(state, action);
     case GET_ENROLLMENTS_SUCCESS:
@@ -313,8 +325,6 @@ switch(action.type){
         return createEnrollmentSuccess(state, action);
     case CREATE_ENROLLMENT_FAIL:
         return createEnrollmentFail(state, action);
-    case GET_STUDENTS_START:
-        return getStudentListStart(state, action);
     case GET_STUDENTS_SUCCESS:
         return getStudentListSuccess(state, action);
     case GET_STUDENTS_FAIL:
@@ -331,8 +341,6 @@ switch(action.type){
         return createStreamSuccess(state, action);
     case CREATE_STREAM_FAIL:
         return createStreamFail(state, action);
-    case GET_SUBJECTS_START:
-        return getSubjectListStart(state, action);
     case GET_SUBJECTS_SUCCESS:
         return getSubjectListSuccess(state, action);
     case GET_SUBJECTS_FAIL:

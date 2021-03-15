@@ -54,6 +54,7 @@ class AdminTopic extends React.Component {
     const {  classes } = this.props;
     const { value } = this.state;
     const {topic} = this.props;
+    console.log(topic)
 
 
     return (
@@ -131,7 +132,6 @@ class AdminTopic extends React.Component {
 
 
 const mapStateToProps = state => ({
-  force: state, // force state from reducer
   topic: state.courses.admintopic,
   loading: state.courses.loading,
 });
