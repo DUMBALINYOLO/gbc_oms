@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import { connect } from 'react-redux';
 import classNames from 'classnames';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -9,12 +10,14 @@ import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
 import Title from './Title';
 import styles from './landingStyle-jss';
+import {createEnquiry} from '../../actions/messaging';
 
 class Contact extends React.Component {
   state = {
     name: '',
     email: '',
-    messages: ''
+    subject: '',
+    message: '',
   };
 
   handleChange = name => event => {
@@ -23,63 +26,116 @@ class Contact extends React.Component {
     });
   };
 
+  onSubmit = (e) => {
+        e.preventDefault();
+        const {
+            name,
+            email,
+            subject,
+            message,
+
+        } = this.state;
+        const enquiry = {
+          name,
+          email,
+          subject,
+          message,
+        };
+        this.props.createEnquiry(enquiry);
+        this.setState({
+            name: '',
+            email: '',
+            subject: '',
+            message: '',
+        });
+    };
+
+
+
+
+
   render() {
     const { classes, slideMode } = this.props;
-    const { name, email, messages } = this.state;
+    const {
+      name,
+      email,
+      subject,
+      message,
+    } = this.state;
+
     return (
       <div className={classNames(classes.contact, !slideMode && classes.withBg)}>
         <div className={classes.container}>
           <div className={classes.contactBubble}>
-            <Title title="Say Hello To Us" align="left" nomargin />
+            <Title title="Make an Enquiry" align="left" nomargin />
             <Typography component="p" className={classes.contactText}>Visit us on : www.gererebc.co.za , Email : gererebc@gmail.com, FB : @gererebc,
 Inst : gererebc, Cell : 0824685288 /071 361 1960- Accreditation no: 14132, Company
 Reg no : 2018 / 623149 / 07 - Level 1 BBBEE</Typography>
-            <Grid container spacing={3}>
-              <Grid item lg={6} xs={12}>
-                <FormControl className={classes.formControl}>
-                  <TextField
-                    fullWidth
-                    id="standard-name"
-                    label="Who are You?"
-                    className={classes.textField}
-                    value={name}
-                    required
-                    onChange={this.handleChange('name')}
-                    margin="normal"
-                  />
-                </FormControl>
-                <FormControl className={classes.formControl}>
-                  <TextField
-                    fullWidth
-                    id="standard-email"
-                    label="You'r email?"
-                    className={classes.textField}
-                    value={email}
-                    required
-                    onChange={this.handleChange('email')}
-                    margin="normal"
-                  />
-                </FormControl>
+          <form onSubmit={this.onSubmit}>
+              <Grid container spacing={3}>
+                <Grid item lg={6} xs={12}>
+                  <FormControl className={classes.formControl}>
+                    <TextField
+                      fullWidth
+                      id="standard-name"
+                      label="Who are You?"
+                      className={classes.textField}
+                      value={name}
+                      required
+                      onChange={this.handleChange('name')}
+                      margin="normal"
+                    />
+                  </FormControl>
+                  <FormControl className={classes.formControl}>
+                    <TextField
+                      fullWidth
+                      id="standard-email"
+                      label="You'r email?"
+                      className={classes.textField}
+                      value={email}
+                      required
+                      onChange={this.handleChange('email')}
+                      margin="normal"
+                    />
+                  </FormControl>
+                  <FormControl className={classes.formControl}>
+                    <TextField
+                      fullWidth
+                      id="subject"
+                      label="Your Enquiry?"
+                      className={classes.textField}
+                      value={subject}
+                      required
+                      onChange={this.handleChange('subject')}
+                      margin="normal"
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item lg={6} xs={12}>
+                  <FormControl className={classes.formControl}>
+                    <TextField
+                      fullWidth
+                      id="standard-multiline-flexible"
+                      label="Message"
+                      multiline
+                      rows="4"
+                      value={message}
+                      onChange={this.handleChange('message')}
+                      className={classes.textField}
+                      margin="normal"
+                    />
+                  </FormControl>
+                  <div className={classes.btnArea}>
+                    <Button
+                      variant="contained"
+                      size="large"
+                      type="submit"
+                      className={classes.button
+                      } color="secondary">Send</Button>
+                  </div>
+                </Grid>
               </Grid>
-              <Grid item lg={6} xs={12}>
-                <FormControl className={classes.formControl}>
-                  <TextField
-                    fullWidth
-                    id="standard-multiline-flexible"
-                    label="Messages"
-                    multiline
-                    rows="4"
-                    value={messages}
-                    onChange={this.handleChange('messages')}
-                    className={classes.textField}
-                    margin="normal"
-                  />
-                </FormControl>
-                <div className={classes.btnArea}>
-                  <Button variant="contained" size="large" className={classes.button} color="secondary">Send</Button>
-                </div>
-              </Grid>
-            </Grid>
+          </form>
           </div>
         </div>
       </div>
@@ -96,4 +152,9 @@ Contact.defaultProps = {
   slideMode: false
 };
 
-export default withStyles(styles)(Contact);
+const ContactMapped = connect(
+  null,
+  {createEnquiry}
+)(Contact);
+
+export default withStyles(styles)(ContactMapped);

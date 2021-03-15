@@ -5,7 +5,7 @@ import os
 from datetime import timedelta
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DEBUG = True
+DEBUG = False
 if DEBUG:
     from dotenv import load_dotenv
     load_dotenv()
@@ -16,7 +16,7 @@ SECRET_KEY = 'k$i=2jy+1s5t(+^3_me23xvqr!6e03p53rvg8t+$v9(s&6))5q'
 
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'communication',
     'reports',
     'adverts',
+    'messaging',
     #third part apps
     'django_extensions',
     'solo.apps.SoloAppConfig',
@@ -71,6 +72,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
 ]
 
 ROOT_URLCONF = 'gbc.urls'
@@ -135,9 +137,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
-    'DEFAULT_AUTHENTICATION_CLASSES': 'knox.auth.TokenAuthentication',
-
-
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
 
     'DATE_INPUT_FORMATS': ['iso-8601', '%Y-%m-%dT%H:%M:%S.%fZ'],
     'DEFAULT_PARSER_CLASSES': (
@@ -191,13 +193,30 @@ CORS_ORIGIN_ALLOW_ALL = True
 # }
 
 
-
+SERVER_EMAIL = 'dumbaclassics@gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'dumbaclassics@gmail.com'
+EMAIL_HOST_USER = SERVER_EMAIL
 EMAIL_HOST_PASSWORD = 'npfspfydygnmoqcx'
 EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+ADMINS = [
+    ('dumbalinyolo', 'dumbaclassics@gmail.com'),
+    ('maximillem', 'baridzimaximillem@gmail.com'),
+    ('gosso', 'ngwezipho@gmail.com'),
+    ('amzo', 'almsdube@gmail.com'),
+]
+
+
+MANAGERS = ADMINS
+
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
+}
+
 
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 

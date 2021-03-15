@@ -57,7 +57,7 @@ export class Alerts extends Component {
       if (error.msg.whatsapp_number) alert.error(`WHATSAPP NUMBER: ${error.msg.whatsapp_number.join()}`);
       if (error.msg.gender) alert.error(`GENDER: ${error.msg.gender.join()}`);
       if (error.msg.email) alert.error(`EMAIL: ${error.msg.email.join()}`);
-      if (error.msg.email) alert.error(`PASSWORD: ${error.msg.password.join()}`);
+      if (error.msg.password) alert.error(`PASSWORD: ${error.msg.password.join()}`);
       if (error.msg.username) alert.error(`USERNAME: ${error.msg.username.join()}`);
       if (error.msg.school) alert.error(`SCHOOL: ${error.msg.school.join()}`);
       if (error.msg.date_of_birth) alert.error(`DATE OF BIRTH: ${error.msg.date_of_birth.join()}`);

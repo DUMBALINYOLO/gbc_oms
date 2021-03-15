@@ -15,12 +15,12 @@ const initialState = {
 
 export default function messaging(state = initialState, action){
     switch(action.type){
-        case GET_ENQURIES:
+        case GET_ENQUIRIES:
             return {
                 ...state,
                 enquiries: action.payload
             };
-        case CREATE_ENQUIRY:
+        case MAKE_ENQUIRY:
             return {
                 ...state,
                 enquiry: [...state.enquiries, action.payload]

@@ -22,5 +22,8 @@ urlpatterns = [
     re_path(r'api/courses/', include('courses.urls')),
     re_path(r'api/reports/', include('reports.urls')),
     re_path(r'api/adverts/', include('adverts.urls')),
+    re_path(r'api/messaging/', include('messaging.urls')),
     path('', index),
+    re_path(r'^auth/', include('djoser.urls')),
+    re_path(r'^auth/', include('djoser.urls.jwt')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
