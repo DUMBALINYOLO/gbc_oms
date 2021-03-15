@@ -239,7 +239,9 @@ export const teacherstudentassignmentsURL = `${endpoint}/grading/teacher-student
 export const studentexcercisesURL = `${endpoint}/grading/student-excercises/`
 export const studenttestsURL = `${endpoint}/grading/student-tests/`
 export const studentassignmentsURL = `${endpoint}/grading/student-assignments/`
-export const gradingasignmentrecordsURL = `${endpoint}/grading/grading-asignment-records/`
+export const gradingasignmentrecordsURL = `${endpoint}/grading/asignment-records/`
+
+
 export const gradingtestrecordsURL = `${endpoint}/grading/grading-test-records/`
 export const gradingexcerciserecordsURL = `${endpoint}/grading/grading-excercise-records/`
 

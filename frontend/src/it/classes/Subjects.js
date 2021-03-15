@@ -169,7 +169,7 @@ const Subjects = props => {
         <TblPagination />
       </Paper>
       <Popup
-      title="Subject Form"
+      title="Class Form"
       openPopup={openPopup}
       setOpenPopup={setOpenPopup}
       >
@@ -178,6 +178,7 @@ const Subjects = props => {
             addOrEdit={addOrEdit}
         />
       </Popup>
+
     </>
   );
 };

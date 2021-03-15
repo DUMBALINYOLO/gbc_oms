@@ -31,7 +31,7 @@ class About extends React.Component {
           spacing={3}
         >
           <Grid item md={7} xs={12}>
-            <Profile />
+            <Profile data={data} />
           </Grid>
 
           <Grid item md={5} xs={12}>
@@ -85,4 +85,3 @@ class About extends React.Component {
     }
   }
   export default withStyles(styles)(About);
-

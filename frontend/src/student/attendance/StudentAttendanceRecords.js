@@ -193,10 +193,12 @@ const mapStateToProps = state =>({
     email: state.auth.email,
     records: state.studentattendances.studentattendances,
     loading: state.studentattendances.loading,
+
 })
 
 export default connect(
   mapStateToProps,
   {getStudentAttendances}
+  
   )
   (StudentAttendanceRecords);

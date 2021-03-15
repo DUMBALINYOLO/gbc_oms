@@ -92,7 +92,7 @@ const Inquiry = props => {
   }
 
   const handleClick = id =>{
-    history.push(`/itdashboard/inquiries/${id}`)
+    history.push(`/itdashboard/enquiries/${id}`)
   }
 
   return (

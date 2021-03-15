@@ -1,5 +1,6 @@
 import {
 	EDIT_STUDENT_GRADE,
+	GET_ASSIGNMENT_RECORDS,
     EDIT_TEST_RECORD,
     EDIT_ASSIGNMENT_RECORD,
     EDIT_EXCERCISE_RECORD,
@@ -551,6 +552,11 @@ export default function gradings(state = initialState, action){
             return {
                 ...state,
                 testrecords: teearrayList,
+            };
+				case GET_ASSIGNMENT_RECORDS:
+            return {
+                ...state,
+                asignmentrecords: action.payload
             };
         case EDIT_ASSIGNMENT_RECORD:
             const aeearrayList = state.asignmentrecords;

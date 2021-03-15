@@ -1,4 +1,4 @@
-import React, {  useEffect } from "react";
+import React, {  useEffect, useState } from "react";
 import { connect } from 'react-redux';
 import {  Grid, makeStyles, Paper, } from "@material-ui/core";
 import {Form, useForm } from "../../components/formcontrols/useForm";
@@ -37,6 +37,8 @@ const useStyles = makeStyles(theme => ({
 const AddAdmission = props => {
   const classes = useStyles();
   const {token, email} =props;
+  const [query, setQuery] = useState('')
+
 
   const initialFValues = {
     student: email,
@@ -79,7 +81,7 @@ const AddAdmission = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getClasses(token);
+        props.getClasses(query, token);
     }
   }, []);
 

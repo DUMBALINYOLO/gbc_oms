@@ -16,6 +16,7 @@ import {
         CREATE_ATTENDANCE_START,
         CREATE_ATTENDANCE_SUCCESS,
         CREATE_ATTENDANCE_FAIL,
+        GET_STUDENT_ATTENDANCE_RECORDS,
     } from '../types/attendanceTypes';
 import {
     adminattendancesURL,
@@ -244,24 +245,42 @@ export const addTeacherAttendance = (adminattendance, token) => {
     };
 };
 
-export const getStudentAttendances = (query, token) => {
-  return dispatch => {
-      dispatch(getStudentAttendanceListStart());
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`
-      };
-      axios
-        .get(`${studentattendancesURL}?q=${query}`, headers)
-        .then(res => {
-          const adminattendances = res.data;
-          dispatch(getStudentAttendanceListSuccess(adminattendances));
-          })
-        .catch(err => {
-          dispatch(getStudentAttendanceListStart(err));
-        });
+// export const getStudentAttendances = (query, token) => {
+//   return dispatch => {
+//       dispatch(getStudentAttendanceListStart());
+//       const headers = {
+//         "Content-Type": "application/json",
+//         Authorization: `Token ${token}`
+//       };
+//       axios
+//         .get(`${studentattendancesURL}?q=${query}`, headers)
+//         .then(res => {
+//           const adminattendances = res.data;
+//
+//           dispatch(getStudentAttendanceListSuccess(adminattendances));
+//           })
+//         .catch(err => {
+//           dispatch(getStudentAttendanceListStart(err));
+//         });
+//     };
+// };
+
+export const getStudentAttendances = (email, token) => dispatch => {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
     };
-};
+    axios.get(`${studentattendancesURL}?email=${email}`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_STUDENT_ATTENDANCE_RECORDS,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+
+
 
 export const getAdminAttendanceRecords = (query, token) => {
   return dispatch => {

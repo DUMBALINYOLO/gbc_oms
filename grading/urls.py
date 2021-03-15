@@ -9,7 +9,7 @@ from .apis import (
 			TeacherGeneralGradeTestViewSet,
 			TeacherGeneralGradeExcerciseViewSet,
 			TeacherGeneralGradeAssignmentViewSet,
-			AsignmentRecordViewSet,
+			AsignmentRecordsViewSet,
 			TestRecordViewSet,
 			ExcerciseRecordViewSet,
 
@@ -20,9 +20,12 @@ router = DefaultRouter()
 router.register(r'admin-student-tests', AdminGeneralGradeTestViewSet, basename='admin-student-tests')
 router.register(r'admin-student-assignments', AdminGeneralGradeAssignmentViewSet, basename='admin-student-assignments')
 router.register(r'admin-student-excercises', AdminGeneralGradeExcerciseViewSet, basename='admin-student-excercises')
-router.register(r'grading-asignment-records', AsignmentRecordViewSet, basename='grading-asignment-records')
+router.register(r'asignment-records', AsignmentRecordsViewSet, basename='asignment-records')
+
 router.register(r'grading-test-records', TestRecordViewSet, basename='grading-test-records')
 router.register(r'grading-excercise-records', ExcerciseRecordViewSet, basename='grading-excercise-records')
+
+
 router.register(r'teacher-student-tests', TeacherGeneralGradeTestViewSet, basename='teacher-student-tests')
 router.register(r'teacher-student-excercises', TeacherGeneralGradeExcerciseViewSet, basename='teacher-student-tests')
 router.register(r'teacher-student-assignments', TeacherGeneralGradeAssignmentViewSet, basename='teacher-student-assignments')
@@ -34,16 +37,3 @@ router.register(r'student-excercises', StudentExcerciseViewSet, basename='studen
 
 
 urlpatterns = router.urls
-
-
-
-
-
-
-
-
-
-
-
-
-

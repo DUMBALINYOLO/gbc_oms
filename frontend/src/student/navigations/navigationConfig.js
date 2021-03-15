@@ -57,7 +57,7 @@ const navigationConfig = [
         children: [
           {
             id: "add-add",
-            title: "Add",
+            title: "ADD",
             type: "item",
             url: "/studentdashboard/add-admission",
             exact: true,
@@ -160,7 +160,7 @@ const navigationConfig = [
             exact: true,
           },
         ],
-      }, 
+      },
     ],
   },
 ];

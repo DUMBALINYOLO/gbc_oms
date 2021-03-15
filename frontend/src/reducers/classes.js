@@ -38,7 +38,7 @@ import {
       CREATE_ENROLLMENT_SUCCESS,
       CREATE_ENROLLMENT_FAIL,
       GET_CLASS_SUBJECTS,
-      GET_CLASS_STUDENTS,
+      GET_CLASS_STUDENTS
     } from '../types/classTypes';
 import { GET_STUDENTS_CLASS_STATUS_CHOICES } from '../types/choiceTypes';
 import { updateObject } from "../utility";

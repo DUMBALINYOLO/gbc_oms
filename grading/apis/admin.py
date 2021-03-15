@@ -117,7 +117,7 @@ def get_grade(grade_id):
 	return grade
 
 
-class AsignmentRecordViewSet(viewsets.ModelViewSet):
+class AsignmentRecordsViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.AllowAny,]
 

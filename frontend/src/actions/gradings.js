@@ -61,6 +61,7 @@ import {
 	CREATE_STUDENT_GRADE_START,
 	CREATE_STUDENT_GRADE_SUCCESS,
 	CREATE_STUDENT_GRADE_FAIL,
+	GET_ASSIGNMENT_RECORDS,
 
 } from '../types/gradingTypes';
 import { createMessage, returnErrors } from './messages';
@@ -479,7 +480,7 @@ export const addGrade = (grade, token) => {
     };
 };
 
-export const getStudentTests = (query, token) => {
+export const getStudentTests = (email, token) => {
   return dispatch => {
       dispatch(getStudentTestListStart());
       const headers = {
@@ -487,7 +488,7 @@ export const getStudentTests = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${studenttestsURL}?q=${query}`, headers)
+        .get(`${studenttestsURL}?email=${email}`, headers)
         .then(res => {
           const studenttests = res.data;
           dispatch(getStudentTestListSuccess(studenttests));
@@ -498,7 +499,7 @@ export const getStudentTests = (query, token) => {
     };
 };
 
-export const getStudentAssignments = (query, token) => {
+export const getStudentAssignments = (email, token) => {
   return dispatch => {
       dispatch(getStudentAssignmentListStart());
       const headers = {
@@ -506,7 +507,7 @@ export const getStudentAssignments = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${studentassignmentsURL}?q=${query}`, headers)
+        .get(`${studentassignmentsURL}?email=${email}`, headers)
         .then(res => {
           const studentassignments = res.data;
           dispatch(getStudentAssignmentListSuccess(studentassignments));
@@ -517,7 +518,7 @@ export const getStudentAssignments = (query, token) => {
     };
 };
 
-export const getStudentExcercises = (query, token) => {
+export const getStudentExcercises = (email, token) => {
   return dispatch => {
       dispatch(getStudentExcerciseListStart());
       const headers = {
@@ -525,7 +526,7 @@ export const getStudentExcercises = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${studentexcercisesURL}?q=${query}`, headers)
+        .get(`${studentexcercisesURL}?email=${email}`, headers)
         .then(res => {
           const studentexcercises = res.data;
           dispatch(getStudentExcerciseListSuccess(studentexcercises));
@@ -536,7 +537,7 @@ export const getStudentExcercises = (query, token) => {
     };
 };
 
-export const getTestRecords = (query, token) => {
+export const getTestRecords = (id, token) => {
   return dispatch => {
       dispatch(getTestRecordListStart());
       const headers = {
@@ -544,7 +545,7 @@ export const getTestRecords = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${gradingtestrecordsURL}?q=${query}`, headers)
+        .get(`${gradingtestrecordsURL}?id=${id}`, headers)
         .then(res => {
           const testrecords = res.data;
           dispatch(getTestRecordListSuccess(testrecords));
@@ -555,26 +556,42 @@ export const getTestRecords = (query, token) => {
     };
 };
 
-export const getAssignmentRecords = (query, token) => {
-  return dispatch => {
-      dispatch(getAssignmentRecordListStart());
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`
-      };
-      axios
-        .get(`${gradingasignmentrecordsURL}?q=${query}`, headers)
-        .then(res => {
-          const asignmentrecords = res.data;
-          dispatch(getAssignmentRecordListSuccess(asignmentrecords));
-          })
-        .catch(err => {
-          dispatch(getAssignmentRecordListStart(err));
-        });
-    };
-};
+// export const getAssignmentRecords = (id, token) => {
+//   return dispatch => {
+//       dispatch(getAssignmentRecordListStart());
+//       const headers = {
+//         "Content-Type": "application/json",
+//         Authorization: `Token ${token}`
+//       };
+//       axios
+//         .get(`${gradingasignmentrecordsURL}?id=${id}`, headers)
+//         .then(res => {
+//           const asignmentrecords = res.data;
+//           dispatch(getAssignmentRecordListSuccess(asignmentrecords));
+//           })
+//         .catch(err => {
+//           dispatch(getAssignmentRecordListStart(err));
+//         });
+//     };
+// };
 
-export const getExcerciseRecords = (query, token) => {
+export const getAssignmentRecords = (id, token) => dispatch => {
+		const headers = {
+			"Content-Type": "application/json",
+			Authorization: `Token ${token}`
+		};
+    axios.get(`${gradingasignmentrecordsURL}?id=${id}`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_ASSIGNMENT_RECORDS,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+
+
+export const getExcerciseRecords = (id, token) => {
   return dispatch => {
       dispatch(getExcerciseRecordListStart());
       const headers = {
@@ -582,7 +599,7 @@ export const getExcerciseRecords = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${gradingexcerciserecordsURL}?q=${query}`, headers)
+        .get(`${gradingexcerciserecordsURL}?id=${id}`, headers)
         .then(res => {
           const excerciserecords = res.data;
           dispatch(getExcerciseRecordListSuccess(excerciserecords));
