@@ -35,7 +35,7 @@ import AttIcon from '@material-ui/icons/Spellcheck';
 import SwapIcon from '@material-ui/icons/SwapVerticalCircle';
 import AdmIcon from '@material-ui/icons/VpnKey';
 import AccountTree from '@material-ui/icons/AccountTree';
-
+import Mail from '@material-ui/icons/Mail';
 
 const navigationConfig = [
   {
@@ -212,12 +212,33 @@ const navigationConfig = [
         ],
       },
       {
+        id: "messaging",
+        title: "MESSAGING",
+        type: "collapse",
+        icon: <Mail />,
+        badge: {
+          title: "8",
+          bg: "#525E8A",
+          fg: "#FFFFFF",
+
+        },
+        children: [
+          {
+            id: "inquiry",
+            title: "INQUIRIES",
+            type: "item",
+            url: "/itdashboard/enquiries",
+            exact: true,
+          },
+        ],
+      },
+      {
         id: "grading",
         title: "GRADING",
         type: "collapse",
         icon: <SwapIcon />,
         badge: {
-          title: "8",
+          title: "9",
           bg: "#525E8A",
           fg: "#FFFFFF",
 

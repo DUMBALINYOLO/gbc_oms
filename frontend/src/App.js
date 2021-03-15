@@ -117,11 +117,12 @@ import AdmissionDeques from './it/settings/AdmissionDeques';
 
 import TeacherCourseDeques from './teacher/settings/CourseDeques';
 import TeacherBioDeques from './teacher/settings/BioDeques';
-
 import StudentCourseDeques from './student/settings/CourseDeques';
 import StudentBioDeques from './student/settings/BioDeques';
 import Enrollments from './it/admissions/Enrollments';
 
+import Inquiry from './it/messaging/Inquiry';
+import Inquiries from './it/messaging/Inquiries';
 
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
@@ -155,6 +156,8 @@ class App extends React.Component {
 		                <Route exact path='/' component={LandingPage} />
 		                <Route exact path='/login' component={GerereLogin} />
 										<Route exact path='/signup' component={GerereRegister} />
+										<Route exact path='/itdashboard/enquiries' component={Inquiries} />
+										<Route exact path='/itdashboard/enquiries/:id' component={Inquiry} />
 		                <Route exact path='/itdashboard/users' component={UserDeques} />
 		                <Route exact path='/itdashboard/courses' component={CourseDeques} />
 		                <Route exact path='/itdashboard/bio' component={BioDeques} />
