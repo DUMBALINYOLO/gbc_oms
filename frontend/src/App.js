@@ -114,13 +114,11 @@ import UserDeques from './it/settings/UserDeques';
 import CourseDeques from './it/settings/CourseDeques';
 import BioDeques from './it/settings/BioDeques';
 import AdmissionDeques from './it/settings/AdmissionDeques';
-
 import TeacherCourseDeques from './teacher/settings/CourseDeques';
 import TeacherBioDeques from './teacher/settings/BioDeques';
 import StudentCourseDeques from './student/settings/CourseDeques';
 import StudentBioDeques from './student/settings/BioDeques';
 import Enrollments from './it/admissions/Enrollments';
-
 import Inquiry from './it/messaging/Inquiry';
 import Inquiries from './it/messaging/Inquiries';
 
