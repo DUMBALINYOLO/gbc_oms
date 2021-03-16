@@ -109,6 +109,7 @@ class Inquiry extends React.Component {
 const mapStateToProps = state => ({
   force: state, // force state from reducer
   messaging: state.messaging.enquiry,
+  
   token: state.auth.token,
 });
 
