@@ -17,6 +17,7 @@ import {
         CREATE_ATTENDANCE_SUCCESS,
         CREATE_ATTENDANCE_FAIL,
         GET_STUDENT_ATTENDANCE_RECORDS,
+        GET_ATTENDANCE_RECORDS,
     } from '../types/attendanceTypes';
 import {
     adminattendancesURL,
@@ -282,26 +283,38 @@ export const getStudentAttendances = (email, token) => dispatch => {
 }
 
 
+// export const getAdminAttendanceRecords = (id, token) => {
+//   return dispatch => {
+//       dispatch(getAdminAttendanceRecordListStart());
+//       const headers = {
+//         "Content-Type": "application/json",
+//         Authorization: `Token ${token}`
+//       };
+//       axios
+//         .get(`${studentattendancerecordsURL}?id=${id}`, headers)
+//         .then(res => {
+//           const attendandancerecords = res.data;
+//           dispatch(getAdminAttendanceRecordListSuccess(attendandancerecords));
+//           })
+//         .catch(err => {
+//           dispatch(getAdminAttendanceRecordListStart(err));
+//         });
+//     };
+// };
 
-export const getAdminAttendanceRecords = (id, token) => {
-  return dispatch => {
-      dispatch(getAdminAttendanceRecordListStart());
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`
-      };
-      axios
-        .get(`${studentattendancerecordsURL}?id=${id}`, headers)
-        .then(res => {
-          const attendandancerecords = res.data;
-          dispatch(getAdminAttendanceRecordListSuccess(attendandancerecords));
-          })
-        .catch(err => {
-          dispatch(getAdminAttendanceRecordListStart(err));
-        });
+export const getAdminAttendanceRecords = (id, token) => dispatch => {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
     };
-};
-
+    axios.get(`${studentattendancerecordsURL}?id=${id}`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_ATTENDANCE_RECORDS,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
 
 export const addAdminAttendanceRecord = (record, token) => {
   return dispatch => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import {  editAttendanceRecord } from '../../actions/attendances';
+import {  editAttendanceRecord, getAdminAttendanceRecords } from '../../actions/attendances';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -55,7 +55,6 @@ const Records = props => {
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
-    const [records, setRecords] = useState([])
     const [newrecord, setNewRecord] = useState({})
     const [query, setQuery] = useState('')
     const {token} = props;
@@ -92,10 +91,12 @@ const Records = props => {
   const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0){
         props.editAttendanceRecord(fee.id, fee, token)
+        props.getAdminAttendanceRecords(id, token);
         setNewRecord(fee)
       }
       else{
-        setNewRecord(fee)     
+        setNewRecord(fee) 
+        props.getAdminAttendanceRecords(id, token);    
       }
       resetForm()
       setRecordForEdit(null)
@@ -108,26 +109,14 @@ const Records = props => {
   }
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-
-    const fetchData = async () => {
-        const headers ={
-              "Content-Type": "application/json",
-              Authorization: `Token ${token}`,
-              'Accept': 'application/json',
-        };
-        try {
-            const res = await axios.get(`${studentattendancerecordsURL}?id=${id}`, headers);
-
-            setRecords(res.data);
-        }
-        catch (err) {
-
-        }
+    if(!props.fetched) {
+        props.getAdminAttendanceRecords(id, token);
     }
+    console.log('mount it!');
 
-        fetchData();
-    }, [newrecord]);
+  }, [newrecord]);
+
+  const{records} = props;
 
 
   const {
@@ -238,10 +227,11 @@ const Records = props => {
 const mapStateToProps = state =>({
     token: state.auth.token,
     loading: state.adminattendances.loading,
+    records: state.adminattendances.attendandancerecords,
 })
 
 export default connect(
   mapStateToProps,
-  {editAttendanceRecord} )
+  {editAttendanceRecord, getAdminAttendanceRecords} )
   (Records);
 

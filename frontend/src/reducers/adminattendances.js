@@ -15,6 +15,7 @@ import {
     CREATE_ATTENDANCE_START,
     CREATE_ATTENDANCE_SUCCESS,
     CREATE_ATTENDANCE_FAIL,
+    GET_ATTENDANCE_RECORDS
 } from '../types/attendanceTypes';
 import { updateObject } from "../utility";
 
@@ -158,7 +159,6 @@ const getTeacherAttendanceListFail = (state, action) => {
   });
 };
 
-
 export default function a(state = initialState, action){
     switch(action.type){
         case GET_ATTENDANCE_RECORDS_START:
@@ -201,6 +201,11 @@ export default function a(state = initialState, action){
             return {
                 ...state,
                 adminattendance:action.payload
+                };
+        case GET_ATTENDANCE_RECORDS:
+            return {
+                ...state,
+                adminattendances:action.payload
                 };
         case EDIT_ATTENDANCE:
             const arrayList = state.adminattendances;
