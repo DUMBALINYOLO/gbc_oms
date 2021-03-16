@@ -23,7 +23,6 @@ class GerereLogin extends React.Component {
     onSubmit = e =>{
       e.preventDefault();
       this.props.onAuth(this.state.email, this.state.password);
-      console.log(this.state.email, this.state.password)
     };
 
     onChange = (e) => this.setState({ [e.target.name]: e.target.value });
