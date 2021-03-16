@@ -57,7 +57,6 @@ const Records = props => {
     const [openPopup, setOpenPopup] = useState(false)
     const {token} = props;
     const {id} =props.data
-    const [records, setRecords] = useState([])
     const [query, setQuery] = useState('')
     const [newattendance, setNewAttendance] = useState({})
     const [progress, setProgress] = React.useState(0);
@@ -103,26 +102,12 @@ const Records = props => {
   }
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if(!props.fetched){
+      props.getAdminAttendanceRecords(id, token)
+    }
+    }, [newattendance]);
 
-    const fetchData = async () => {
-      const headers ={
-              "Content-Type": "application/json",
-              Authorization: `Token ${token}`,
-              'Accept': 'application/json',
-        };
-        try {
-            const res = await axios.get(`${studentattendancerecordsURL}?id=${id}`, headers);
-
-            setRecords(res.data);
-        }
-        catch (err) {
-
-          }
-      }
-
-      fetchData();
-  }, [newattendance]);
+  const {records} = props;
 
   const handleQuery = e => {
     let target = e.target;

@@ -195,6 +195,7 @@ export const addAdmission = (admission, token) => {
         })
         .catch(err => {
           dispatch(createAdmissionFail(err));
+          dispatch(returnErrors(err.response.data, err.response.status));
         });
     };
 };

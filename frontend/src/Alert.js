@@ -19,7 +19,6 @@ export class Alerts extends Component {
       if (error.msg.date) alert.error(`Date: ${error.msg.date.join()}`);
       if (error.msg.status) alert.error(`Status: ${error.msg.status.join()}`);
       if (error.msg.notes) alert.error(`NOTES: ${error.msg.notes.join()}`);
-
       if (error.msg.klass) alert.error(`STUDENT CLASS: ${error.msg.klass.join()}`);
       if (error.msg.date) alert.error(`DATE: ${error.msg.date.join()}`);
       if (error.msg.recorded_by) alert.error(`DATE: ${error.msg.recorded_by.join()}`);
@@ -66,9 +65,43 @@ export class Alerts extends Component {
 
     }
 
-
     if (message !== prevProps.message) {
-      if (message.taxDeleted) alert.success(message.taxDeleted);
+      if (message.createEnquiry) alert.success(message.createEnquiry);
+      if (message.addAdmission) alert.success(message.addAdmission);
+      if (message.addCourseAdvert) alert.success(message.addCourseAdvert);
+      if (message.addAdminAttendance) alert.success(message.addAdminAttendance);
+      if (message.addTeacherAttendance) alert.success(message.addTeacherAttendance);
+      if (message.addAdminAttendanceRecord) alert.success(message.addAdminAttendanceRecord); 
+      if (message.addClass) alert.success(message.addClass);
+      if (message.addStream) alert.success(message.addStream);
+      if (message.addSubject) alert.success(message.addSubject); 
+      if (message.addEnrollment) alert.success(message.addEnrollment);
+      if (message.addUpComingCourse) alert.success(message.addUpComingCourse);
+      if (message.addFinishedCourse) alert.success(message.addFinishedCourse); 
+      if (message.addOngoingCourse) alert.success(message.addOngoingCourse);
+      if (message.addInactiveCourse) alert.success(message.addInactiveCourse);
+      if (message.addTopic) alert.success(message.addTopic);  
+      if (message.addTopicObjective) alert.success(message.addTopicObjective);
+      if (message.addTopicGuideLine) alert.success(message.addTopicGuideLine);
+      if (message.addSubTopic) alert.success(message.addSubTopic);  
+      if (message.addStudyNote) alert.success(message.addStudyNote);
+      if (message.addStudyNoteVideo) alert.success(message.addStudyNoteVideo);
+      if (message.addStudyNoteImage) alert.success(message.addStudyNoteImage); 
+      if (message.addStudyNoteNote) alert.success(message.addStudyNoteNote);
+      if (message.addStudyNoteFile) alert.success(message.addStudyNoteFile);
+      if (message.addStudyNoteReference) alert.success(message.addStudyNoteReference); 
+      if (message.addAuthor) alert.success(message.addAuthor);
+      if (message.addPublisherCity) alert.success(message.addPublisherCity);
+      if (message.addPublisher) alert.success(message.addPublisher); 
+      if (message.addStudentCourseEnrollment) alert.success(message.addStudentCourseEnrollment);
+      if (message.addCurriculum) alert.success(message.addCurriculum);
+      if (message.addSubject) alert.success(message.addSubject); 
+      if (message.addGrade) alert.success(message.addGrade);
+      if (message.addPrincipal) alert.success(message.addPrincipal);
+      if (message.addBursar) alert.success(message.addBursar); 
+      if (message.addStudent) alert.success(message.addStudent);
+      if (message.addTeacher) alert.success(message.addTeacher);
+      if (message.addParent) alert.success(message.addParent); 
     }
   }
 
@@ -83,3 +116,4 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(withAlert()(Alerts));
+

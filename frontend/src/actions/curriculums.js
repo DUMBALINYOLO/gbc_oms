@@ -201,6 +201,7 @@ export const addCurriculum = (curriculum, token) => {
         })
         .catch(err => {
           dispatch(createCurriculumFail(err));
+          dispatch(returnErrors(err.response.data, err.response.status));
         });
     };
 };
@@ -291,6 +292,7 @@ export const addSubject = (subject, token) => {
         })
         .catch(err => {
           dispatch(createSubjectFail(err));
+          dispatch(returnErrors(err.response.data, err.response.status));
         });
     };
 };

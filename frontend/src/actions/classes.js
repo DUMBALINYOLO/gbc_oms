@@ -339,6 +339,7 @@ export const addClass = (classi, token) => {
         })
         .catch(err => {
           dispatch(createClassFail(err));
+          dispatch(returnErrors(err.response.data, err.response.status));
         });
     };
 };
@@ -376,6 +377,7 @@ export const addStream = (stream, token) => {
         })
         .catch(err => {
           dispatch(createStreamFail(err));
+          dispatch(returnErrors(err.response.data, err.response.status));
         });
     };
 };
@@ -448,6 +450,7 @@ export const addSubject = (subject, token) => {
         })
         .catch(err => {
           dispatch(createSubjectFail(err));
+          dispatch(returnErrors(err.response.data, err.response.status));
         });
     };
 };
@@ -485,6 +488,7 @@ export const addEnrollment = (enrollment, token) => {
         })
         .catch(err => {
           dispatch(createEnrollmentFail(err));
+          dispatch(returnErrors(err.response.data, err.response.status));
         });
     };
 };

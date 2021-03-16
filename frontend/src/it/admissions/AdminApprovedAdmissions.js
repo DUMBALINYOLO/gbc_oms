@@ -101,7 +101,7 @@ const AdminApprovedAdmissions = props => {
         setNewAdmission(fee)
       }
       else{
-        props.addFee(fee, token)
+        props.addAdmission(fee, token)
         setNewAdmission(fee)
         props.getAcceptedAdmissions(query, token);
       }

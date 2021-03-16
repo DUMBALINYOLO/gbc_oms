@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import {  editTestRecord } from '../../actions/gradings';
+import {  editTestRecord, getTestRecords } from '../../actions/gradings';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -58,7 +58,6 @@ const TestRecords = props => {
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
-    const [records, setRecords] = useState([])
     const [newgrading, setNewGrading] = useState({})
     const [query, setQuery] = useState('')
     const {token} = props;
@@ -105,26 +104,12 @@ const TestRecords = props => {
   }
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-
-    const fetchData = async () => {
-        const headers ={
-              "Content-Type": "application/json",
-              Authorization: `Token ${token}`,
-              'Accept': 'application/json',
-        };
-        try {
-            const res = await axios.get(`${gradingtestrecordsURL}?id=${id}`, headers);
-
-            setRecords(res.data);
-        }
-        catch (err) {
-
-        }
+    if(!props.fetched){
+      props.getTestRecords(id, token)
     }
-
-        fetchData();
     }, [newgrading]);
+
+  const {records} = props;
 
   const handleQuery = e => {
     let target = e.target;
@@ -240,9 +225,10 @@ const TestRecords = props => {
 const mapStateToProps = state =>({
     token: state.auth.token,
     loading: state.gradings.loading,
+    records: state.gradings.testrecords
 })
 
 export default connect(
   mapStateToProps,
-  {editTestRecord} )
+  {editTestRecord, getTestRecords} )
   (TestRecords);

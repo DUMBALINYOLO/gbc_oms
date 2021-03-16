@@ -476,6 +476,7 @@ export const addGrade = (grade, token) => {
         })
         .catch(err => {
           dispatch(createGradeFail(err));
+          dispatch(returnErrors(err.response.data, err.response.status));
         });
     };
 };

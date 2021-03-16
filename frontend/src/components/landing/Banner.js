@@ -78,7 +78,7 @@ class Banner extends React.Component {
       >
         {!slideMode && <ParallaxDecoStyled />}
         <div className={!slideMode ? classes.container : ''}>
-          <Typography component="h2" variant="h2" gutterBottom>GERERE BUSINESS COLLEGE (PTY) LTD</Typography>
+          <Typography component="h2" variant="h2" gutterBottom>GERERE PROJECTS AND SUPPLIES</Typography>
           <Typography component="p" variant="h4" gutterBottom>BELLUM GERERE IN CEREBRUM PAUPERTAS</Typography>
           <Typography component="p" variant="h5" gutterBottom>“waging war against brain poverty”</Typography>
           <div className={classes.btnArea}>

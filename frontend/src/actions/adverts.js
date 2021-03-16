@@ -12,7 +12,7 @@ import {
   CREATE_COURSE_ADVERT_FAIL,
 } from '../types/advertTypes'
 import {courseadvertsURL} from '../constants';
-
+import { createMessage, returnErrors } from './messages';
 
 const getCourseAdvertListStart = () => {
   return {
@@ -128,6 +128,7 @@ export const addCourseAdvert = (advert, token) => {
         })
         .catch(err => {
           dispatch(createCourseAdvertFail(err));
+          dispatch(returnErrors(err.response.data, err.response.status));
         });
     };
 };

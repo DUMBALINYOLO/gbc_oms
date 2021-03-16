@@ -19,7 +19,6 @@ import {attendancerecordsURL} from "../../constants"
 import CircularProgress from '@material-ui/core/CircularProgress';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-
 const useStyles = makeStyles(theme => ({
   pageContent: {
       margin: theme.spacing(5),
@@ -34,7 +33,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-
 const headCells = [
   { id: 'id', label: 'ID' },
   { id: 'attendance', label: 'DATE' },
@@ -48,6 +46,7 @@ const Attendance = props => {
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [records, setRecords] = useState([])
   const {token} = props;
+  const [newattendance, setNewAttendance] = useState({})
   const {id} =props.data
   const [progress, setProgress] = React.useState(0);
   const [buffer, setBuffer] = React.useState(10);
@@ -98,7 +97,7 @@ const Attendance = props => {
     }
 
     fetchData();
-}, []);
+}, [newattendance]);
 
 
   const {

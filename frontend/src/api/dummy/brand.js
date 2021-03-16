@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'GERERE BUSINESS COLLEGE',
-  desc: 'Gerere Business College',
-  prefix: 'Gerere Business College',
-  footerText: 'Gerere Business College',
-  logoText: 'Gerere Business College',
+  name: 'GERERE PROJECTS AND SUPPLIES',
+  desc: 'Gerere Projects and Supplies',
+  prefix: 'Gerere Projects and Supplies',
+  footerText: 'Gerere Projects and Supplies',
+  logoText: 'Gerere Projects and Supplies',
 };

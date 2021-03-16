@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import axios from 'axios';
+import { getAssignmentRecords } from '../../actions/gradings';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -47,9 +48,9 @@ const headCells = [
 const Assignments = props => {
   const classes = useStyles();
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
-  const [records, setRecords] = useState([])
   const {id} =props.data
   const [query, setQuery] = useState('')
+  const [newgrading, setNewGrading] = useState({})
   const {token} = props;
   const [progress, setProgress] = React.useState(0);
   const [buffer, setBuffer] = React.useState(10);
@@ -80,26 +81,13 @@ const Assignments = props => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-
-    const fetchData = async () => {
-      const headers ={
-              "Content-Type": "application/json",
-              Authorization: `Token ${token}`,
-              'Accept': 'application/json',
-        };
-        try {
-            const res = await axios.get(`${assignmentrecordsURL}?id=${id}`, headers);
-
-            setRecords(res.data);
-        }
-        catch (err) {
-
-        }
+    if(!props.fetched){
+      props.getAssignmentRecords(id, token)
     }
+    }, [newgrading]);
 
-        fetchData();
-    }, []);
+
+  const {records} = props;
 
   const handleQuery = e => {
     let target = e.target;
@@ -193,8 +181,10 @@ const Assignments = props => {
 
 const mapStateToProps = state =>({
     loading: state.people.loading,
+    records: state.gradings.asignmentrecords
 })
 
 export default connect(
   mapStateToProps,
+  {getAssignmentRecords}
   ) (Assignments);

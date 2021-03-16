@@ -765,7 +765,7 @@ export const addStudyNote = (note, token) => dispatch => {
                 type: ADD_STUDY_NOTE,
                 payload: res.data
             });
-        }).catch(err => console.log(err))
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 

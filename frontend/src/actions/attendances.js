@@ -204,6 +204,7 @@ export const addAdminAttendance = (adminattendance, token) => {
         })
         .catch(err => {
           dispatch(createAdminAttendanceFail(err));
+          dispatch(returnErrors(err.response.data, err.response.status));
         });
     };
 };
@@ -241,6 +242,7 @@ export const addTeacherAttendance = (adminattendance, token) => {
         })
         .catch(err => {
           dispatch(createTeacherAttendanceFail(err));
+          dispatch(returnErrors(err.response.data, err.response.status));
         });
     };
 };
@@ -281,7 +283,6 @@ export const getStudentAttendances = (email, token) => dispatch => {
 
 
 
-
 export const getAdminAttendanceRecords = (query, token) => {
   return dispatch => {
       dispatch(getAdminAttendanceRecordListStart());
@@ -315,6 +316,7 @@ export const addAdminAttendanceRecord = (record, token) => {
         })
         .catch(err => {
           dispatch(createAdminAttendanceRecordFail(err));
+          dispatch(returnErrors(err.response.data, err.response.status));
         });
     };
 };

@@ -135,7 +135,6 @@ class App extends React.Component {
     super(props);
   }
 
-
   componentDidMount() {
     this.props.onTryAutoSignup();
   }
@@ -143,7 +142,6 @@ class App extends React.Component {
   render() {
     const {user} = this.props;
 
-    console.log(user);
     return (
       <ThemeWrapper>
 				<AlertProvider template={AlertMUITemplate} {...options}>

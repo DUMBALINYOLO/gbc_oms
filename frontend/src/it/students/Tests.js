@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import axios from 'axios';
+import { getTestRecords } from '../../actions/gradings';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -18,7 +19,6 @@ import  useTable  from "../../components/table/useTable";
 import {testrecordsURL} from "../../constants"
 import CircularProgress from '@material-ui/core/CircularProgress';
 import LinearProgress from '@material-ui/core/LinearProgress';
-
 
 const useStyles = makeStyles(theme => ({
   pageContent: {
@@ -50,7 +50,6 @@ const headCells = [
 const Tests = props => {
   const classes = useStyles();
   const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
-  const [records, setRecords] = useState([])
   const [newtest, setNewTest] = useState({})
   const [query, setQuery] = useState('')
   const {token} = props;
@@ -85,26 +84,12 @@ const Tests = props => {
 
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-
-    const fetchData = async () => {
-      const headers ={
-              "Content-Type": "application/json",
-              Authorization: `Token ${token}`,
-              'Accept': 'application/json',
-        };
-        try {
-            const res = await axios.get(`${testrecordsURL}?id=${id}`, headers);
-
-            setRecords(res.data);
-        }
-        catch (err) {
-
-        }
+    if(!props.fetched){
+      props.getTestRecords(id, token)
     }
+    }, [newtest]);
 
-    fetchData();
-  }, [newtest]);
+  const {records} = props;
 
   const handleQuery = e => {
     let target = e.target;
@@ -204,8 +189,10 @@ const Tests = props => {
 
 const mapStateToProps = state =>({
     loading: state.people.loading,
+    records: state.gradings.testrecords
 })
 
 export default connect(
   mapStateToProps,
+  {getTestRecords}
   ) (Tests);

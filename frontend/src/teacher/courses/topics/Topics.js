@@ -41,12 +41,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-
-
-
-
-
-
 const options = {
   filterType: "checkbox"
 };

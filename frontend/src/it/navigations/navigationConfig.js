@@ -213,7 +213,7 @@ const navigationConfig = [
       },
       {
         id: "messaging",
-        title: "MESSAGING",
+        title: "ENQUIRIES",
         type: "collapse",
         icon: <Mail />,
         badge: {
@@ -225,7 +225,7 @@ const navigationConfig = [
         children: [
           {
             id: "inquiry",
-            title: "INQUIRIES",
+            title: "ENQUIRY",
             type: "item",
             url: "/itdashboard/enquiries",
             exact: true,
