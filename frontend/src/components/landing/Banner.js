@@ -123,7 +123,6 @@ class Banner extends React.Component {
   }
 }
 
-
 Banner.propTypes = {
   classes: PropTypes.object.isRequired,
   gradient: PropTypes.bool.isRequired,
