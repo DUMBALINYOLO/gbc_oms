@@ -16,7 +16,7 @@ import styles from '../../components/SocialMedia/jss/cover-jss';
 import { getAdminStudentAssignment} from '../../actions/gradings';
 import About from './About';
 import GradingBag from './GradingBag';
-import ExcerciseRecords from './ExcerciseRecords';
+import AssignmentRecords from './AssignmentRecords';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
@@ -77,7 +77,7 @@ export class TeacherAssignment extends React.Component {
           </Paper>
         ) : (
             <>
-        
+
             <Helmet>
               <title>{adminstudentassignment.name}</title>
               <meta name="description" content={adminstudentassignment.name} />
@@ -119,7 +119,7 @@ export class TeacherAssignment extends React.Component {
               </Hidden>
             </AppBar>
             {value === 0 && <TabContainer><About data={adminstudentassignment}/></TabContainer>}
-            {value === 1 && <TabContainer><ExcerciseRecords data={adminstudentassignment}/></TabContainer>}
+            {value === 1 && <TabContainer><AssignmentRecords data={adminstudentassignment}/></TabContainer>}
           </>
         )}
       </GradingBag>
@@ -146,5 +146,3 @@ const GradingTestMapped = connect(
 )(TeacherAssignment);
 
 export default withStyles(styles)( GradingTestMapped );
-
-

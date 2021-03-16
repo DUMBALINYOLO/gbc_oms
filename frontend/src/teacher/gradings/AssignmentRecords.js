@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import {  editAssignment, getAssignmentRecords } from '../../actions/gradings';
+import {  editAssignmentRecord, getAssignmentRecords } from '../../actions/gradings';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -93,8 +93,10 @@ const AssignmentRecords = props => {
       if (fee.id > 0){
         props.editAssignmentRecord(fee.id, fee, token)
         setNewGrading(fee)
+        props.getAssignmentRecords(id, token)
       }else{
         setNewGrading(fee)
+        props.getAssignmentRecords(id, token)
       }
       resetForm()
       setRecordForEdit(null)

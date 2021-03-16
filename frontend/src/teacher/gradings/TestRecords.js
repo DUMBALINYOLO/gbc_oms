@@ -94,8 +94,9 @@ const TestRecords = props => {
       if (fee.id > 0){
         props.editTestRecord(fee.id, fee, token)
         setNewGrading(fee)
+        props.getTestRecords(id, token)
       }else{
-        setNewGrading(fee)      
+        setNewGrading(fee)
       }
       resetForm()
       setRecordForEdit(null)

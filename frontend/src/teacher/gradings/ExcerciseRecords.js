@@ -93,8 +93,10 @@ const ExcerciseRecords = props => {
       if (fee.id > 0){
         props.editExcerciseRecord(fee.id, fee, token)
         setNewGrading(fee)
+        props.getExcerciseRecords(id, token)
       }else{
         setNewGrading(fee)
+        props.getExcerciseRecords(id, token)
       }
       resetForm()
       setRecordForEdit(null)
