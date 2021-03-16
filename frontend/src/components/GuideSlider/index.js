@@ -73,11 +73,8 @@ class GuideSlider extends React.Component { // eslint-disable-line
             enableMouseEvents
             className={classes.guideWrap}
           >
-            {guideData.map((step, index) => (
-              <div className={classes.figure} key={index.toString()}>
-                <img key={step.label} className={classes.img} src={step.imgPath} alt={step.title} />
-              </div>
-            ))}
+            <h1>....Lambda</h1>
+
           </SwipeableViews>
           <article className={classes.text}>
             <Typography variant="h6">{guideData[activeStepSwipe].title}</Typography>
