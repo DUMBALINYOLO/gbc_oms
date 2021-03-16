@@ -45,8 +45,11 @@ class SubjectViewSet(viewsets.ModelViewSet):
 		return SubjectListDetailSerializer
 
 
+	# def create(self, request, *args, **kwargs):
+	# 	print(request.data)
+
+
+
 	def get_queryset(self, *args, **kwargs):
 		queryset = Subject.objects.all().order_by('-id')
-		user = self.request.user
-		print(user)
 		return queryset

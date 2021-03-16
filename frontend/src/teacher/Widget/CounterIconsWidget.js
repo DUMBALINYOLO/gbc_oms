@@ -23,7 +23,7 @@ class CounterIconWidget extends PureComponent {
               start={0}
               end={207}
               duration={3}
-              title="Subscribers"
+              title="Excercises"
             >
               <OndemandVideo className={classes.counterIcon} />
             </CounterWidget>
@@ -34,7 +34,7 @@ class CounterIconWidget extends PureComponent {
               start={0}
               end={300}
               duration={3}
-              title="Followers"
+              title="Tests"
             >
               <SupervisorAccount className={classes.counterIcon} />
             </CounterWidget>
@@ -45,7 +45,7 @@ class CounterIconWidget extends PureComponent {
               start={0}
               end={67}
               duration={3}
-              title="Total Posts"
+              title="Attendances"
             >
               <Edit className={classes.counterIcon} />
             </CounterWidget>
@@ -56,7 +56,7 @@ class CounterIconWidget extends PureComponent {
               start={0}
               end={70}
               duration={3}
-              title="Total Articles"
+              title="Students"
             >
               <CollectionsBookmark className={classes.counterIcon} />
             </CounterWidget>
