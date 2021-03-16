@@ -61,6 +61,8 @@ import {
     CREATE_STUDENT_GRADE_START,
     CREATE_STUDENT_GRADE_SUCCESS,
     CREATE_STUDENT_GRADE_FAIL,
+    GET_TEST_RECORDS,
+    GET_EXERCISE_RECORDS
 } from '../types/gradingTypes';
 import { updateObject } from "../utility";
 
@@ -557,6 +559,16 @@ export default function gradings(state = initialState, action){
             return {
                 ...state,
                 asignmentrecords: action.payload
+            };
+        case GET_TEST_RECORDS:
+            return {
+                ...state,
+                testrecords: action.payload
+            };
+        case GET_EXERCISE_RECORDS:
+            return {
+                ...state,
+                excerciserecords: action.payload
             };
         case EDIT_ASSIGNMENT_RECORD:
             const aeearrayList = state.asignmentrecords;

@@ -179,13 +179,6 @@ const AdminApprovedAdmissions = props => {
                     }}
                     onChange={handleQuery}
                 />
-                <Controls.Button
-                    text="Add New"
-                    variant="outlined"
-                    startIcon={<AddIcon />}
-                    className={classes.newButton}
-                    onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
-                />
             </Toolbar>
             <TblContainer>
                 <TblHead />

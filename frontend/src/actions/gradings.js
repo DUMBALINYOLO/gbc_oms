@@ -62,6 +62,8 @@ import {
 	CREATE_STUDENT_GRADE_SUCCESS,
 	CREATE_STUDENT_GRADE_FAIL,
 	GET_ASSIGNMENT_RECORDS,
+  GET_TEST_RECORDS,
+  GET_EXERCISE_RECORDS
 
 } from '../types/gradingTypes';
 import { createMessage, returnErrors } from './messages';
@@ -538,24 +540,66 @@ export const getStudentExcercises = (email, token) => {
     };
 };
 
-export const getTestRecords = (id, token) => {
-  return dispatch => {
-      dispatch(getTestRecordListStart());
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`
-      };
-      axios
-        .get(`${gradingtestrecordsURL}?id=${id}`, headers)
-        .then(res => {
-          const testrecords = res.data;
-          dispatch(getTestRecordListSuccess(testrecords));
-          })
-        .catch(err => {
-          dispatch(getTestRecordListStart(err));
-        });
+export const getTestRecords = (id, token) => dispatch => {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
     };
-};
+    axios.get(`${gradingtestrecordsURL}?id=${id}`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_TEST_RECORDS,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+export const getAssignmentRecords = (id, token) => dispatch => {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
+    axios.get(`${gradingasignmentrecordsURL}?id=${id}`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_ASSIGNMENT_RECORDS,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+export const getExcerciseRecords = (id, token) => dispatch => {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`
+    };
+    axios.get(`${gradingexcerciserecordsURL}?id=${id}`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_EXERCISE_RECORDS,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
+
+// export const getTestRecords = (id, token) => {
+//   return dispatch => {
+//       dispatch(getTestRecordListStart());
+//       const headers = {
+//         "Content-Type": "application/json",
+//         Authorization: `Token ${token}`
+//       };
+//       axios
+//         .get(`${gradingtestrecordsURL}?id=${id}`, headers)
+//         .then(res => {
+//           const testrecords = res.data;
+//           dispatch(getTestRecordListSuccess(testrecords));
+//           })
+//         .catch(err => {
+//           dispatch(getTestRecordListStart(err));
+//         });
+//     };
+// };
 
 // export const getAssignmentRecords = (id, token) => {
 //   return dispatch => {
@@ -576,40 +620,24 @@ export const getTestRecords = (id, token) => {
 //     };
 // };
 
-export const getAssignmentRecords = (id, token) => dispatch => {
-		const headers = {
-			"Content-Type": "application/json",
-			Authorization: `Token ${token}`
-		};
-    axios.get(`${gradingasignmentrecordsURL}?id=${id}`, headers)
-        .then(res => {
-            dispatch({
-                type: GET_ASSIGNMENT_RECORDS,
-                payload: res.data
-            });
-        }).catch(err => console.log(err))
-}
-
-
-
-export const getExcerciseRecords = (id, token) => {
-  return dispatch => {
-      dispatch(getExcerciseRecordListStart());
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`
-      };
-      axios
-        .get(`${gradingexcerciserecordsURL}?id=${id}`, headers)
-        .then(res => {
-          const excerciserecords = res.data;
-          dispatch(getExcerciseRecordListSuccess(excerciserecords));
-          })
-        .catch(err => {
-          dispatch(getExcerciseRecordListStart(err));
-        });
-    };
-};
+// export const getExcerciseRecords = (id, token) => {
+//   return dispatch => {
+//       dispatch(getExcerciseRecordListStart());
+//       const headers = {
+//         "Content-Type": "application/json",
+//         Authorization: `Token ${token}`
+//       };
+//       axios
+//         .get(`${gradingexcerciserecordsURL}?id=${id}`, headers)
+//         .then(res => {
+//           const excerciserecords = res.data;
+//           dispatch(getExcerciseRecordListSuccess(excerciserecords));
+//           })
+//         .catch(err => {
+//           dispatch(getExcerciseRecordListStart(err));
+//         });
+//     };
+// };
 
 
 export const editTestRecord = (id, grade, token) => dispatch => {

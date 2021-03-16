@@ -104,6 +104,7 @@ const References = props => {
       if (fee.id > 0){
         props.editStudyNoteReference(fee.id, fee, token)
         setNewCourse(fee)
+        props.getStudyNoteReferences(id,query, token);
       }
       else{
         props.addStudyNoteReference(fee, token)
