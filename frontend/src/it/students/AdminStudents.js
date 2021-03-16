@@ -103,7 +103,7 @@ const AdminStudents = props => {
       if (bursar.id > 0){
         setNewStudent(bursar)
       }else{
-        props.addBursar(bursar, token)      
+        props.addBursar(bursar, token)
         setNewStudent(bursar)
         props.getAdminStudents(query, token);
       }
@@ -213,6 +213,7 @@ const AdminStudents = props => {
                                   onClick={() => { handleClick(item.id) }}
                                 >
                                   <PermIdentityIcon fontSize="small" />
+                                  VIEW
                               </Controls.ActionButton>
                           </TableCell>
                       </TableRow>)

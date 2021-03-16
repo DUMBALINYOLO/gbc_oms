@@ -42,7 +42,6 @@ const headCells = [
   { id: 'id', label: 'ID' },
   { id: 'name', label: 'NAME' },
   { id: 'subject_code', label: 'CODE' },
-  { id: 'curriculum', label: 'CURRICULUM' },
   { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
@@ -197,7 +196,6 @@ const SubjectAdminView = props => {
                                 <TableCell>{item.id}</TableCell>
                                 <TableCell>{item.name}</TableCell>
                                 <TableCell>{item.subject_code}</TableCell>
-                                <TableCell>{item.curriculum}</TableCell>
                                 <TableCell>
                                     <Controls.ActionButton
                                         color="primary"

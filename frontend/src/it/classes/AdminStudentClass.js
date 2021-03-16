@@ -103,7 +103,6 @@ class AdminStudentClass extends React.Component {
                   >
                     <Tab icon={<AccountCircle />} />
                     <Tab icon={<PermIdentityIcon />} />
-                    <Tab icon={<SchoolIcon />} />
                   </Tabs>
                 </Hidden>
                 <Hidden smDown>
@@ -117,13 +116,11 @@ class AdminStudentClass extends React.Component {
                   >
                     <Tab icon={<AccountCircle />} label="ABOUT" />
                     <Tab icon={<PermIdentityIcon />} label="STUDENTS" />
-                    <Tab icon={<SchoolIcon />} label="SUBJECTS" />
                   </Tabs>
                 </Hidden>
               </AppBar>
               {value === 0 && <TabContainer><About data={classi}/></TabContainer>}
               {value === 1 && <TabContainer><Students data={classi}/></TabContainer>}
-              {value === 2 && <TabContainer><Subjects data={classi}/></TabContainer>}
           </>
         )}
       </ClassBag >
