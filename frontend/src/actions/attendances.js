@@ -283,7 +283,7 @@ export const getStudentAttendances = (email, token) => dispatch => {
 
 
 
-export const getAdminAttendanceRecords = (query, token) => {
+export const getAdminAttendanceRecords = (id, token) => {
   return dispatch => {
       dispatch(getAdminAttendanceRecordListStart());
       const headers = {
@@ -291,7 +291,7 @@ export const getAdminAttendanceRecords = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${studentattendancerecordsURL}?q=${query}`, headers)
+        .get(`${studentattendancerecordsURL}?id=${id}`, headers)
         .then(res => {
           const attendandancerecords = res.data;
           dispatch(getAdminAttendanceRecordListSuccess(attendandancerecords));
@@ -301,6 +301,7 @@ export const getAdminAttendanceRecords = (query, token) => {
         });
     };
 };
+
 
 export const addAdminAttendanceRecord = (record, token) => {
   return dispatch => {

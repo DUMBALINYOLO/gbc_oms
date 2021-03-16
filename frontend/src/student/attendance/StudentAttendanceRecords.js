@@ -42,7 +42,6 @@ const headCells = [
   { id: 'id', label: 'ID' },
   { id: 'date', label: 'DATE' },
   { id: 'status', label: 'ATTENDANCE STATUS' },
-  { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
 
@@ -168,12 +167,6 @@ const StudentAttendanceRecords = props => {
                                 <TableCell>{item.id}</TableCell>
                                 <TableCell>{item.date}</TableCell>
                                 <TableCell>{item.status}</TableCell>
-                                <TableCell>
-                                    <Controls.ActionButton
-                                        color="secondary">
-                                        <CloseIcon fontSize="small" />
-                                    </Controls.ActionButton>
-                                </TableCell>
                             </TableRow>)
                         )
                     }

@@ -42,18 +42,8 @@ const ClassProfile = props => {
   return (
     <>
       <Paper className={classes.pageContent}>
-        <List>
-          <ListItem>
-            <h5>CONTENT OVERVIEW:</h5>
-            <Divider variant="inset" />
-            <ListItemText primary={content_overview} />
-          </ListItem>
-          <ListItem>
-            <h5>ASSESSMENT OVERVIEW:</h5>
-            <Divider variant="inset" />
-            <ListItemText primary={assessment_overview} />
-          </ListItem>
-        </List>
+          <h5>CONTENT OVERVIEW: {content_overview}</h5>
+          <h5>ASSESSMENT OVERVIEW: {assessment_overview}</h5>
       </Paper>
     </>
   );

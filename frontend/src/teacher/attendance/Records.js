@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import {  editAttendanceRecord, getAdminAttendanceRecords } from '../../actions/attendances';
+import {  editAttendanceRecord } from '../../actions/attendances';
 import { connect } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
@@ -55,10 +55,11 @@ const Records = props => {
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
+    const [records, setRecords] = useState([])
+    const [newrecord, setNewRecord] = useState({})
+    const [query, setQuery] = useState('')
     const {token} = props;
     const {id} =props.data
-    const [query, setQuery] = useState('')
-    const [newattendance, setNewAttendance] = useState({})
     const [progress, setProgress] = React.useState(0);
     const [buffer, setBuffer] = React.useState(10);
     const progressRef = React.useRef(() => {});
@@ -91,28 +92,42 @@ const Records = props => {
   const addOrEdit = (fee, resetForm, token) => {
       if (fee.id > 0){
         props.editAttendanceRecord(fee.id, fee, token)
-        setNewAttendance(fee)
+        setNewRecord(fee)
       }
       else{
-        setNewAttendance(fee)
+        setNewRecord(fee)     
       }
       resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }
 
-  useEffect(() => {
-    if(!props.fetched){
-      props.getAdminAttendanceRecords(id, token)
-    }
-    }, [newattendance]);
-
-  const {records} = props;
-
   const handleQuery = e => {
     let target = e.target;
     setQuery(target.value);
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    const fetchData = async () => {
+        const headers ={
+              "Content-Type": "application/json",
+              Authorization: `Token ${token}`,
+              'Accept': 'application/json',
+        };
+        try {
+            const res = await axios.get(`${studentattendancerecordsURL}?id=${id}`, headers);
+
+            setRecords(res.data);
+        }
+        catch (err) {
+
+        }
+    }
+
+        fetchData();
+    }, [newrecord]);
 
 
   const {
@@ -174,13 +189,6 @@ const Records = props => {
                     }}
                     onChange={handleQuery}
                 />
-                <Controls.Button
-                    text="Add New"
-                    variant="outlined"
-                    startIcon={<AddIcon />}
-                    className={classes.newButton}
-                    onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
-                />
             </Toolbar>
             <TblContainer>
                 <TblHead />
@@ -227,14 +235,13 @@ const Records = props => {
   );
 };
 
-
 const mapStateToProps = state =>({
-    records: state.adminattendances.attendandancerecords,
     token: state.auth.token,
     loading: state.adminattendances.loading,
 })
 
 export default connect(
-  null,
-  {editAttendanceRecord, getAdminAttendanceRecords} )
+  mapStateToProps,
+  {editAttendanceRecord} )
   (Records);
+

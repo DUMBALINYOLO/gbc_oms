@@ -40,7 +40,6 @@ const headCells = [
   { id: 'name', label: 'NAME' },
   { id: 'city', label: 'CITY' },
   { id: 'number', label: 'NUMBER' },
-  { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
 
@@ -119,12 +118,6 @@ const Publishers = props => {
                           <TableCell>{item.name}</TableCell>
                           <TableCell>{item.city}</TableCell>
                           <TableCell>{item.number}</TableCell>
-                          <TableCell>
-                              <Controls.ActionButton
-                                  color="secondary">
-                                  <CloseIcon fontSize="small" />
-                              </Controls.ActionButton>
-                          </TableCell>
                       </TableRow>)
                   )
               }

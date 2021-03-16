@@ -41,7 +41,6 @@ const headCells = [
   { id: 'author', label: 'AUTHOR' },
   { id: 'publisher', label: 'PUBLISHER' },
   { id: 'date_published', label: 'PUBLICATION DATE' },
-  { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
 
@@ -123,12 +122,6 @@ const References = props => {
                           <TableCell>{item.author}</TableCell>
                           <TableCell>{item.publisher}</TableCell>
                           <TableCell>{item.date_published}</TableCell>
-                          <TableCell>
-                              <Controls.ActionButton
-                                  color="secondary">
-                                  <CloseIcon fontSize="small" />
-                              </Controls.ActionButton>
-                          </TableCell>
                       </TableRow>)
                   )
               }

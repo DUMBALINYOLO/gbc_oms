@@ -39,7 +39,6 @@ const headCells = [
   { id: 'id', label: 'ID' },
   { id: 'name', label: 'NAME' },
   { id: 'description', label: 'DESCRIPTION' },
-  { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
 
@@ -120,12 +119,6 @@ const GuideLines = props => {
                           <TableCell>{item.id}</TableCell>
                           <TableCell>{item.name}</TableCell>
                           <TableCell>{item.description}</TableCell>
-                          <TableCell>
-                              <Controls.ActionButton
-                                  color="secondary">
-                                  <CloseIcon fontSize="small" />
-                              </Controls.ActionButton>
-                          </TableCell>
                       </TableRow>)
                   )
               }
