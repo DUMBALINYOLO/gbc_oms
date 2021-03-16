@@ -284,7 +284,7 @@ const createEnrollmentFail = error => {
   };
 };
 
-export const getClasses = (query, token) => {
+export const getClasses = (id, token) => {
   return dispatch => {
       dispatch(getClassListStart());
       const headers = {
@@ -292,7 +292,7 @@ export const getClasses = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${classesURL}?q=${query}`, headers)
+        .get(`${classesURL}?id=${id}`, headers)
         .then(res => {
           const classes = res.data;
           dispatch(getClassListSuccess(classes));
@@ -344,7 +344,7 @@ export const addClass = (classi, token) => {
     };
 };
 
-export const getStreams = (query, token) => {
+export const getStreams = (id, token) => {
   return dispatch => {
       dispatch(getStreamListStart());
       const headers = {
@@ -352,7 +352,7 @@ export const getStreams = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${classstreamsURL}?q=${query}`, headers)
+        .get(`${classstreamsURL}?id=${id}`, headers)
         .then(res => {
           const streams = res.data;
           dispatch(getStreamListSuccess(streams));
@@ -382,7 +382,7 @@ export const addStream = (stream, token) => {
     };
 };
 
-// export const getSubjects = (query, token) => {
+// export const getSubjects = (id, token) => {
 //   return dispatch => {
 //       dispatch(getSubjectListStart());
 //       const headers = {
@@ -390,7 +390,7 @@ export const addStream = (stream, token) => {
 //         Authorization: `Token ${token}`
 //       };
 //       axios
-//         .get(`${classsubjectsURL}?q=${query}`, headers)
+//         .get(`${classsubjectsURL}?id=${id}`, headers)
 //         .then(res => {
 //           const subjects = res.data;
 //           dispatch(getSubjectListSuccess(subjects));
@@ -455,7 +455,7 @@ export const addSubject = (subject, token) => {
     };
 };
 
-export const getEnrollments = (query, token) => {
+export const getEnrollments = (id, token) => {
   return dispatch => {
       dispatch(getEnrollmentListStart());
       const headers = {
@@ -463,7 +463,7 @@ export const getEnrollments = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${enrollmentsURL}?q=${query}`, headers)
+        .get(`${enrollmentsURL}?id=${id}`, headers)
         .then(res => {
           const enrollments = res.data;
           dispatch(getEnrollmentListSuccess(enrollments));
@@ -493,7 +493,7 @@ export const addEnrollment = (enrollment, token) => {
     };
 };
 
-// export const getStudents = (query, token) => {
+// export const getStudents = (id, token) => {
 //   return dispatch => {
 //       dispatch(getStudentListStart());
 //       const headers = {
@@ -501,7 +501,7 @@ export const addEnrollment = (enrollment, token) => {
 //         Authorization: `Token ${token}`
 //       };
 //       axios
-//         .get(`${classstudentsURL}?q=${query}`, headers)
+//         .get(`${classstudentsURL}?id=${id}`, headers)
 //         .then(res => {
 //           const students = res.data;
 //           dispatch(getStudentListSuccess(students));

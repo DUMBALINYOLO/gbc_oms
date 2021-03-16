@@ -162,7 +162,7 @@ const getMeetingAdmissionListFail = error => {
 };
 
 
-export const getAdmissions = (query, token) => {
+export const getAdmissions = (id, token) => {
   return dispatch => {
       dispatch(getAdmissionListStart());
       const headers = {
@@ -170,7 +170,7 @@ export const getAdmissions = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${studentadmissionsURL}?q=${query}`, headers)
+        .get(`${studentadmissionsURL}?id=${id}`, headers)
         .then(res => {
           const admissions = res.data;
           dispatch(getAdmissionListSuccess(admissions));
@@ -200,7 +200,7 @@ export const addAdmission = (admission, token) => {
     };
 };
 
-export const getPendingAdmissions = (query, token) => {
+export const getPendingAdmissions = (id, token) => {
   return dispatch => {
       dispatch(getPendingAdmissionListStart());
       const headers = {
@@ -208,7 +208,7 @@ export const getPendingAdmissions = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${pendingstudentadmissionsURL}?q=${query}`, headers)
+        .get(`${pendingstudentadmissionsURL}?id=${id}`, headers)
         .then(res => {
           const pendingadmissions = res.data;
           dispatch(getPendingAdmissionListSuccess(pendingadmissions));
@@ -219,7 +219,7 @@ export const getPendingAdmissions = (query, token) => {
     };
 };
 
-export const getRejectedAdmissions = (query, token) => {
+export const getRejectedAdmissions = (id, token) => {
   return dispatch => {
       dispatch(getRejectedAdmissionListStart());
       const headers = {
@@ -227,7 +227,7 @@ export const getRejectedAdmissions = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${rejectedstudentadmissionsURL}?q=${query}`, headers)
+        .get(`${rejectedstudentadmissionsURL}?id=${id}`, headers)
         .then(res => {
           const rejectedadmissions = res.data;
           dispatch(getRejectedAdmissionListSuccess(rejectedadmissions));
@@ -238,7 +238,7 @@ export const getRejectedAdmissions = (query, token) => {
     };
 };
 
-export const getMeetingAdmissions = (query, token) => {
+export const getMeetingAdmissions = (id, token) => {
   return dispatch => {
       dispatch(getMeetingAdmissionListStart());
       const headers = {
@@ -246,7 +246,7 @@ export const getMeetingAdmissions = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${meetingstudentadmissionsURL}?q=${query}`, headers)
+        .get(`${meetingstudentadmissionsURL}?id=${id}`, headers)
         .then(res => {
           const meetingadmissions = res.data;
           dispatch(getMeetingAdmissionListSuccess(meetingadmissions));
@@ -257,7 +257,7 @@ export const getMeetingAdmissions = (query, token) => {
     };
 };
 
-export const getAcceptedAdmissions = (query, token) => {
+export const getAcceptedAdmissions = (id, token) => {
   return dispatch => {
       dispatch(getAcceptedAdmissionListStart());
       const headers = {
@@ -265,7 +265,7 @@ export const getAcceptedAdmissions = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${acceptedstudentadmissionsURL}?q=${query}`, headers)
+        .get(`${acceptedstudentadmissionsURL}?id=${id}`, headers)
         .then(res => {
           const acceptedadmissions = res.data;
           dispatch(getAcceptedAdmissionListSuccess(acceptedadmissions));
@@ -307,9 +307,6 @@ export const editPendingAdmission = (id, admission, token) => dispatch => {
             });
         }).catch(err => console.log(err))
 }
-
-
-
 
 
 export const editRejectedAdmission = (id, admission, token) => dispatch => {

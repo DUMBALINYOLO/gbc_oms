@@ -75,7 +75,7 @@ const createCourseAdvertFail = error => {
   };
 };
 
-export const getCourseAdverts = (query, token) => {
+export const getCourseAdverts = (id, token) => {
   return dispatch => {
       dispatch(getCourseAdvertListStart());
       const headers = {
@@ -83,7 +83,7 @@ export const getCourseAdverts = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${courseadvertsURL}?q=${query}`, headers)
+        .get(`${courseadvertsURL}?id=${id}`, headers)
         .then(res => {
           const courseadverts = res.data;
           dispatch(getCourseAdvertListSuccess(courseadverts));

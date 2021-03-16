@@ -688,7 +688,7 @@ export const editExcerciseRecord = (id, grade, token) => dispatch => {
         }).catch(err => console.log(err))
 }
 
-export const getAdminStudentTests = (query, token) => {
+export const getAdminStudentTests = (id, token) => {
   return dispatch => {
       dispatch(getAdminStudentTestListStart());
       const headers = {
@@ -696,7 +696,7 @@ export const getAdminStudentTests = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${adminstudenttestsURL}?q=${query}`, headers)
+        .get(`${adminstudenttestsURL}?id=${id}`, headers)
         .then(res => {
           const adminstudenttests = res.data;
           dispatch(getAdminStudentTestListSuccess(adminstudenttests));
@@ -726,7 +726,7 @@ export const getAdminStudentTest = (id,token) => {
     };
 };
 
-export const getAdminStudentExcercises = (query, token) => {
+export const getAdminStudentExcercises = (id, token) => {
   return dispatch => {
       dispatch(getAdminStudentExcerciseListStart());
       const headers = {
@@ -734,7 +734,7 @@ export const getAdminStudentExcercises = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${adminstudentexcercisesURL}?q=${query}`, headers)
+        .get(`${adminstudentexcercisesURL}?id=${id}`, headers)
         .then(res => {
           const adminstudentexcercises = res.data;
           dispatch(getAdminStudentExcerciseListSuccess(adminstudentexcercises));
@@ -765,7 +765,7 @@ export const getAdminStudentExcercise = (id,token) => {
     };
 };
 
-export const getAdminStudentAssignments = (query, token) => {
+export const getAdminStudentAssignments = (id, token) => {
   return dispatch => {
       dispatch(getAdminStudentAssignmentListStart());
       const headers = {
@@ -773,7 +773,7 @@ export const getAdminStudentAssignments = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${adminstudentassignmentsURL}?q=${query}`, headers)
+        .get(`${adminstudentassignmentsURL}?id=${id}`, headers)
         .then(res => {
           const adminstudentassignments = res.data;
           dispatch(getAdminStudentAssignmentListSuccess(adminstudentassignments));
@@ -804,7 +804,7 @@ export const getAdminStudentAssignment = (id,token) => {
     };
 };
 
-export const getTeacherStudentTests = (query, token) => {
+export const getTeacherStudentTests = (id, token) => {
   return dispatch => {
       dispatch(getTeacherStudentTestListStart());
       const headers = {
@@ -812,7 +812,7 @@ export const getTeacherStudentTests = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${teacherstudenttestsURL}?q=${query}`, headers)
+        .get(`${teacherstudenttestsURL}?id=${id}`, headers)
         .then(res => {
           const teacherstudenttests = res.data;
           dispatch(getTeacherStudentTestListSuccess(teacherstudenttests));
@@ -843,7 +843,7 @@ export const getTeacherStudentTest = (id,token) => {
     };
 };
 
-export const getTeacherStudentExcercises = (query, token) => {
+export const getTeacherStudentExcercises = (id, token) => {
   return dispatch => {
       dispatch(getTeacherStudentExcerciseListStart());
       const headers = {
@@ -851,7 +851,7 @@ export const getTeacherStudentExcercises = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${teacherstudentexcercisesURL}?q=${query}`, headers)
+        .get(`${teacherstudentexcercisesURL}?id=${id}`, headers)
         .then(res => {
           const teacherstudentexcercises = res.data;
           dispatch(getTeacherStudentExcerciseListSuccess(teacherstudentexcercises));
@@ -882,7 +882,7 @@ export const getTeacherStudentExcercise = (id,token) => {
     };
 };
 
-export const getTeacherStudentAssignments = (query, token) => {
+export const getTeacherStudentAssignments = (id, token) => {
   return dispatch => {
       dispatch(getTeacherStudentAssignmentListStart());
       const headers = {
@@ -890,7 +890,7 @@ export const getTeacherStudentAssignments = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${teacherstudentassignmentsURL}?q=${query}`, headers)
+        .get(`${teacherstudentassignmentsURL}?id=${id}`, headers)
         .then(res => {
           const teacherstudentassignments = res.data;
           dispatch(getTeacherStudentAssignmentListSuccess(teacherstudentassignments));

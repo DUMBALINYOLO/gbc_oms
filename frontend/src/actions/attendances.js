@@ -171,7 +171,7 @@ const getTeacherAttendanceListFail = error => {
 };
 
 
-export const getAdminAttendances = (query, token) => {
+export const getAdminAttendances = (id, token) => {
   return dispatch => {
       dispatch(getAdminAttendanceListStart());
       const headers = {
@@ -179,7 +179,7 @@ export const getAdminAttendances = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${adminattendancesURL}?q=${query}`, headers)
+        .get(`${adminattendancesURL}?id=${id}`, headers)
         .then(res => {
           const adminattendances = res.data;
           dispatch(getAdminAttendanceListSuccess(adminattendances));
@@ -209,7 +209,7 @@ export const addAdminAttendance = (adminattendance, token) => {
     };
 };
 
-export const getTeacherAttendances = (query, token) => {
+export const getTeacherAttendances = (id, token) => {
   return dispatch => {
       dispatch(getTeacherAttendanceListStart());
       const headers = {
@@ -217,7 +217,7 @@ export const getTeacherAttendances = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${teacherattendancesURL}?q=${query}`, headers)
+        .get(`${teacherattendancesURL}?id=${id}`, headers)
         .then(res => {
           const adminattendances = res.data;
           dispatch(getTeacherAttendanceListSuccess(adminattendances));
@@ -247,7 +247,7 @@ export const addTeacherAttendance = (adminattendance, token) => {
     };
 };
 
-// export const getStudentAttendances = (query, token) => {
+// export const getStudentAttendances = (id, token) => {
 //   return dispatch => {
 //       dispatch(getStudentAttendanceListStart());
 //       const headers = {
@@ -255,7 +255,7 @@ export const addTeacherAttendance = (adminattendance, token) => {
 //         Authorization: `Token ${token}`
 //       };
 //       axios
-//         .get(`${studentattendancesURL}?q=${query}`, headers)
+//         .get(`${studentattendancesURL}?id=${id}`, headers)
 //         .then(res => {
 //           const adminattendances = res.data;
 //
