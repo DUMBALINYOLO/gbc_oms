@@ -128,6 +128,7 @@ const Excercises = (props) => {
         setProductDialog(true);
     }
 
+
     const confirmDeleteProduct = (record) => {
         setRecord(record);
         setDeleteProductDialog(true);

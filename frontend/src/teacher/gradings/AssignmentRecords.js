@@ -128,6 +128,7 @@ const AssignmentRecords = (props) => {
         setProductDialog(true);
     }
 
+
     const confirmDeleteProduct = (record) => {
         setRecord(record);
         setDeleteProductDialog(true);

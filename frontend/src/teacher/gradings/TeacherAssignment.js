@@ -77,7 +77,7 @@ export class TeacherAssignment extends React.Component {
           </Paper>
         ) : (
             <>
-        
+
             <Helmet>
               <title>{adminstudentassignment.name}</title>
               <meta name="description" content={adminstudentassignment.name} />
@@ -146,5 +146,3 @@ const GradingTestMapped = connect(
 )(TeacherAssignment);
 
 export default withStyles(styles)( GradingTestMapped );
-
-
