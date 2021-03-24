@@ -1,4 +1,9 @@
 import React, { useEffect, useState } from "react"
+import classNames from 'classnames';
+import styles from './profile-jss';
+import { withStyles } from '@material-ui/core/styles';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
 import {
   Paper,
   makeStyles,
@@ -12,6 +17,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
+import DateRange from '@material-ui/icons/DateRange';
+import School from '@material-ui/icons/School';
 
 
 const useStyles = makeStyles(theme => ({
@@ -38,22 +45,29 @@ const ClassProfile = props => {
   const {date, subject} = props.data;
 
   return (
-    <>
-      <Paper className={classes.pageContent}>
+    <main className={classNames(classes.content)}>
+      <div>
         <List>
           <ListItem>
-            <h4>SUBJECT:</h4>
-            <Divider variant="inset" />
-            <ListItemText primary={subject} />
+            <ListItemAvatar>
+                <Avatar className={classes.blueIcon}>
+                  <School />
+                </Avatar>
+              </ListItemAvatar>
+            <ListItemText primary={subject} secondary="SUBJECT"/>
           </ListItem>
+          <Divider variant="inset" />
           <ListItem>
-            <h4>DATE:</h4>
-            <Divider variant="inset" />
-            <ListItemText primary={date} />
+            <ListItemAvatar>
+                <Avatar className={classes.blueIcon}>
+                  <DateRange />
+                </Avatar>
+              </ListItemAvatar>
+            <ListItemText primary={date} secondary="DATE"/>
           </ListItem>
         </List>
-      </Paper>
-    </>
+      </div>
+    </main>
   );
 };
 

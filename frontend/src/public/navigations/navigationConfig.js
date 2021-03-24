@@ -13,7 +13,7 @@ import {
 } from "@material-ui/icons";
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import TrainIcon from '@material-ui/icons/Train';
-import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import AccountBalance from '@material-ui/icons/AccountBalance';
 import ShutterSpeedIcon from '@material-ui/icons/ShutterSpeed';
 import LocalCarWashIcon from '@material-ui/icons/LocalCarWash';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
@@ -37,7 +37,7 @@ const navigationConfig = [
         type: "item",
         url: "/",
         exact: true,
-        icon: <SupervisorAccountIcon/>
+        icon: <AccountBalance/>
       },
 
       {
