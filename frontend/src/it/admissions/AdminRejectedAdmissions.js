@@ -15,9 +15,7 @@ import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { useHistory } from 'react-router-dom';
 import './table.css';
-import 'primereact/resources/primereact.min.css';
-import 'primeicons/primeicons.css';
-import 'primereact/resources/themes/luna-blue/theme.css';
+
 import InformationTechnologyLayout from "../layout/InformationTechnologyLayout";
 import {
   Paper,

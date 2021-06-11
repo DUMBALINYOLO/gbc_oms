@@ -7,6 +7,7 @@ import { Column } from 'primereact/column';
 import { Toast } from 'primereact/toast';
 import { Button } from 'primereact/button';
 import { FileUpload } from 'primereact/fileupload';
+import {Password} from 'primereact/password';
 import { Rating } from 'primereact/rating';
 import { Toolbar } from 'primereact/toolbar';
 import { InputTextarea } from 'primereact/inputtextarea';
@@ -16,9 +17,6 @@ import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { useHistory } from 'react-router-dom';
 import './table.css';
-import 'primereact/resources/primereact.min.css';
-import 'primeicons/primeicons.css';
-import 'primereact/resources/themes/luna-blue/theme.css';
 import InformationTechnologyLayout from "../layout/InformationTechnologyLayout";
 import {
   Paper,
@@ -334,33 +332,42 @@ const AdminBursars = (props) => {
                 </div>
 
                 <Dialog visible={productDialog} style={{ width: '500px' }} header="BURSAR FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
-                  <Form>
-                    <Grid container>
-                      <Grid item xs={6}>
-                        <Controls.Input
-                          id="email"
-                          label="EMAIL"
-                          value={record.email}
-                          onChange={(e) => onInputChange(e, 'email')}
-                        />
-                        <Controls.Input
-                          label="USERNAME"
-                          id="username"
-                          value={record.username}
-                          onChange={(e) => onInputChange(e, 'username')}
-                        />
-                        <TextField
-                          label='PASSWORD'
-                          placeholder='Enter Password'
-                          type='password'
-                          fullWidth required
-                          onChange={(e) => onInputChange(e, 'password')}
-                          value={record.password}
-                          id = "password"
-                        />
-                      </Grid>
-                    </Grid>
-                  </Form>
+                  <div className="p-fluid p-formgrid p-grid">
+                      <div className="p-field p-col-12 p-md-12">
+                          <label htmlFor="name">NAME</label>
+                          <InputText id="username"
+                            value={record.name}
+                            onChange={(e) => onInputChange(e, 'username')}
+                            required
+                            autoFocus
+                            tooltip="Enter Name"
+                          />
+                          {submitted && !record.name && <small className="p-error">Name is required.</small>}
+                      </div>
+                      <div className="p-field p-col-12 p-md-12">
+                          <label htmlFor="name">EMAIL</label>
+                          <InputText id="email"
+                            value={record.name}
+                            onChange={(e) => onInputChange(e, 'username')}
+                            required
+                            autoFocus
+                            tooltip="Enter Email"
+                          />
+                          {submitted && !record.name && <small className="p-error">Name is required.</small>}
+                      </div>
+
+                      <div className="p-field p-col-12">
+                          <label htmlFor="description">PASSWORD</label>
+                          <Password
+                            id="password"
+                            name="password"
+                            label="PASSWORD"
+                            value={record.password}
+                            onChange={(e) => onInputChange(e, 'password')}
+                          />
+                          {submitted && !record.password && <small className="p-error">Password is required.</small>}
+                      </div>
+                  </div>
                 </Dialog>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
                     <div className="confirmation-content">

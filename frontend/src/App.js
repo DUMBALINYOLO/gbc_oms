@@ -121,6 +121,10 @@ import StudentBioDeques from './student/settings/BioDeques';
 import Enrollments from './it/admissions/Enrollments';
 import Inquiry from './it/messaging/Inquiry';
 import Inquiries from './it/messaging/Inquiries';
+import 'primeflex/primeflex.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+import 'primereact/resources/themes/luna-blue/theme.css';
 
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
