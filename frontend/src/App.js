@@ -125,6 +125,9 @@ import 'primeflex/primeflex.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primereact/resources/themes/luna-blue/theme.css';
+import AdminStaffUsers from './it/staff/StaffUsers';
+import Bibliography from './it/courses/Bibliography';
+import AdminCourses from './it/courses/Courses';
 
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
@@ -210,13 +213,13 @@ class App extends React.Component {
 		                <Route exact  path='/teacherdashboard/inactivecourses/:id' component={TeacherInactiveCourse} />
 		                <Route exact path='/teacherdashboard/upcomingcourses' component={TeacherUpcomingCourses} />
 		                <Route exact path='/teacherdashboard/upcomingcourses/:id' component={TeacherUpcomingCourse} />
-		                                <Route exact path='/teacherdashboard/authors' component={TeacherAuthors} />
-		                                <Route exact path='/teacherdashboard/publishers' component={TeacherPublishers} />
-		                                <Route exact path='/teacherdashboard/cities' component={TeacherCities} />
+                    <Route exact path='/teacherdashboard/authors' component={TeacherAuthors} />
+                    <Route exact path='/teacherdashboard/publishers' component={TeacherPublishers} />
+                    <Route exact path='/teacherdashboard/cities' component={TeacherCities} />
 		                <Route exact path='/itdashboard/fees' component={Fees} />
 		                <Route exact path='/itdashboard/curriculums' component={Curriculum} />
 		                <Route exact path='/itdashboard/taxes' component={AdminTaxes} />
-		                <Route exact path='/itdashboard/bursars' component={AdminBursars} />
+		                <Route exact path='/itdashboard/staffs' component={AdminStaffUsers} />
 		                <Route exact path='/itdashboard/parents' component={AdminParents} />
 		                <Route exact path='/itdashboard/teachers' component={AdminTeachers} />
 										<Route exact path='/itdashboard/enrollments' component={Enrollments} />
@@ -226,7 +229,7 @@ class App extends React.Component {
 		                <Route exact path='/itdashboard/rejected-admissions' component={AdminRejectedAdmissions} />
 		                <Route exact path='/itdashboard/students' component={AdminStudents} />
 										<Route exact path='/itdashboard/authors' component={Authors} />
-										<Route exact path='/itdashboard/publishers' component={Publishers} />
+										<Route exact path='/itdashboard/bibliography' component={Bibliography} />
 										<Route exact path='/itdashboard/cities' component={Cities} />
 										<Route exact path='/itdashboard/course-ads' component={AdminCourseAdverts} />
 		                <Route exact path="/itdashboard/students/:id" component={StudentProfile} />
@@ -253,7 +256,7 @@ class App extends React.Component {
 		                <Route exact path='/itdashboard/currencies' component={AdminCurrencies} />
 		                <Route exact path='/itdashboard/assets' component={AssetsAdminView} />
 		                <Route exact path='/itdashboard/subjects' component={SubjectsAdminView} />
-		                <Route exact path='/itdashboard/upcomingcourses' component={AdminUpcomingCourses} />
+		                <Route exact path='/itdashboard/icourses' component={AdminCourses} />
 		                <Route exact path='/itdashboard/upcomingcourses/:id' component={AdminUpcomingCourse} />
 		                <Route exact path='/itdashboard/topics/:id' component={AdminTopic} />
 		                <Route exact path='/itdashboard/subtopics/:id' component={AdminSubTopic} />

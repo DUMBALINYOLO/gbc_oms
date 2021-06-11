@@ -202,7 +202,7 @@ const Publishers = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE PUBLISHER" icon="pi pi-plus" className="p-button-warning p-mr-2" onClick={openNew} />
+                <Button label="CREATE PUBLISHER"  className="p-button-warning p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -264,7 +264,6 @@ const Publishers = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE PUBLISHER</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -291,7 +290,7 @@ const Publishers = (props) => {
     );
 
     return (
-      <InformationTechnologyLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
@@ -322,32 +321,28 @@ const Publishers = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
+
                         />
                         <Column
                           field="name"
                           header="NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NAME"
-                          body={nameBodyTemplate}
+
                         />
                         <Column
                           field="city"
                           header="CITY"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY CITY"
-                          body={cityBodyTemplate}
+
                         />
                         <Column
                           field="number"
                           header="NUMBER"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NUMBER"
-                          body={numberBodyTemplate}
+
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>
@@ -388,7 +383,7 @@ const Publishers = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </InformationTechnologyLayout>
+        </>
     );
 }
 

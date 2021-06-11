@@ -283,7 +283,7 @@ const Authors = (props) => {
     );
 
     return (
-      <InformationTechnologyLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
@@ -314,24 +314,21 @@ const Authors = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
+
                         />
                         <Column
                           field="name"
                           header="NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NAME"
-                          body={nameBodyTemplate}
+
                         />
                         <Column
                           field="author_number"
                           header="AUTHOR NUMBER"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY AUTHOR NUMBER"
-                          body={numberBodyTemplate}
+
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>
@@ -365,7 +362,7 @@ const Authors = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </InformationTechnologyLayout>
+        </>
     );
 }
 

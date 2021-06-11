@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Column } from 'primereact/column';
 import { Toast } from 'primereact/toast';
 import { Button } from 'primereact/button';
+import {Password} from 'primereact/password';
 import { FileUpload } from 'primereact/fileupload';
 import { Rating } from 'primereact/rating';
 import { Toolbar } from 'primereact/toolbar';
@@ -197,7 +198,7 @@ const AdminTeachers = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE TEACHER" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
+                <Button label="CREATE TEACHER"  className="p-button-success p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -251,7 +252,6 @@ const AdminTeachers = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE TEACHERS</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -278,7 +278,7 @@ const AdminTeachers = (props) => {
     );
 
     return (
-      <InformationTechnologyLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
@@ -309,61 +309,69 @@ const AdminTeachers = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
                         />
                         <Column
                           field="username"
                           header="USER NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY USER NAME"
+
                         />
                         <Column
                           field="email"
                           header="EMAIL"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY EMAIL"
+
                         />
                         <Column
                           field="type"
                           header="TYPE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TYPE"
+
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>
                 </div>
 
                 <Dialog visible={productDialog} style={{ width: '500px' }} header="TEACHER FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
-                  <Form>
-                    <Grid container>
-                      <Grid item xs={12}>
-                        <Controls.Input
-                          id="email"
-                          label="EMAIL"
-                          value={record.email}
-                          onChange={(e) => onInputChange(e, 'email')}
-                        />
-                        <Controls.Input
-                          label="USERNAME"
-                          id="username"
-                          value={record.username}
-                          onChange={(e) => onInputChange(e, 'username')}
-                        />
-                        <TextField
-                          label='PASSWORD'
-                          placeholder='Enter Password'
-                          type='password'
-                          fullWidth required
-                          onChange={(e) => onInputChange(e, 'password')}
-                          value={record.password}
-                          id = "password"
-                        />
-                      </Grid>
-                    </Grid>
-                  </Form>
+                  <div className="p-fluid p-formgrid p-grid">
+                      <div className="p-field p-col-12 p-md-12">
+                          <label htmlFor="name">NAME</label>
+                          <InputText id="username"
+                            value={record.username}
+                            onChange={(e) => onInputChange(e, 'username')}
+                            required
+                            autoFocus
+                            tooltip="Enter Name"
+                          />
+                          {submitted && !record.name && <small className="p-error">Name is required.</small>}
+                      </div>
+                      <div className="p-field p-col-12 p-md-12">
+                          <label htmlFor="name">EMAIL</label>
+                          <InputText id="email"
+                            value={record.email}
+                            onChange={(e) => onInputChange(e, 'email')}
+                            required
+                            autoFocus
+                            tooltip="Enter Email"
+                          />
+                          {submitted && !record.name && <small className="p-error">Name is required.</small>}
+                      </div>
+
+                      <div className="p-field p-col-12">
+                          <label htmlFor="description">PASSWORD</label>
+                          <Password
+                            id="password"
+                            name="password"
+                            label="PASSWORD"
+                            value={record.password}
+                            onChange={(e) => onInputChange(e, 'password')}
+                          />
+                          {submitted && !record.password && <small className="p-error">Password is required.</small>}
+                      </div>
+                  </div>
                 </Dialog>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
                     <div className="confirmation-content">
@@ -379,7 +387,7 @@ const AdminTeachers = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </InformationTechnologyLayout>
+        </>
     );
 }
 

@@ -14,6 +14,7 @@ import { InputNumber } from 'primereact/inputnumber';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { useHistory } from 'react-router-dom';
+import { Dropdown } from 'primereact/dropdown';
 import {Form} from "../../components/formcontrols/useForm";
 import './table.css';
 import InformationTechnologyLayout from "../layout/InformationTechnologyLayout";
@@ -214,7 +215,7 @@ const AdminClass = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE CLASS" icon="pi pi-plus" className="p-button-info p-mr-2" onClick={openNew} />
+                <Button label="CREATE CLASS" className="p-button-info p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -341,96 +342,129 @@ const AdminClass = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
+
                         />
                         <Column
                           field="name"
                           header="NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NAME"
-                          body={nameBodyTemplate}
+
+
                         />
                         <Column
                           field="max_population"
                           header="CLASS POPULATION"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY POPULATION"
-                          body={maxBodyTemplate}
+
+
                         />
                         <Column
                           field="status"
                           header="STATUS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY STATUS"
-                          body={statusBodyTemplate}
+
                         />
                         <Column
                           field="year"
                           header="YEAR"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY YEAR"
-                          body={yearBodyTemplate}
+
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>
                 </div>
 
-                <Dialog visible={productDialog} style={{ width: '500px' }} header="CLASS FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
-                  <Form>
-                    <Grid container>
-                      <Grid item xs={12}>
-                        <Controls.Input
+                <Dialog visible={productDialog} style={{ width: '800px' }} header="CLASS FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
+                  <div className="p-fluid p-formgrid p-grid">
+                      <div className="p-field p-col-12 p-md-6">
+                        <label htmlFor="name">NAME</label>
+                        <InputText
                           id="name"
-                          name="name"
-                          label="NAME"
                           value={record.name}
                           onChange={(e) => onInputChange(e, 'name')}
-                      />
-                      <Controls.Input
+                          required
+                          autoFocus
+                          tooltip="Enter Name"
+                        />
+                        {submitted && !record.name && <small className="p-error">Name is required.</small>}
+                      </div>
+                      <div className="p-field p-col-12 p-md-6">
+                        <label htmlFor="max_population">MAX POPULATION</label>
+                        <InputText
                           id="max_population"
-                          label="POPULATION LIMIT"
-                          name="max_population"
                           value={record.max_population}
                           onChange={(e) => onInputChange(e, 'max_population')}
-                      />
-                      <Controls.DictSelect
-                          name="status"
-                          label="STATUS"
-                          value={record.status}
-                          onChange={(e) => onInputChange(e, 'status')}
-                          options={props.studentclassstatuschoices}
-                      />
-                  </Grid>
-                  <Grid item xs={12}>
-                      <Controls.GradeSelect
-                          name="stream"
-                          label="GRADE"
-                          value={record.stream}
-                          onChange={(e) => onInputChange(e, 'stream')}
-                          options={props.streams}
-                      />
-                      <Controls.UserSelect
-                          id="class_teacher"
-                          name="class_teacher"
-                          label="CLASS TEACHER"
-                          value={record.class_teacher}
-                          onChange={(e) => onInputChange(e, 'class_teacher')}
-                          options={props.adminteachers}
-                      />
-                      <Controls.Input
+                          required
+                          autoFocus
+                          tooltip="Enter Max Population"
+                          type="number"
+                        />
+                        {submitted && !record.name && <small className="p-error">Name is required.</small>}
+                      </div>
+
+                      <div className="p-field p-col-12 p-md-6">
+
+                        <Dropdown
+                            value={record.status}
+                            optionLabel="value"
+                            optionValue="key"
+                            options={props.studentclassstatuschoices}
+                            onChange={(e) => onInputChange(e, 'status')}
+                            filter
+                            showClear
+                            filterBy="name"
+                            placeholder="Select Status"
+
+                          />
+                      </div>
+
+                      <div className="p-field p-col-12 p-md-6">
+
+                        <Dropdown
+                            value={record.stream}
+                            optionLabel="grade"
+                            optionValue="id"
+                            options={props.streams}
+                            onChange={(e) => onInputChange(e, 'stream')}
+                            filter
+                            showClear
+                            filterBy="name"
+                            placeholder="Select GRADE"
+
+                          />
+                      </div>
+
+                      <div className="p-field p-col-12 p-md-6">
+
+                        <Dropdown
+                            value={record.class_teacher}
+                            optionLabel="name"
+                            optionValue="id"
+                            options={props.adminteachers}
+                            onChange={(e) => onInputChange(e, 'class_teache')}
+                            filter
+                            showClear
+                            filterBy="name"
+                            placeholder="Select Teacher"
+
+                          />
+                      </div>
+                      <div className="p-field p-col-12 p-md-6">
+                        <InputText
                           id="year"
-                          label="YEAR"
-                          name="year"
                           value={record.year}
                           onChange={(e) => onInputChange(e, 'year')}
-                      />
-                      </Grid>
-                    </Grid>
-                  </Form>
+                          required
+                          autoFocus
+                          tooltip="Enter Year"
+                        />
+                        {submitted && !record.year && <small className="p-error">Name is required.</small>}
+                      </div>
+                    </div>
                 </Dialog>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
                     <div className="confirmation-content">

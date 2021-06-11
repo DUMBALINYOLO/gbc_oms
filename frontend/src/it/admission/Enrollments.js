@@ -16,9 +16,7 @@ import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { useHistory } from 'react-router-dom';
 import './table.css';
-import 'primereact/resources/primereact.min.css';
-import 'primeicons/primeicons.css';
-import 'primereact/resources/themes/luna-blue/theme.css';
+
 import {
   Paper,
   makeStyles,
@@ -324,40 +322,39 @@ const AssignmentRecords = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
+
+
                         />
                         <Column
                           field="name"
                           header="NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NAME"
-                          body={nameBodyTemplate}
+
                         />
                         <Column
                           field="subject"
                           header="SUBJECT"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY SUBJECT"
-                          body={subjectBodyTemplate}
+
+
                         />
                         <Column
                           field="totalmarks"
                           header="TOTAL MARKS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TOTAL MARKS"
-                          body={totalmarksBodyTemplate}
+
+
                         />
                         <Column
                           field="score"
                           header="SCORE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY SCORE"
-                          body={scoreBodyTemplate}
+
+
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>

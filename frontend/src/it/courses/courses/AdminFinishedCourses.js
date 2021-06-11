@@ -147,7 +147,7 @@ const AdminOngoingCourses = props => {
     } = props;
 
   return (
-    <InformationTechnologyLayout>
+    <>
       <Paper className={classes.pageContent}>
       {props.loading ? (
           <div className={classes.rootaa}>
@@ -233,7 +233,7 @@ const AdminOngoingCourses = props => {
             addOrEdit={addOrEdit}
         />
       </Popup>
-    </InformationTechnologyLayout>
+    </>
   );
 };
 

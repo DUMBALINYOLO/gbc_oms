@@ -16,9 +16,6 @@ import { InputText } from 'primereact/inputtext';
 import { useHistory } from 'react-router-dom';
 import {Form} from "../../components/formcontrols/useForm";
 import './table.css';
-import 'primereact/resources/primereact.min.css';
-import 'primeicons/primeicons.css';
-import 'primereact/resources/themes/luna-blue/theme.css';
 import InformationTechnologyLayout from "../layout/InformationTechnologyLayout";
 import {
   Paper,
@@ -201,7 +198,7 @@ const AdminStream = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE STREAM" icon="pi pi-plus" className="p-button-info p-mr-2" onClick={openNew} />
+                <Button label="CREATE STREAM"  className="p-button-info p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -251,7 +248,6 @@ const AdminStream = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE STREAM</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -309,7 +305,7 @@ const AdminStream = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
+
                         />
                         <Column
                           field="grade"
@@ -317,7 +313,7 @@ const AdminStream = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY GRADE"
-                          body={gradeBodyTemplate}
+
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>

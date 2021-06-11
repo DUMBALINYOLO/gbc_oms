@@ -198,7 +198,7 @@ const PublisherCities = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE PUBLISHER CITY" icon="pi pi-plus" className="p-button-warning p-mr-2" onClick={openNew} />
+                <Button label="CREATE PUBLISHER CITY"  className="p-button-warning p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -254,7 +254,6 @@ const PublisherCities = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE PUBLISHER CITY</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -281,7 +280,7 @@ const PublisherCities = (props) => {
     );
 
     return (
-      <InformationTechnologyLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
@@ -312,24 +311,20 @@ const PublisherCities = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
+
                         />
                         <Column
                           field="name"
                           header="NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NAME"
-                          body={nameBodyTemplate}
+
                         />
                         <Column
                           field="number"
                           header="NUMBER"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NUMBER"
-                          body={numberBodyTemplate}
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>
@@ -363,7 +358,7 @@ const PublisherCities = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </InformationTechnologyLayout>
+        </>
     );
 }
 

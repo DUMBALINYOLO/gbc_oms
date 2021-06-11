@@ -192,7 +192,7 @@ const AdminBursars = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE BURSAR" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
+                <Button label="CREATE BURSAR"  className="p-button-success p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -246,7 +246,6 @@ const AdminBursars = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE BURSARS</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -273,7 +272,7 @@ const AdminBursars = (props) => {
     );
 
     return (
-      <InformationTechnologyLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
@@ -304,28 +303,28 @@ const AdminBursars = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
+
                         />
                         <Column
                           field="username"
                           header="USER NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY USER NAME"
+
                         />
                         <Column
                           field="email"
                           header="EMAIL"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY EMAIL"
+
                         />
                         <Column
                           field="type"
                           header="TYPE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TYPE"
+
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>
@@ -336,7 +335,7 @@ const AdminBursars = (props) => {
                       <div className="p-field p-col-12 p-md-12">
                           <label htmlFor="name">NAME</label>
                           <InputText id="username"
-                            value={record.name}
+                            value={record.username}
                             onChange={(e) => onInputChange(e, 'username')}
                             required
                             autoFocus
@@ -347,8 +346,8 @@ const AdminBursars = (props) => {
                       <div className="p-field p-col-12 p-md-12">
                           <label htmlFor="name">EMAIL</label>
                           <InputText id="email"
-                            value={record.name}
-                            onChange={(e) => onInputChange(e, 'username')}
+                            value={record.email}
+                            onChange={(e) => onInputChange(e, 'email')}
                             required
                             autoFocus
                             tooltip="Enter Email"
@@ -383,7 +382,7 @@ const AdminBursars = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </InformationTechnologyLayout>
+        </>
     );
 }
 
