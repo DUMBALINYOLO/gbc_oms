@@ -197,7 +197,7 @@ const SubTopics = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE SUBTOPIC" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
+                <Button label="ADD NEW" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -296,7 +296,6 @@ const SubTopics = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -306,32 +305,31 @@ const SubTopics = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
                         />
                         <Column
                           field="title"
                           header="TITLE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TITLE"
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
 
                 <Dialog visible={productDialog} style={{ width: '500px' }} header="SUBTOPIC FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
-                  <Form>
-                    <Grid container>
-                      <Grid item xs={12}>
-                        <Controls.Input
-                            name="title"
-                            label="TITLE"
-                            value={record.title}
-                            onChange={(e) => onInputChange(e, 'title')}
-                        />
-                      </Grid>
-                    </Grid>
-                  </Form>
+                    <div className="p-field p-col-12 p-md-12">
+                        <label htmlFor="righticon">TITLE</label>
+                        <span className="p-float-label p-input-icon-right">
+                            <InputText id="title"
+                              value={record.title}
+                              onChange={(e) => onInputChange(e, 'title')}
+                              required
+                              autoFocus
+                              tooltip="Enter Title"
+                            />
+                            {submitted && !record.title && <small className="p-error">Title is required.</small>}
+                        </span>
+                    </div>
                 </Dialog>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
                     <div className="confirmation-content">

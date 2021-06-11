@@ -100,6 +100,8 @@ import StudentGradingTab from './student/gradings/Tab';
 import StudentBioTab from './student/courses/Tab';
 
 import TeacherCourseTab from './teacher/courses/courses/Tab';
+import TeacherBioTab from './teacher/courses/Tab';
+import TeacherGradingTab from './teacher/gradings/Tab';
 
 import StudentTopic from './student/courses/topics/StudentTopic';
 import StudentSubTopic from './student/courses/subtopics/StudentSubTopic';
@@ -172,9 +174,10 @@ class App extends React.Component {
 		                <Route exact path='/itdashboard/courses' component={CourseDeques} />
 		                <Route exact path='/itdashboard/admissions' component={AdmissionDeques} />
 		                <Route exact path='/teacherdashboard/courses' component={TeacherCourseTab} />
-		                <Route exact path='/teacherdashboard/bio' component={TeacherBioDeques} />
+		                <Route exact path='/teacherdashboard/bio' component={TeacherBioTab} />
 		                <Route exact path='/studentdashboard/courses' component={StudentCourseTab} />
 		                <Route exact path='/studentdashboard/gradings' component={StudentGradingTab} />
+		                <Route exact path='/teacherdashboard/gradings' component={TeacherGradingTab} />
 		                <Route exact path='/studentdashboard/bio' component={StudentBioTab} />
 		                <Route exact path='/coursesoffered' component={PuclicOfferedCourses} />
 		                <Route exact path='/itdashboard' component={InformationTechnologyHome} />

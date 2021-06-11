@@ -279,10 +279,8 @@ const TeacherAttendances = (props) => {
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
-
                 <div className="card">
                     <Toolbar className="p-mb-4" right={rightToolbarTemplate}></Toolbar>
-
                     <DataTable
                         ref={dt}
                         value={props.records}
@@ -296,7 +294,6 @@ const TeacherAttendances = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -306,30 +303,26 @@ const TeacherAttendances = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
                         />
                         <Column
                           field="date"
                           header="DATE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY DATE"
                         />
                         <Column
                           field="klass"
                           header="CLASS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY CLASS"
                         />
                         <Column
                           field="recorded_by"
                           header="NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NAME"
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={productDialog} style={{ width: '500px' }} header="ATTENDANCE FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>

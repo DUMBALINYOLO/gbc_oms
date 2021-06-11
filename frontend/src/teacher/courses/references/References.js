@@ -14,6 +14,7 @@ import { RadioButton } from 'primereact/radiobutton';
 import { InputNumber } from 'primereact/inputnumber';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
+import {Dropdown} from 'primereact/dropdown';
 import { useHistory } from 'react-router-dom';
 import '../table.css';
 import {
@@ -203,7 +204,7 @@ const References = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE REFERENCE" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
+                <Button label="ADD NEW" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -284,10 +285,8 @@ const References = (props) => {
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
-
                 <div className="card">
                     <Toolbar className="p-mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
-
                     <DataTable
                         ref={dt}
                         value={props.records}
@@ -301,7 +300,6 @@ const References = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -311,82 +309,90 @@ const References = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
                         />
                         <Column
                           field="title"
                           header="TITLE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TITLE"
                         />
                         <Column
                           field="author"
                           header="AUTHOR"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY AUTHOR"
                         />
                         <Column
                           field="publisher"
                           header="PUBLISHER"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY PUBLISHER"
                         />
                         <Column
                           field="date_published"
                           header="DATE PUBLISHED"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY DATE PUBLISHED"
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
 
                 <Dialog visible={productDialog} style={{ width: '500px' }} header="REFERENCE FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
-                  <Form>
-                    <Grid container>
-                      <Grid item xs={12}>
-                        <Controls.Input
-                            name="title"
-                            label="TITLE"
-                            value={record.title}
-                            onChange={(e) => onInputChange(e, 'title')}
-                        />
-                        <Controls.Select
-                          name="author"
-                          label="AUTHOR"
-                          value={record.author}
-                          onChange={(e) => onInputChange(e, 'author')}
-                          options={props.adminauthors}
-                      />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <Controls.Select
-                          name="publisher"
-                          label="PUBLISHER"
-                          value={record.publisher}
-                          onChange={(e) => onInputChange(e, 'publisher')}
-                          options={props.adminpublishers}
-                      />
-                        <div className="p-field p-col-12 p-md-6">
-                          <span className="p-float-label">
-                          <Calendar
+                    <div className="p-field p-col-12 p-md-12">
+                        <label htmlFor="righticon">TITLE</label>
+                        <span className="p-float-label p-input-icon-right">
+                            <InputText id="title"
+                              value={record.title}
+                              onChange={(e) => onInputChange(e, 'title')}
+                              required
+                              autoFocus
+                              tooltip="Enter Title"
+                            />
+                            {submitted && !record.title && <small className="p-error">Title is required.</small>}
+                        </span>
+                    </div>
+                    <div className="p-field p-col-12 p-md-12">
+                        <label htmlFor="righticon">DATE PUBLISHED</label>
+                        <span className="p-float-label">
+                        <Calendar
                               showIcon={true}
                               className="form-control"
                               id="date_published"
-                              label="DATE PUBLISHED"
                               value={record.date_published}
                               onChange={(e) => onInputChange(e, 'date_published')}
                               dateFormat="yy-mm-dd"
-                          />
-                          </span>
-                        </div>
-                      </Grid>
-                    </Grid>
-                  </Form>
+                        />
+                        </span>
+                    </div>
+                    <div className="p-field p-col-12 p-md-12">
+                        <label htmlFor="category">AUTHOR</label>
+                        <Dropdown
+                            optionLabel="name"
+                            optionValue="key"
+                            value={record.author}
+                            onChange={(e) => onInputChange(e, 'author')}
+                            options={props.adminauthors}
+                            filter
+                            showClear
+                            filterBy="value"
+                            placeholder="Select Author"
+                        />
+                    </div>
+                    <div className="p-field p-col-12 p-md-12">
+                        <label htmlFor="category">PUBLISHER</label>
+                        <Dropdown
+                            optionLabel="name"
+                            optionValue="key"
+                            value={record.publisher}
+                            onChange={(e) => onInputChange(e, 'publisher')}
+                            options={props.adminpublishers}
+                            filter
+                            showClear
+                            filterBy="value"
+                            placeholder="Select Publishers"
+                        />
+                    </div>
                 </Dialog>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
                     <div className="confirmation-content">

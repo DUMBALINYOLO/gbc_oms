@@ -12,10 +12,10 @@ import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import Typography from '@material-ui/core/Typography';
-import StudentLayout from '../layout/StudentLayout';
-import StudentExcerciseRecords from './StudentExcerciseRecords';
-import StudentTestRecords from './StudentTestRecords';
-import StudentAssignmentRecords from './StudentAssignmentRecords';
+import TeacherLayout from '../layout/TeacherLayout';
+import Authors from './author/Authors';
+import Publishers from './publisher/Publishers';
+import PublisherCities from './publishercity/PublisherCities';
 
 function TabContainer(props) {
   const { children } = props;
@@ -52,7 +52,7 @@ class ScrollIconTabs extends React.Component {
     const { value } = this.state;
 
     return (
-      <StudentLayout>
+      <TeacherLayout>
         <div className={classes.root}>
           <AppBar position="static" color="default">
             <Tabs
@@ -63,16 +63,16 @@ class ScrollIconTabs extends React.Component {
               indicatorColor="primary"
               textColor="secondary"
             >
-              <Tab label="EXERCISES" />
-              <Tab label="ASSIGNMENTS" />
-              <Tab label="TESTS" />
+              <Tab label="AUTHORS" />
+              <Tab label="PUBLISHERS" />
+              <Tab label="PUBLISHER CITIES" />
             </Tabs>
           </AppBar>
-          {value === 0 && <TabContainer><StudentExcerciseRecords/></TabContainer>}
-          {value === 1 && <TabContainer><StudentAssignmentRecords/></TabContainer>}
-          {value === 2 && <TabContainer><StudentTestRecords/></TabContainer>}
+          {value === 0 && <TabContainer><Authors/></TabContainer>}
+          {value === 1 && <TabContainer><Publishers/></TabContainer>}
+          {value === 2 && <TabContainer><PublisherCities/></TabContainer>}
         </div>
-      </StudentLayout>
+      </TeacherLayout>
     );
   }
 }
