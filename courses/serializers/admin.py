@@ -17,6 +17,7 @@ from courses.models import (
 			PublisherCity,
 			Publisher,
 			ReferrenceSource,
+			LessonSlide,
 
 		)
 from setup.models import Institution
@@ -46,6 +47,54 @@ def get_subtopic(subtopic_id):
 def get_studynote(studynote_id):
 	study_note = get_object_or_404(StudyNote, id=studynote_id)
 	return study_note
+
+
+class LessonSlideCreateUpdateSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = LessonSlide
+		fields = [
+				'id',
+				'title',
+				'slide',
+				'status',
+				'date',
+				'course_id',
+
+			]
+		read_only_fields = ('id',)
+
+	def create(self, validated_data):
+		course_id = validated_data['course_id']
+		slide = LessonSlide(
+					title= validated_data['title'],
+					slide= validated_data['slide'],
+					status= validated_data['status'],
+					date = validated_data['date'],
+					course_id= validated_data['course_id'],
+				)
+		slide.save()
+		current_course = get_course(course_id)
+		current_course.slides.add(slide)
+		return slide
+
+
+class LessonListDetailSerializer(serializers.ModelSerializer):
+	status = serializers.SerializerMethodField()
+
+	class Meta:
+		model = LessonSlide
+		fields = [
+				'id',
+				'title',
+				'slide',
+				'status',
+				'date',
+
+			]
+
+	def get_status(self, obj):
+		return obj.get_status_display()
 
 
 class ItReferenceSourceCreateUpdateSerializer(serializers.ModelSerializer):
