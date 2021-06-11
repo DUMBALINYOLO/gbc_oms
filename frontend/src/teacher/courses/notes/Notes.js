@@ -14,6 +14,7 @@ import { RadioButton } from 'primereact/radiobutton';
 import { InputNumber } from 'primereact/inputnumber';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
+import {Dropdown} from 'primereact/dropdown';
 import { useHistory } from 'react-router-dom';
 import '../table.css';
 import {
@@ -205,7 +206,7 @@ const Notes = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE NOTES" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
+                <Button label="ADD NEW" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -304,7 +305,6 @@ const Notes = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -314,76 +314,87 @@ const Notes = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
                         />
                         <Column
                           field="title"
                           header="TITLE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TITLE"
                         />
                         <Column
                           field="status"
                           header="STATUS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY STATUS"
                         />
                         <Column
                           field="approval_status"
                           header="APPROVAL STATUS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY APPROVAL STATUS"
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
 
                 <Dialog visible={productDialog} style={{ width: '500px' }} header="NOTES FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
-                  <Form>
-                    <Grid container>
-                      <Grid item xs={12}>
-                        <Controls.Input
-                            name="title"
-                            label="TITLE"
-                            value={record.title}
-                            onChange={(e) => onInputChange(e, 'title')}
-                        />
-                        <div className="p-field p-col-6">
-                          <label htmlFor="note">NOTES</label>
-                          <InputTextarea
-                              id="note"
-                              value={record.note}
-                              onChange={(e) => onInputChange(e, 'note')}
+                    <div className="p-field p-col-12 p-md-12">
+                        <label htmlFor="righticon">TITLE</label>
+                        <span className="p-float-label p-input-icon-right">
+                            <InputText id="title"
+                              value={record.title}
+                              onChange={(e) => onInputChange(e, 'title')}
                               required
                               autoFocus
-                              className={classNames({ 'p-invalid': submitted && !record.note })}
-                              rows={3}
-                              cols={30}
+                              tooltip="Enter Title"
                             />
-                          {submitted && !record.note && <small className="p-error">Notes are required.</small>}
-                        </div>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Controls.DictSelect
-                            name="status"
-                            label="STATUS"
+                            {submitted && !record.title && <small className="p-error">Title is required.</small>}
+                        </span>
+                    </div> 
+                    <div className="p-field p-col-12">
+                        <label htmlFor="righticon">NOTES</label>
+                        <span className="p-float-label p-input-icon-right">
+                            <InputTextarea
+                                id="note"
+                                value={record.note}
+                                onChange={(e) => onInputChange(e, 'note')}
+                                required
+                                autoFocus
+                                className={classNames({ 'p-invalid': submitted && !record.note })}
+                                rows={3}
+                                cols={30}
+                              />
+                            {submitted && !record.note && <small className="p-error">Note is required.</small>}
+                        </span>
+                    </div>
+                    <div className="p-field p-col-12 p-md-12">
+                        <label htmlFor="category">STATUS</label>
+                        <Dropdown
                             value={record.status}
+                            optionLabel="value"
+                            optionValue="key"
                             onChange={(e) => onInputChange(e, 'status')}
                             options={props.studynotesstatuschoices}
+                            filter
+                            showClear
+                            filterBy="value"
+                            placeholder="Select a Category"
                         />
-                        <Controls.DictSelect
-                            name="approval_status"
-                            label="APPROVAL STATUS"
+                    </div>
+                    <div className="p-field p-col-12 p-md-12">
+                        <label htmlFor="category">APPROVAL STATUS</label>
+                        <Dropdown
+                            optionLabel="value"
+                            optionValue="key"
                             value={record.approval_status}
                             onChange={(e) => onInputChange(e, 'approval_status')}
                             options={props.studynotesapprovalstatuschoices}
+                            filter
+                            showClear
+                            filterBy="value"
+                            placeholder="Select a Category"
                         />
-                      </Grid>
-                    </Grid>
-                  </Form>
+                    </div>
                 </Dialog>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
                     <div className="confirmation-content">

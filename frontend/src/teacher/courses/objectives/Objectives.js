@@ -204,7 +204,7 @@ const Objectives = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE OBJECTIVES" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
+                <Button label="ADD NEW" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -302,7 +302,6 @@ const Objectives = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -312,53 +311,53 @@ const Objectives = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
                         />
                         <Column
                           field="name"
                           header="NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NAME"
                         />
                         <Column
                           field="description"
                           header="DESCRIPTION"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY DESCRIPTION"
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
 
                 <Dialog visible={productDialog} style={{ width: '500px' }} header="OBJECTIVE FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
-                  <Form>
-                    <Grid container>
-                      <Grid item xs={12}>
-                        <Controls.Input
-                            name="name"
-                            label="NAME"
-                            value={record.name}
-                            onChange={(e) => onInputChange(e, 'name')}
-                        />
-                        <div className="p-field p-col-6">
-                          <label htmlFor="description">DESCRIPTION</label>
-                          <InputTextarea
-                              id="description"
-                              value={record.description}
-                              onChange={(e) => onInputChange(e, 'description')}
+                    <div className="p-field p-col-12 p-md-12">
+                        <label htmlFor="righticon">NAME</label>
+                        <span className="p-float-label p-input-icon-right">
+                            <InputText id="name"
+                              value={record.name}
+                              onChange={(e) => onInputChange(e, 'name')}
                               required
                               autoFocus
-                              className={classNames({ 'p-invalid': submitted && !record.description })}
-                              rows={3}
-                              cols={30}
+                              tooltip="Enter Customer Name"
                             />
-                          {submitted && !record.description && <small className="p-error">Description is required.</small>}
-                      </div>
-                      </Grid>
-                    </Grid>
-                  </Form>
+                            {submitted && !record.name && <small className="p-error">Name is required.</small>}
+                        </span>
+                    </div> 
+                    <div className="p-field p-col-12">
+                        <label htmlFor="righticon">DESCRIPTION</label>
+                        <span className="p-float-label p-input-icon-right">
+                            <InputTextarea
+                                id="description"
+                                value={record.description}
+                                onChange={(e) => onInputChange(e, 'description')}
+                                required
+                                autoFocus
+                                className={classNames({ 'p-invalid': submitted && !record.description })}
+                                rows={3}
+                                cols={30}
+                              />
+                            {submitted && !record.description && <small className="p-error">Description is required.</small>}
+                        </span>
+                    </div>
                 </Dialog>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
                     <div className="confirmation-content">
