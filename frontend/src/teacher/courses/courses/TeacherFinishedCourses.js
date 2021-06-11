@@ -120,7 +120,7 @@ const TeacherOngoingCourses = props => {
 
 
   return (
-    <TeacherLayout>
+    <>
       <Paper className={classes.pageContent}>
 
       <Toolbar>
@@ -185,7 +185,7 @@ const TeacherOngoingCourses = props => {
             addOrEdit={addOrEdit}
         />
       </Popup>
-    </TeacherLayout>
+    </>
   );
 };
 

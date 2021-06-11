@@ -94,6 +94,13 @@ import StudentOngoingCourses from './student/courses/courses/StudentOngoingCours
 import StudentOngoingCourse from './student/courses/courses/StudentOngoingCourse';
 import StudentUpcomingCourses from './student/courses/courses/StudentUpcomingCourses';
 import StudentUpcomingCourse from './student/courses/courses/StudentUpcomingCourse';
+
+import StudentCourseTab from './student/courses/courses/Tab';
+import StudentGradingTab from './student/gradings/Tab';
+import StudentBioTab from './student/courses/Tab';
+
+import TeacherCourseTab from './teacher/courses/courses/Tab';
+
 import StudentTopic from './student/courses/topics/StudentTopic';
 import StudentSubTopic from './student/courses/subtopics/StudentSubTopic';
 import StudentStudyNote from './student/courses/notes/StudentStudyNote';
@@ -156,12 +163,12 @@ class App extends React.Component {
 										<Route exact path='/itdashboard/enquiries/:id' component={Inquiry} />
 		                <Route exact path='/itdashboard/users' component={UserDeques} />
 		                <Route exact path='/itdashboard/courses' component={CourseDeques} />
-		                <Route exact path='/itdashboard/bio' component={BioDeques} />
 		                <Route exact path='/itdashboard/admissions' component={AdmissionDeques} />
-		                <Route exact path='/teacherdashboard/courses' component={TeacherCourseDeques} />
+		                <Route exact path='/teacherdashboard/courses' component={TeacherCourseTab} />
 		                <Route exact path='/teacherdashboard/bio' component={TeacherBioDeques} />
-		                <Route exact path='/studentdashboard/courses' component={StudentCourseDeques} />
-		                <Route exact path='/studentdashboard/bio' component={StudentBioDeques} />
+		                <Route exact path='/studentdashboard/courses' component={StudentCourseTab} />
+		                <Route exact path='/studentdashboard/gradings' component={StudentGradingTab} />
+		                <Route exact path='/studentdashboard/bio' component={StudentBioTab} />
 		                <Route exact path='/coursesoffered' component={PuclicOfferedCourses} />
 		                <Route exact path='/itdashboard' component={InformationTechnologyHome} />
 		                <Route exact path='/publicdashboard' component={PublicDash} />

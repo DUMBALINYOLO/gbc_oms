@@ -285,7 +285,7 @@ const Notes = (props) => {
                 <Toast ref={toast} />
 
                 <div className="card">
-                    <Toolbar className="p-mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
+                    <Toolbar className="p-mb-4" right={rightToolbarTemplate}></Toolbar>
 
                     <DataTable
                         ref={dt}
@@ -310,30 +310,26 @@ const Notes = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
                         />
                         <Column
                           field="title"
                           header="TITLE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TITLE"
                         />
                         <Column
                           field="status"
                           header="STATUS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY STATUS"
                         />
                         <Column
                           field="approval_status"
                           header="APPROVAL STATUS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY APPROVAL STATUS"
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>

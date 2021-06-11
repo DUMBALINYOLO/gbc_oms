@@ -277,10 +277,8 @@ const SubTopics = (props) => {
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
-
                 <div className="card">
-                    <Toolbar className="p-mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
-
+                    <Toolbar className="p-mb-4" right={rightToolbarTemplate}></Toolbar>
                     <DataTable
                         ref={dt}
                         value={props.records}
@@ -294,7 +292,6 @@ const SubTopics = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -304,16 +301,14 @@ const SubTopics = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
                         />
                         <Column
                           field="title"
                           header="TITLE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TITLE"
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>

@@ -283,7 +283,7 @@ const References = (props) => {
                 <Toast ref={toast} />
 
                 <div className="card">
-                    <Toolbar className="p-mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
+                    <Toolbar className="p-mb-4" right={rightToolbarTemplate}></Toolbar>
 
                     <DataTable
                         ref={dt}
@@ -298,7 +298,6 @@ const References = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -308,37 +307,32 @@ const References = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
                         />
                         <Column
                           field="title"
                           header="TITLE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TITLE"
                         />
                         <Column
                           field="author"
                           header="AUTHOR"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY AUTHOR"
                         />
                         <Column
                           field="publisher"
                           header="PUBLISHER"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY PUBLISHER"
                         />
                         <Column
                           field="date_published"
                           header="DATE PUBLISHED"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY DATE PUBLISHED"
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>

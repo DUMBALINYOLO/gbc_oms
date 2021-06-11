@@ -118,24 +118,10 @@ const navigationConfig = [
         },
         children: [
           {
-            id: "tests",
-            title: "TESTS",
+            id: "gradings",
+            title: "GRADINGS",
             type: "item",
-            url: "/studentdashboard/tests",
-            exact: true,
-          },
-          {
-            id: "excercises",
-            title: "EXCERCISES",
-            type: "item",
-            url: "/studentdashboard/excercises",
-            exact: true,
-          },
-          {
-            id: "assignments",
-            title: "ASSIGNMENTS",
-            type: "item",
-            url: "/studentdashboard/assignments",
+            url: '/studentdashboard/gradings',
             exact: true,
           },
         ],
@@ -154,7 +140,7 @@ const navigationConfig = [
         children: [
           {
             id: "bio",
-            title: "VIEW",
+            title: "BIOGRAPHY",
             type: "item",
             url: '/studentdashboard/bio',
             exact: true,

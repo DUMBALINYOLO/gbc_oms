@@ -284,7 +284,7 @@ const TeacherStudents = (props) => {
                 <Toast ref={toast} />
 
                 <div className="card">
-                    <Toolbar className="p-mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
+                    <Toolbar className="p-mb-4" right={rightToolbarTemplate}></Toolbar>
 
                     <DataTable
                         ref={dt}
@@ -309,30 +309,26 @@ const TeacherStudents = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
                         />
                         <Column
                           field="username"
                           header="USER NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY USER NAME"
                         />
                         <Column
                           field="email"
                           header="EMAIL"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY EMAIL"
                         />
                         <Column
                           field="type"
                           header="TYPE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TYPE"
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>

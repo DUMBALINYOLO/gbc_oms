@@ -273,7 +273,7 @@ const Assignments = (props) => {
                 <Toast ref={toast} />
 
                 <div className="card">
-                    <Toolbar className="p-mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
+                    <Toolbar className="p-mb-4" right={rightToolbarTemplate}></Toolbar>
 
                     <DataTable
                         ref={dt}
@@ -288,7 +288,6 @@ const Assignments = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -298,37 +297,32 @@ const Assignments = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
                         />
                         <Column
                           field="name"
                           header="NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NAME"
                         />
                         <Column
                           field="totalmarks"
                           header="TOTAL MARKS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TOTAL MARKS"
                         />
                         <Column
                           field="subject"
                           header="SUBJECT"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY SUBJECT"
                         />
                         <Column
                           field="score"
                           header="SCORE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY SCORE"
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
