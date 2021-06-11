@@ -30,7 +30,7 @@ import {
   Grid,
 }
 from '@material-ui/core';
-// import { InputTextarea } from 'primereact/inputtextarea';
+import { Badge } from 'primereact/badge';
 import { MultiSelect } from 'primereact/multiselect';
 import  Controls  from "../../../components/formcontrols/Controls";
 import { getAdminTopicObjectives, addTopicObjective, editTopicObjective } from '../../../actions/courses';
@@ -57,9 +57,7 @@ const Objectives = (props) => {
         name: '',
         description: '',
         topic_id: props.data.id,
-      };
-
-    
+      };  
 
     const classes = useStyles();
     const [products, setProducts] = useState(null);
@@ -209,7 +207,7 @@ const Objectives = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE OBJECTIVES" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
+                <Button label="CREATE OBJECTIVES" icon="pi pi-plus" className="p-button-warning p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -228,16 +226,22 @@ const Objectives = (props) => {
         return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
     }
 
-    const priceBodyTemplate = (rowData) => {
-        return formatCurrency(rowData.price);
+   const idBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.id} severity="info" />
+      );
     }
 
-    const ratingBodyTemplate = (rowData) => {
-        return <Rating value={rowData.rating} readOnly cancel={false} />;
+    const nameBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.name} severity="info" />
+      );
     }
 
-    const statusBodyTemplate = (rowData) => {
-        return <span className={`product-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>;
+    const descriptionBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.description} severity="info" />
+      );
     }
 
     const actionBodyTemplate = (rowData) => {
@@ -251,7 +255,7 @@ const Objectives = (props) => {
                 </Button>
                 <Button
                   icon="pi pi-sign-in"
-                  className="p-button-rounded"
+                  className="p-button-rounded p-button-warning"
                 />
             </React.Fragment>
         );
@@ -318,6 +322,7 @@ const Objectives = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ID"
+                          body={idBodyTemplate}
                         />
                         <Column
                           field="name"
@@ -325,6 +330,7 @@ const Objectives = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY NAME"
+                          body={nameBodyTemplate}
                         />
                         <Column
                           field="description"
@@ -332,6 +338,7 @@ const Objectives = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY DESCRIPTION"
+                          body={descriptionBodyTemplate}
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>

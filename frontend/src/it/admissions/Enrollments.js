@@ -30,7 +30,7 @@ import {
   Grid,
 }
 from '@material-ui/core';
-// import { InputTextarea } from 'primereact/inputtextarea';
+import { Badge } from 'primereact/badge';
 import { MultiSelect } from 'primereact/multiselect';
 import  Controls  from "../../components/formcontrols/Controls";
 import { getStudentProfiles } from '../../actions/people';
@@ -224,7 +224,7 @@ const Enrollments = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE ENROLLMENT" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
+                <Button label="CREATE ENROLLMENT" icon="pi pi-plus" className="p-button-info p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -233,16 +233,28 @@ const Enrollments = (props) => {
         return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
     }
 
-    const priceBodyTemplate = (rowData) => {
-        return formatCurrency(rowData.price);
-    }
-
-    const ratingBodyTemplate = (rowData) => {
-        return <Rating value={rowData.rating} readOnly cancel={false} />;
+    const idBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.id} severity="info" />
+      );
     }
 
     const statusBodyTemplate = (rowData) => {
-        return <span className={`product-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>;
+      return (
+          <Badge value={rowData.status} severity="success" />
+      );
+    }
+
+    const klassBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.enr_klass} severity="info" />
+      );
+    }
+
+    const stdntBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.stdnt} severity="info" />
+      );
     }
 
     const actionBodyTemplate = (rowData) => {
@@ -250,12 +262,12 @@ const Enrollments = (props) => {
             <React.Fragment>
                 <Button
                   icon="pi pi-pencil"
-                  className="p-button-rounded p-button-warning p-mr-2"
+                  className="p-button-rounded p-button-info p-mr-2"
                 >
                 </Button>
                 <Button
                   icon="pi pi-sign-in"
-                  className="p-button-rounded"
+                  className="p-button-rounded p-button-info"
                 />
             </React.Fragment>
         );
@@ -305,7 +317,7 @@ const Enrollments = (props) => {
                         onSelectionChange={(e) => setSelectedProducts(e.value)}
                         dataKey="id" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                        currentPageReportTemplate="SHOWING {first} TO {last} OF {totalRecords} REJECTED ADMISSIONS"
+                        currentPageReportTemplate="SHOWING {first} TO {last} OF {totalRecords} ENROLLMENTS"
                         globalFilter={globalFilter}
                         header={header}
                         virtualScroll
@@ -322,6 +334,7 @@ const Enrollments = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ID"
+                          body={idBodyTemplate}
                         />
                         <Column
                           field="status"
@@ -329,6 +342,7 @@ const Enrollments = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY STATUS"
+                          body={statusBodyTemplate}
                         />
                         <Column
                           field="enr_klass"
@@ -336,6 +350,7 @@ const Enrollments = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ENROLLMENT"
+                          body={klassBodyTemplate}
                         />
                         <Column
                           field="stdnt"
@@ -343,11 +358,12 @@ const Enrollments = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY STUDENT"
+                          body={stdntBodyTemplate}
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>
                 </div>
-                <Dialog visible={productDialog} style={{ width: '500px' }} header="HAULIER FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
+                <Dialog visible={productDialog} style={{ width: '500px' }} header="ENROLLMENT FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
                   <Form>
                     <Grid container>
                       <Grid item xs={12}>
@@ -395,7 +411,6 @@ const Enrollments = (props) => {
             </div>
           </Paper>
         </InformationTechnologyLayout>
-
     );
 }
 

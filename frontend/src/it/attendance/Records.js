@@ -30,7 +30,7 @@ import {
   Grid,
 }
 from '@material-ui/core';
-// import { InputTextarea } from 'primereact/inputtextarea';
+import { Badge } from 'primereact/badge';
 import { MultiSelect } from 'primereact/multiselect';
 import  Controls  from "../../components/formcontrols/Controls";
 import { getAttendanceStatusChoices } from '../../actions/choices';
@@ -213,16 +213,28 @@ const Records = (props) => {
         return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
     }
 
-    const priceBodyTemplate = (rowData) => {
-        return formatCurrency(rowData.price);
+    const idBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.id} severity="info" />
+      );
     }
 
-    const ratingBodyTemplate = (rowData) => {
-        return <Rating value={rowData.rating} readOnly cancel={false} />;
+    const attendanceBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.attendance} severity="info" />
+      );
+    }
+
+    const studentBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.student} severity="info" />
+      );
     }
 
     const statusBodyTemplate = (rowData) => {
-        return <span className={`product-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>;
+      return (
+          <Badge value={rowData.recorded_by} severity="warning" />
+      );
     }
 
     const actionBodyTemplate = (rowData) => {
@@ -230,13 +242,13 @@ const Records = (props) => {
             <React.Fragment>
                 <Button
                   icon="pi pi-pencil"
-                  className="p-button-rounded p-button-warning p-mr-2"
+                  className="p-button-rounded p-button-info p-mr-2"
                   onClick={() => editProduct(rowData)}
                 >
                 </Button>
                 <Button
                   icon="pi pi-sign-in"
-                  className="p-button-rounded"
+                  className="p-button-rounded p-button-info"
                 />
             </React.Fragment>
         );
@@ -302,6 +314,7 @@ const Records = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ID"
+                          body={idBodyTemplate}
                         />
                         <Column
                           field="attendance"
@@ -309,6 +322,7 @@ const Records = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ATTENDANCE"
+                          body={attendanceBodyTemplate}
                         />
                         <Column
                           field="student"
@@ -316,6 +330,7 @@ const Records = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY STUDENT"
+                          body={studentBodyTemplate}
                         />
                         <Column
                           field="status"
@@ -323,6 +338,7 @@ const Records = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY STATUS"
+                          body={statusBodyTemplate}
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>

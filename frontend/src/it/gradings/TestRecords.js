@@ -33,6 +33,7 @@ from '@material-ui/core';
 import { MultiSelect } from 'primereact/multiselect';
 import  Controls  from "../../components/formcontrols/Controls";
 import {  editTestRecord, getTestRecords } from '../../actions/gradings';
+import { Badge } from 'primereact/badge';
 
 const useStyles = makeStyles(theme => ({
   pageContent: {
@@ -199,7 +200,7 @@ const TestRecords = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="TEST RECORDS" icon="pi pi-plus" className="p-button-success p-mr-2" />
+                <Button label="TEST RECORDS" icon="pi pi-plus" className="p-button-warning p-mr-2" />
             </React.Fragment>
         )
     }
@@ -218,16 +219,34 @@ const TestRecords = (props) => {
         return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
     }
 
-    const priceBodyTemplate = (rowData) => {
-        return formatCurrency(rowData.price);
+    const idBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.id} severity="info" />
+      );
     }
 
-    const ratingBodyTemplate = (rowData) => {
-        return <Rating value={rowData.rating} readOnly cancel={false} />;
+    const nameBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.name} severity="info" />
+      );
     }
 
-    const statusBodyTemplate = (rowData) => {
-        return <span className={`product-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>;
+    const studentBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.student} severity="info" />
+      );
+    }
+
+    const marksBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.totalmarks} severity="info" />
+      );
+    }
+
+    const scoreBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.score} severity="info" />
+      );
     }
 
     const actionBodyTemplate = (rowData) => {
@@ -241,7 +260,7 @@ const TestRecords = (props) => {
                 </Button>
                 <Button
                   icon="pi pi-sign-in"
-                  className="p-button-rounded"
+                  className="p-button-rounded p-button-warning"
                 />
             </React.Fragment>
         );
@@ -308,6 +327,7 @@ const TestRecords = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ID"
+                          body={idBodyTemplate}
                         />
                         <Column
                           field="name"
@@ -315,6 +335,7 @@ const TestRecords = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY NAME"
+                          body={nameBodyTemplate}
                         />
                         <Column
                           field="student"
@@ -322,6 +343,7 @@ const TestRecords = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY STUDENT"
+                          body={studentBodyTemplate}
                         />
                         <Column
                           field="totalmarks"
@@ -329,6 +351,7 @@ const TestRecords = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY TOTAL MARKS"
+                          body={marksBodyTemplate}
                         />
                         <Column
                           field="score"
@@ -336,6 +359,7 @@ const TestRecords = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY SCORE"
+                          body={scoreBodyTemplate}
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>

@@ -33,6 +33,7 @@ from '@material-ui/core';
 import { MultiSelect } from 'primereact/multiselect';
 import  Controls  from "../../../components/formcontrols/Controls";
 import { getAdminSubTopics, addSubTopic, editSubTopic} from '../../../actions/courses';
+import { Badge } from 'primereact/badge';
 
 const useStyles = makeStyles(theme => ({
   pageContent: {
@@ -202,7 +203,7 @@ const SubTopics = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE SUBTOPIC" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
+                <Button label="CREATE SUBTOPIC" icon="pi pi-plus" className="p-button-warning p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -221,16 +222,16 @@ const SubTopics = (props) => {
         return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
     }
 
-    const priceBodyTemplate = (rowData) => {
-        return formatCurrency(rowData.price);
+    const idBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.id} severity="info" />
+      );
     }
 
-    const ratingBodyTemplate = (rowData) => {
-        return <Rating value={rowData.rating} readOnly cancel={false} />;
-    }
-
-    const statusBodyTemplate = (rowData) => {
-        return <span className={`product-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>;
+    const titleBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.title} severity="info" />
+      );
     }
 
     const actionBodyTemplate = (rowData) => {
@@ -244,7 +245,7 @@ const SubTopics = (props) => {
                 </Button>
                 <Button
                   icon="pi pi-sign-in"
-                  className="p-button-rounded"
+                  className="p-button-rounded p-button-warning"
                   onClick={() => handleClick(rowData.id)}
                 />
             </React.Fragment>
@@ -312,6 +313,7 @@ const SubTopics = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ID"
+                          body={idBodyTemplate}
                         />
                         <Column
                           field="title"
@@ -319,6 +321,7 @@ const SubTopics = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY TITLE"
+                          body={titleBodyTemplate}
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>

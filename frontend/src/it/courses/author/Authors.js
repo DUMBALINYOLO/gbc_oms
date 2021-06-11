@@ -30,7 +30,7 @@ import {
   Grid,
 }
 from '@material-ui/core';
-// import { InputTextarea } from 'primereact/inputtextarea';
+import { Badge } from 'primereact/badge';
 import { MultiSelect } from 'primereact/multiselect';
 import  Controls  from "../../../components/formcontrols/Controls";
 import { getAuthors, addAuthor, editAuthor } from '../../../actions/courses';
@@ -203,7 +203,7 @@ const Authors = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE AUTHOR" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
+                <Button label="CREATE AUTHOR" icon="pi pi-plus" className="p-button-info p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -222,16 +222,22 @@ const Authors = (props) => {
         return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
     }
 
-    const priceBodyTemplate = (rowData) => {
-        return formatCurrency(rowData.price);
+    const idBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.id} severity="info" />
+      );
     }
 
-    const ratingBodyTemplate = (rowData) => {
-        return <Rating value={rowData.rating} readOnly cancel={false} />;
+    const nameBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.name} severity="info" />
+      );
     }
 
-    const statusBodyTemplate = (rowData) => {
-        return <span className={`product-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>;
+    const numberBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.author_number} severity="info" />
+      );
     }
 
     const actionBodyTemplate = (rowData) => {
@@ -239,13 +245,13 @@ const Authors = (props) => {
             <React.Fragment>
                 <Button
                   icon="pi pi-pencil"
-                  className="p-button-rounded p-button-warning p-mr-2"
+                  className="p-button-rounded p-button-info p-mr-2"
                   onClick={() => editProduct(rowData)}
                 >
                 </Button>
                 <Button
                   icon="pi pi-sign-in"
-                  className="p-button-rounded"
+                  className="p-button-rounded p-button-info"
                 />
             </React.Fragment>
         );
@@ -295,7 +301,7 @@ const Authors = (props) => {
                         onSelectionChange={(e) => setSelectedProducts(e.value)}
                         dataKey="id" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                        currentPageReportTemplate="SHOWING {first} TO {last} OF {totalRecords} AUTHOR"
+                        currentPageReportTemplate="SHOWING {first} TO {last} OF {totalRecords} AUTHORS"
                         globalFilter={globalFilter}
                         header={header}
                         virtualScroll
@@ -312,6 +318,7 @@ const Authors = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ID"
+                          body={idBodyTemplate}
                         />
                         <Column
                           field="name"
@@ -319,6 +326,7 @@ const Authors = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY NAME"
+                          body={nameBodyTemplate}
                         />
                         <Column
                           field="author_number"
@@ -326,6 +334,7 @@ const Authors = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY AUTHOR NUMBER"
+                          body={numberBodyTemplate}
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>

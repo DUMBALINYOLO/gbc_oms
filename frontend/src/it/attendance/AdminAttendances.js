@@ -29,7 +29,7 @@ import {
   Grid,
 }
 from '@material-ui/core';
-// import { InputTextarea } from 'primereact/inputtextarea';
+import { Badge } from 'primereact/badge';
 import { MultiSelect } from 'primereact/multiselect';
 import  Controls  from "../../components/formcontrols/Controls";
 import { getAdminAttendances } from '../../actions/attendances';
@@ -47,8 +47,6 @@ const useStyles = makeStyles(theme => ({
       right: '10px'
   }
 }))
-
-
 
 const AdminAttendances = (props) => {
 
@@ -114,13 +112,11 @@ const AdminAttendances = (props) => {
             let _records = [...records];
             let _record = {...record};
             if (record.id) {
-                // const index = findIndexById(record.id);
-                // _record[index] = _record;
-                props.editCustomer(record.id, record, token);
-                setNewRecord(_record)
-                props.getCustomers(token);
-                setProductDialog(true);
-                toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Admin Approved Admission UPDATED', life: 3000 });
+              props.editCustomer(record.id, record, token);
+              setNewRecord(_record)
+              props.getCustomers(token);
+              setProductDialog(true);
+              toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Admin Approved Admission UPDATED', life: 3000 });
             }
             else {
                 props.addCustomer(_record, token)
@@ -223,16 +219,28 @@ const AdminAttendances = (props) => {
         return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
     }
 
-    const priceBodyTemplate = (rowData) => {
-        return formatCurrency(rowData.price);
+    const idBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.id} severity="info" />
+      );
     }
 
-    const ratingBodyTemplate = (rowData) => {
-        return <Rating value={rowData.rating} readOnly cancel={false} />;
+    const dateBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.date} severity="info" />
+      );
     }
 
-    const statusBodyTemplate = (rowData) => {
-        return <span className={`product-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>;
+    const klassBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.klass} severity="info" />
+      );
+    }
+
+    const recordedBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.recorded_by} severity="info" />
+      );
     }
 
     const actionBodyTemplate = (rowData) => {
@@ -240,12 +248,12 @@ const AdminAttendances = (props) => {
             <React.Fragment>
                 <Button
                   icon="pi pi-pencil"
-                  className="p-button-rounded p-button-warning p-mr-2"
+                  className="p-button-rounded p-button-info p-mr-2"
                 >
                 </Button>
                 <Button
                   icon="pi pi-sign-in"
-                  className="p-button-rounded"
+                  className="p-button-rounded p-button-info"
                   onClick={() => handleClick(rowData.id)}
                 />
             </React.Fragment>
@@ -313,6 +321,7 @@ const AdminAttendances = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ID"
+                          body={idBodyTemplate}
                         />
                         <Column
                           field="date"
@@ -320,6 +329,7 @@ const AdminAttendances = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY DATE"
+                          body={dateBodyTemplate}
                         />
                         <Column
                           field="klass"
@@ -327,6 +337,7 @@ const AdminAttendances = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY CLASS"
+                          body={klassBodyTemplate}
                         />
                         <Column
                           field="recorded_by"
@@ -334,6 +345,7 @@ const AdminAttendances = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY NAME"
+                          body={recordedBodyTemplate}
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>
@@ -354,7 +366,6 @@ const AdminAttendances = (props) => {
             </div>
           </Paper>
         </InformationTechnologyLayout>
-
     );
 }
 

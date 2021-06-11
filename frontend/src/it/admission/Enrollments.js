@@ -32,6 +32,7 @@ from '@material-ui/core';
 import { MultiSelect } from 'primereact/multiselect';
 import  Controls  from "../../components/formcontrols/Controls";
 import {  getStudentAssignments } from '../../actions/gradings';
+import { Badge } from 'primereact/badge';
 
 const useStyles = makeStyles(theme => ({
   pageContent: {
@@ -194,10 +195,11 @@ const AssignmentRecords = (props) => {
         setRecord(_record);
     }
 
+
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="ASSIGNMENT RECORDS" icon="pi pi-plus" className="p-button-success p-mr-2" />
+                <Button label="ASSIGNMENT RECORDS" className="p-button-warning p-mr-2" />
             </React.Fragment>
         )
     }
@@ -216,16 +218,34 @@ const AssignmentRecords = (props) => {
         return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
     }
 
-    const priceBodyTemplate = (rowData) => {
-        return formatCurrency(rowData.price);
+    const idBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.id} severity="info" />
+      );
     }
 
-    const ratingBodyTemplate = (rowData) => {
-        return <Rating value={rowData.rating} readOnly cancel={false} />;
+    const nameBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.name} severity="info" />
+      );
     }
 
-    const statusBodyTemplate = (rowData) => {
-        return <span className={`product-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>;
+    const subjectBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.subject} severity="info" />
+      );
+    }
+
+    const totalmarksBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.totalmarks} severity="info" />
+      );
+    }
+
+    const scoreBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.score} severity="info" />
+      );
     }
 
     const actionBodyTemplate = (rowData) => {
@@ -233,12 +253,12 @@ const AssignmentRecords = (props) => {
             <React.Fragment>
                 <Button
                   icon="pi pi-pencil"
-                  className="p-button-rounded p-button-warning p-mr-2"
+                  className="p-button-rounded p-button-info p-mr-2"
                 >
                 </Button>
                 <Button
                   icon="pi pi-sign-in"
-                  className="p-button-rounded"
+                  className="p-button-rounded p-button-info"
                 />
             </React.Fragment>
         );
@@ -288,7 +308,7 @@ const AssignmentRecords = (props) => {
                         onSelectionChange={(e) => setSelectedProducts(e.value)}
                         dataKey="id" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                        currentPageReportTemplate="SHOWING {first} TO {last} OF {totalRecords} ASSIGNMENTS"
+                        currentPageReportTemplate="SHOWING {first} TO {last} OF {totalRecords} ENROLLMENTS"
                         globalFilter={globalFilter}
                         header={header}
                         virtualScroll
@@ -305,6 +325,7 @@ const AssignmentRecords = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ID"
+                          body={idBodyTemplate}
                         />
                         <Column
                           field="name"
@@ -312,6 +333,7 @@ const AssignmentRecords = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY NAME"
+                          body={nameBodyTemplate}
                         />
                         <Column
                           field="subject"
@@ -319,6 +341,7 @@ const AssignmentRecords = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY SUBJECT"
+                          body={subjectBodyTemplate}
                         />
                         <Column
                           field="totalmarks"
@@ -326,6 +349,7 @@ const AssignmentRecords = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY TOTAL MARKS"
+                          body={totalmarksBodyTemplate}
                         />
                         <Column
                           field="score"
@@ -333,6 +357,7 @@ const AssignmentRecords = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY SCORE"
+                          body={scoreBodyTemplate}
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>

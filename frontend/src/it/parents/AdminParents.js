@@ -34,6 +34,7 @@ import { MultiSelect } from 'primereact/multiselect';
 import  Controls  from "../../components/formcontrols/Controls";
 import { getAdminParents, addBursar } from '../../actions/people';
 import TextField from '@material-ui/core/TextField';
+import { Badge } from 'primereact/badge';
 
 
 const useStyles = makeStyles(theme => ({
@@ -194,7 +195,7 @@ const AdminParents = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE PARENT" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
+                <Button label="CREATE PARENT" icon="pi pi-plus" className="p-button-warning p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -217,16 +218,28 @@ const AdminParents = (props) => {
         return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
     }
 
-    const priceBodyTemplate = (rowData) => {
-        return formatCurrency(rowData.price);
+    const idBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.id} severity="info" />
+      );
     }
 
-    const ratingBodyTemplate = (rowData) => {
-        return <Rating value={rowData.rating} readOnly cancel={false} />;
+    const usernameBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.username} severity="info" />
+      );
     }
 
-    const statusBodyTemplate = (rowData) => {
-        return <span className={`product-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>;
+    const emailBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.email} severity="info" />
+      );
+    }
+
+    const typeBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.type} severity="info" />
+      );
     }
 
     const actionBodyTemplate = (rowData) => {
@@ -239,7 +252,7 @@ const AdminParents = (props) => {
                 </Button>
                 <Button
                   icon="pi pi-sign-in"
-                  className="p-button-rounded"
+                  className="p-button-rounded p-button-warning"
                   onClick={() => handleClick(rowData.id)}
                 />
             </React.Fragment>
@@ -307,6 +320,7 @@ const AdminParents = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ID"
+                          body={idBodyTemplate}
                         />
                         <Column
                           field="username"
@@ -314,6 +328,7 @@ const AdminParents = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY USER NAME"
+                          body={usernameBodyTemplate}
                         />
                         <Column
                           field="email"
@@ -321,6 +336,7 @@ const AdminParents = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY EMAIL"
+                          body={emailBodyTemplate}
                         />
                         <Column
                           field="type"
@@ -328,6 +344,7 @@ const AdminParents = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY TYPE"
+                          body={typeBodyTemplate}
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>

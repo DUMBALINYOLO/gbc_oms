@@ -30,7 +30,7 @@ import {
   Grid,
 }
 from '@material-ui/core';
-// import { InputTextarea } from 'primereact/inputtextarea';
+import { Badge } from 'primereact/badge';
 import { MultiSelect } from 'primereact/multiselect';
 import  Controls  from "../../components/formcontrols/Controls";
 import { getClasses, getStudyModeChoices, getStudents} from '../../actions/classes';
@@ -211,16 +211,28 @@ const Students = (props) => {
         return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
     }
 
-    const priceBodyTemplate = (rowData) => {
-        return formatCurrency(rowData.price);
+    const idBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.id} severity="info" />
+      );
     }
 
-    const ratingBodyTemplate = (rowData) => {
-        return <Rating value={rowData.rating} readOnly cancel={false} />;
+    const stdntBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.stdnt} severity="info" />
+      );
     }
 
     const statusBodyTemplate = (rowData) => {
-        return <span className={`product-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>;
+      return (
+          <Badge value={rowData.status} severity="danger" />
+      );
+    }
+
+    const dateBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.enrollment_date} severity="info" />
+      );
     }
 
     const actionBodyTemplate = (rowData) => {
@@ -228,12 +240,12 @@ const Students = (props) => {
             <React.Fragment>
                 <Button
                   icon="pi pi-pencil"
-                  className="p-button-rounded p-button-warning p-mr-2"
+                  className="p-button-rounded p-button-info p-mr-2"
                 >
                 </Button>
                 <Button
                   icon="pi pi-sign-in"
-                  className="p-button-rounded"
+                  className="p-button-rounded p-button-info"
                 />
             </React.Fragment>
         );
@@ -241,7 +253,7 @@ const Students = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE STUDENT</h1>
+            <h1 className="p-m-0">MANAGE STUDENTS</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -283,7 +295,7 @@ const Students = (props) => {
                         onSelectionChange={(e) => setSelectedProducts(e.value)}
                         dataKey="id" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                        currentPageReportTemplate="SHOWING {first} TO {last} OF {totalRecords} STUDENT"
+                        currentPageReportTemplate="SHOWING {first} TO {last} OF {totalRecords} STUDENTS"
                         globalFilter={globalFilter}
                         header={header}
                         virtualScroll
@@ -299,6 +311,7 @@ const Students = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ID"
+                          body={idBodyTemplate}
                         />
                         <Column
                           field="stdnt"
@@ -306,6 +319,7 @@ const Students = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY STUDENT"
+                          body={stdntBodyTemplate}
                         />
                         <Column
                           field="status"
@@ -313,6 +327,7 @@ const Students = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY STATUS"
+                          body={statusBodyTemplate}
                         />
                         <Column
                           field="enrollment_date"
@@ -320,6 +335,7 @@ const Students = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ENROLLMENT DATE"
+                          body={dateBodyTemplate}
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>

@@ -34,6 +34,7 @@ import { MultiSelect } from 'primereact/multiselect';
 import  Controls  from "../../../components/formcontrols/Controls";
 import { getStudyNotes, addStudyNote, editStudyNote } from '../../../actions/courses';
 import {getStudyNotesApprovalStatusChoices, getStudynotesStatusChoices} from '../../../actions/choices';
+import { Badge } from 'primereact/badge';
 
 const useStyles = makeStyles(theme => ({
   pageContent: {
@@ -113,11 +114,11 @@ const Notes = (props) => {
         let _records = [...records];
         let _record = {...record};
         if (record.id) {
-            props.editStudyNote(record.id, record, token);
-            setNewRecord(_record)
-            props.getStudyNotes(props.data.id, token);
-            setProductDialog(true);
-            toast.current.show({ severity: 'success', summary: 'Successful', detail: 'NOTES UPDATED', life: 3000 });
+          props.editStudyNote(record.id, record, token);
+          setNewRecord(_record)
+          props.getStudyNotes(props.data.id, token);
+          setProductDialog(true);
+          toast.current.show({ severity: 'success', summary: 'Successful', detail: 'NOTES UPDATED', life: 3000 });
         }
         else {
             props.addStudyNote(_record, token)
@@ -209,7 +210,7 @@ const Notes = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE NOTES" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
+                <Button label="CREATE NOTES" icon="pi pi-plus" className="p-button-warning p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -228,16 +229,28 @@ const Notes = (props) => {
         return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
     }
 
-    const priceBodyTemplate = (rowData) => {
-        return formatCurrency(rowData.price);
+    const idBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.id} severity="info" />
+      );
     }
 
-    const ratingBodyTemplate = (rowData) => {
-        return <Rating value={rowData.rating} readOnly cancel={false} />;
+    const titleBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.title} severity="info" />
+      );
     }
 
     const statusBodyTemplate = (rowData) => {
-        return <span className={`product-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>;
+      return (
+          <Badge value={rowData.status} severity="danger" />
+      );
+    }
+
+    const approvalBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.approval_status} severity="success" />
+      );
     }
 
     const actionBodyTemplate = (rowData) => {
@@ -251,7 +264,7 @@ const Notes = (props) => {
                 </Button>
                 <Button
                   icon="pi pi-sign-in"
-                  className="p-button-rounded"
+                  className="p-button-rounded p-button-warning"
                   onClick={() => handleClick(rowData.id)}
                 />
             </React.Fragment>
@@ -319,6 +332,7 @@ const Notes = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ID"
+                          body={idBodyTemplate}
                         />
                         <Column
                           field="title"
@@ -326,6 +340,7 @@ const Notes = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY TITLE"
+                          body={titleBodyTemplate}
                         />
                         <Column
                           field="status"
@@ -333,6 +348,7 @@ const Notes = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY STATUS"
+                          body={statusBodyTemplate}
                         />
                         <Column
                           field="approval_status"
@@ -340,6 +356,7 @@ const Notes = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY APPROVAL STATUS"
+                          body={approvalBodyTemplate}
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>

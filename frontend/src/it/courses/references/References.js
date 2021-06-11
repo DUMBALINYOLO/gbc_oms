@@ -34,6 +34,7 @@ import { Calendar } from 'primereact/calendar';
 import { MultiSelect } from 'primereact/multiselect';
 import  Controls  from "../../../components/formcontrols/Controls";
 import { getStudyNoteReferences, addStudyNoteReference, editStudyNoteReference, getPublishers, getAuthors } from '../../../actions/courses';
+import { Badge } from 'primereact/badge';
 
 const useStyles = makeStyles(theme => ({
   pageContent: {
@@ -207,7 +208,7 @@ const References = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE REFERENCE" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
+                <Button label="CREATE REFERENCE" icon="pi pi-plus" className="p-button-warning p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -226,16 +227,34 @@ const References = (props) => {
         return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
     }
 
-    const priceBodyTemplate = (rowData) => {
-        return formatCurrency(rowData.price);
+    const idBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.id} severity="info" />
+      );
     }
 
-    const ratingBodyTemplate = (rowData) => {
-        return <Rating value={rowData.rating} readOnly cancel={false} />;
+    const titleBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.title} severity="info" />
+      );
     }
 
-    const statusBodyTemplate = (rowData) => {
-        return <span className={`product-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>;
+    const authorBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.author} severity="info" />
+      );
+    }
+
+    const publisherBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.publisher} severity="info" />
+      );
+    }
+
+    const dateBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.date_published} severity="info" />
+      );
     }
 
     const actionBodyTemplate = (rowData) => {
@@ -249,7 +268,7 @@ const References = (props) => {
                 </Button>
                 <Button
                   icon="pi pi-sign-in"
-                  className="p-button-rounded"
+                  className="p-button-rounded p-button-warning"
                 />
             </React.Fragment>
         );
@@ -299,7 +318,7 @@ const References = (props) => {
                         onSelectionChange={(e) => setSelectedProducts(e.value)}
                         dataKey="id" paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                        currentPageReportTemplate="SHOWING {first} TO {last} OF {totalRecords} OBJECTIVES"
+                        currentPageReportTemplate="SHOWING {first} TO {last} OF {totalRecords} REFERENCES"
                         globalFilter={globalFilter}
                         header={header}
                         virtualScroll
@@ -316,6 +335,7 @@ const References = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ID"
+                          body={idBodyTemplate}
                         />
                         <Column
                           field="title"
@@ -323,6 +343,7 @@ const References = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY TITLE"
+                          body={titleBodyTemplate}
                         />
                         <Column
                           field="author"
@@ -330,6 +351,7 @@ const References = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY AUTHOR"
+                          body={authorBodyTemplate}
                         />
                         <Column
                           field="publisher"
@@ -337,6 +359,7 @@ const References = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY PUBLISHER"
+                          body={publisherBodyTemplate}
                         />
                         <Column
                           field="date_published"
@@ -344,6 +367,7 @@ const References = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY DATE PUBLISHED"
+                          body={dateBodyTemplate}
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>

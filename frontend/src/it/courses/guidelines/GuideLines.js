@@ -33,6 +33,7 @@ from '@material-ui/core';
 import { MultiSelect } from 'primereact/multiselect';
 import  Controls  from "../../../components/formcontrols/Controls";
 import { getAdminTopicGuidelines, addTopicGuideLine, editTopicGuideline } from '../../../actions/courses';
+import { Badge } from 'primereact/badge';
 
 const useStyles = makeStyles(theme => ({
   pageContent: {
@@ -201,7 +202,7 @@ const GuideLines = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE GUIDELINE" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
+                <Button label="CREATE GUIDELINE" icon="pi pi-plus" className="p-button-warning p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -220,16 +221,22 @@ const GuideLines = (props) => {
         return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
     }
 
-    const priceBodyTemplate = (rowData) => {
-        return formatCurrency(rowData.price);
+    const idBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.id} severity="info" />
+      );
     }
 
-    const ratingBodyTemplate = (rowData) => {
-        return <Rating value={rowData.rating} readOnly cancel={false} />;
+    const nameBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.name} severity="info" />
+      );
     }
 
-    const statusBodyTemplate = (rowData) => {
-        return <span className={`product-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>;
+    const descriptionBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.description} severity="info" />
+      );
     }
 
     const actionBodyTemplate = (rowData) => {
@@ -243,7 +250,7 @@ const GuideLines = (props) => {
                 </Button>
                 <Button
                   icon="pi pi-sign-in"
-                  className="p-button-rounded"
+                  className="p-button-rounded p-button-warning"
                 />
             </React.Fragment>
         );
@@ -310,6 +317,7 @@ const GuideLines = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ID"
+                          body={idBodyTemplate}
                         />
                         <Column
                           field="name"
@@ -317,6 +325,7 @@ const GuideLines = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY NAME"
+                          body={nameBodyTemplate}
                         />
                         <Column
                           field="description"
@@ -324,6 +333,7 @@ const GuideLines = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY DESCRIPTION"
+                          body={descriptionBodyTemplate}
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>

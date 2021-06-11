@@ -35,6 +35,7 @@ import  Controls  from "../../../components/formcontrols/Controls";
 import {getStudentProfiles} from '../../../actions/people';
 import {getCourseEnrollmentStatusChoices} from '../../../actions/choices';
 import { getStudentCourseEnrollments, addStudentCourseEnrollment, editStudentCourseEnrollment  } from '../../../actions/courses';
+import { Badge } from 'primereact/badge';
 
 const useStyles = makeStyles(theme => ({
   pageContent: {
@@ -203,7 +204,7 @@ const Enrollments = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE ENROLLMENT" icon="pi pi-plus" className="p-button-success p-mr-2" onClick={openNew} />
+                <Button label="CREATE ENROLLMENT" icon="pi pi-plus" className="p-button-info p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -222,16 +223,22 @@ const Enrollments = (props) => {
         return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
     }
 
-    const priceBodyTemplate = (rowData) => {
-        return formatCurrency(rowData.price);
+    const idBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.id} severity="info" />
+      );
     }
 
-    const ratingBodyTemplate = (rowData) => {
-        return <Rating value={rowData.rating} readOnly cancel={false} />;
+    const studentBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.student} severity="info" />
+      );
     }
 
-    const statusBodyTemplate = (rowData) => {
-        return <span className={`product-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>;
+    const dateBodyTemplate = (rowData) => {
+      return (
+          <Badge value={rowData.date_enrolled} severity="info" />
+      );
     }
 
     const actionBodyTemplate = (rowData) => {
@@ -239,13 +246,13 @@ const Enrollments = (props) => {
             <React.Fragment>
                 <Button
                   icon="pi pi-pencil"
-                  className="p-button-rounded p-button-warning p-mr-2"
+                  className="p-button-rounded p-button-info p-mr-2"
                   onClick={() => editProduct(rowData)}
                 >
                 </Button>
                 <Button
                   icon="pi pi-sign-in"
-                  className="p-button-rounded"
+                  className="p-button-rounded p-button-info"
                 />
             </React.Fragment>
         );
@@ -280,7 +287,7 @@ const Enrollments = (props) => {
     );
 
     return (
-      <InformationTechnologyLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
@@ -312,6 +319,7 @@ const Enrollments = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY ID"
+                          body={idBodyTemplate}
                         />
                         <Column
                           field="student"
@@ -319,6 +327,7 @@ const Enrollments = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY STUDENT"
+                          body={studentBodyTemplate}
                         />
                         <Column
                           field="date_enrolled"
@@ -326,6 +335,7 @@ const Enrollments = (props) => {
                           sortable
                           filter
                           filterPlaceholder="SEARCH BY DATE ENROLLED"
+                          body={dateBodyTemplate}
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>
@@ -367,7 +377,7 @@ const Enrollments = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </InformationTechnologyLayout>
+        </>
     );
 }
 
