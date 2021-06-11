@@ -23,6 +23,7 @@ from courses.apis import (
 		StudentCourseEnrollementViewSet,
 		StudentUpcomingCourseViewSet,
 		StudentOngoingCourseViewSet,
+		LessonSlideViewSet,
 	)
 
 
@@ -34,6 +35,7 @@ router.register('admin-ongoing-courses', AdminOngoingCourseViewSet, basename='ad
 router.register('admin-finished-courses', AdminFinishedCourseViewSet, basename='admin-finished-courses')
 router.register('admin-inactive-courses', AdminInactiveCourseViewSet, basename='admin-inactive-courses')
 router.register('admin-topics', AdminTopicViewSet, basename='admin-topics')
+router.register('course-slides', LessonSlideViewSet, basename='course-slides')
 router.register('admin-reviews', AdminReviewViewSet, basename='admin-reviews')
 router.register('admin-subtopics',AdminSubTopicViewSet, basename='admin-subtopics')
 router.register('admin-topic-objectives', AdminTopicObjectivesViewSet, basename='admin-topic-objectives')
