@@ -39,6 +39,10 @@ class Course(SoftDeletionModel):
                         'courses.Review',
                          blank=True
                     )
+    slides = models.ManyToManyField(
+                        'courses.LessonSlide',
+                         blank=True,
+                    )
     image = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True, null=True)
     full_name = models.CharField(max_length=500)
     short_name = models.CharField(max_length=100)
@@ -167,6 +171,23 @@ class Topic(SoftDeletionModel):
                             blank=True,
                         )
     course_id = models.IntegerField(blank=True, null=True)
+
+
+    def __str__(self):
+        return self.title
+
+
+class LessonSlide(SoftDeletionModel):
+    STATUS = [
+        ('active', 'ACTIVE'),
+        ('inactive', 'ACTIVE'),
+    ]
+    title = models.CharField(max_length=300)
+    date = models.DateField(blank=True)
+    slide = models.FileField(upload_to='slides/%Y/%m/%d/')
+    status = models.CharField(choices=STATUS, max_length=300, default='active')
+    course_id = models.IntegerField(blank=True, null=True)
+
 
 
     def __str__(self):

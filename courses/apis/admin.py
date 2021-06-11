@@ -22,6 +22,7 @@ from courses.models import (
 			PublisherCity,
 			Publisher,
 			ReferrenceSource,
+			LessonSlide,
 		)
 
 from courses.serializers import (
@@ -67,6 +68,9 @@ from courses.serializers import (
 			ItPublisherCityListSerializer,
 			StudentCourseEnrollmentCreateUpdateSerializer,
 			StudentCourseEnrollmentListDetailSerializer,
+			LessonSlideCreateUpdateSerializer,
+			LessonListDetailSerializer,
+
 
 	)
 
@@ -75,6 +79,11 @@ from courses.serializers import (
 def get_note(note_id):
 	note = get_object_or_404(StudyNote, id=note_id)
 	return note
+
+
+def get_course(course_id):
+	course = get_object_or_404(Course, id=course_id)
+	return course
 
 
 class AdminUpcomingCourseViewSet(viewsets.ModelViewSet):
@@ -216,10 +225,25 @@ class AdminInactiveCourseViewSet(viewsets.ModelViewSet):
 
 
 
+class LessonSlideViewSet(viewsets.ModelViewSet):
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.AllowAny,]
 
-def get_course(course_id):
-	course = get_object_or_404(Course, id=course_id)
-	return course
+	def get_serializer_class(self, *args, **kwargs):
+		if self.action in ['create', 'patch', 'put', 'updating']:
+			return LessonSlideCreateUpdateSerializer
+		return LessonSlideListDetailSerializer
+
+
+	def get_queryset(self, *args, **kwargs):
+		queryset = LessonSlide.objects.all()
+		course_id = self.request.query_params.get('id', None)
+		if course_id is not None:
+			course = get_course(course_id=course_id)
+			queryset = course.slides.order_by('-id')
+		return queryset
+
+
 
 
 
