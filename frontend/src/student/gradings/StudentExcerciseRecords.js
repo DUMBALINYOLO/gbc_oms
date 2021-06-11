@@ -243,7 +243,6 @@ const StudentExcerciseRecords = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE EXERCISE RECORDS</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -270,14 +269,12 @@ const StudentExcerciseRecords = (props) => {
     );
 
     return (
-      <StudentLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
-
                 <div className="card">
-                    <Toolbar className="p-mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
-
+                    <Toolbar className="p-mb-4" right={rightToolbarTemplate}></Toolbar>
                     <DataTable
                         ref={dt}
                         value={props.records}
@@ -291,7 +288,6 @@ const StudentExcerciseRecords = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -301,37 +297,32 @@ const StudentExcerciseRecords = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
                         />
                         <Column
                           field="name"
                           header="NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NAME"
                         />
                         <Column
                           field="subject"
                           header="SUBJECT"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY SUBJECT"
                         />
                         <Column
                           field="totalmarks"
                           header="TOTAL MARKS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TOTAL MARKS"
                         />
                         <Column
                           field="score"
                           header="SCORE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY SCORE"
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
@@ -348,7 +339,7 @@ const StudentExcerciseRecords = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </StudentLayout>
+        </>
     );
 }
 

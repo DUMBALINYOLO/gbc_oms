@@ -303,23 +303,20 @@ const StudentAttendanceRecords = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
                         />
                         <Column
                           field="date"
                           header="DATE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY DATE"
                         />
                         <Column
                           field="status"
                           header="STATUS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY STATUS"
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>

@@ -118,7 +118,7 @@ const TeacherUpcomingCourses = props => {
     } = props;
 
   return (
-    <TeacherLayout>
+    <>
       <Paper className={classes.pageContent}>
 
       <Toolbar>
@@ -183,7 +183,7 @@ const TeacherUpcomingCourses = props => {
             addOrEdit={addOrEdit}
         />
       </Popup>
-    </TeacherLayout>
+    </>
   );
 };
 

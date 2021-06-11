@@ -250,7 +250,6 @@ const Publishers = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE PUBLISHER</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -277,13 +276,13 @@ const Publishers = (props) => {
     );
 
     return (
-      <StudentLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
 
                 <div className="card">
-                    <Toolbar className="p-mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
+                    <Toolbar className="p-mb-4" right={rightToolbarTemplate}></Toolbar>
 
                     <DataTable
                         ref={dt}
@@ -298,7 +297,6 @@ const Publishers = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -308,30 +306,26 @@ const Publishers = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
                         />
                         <Column
                           field="name"
                           header="NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NAME"
                         />
                         <Column
                           field="city"
                           header="CITY"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY CITY"
                         />
                         <Column
                           field="number"
                           header="NUMBER"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NUMBER"
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
@@ -348,7 +342,7 @@ const Publishers = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </StudentLayout>
+        </>
     );
 }
 

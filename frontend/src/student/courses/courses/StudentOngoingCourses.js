@@ -90,7 +90,7 @@ const StudentOngoingCourses = props => {
     } = props;
 
   return (
-    <StudentLayout>
+    <>
       <Paper className={classes.pageContent}>
         <Toolbar>
           <Controls.Input
@@ -136,7 +136,7 @@ const StudentOngoingCourses = props => {
             }
           </Grid>
       </Paper>
-    </StudentLayout>
+    </>
   );
 };
 

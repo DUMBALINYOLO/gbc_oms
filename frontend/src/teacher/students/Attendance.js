@@ -287,7 +287,7 @@ const Attendance = (props) => {
                 <Toast ref={toast} />
 
                 <div className="card">
-                    <Toolbar className="p-mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
+                    <Toolbar className="p-mb-4" right={rightToolbarTemplate}></Toolbar>
 
                     <DataTable
                         ref={dt}
@@ -312,23 +312,20 @@ const Attendance = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
                         />
                         <Column
                           field="attendance"
                           header="ATTENDANCE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ATTENDANCE"
                         />
                         <Column
                           field="status"
                           header="STATUS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY STATUS"
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>

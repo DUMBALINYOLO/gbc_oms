@@ -286,7 +286,7 @@ const Objectives = (props) => {
                 <Toast ref={toast} />
 
                 <div className="card">
-                    <Toolbar className="p-mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
+                    <Toolbar className="p-mb-4" right={rightToolbarTemplate}></Toolbar>
 
                     <DataTable
                         ref={dt}
@@ -301,7 +301,6 @@ const Objectives = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -311,23 +310,20 @@ const Objectives = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
                         />
                         <Column
                           field="name"
                           header="NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NAME"
                         />
                         <Column
                           field="description"
                           header="DESCRIPTION"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY DESCRIPTION"
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>

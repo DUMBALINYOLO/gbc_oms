@@ -25,7 +25,6 @@ import {
   Grid,
 }
 from '@material-ui/core';
-// import { InputTextarea } from 'primereact/inputtextarea';
 import { MultiSelect } from 'primereact/multiselect';
 import  Controls  from "../../components/formcontrols/Controls";
 import {  editAttendanceRecord, getAdminAttendanceRecords } from '../../actions/attendances';
@@ -271,7 +270,7 @@ const Records = (props) => {
                 <Toast ref={toast} />
 
                 <div className="card">
-                    <Toolbar className="p-mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
+                    <Toolbar className="p-mb-4" right={rightToolbarTemplate}></Toolbar>
 
                     <DataTable
                         ref={dt}
@@ -296,30 +295,26 @@ const Records = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
                         />
                         <Column
                           field="attendance"
                           header="ATTENDANCE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ATTENDANCE"
                         />
                         <Column
                           field="student"
                           header="STUDENT"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY STUDENT"
                         />
                         <Column
                           field="status"
                           header="STATUS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY STATUS"
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
 
