@@ -172,7 +172,7 @@ const getTeacherAttendanceListFail = error => {
 };
 
 
-export const getAdminAttendances = (id, token) => {
+export const getAdminAttendances = (token) => {
   return dispatch => {
       dispatch(getAdminAttendanceListStart());
       const headers = {
@@ -180,7 +180,7 @@ export const getAdminAttendances = (id, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${adminattendancesURL}?id=${id}`, headers)
+        .get(adminattendancesURL, headers)
         .then(res => {
           const adminattendances = res.data;
           dispatch(getAdminAttendanceListSuccess(adminattendances));

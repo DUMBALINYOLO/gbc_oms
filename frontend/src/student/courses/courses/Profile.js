@@ -1,4 +1,9 @@
 import React, { useEffect, useState } from "react"
+import classNames from 'classnames';
+import styles from './profile-jss';
+import { withStyles } from '@material-ui/core/styles';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
 import {
   Paper,
   makeStyles,
@@ -12,8 +17,10 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-
-
+import Assignment from '@material-ui/icons/Assignment';
+import AssignmentInd from '@material-ui/icons/AssignmentInd';
+import DateRange from '@material-ui/icons/DateRange';
+import NextWeek from '@material-ui/icons/NextWeek';
 
 const useStyles = makeStyles(theme => ({
   pageContent: {
@@ -40,35 +47,54 @@ const ClassProfile = props => {
 
 
   return (
-    <>
-      <Paper className={classes.pageContent}>
+    <main className={classNames(classes.content)}>
+      <div>
         <List>
           <ListItem>
-            <h4>STATUS:</h4>
-            <Divider variant="inset" />
-            <ListItemText primary={status} />
+            <ListItemAvatar>
+                <Avatar className={classes.blueIcon}>
+                  <Assignment />
+                </Avatar>
+              </ListItemAvatar>
+            <ListItemText primary={status} secondary="STATUS"/>
           </ListItem>
+          <Divider variant="inset" />
           <ListItem>
-            <h4>SHORT NAME:</h4>
-            <Divider variant="inset" />
-            <ListItemText primary={short_name} />
+            <ListItemAvatar>
+                <Avatar className={classes.blueIcon}>
+                  <AssignmentInd />
+                </Avatar>
+              </ListItemAvatar>
+            <ListItemText primary={short_name} secondary="SHORT NAME" />
           </ListItem>
+          <Divider variant="inset" />
           <ListItem>
-            <h4>END DATE:</h4>
-            <Divider variant="inset" />
-            <ListItemText primary={end_date} />
+            <ListItemAvatar>
+                <Avatar className={classes.blueIcon}>
+                  <DateRange />
+                </Avatar>
+              </ListItemAvatar>
+            <ListItemText primary={end_date} secondary="END DATE"/>
           </ListItem>
+          <Divider variant="inset" />
           <ListItem>
-            <h4>COURSE NUMBER:</h4>
-            <Divider variant="inset" />
-            <ListItemText primary={course_number} />
+            <ListItemAvatar>
+                <Avatar className={classes.blueIcon}>
+                  <NextWeek />
+                </Avatar>
+              </ListItemAvatar>
+            <ListItemText primary={course_number} secondary="COURSE NUMBER" />
           </ListItem>
-          <h5>DESCRIPTION: {description}</h5>
+          <Divider variant="inset" />
+          <Paper>
+            DESCRIPTION: {description}
+          </Paper>
         </List>
-      </Paper>
-    </>
+      </div>
+    </main>
   );
 };
 
 
-export default ClassProfile;
+export default withStyles(styles)(ClassProfile);
+

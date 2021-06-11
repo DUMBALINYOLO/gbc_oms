@@ -76,7 +76,6 @@ class Footer extends React.Component {
             <span>
               <IconButton color="primary" className={classes.button} href={link.twitter} target="_blank"><i className="ion-social-twitter" /></IconButton>
               <IconButton color="primary" className={classes.button} href={link.pinterest} target="_blank"><i className="ion-social-pinterest" /></IconButton>
-              <IconButton color="primary" className={classes.button} href={link.github} target="_blank"><i className="ion-social-github" /></IconButton>
             </span>
           </div>
         </div>

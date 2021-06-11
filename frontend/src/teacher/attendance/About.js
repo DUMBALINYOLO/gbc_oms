@@ -17,6 +17,7 @@ import Chip from '@material-ui/core/Chip';
 import Check from '@material-ui/icons/Check';
 import PapperBlock from '../../components/PapperBlock/PapperBlock';
 import styles from '../../components/Profile/profile-jss';
+import Profile from './Profile';
 
 class About extends React.Component {
     render() {
@@ -29,7 +30,11 @@ class About extends React.Component {
           direction="row"
           spacing={3}
         >
-
+          <Grid item md={7} xs={12}>
+            <div>
+              <h1><Profile data={data}/></h1>
+            </div>
+          </Grid> 
           <Grid item md={5} xs={12}>
             {/* Profile Progress */}
             <div className={classes.progressRoot}>
@@ -63,22 +68,6 @@ class About extends React.Component {
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText primary="ID" secondary={data.id} />
-                </ListItem>
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <School />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText primary="CLASS" secondary={data.klass} />
-                </ListItem>
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <DateRange />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText primary="DATE" secondary={data.date} />
                 </ListItem>
               </List>
             </PapperBlock>

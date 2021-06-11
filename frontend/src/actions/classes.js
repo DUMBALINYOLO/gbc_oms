@@ -284,7 +284,7 @@ const createEnrollmentFail = error => {
   };
 };
 
-export const getClasses = (id, token) => {
+export const getClasses = (token) => {
   return dispatch => {
       dispatch(getClassListStart());
       const headers = {
@@ -292,7 +292,7 @@ export const getClasses = (id, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${classesURL}?id=${id}`, headers)
+        .get(classesURL, headers)
         .then(res => {
           const classes = res.data;
           dispatch(getClassListSuccess(classes));
@@ -344,7 +344,7 @@ export const addClass = (classi, token) => {
     };
 };
 
-export const getStreams = (id, token) => {
+export const getStreams = (token) => {
   return dispatch => {
       dispatch(getStreamListStart());
       const headers = {
@@ -352,7 +352,7 @@ export const getStreams = (id, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${classstreamsURL}?id=${id}`, headers)
+        .get(classstreamsURL, headers)
         .then(res => {
           const streams = res.data;
           dispatch(getStreamListSuccess(streams));
@@ -401,13 +401,13 @@ export const addStream = (stream, token) => {
 //     };
 // };
 
-export const getSubjects = (id, token) => dispatch => {
+export const getSubjects = (token) => dispatch => {
     const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
     };
-    axios.get(`${classsubjectsURL}?id=${id}`, headers)
+    axios.get(classsubjectsURL, headers)
         .then(res => {
             dispatch({
                 type: GET_CLASS_SUBJECTS,
@@ -455,7 +455,7 @@ export const addSubject = (subject, token) => {
     };
 };
 
-export const getEnrollments = (id, token) => {
+export const getEnrollments = (token) => {
   return dispatch => {
       dispatch(getEnrollmentListStart());
       const headers = {
@@ -463,7 +463,7 @@ export const getEnrollments = (id, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${enrollmentsURL}?id=${id}`, headers)
+        .get(enrollmentsURL, headers)
         .then(res => {
           const enrollments = res.data;
           dispatch(getEnrollmentListSuccess(enrollments));
@@ -512,13 +512,13 @@ export const addEnrollment = (enrollment, token) => {
 //     };
 // };
 
-export const getStudents = (id,token) => dispatch => {
+export const getStudents = (token) => dispatch => {
     const headers ={
           "Content-Type": "application/json",
           Authorization: `Token ${token}`,
           'Accept': 'application/json',
     };
-    axios.get(`${classstudentsURL}?id=${id}`, headers)
+    axios.get(classstudentsURL, headers)
         .then(res => {
             dispatch({
                 type: GET_CLASS_STUDENTS,

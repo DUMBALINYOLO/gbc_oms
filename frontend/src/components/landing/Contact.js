@@ -50,10 +50,6 @@ class Contact extends React.Component {
         });
     };
 
-
-
-
-
   render() {
     const { classes, slideMode } = this.props;
     const {
@@ -68,12 +64,11 @@ class Contact extends React.Component {
         <div className={classes.container}>
           <div className={classes.contactBubble}>
             <Title title="Make an Enquiry" align="left" nomargin />
-            <Typography component="p" className={classes.contactText}>Visit us on : www.gererebc.co.za , Email : gererebc@gmail.com, FB : @gererebc,
-Inst : gererebc, Cell : 0824685288 /071 361 1960- Accreditation no: 14132, Company
-Reg no : 2018 / 623149 / 07 - Level 1 BBBEE</Typography>
+            <Typography component="p" className={classes.contactText}>Visit us on : www.gererebusinesscollege.co.za , Email : gererebc@gmail.com, FB : @gererebc,
+Inst : gererebc, Cell : 0824685288 /071 361 1960</Typography>
           <form onSubmit={this.onSubmit}>
               <Grid container spacing={3}>
-                <Grid item lg={6} xs={12}>
+                <Grid item lg={12} xs={12}>
                   <FormControl className={classes.formControl}>
                     <TextField
                       fullWidth
@@ -90,7 +85,7 @@ Reg no : 2018 / 623149 / 07 - Level 1 BBBEE</Typography>
                     <TextField
                       fullWidth
                       id="standard-email"
-                      label="You'r email?"
+                      label="Your Email?"
                       className={classes.textField}
                       value={email}
                       required
@@ -111,12 +106,12 @@ Reg no : 2018 / 623149 / 07 - Level 1 BBBEE</Typography>
                     />
                   </FormControl>
                 </Grid>
-                <Grid item lg={6} xs={12}>
+                <Grid item lg={12} xs={12}>
                   <FormControl className={classes.formControl}>
                     <TextField
                       fullWidth
                       id="standard-multiline-flexible"
-                      label="Message"
+                      label="Your Message"
                       multiline
                       rows="4"
                       value={message}
