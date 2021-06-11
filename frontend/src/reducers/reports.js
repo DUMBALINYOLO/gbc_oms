@@ -5,6 +5,7 @@ const initialState = {
     statscounter: {},
 }
 
+
 export default function reports(state = initialState, action){
     switch(action.type){
         case GET_COUNTER_STATS:
