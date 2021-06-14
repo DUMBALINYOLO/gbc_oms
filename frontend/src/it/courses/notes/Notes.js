@@ -1,38 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
-import {Form} from "../../../components/formcontrols/useForm";
 import { DataTable } from 'primereact/datatable';
 import { connect } from 'react-redux';
 import { Column } from 'primereact/column';
 import { Toast } from 'primereact/toast';
 import { Button } from 'primereact/button';
-import { FileUpload } from 'primereact/fileupload';
-import { Rating } from 'primereact/rating';
 import { Toolbar } from 'primereact/toolbar';
 import { InputTextarea } from 'primereact/inputtextarea';
-import { RadioButton } from 'primereact/radiobutton';
-import { InputNumber } from 'primereact/inputnumber';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { useHistory } from 'react-router-dom';
 import '../table.css';
-
-import InformationTechnologyLayout from "../../layout/InformationTechnologyLayout";
 import {
   Paper,
   makeStyles,
-  TableBody,
-  TableRow,
-  TableCell,
-  InputAdornment,
-  Grid,
 }
 from '@material-ui/core';
-import { MultiSelect } from 'primereact/multiselect';
-import  Controls  from "../../../components/formcontrols/Controls";
+import { Dropdown } from 'primereact/dropdown';
 import { getStudyNotes, addStudyNote, editStudyNote } from '../../../actions/courses';
 import {getStudyNotesApprovalStatusChoices, getStudynotesStatusChoices} from '../../../actions/choices';
-import { Badge } from 'primereact/badge';
+
 
 const useStyles = makeStyles(theme => ({
   pageContent: {
@@ -59,7 +46,6 @@ const Notes = (props) => {
     };
 
     const classes = useStyles();
-    const [products, setProducts] = useState(null);
     const [productDialog, setProductDialog] = useState(false);
     const [deleteProductDialog, setDeleteProductDialog] = useState(false);
     const [deleteProductsDialog, setDeleteProductsDialog] = useState(false);
@@ -83,9 +69,6 @@ const Notes = (props) => {
     }, [newRecord]);
 
 
-    const formatCurrency = (value) => {
-        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    }
 
     const openNew = () => {
         setRecord(emptyRecord);
@@ -134,10 +117,7 @@ const Notes = (props) => {
         setProductDialog(true);
     }
 
-    const confirmDeleteProduct = (record) => {
-        setRecord(record);
-        setDeleteProductDialog(true);
-    }
+
 
     const deleteProduct = () => {
         let _records = records.filter(val => val.id !== record.id);
@@ -147,25 +127,13 @@ const Notes = (props) => {
         toast.current.show({ severity: 'success', summary: 'Successful', detail: 'NOTES Deleted', life: 3000 });
     }
 
-    const findIndexById = (id) => {
-        let index = -1;
-        for (let i = 0; i < records.length; i++) {
-            if (records[i].id === id) {
-                index = i;
-                break;
-            }
-        }
-
-        return index;
-    }
+    
 
     const exportCSV = () => {
         dt.current.exportCSV();
     }
 
-    const confirmDeleteSelected = () => {
-        setDeleteProductsDialog(true);
-    }
+    
 
     const deleteSelectedProducts = () => {
         let _records = records.filter(val => !selectedProducts.includes(val));
@@ -174,11 +142,7 @@ const Notes = (props) => {
         toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Notes Deleted', life: 3000 });
     }
 
-    const onCategoryChange = (e) => {
-        let _record = {...record};
-        _record['category'] = e.value;
-        setRecord(_record);
-    }
+
 
     const handleClick = id =>{
       history.push(`/itdashboard/notes/${id}`)
@@ -191,24 +155,12 @@ const Notes = (props) => {
         setRecord(_record);
     }
 
-    const onInputNumberChange = (e, name) => {
-        const val = e.value || 0;
-        let _record = {...record };
-        _record[`${name}`] = val;
 
-        setRecord(_record);
-    }
-
-    const onStatusChange = (e) => {
-        let _record = {...record };
-        _record['status'] = e.value;
-        setRecord(_record);
-    }
 
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE NOTES" icon="pi pi-plus" className="p-button-warning p-mr-2" onClick={openNew} />
+                <Button label="CREATE NOTES"  className="p-button-warning p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -223,33 +175,11 @@ const Notes = (props) => {
         )
     }
 
-    const imageBodyTemplate = (rowData) => {
-        return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
-    }
+    
 
-    const idBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.id} severity="info" />
-      );
-    }
+   
 
-    const titleBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.title} severity="info" />
-      );
-    }
-
-    const statusBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.status} severity="danger" />
-      );
-    }
-
-    const approvalBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.approval_status} severity="success" />
-      );
-    }
+    
 
     const actionBodyTemplate = (rowData) => {
         return (
@@ -271,7 +201,6 @@ const Notes = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE NOTES</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -329,80 +258,82 @@ const Notes = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
                         />
                         <Column
                           field="title"
                           header="TITLE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TITLE"
-                          body={titleBodyTemplate}
                         />
                         <Column
                           field="status"
                           header="STATUS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY STATUS"
-                          body={statusBodyTemplate}
                         />
                         <Column
                           field="approval_status"
                           header="APPROVAL STATUS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY APPROVAL STATUS"
-                          body={approvalBodyTemplate}
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>
                 </div>
 
-                <Dialog visible={productDialog} style={{ width: '500px' }} header="NOTES FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
-                  <Form>
-                    <Grid container>
-                      <Grid item xs={12}>
-                        <Controls.Input
-                            name="title"
-                            label="TITLE"
+                <Dialog visible={productDialog} style={{ width: '600px' }} header="NOTES FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
+                    <div className="p-field p-col-12 p-md-12">
+                        <label htmlFor="name">TITLE</label>
+                        <InputText id="title"
                             value={record.title}
                             onChange={(e) => onInputChange(e, 'title')}
+                            required
+                            autoFocus
+                            tooltip="Enter Title"
                         />
-                        <div className="p-field p-col-6">
-                          <label htmlFor="note">NOTES</label>
-                          <InputTextarea
-                              id="note"
-                              value={record.note}
-                              onChange={(e) => onInputChange(e, 'note')}
-                              required
-                              autoFocus
-                              className={classNames({ 'p-invalid': submitted && !record.note })}
-                              rows={3}
-                              cols={30}
-                            />
-                          {submitted && !record.note && <small className="p-error">Notes are required.</small>}
-                        </div>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Controls.DictSelect
-                            name="status"
-                            label="STATUS"
+                        {submitted && !record.title && <small className="p-error">Title is required.</small>}
+                    </div>
+                    <div className="p-field p-col-12 p-md-12">
+                        <Dropdown
                             value={record.status}
-                            onChange={(e) => onInputChange(e, 'status')}
+                            optionLabel="value"
+                            optionValue="key"
                             options={props.studynotesstatuschoices}
+                            onChange={(e) => onInputChange(e, 'status')}
+                            filter
+                            showClear
+                            filterBy="value"
+                            placeholder="Select Status"
+
                         />
-                        <Controls.DictSelect
-                            name="approval_status"
-                            label="APPROVAL STATUS"
+                    </div>
+                    <div className="p-field p-col-12 p-md-12">
+                        <Dropdown
                             value={record.approval_status}
-                            onChange={(e) => onInputChange(e, 'approval_status')}
+                            optionLabel="value"
+                            optionValue="key"
                             options={props.studynotesapprovalstatuschoices}
+                            onChange={(e) => onInputChange(e, 'approval_status')}
+                            filter
+                            showClear
+                            filterBy="value"
+                            placeholder="Select Approval Status"
                         />
-                      </Grid>
-                    </Grid>
-                  </Form>
+                    </div>
+                    <div className="p-field p-col-12">
+                        <label htmlFor="note">NOTES</label>
+                        <InputTextarea
+                            id="note"
+                            value={record.note}
+                            onChange={(e) => onInputChange(e, 'note')}
+                            required
+                            autoFocus
+                            className={classNames({ 'p-invalid': submitted && !record.note })}
+                            rows={3}
+                            cols={30}
+                        />
+                        {submitted && !record.note && <small className="p-error">Notes are required.</small>}
+                    </div>
                 </Dialog>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
                     <div className="confirmation-content">

@@ -157,7 +157,7 @@ export const getCurriculums = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${curriculumsURL}?q=${query}`, headers)
+        .get(`${curriculumsURL}`, headers)
         .then(res => {
           const curriculums = res.data;
           dispatch(getCurriculumListSuccess(curriculums));
@@ -248,7 +248,7 @@ export const getSubjects = (query, token) => {
         Authorization: `Token ${token}`
       };
       axios
-        .get(`${subjectsURL}?q=${query}`, headers)
+        .get(`${subjectsURL}`, headers)
         .then(res => {
           const subjects = res.data;
           dispatch(getSubjectListSuccess(subjects));

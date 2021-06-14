@@ -195,16 +195,12 @@ const Objectives = (props) => {
         setRecord(_record);
     }
 
-    const onStatusChange = (e) => {
-        let _record = {...record };
-        _record['status'] = e.value;
-        setRecord(_record);
-    }
+    
 
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE OBJECTIVES" icon="pi pi-plus" className="p-button-warning p-mr-2" onClick={openNew} />
+                <Button label="CREATE OBJECTIVES" className="p-button-warning p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -219,9 +215,7 @@ const Objectives = (props) => {
         )
     }
 
-    const imageBodyTemplate = (rowData) => {
-        return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
-    }
+    
 
    const idBodyTemplate = (rowData) => {
       return (
@@ -229,17 +223,7 @@ const Objectives = (props) => {
       );
     }
 
-    const nameBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.name} severity="info" />
-      );
-    }
 
-    const descriptionBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.description} severity="info" />
-      );
-    }
 
     const actionBodyTemplate = (rowData) => {
         return (
@@ -260,7 +244,6 @@ const Objectives = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE OBJECTIVES</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -326,32 +309,31 @@ const Objectives = (props) => {
                           header="NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NAME"
-                          body={nameBodyTemplate}
                         />
                         <Column
                           field="description"
                           header="DESCRIPTION"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY DESCRIPTION"
-                          body={descriptionBodyTemplate}
+            
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>
                 </div>
 
                 <Dialog visible={productDialog} style={{ width: '500px' }} header="OBJECTIVE FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
-                  <Form>
-                    <Grid container>
-                      <Grid item xs={12}>
-                        <Controls.Input
-                            name="name"
-                            label="NAME"
-                            value={record.name}
-                            onChange={(e) => onInputChange(e, 'name')}
-                        />
-                        <div className="p-field p-col-6">
+                        <div className="p-field p-col-12 p-md-12">
+                            <label htmlFor="name">NAME</label>
+                            <InputText id="name"
+                                value={record.name}
+                                onChange={(e) => onInputChange(e, 'name')}
+                                required
+                                autoFocus
+                                tooltip="Enter Name"
+                            />
+                            {submitted && !record.name && <small className="p-error">Title is required.</small>}
+                        </div>
+                        <div className="p-field p-col-12">
                           <label htmlFor="description">DESCRIPTION</label>
                           <InputTextarea
                               id="description"
@@ -365,9 +347,6 @@ const Objectives = (props) => {
                             />
                           {submitted && !record.description && <small className="p-error">Description is required.</small>}
                       </div>
-                      </Grid>
-                    </Grid>
-                  </Form>
                 </Dialog>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
                     <div className="confirmation-content">

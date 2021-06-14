@@ -20,15 +20,10 @@ import {Form, useForm } from "../../components/formcontrols/useForm";
 import {
   Paper,
   makeStyles,
-  TableBody,
-  TableRow,
-  TableCell,
-  InputAdornment,
   Grid,
 }
 from '@material-ui/core';
 import { Badge } from 'primereact/badge';
-import { MultiSelect } from 'primereact/multiselect';
 import  Controls  from "../../components/formcontrols/Controls";
 import { getStudentProfiles } from '../../actions/people';
 import { getEnrollments, addEnrollment, editEnrollment, getClasses } from  '../../actions/classes';
@@ -59,7 +54,6 @@ const Enrollments = (props) => {
 
 
     const classes = useStyles();
-    const [products, setProducts] = useState(null);
     const [productDialog, setProductDialog] = useState(false);
     const [deleteProductDialog, setDeleteProductDialog] = useState(false);
     const [deleteProductsDialog, setDeleteProductsDialog] = useState(false);
@@ -71,7 +65,7 @@ const Enrollments = (props) => {
     const toast = useRef(null);
     const dt = useRef(null);
     const {token, records} =props;
-    const history = useHistory();
+
 
     useEffect(() => {
       if(!props.fetched) {
@@ -84,9 +78,7 @@ const Enrollments = (props) => {
     }, [newRecord]);
 
 
-    const formatCurrency = (value) => {
-        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    }
+    
 
     const openNew = () => {
         setRecord(emptyEnrollment);
@@ -131,16 +123,7 @@ const Enrollments = (props) => {
         setRecord(emptyEnrollment);
     }
 
-    const editProduct = (record) => {
-        setRecord({...record});
-        setProductDialog(true);
-    }
-
-    const confirmDeleteProduct = (record) => {
-        setRecord(record);
-        setDeleteProductDialog(true);
-    }
-
+    
     const deleteProduct = () => {
         let _records = records.filter(val => val.id !== record.id);
         setRecord(_records);
@@ -149,25 +132,13 @@ const Enrollments = (props) => {
         toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Enrollment Deleted', life: 3000 });
     }
 
-    const findIndexById = (id) => {
-        let index = -1;
-        for (let i = 0; i < records.length; i++) {
-            if (records[i].id === id) {
-                index = i;
-                break;
-            }
-        }
-
-        return index;
-    }
+    
 
     const exportCSV = () => {
         dt.current.exportCSV();
     }
 
-    const confirmDeleteSelected = () => {
-        setDeleteProductsDialog(true);
-    }
+    
 
     const deleteSelectedProducts = () => {
         let _records = records.filter(val => !selectedProducts.includes(val));
@@ -176,11 +147,7 @@ const Enrollments = (props) => {
         toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Enrollment Deleted', life: 3000 });
     }
 
-    const onCategoryChange = (e) => {
-        let _record = {...record};
-        _record['category'] = e.value;
-        setRecord(_record);
-    }
+    
 
     const onInputChange = (e, name) => {
         const val = (e.target && e.target.value) || '';
@@ -189,19 +156,7 @@ const Enrollments = (props) => {
         setRecord(_record);
     }
 
-    const onInputNumberChange = (e, name) => {
-        const val = e.value || 0;
-        let _record = {...record };
-        _record[`${name}`] = val;
-
-        setRecord(_record);
-    }
-
-    const onStatusChange = (e) => {
-        let _record = {...record };
-        _record['status'] = e.value;
-        setRecord(_record);
-    }
+    
 
     const statusOptions = [
       {key: 'enroll', value: 'ENROLL'},
@@ -221,38 +176,12 @@ const Enrollments = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE ENROLLMENT" icon="pi pi-plus" className="p-button-info p-mr-2" onClick={openNew} />
+                <Button label="ADD NEW" className="p-button-info p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
 
-    const imageBodyTemplate = (rowData) => {
-        return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
-    }
-
-    const idBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.id} severity="info" />
-      );
-    }
-
-    const statusBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.status} severity="success" />
-      );
-    }
-
-    const klassBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.enr_klass} severity="info" />
-      );
-    }
-
-    const stdntBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.stdnt} severity="info" />
-      );
-    }
+    
 
     const actionBodyTemplate = (rowData) => {
         return (
@@ -272,7 +201,6 @@ const Enrollments = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE ENROLLMENT</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -299,7 +227,7 @@ const Enrollments = (props) => {
     );
 
     return (
-      <InformationTechnologyLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
@@ -320,7 +248,6 @@ const Enrollments = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -329,38 +256,30 @@ const Enrollments = (props) => {
                           field="id"
                           header="ID"
                           sortable
-                          filter
-                          filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
+                          filter   
                         />
                         <Column
                           field="status"
                           header="STATUS"
                           sortable
-                          filter
-                          filterPlaceholder="SEARCH BY STATUS"
-                          body={statusBodyTemplate}
+                          filter 
                         />
                         <Column
                           field="enr_klass"
                           header="CLASS ENROLLMENT"
                           sortable
-                          filter
-                          filterPlaceholder="SEARCH BY ENROLLMENT"
-                          body={klassBodyTemplate}
+                          filter 
                         />
                         <Column
                           field="stdnt"
                           header="STUDENT"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY STUDENT"
-                          body={stdntBodyTemplate}
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
-                <Dialog visible={productDialog} style={{ width: '500px' }} header="ENROLLMENT FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
+                <Dialog visible={productDialog} style={{ width: '600px' }} header="ENROLLMENT FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
                   <Form>
                     <Grid container>
                       <Grid item xs={12}>
@@ -407,7 +326,7 @@ const Enrollments = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </InformationTechnologyLayout>
+        </>
     );
 }
 

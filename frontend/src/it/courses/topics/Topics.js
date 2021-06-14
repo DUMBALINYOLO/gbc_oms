@@ -67,7 +67,7 @@ const Topics = props => {
   }, [newtopic]);
 
 
-  const addOrEdit = (topic, resetForm, token) => {
+  const addOrEdit = (topic) => {
       if (topic.id > 0){
         props.editTopic(topic.id, topic, token)
         setNewTopic(topic)
@@ -76,7 +76,6 @@ const Topics = props => {
         setNewTopic(topic)
         props.getAdminTopics(id,query, token);
       }
-      resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }

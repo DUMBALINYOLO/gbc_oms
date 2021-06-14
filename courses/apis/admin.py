@@ -1,4 +1,4 @@
-from rest_framework import viewsets, generics, permissions
+from rest_framework import viewsets, generics, permissions, status
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -69,7 +69,7 @@ from courses.serializers import (
 			StudentCourseEnrollmentCreateUpdateSerializer,
 			StudentCourseEnrollmentListDetailSerializer,
 			LessonSlideCreateUpdateSerializer,
-			LessonListDetailSerializer,
+			LessonSlideListDetailSerializer,
 
 
 	)
@@ -98,6 +98,17 @@ class AdminUpcomingCourseViewSet(viewsets.ModelViewSet):
 		return ItCourseDetailSerializer
 
 
+	def create(self, request, *args, **kwargs):
+		draft_request_data = request.data.copy()
+		draft_request_data["status"] = 'upcoming'
+		serializer = self.get_serializer(data=draft_request_data)
+		serializer.is_valid(raise_exception=True)
+		self.perform_create(serializer)
+		headers = self.get_success_headers(serializer.data)
+		return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+
 	def get_queryset(self, *args, **kwargs):
 		queryset = Course.objects.filter(
 								~ComplexQueryLookUp(status__in=['ongoing', 'finished', 'inactive'])
@@ -121,6 +132,7 @@ class AdminUpcomingCourseViewSet(viewsets.ModelViewSet):
 		return queryset
 
 
+
 class AdminOngoingCourseViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.AllowAny,]
@@ -131,6 +143,17 @@ class AdminOngoingCourseViewSet(viewsets.ModelViewSet):
 		if self.action in ['put', 'patch', 'update', 'create']:
 			return ItCourseCreateUpdateSerializer
 		return ItCourseDetailSerializer
+
+	def create(self, request, *args, **kwargs):
+		draft_request_data = request.data.copy()
+		draft_request_data["status"] = 'ongoing'
+		serializer = self.get_serializer(data=draft_request_data)
+		serializer.is_valid(raise_exception=True)
+		self.perform_create(serializer)
+		headers = self.get_success_headers(serializer.data)
+		return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
 
 
 	def get_queryset(self, *args, **kwargs):
@@ -164,6 +187,17 @@ class AdminFinishedCourseViewSet(viewsets.ModelViewSet):
 		if self.action in ['put', 'patch', 'update', 'create']:
 			return ItCourseCreateUpdateSerializer
 		return ItCourseDetailSerializer
+
+	def create(self, request, *args, **kwargs):
+		draft_request_data = request.data.copy()
+		draft_request_data["status"] = 'finished'
+		serializer = self.get_serializer(data=draft_request_data)
+		serializer.is_valid(raise_exception=True)
+		self.perform_create(serializer)
+		headers = self.get_success_headers(serializer.data)
+		return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
 
 
 	def get_queryset(self, *args, **kwargs):
@@ -199,6 +233,18 @@ class AdminInactiveCourseViewSet(viewsets.ModelViewSet):
 		if self.action in ['put', 'patch', 'update', 'create']:
 			return ItCourseCreateUpdateSerializer
 		return ItCourseDetailSerializer
+
+
+	def create(self, request, *args, **kwargs):
+		draft_request_data = request.data.copy()
+		draft_request_data["status"] = 'inactive'
+		serializer = self.get_serializer(data=draft_request_data)
+		serializer.is_valid(raise_exception=True)
+		self.perform_create(serializer)
+		headers = self.get_success_headers(serializer.data)
+		return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
 
 
 	def get_queryset(self, *args, **kwargs):

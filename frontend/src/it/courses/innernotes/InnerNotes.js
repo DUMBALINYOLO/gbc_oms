@@ -102,7 +102,7 @@ const InnerNotes = props => {
   }, [newcourse]);
 
 
-  const addOrEdit = (fee, resetForm, token) => {
+  const addOrEdit = (fee) => {
       if (fee.id > 0){
         props.editStudyNoteNote(fee.id, fee, token)
         setNewCourse(fee)
@@ -113,7 +113,6 @@ const InnerNotes = props => {
         console.log(fee)
         props.getStudyNoteNotes(id,query, token);
       }
-      resetForm()
       setRecordForEdit(null)
       setOpenPopup(false)
   }

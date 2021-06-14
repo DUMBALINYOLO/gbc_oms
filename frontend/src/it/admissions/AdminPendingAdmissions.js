@@ -262,18 +262,11 @@ const AdminPendingAdmissions = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE PENDING ADMISSIONS</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
             </span>
         </div>
-    );
-    const productDialogFooter = (
-        <React.Fragment>
-            <Button label="Cancel" icon="pi pi-times" className="p-button-text" onClick={hideDialog} />
-            <Button label="Save" icon="pi pi-check" className="p-button-text" onClick={saveProduct} />
-        </React.Fragment>
     );
     const deleteProductDialogFooter = (
         <React.Fragment>
@@ -289,7 +282,7 @@ const AdminPendingAdmissions = (props) => {
     );
 
     return (
-      <InformationTechnologyLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
@@ -310,7 +303,6 @@ const AdminPendingAdmissions = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -320,42 +312,32 @@ const AdminPendingAdmissions = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
                         />
                         <Column
                           field="application_number"
                           header="CODE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY CODE"
-                          body={applicationBodyTemplate}
                         />
                         <Column
                           field="student"
                           header="STUDENT"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY STUDENT"
-                          body={studentBodyTemplate}
                         />
                         <Column
                           field="klass"
                           header="CLASS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY CLASS"
-                          body={klassBodyTemplate}
                         />
                         <Column
                           field="status"
                           header="STATUS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY STATUS"
-                          body={statusBodyTemplate}
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
@@ -373,7 +355,7 @@ const AdminPendingAdmissions = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </InformationTechnologyLayout>
+        </>
 
     );
 }

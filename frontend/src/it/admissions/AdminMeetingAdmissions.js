@@ -210,40 +210,6 @@ const AdminMeetingAdmissions = (props) => {
         )
     }
 
-    const imageBodyTemplate = (rowData) => {
-        return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
-    }
-
-    const idBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.id} severity="info" />
-      );
-    }
-
-    const applicationBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.application_number} severity="info" />
-      );
-    }
-
-    const studentBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.student} severity="info" />
-      );
-    }
-
-    const klassBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.klass} severity="info" />
-      );
-    }
-
-    const statusBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.status} severity="warning" />
-      );
-    }
-
     const actionBodyTemplate = (rowData) => {
         return (
             <React.Fragment>
@@ -262,18 +228,11 @@ const AdminMeetingAdmissions = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE MEETING ADMISSIONS</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
             </span>
         </div>
-    );
-    const productDialogFooter = (
-        <React.Fragment>
-            <Button label="Cancel" icon="pi pi-times" className="p-button-text" onClick={hideDialog} />
-            <Button label="Save" icon="pi pi-check" className="p-button-text" onClick={saveProduct} />
-        </React.Fragment>
     );
     const deleteProductDialogFooter = (
         <React.Fragment>
@@ -289,7 +248,7 @@ const AdminMeetingAdmissions = (props) => {
     );
 
     return (
-      <InformationTechnologyLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
@@ -310,7 +269,6 @@ const AdminMeetingAdmissions = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -320,42 +278,32 @@ const AdminMeetingAdmissions = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
                         />
                         <Column
                           field="application_number"
                           header="CODE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY CODE"
-                          body={applicationBodyTemplate}
                         />
                         <Column
                           field="student"
                           header="STUDENT"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY STUDENT"
-                          body={studentBodyTemplate}
                         />
                         <Column
                           field="klass"
                           header="CLASS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY CLASS"
-                          body={klassBodyTemplate}
                         />
                         <Column
                           field="status"
                           header="STATUS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY STATUS"
-                          body={statusBodyTemplate}
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
@@ -373,7 +321,7 @@ const AdminMeetingAdmissions = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </InformationTechnologyLayout>
+        </>
 
     );
 }

@@ -79,7 +79,7 @@ class LessonSlideCreateUpdateSerializer(serializers.ModelSerializer):
 		return slide
 
 
-class LessonListDetailSerializer(serializers.ModelSerializer):
+class LessonSlideListDetailSerializer(serializers.ModelSerializer):
 	status = serializers.SerializerMethodField()
 
 	class Meta:
@@ -176,6 +176,7 @@ class ItPublisherCreateUpdateSerializer(serializers.ModelSerializer):
 
 
 class ItPublisherListSerializer(serializers.ModelSerializer):
+	city = StringSerializer()
 
 	class Meta:
 		model = Publisher

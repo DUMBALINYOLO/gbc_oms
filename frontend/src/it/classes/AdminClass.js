@@ -445,7 +445,7 @@ const AdminClass = (props) => {
                             optionLabel="name"
                             optionValue="id"
                             options={props.adminteachers}
-                            onChange={(e) => onInputChange(e, 'class_teache')}
+                            onChange={(e) => onInputChange(e, 'class_teacher')}
                             filter
                             showClear
                             filterBy="name"

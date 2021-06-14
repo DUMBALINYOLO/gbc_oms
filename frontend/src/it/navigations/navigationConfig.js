@@ -43,14 +43,6 @@ const navigationConfig = [
     type: "group",
     children: [
       {
-        id: "dashboard",
-        title: "Home",
-        type: "item",
-        url: "/itdashboard",
-        exact: true,
-        icon: <HomeIcon />
-      },
-      {
         id: "users",
         title: "USERS",
         type: "collapse",

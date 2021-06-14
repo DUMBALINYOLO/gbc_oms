@@ -1,17 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import classNames from 'classnames';
-import {Form} from "../../components/formcontrols/useForm";
 import { DataTable } from 'primereact/datatable';
 import { connect } from 'react-redux';
 import { Column } from 'primereact/column';
 import { Toast } from 'primereact/toast';
 import { Button } from 'primereact/button';
-import { FileUpload } from 'primereact/fileupload';
-import { Rating } from 'primereact/rating';
 import { Toolbar } from 'primereact/toolbar';
-import { InputTextarea } from 'primereact/inputtextarea';
-import { RadioButton } from 'primereact/radiobutton';
-import { InputNumber } from 'primereact/inputnumber';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { useHistory } from 'react-router-dom';
@@ -23,18 +16,13 @@ import InformationTechnologyLayout from "../layout/InformationTechnologyLayout";
 import {
   Paper,
   makeStyles,
-  TableBody,
-  TableRow,
-  TableCell,
-  InputAdornment,
-  Grid,
 }
 from '@material-ui/core';
-import { MultiSelect } from 'primereact/multiselect';
-import  Controls  from "../../components/formcontrols/Controls";
+
 import { getSubjects, addSubject, editSubject } from '../../actions/curriculums';
 import { getCurriculums } from '../../actions/curriculums';
 import { Badge } from 'primereact/badge';
+import { Dropdown } from 'primereact/dropdown';
 
 const useStyles = makeStyles(theme => ({
   pageContent: {
@@ -58,7 +46,6 @@ const Subjects = (props) => {
     };
 
     const classes = useStyles();
-    const [products, setProducts] = useState(null);
     const [productDialog, setProductDialog] = useState(false);
     const [deleteProductDialog, setDeleteProductDialog] = useState(false);
     const [deleteProductsDialog, setDeleteProductsDialog] = useState(false);
@@ -70,21 +57,17 @@ const Subjects = (props) => {
     const toast = useRef(null);
     const dt = useRef(null);
     const {token, records} =props;
-    const history = useHistory();
+
 
     useEffect(() => {
       if(!props.fetched) {
-          props.getSubjects(token);
           props.getSubjects(token);
       }
       console.log('mount it!');
     }, [newRecord]);
 
 
-    const formatCurrency = (value) => {
-        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    }
-
+    
     const openNew = () => {
         setRecord(emptyRecord);
         setSubmitted(false);
@@ -133,10 +116,7 @@ const Subjects = (props) => {
         setProductDialog(true);
     }
 
-    const confirmDeleteProduct = (record) => {
-        setRecord(record);
-        setDeleteProductDialog(true);
-    }
+    
 
     const deleteProduct = () => {
         let _records = records.filter(val => val.id !== record.id);
@@ -146,25 +126,13 @@ const Subjects = (props) => {
         toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Subject Deleted', life: 3000 });
     }
 
-    const findIndexById = (id) => {
-        let index = -1;
-        for (let i = 0; i < records.length; i++) {
-            if (records[i].id === id) {
-                index = i;
-                break;
-            }
-        }
-
-        return index;
-    }
+    
 
     const exportCSV = () => {
         dt.current.exportCSV();
     }
 
-    const confirmDeleteSelected = () => {
-        setDeleteProductsDialog(true);
-    }
+    
 
     const deleteSelectedProducts = () => {
         let _records = records.filter(val => !selectedProducts.includes(val));
@@ -173,11 +141,7 @@ const Subjects = (props) => {
         toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Subjects Deleted', life: 3000 });
     }
 
-    const onCategoryChange = (e) => {
-        let _record = {...record};
-        _record['category'] = e.value;
-        setRecord(_record);
-    }
+    
 
     const onInputChange = (e, name) => {
         const val = (e.target && e.target.value) || '';
@@ -186,24 +150,11 @@ const Subjects = (props) => {
         setRecord(_record);
     }
 
-    const onInputNumberChange = (e, name) => {
-        const val = e.value || 0;
-        let _record = {...record };
-        _record[`${name}`] = val;
-
-        setRecord(_record);
-    }
-
-    const onStatusChange = (e) => {
-        let _record = {...record };
-        _record['status'] = e.value;
-        setRecord(_record);
-    }
-
+   
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE SUBJECT" icon="pi pi-plus" className="p-button-warning p-mr-2" onClick={openNew} />
+                <Button label="CREATE SUBJECT"  className="p-button-warning p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -218,27 +169,8 @@ const Subjects = (props) => {
         )
     }
 
-    const imageBodyTemplate = (rowData) => {
-        return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
-    }
+    
 
-    const idBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.id} severity="info" />
-      );
-    }
-
-    const nameBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.name} severity="info" />
-      );
-    }
-
-    const codeBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.subject_code} severity="info" />
-      );
-    }
 
     const actionBodyTemplate = (rowData) => {
         return (
@@ -259,7 +191,6 @@ const Subjects = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE SUBJECTS</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -317,49 +248,53 @@ const Subjects = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
+                          
                         />
                         <Column
                           field="name"
                           header="NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NAME"
-                          body={nameBodyTemplate}
+                          
                         />
                         <Column
                           field="subject_code"
                           header="SUBJECT CODE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY SUBJECT CODE"
-                          body={codeBodyTemplate}
+                          
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>
                 </div>
 
-                <Dialog visible={productDialog} style={{ width: '500px' }} header="SUBJECT FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
-                  <Form>
-                    <Grid container>
-                      <Grid item xs={12}>
-                        <Controls.Input
-                          name="name"
-                          label="NAME"
-                          value={record.name}
-                          onChange={(e) => onInputChange(e, 'name')}
+                <Dialog visible={productDialog} style={{ width: '600px' }} header="SUBJECT FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
+                    <div className="p-field p-col-12 p-md-12">
+                        <label htmlFor="name">NAME</label>
+                        <InputText id="name"
+                            value={record.name}
+                            onChange={(e) => onInputChange(e, 'name')}
+                            required
+                            autoFocus
+                            tooltip="Enter Name"
                         />
-                        <Controls.Select
-                          name="curriculum"
-                          label="CURRICULUM"
-                          value={record.curriculum}
-                          onChange={(e) => onInputChange(e, 'curriculum')}
-                          options={props.curriculums}
+                        {submitted && !record.name && <small className="p-error">Title is required.</small>}
+                    </div>
+                    <div className="p-field p-col-12 p-md-12">
+                        <Dropdown
+                            value={record.curriculum}
+                            optionLabel="name"
+                            optionValue="id"
+                            options={props.curriculums}
+                            onChange={(e) => onInputChange(e, 'curriculum')}
+                            filter
+                            showClear
+                            filterBy="name"
+                            placeholder="Select Curriculum"
                         />
-                      </Grid>
-                    </Grid>
-                  </Form>
+                    </div>
+                  
+                  
                 </Dialog>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
                     <div className="confirmation-content">

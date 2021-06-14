@@ -1,16 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import classNames from 'classnames';
 import { DataTable } from 'primereact/datatable';
 import { connect } from 'react-redux';
 import { Column } from 'primereact/column';
 import { Toast } from 'primereact/toast';
 import { Button } from 'primereact/button';
-import { FileUpload } from 'primereact/fileupload';
-import { Rating } from 'primereact/rating';
 import { Toolbar } from 'primereact/toolbar';
-import { InputTextarea } from 'primereact/inputtextarea';
-import { RadioButton } from 'primereact/radiobutton';
-import { InputNumber } from 'primereact/inputnumber';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { useHistory } from 'react-router-dom';
@@ -19,16 +13,9 @@ import InformationTechnologyLayout from "../layout/InformationTechnologyLayout";
 import {
   Paper,
   makeStyles,
-  TableBody,
-  TableRow,
-  TableCell,
-  InputAdornment,
-  Grid,
 }
 from '@material-ui/core';
 import { Badge } from 'primereact/badge';
-import { MultiSelect } from 'primereact/multiselect';
-import  Controls  from "../../components/formcontrols/Controls";
 import { getAdminAttendances } from '../../actions/attendances';
 
 const useStyles = makeStyles(theme => ({
@@ -55,7 +42,6 @@ const AdminAttendances = (props) => {
 
 
     const classes = useStyles();
-    const [products, setProducts] = useState(null);
     const [productDialog, setProductDialog] = useState(false);
     const [deleteProductDialog, setDeleteProductDialog] = useState(false);
     const [deleteProductsDialog, setDeleteProductsDialog] = useState(false);
@@ -79,16 +65,9 @@ const AdminAttendances = (props) => {
     }, [newRecord]);
 
 
-    const formatCurrency = (value) => {
-        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    }
+    
 
-    const openNew = () => {
-        setRecord(emptyAdminAttendance);
-        setSubmitted(false);
-        setProductDialog(true);
-    }
-
+    
     const hideDialog = () => {
         setSubmitted(false);
         setProductDialog(false);
@@ -126,15 +105,7 @@ const AdminAttendances = (props) => {
         }
     }
 
-    const editProduct = (record) => {
-        setRecord({...record});
-        setProductDialog(true);
-    }
-
-    const confirmDeleteProduct = (record) => {
-        setRecord(record);
-        setDeleteProductDialog(true);
-    }
+    
 
     const deleteProduct = () => {
         let _records = records.filter(val => val.id !== record.id);
@@ -144,25 +115,13 @@ const AdminAttendances = (props) => {
         toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Admin Attendance Deleted', life: 3000 });
     }
 
-    const findIndexById = (id) => {
-        let index = -1;
-        for (let i = 0; i < records.length; i++) {
-            if (records[i].id === id) {
-                index = i;
-                break;
-            }
-        }
-
-        return index;
-    }
+    
 
     const exportCSV = () => {
         dt.current.exportCSV();
     }
 
-    const confirmDeleteSelected = () => {
-        setDeleteProductsDialog(true);
-    }
+    
 
     const deleteSelectedProducts = () => {
         let _records = records.filter(val => !selectedProducts.includes(val));
@@ -171,36 +130,13 @@ const AdminAttendances = (props) => {
         toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Admin Attendances Deleted', life: 3000 });
     }
 
-    const onCategoryChange = (e) => {
-        let _record = {...record};
-        _record['category'] = e.value;
-        setRecord(_record);
-    }
-
-    const onInputChange = (e, name) => {
-        const val = (e.target && e.target.value) || '';
-        let _record = {...record};
-        _record[`${name}`] = val;
-        setRecord(_record);
-    }
-
-    const onInputNumberChange = (e, name) => {
-        const val = e.value || 0;
-        let _record = {...record };
-        _record[`${name}`] = val;
-
-        setRecord(_record);
-    }
+    
 
     const handleClick = id =>{
         history.push(`/itdashboard/attendance/${id}`)
     }
 
-    const onStatusChange = (e) => {
-        let _record = {...record };
-        _record['status'] = e.value;
-        setRecord(_record);
-    }
+   
 
     const rightToolbarTemplate = () => {
         return (
@@ -212,34 +148,7 @@ const AdminAttendances = (props) => {
         )
     }
 
-    const imageBodyTemplate = (rowData) => {
-        return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
-    }
-
-    const idBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.id} severity="info" />
-      );
-    }
-
-    const dateBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.date} severity="info" />
-      );
-    }
-
-    const klassBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.klass} severity="info" />
-      );
-    }
-
-    const recordedBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.recorded_by} severity="info" />
-      );
-    }
-
+    
     const actionBodyTemplate = (rowData) => {
         return (
             <React.Fragment>
@@ -317,32 +226,26 @@ const AdminAttendances = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
                         />
                         <Column
                           field="date"
                           header="DATE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY DATE"
-                          body={dateBodyTemplate}
+
                         />
                         <Column
                           field="klass"
                           header="CLASS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY CLASS"
-                          body={klassBodyTemplate}
+
                         />
                         <Column
                           field="recorded_by"
                           header="NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NAME"
-                          body={recordedBodyTemplate}
                         />
                         <Column body={actionBodyTemplate}/>
                     </DataTable>

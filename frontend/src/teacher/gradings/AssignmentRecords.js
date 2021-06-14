@@ -1,17 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import classNames from 'classnames';
 import {Form} from "../../components/formcontrols/useForm";
 import { DataTable } from 'primereact/datatable';
 import { connect } from 'react-redux';
 import { Column } from 'primereact/column';
 import { Toast } from 'primereact/toast';
 import { Button } from 'primereact/button';
-import { FileUpload } from 'primereact/fileupload';
 import { Rating } from 'primereact/rating';
 import { Toolbar } from 'primereact/toolbar';
-import { InputTextarea } from 'primereact/inputtextarea';
-import { RadioButton } from 'primereact/radiobutton';
-import { InputNumber } from 'primereact/inputnumber';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { useHistory } from 'react-router-dom';
@@ -19,14 +14,9 @@ import './table.css';
 import {
   Paper,
   makeStyles,
-  TableBody,
-  TableRow,
-  TableCell,
-  InputAdornment,
   Grid,
 }
 from '@material-ui/core';
-import { MultiSelect } from 'primereact/multiselect';
 import  Controls  from "../../components/formcontrols/Controls";
 import {  editAssignmentRecord, getAssignmentRecords } from '../../actions/gradings';
 
@@ -51,20 +41,17 @@ const AssignmentRecords = (props) => {
     };
 
     const classes = useStyles();
-    const [products, setProducts] = useState(null);
     const [productDialog, setProductDialog] = useState(false);
     const [deleteProductDialog, setDeleteProductDialog] = useState(false);
     const [deleteProductsDialog, setDeleteProductsDialog] = useState(false);
     const [record, setRecord] = useState(emptyRecord);
     const [selectedProducts, setSelectedProducts] = useState(null);
-    const [submitted, setSubmitted] = useState(false);
     const [newRecord, setNewRecord] = useState({});
     const [globalFilter, setGlobalFilter] = useState(null);
     const toast = useRef(null);
     const dt = useRef(null);
     const {token, records} =props;
     const {id} =props.data
-    const history = useHistory();
 
     useEffect(() => {
       if(!props.fetched) {
@@ -80,12 +67,10 @@ const AssignmentRecords = (props) => {
 
     const openNew = () => {
         setRecord(emptyRecord);
-        setSubmitted(false);
         setProductDialog(true);
     }
 
     const hideDialog = () => {
-        setSubmitted(false);
         setProductDialog(false);
     }
 
@@ -98,7 +83,6 @@ const AssignmentRecords = (props) => {
     }
 
     const saveProduct = (e) => {
-        setSubmitted(true);
         e.preventDefault();
         if (record.name.trim()) {
             let _records = [...records];

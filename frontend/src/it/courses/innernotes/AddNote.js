@@ -1,126 +1,91 @@
-import React, {  useEffect, useState } from "react";
-import { connect } from 'react-redux';
-import {  Grid, makeStyles,  } from "@material-ui/core";
-import {Form, useForm } from "../../../components/formcontrols/useForm";
-import  Controls  from "../../../components/formcontrols/Controls";
+import React, { useState, useEffect } from 'react';
+import classNames from 'classnames';
+import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
+import { InputTextarea } from 'primereact/inputtextarea';
 
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1
-  },
-  my3: {
-    margin: "1.3rem 0"
-  },
-  mb3: {
-    margin: "1.3rem 0"
-  },
-  mb0: {
-    marginBottom: 0
-  },
-  mRight: {
-    marginRight: ".85rem"
-  },
-  p1: {
-    padding: ".85rem"
-  }
-  // demoEditor: {
-  //   border: "1px solid #eee",
-  //   padding: "5px",
-  //   borderRadius: "2px",
-  //   height: "350px"
-  // }
-}));
 
 
 
 
 const AddNote = props => {
-  const { addOrEdit, recordForEdit } = props;
-  const classes = useStyles();
   const { id } = props;
-
-
   const initialFValues = {
-
     title: '',
     content: '',
     note_id: id,
   }
 
-  const validate = (fieldValues = values) => {
-    let temp = { ...errors }
-    if ('title' in fieldValues)
-        temp.title = fieldValues.title ? "" : "This field is required."
-    if ('content' in fieldValues)
-        temp.content = fieldValues.content? "" : "This field is required."
-    setErrors({
-        ...temp
-    })
-
-    if (fieldValues === values)
-        return Object.values(temp).every(x => x === "")
-  }
+  const [record, setRecord] = useState(initialFValues);
+  const { addOrEdit, recordForEdit } = props;
+  const [submitted, setSubmitted] = useState(false);
 
 
-  const {
-      values,
-      setValues,
-      errors,
-      setErrors,
-      handleInputChange,
-      resetForm
-  } = useForm(initialFValues, true, validate);
-
-
-  const handleSubmit = e => {
-      e.preventDefault()
-      if (validate()) {
-          addOrEdit(values, resetForm);
-      }
-  }
 
   useEffect(() => {
     if (recordForEdit != null)
-            setValues({
+            setRecord({
                 ...recordForEdit
             })
   }, [recordForEdit]);
 
+
+  const onInputChange = (e, name) => {
+    const val = (e.target && e.target.value) || '';
+    let _record = {...record};
+    _record[`${name}`] = val;
+    setRecord(_record);
+  }
+
+  const handleSubmit = e => {
+      e.preventDefault()
+      addOrEdit(record);
+
+  }
+
+
+
   return (
-        <Form onSubmit={handleSubmit}>
-              <Grid container>
-                  <Grid item xs={6}>
-                      <Controls.Input
-                          name="title"
-                          label="TITLE"
-                          value={values.title}
-                          onChange={handleInputChange}
-                          error={errors.title}
-                      />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Controls.Input
-                        name="content"
-                        label="CONTENT"
-                        value={values.content}
-                        onChange={handleInputChange}
-                        error={errors.content}
-                    />
-                      <div>
-                          <Controls.Button
-                              type="submit"
-                              text="Submit" />
-                          <Controls.Button
-                              text="Reset"
-                              color="default"
-                              onClick={resetForm} />
-                      </div>
-                  </Grid>
-              </Grid>
-          </Form>
+    <div className="p-fluid p-formgrid p-grid">
+          <div className="p-field p-col-12 p-md-12">
+              <label htmlFor="name">TITLE</label>
+              <InputText id="title"
+                value={record.title}
+                onChange={(e) => onInputChange(e, 'title')}
+                required
+                autoFocus
+                tooltip="Enter Title"
+              />
+              {submitted && !record.title && <small className="p-error">Title is required.</small>}
+          </div>
+          
+          <div className="p-field p-col-12">
+            <span className="p-float-label p-input-icon-right">
+                <i className="pi pi-spin pi-spinner" />
+                <InputTextarea
+                    id="content"
+                    value={record.content}
+                    onChange={(e) => onInputChange(e, 'content')}
+                    required
+                    autoFocus
+                    className={classNames({ 'p-invalid': submitted && !record.content })}
+                    rows={15}
+                    cols={30}
+                  />
+                {submitted && !record.content && <small className="p-error">Address is required.</small>}
+                <label htmlFor="righticon">CONTENT</label>
+              </span>
+          </div>
+          <div className="p-field p-col-2">
+            <Button label='SUBMIT' onClick={handleSubmit}/>
+          </div>
+    </div>
+        
   );
 };
 
 
+
 export default AddNote;
+
+

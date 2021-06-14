@@ -1,5 +1,5 @@
 // const localhost = "https://www.gererebusinesscollege.co.za"
-const localhost = "http://192.168.1.107:8000"
+const localhost = "http://127.0.0.1:8000"
 
 const apiURL = "/api"
 

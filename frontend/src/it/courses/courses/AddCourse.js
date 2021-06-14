@@ -32,7 +32,6 @@ const useStyles = makeStyles(theme => ({
 const initialFValues = {
   full_name: '',
   short_name: '',
-  status: '',
   start_date: '',
   end_date: '',
   description: '',
@@ -49,8 +48,6 @@ const AddCourse = props => {
     let temp = { ...errors }
     if ('full_name' in fieldValues)
         temp.full_name = fieldValues.full_name ? "" : "This field is required."
-    if ('status' in fieldValues)
-        temp.status = fieldValues.status ? "" : "This field is required."
     if ('short_name' in fieldValues)
         temp.short_name = fieldValues.short_name ? "" : "This field is required."
     if ('start_date' in fieldValues)
@@ -131,14 +128,6 @@ const AddCourse = props => {
                         />
                   </Grid>
                   <Grid item xs={6}>
-                      <Controls.DictSelect
-                          name="status"
-                          label="STATUS"
-                          value={values.status}
-                          onChange={handleInputChange}
-                          options={props.coursestatuschoices}
-                          error={errors.status}
-                      />
                       <Controls.Input
                           label="DESCRIPTION"
                           name="description"

@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react"
-import InformationTechnologyLayout from "../../layout/InformationTechnologyLayout";
 import { getAdminUpcomingCourses, addUpComingCourse, editUpComingCourse } from '../../../actions/courses';
 import { connect } from 'react-redux';
-import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import CloseIcon from '@material-ui/icons/Close';
 import { Search } from "@material-ui/icons";
 import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
@@ -11,14 +8,10 @@ import { useHistory } from 'react-router-dom';
 import {
   Paper,
   makeStyles,
-  TableBody,
-  TableRow,
-  TableCell,
   Toolbar,
   InputAdornment }
 from '@material-ui/core';
 import AddCourse from './AddCourse';
-import {Link} from 'react-router-dom';
 import  Controls  from "../../../components/formcontrols/Controls";
 import  Popup  from "../../../components/formcontrols/Popup";
 import SearchCourse from "./SearchCourse";
@@ -40,14 +33,11 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const options = {
-  filterType: "checkbox"
-};
+
 
 const AdminUpcomingCourses = props => {
   const classes = useStyles();
   const [recordForEdit, setRecordForEdit] = useState(null)
-  const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
   const [openPopup, setOpenPopup] = useState(false)
   const [listView, setListView] = useState('grid')
   const history = useHistory();
@@ -108,24 +98,10 @@ const AdminUpcomingCourses = props => {
       setOpenPopup(false)
   }
 
-  const handleQuery = e => {
-    let target = e.target;
-    setQuery(target.value);
-    props.getAdminUpcomingCourses(query, token)
-  }
 
 
-  const handleSearch = e => {
-      let target = e.target;
-      setFilterFn({
-          fn: items => {
-              if (target.value === "")
-                  return items;
-              else
-                  return items.filter(x => x.name.toLowerCase().includes(target.value))
-          }
-      })
-  }
+
+
 
   const openInPopup = item => {
       setRecordForEdit(item)
@@ -176,7 +152,6 @@ const AdminUpcomingCourses = props => {
                           <Search />
                       </InputAdornment>)
                   }}
-                  onChange={handleQuery}
               />
               <Controls.Button
                   text="Add New"

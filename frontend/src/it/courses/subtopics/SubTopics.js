@@ -200,7 +200,7 @@ const SubTopics = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE SUBTOPIC" icon="pi pi-plus" className="p-button-warning p-mr-2" onClick={openNew} />
+                <Button label="CREATE SUBTOPIC"  className="p-button-warning p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -215,21 +215,7 @@ const SubTopics = (props) => {
         )
     }
 
-    const imageBodyTemplate = (rowData) => {
-        return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
-    }
 
-    const idBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.id} severity="info" />
-      );
-    }
-
-    const titleBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.title} severity="info" />
-      );
-    }
 
     const actionBodyTemplate = (rowData) => {
         return (
@@ -251,7 +237,6 @@ const SubTopics = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE SUBTOPICS</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -309,34 +294,31 @@ const SubTopics = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
+
                         />
                         <Column
                           field="title"
                           header="TITLE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TITLE"
-                          body={titleBodyTemplate}
+
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column header='ACTIONS' body={actionBodyTemplate}/>
                     </DataTable>
                 </div>
 
                 <Dialog visible={productDialog} style={{ width: '500px' }} header="SUBTOPIC FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
-                  <Form>
-                    <Grid container>
-                      <Grid item xs={12}>
-                        <Controls.Input
-                            name="title"
-                            label="TITLE"
+                    <div className="p-field p-col-12 p-md-12">
+                        <label htmlFor="title">TITLE</label>
+                        <InputText id="title"
                             value={record.title}
                             onChange={(e) => onInputChange(e, 'title')}
+                            required
+                            autoFocus
+                            tooltip="Enter Title"
                         />
-                      </Grid>
-                    </Grid>
-                  </Form>
+                        {submitted && !record.title && <small className="p-error">Title is required.</small>}
+                    </div>
                 </Dialog>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
                     <div className="confirmation-content">
