@@ -1,22 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Avatar from '@material-ui/core/Avatar';
-import brand from '../../api/dummy/brand';
-import dummy from '../../api/dummy/dummyContents';
-import logo from '../../images/logo.svg';
 import Navigation from './Navigation';
 import {logout} from '../../actions/auth'
-
-
-
+import flax from './icon.jpg'
 import styles from '../layout/sidebar-jss';
+import { Divider as PrimeDivider } from 'primereact/divider';
+
+
 
 class DumbalinyoloNavigation extends React.Component {
   state = {
@@ -50,14 +43,7 @@ class DumbalinyoloNavigation extends React.Component {
       toggleDrawerOpen,
       loadTransition,
       leftSidebar,
-      dataMenu,
-      status,
-      anchorEl,
-      openMenuStatus,
-      closeMenuStatus,
-      changeStatus,
-      isLogin,
-      userName,
+      
     } = this.props;
     const { transform } = this.state;
 
@@ -76,31 +62,27 @@ class DumbalinyoloNavigation extends React.Component {
     return (
       <div className={classNames(classes.drawerInner, !drawerPaper ? classes.drawerPaperClose : '')}>
         <div className={classes.drawerHeader}>
-          {isLogin && (
             <div
               className={classNames(classes.profile, classes.user)}
               style={{ opacity: 1 - (transform / 100), marginTop: transform * -0.3 }}
             >
-              <Button onClick={() => this.props.logout()}>
-                <span>LOGOUT</span>
-              </Button>
+              <NavLink to="/" className={classNames(classes.brand, classes.brandBar, turnDarker && classes.darker)}>
+                <img src={flax} style={{width:75, height:75}} />
+              </NavLink>
+              <PrimeDivider />
             </div>
-          )}
         </div>
-
-
-
-
         <div
           id="sidebar"
           className={
             classNames(
               classes.menuContainer,
               leftSidebar && classes.rounded,
-              isLogin && classes.withProfile
+
             )
           }
         >
+
           <Navigation
             loadTransition={loadTransition}
             toggleDrawerOpen={toggleDrawerOpen}
