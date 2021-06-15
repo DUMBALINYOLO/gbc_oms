@@ -277,7 +277,7 @@ const Notes = (props) => {
                           sortable
                           filter
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
 

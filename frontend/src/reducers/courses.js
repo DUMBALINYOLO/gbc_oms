@@ -79,6 +79,10 @@ import {
   EDIT_INACTIVE_COURSE,
   ADD_UPCOMING_COURSE,
   EDIT_UPCOMING_COURSE,
+  GET_COURSE_SLIDES,
+  GET_COURSE_SLIDE,
+  ADD_COURSE_SLIDE,
+  EDIT_COURSE_SLIDE,
 
 } from '../types/courseTypes';
 
@@ -118,6 +122,8 @@ const initialState = {
     studentupcomingcourse: {},
     studentongoingcourses: [],
     studentongoingcourse: {},
+    courseslides: [],
+    courseslide: {},
     loading: false
 }
 
@@ -184,6 +190,32 @@ export default function courses(state = initialState, action){
             return {
                 ...state,
                 adminfinishedcourse : action.payload
+            };
+
+        case GET_COURSE_SLIDES:
+            return {
+                ...state,
+                courseslides : action.payload
+            };
+
+        case GET_COURSE_SLIDE:
+            return {
+                ...state,
+                courseslide : action.payload
+            };
+
+        case ADD_COURSE_SLIDE:
+            return {
+                ...state,
+                slide: [...state.courseslides, action.payload]
+            }
+
+        case EDIT_COURSE_SLIDE:
+            const slidesList = state.courseslides;
+            slidesList.splice(eearrayList.findIndex(item => item.id === action.payload.data.id), 1 , action.payload.data);
+            return {
+                ...state,
+                courseslides: slidesList,
             };
 
         case GET_INACTIVE_COURSES:

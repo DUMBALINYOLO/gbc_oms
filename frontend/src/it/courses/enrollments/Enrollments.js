@@ -334,7 +334,7 @@ const Enrollments = (props) => {
                           filterPlaceholder="SEARCH BY DATE ENROLLED"
                           body={dateBodyTemplate}
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
 

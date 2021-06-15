@@ -310,7 +310,7 @@ const Assignments = (props) => {
     );
 
     return (
-      <InformationTechnologyLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
@@ -331,7 +331,6 @@ const Assignments = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -341,42 +340,32 @@ const Assignments = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
                         />
                         <Column
                           field="name"
                           header="NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NAME"
-                          body={nameBodyTemplate}
                         />
                         <Column
                           field="total_marks"
                           header="MARKS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY MARKS"
-                          body={marksBodyTemplate}
                         />
                         <Column
                           field="type"
                           header="TYPE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TYPE"
-                          body={typeBodyTemplate}
                         />
                         <Column
                           field="klass"
                           header="CLASS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY CLASS"
-                          body={klassBodyTemplate}
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
 
@@ -444,7 +433,7 @@ const Assignments = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </InformationTechnologyLayout>
+        </>
     );
 }
 

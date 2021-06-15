@@ -313,7 +313,6 @@ const TestRecords = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -323,42 +322,32 @@ const TestRecords = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
                         />
                         <Column
                           field="name"
                           header="NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NAME"
-                          body={nameBodyTemplate}
                         />
                         <Column
                           field="student"
                           header="STUDENT"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY STUDENT"
-                          body={studentBodyTemplate}
                         />
                         <Column
                           field="totalmarks"
                           header="TOTAL MARKS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TOTAL MARKS"
-                          body={marksBodyTemplate}
                         />
                         <Column
                           field="score"
                           header="SCORE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY SCORE"
-                          body={scoreBodyTemplate}
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={productDialog} style={{ width: '500px' }} header="RECORD FORM" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>

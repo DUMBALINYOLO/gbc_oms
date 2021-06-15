@@ -170,7 +170,7 @@ const Curriculums = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE CURRICULUM"  className="p-button-warning p-mr-2" onClick={openNew} />
+                <Button label="ADD NEW"  className="p-button-warning p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -232,7 +232,7 @@ const Curriculums = (props) => {
     );
 
     return (
-      <InformationTechnologyLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
@@ -276,7 +276,7 @@ const Curriculums = (props) => {
                           sortable
                           filter
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
 
@@ -307,7 +307,7 @@ const Curriculums = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </InformationTechnologyLayout>
+        </>
     );
 }
 

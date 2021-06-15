@@ -197,7 +197,7 @@ const AdminStudents = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="STUDENTS" icon="pi pi-plus" className="p-button-success p-mr-2" />
+                <Button label="STUDENTS"  className="p-button-success p-mr-2" />
             </React.Fragment>
         )
     }
@@ -251,7 +251,6 @@ const AdminStudents = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE STUDENTS</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -278,7 +277,7 @@ const AdminStudents = (props) => {
     );
 
     return (
-      <InformationTechnologyLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
@@ -309,30 +308,30 @@ const AdminStudents = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
+
                         />
                         <Column
                           field="username"
                           header="USER NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY USER NAME"
+
                         />
                         <Column
                           field="email"
                           header="EMAIL"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY EMAIL"
+
                         />
                         <Column
                           field="type"
                           header="TYPE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TYPE"
+
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
@@ -349,7 +348,7 @@ const AdminStudents = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </InformationTechnologyLayout>
+        </>
     );
 }
 

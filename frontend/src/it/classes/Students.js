@@ -250,7 +250,6 @@ const Students = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE STUDENTS</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -307,34 +306,26 @@ const Students = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
                         />
                         <Column
                           field="stdnt"
                           header="STUDENT"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY STUDENT"
-                          body={stdntBodyTemplate}
                         />
                         <Column
                           field="status"
                           header="STATUS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY STATUS"
-                          body={statusBodyTemplate}
                         />
                         <Column
                           field="enrollment_date"
                           header="ENROLLMENT DATE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ENROLLMENT DATE"
-                          body={dateBodyTemplate}
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>

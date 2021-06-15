@@ -3,6 +3,8 @@ import classNames from 'classnames';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
+import { Divider } from 'primereact/divider';
+
 
 
 
@@ -58,7 +60,8 @@ const AddNote = props => {
               />
               {submitted && !record.title && <small className="p-error">Title is required.</small>}
           </div>
-          
+          <Divider />
+
           <div className="p-field p-col-12">
             <span className="p-float-label p-input-icon-right">
                 <i className="pi pi-spin pi-spinner" />
@@ -80,12 +83,10 @@ const AddNote = props => {
             <Button label='SUBMIT' onClick={handleSubmit}/>
           </div>
     </div>
-        
+
   );
 };
 
 
 
 export default AddNote;
-
-
