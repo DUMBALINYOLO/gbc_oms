@@ -13,11 +13,8 @@ import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import Typography from '@material-ui/core/Typography';
 import InformationTechnologyLayout from '../layout/InformationTechnologyLayout';
-import AdminBursars from './AdminBursars';
-import AdminPrincipals from './AdminPrincipals';
-import AdminTeachers from './AdminTeachers';
-import AdminStudents from '../students/AdminStudents';
-
+import AdminClass from './AdminClass';
+import AdminStream from './AdminStream';
 
 function TabContainer(props) {
   const { children } = props;
@@ -65,16 +62,12 @@ class ScrollIconTabs extends React.Component {
               indicatorColor="primary"
               textColor="secondary"
             >
-              <Tab label="PRINCIPALS" />
-              <Tab label="TEACHERS" />
-              <Tab label="BURSARS" />
-              <Tab label="STUDENTS" />
+              <Tab label="CLASS" />
+              <Tab label="STREAM" />
             </Tabs>
           </AppBar>
-          {value === 0 && <TabContainer><AdminPrincipals/></TabContainer>}
-          {value === 1 && <TabContainer><AdminTeachers/></TabContainer>}
-          {value === 2 && <TabContainer><AdminBursars/></TabContainer>}
-          {value === 3 && <TabContainer><AdminStudents/></TabContainer>}
+          {value === 0 && <TabContainer><AdminClass/></TabContainer>}
+          {value === 1 && <TabContainer><AdminStream/></TabContainer>}
         </div>
       </InformationTechnologyLayout>
     );

@@ -9,10 +9,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Avatar from '@material-ui/core/Avatar';
 import brand from '../../api/dummy/brand';
 import dummy from '../../api/dummy/dummyContents';
-import logo from '../../images/logo.svg';
+import flax from './icon.jpg'
 import Navigation from './Navigation';
-
-
+import { Divider as PrimeDivider } from 'primereact/divider';
 import styles from '../layout/sidebar-jss';
 
 class DumbalinyoloNavigation extends React.Component {
@@ -72,37 +71,15 @@ class DumbalinyoloNavigation extends React.Component {
     return (
       <div className={classNames(classes.drawerInner, !drawerPaper ? classes.drawerPaperClose : '')}>
         <div className={classes.drawerHeader}>
-          {/* <NavLink to="/" className={classNames(classes.brand, classes.brandBar, turnDarker && classes.darker)}>
-            <img src={logo} alt={brand.name} />
-            {brand.name}
-          </NavLink> */}
-          {isLogin && (
             <div
               className={classNames(classes.profile, classes.user)}
               style={{ opacity: 1 - (transform / 100), marginTop: transform * -0.3 }}
             >
-
-              <div>
-                <Button size="small" onClick={openMenuStatus}>
-                  <i className={classNames(classes.dotStatus, setStatus(status))} />
-                  {status}
-                </Button>
-                <Menu
-                  id="status-menu"
-                  anchorEl={anchorEl}
-                  open={Boolean(anchorEl)}
-                  onClose={closeMenuStatus}
-                  className={classes.statusMenu}
-                >
-                  <MenuItem onClick={() => changeStatus('offline')}>
-                    <i className={classNames(classes.dotStatus, classes.offline)} />
-                    Offline
-                  </MenuItem>
-                </Menu>
-
-              </div>
+              <NavLink to="/" className={classNames(classes.brand, classes.brandBar, turnDarker && classes.darker)}>
+                <img src={flax} style={{width:75, height:75}} />
+              </NavLink>
+              <PrimeDivider />
             </div>
-          )}
         </div>
         <div
           id="sidebar"
@@ -110,10 +87,11 @@ class DumbalinyoloNavigation extends React.Component {
             classNames(
               classes.menuContainer,
               leftSidebar && classes.rounded,
-              isLogin && classes.withProfile
+
             )
           }
         >
+
           <Navigation
             loadTransition={loadTransition}
             toggleDrawerOpen={toggleDrawerOpen}
@@ -149,3 +127,4 @@ DumbalinyoloNavigation.defaultProps = {
 };
 
 export default withStyles(styles)(DumbalinyoloNavigation);
+

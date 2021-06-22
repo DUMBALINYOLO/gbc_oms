@@ -337,7 +337,7 @@ const Records = (props) => {
                           filterPlaceholder="SEARCH BY STATUS"
                           body={statusBodyTemplate}
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
 

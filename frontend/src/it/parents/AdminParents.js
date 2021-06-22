@@ -306,7 +306,6 @@ const AdminParents = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -316,34 +315,26 @@ const AdminParents = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
                         />
                         <Column
                           field="username"
                           header="USER NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY USER NAME"
-                          body={usernameBodyTemplate}
                         />
                         <Column
                           field="email"
                           header="EMAIL"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY EMAIL"
-                          body={emailBodyTemplate}
                         />
                         <Column
                           field="type"
                           header="TYPE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TYPE"
-                          body={typeBodyTemplate}
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
 

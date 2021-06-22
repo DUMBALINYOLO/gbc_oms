@@ -9,8 +9,6 @@ import flax from './icon.jpg'
 import styles from '../layout/sidebar-jss';
 import { Divider as PrimeDivider } from 'primereact/divider';
 
-
-
 class DumbalinyoloNavigation extends React.Component {
   state = {
     transform: 0,

@@ -191,7 +191,7 @@ const Assignments = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="ASSIGNMENTS" icon="pi pi-plus" className="p-button-success p-mr-2" />
+                <Button label="ASSIGNMENTS"  className="p-button-success p-mr-2" />
             </React.Fragment>
         )
     }
@@ -240,7 +240,6 @@ const Assignments = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE ASSIGNMENTS</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -267,7 +266,7 @@ const Assignments = (props) => {
     );
 
     return (
-      <InformationTechnologyLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
@@ -298,37 +297,37 @@ const Assignments = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
+
                         />
                         <Column
                           field="name"
                           header="NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NAME"
+
                         />
                         <Column
                           field="totalmarks"
                           header="TOTAL MARKS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TOTAL MARKS"
+
                         />
                         <Column
                           field="subject"
                           header="SUBJECT"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY SUBJECT"
+
                         />
                         <Column
                           field="score"
                           header="SCORE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY SCORE"
+
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
@@ -345,7 +344,7 @@ const Assignments = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </InformationTechnologyLayout>
+        </>
     );
 }
 

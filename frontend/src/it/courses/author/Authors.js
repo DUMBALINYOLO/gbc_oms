@@ -200,7 +200,7 @@ const Authors = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE AUTHOR" icon="pi pi-plus" className="p-button-info p-mr-2" onClick={openNew} />
+                <Button label="ADD NEW" className="p-button-info p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -256,7 +256,6 @@ const Authors = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE AUTHOR</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -330,7 +329,7 @@ const Authors = (props) => {
                           filter
 
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
 

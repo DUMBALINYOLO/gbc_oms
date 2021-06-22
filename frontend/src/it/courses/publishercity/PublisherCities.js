@@ -198,7 +198,7 @@ const PublisherCities = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE PUBLISHER CITY"  className="p-button-warning p-mr-2" onClick={openNew} />
+                <Button label="ADD NEW"  className="p-button-warning p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -326,7 +326,7 @@ const PublisherCities = (props) => {
                           sortable
                           filter
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
 

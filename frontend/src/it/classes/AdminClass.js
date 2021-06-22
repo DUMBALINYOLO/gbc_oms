@@ -215,7 +215,7 @@ const AdminClass = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE CLASS" className="p-button-info p-mr-2" onClick={openNew} />
+                <Button label="ADD NEW" className="p-button-info p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -283,7 +283,6 @@ const AdminClass = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE CLASS</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -310,7 +309,7 @@ const AdminClass = (props) => {
     );
 
     return (
-      <InformationTechnologyLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
@@ -341,8 +340,6 @@ const AdminClass = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-
                         />
                         <Column
                           field="name"
@@ -374,7 +371,7 @@ const AdminClass = (props) => {
                           filter
 
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
 
@@ -481,7 +478,7 @@ const AdminClass = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </InformationTechnologyLayout>
+        </>
     );
 }
 

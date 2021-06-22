@@ -80,6 +80,10 @@ import {
   EDIT_INACTIVE_COURSE,
   ADD_UPCOMING_COURSE,
   EDIT_UPCOMING_COURSE,
+  GET_COURSE_SLIDES,
+  GET_COURSE_SLIDE,
+  ADD_COURSE_SLIDE,
+  EDIT_COURSE_SLIDE,
 
 
 } from '../types/courseTypes';
@@ -105,9 +109,77 @@ import {
   adminpublishersURL,
   studentcourseenrollmentsURL,
   upcomingstudentcoursesURL,
-  ongoingstudentcoursesURL
+  ongoingstudentcoursesURL,
+  courseslidesURL,
 } from '../constants';
 import { createMessage, returnErrors } from './messages';
+
+
+export const getCourseSlides = (id,token) => dispatch => {
+    const headers ={
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+          'Accept': 'application/json',
+        };
+    axios.get(`${courseslidesURL}?id=${id}`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_COURSE_SLIDES,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+// Add
+export const addCourseSlide = (slide, token) => dispatch => {
+    const headers ={
+          "Content-Type": "multipart/form-data",
+          Authorization: `Token ${token}`,
+          'Accept': 'multipart/form-data',
+    };
+
+    axios.post(courseslidesURL, slide, headers)
+        .then(res => {
+            dispatch({
+                type: ADD_COURSE_SLIDE,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+
+//get
+export const getCourseSlide = (id, token) => dispatch =>{
+      const headers ={
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
+            'Accept': 'application/json',
+      };
+      axios.get(`${courseslidesURL}${id}/`, headers)
+        .then(res => {
+            dispatch({
+                type: GET_COURSE_SLIDE,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
+
+//Edit
+export const editCourseSlide = (id, slide, token) => dispatch => {
+    const headers ={
+          "Content-Type": "multipart/form-data",
+          Authorization: `Token ${token}`,
+          'Accept': 'multipart/form-data',
+    };
+    JSON.stringify(id, null, 3)
+    axios.patch(`${courseslidesURL}${id}/`, slide, headers)
+        .then(res => {
+            dispatch({
+                type: EDIT_COURSE_SLIDE,
+                payload: res.data
+            });
+        }).catch(err => console.log(err))
+}
 
 
 

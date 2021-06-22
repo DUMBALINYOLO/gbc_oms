@@ -197,7 +197,7 @@ const Inquiry = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="INQUIRIES" icon="pi pi-plus" className="p-button-warning p-mr-2" />
+                <Button label="ADD NEW" className="p-button-warning p-mr-2" />
             </React.Fragment>
         )
     }
@@ -265,7 +265,6 @@ const Inquiry = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE INQUIRIES</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -313,7 +312,6 @@ const Inquiry = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -323,42 +321,32 @@ const Inquiry = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
                         />
                         <Column
                           field="name"
                           header="NAME"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY NAME"
-                          body={nameBodyTemplate}
                         />
                         <Column
                           field="email"
                           header="EMAIL"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY EMAIL"
-                          body={emailBodyTemplate}
                         />
                         <Column
                           field="subject"
                           header="SUBJECT"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY SUBJECT"
-                          body={subjectBodyTemplate}
                         />
                         <Column
                           field="date"
                           header="DATE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY DATE"
-                          body={dateBodyTemplate}
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>

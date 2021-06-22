@@ -209,7 +209,7 @@ const Attendance = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="ATTENDANCE" icon="pi pi-plus" className="p-button-success p-mr-2" />
+                <Button label="ATTENDANCE"  className="p-button-success p-mr-2" />
             </React.Fragment>
         )
     }
@@ -258,7 +258,6 @@ const Attendance = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE ATTENDANCES</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -285,7 +284,7 @@ const Attendance = (props) => {
     );
 
     return (
-      <InformationTechnologyLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
@@ -306,7 +305,6 @@ const Attendance = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -316,23 +314,20 @@ const Attendance = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
                         />
                         <Column
                           field="attendance"
                           header="ATTENDANCE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ATTENDANCE"
                         />
                         <Column
                           field="status"
                           header="STATUS"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY STATUS"
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
                 <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
@@ -349,7 +344,7 @@ const Attendance = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </InformationTechnologyLayout>
+        </>
     );
 }
 

@@ -98,6 +98,10 @@ import StudentBioTab from './student/courses/Tab';
 import TeacherCourseTab from './teacher/courses/courses/Tab';
 import TeacherBioTab from './teacher/courses/Tab';
 import TeacherGradingTab from './teacher/gradings/Tab';
+import AdminGradingTab from './it/gradings/Tab';
+import AdminCurriculumTab from './it/curriculum/Tab';
+import AdminClassTab from './it/classes/Tab';
+
 import StudentTopic from './student/courses/topics/StudentTopic';
 import StudentSubTopic from './student/courses/subtopics/StudentSubTopic';
 import StudentStudyNote from './student/courses/notes/StudentStudyNote';
@@ -167,6 +171,8 @@ class App extends React.Component {
 						<Route exact path='/studentdashboard/courses' component={StudentCourseTab} />
 						<Route exact path='/studentdashboard/gradings' component={StudentGradingTab} />
 						<Route exact path='/teacherdashboard/gradings' component={TeacherGradingTab} />
+						<Route exact path='/itdashboard/gradings' component={AdminGradingTab} />
+						<Route exact path='/itdashboard/curriculums' component={AdminCurriculumTab} />
 						<Route exact path='/studentdashboard/bio' component={StudentBioTab} />
 						<Route exact path='/coursesoffered' component={PuclicOfferedCourses} />
 						<Route exact path='/itdashboard' component={InformationTechnologyHome} />
@@ -248,7 +254,7 @@ class App extends React.Component {
 						<Route exact path='/itdashboard/attendance/:id' component={AdminAttendance} />
 						<Route exact path='/itdashboard/principals' component={AdminPrincipals} />
 						<Route exact path='/itdashboard/streams' component={AdminStream} />
-						<Route exact path='/itdashboard/classes' component={AdminClass} />
+						<Route exact path='/itdashboard/classes' component={AdminClassTab} />
 						<Route exact path='/itdashboard/classes/:id' component={AdminStudentClass} />
 						<Route exact path='/itdashboard/ledgers' component={AdminLedgers} />
 						<Route exact path='/itdashboard/workbooks' component={AdminWorkBooks} />

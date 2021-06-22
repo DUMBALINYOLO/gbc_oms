@@ -205,7 +205,7 @@ const References = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE REFERENCE" icon="pi pi-plus" className="p-button-warning p-mr-2" onClick={openNew} />
+                <Button label="ADD NEW" className="p-button-warning p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -273,7 +273,6 @@ const References = (props) => {
 
     const header = (
         <div className="table-header">
-            <h1 className="p-m-0">MANAGE REFERENCES</h1>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -321,7 +320,6 @@ const References = (props) => {
                         virtualScroll
                         virtualRowHeight={5}
                       >
-
                         <Column
                           selectionMode="multiple"
                           headerStyle={{ width: '3rem' }}
@@ -331,42 +329,32 @@ const References = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
                         />
                         <Column
                           field="title"
                           header="TITLE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY TITLE"
-                          body={titleBodyTemplate}
                         />
                         <Column
                           field="author"
                           header="AUTHOR"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY AUTHOR"
-                          body={authorBodyTemplate}
                         />
                         <Column
                           field="publisher"
                           header="PUBLISHER"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY PUBLISHER"
-                          body={publisherBodyTemplate}
                         />
                         <Column
                           field="date_published"
                           header="DATE PUBLISHED"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY DATE PUBLISHED"
-                          body={dateBodyTemplate}
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
 

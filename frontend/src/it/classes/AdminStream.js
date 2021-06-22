@@ -198,7 +198,7 @@ const AdminStream = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE STREAM"  className="p-button-info p-mr-2" onClick={openNew} />
+                <Button label="ADD NEW"  className="p-button-info p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -274,7 +274,7 @@ const AdminStream = (props) => {
     );
 
     return (
-      <InformationTechnologyLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
@@ -304,18 +304,14 @@ const AdminStream = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-
                         />
                         <Column
                           field="grade"
                           header="GRADE"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY GRADE"
-
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
 
@@ -348,7 +344,7 @@ const AdminStream = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </InformationTechnologyLayout>
+        </>
     );
 }
 

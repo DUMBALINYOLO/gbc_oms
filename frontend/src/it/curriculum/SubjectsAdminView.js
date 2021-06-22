@@ -154,7 +154,7 @@ const Subjects = (props) => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE SUBJECT"  className="p-button-warning p-mr-2" onClick={openNew} />
+                <Button label="ADD NEW"  className="p-button-warning p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -217,7 +217,7 @@ const Subjects = (props) => {
     );
 
     return (
-      <InformationTechnologyLayout>
+      <>
         <Paper className={classes.pageContent}>
             <div className="datatable-crud-demo">
                 <Toast ref={toast} />
@@ -264,7 +264,7 @@ const Subjects = (props) => {
                           filter
                           
                         />
-                        <Column body={actionBodyTemplate}/>
+                        <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>
                 </div>
 
@@ -310,7 +310,7 @@ const Subjects = (props) => {
                 </Dialog>
             </div>
           </Paper>
-        </InformationTechnologyLayout>
+        </>
     );
 }
 
