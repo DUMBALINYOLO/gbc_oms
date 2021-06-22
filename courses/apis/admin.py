@@ -100,6 +100,7 @@ class AdminUpcomingCourseViewSet(viewsets.ModelViewSet):
 
 	def create(self, request, *args, **kwargs):
 		draft_request_data = request.data.copy()
+
 		draft_request_data["status"] = 'upcoming'
 		serializer = self.get_serializer(data=draft_request_data)
 		serializer.is_valid(raise_exception=True)
@@ -110,15 +111,19 @@ class AdminUpcomingCourseViewSet(viewsets.ModelViewSet):
 
 
 	def get_queryset(self, *args, **kwargs):
+		a = []
+		for key, value, in self.request.headers.items():
+			a.append({'key': key, 'value': value})
+		print(a)
 		queryset = Course.objects.filter(
 								~ComplexQueryLookUp(status__in=['ongoing', 'finished', 'inactive'])
 							)
 		deep_query = self.request.query_params.get('q', None)
 		if deep_query:
 			queryset = queryset.filter(
-			    ComplexQueryLookUp(stream__icontains=deep_query) |
-			    ComplexQueryLookUp(full_name__icontains=deep_query) |
-			    ComplexQueryLookUp(short_name__icontains=deep_query) |
+				ComplexQueryLookUp(stream__icontains=deep_query) |
+				ComplexQueryLookUp(full_name__icontains=deep_query) |
+				ComplexQueryLookUp(short_name__icontains=deep_query) |
 				ComplexQueryLookUp(short_name__icontains=deep_query) |
 				ComplexQueryLookUp(course_visibility__icontains=deep_query) |
 				ComplexQueryLookUp(status__icontains=deep_query) |
