@@ -57,20 +57,17 @@ class LessonSlideCreateUpdateSerializer(serializers.ModelSerializer):
 				'id',
 				'title',
 				'slide',
-				'status',
-				'date',
 				'course_id',
 
 			]
 		read_only_fields = ('id',)
 
 	def create(self, validated_data):
+		print(validated_data)
 		course_id = validated_data['course_id']
 		slide = LessonSlide(
 					title= validated_data['title'],
 					slide= validated_data['slide'],
-					status= validated_data['status'],
-					date = validated_data['date'],
 					course_id= validated_data['course_id'],
 				)
 		slide.save()
@@ -89,7 +86,6 @@ class LessonSlideListDetailSerializer(serializers.ModelSerializer):
 				'title',
 				'slide',
 				'status',
-				'date',
 
 			]
 
@@ -790,6 +786,7 @@ class StudentCourseEnrollmentCreateUpdateSerializer(serializers.ModelSerializer)
 
 
 class StudentCourseEnrollmentListDetailSerializer(serializers.ModelSerializer):
+	student = StringSerializer()
 
 	class Meta:
 		model = StudentCourseEnrollment

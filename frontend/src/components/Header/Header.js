@@ -1,22 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography';
 import Hidden from '@material-ui/core/Hidden';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import SearchIcon from '@material-ui/icons/Search';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import {changeModeAction } from '../../actions/uiactions';
 import UserMenu from './UserMenu';
-import SearchUi from '../Search/SearchUi';
 import styles from './header-jss';
-import {logout} from '../../actions/auth';
 
 const elem = document.documentElement;
 
@@ -83,12 +80,12 @@ class Header extends React.Component {
   };
 
   turnMode = mode => {
-    const { changeMode } = this.props;
+    const { changeModeAction } = this.props;
 
     if (mode === 'light') {
-      changeMode('dark');
+      changeModeAction('dark');
     } else {
-      changeMode('light');
+      changeModeAction('light');
     }
   };
 
@@ -102,7 +99,6 @@ class Header extends React.Component {
       mode,
       title,
       openGuide,
-      logout
     } = this.props;
     const {
       fullScreen,
@@ -159,6 +155,16 @@ class Header extends React.Component {
                     </IconButton>
                   </Tooltip>
                 )}
+                <Tooltip title="Turn Dark/Light" placement="bottom">
+                  <IconButton className={classes.button} onClick={() => this.turnMode(mode)}>
+                    <i className="ion-ios-lightbulb-outline" />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Show Guide" placement="bottom">
+                  <IconButton className={classes.button} onClick={openGuide}>
+                    <i className="ion-ios-help-outline" />
+                  </IconButton>
+                </Tooltip>
               </div>
               <Typography component="h2" className={classNames(classes.headerTitle, showTitle && classes.show)}>
                 {title}
@@ -168,28 +174,25 @@ class Header extends React.Component {
           <Hidden xsDown>
             <span className={classes.separatorV} />
           </Hidden>
+          <UserMenu />
         </Toolbar>
       </AppBar>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  userName: state.auth.userName,
-  isAuthenticated: state.auth.token !== null,
-});
-
-const mapDispatchToProps = dispatch => {
-  return {
-    logout: () => dispatch(logout()),
-  };
-};
 
 
 
-const NavigationMapped = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Header);
+const mapStateToProps = state =>({
+  mode: state.ui.mode
 
-export default withStyles(styles)(Header);
+})
+
+export default compose(connect(
+  mapStateToProps, {
+    changeModeAction
+    }),
+    withStyles(styles)
+)
+    (Header);

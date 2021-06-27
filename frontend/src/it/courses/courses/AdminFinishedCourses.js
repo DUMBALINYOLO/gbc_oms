@@ -42,9 +42,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const options = {
-  filterType: "checkbox"
-};
+
 
 const AdminOngoingCourses = props => {
   const classes = useStyles();
@@ -204,7 +202,7 @@ const AdminOngoingCourses = props => {
                 {
                   courseData.map((course) => {
                     return (
-                      <Grid item md={listView === 'list' ? 12 : 4} sm={listView === 'list' ? 12 : 6} xs={12} key={course.id}>
+                      <Grid item md={listView === 'list' ? 12 : 3} sm={listView === 'list' ? 12 : 6} xs={12} key={course.id}>
                         <CourseCard
                           list={listView === 'list'}
                           full_name={course.full_name}

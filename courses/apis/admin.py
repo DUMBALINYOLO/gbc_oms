@@ -4,6 +4,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from django.db.models import Q as ComplexQueryLookUp
+from rest_framework.parsers import FormParser, MultiPartParser,FileUploadParser
 
 from courses.models import (
 			Text,
@@ -279,6 +280,7 @@ class AdminInactiveCourseViewSet(viewsets.ModelViewSet):
 class LessonSlideViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.AllowAny,]
+
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'patch', 'put', 'updating']:

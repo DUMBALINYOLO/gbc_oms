@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
 import { addCourseSlide } from '../../../actions/courses';
 
 
@@ -18,7 +18,7 @@ const AddCourseSlide = (props) => {
         uploadData.append('course_id', id);
         uploadData.append('title', title);
         uploadData.append('slide', slide,slide.name);
-        props. addCourseSlide(uploadData, token)
+        props.addCourseSlide(uploadData, token)
     }
 
 
@@ -28,13 +28,12 @@ const AddCourseSlide = (props) => {
             <label htmlFor="name">TITLE</label>
             <InputText
               id="title"
-              value={record.title}
+              value={title}
               onChange={(evt) => setTitle(evt.target.value)}
               required
               autoFocus
               tooltip="Enter Name"
             />
-            {submitted && !record.name && <small className="p-error">Name is required.</small>}
           </div>
           <div className="p-field p-col-12 p-md-12">
             <input
@@ -56,5 +55,5 @@ const mapStateToProps = state =>({
 
 export default connect(
   mapStateToProps,
-  {addSeriesImage} )
-  (AddImage);
+  {addCourseSlide} )
+  (AddCourseSlide);

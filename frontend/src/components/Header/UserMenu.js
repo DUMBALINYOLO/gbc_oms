@@ -1,27 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
-import Info from '@material-ui/icons/Info';
-import Warning from '@material-ui/icons/Warning';
-import Check from '@material-ui/icons/CheckCircle';
-import Error from '@material-ui/icons/RemoveCircle';
-import ExitToApp from '@material-ui/icons/ExitToApp';
 import Badge from '@material-ui/core/Badge';
 import Divider from '@material-ui/core/Divider';
 import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import dummy from '../../api/dummy/dummyContents';
-import avatarApi from '../../api/images/avatars';
-import link from '../../api/ui/link';
+
+import {logout} from '../../actions/auth'
 import styles from './header-jss';
+
 
 class UserMenu extends React.Component {
   state = {
@@ -52,78 +42,12 @@ class UserMenu extends React.Component {
           color="inherit"
           className={classNames(classes.notifIcon, dark ? classes.dark : classes.light)}
         >
-          <Badge className={classes.badge} badgeContent={4} color="secondary">
+          <Badge className={classes.badge} badgeContent={1} color="secondary">
             <i className="ion-ios-bell-outline" />
           </Badge>
         </IconButton>
-        <Menu
-          id="menu-notification"
-          anchorEl={anchorEl}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          className={classes.notifMenu}
-          PaperProps={{
-            style: {
-              width: 350,
-            },
-          }}
-          open={openMenu === 'notification'}
-          onClose={this.handleClose}
-        >
-          <MenuItem onClick={this.handleClose}>
-            <div >
-              <ListItemAvatar>
-                <Avatar alt="User Name" src={avatarApi[0]} />
-              </ListItemAvatar>
-              <ListItemText primary={dummy.text.subtitle} secondary={dummy.text.date} />
-            </div>
-          </MenuItem>
-          <Divider variant="inset" />
-          <Divider variant="inset" />
-          <MenuItem onClick={this.handleClose}>
-            <div >
-              <ListItemAvatar>
-                <Avatar >
-                  <Check />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={dummy.text.subtitle} className={classes.textNotif} secondary={dummy.text.date} />
-            </div>
-          </MenuItem>
-          <Divider variant="inset" />
-          <MenuItem onClick={this.handleClose}>
-            <div >
-              <ListItemAvatar>
-                <Avatar >
-                  <Warning />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={dummy.text.subtitle} className={classes.textNotif} secondary={dummy.text.date} />
-            </div>
-          </MenuItem>
-          <Divider variant="inset" />
-          <MenuItem onClick={this.handleClose}>
-            <div >
-              <ListItemAvatar>
-                <Avatar >
-                  <Error />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary="Suspendisse pharetra pulvinar sollicitudin. Aenean ut orci eu odio cursus lobortis eget tempus velit. " className={classes.textNotif} secondary="Jan 9, 2016" />
-            </div>
-          </MenuItem>
-        </Menu>
         <Button onClick={this.handleMenu('user-setting')}>
-          <Avatar
-            alt={dummy.user.name}
-            src={dummy.user.avatar}
-          />
+          LOGOUT
         </Button>
         <Menu
           id="menu-appbar"
@@ -139,21 +63,13 @@ class UserMenu extends React.Component {
           open={openMenu === 'user-setting'}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleClose} component={Link} to={link.profile}>My Profile</MenuItem>
-          <MenuItem onClick={this.handleClose} component={Link} to={link.calendar}>My Calendar</MenuItem>
-          <MenuItem onClick={this.handleClose} component={Link} to={link.email}>
-            My Inbox
-            <ListItemIcon>
-              <Badge className={classNames(classes.badge, classes.badgeMenu)} badgeContent={2} color="secondary" />
-            </ListItemIcon>
-          </MenuItem>
+
           <Divider />
-          <MenuItem onClick={this.handleClose} component={Link} to="/">
-            <ListItemIcon>
-              <ExitToApp />
-            </ListItemIcon>
-            Log Out
-          </MenuItem>
+            <Button
+              onClick={() => this.props.logout()}
+              >
+              <span>LOGOUT</span>
+            </Button>
         </Menu>
       </div>
     );
@@ -169,4 +85,20 @@ UserMenu.defaultProps = {
   dark: false
 };
 
-export default withStyles(styles)(UserMenu);
+const mapStateToProps = state => ({
+  userName: state.auth.userName,
+  isAuthenticated: state.auth.token !== null,
+});
+
+
+
+
+
+
+
+const NavigationMapped = connect(
+  mapStateToProps,
+  {logout},
+)(UserMenu);
+
+export default withStyles(styles)(NavigationMapped);

@@ -182,9 +182,9 @@ class LessonSlide(SoftDeletionModel):
         ('active', 'ACTIVE'),
         ('inactive', 'ACTIVE'),
     ]
+
     title = models.CharField(max_length=300)
-    date = models.DateField(blank=True)
-    slide = models.FileField(upload_to='slides/%Y/%m/%d/')
+    slide = models.CharField(max_length=300, blank=True, null=True)
     status = models.CharField(choices=STATUS, max_length=300, default='active')
     course_id = models.IntegerField(blank=True, null=True)
 

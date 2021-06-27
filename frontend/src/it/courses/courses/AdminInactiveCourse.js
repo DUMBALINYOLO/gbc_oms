@@ -16,12 +16,11 @@ import styles from '../../../components/SocialMedia/jss/cover-jss';
 import { getAdminInactiveCourse } from '../../../actions/courses';
 import About from './About';
 import CourseBag from './CourseBag';
-import SchoolIcon from '@material-ui/icons/School';
 import { Paper }from '@material-ui/core';
 import Topics from '../topics/Topics';
 import Enrollments from '../enrollments/Enrollments';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import CourseSlides from '../slides/Slides';
 
 
 function TabContainer(props) {
@@ -106,6 +105,7 @@ class Course extends React.Component {
             >
               <Tab icon={<AccountCircle />} />
               <Tab icon={<RateReviewIcon />} />
+              <Tab icon={<RateReviewIcon />} />
               <Tab icon={<VpnKeyIcon />} />
             </Tabs>
           </Hidden>
@@ -120,13 +120,15 @@ class Course extends React.Component {
             >
               <Tab icon={<AccountCircle />} label="ABOUT" />
               <Tab icon={<RateReviewIcon />} label="TOPICS" />
+              <Tab icon={<RateReviewIcon />} label="STUDY SLIDES" />
               <Tab icon={<VpnKeyIcon />} label="ENROLLMENTS" />
             </Tabs>
           </Hidden>
         </AppBar>
         {value === 0 && <TabContainer><About data={course}/></TabContainer>}
         {value === 1 && <TabContainer><Topics data={course}/></TabContainer>}
-        {value === 2 && <TabContainer><Enrollments data={course}/></TabContainer>}
+        {value === 2 && <TabContainer><CourseSlides id={course.id}/></TabContainer>}
+        {value === 3 && <TabContainer><Enrollments data={course}/></TabContainer>}
           </>
         )}
       </CourseBag >

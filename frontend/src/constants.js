@@ -1,5 +1,5 @@
-// const localhost = "https://www.gererebusinesscollege.co.za"
-const localhost = "http://192.168.1.107:8000"
+const localhost = "https://www.gererebusinesscollege.co.za"
+// const localhost = "http://localhost:8000"
 
 const apiURL = "/api"
 
@@ -211,6 +211,7 @@ export const courseenrollmentstatuschoicesURL = `${endpoint}/basedata/course-enr
 export const upcomingstudentcoursesURL = `${endpoint}/courses/upcoming-student-courses/`
 export const ongoingstudentcoursesURL = `${endpoint}/courses/ongoing-student-courses/`
 export const courseslidesURL = `${endpoint}/courses/course-slides/`
+
 
 //classes
 export const classesURL = `${endpoint}/classes/classes/`

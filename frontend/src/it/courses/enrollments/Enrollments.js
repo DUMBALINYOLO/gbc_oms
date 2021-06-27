@@ -53,11 +53,10 @@ const Enrollments = (props) => {
     let emptyRecord = {
       status: '',
       student: '',
-      course: props.id,
+      course: props.data.id,
     };
 
     const classes = useStyles();
-    const [products, setProducts] = useState(null);
     const [productDialog, setProductDialog] = useState(false);
     const [deleteProductDialog, setDeleteProductDialog] = useState(false);
     const [deleteProductsDialog, setDeleteProductsDialog] = useState(false);
@@ -68,14 +67,15 @@ const Enrollments = (props) => {
     const [globalFilter, setGlobalFilter] = useState(null);
     const toast = useRef(null);
     const dt = useRef(null);
-    const {token, records, id} =props;
+    const {token, records} =props;
+    const {id} =props.data;
     const history = useHistory();
 
     useEffect(() => {
       if(!props.fetched) {
           props.getStudentProfiles(token);
           props.getCourseEnrollmentStatusChoices(token);
-          props.getStudentCourseEnrollments(props.id, token)
+          props.getStudentCourseEnrollments(id, token)
       }
       console.log('mount it!');
     }, [newRecord]);
@@ -171,11 +171,7 @@ const Enrollments = (props) => {
         toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Enrollments Deleted', life: 3000 });
     }
 
-    const onCategoryChange = (e) => {
-        let _record = {...record};
-        _record['category'] = e.value;
-        setRecord(_record);
-    }
+    
 
     const onInputChange = (e, name) => {
         const val = (e.target && e.target.value) || '';
@@ -184,24 +180,12 @@ const Enrollments = (props) => {
         setRecord(_record);
     }
 
-    const onInputNumberChange = (e, name) => {
-        const val = e.value || 0;
-        let _record = {...record };
-        _record[`${name}`] = val;
-
-        setRecord(_record);
-    }
-
-    const onStatusChange = (e) => {
-        let _record = {...record };
-        _record['status'] = e.value;
-        setRecord(_record);
-    }
+    
 
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <Button label="CREATE ENROLLMENT" icon="pi pi-plus" className="p-button-info p-mr-2" onClick={openNew} />
+                <Button label="ADD NEW"  className="p-button-info p-mr-2" onClick={openNew} />
             </React.Fragment>
         )
     }
@@ -216,27 +200,8 @@ const Enrollments = (props) => {
         )
     }
 
-    const imageBodyTemplate = (rowData) => {
-        return <img src={`showcase/demo/images/product/${rowData.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={rowData.image} className="product-image" />
-    }
+    
 
-    const idBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.id} severity="info" />
-      );
-    }
-
-    const studentBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.student} severity="info" />
-      );
-    }
-
-    const dateBodyTemplate = (rowData) => {
-      return (
-          <Badge value={rowData.date_enrolled} severity="info" />
-      );
-    }
 
     const actionBodyTemplate = (rowData) => {
         return (
@@ -315,24 +280,18 @@ const Enrollments = (props) => {
                           header="ID"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY ID"
-                          body={idBodyTemplate}
                         />
                         <Column
                           field="student"
                           header="STUDENT"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY STUDENT"
-                          body={studentBodyTemplate}
                         />
                         <Column
                           field="date_enrolled"
                           header="DATE ENROLLED"
                           sortable
                           filter
-                          filterPlaceholder="SEARCH BY DATE ENROLLED"
-                          body={dateBodyTemplate}
                         />
                         <Column body={actionBodyTemplate} header="ACTIONS"/>
                     </DataTable>

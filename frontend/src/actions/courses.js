@@ -130,12 +130,13 @@ export const getCourseSlides = (id,token) => dispatch => {
         }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
+
 // Add
 export const addCourseSlide = (slide, token) => dispatch => {
     const headers ={
-          "Content-Type": "multipart/form-data",
-          Authorization: `Token ${token}`,
-          'Accept': 'multipart/form-data',
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': 'application/json',
     };
 
     axios.post(courseslidesURL, slide, headers)

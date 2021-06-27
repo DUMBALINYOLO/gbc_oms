@@ -16,6 +16,8 @@ import About from './About';
 import CourseBag from './CourseBag';
 import SchoolIcon from '@material-ui/icons/School';
 import Topics from '../topics/Topics';
+import CourseSlides from '../slides/Slides';
+import RateReviewIcon from '@material-ui/icons/RateReview';
 
 
 function TabContainer(props) {
@@ -86,7 +88,8 @@ class Course extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} />
-              <Tab icon={<SchoolIcon />} />
+              <Tab icon={<RateReviewIcon />} />
+              <Tab icon={<RateReviewIcon />} />
             </Tabs>
           </Hidden>
           <Hidden smDown>
@@ -99,12 +102,14 @@ class Course extends React.Component {
               centered
             >
               <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<SchoolIcon />} label="TOPICS" />
+              <Tab icon={<RateReviewIcon />} label="TOPICS" />
+              <Tab icon={<RateReviewIcon />} label="STUDY SLIDES" />
             </Tabs>
           </Hidden>
         </AppBar>
         {value === 0 && <TabContainer><About data={course}/></TabContainer>}
         {value === 1 && <TabContainer><Topics data={course}/></TabContainer>}
+        {value === 2 && <TabContainer><CourseSlides id={course.id}/></TabContainer>}
       </CourseBag >
     );
   }
