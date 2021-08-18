@@ -21,6 +21,7 @@ from .models import (
         )
 from django.db.models import Q as ComplexQueryFilter
 from django.shortcuts import get_object_or_404
+from rest_framework.parsers import FormParser, MultiPartParser
 
 
 def get_course(course_id):
@@ -31,8 +32,8 @@ def get_course(course_id):
 
 class UpcomingCourseOfferedViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny,]
+    parser_classes = [MultiPartParser, FormParser]
     
-
 
     def get_serializer_class(self,*args, **kwargs):
         if self.action in ['create', 'patch', 'put']:
@@ -69,7 +70,7 @@ class UpcomingCourseOfferedViewSet(viewsets.ModelViewSet):
 
 class OngoingCourseOfferedViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny,]
-    
+
 
 
     def get_serializer_class(self,*args, **kwargs):
@@ -100,7 +101,7 @@ class OngoingCourseOfferedViewSet(viewsets.ModelViewSet):
                                 ]) &
                                 ComplexQueryFilter(end_date__gt=timezone.now())
                             )
-                                
+
         return queryset
 
 

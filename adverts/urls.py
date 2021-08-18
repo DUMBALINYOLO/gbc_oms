@@ -16,4 +16,5 @@ router.register('exit-profiles',  CourseExitProfileViewSet, basename='exit-profi
 router.register('course-topics',  CourseTopicViewSet, basename='course-topics')
 router.register('course-objectives',  CourseObjectiveViewSet, basename='course-objectives')
 
+
 urlpatterns = router.urls

@@ -2,7 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Footer from '../../components/landing/Footer';
-import Header from '../../components/landing/Header';
+import Header from '../../components/LandingPage/Header';
 import styles from './appStyles-jss';
 
 class Corporate extends React.Component {

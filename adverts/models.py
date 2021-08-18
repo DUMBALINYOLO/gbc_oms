@@ -20,9 +20,9 @@ class CourseOffered(models.Model):
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
     price = models.DecimalField(
-                        default=0.0, 
-                        decimal_places=2, 
-                        max_digits=16, 
+                        default=0.0,
+                        decimal_places=2,
+                        max_digits=16,
                         blank=True
                     )
     topics = models.ManyToManyField(
@@ -42,7 +42,7 @@ class CourseOffered(models.Model):
                         null=True,
                         blank=True
                     )
-    
+
 
 
     def __str__(self):
@@ -60,8 +60,6 @@ class CourseTopic(models.Model):
         return self.name
 
 
-
-
 class CourseExitProfile(models.Model):
     name = models.CharField(max_length=300)
     description = models.TextField(blank=True, null=True)
@@ -69,6 +67,7 @@ class CourseExitProfile(models.Model):
 
     def __str__(self):
         return self.name
+
 
 
 class CourseObjective(models.Model):
@@ -79,4 +78,3 @@ class CourseObjective(models.Model):
 
     def __str__(self):
         return self.name
-

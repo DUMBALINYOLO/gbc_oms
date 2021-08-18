@@ -72,7 +72,10 @@ const AddCourse = props => {
       setErrors,
       handleInputChange,
       resetForm
+      
   } = useForm(initialFValues, true, validate);
+
+
 
 
   const handleSubmit = e => {

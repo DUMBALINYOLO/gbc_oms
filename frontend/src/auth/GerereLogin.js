@@ -10,7 +10,6 @@ import { Avatar, Button, Typography ,Link } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import PublicLayout from '.././public/layout/InformationTechnologyLayout';
 
 
 class GerereLogin extends React.Component {
@@ -39,7 +38,7 @@ class GerereLogin extends React.Component {
     }
     if (!this.props.token) {
       return(
-        <PublicLayout>
+        <>
           <form onSubmit={this.onSubmit}>
               <Paper elevation={10} style={paperStyle}>
                   <Grid align='center'>
@@ -80,7 +79,7 @@ class GerereLogin extends React.Component {
                   </Typography>
               </Paper>
           </form>
-        </PublicLayout>  
+        </>
       );
 
     }
@@ -99,7 +98,7 @@ class GerereLogin extends React.Component {
     }
 
     return(
-      <PublicLayout>
+      <>
         <form onSubmit={this.onSubmit}>
             <Paper elevation={10} style={paperStyle}>
                 <Grid align='center'>
@@ -140,7 +139,7 @@ class GerereLogin extends React.Component {
                 </Typography>
             </Paper>
         </form>
-      </PublicLayout>
+      </>
     )
   }
 }

@@ -82,27 +82,7 @@ class Banner extends React.Component {
           <Typography component="p" variant="h4" gutterBottom>TRADING AS GERERE BUSINESS COLLEGE</Typography>
           <Typography component="p" variant="h5" gutterBottom>BELLUM GERERE IN CEREBRUM PAUPERTAS</Typography>
           <Typography component="p" variant="h6" gutterBottom>“waging war against brain poverty”</Typography>
-          <div className={classes.btnArea}>
-            <Button
-              size="large"
-              variant="outlined"
-              className={classNames(classes.button, classes.btnLight)}
-              component={Link}
-              to={link.signup}
-            >
-              Sign Up
-            </Button>
-            <Button
-              size="large"
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-              component={Link}
-              to={link.login}
-            >
-              Login
-            </Button>
-          </div>
+          
           <div className={classes.previewApp}>
             <Hidden smDown>
               <div className={classNames(classes.m2, classes.screen, slideMode ? classes.bottom : '')}>

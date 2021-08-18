@@ -5,10 +5,7 @@ import AlertMUITemplate from "react-alert-template-mui";
 import { positions, transitions, Provider as AlertProvider } from "react-alert";
 import ThemeWrapper, { AppContext } from './theme/ThemeWrapper';
 import LandingPage from './containers/landing/LandingPage'
-import BlogPage from './containers/Blog/BlogPage';
-import CompanyProfile from './containers/Profile/CompanyProfile';
 import InformationTechnologyHome from './it/dashboard/InformationTechnologyHome';
-import PublicDash from './public/dashboard/PublicDash';
 import Fees from './it/fees/Fees';
 import Curriculum from './it/curriculum/Curriculum';
 import SubjectsAdminView from './it/curriculum/SubjectsAdminView';
@@ -44,7 +41,6 @@ import AdminExcercise from './it/gradings/AdminExcercise';
 import AdminAssignment from './it/gradings/AdminAssignment';
 import BursarLog from './test/BursarLog';
 import TeacherLog from './test/TeacherLog';
-import GerereLogin from "./auth/GerereLogin";
 import Posts from './containers/newsletter/Posts';
 import TeacherUpcomingCourses from './teacher/courses/courses/TeacherUpcomingCourses';
 import TeacherUpcomingCourse from './teacher/courses/courses/TeacherUpcomingCourse';
@@ -91,7 +87,6 @@ import StudentOngoingCourses from './student/courses/courses/StudentOngoingCours
 import StudentOngoingCourse from './student/courses/courses/StudentOngoingCourse';
 import StudentUpcomingCourses from './student/courses/courses/StudentUpcomingCourses';
 import StudentUpcomingCourse from './student/courses/courses/StudentUpcomingCourse';
-
 import StudentCourseTab from './student/courses/courses/Tab';
 import StudentGradingTab from './student/gradings/Tab';
 import StudentBioTab from './student/courses/Tab';
@@ -101,7 +96,6 @@ import TeacherGradingTab from './teacher/gradings/Tab';
 import AdminGradingTab from './it/gradings/Tab';
 import AdminCurriculumTab from './it/curriculum/Tab';
 import AdminClassTab from './it/classes/Tab';
-
 import StudentTopic from './student/courses/topics/StudentTopic';
 import StudentSubTopic from './student/courses/subtopics/StudentSubTopic';
 import StudentStudyNote from './student/courses/notes/StudentStudyNote';
@@ -113,10 +107,8 @@ import StudentCities from './student/courses/publishercity/PublisherCities';
 import TeacherAuthors from './teacher/courses/author/Authors';
 import TeacherPublishers from './teacher/courses/publisher/Publishers';
 import TeacherCities from './teacher/courses/publishercity/PublisherCities';
-import  PuclicOfferedCourses from "./public/courses/PublicOfferedCourses";
 import AddAdmission from './student/admissions/AddAdmission';
 import AdminCourseAdverts from './it/adverts/AdminCourseAdverts';
-import GerereRegister  from './auth/GerereRegister';
 import UserDeques from './it/settings/UserDeques';
 import CourseDeques from './it/settings/CourseDeques';
 import Enrollments from './it/admissions/Enrollments';
@@ -130,8 +122,265 @@ import AdminStaffUsers from './it/staff/StaffUsers';
 import Bibliography from './it/courses/Bibliography';
 import AdminCourses from './it/courses/Courses';
 import Admissions from './it/admissions/Admissions';
+import About from './public/about/AboutBag';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import './assets/base.scss';
+import {
+  fab,
+  faFacebook,
+  faTwitter,
+  faVuejs,
+  faReact,
+  faHtml5,
+  faGoogle,
+  faInstagram,
+  faPinterest,
+  faYoutube,
+  faDiscord,
+  faSlack,
+  faDribbble,
+  faGithub,
+} from '@fortawesome/free-brands-svg-icons';
+import {
+  far,
+  faSquare,
+  faLifeRing,
+  faCheckCircle,
+  faTimesCircle,
+  faDotCircle,
+  faThumbsUp,
+  faComments,
+  faFolderOpen,
+  faTrashAlt,
+  faFileImage,
+  faFileArchive,
+  faCommentDots,
+  faFolder,
+  faKeyboard,
+  faCalendarAlt,
+  faEnvelope,
+  faAddressCard,
+  faMap,
+  faObjectGroup,
+  faImages,
+  faUser,
+  faLightbulb,
+  faGem,
+  faClock,
+  faUserCircle,
+  faQuestionCircle,
+  faBuilding,
+  faBell,
+  faFileExcel,
+  faFileAudio,
+  faFileVideo,
+  faFileWord,
+  faFilePdf,
+  faFileCode,
+  faFileAlt,
+  faEye,
+  faChartBar,
+} from '@fortawesome/free-regular-svg-icons';
+import {
+  fas,
+  faAngleDoubleRight,
+  faAngleDoubleLeft,
+  faSmile,
+  faHeart,
+  faBatteryEmpty,
+  faBatteryFull,
+  faChevronRight,
+  faSitemap,
+  faPrint,
+  faMapMarkedAlt,
+  faTachometerAlt,
+  faAlignCenter,
+  faExternalLinkAlt,
+  faShareSquare,
+  faInfoCircle,
+  faSync,
+  faQuoteRight,
+  faStarHalfAlt,
+  faShapes,
+  faCarBattery,
+  faTable,
+  faCubes,
+  faPager,
+  faCameraRetro,
+  faBomb,
+  faNetworkWired,
+  faBusAlt,
+  faBirthdayCake,
+  faEyeDropper,
+  faUnlockAlt,
+  faDownload,
+  faAward,
+  faPlayCircle,
+  faReply,
+  faUpload,
+  faBars,
+  faEllipsisV,
+  faSave,
+  faSlidersH,
+  faCaretRight,
+  faChevronUp,
+  faPlus,
+  faLemon,
+  faChevronLeft,
+  faTimes,
+  faChevronDown,
+  faFilm,
+  faSearch,
+  faEllipsisH,
+  faCog,
+  faArrowsAltH,
+  faPlusCircle,
+  faAngleRight,
+  faAngleUp,
+  faAngleLeft,
+  faAngleDown,
+  faArrowUp,
+  faArrowDown,
+  faArrowRight,
+  faArrowLeft,
+  faStar,
+  faSignOutAlt,
+  faLink,
+} from '@fortawesome/free-solid-svg-icons';
+
+
+library.add(
+  far,
+  faSquare,
+  faLifeRing,
+  faCheckCircle,
+  faTimesCircle,
+  faDotCircle,
+  faThumbsUp,
+  faComments,
+  faFolderOpen,
+  faTrashAlt,
+  faFileImage,
+  faFileArchive,
+  faCommentDots,
+  faFolder,
+  faKeyboard,
+  faCalendarAlt,
+  faEnvelope,
+  faAddressCard,
+  faMap,
+  faObjectGroup,
+  faImages,
+  faUser,
+  faLightbulb,
+  faGem,
+  faClock,
+  faUserCircle,
+  faQuestionCircle,
+  faBuilding,
+  faBell,
+  faFileExcel,
+  faFileAudio,
+  faFileVideo,
+  faFileWord,
+  faFilePdf,
+  faFileCode,
+  faFileAlt,
+  faEye,
+  faChartBar
+);
+library.add(
+  fab,
+  faFacebook,
+  faTwitter,
+  faVuejs,
+  faReact,
+  faHtml5,
+  faGoogle,
+  faInstagram,
+  faPinterest,
+  faYoutube,
+  faDiscord,
+  faSlack,
+  faDribbble,
+  faGithub
+);
+library.add(
+  fas,
+  faAngleDoubleRight,
+  faAngleDoubleLeft,
+  faSmile,
+  faHeart,
+  faBatteryEmpty,
+  faBatteryFull,
+  faChevronRight,
+  faSitemap,
+  faPrint,
+  faMapMarkedAlt,
+  faTachometerAlt,
+  faAlignCenter,
+  faExternalLinkAlt,
+  faShareSquare,
+  faInfoCircle,
+  faSync,
+  faQuoteRight,
+  faStarHalfAlt,
+  faShapes,
+  faCarBattery,
+  faTable,
+  faCubes,
+  faPager,
+  faCameraRetro,
+  faBomb,
+  faNetworkWired,
+  faBusAlt,
+  faBirthdayCake,
+  faEyeDropper,
+  faUnlockAlt,
+  faDownload,
+  faAward,
+  faPlayCircle,
+  faReply,
+  faUpload,
+  faBars,
+  faEllipsisV,
+  faSave,
+  faSlidersH,
+  faCaretRight,
+  faChevronUp,
+  faPlus,
+  faLemon,
+  faChevronLeft,
+  faTimes,
+  faChevronDown,
+  faFilm,
+  faSearch,
+  faEllipsisH,
+  faCog,
+  faArrowsAltH,
+  faPlusCircle,
+  faAngleRight,
+  faAngleUp,
+  faAngleLeft,
+  faAngleDown,
+  faArrowUp,
+  faArrowDown,
+  faArrowRight,
+  faArrowLeft,
+  faStar,
+  faSignOutAlt,
+  faLink
+);
+
+
+
+
+
 
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
+
+
 
 const options = {
   position: positions.MIDDLE,
@@ -151,6 +400,8 @@ class App extends React.Component {
   render() {
     const {user} = this.props;
 
+
+
     return (
       <ThemeWrapper>
 				<AlertProvider template={AlertMUITemplate} {...options}>
@@ -159,8 +410,11 @@ class App extends React.Component {
 		            {(changeMode) => (
 		              <Switch>
 						<Route exact path='/' component={LandingPage} />
-						<Route exact path='/login' component={GerereLogin} />
-						<Route exact path='/signup' component={GerereRegister} />
+            <Route
+                exact
+                path='/about'
+                component={About}
+              />
 						<Route exact path='/itdashboard/enquiries' component={Inquiries} />
 						<Route exact path='/itdashboard/enquiries/:id' component={Inquiry} />
 						<Route exact path='/itdashboard/users' component={UserDeques} />
@@ -174,9 +428,7 @@ class App extends React.Component {
 						<Route exact path='/itdashboard/gradings' component={AdminGradingTab} />
 						<Route exact path='/itdashboard/curriculums' component={AdminCurriculumTab} />
 						<Route exact path='/studentdashboard/bio' component={StudentBioTab} />
-						<Route exact path='/coursesoffered' component={PuclicOfferedCourses} />
 						<Route exact path='/itdashboard' component={InformationTechnologyHome} />
-						<Route exact path='/publicdashboard' component={PublicDash} />
 						<Route exact path='/bursardashboard' component={BursarLog} />
 						<Route exact path='/studentdashboard' component={StudentHome} />
 						<Route exact path='/studentdashboard/add-admission' component={AddAdmission} />
@@ -194,7 +446,6 @@ class App extends React.Component {
 						<Route exact path='/studentdashboard/authors' component={StudentAuthors} />
 						<Route exact path='/studentdashboard/publishers' component={StudentPublishers} />
 						<Route exact path='/studentdashboard/cities' component={StudentCities} />
-						<Route exact path='/wa' component={TeacherLog} />
 						<Route exact path='/teacherdashboard' component={TeacherHome} />
 						<Route exact path='/teacherdashboard/attendance' component={TeacherAttendances} />
 						<Route exact path='/teacherdashboard/attendance/:id' component={TeacherAttendance} />
@@ -238,12 +489,10 @@ class App extends React.Component {
 						<Route exact path='/itdashboard/cities' component={Cities} />
 						<Route exact path='/itdashboard/course-ads' component={AdminCourseAdverts} />
 						<Route exact path="/itdashboard/students/:id" component={StudentProfile} />
-
 						<Route exact path="/itdashboard/bursars/:id" component={BursarProfile} />
 						<Route exact path="/itdashboard/teachers/:id" component={TeacherProfile} />
 						<Route exact path="/itdashboard/principals/:id" component={PrincipalProfile} />
 						<Route exact path="/itdashboard/parents/:id" component={ParentProfile} />
-
 						<Route exact path='/itdashboard/tests' component={AdminStudentTests} />
 						<Route exact path='/itdashboard/tests/:id' component={AdminGradingTest} />
 						<Route exact path='/itdashboard/excercises' component={AdminStudentExcercises} />
@@ -274,12 +523,9 @@ class App extends React.Component {
 						<Route exact path='/itdashboard/inactivecourses/:id' component={AdminInactiveCourse} />
 						<Route exact path='/itdashboard/active-accounts' component={AccountsAdminView} />
 						<Route exact path='/itdashboard/inactive-accounts' component={AdminInActiveAccounts} />
-						<Route exact path='/blog' component={BlogPage} />
-						<Route exact path='/profile' component={CompanyProfile} />
-						<Route exact path='/blog' component={Posts} />
 						<Route component={Error} />
 
-		              </Switch>
+		         </Switch>
 
 	          )}
 	        </AppContext.Consumer>

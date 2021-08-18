@@ -247,15 +247,24 @@ export const gradingasignmentrecordsURL = `${endpoint}/grading/asignment-records
 export const gradingtestrecordsURL = `${endpoint}/grading/grading-test-records/`
 export const gradingexcerciserecordsURL = `${endpoint}/grading/grading-excercise-records/`
 
+
 //curriculum
 export const subjectsURL = `${endpoint}/curriculum/subjects/`
 export const curriculumsURL = `${endpoint}/curriculum/curriculums/`
 
+
 //reports
 export const statscountersURL = `${endpoint}/reports/stats-counters`
 
+
 //adverts
 export const courseadvertsURL = `${endpoint}/adverts/course-adverts/`
+export const upcomingofferedcoursesURL = `${endpoint}/adverts/upcoming-offered-courses/`
+export const ongoingofferedcoursesURL = `${endpoint}/adverts/ongoing-offered-courses/`
+export const exitprofilesURL = `${endpoint}/adverts/exit-profiles/`
+export const coursetopicsURL = `${endpoint}/adverts/course-topics/`
+export const courseobjectivesURL = `${endpoint}/adverts/course-objectives/`
+
 
 
 //MESSAGING
