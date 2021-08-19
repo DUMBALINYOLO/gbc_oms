@@ -1,12 +1,14 @@
 import React from 'react';
 import Banner from '../../components/landing/Banner';
-import Feature from '../../components/landing/Feature';
+import Feature from '../../public/feature/Feature';
 import Showcase from '../../components/landing/Showcase';
 import Testimonials from '../../components/landing/Testimonials';
 import Technology from '../../components/landing/Technology';
 import Pricing from '../../components/landing/Pricing';
 import Contact from '../../components/landing/Contact';
 import HelpSupport from '../HelpSupport';
+import Hero from '../../public/hero/Hero';
+import ServivesOne from '../../public/services/ServicesOne';
 
 
 class HomePage extends React.Component {
@@ -14,24 +16,18 @@ class HomePage extends React.Component {
     return (
       <div>
         <section id="banner">
-          <Banner />
+          <Hero />
         </section>
         <section id="showcase">
-          <Showcase />
+          <Feature />
         </section>
 
         <section id="testimonials">
           <Testimonials />
         </section>
-        
-        <section id="tech">
-          <Technology />
-        </section>
-        <section id="pricing">
-          <Pricing />
-        </section>
-        <section id="faqs">
-          <HelpSupport />
+
+        <section id="testicles">
+          <ServivesOne />
         </section>
         <section id="contact">
           <Contact />

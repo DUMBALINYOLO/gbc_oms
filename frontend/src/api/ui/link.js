@@ -11,6 +11,7 @@ module.exports = {
   pinterest: '#',
   linkedin: '#',
   buy: '#',
+  
   admins: '/itdashboard/principals',
   bursars: '/itdashboard/bursars',
   teachers: '/itdashboard/teachers',

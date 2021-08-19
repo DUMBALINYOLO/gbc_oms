@@ -19,6 +19,7 @@ function createData(name, url) {
   };
 }
 
+
 function Decoration(props) {
   const { classes } = props;
   return (
@@ -39,11 +40,12 @@ const DecorationStyled = withStyles(styles)(Decoration);
 class Footer extends React.Component {
   state = {
     menuList: [
-      createData('core values', '#showcase'),
-      createData('team', '#testimonials'),
-      createData('portfolio', '#tech'),
-      createData('our belief', '#pricing'),
-      createData('contact', '#contact'),
+      createData('gerere', '#/'),
+      createData('about', '#/about'),
+      createData('login', '#/login'),
+      createData('newsletter', '#/newsletter'),
+      createData('courses', '#/offered-courses'),
+      createData('contact', '#/contact'),
     ]
   }
 
