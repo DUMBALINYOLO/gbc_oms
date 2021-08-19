@@ -123,7 +123,7 @@ import Bibliography from './it/courses/Bibliography';
 import AdminCourses from './it/courses/Courses';
 import Admissions from './it/admissions/Admissions';
 import About from './public/about/AboutBag';
-
+import Login from './public/accounts/Auth';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import './assets/base.scss';
 import {
@@ -416,6 +416,11 @@ class App extends React.Component {
                 path='/about'
                 component={About}
               />
+              <Route
+                  exact
+                  path='/login'
+                  component={Login}
+                />
 						<Route exact path='/itdashboard/enquiries' component={Inquiries} />
 						<Route exact path='/itdashboard/enquiries/:id' component={Inquiry} />
 						<Route exact path='/itdashboard/users' component={UserDeques} />

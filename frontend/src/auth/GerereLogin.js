@@ -12,6 +12,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
 
+
 class GerereLogin extends React.Component {
 
   state = {
@@ -83,7 +84,7 @@ class GerereLogin extends React.Component {
       );
 
     }
-    console.log(userRole)
+
     if (userRole === 'principal'){
         return <Redirect to="/itdashboard" />;
     }
