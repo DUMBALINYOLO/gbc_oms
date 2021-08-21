@@ -124,6 +124,12 @@ import AdminCourses from './it/courses/Courses';
 import Admissions from './it/admissions/Admissions';
 import About from './public/about/AboutBag';
 import Login from './public/accounts/Auth';
+import OfferedAdverts from './it/offered/Courses';
+import AdminOfferedOngoingCourse from './it/offered/OngoingCourse';
+import AdminOfferedUpcomingCourse from './it/offered/UpcomingCourse';
+import Adverts from './public/adverts/Adverts';
+import PublicOngoingCourse from './public/adverts/OngoingCourse';
+import AdminTickets from './it/tickets/TicketsTab';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import './assets/base.scss';
 import {
@@ -421,6 +427,37 @@ class App extends React.Component {
                   path='/login'
                   component={Login}
                 />
+              <Route
+                  exact
+                  path='/offered-courses'
+                  component={Adverts}
+                />
+              <Route
+                  exact
+                  path='/ongoing-courses/:id'
+                  component={PublicOngoingCourse}
+                />
+                
+              <Route 
+                exact 
+                path='/itdashboard/ads' 
+                component={OfferedAdverts} 
+              />
+              <Route 
+                exact 
+                path='/itdashboard/ongoing-offered-courses/:id' 
+                component={AdminOfferedOngoingCourse} 
+              />
+              <Route 
+                exact 
+                path='/itdashboard/upcoming-offered-courses/:id' 
+                component={AdminOfferedUpcomingCourse} 
+              />
+              <Route 
+                exact 
+                path='/itdashboard/tickets' 
+                component={AdminTickets} 
+              />
 						<Route exact path='/itdashboard/enquiries' component={Inquiries} />
 						<Route exact path='/itdashboard/enquiries/:id' component={Inquiry} />
 						<Route exact path='/itdashboard/users' component={UserDeques} />

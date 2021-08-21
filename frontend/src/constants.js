@@ -1,5 +1,5 @@
-const localhost = "https://www.gererebusinesscollege.co.za"
-// const localhost = "http://localhost:8000"
+// const localhost = "https://www.gererebusinesscollege.co.za"
+const localhost = "http://localhost:8000"
 
 const apiURL = "/api"
 
@@ -277,3 +277,17 @@ export const rejectedstudentadmissionsURL = `${endpoint}/admissions/rejected-stu
 export const meetingstudentadmissionsURL = `${endpoint}/admissions/meeting-student-admissions/`
 export const acceptedstudentadmissionsURL = `${endpoint}/admissions/accepted-student-admissions/`
 export const applicationsURL = `${endpoint}/admissions/applications/`
+
+
+//tickets
+export const commentsURL= `${endpoint}/tickets/comments/`
+export const openticketsURL= `${endpoint}/tickets/open-tickets/`
+export const customeropenticketsURL= `${endpoint}/tickets/customer-open-tickets/`
+export const assignedopenticketsURL= `${endpoint}/tickets/assigned-open-tickets/`
+export const closedticketsURL= `${endpoint}/tickets/closed-tickets/`
+export const customerclosedticketsURL= `${endpoint}/tickets/customer-closed-tickets/`
+export const assignedclosedticketsURL= `${endpoint}/tickets/assigned-closed-tickets/`
+export const reopenedticketsURL= `${endpoint}/tickets/reopened-tickets/`
+export const customerreopenedticketsURL= `${endpoint}/tickets/customer-reopened-tickets/`
+export const assignedreopenedticketsURL= `${endpoint}/tickets/assigned-reopened-tickets/`
+

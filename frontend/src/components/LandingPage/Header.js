@@ -90,7 +90,10 @@ const Header = (props) => {
             </Button>
             <Button
               color="inherit"
-              className=" px-4 py-2 text-capitalize">
+              className=" px-4 py-2 text-capitalize"
+              component={Link}
+              to='/offered-courses'
+            >
               OFFERED COURSES
             </Button>
             <Button

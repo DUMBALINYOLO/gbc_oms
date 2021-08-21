@@ -28,6 +28,15 @@ import errors from './errors';
 import adverts from './adverts';
 import messaging from './messaging'
 
+import comments from './tickets/comments';
+import opentickets from './tickets/opentickets';
+import assignedopentickets from './tickets/assignedopentickets';
+import closedtickets from './tickets/closedtickets';
+import assignedclosedtickets from './tickets/assignedclosedtickets';
+import reopenedtickets from './tickets/reopenedtickets';
+import assignedreopenedtickets from './tickets/assignedreopenedtickets';
+import customertickets from './tickets/customertickets';
+
 
 
 
@@ -61,5 +70,14 @@ export default combineReducers({
     messages,
     adverts,
     messaging,
+
+    comments,
+    opentickets,
+    assignedopentickets,
+    closedtickets,
+    assignedclosedtickets,
+    reopenedtickets,
+    assignedreopenedtickets,
+    customertickets
 
 });

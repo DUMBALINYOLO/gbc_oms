@@ -38,7 +38,7 @@ class CourseOffered(models.Model):
                             blank=True
                         )
     image = models.ImageField(
-                        upload_to='courses/%Y/%m/%d/',
+                        upload_to='courses/',
                         null=True,
                         blank=True
                     )

@@ -507,10 +507,11 @@ export const getOngoingOfferedCourse = (id,token) => {
 export const addOngoingOfferedCourse = (advert, token) => {
   return dispatch => {
       dispatch(createOngoingOfferedCourseStart());
-      let headers = axios.defaults.headers ={
-          "Content-Type": "multipart/form-data",
-          Authorization: `Token ${token}`,
-          'Accept': 'multipart/form-data',
+
+      let headers = axios.defaults.headers = {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Token ${token}`,
+        'Accept': 'multipart/form-data',
       };
 
       axios
@@ -570,10 +571,10 @@ export const getUpcomingOfferedCourse = (id,token) => {
 export const addUpcomingOfferedCourse = (advert, token) => {
   return dispatch => {
       dispatch(createUpcomingOfferedCourseStart());
-      let headers = axios.defaults.headers ={
-          "Content-Type": "multipart/form-data",
-          Authorization: `Token ${token}`,
-          'Accept': 'multipart/form-data',
+      let headers = axios.defaults.headers = {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Token ${token}`,
+        'Accept': 'multipart/form-data',
       };
 
       axios

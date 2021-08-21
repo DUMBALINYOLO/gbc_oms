@@ -5,7 +5,7 @@ import os
 from datetime import timedelta
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DEBUG = False
+DEBUG = True
 if DEBUG:
     from dotenv import load_dotenv
     load_dotenv()
@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'curriculum',
     'enrollment',
     'event',
-    'fees',
+    # 'fees',
     'grading',
     'inventory',
     'setup',
@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'reports',
     'adverts',
     'messaging',
+    'tickets',
+    'logs',
+    'notifications',
     #third part apps
     'django_extensions',
     'solo.apps.SoloAppConfig',
@@ -176,23 +179,36 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-
-os.path.join(BASE_DIR, 'media').replace('\\', '/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = [
     # BASE_DIR / "static",
     os.path.join(BASE_DIR, "frontend", 'build', "static"),
 ]
 
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:3000',
+#     'http://127.0.0.1:3000',
+# ]
+
+# CORS_ORIGINS_ALLOW_ALL  = True
 CORS_ORIGIN_ALLOW_ALL = True
 
-# CHANNEL_LAYERS = {
-#     'default': {
-#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
-#         'CONFIG': {
-#             "hosts": [('127.0.0.1', 6379)],
-#         },
-#     },
-# }
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'Authorization',
+    'content-type',
+    'Referer',
+    'origin',
+    'user-agent',
+    'sec-ch-ua',
+    'User-Agent',
+    "remote-user",
+
+]
+
+
 
 
 SERVER_EMAIL = 'dumbaclassics@gmail.com'
@@ -234,20 +250,11 @@ ADMINS = [
 
 MANAGERS = ADMINS
 
-SIMPLE_JWT = {
-   'AUTH_HEADER_TYPES': ('JWT',),
-}
+
 
 
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 
-CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
 
-CELERY_BEAT_SCHEDULE = {
-    "scheduled_task": {  # change name of task
-        "task": "",
-        "schedule": timedelta(hours=24),
-    }
-}
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

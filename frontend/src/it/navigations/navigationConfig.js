@@ -231,6 +231,48 @@ const navigationConfig = [
           },
         ],
       },
+      {
+        id: "advertise",
+        title: "ADVERTISE",
+        type: "collapse",
+        icon: <SwapIcon />,
+        badge: {
+          title: "9",
+          bg: "#525E8A",
+          fg: "#FFFFFF",
+
+        },
+        children: [
+          {
+            id: "advertise",
+            title: "ADVERTISE",
+            type: "item",
+            url: '/itdashboard/ads',
+            exact: true,
+          },
+        ],
+      },
+      {
+        id: "tickets",
+        title: "TICKETS",
+        type: "collapse",
+        icon: <SwapIcon />,
+        badge: {
+          title: "9",
+          bg: "#525E8A",
+          fg: "#FFFFFF",
+
+        },
+        children: [
+          {
+            id: "tickets",
+            title: "TICKETS",
+            type: "item",
+            url: '/itdashboard/tickets',
+            exact: true,
+          },
+        ],
+      },
     ],
   },
 ];

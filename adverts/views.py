@@ -61,8 +61,6 @@ class UpcomingCourseOfferedViewSet(viewsets.ModelViewSet):
                                     'ongoing',
                                     'finished'
                                 ])
-                            ).filter(
-                                ComplexQueryFilter(start_date__lt=timezone.now())
                             )
 
         return queryset
@@ -70,6 +68,7 @@ class UpcomingCourseOfferedViewSet(viewsets.ModelViewSet):
 
 class OngoingCourseOfferedViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny,]
+    parser_classes = [MultiPartParser, FormParser]
 
 
 
@@ -81,8 +80,10 @@ class OngoingCourseOfferedViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         data = request.data.copy()
+        print(data)
         data["status"] = 'ongoing'
         serializer = self.get_serializer(data=data)
+        print(serializer.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
@@ -95,12 +96,12 @@ class OngoingCourseOfferedViewSet(viewsets.ModelViewSet):
                                                     'objectives',
                                                     'exit_profiles'
                                                 ).filter(
-                                ~ComplexQueryFilter(status__in =[
-                                    'upcoming',
-                                    'finished'
-                                ]) &
-                                ComplexQueryFilter(end_date__gt=timezone.now())
-                            )
+                                        ~ComplexQueryFilter(status__in =[
+                                            'upcoming',
+                                            'finished'
+                                        ])
+
+                                    )
 
         return queryset
 
@@ -116,7 +117,7 @@ class CourseTopicViewSet(viewsets.ModelViewSet):
         return CourseTopicListDetailSerializer
 
 
-    def get_queyset(self, *args, **kwargs):
+    def get_queryset(self, *args, **kwargs):
         queryset = CourseTopic.objects.all().order_by('-id')
         course_id = self.request.query_params.get('id', None)
         if course_id is not None:
@@ -137,7 +138,7 @@ class CourseObjectiveViewSet(viewsets.ModelViewSet):
         return CourseObjectiveListDetailSerializer
 
 
-    def get_queyset(self, *args, **kwargs):
+    def get_queryset(self, *args, **kwargs):
         queryset = CourseObjective.objects.all().order_by('-id')
         course_id = self.request.query_params.get('id', None)
         if course_id is not None:
@@ -157,7 +158,7 @@ class CourseExitProfileViewSet(viewsets.ModelViewSet):
         return CourseExitProfileListDetailSerializer
 
 
-    def get_queyset(self, *args, **kwargs):
+    def get_queryset(self, *args, **kwargs):
         queryset = CourseExitProfile.objects.all().order_by('-id')
         course_id = self.request.query_params.get('id', None)
         if course_id is not None:

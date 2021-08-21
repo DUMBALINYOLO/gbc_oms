@@ -42,16 +42,17 @@ class ForgotPassSerialiazer(serializers.Serializer):
 
 
 class LoginSerializer(serializers.Serializer):
-	email = serializers.CharField()
-	password = serializers.CharField()
+    email = serializers.CharField()
+    password = serializers.CharField()
 
 
-	def validate(self, data):
-		user = authenticate(**data)
-		if user and user.is_active:
-			return user
-		raise serializers.ValidationError("Incorrect Credentials")
-		
+    def validate(self, data):
+        print(data)
+        user = authenticate(**data)
+        if user and user.is_active:
+            return user
+        raise serializers.ValidationError("Incorrect Credentials")
+        
 
 class UserSerializer(serializers.ModelSerializer):
 
