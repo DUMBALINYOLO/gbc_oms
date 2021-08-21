@@ -10,7 +10,6 @@ import {
   CREATE_COURSE_ADVERT_START,
   CREATE_COURSE_ADVERT_SUCCESS,
   CREATE_COURSE_ADVERT_FAIL,
-
   GET_UPCOMING_OFFERED_COURSES_START,
   GET_UPCOMING_OFFERED_COURSES_SUCCESS,
   GET_UPCOMING_OFFERED_COURSES_FAIL,
@@ -318,11 +317,6 @@ const createOfferedCourseObjectiveFail = error => {
   };
 };
 
-
-
-
-
-
 const getCourseAdvertListStart = () => {
   return {
     type: GET_COURSE_ADVERTS_START
@@ -385,14 +379,12 @@ const createCourseAdvertFail = error => {
 };
 
 
-
-
 export const getCourseAdverts = (id, token) => {
   return dispatch => {
       dispatch(getCourseAdvertListStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .get(`${courseadvertsURL}?id=${id}`, headers)
@@ -410,9 +402,9 @@ export const getCourseAdverts = (id, token) => {
 export const getCourseAdvert = (id,token) => {
   return dispatch => {
       dispatch(getCourseAdvertDetailStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .get(`${courseadvertsURL}${id}`, headers)
@@ -429,9 +421,9 @@ export const getCourseAdvert = (id,token) => {
 export const addCourseAdvert = (advert, token) => {
   return dispatch => {
       dispatch(createCourseAdvertStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .post(courseadvertsURL, advert, headers)
@@ -446,10 +438,10 @@ export const addCourseAdvert = (advert, token) => {
 };
 
 export const editCourseAdvert = (id, advert, token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
+    let headers = axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+      'Accept': 'application/json',
     };
     JSON.stringify(id, null, 3)
     axios.patch(`${courseadvertsURL}${id}/`, advert, headers)
@@ -462,14 +454,12 @@ export const editCourseAdvert = (id, advert, token) => dispatch => {
 }
 
 
-
-
 export const getOngoingOfferedCourses = (token) => {
   return dispatch => {
       dispatch(getOngoingOfferedCourseListStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .get(ongoingofferedcoursesURL, headers)
@@ -487,9 +477,9 @@ export const getOngoingOfferedCourses = (token) => {
 export const getOngoingOfferedCourse = (id,token) => {
   return dispatch => {
       dispatch(getOngoingOfferedCourseDetailStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .get(`${ongoingofferedcoursesURL}${id}`, headers)
@@ -507,13 +497,11 @@ export const getOngoingOfferedCourse = (id,token) => {
 export const addOngoingOfferedCourse = (advert, token) => {
   return dispatch => {
       dispatch(createOngoingOfferedCourseStart());
-
       let headers = axios.defaults.headers = {
         "Content-Type": "multipart/form-data",
         Authorization: `Token ${token}`,
         'Accept': 'multipart/form-data',
       };
-
       axios
         .post(ongoingofferedcoursesURL, advert, headers)
         .then(res => {
@@ -531,9 +519,9 @@ export const addOngoingOfferedCourse = (advert, token) => {
 export const getUpcomingOfferedCourses = (token) => {
   return dispatch => {
       dispatch(getUpcomingOfferedCourseListStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .get(upcomingofferedcoursesURL, headers)
@@ -551,9 +539,9 @@ export const getUpcomingOfferedCourses = (token) => {
 export const getUpcomingOfferedCourse = (id,token) => {
   return dispatch => {
       dispatch(getUpcomingOfferedCourseDetailStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .get(`${upcomingofferedcoursesURL}${id}`, headers)
@@ -594,9 +582,9 @@ export const addUpcomingOfferedCourse = (advert, token) => {
 export const getCourseModules = (id, token) => {
   return dispatch => {
       dispatch(getCourseModuleListStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .get(`${coursetopicsURL}?id=${id}`, headers)
@@ -636,9 +624,9 @@ export const addCourseModule = (topic, token) => {
 export const getStudentExitProfiles = (id, token) => {
   return dispatch => {
       dispatch(getCourseModuleListStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .get(`${exitprofilesURL}?id=${id}`, headers)
@@ -679,9 +667,9 @@ export const addStudentExitProfile = (profile, token) => {
 export const getOfferedCourseObjectives = (id, token) => {
   return dispatch => {
       dispatch(getOfferedCourseObjectiveListStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .get(`${courseobjectivesURL}?id=${id}`, headers)

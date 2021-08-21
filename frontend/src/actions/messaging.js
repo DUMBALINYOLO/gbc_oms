@@ -9,10 +9,10 @@ import { createMessage, returnErrors } from './messages';
 
 // Get
 export const getEnquiries = (token) => dispatch => {
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
-    };
+    let headers = axios.defaults.headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      };
     axios.get(enquiriesURL, headers)
         .then(res => {
             dispatch({
@@ -25,10 +25,10 @@ export const getEnquiries = (token) => dispatch => {
 
 // Get
 export const getEnquiry = (id, token) => dispatch => {
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`
-    };
+    let headers = axios.defaults.headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      };
     axios.get(`${enquiriesURL}${id}/`, headers)
         .then(res => {
             dispatch({

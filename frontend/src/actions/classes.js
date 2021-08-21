@@ -287,9 +287,9 @@ const createEnrollmentFail = error => {
 export const getClasses = (token) => {
   return dispatch => {
       dispatch(getClassListStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .get(classesURL, headers)
@@ -307,9 +307,9 @@ export const getClasses = (token) => {
 export const getClass = (id,token) => {
   return dispatch => {
       dispatch(getClassDetailStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .get(`${classesURL}${id}`, headers)
@@ -328,9 +328,9 @@ export const getClass = (id,token) => {
 export const addClass = (classi, token) => {
   return dispatch => {
       dispatch(createClassStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .post(classesURL, classi, headers)
@@ -347,9 +347,9 @@ export const addClass = (classi, token) => {
 export const getStreams = (token) => {
   return dispatch => {
       dispatch(getStreamListStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .get(classstreamsURL, headers)
@@ -366,9 +366,9 @@ export const getStreams = (token) => {
 export const addStream = (stream, token) => {
   return dispatch => {
       dispatch(createStreamStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .post(classstreamsURL, stream, headers)
@@ -402,11 +402,10 @@ export const addStream = (stream, token) => {
 // };
 
 export const getSubjects = (token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
-    };
+    let headers = axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+    };          
     axios.get(classsubjectsURL, headers)
         .then(res => {
             dispatch({
@@ -420,9 +419,9 @@ export const getSubjects = (token) => dispatch => {
 export const getSubject = (id,token) => {
   return dispatch => {
       dispatch(getSubjectDetailStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .get(`${classsubjectsURL}${id}`, headers)
@@ -439,9 +438,9 @@ export const getSubject = (id,token) => {
 export const addSubject = (subject, token) => {
   return dispatch => {
       dispatch(createSubjectStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .post(classsubjectsURL, subject, headers)
@@ -458,9 +457,9 @@ export const addSubject = (subject, token) => {
 export const getEnrollments = (token) => {
   return dispatch => {
       dispatch(getEnrollmentListStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .get(enrollmentsURL, headers)
@@ -477,9 +476,9 @@ export const getEnrollments = (token) => {
 export const addEnrollment = (enrollment, token) => {
   return dispatch => {
       dispatch(createEnrollmentStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .post(enrollmentsURL, enrollment, headers)
@@ -513,10 +512,10 @@ export const addEnrollment = (enrollment, token) => {
 // };
 
 export const getStudents = (token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
+    let headers = axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+      'Accept': 'application/json',
     };
     axios.get(classstudentsURL, headers)
         .then(res => {
@@ -528,10 +527,10 @@ export const getStudents = (token) => dispatch => {
 }
 
 export const getStudyModeChoices = (token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
+    let headers = axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+      'Accept': 'application/json',
     };
     axios.get(studymodechoicesURL, headers)
         .then(res => {
@@ -544,10 +543,10 @@ export const getStudyModeChoices = (token) => dispatch => {
 
 //Edit
 export const editClass = (id, classi, token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
+    let headers = axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+      'Accept': 'application/json',
     };
     JSON.stringify(id, null, 3)
     axios.patch(`${classesURL}${id}/`, classi, headers)
@@ -561,10 +560,10 @@ export const editClass = (id, classi, token) => dispatch => {
 
 //Edit
 export const editStream = (id, stream, token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
+    let headers = axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+      'Accept': 'application/json',
     };
     JSON.stringify(id, null, 3)
     axios.patch(`${classstreamsURL}${id}/`, stream, headers)
@@ -578,10 +577,10 @@ export const editStream = (id, stream, token) => dispatch => {
 
 //Edit
 export const editSubject = (id, subject, token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
+    let headers = axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+      'Accept': 'application/json',
     };
     JSON.stringify(id, null, 3)
     axios.patch(`${classsubjectsURL}${id}/`, subject, headers)
@@ -595,10 +594,10 @@ export const editSubject = (id, subject, token) => dispatch => {
 
 //Edit
 export const editEnrollment = (id, enrollment, token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
+    let headers = axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+      'Accept': 'application/json',
     };
     JSON.stringify(id, null, 3)
     axios.patch(`${enrollmentsURL}${id}/`, enrollment, headers)

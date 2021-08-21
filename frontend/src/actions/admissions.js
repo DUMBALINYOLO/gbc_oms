@@ -165,9 +165,10 @@ const getMeetingAdmissionListFail = error => {
 export const getAdmissions = (token) => {
   return dispatch => {
       dispatch(getAdmissionListStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
+        'Accept': 'application/json',
       };
       axios
         .get(studentadmissionsURL, headers)
@@ -184,9 +185,9 @@ export const getAdmissions = (token) => {
 export const addAdmission = (admission, token) => {
   return dispatch => {
       dispatch(createAdmissionStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .post(studentadmissionsURL, admission, headers)
@@ -203,9 +204,9 @@ export const addAdmission = (admission, token) => {
 export const getPendingAdmissions = (token) => {
   return dispatch => {
       dispatch(getPendingAdmissionListStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .get(pendingstudentadmissionsURL, headers)
@@ -222,9 +223,9 @@ export const getPendingAdmissions = (token) => {
 export const getRejectedAdmissions = (token) => {
   return dispatch => {
       dispatch(getRejectedAdmissionListStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .get(rejectedstudentadmissionsURL, headers)
@@ -241,9 +242,10 @@ export const getRejectedAdmissions = (token) => {
 export const getMeetingAdmissions = (token) => {
   return dispatch => {
       dispatch(getMeetingAdmissionListStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
+        'Accept': 'application/json',
       };
       axios
         .get(meetingstudentadmissionsURL, headers)
@@ -260,9 +262,9 @@ export const getMeetingAdmissions = (token) => {
 export const getAcceptedAdmissions = (token) => {
   return dispatch => {
       dispatch(getAcceptedAdmissionListStart());
-      const headers = {
+      let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`
+        Authorization: `Token ${token}`,
       };
       axios
         .get(acceptedstudentadmissionsURL, headers)
@@ -277,10 +279,10 @@ export const getAcceptedAdmissions = (token) => {
 };
 
 export const processAdmission = (id, admission, token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
+    let headers = axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+      'Accept': 'application/json',
     };
     axios.post(`${pendingstudentadmissionsURL}${id}/process_admission/`, admission, headers)
         .then(res => {
@@ -293,10 +295,10 @@ export const processAdmission = (id, admission, token) => dispatch => {
 
 //Edit
 export const editPendingAdmission = (id, admission, token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
+    let headers = axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+      'Accept': 'application/json',
     };
     JSON.stringify(id, null, 3)
     axios.patch(`${applicationsURL}${id}/`, admission, headers)
@@ -310,10 +312,10 @@ export const editPendingAdmission = (id, admission, token) => dispatch => {
 
 
 export const editRejectedAdmission = (id, admission, token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
+    let headers = axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+      'Accept': 'application/json',
     };
     JSON.stringify(id, null, 3)
     axios.patch(`${rejectedstudentadmissionsURL}${id}/`, admission, headers)
@@ -327,10 +329,10 @@ export const editRejectedAdmission = (id, admission, token) => dispatch => {
 
 
 export const editMeetingAdmission = (id, admission, token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
+    let headers = axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+      'Accept': 'application/json',
     };
     JSON.stringify(id, null, 3)
     axios.patch(`${meetingstudentadmissionsURL}${id}/`, admission, headers)
@@ -344,10 +346,10 @@ export const editMeetingAdmission = (id, admission, token) => dispatch => {
 
 
 export const editAcceptedAdmission = (id, admission, token) => dispatch => {
-    const headers ={
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-          'Accept': 'application/json',
+    let headers = axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+      'Accept': 'application/json',
     };
     JSON.stringify(id, null, 3)
     axios.patch(`${acceptedstudentadmissionsURL}${id}/`, admission, headers)
