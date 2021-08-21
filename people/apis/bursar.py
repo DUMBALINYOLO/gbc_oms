@@ -1,5 +1,5 @@
 from rest_framework import viewsets, generics, permissions
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from knox.auth import TokenAuthentication
 from people.models import (
 					Student,
 					Bursar,
@@ -17,7 +17,7 @@ from people.serializers import (
 
 class BursarStudentViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	queryset = Student.objects.all()
 	serializer_class = BursarStudentListDetailSerializer
 
@@ -25,7 +25,7 @@ class BursarStudentViewSet(viewsets.ModelViewSet):
 
 class BursarParentViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	queryset = Parent.objects.all()
 	serializer_class = BursarParentListDetailSerializer
 
@@ -33,7 +33,7 @@ class BursarParentViewSet(viewsets.ModelViewSet):
 
 class BursarViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	serializer_class = BursarListDetailSerializer
 
 

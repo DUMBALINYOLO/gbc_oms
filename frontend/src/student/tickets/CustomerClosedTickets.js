@@ -73,7 +73,7 @@ const CustomerClosedTickets = props => {
   }, []);
 
   const handleClick = id =>{
-    history.push(`/customer-closed-tickets/${id}`)
+    history.push(`/student-closed-tickets/${id}`)
   }
 
   const openNew = () => {

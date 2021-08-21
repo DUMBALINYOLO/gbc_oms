@@ -29,10 +29,12 @@ class TicketListDetailSerializer(serializers.ModelSerializer):
     created_by = StringSerializer()
     assigned_by = StringSerializer()
     assigned_to = StringSerializer()
+    created = serializers.DateTimeField(format="%Y-%m-%d--%H:%M:%S")
     
     class Meta:
         model = Ticket
         fields = [
+            'id',
             'subject',
             'category',
             'created_by',
@@ -73,6 +75,7 @@ class TicketCommentCreateUpdateSerializer(serializers.ModelSerializer):
 
 class TicketCommentListDetailerializer(serializers.ModelSerializer):
     user = StringSerializer()
+    created = serializers.DateTimeField(format="%Y-%m-%d--%H:%M:%S")
     
 
     class Meta:

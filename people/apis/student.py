@@ -1,5 +1,5 @@
 from rest_framework import viewsets, generics, permissions
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from knox.auth import TokenAuthentication
 from rest_framework.response import Response
 from people.models import (
 					Student,
@@ -12,7 +12,7 @@ from people.serializers import (
 
 class CreateStudentAPI(generics.GenericAPIView):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated, ]
 
 	serializer_class = StudentCreateSerializer
 

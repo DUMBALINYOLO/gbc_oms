@@ -28,6 +28,7 @@ const getCommentListStart = (state, action) => {
 
 const getCommentListSuccess = (state, action) => {
   return updateObject(state, {
+    
     comments: action.comments,
     error: null,
     loading: false

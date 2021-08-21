@@ -1,5 +1,5 @@
 from rest_framework import viewsets, generics, permissions
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from knox.auth import TokenAuthentication
 from curriculum.models import (
 			Curriculum,
 			Subject,
@@ -20,7 +20,7 @@ from curriculum.serializers import (
 
 class CurriculumViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 
 	queryset = Curriculum.objects.all()
 
@@ -35,7 +35,7 @@ class CurriculumViewSet(viewsets.ModelViewSet):
 
 class SubjectViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated, ]
 
 
 

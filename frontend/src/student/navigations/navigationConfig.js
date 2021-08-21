@@ -147,6 +147,27 @@ const navigationConfig = [
           },
         ],
       },
+      {
+        id: "tickets",
+        title: "TICKETS",
+        type: "collapse",
+        icon: <BioIcon />,
+        badge: {
+          title: "6",
+          bg: "#525E8A",
+          fg: "#FFFFFF",
+
+        },
+        children: [
+          {
+            id: "tickets",
+            title: "TICKETS",
+            type: "item",
+            url: '/studentdashboard/tickets',
+            exact: true,
+          },
+        ],
+      },
     ],
   },
 ];

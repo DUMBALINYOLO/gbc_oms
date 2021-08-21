@@ -73,7 +73,7 @@ const Tickets = props => {
   }, []);
 
   const handleClick = id =>{
-    history.push(`/managementdashboard/open-tickets/${id}`)
+    history.push(`/itdashboard/open-tickets/${id}`)
   }
 
 

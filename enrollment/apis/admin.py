@@ -1,5 +1,5 @@
 from rest_framework import viewsets, generics, permissions
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from knox.auth import TokenAuthentication
 from rest_framework.decorators import action
 from enrollment.models import Admission
 from django.db.models import Q as CompleLookUp
@@ -12,7 +12,7 @@ from enrollment.serializers import (
 
 class ApplicationsViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	queryset = Admission.objects.all()
 
 	def get_serializer_class(self, *args, **kwargs):
@@ -27,7 +27,7 @@ class ApplicationsViewSet(viewsets.ModelViewSet):
 
 class PendingAdminApplicationViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 
 	def get_serializer_class(self, *args, **kwargs):
 
@@ -60,9 +60,10 @@ class PendingAdminApplicationViewSet(viewsets.ModelViewSet):
 		return Response({"msg": 'Admission Successfully Proccessed'})
 
 
+
 class RejectedAdminAdmissionViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 
 	def get_serializer_class(self, *args, **kwargs):
 
@@ -89,7 +90,7 @@ class RejectedAdminAdmissionViewSet(viewsets.ModelViewSet):
 
 class CallForAdminAdmissionViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 
 	def get_serializer_class(self, *args, **kwargs):
 
@@ -115,7 +116,7 @@ class CallForAdminAdmissionViewSet(viewsets.ModelViewSet):
 
 class AcceptedAdminAdmissionViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 
 	def get_serializer_class(self, *args, **kwargs):
 

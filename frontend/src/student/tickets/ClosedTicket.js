@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import clsx from 'clsx';
-import Corporate from '../../containers/Templates/CustomerWrapper';
+import Corporate from '../layout/StudentLayout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import classNames from 'classnames';

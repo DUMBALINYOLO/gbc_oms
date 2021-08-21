@@ -1,6 +1,6 @@
 from rest_framework import viewsets, generics, status, views
 from rest_framework import viewsets, generics, permissions
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from knox.auth  import TokenAuthentication
 from rest_framework.response import Response
 from courses.models import Course, Topic
 from people.models import Student
@@ -10,7 +10,7 @@ User = get_user_model()
 
 class StatsCounterAPIView(views.APIView):
     authentication_classes = (TokenAuthentication,)
-    permission_classes = [permissions.AllowAny,]
+    permission_classes = [permissions.IsAuthenticated,]
 
 
     def get(self, request, format=None):

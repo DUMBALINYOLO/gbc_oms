@@ -1,5 +1,5 @@
 from rest_framework import viewsets, generics, permissions
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from knox.auth import TokenAuthentication
 from django.shortcuts import get_object_or_404
 from django.db.models import Q as ComplexQueryLookUp
 from rest_framework.response import Response
@@ -23,8 +23,7 @@ def get_attendance(attendance_id):
 
 class AdminAttendanceViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
-
+	permission_classes = [permissions.IsAuthenticated,]
 	queryset = Attendance.objects.all().order_by('-id')
 
 
@@ -41,7 +40,7 @@ class AdminAttendanceViewSet(viewsets.ModelViewSet):
 
 class AdminAttendanceRecordViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 
 
 	def get_serializer_class(self, *args, **kwargs):

@@ -1,5 +1,5 @@
 from rest_framework import viewsets, generics, permissions
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from knox.auth import TokenAuthentication
 from rest_framework.response import Response
 from django.db.models import Q as ComplexQueryLookUp
 from django.shortcuts import get_object_or_404
@@ -19,7 +19,7 @@ def get_student(email):
 
 class StudentAttendanceViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	serializer_class = StudentAttendanceRecordListSerializer
 
 	def get_queryset(self, *args, **kwargs):

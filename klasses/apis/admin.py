@@ -1,5 +1,5 @@
 from rest_framework import viewsets, generics, permissions
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from knox.auth import TokenAuthentication
 from django.shortcuts import get_object_or_404
 from klasses.models import (
 				StudentClass,
@@ -29,14 +29,14 @@ class StreamViewSet(viewsets.ModelViewSet):
 	queryset = Stream.objects.all()
 	serializer_class = AdminStreamSerializer
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 
 
 
 class StudentClassViewSet(viewsets.ModelViewSet):
 	queryset = StudentClass.objects.all().order_by('-id')
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 
 
 	def get_serializer_class(self, *args, **kwargs):
@@ -53,7 +53,7 @@ def get_class(class_id):
 
 class ClassStudiedSubjectsViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'put', 'patch', 'update']:
@@ -72,7 +72,7 @@ class ClassStudiedSubjectsViewSet(viewsets.ModelViewSet):
 
 class ClassStudentsViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'put', 'patch', 'update']:
@@ -100,7 +100,7 @@ class ClassStudentsViewSet(viewsets.ModelViewSet):
 
 class StudentEnrollmentViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	queryset = StudentEnrollment.objects.all().order_by('-id').prefetch_related(
 																	'enr_klass',
 																	'stdnt',
@@ -115,6 +115,6 @@ class StudentEnrollmentViewSet(viewsets.ModelViewSet):
 
 class UnEnrolledStudentViewSet(viewsets.ViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	queryset = StudentProfile.objects.filter(application__isnull=True)
 	serializer_class = EnrollmentStudentProfileListDetailSerializer

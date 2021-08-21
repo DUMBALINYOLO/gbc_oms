@@ -1,5 +1,5 @@
 from rest_framework import viewsets, generics, permissions
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from knox.auth import TokenAuthentication
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import action
 from django.contrib.auth import get_user_model
@@ -48,7 +48,7 @@ def get_user(user_id):
 
 class CreateBursarAPI(generics.GenericAPIView):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 
 	serializer_class = AdminBursarCreateSerializer
 
@@ -64,7 +64,7 @@ class CreateBursarAPI(generics.GenericAPIView):
 
 class CreatePrincipalAPI(generics.GenericAPIView):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	serializer_class = AdminPrincipalCreateUpdateSerializer
 
 	def post(self, request, *args, **kwargs):
@@ -80,7 +80,7 @@ class CreatePrincipalAPI(generics.GenericAPIView):
 
 class CreateTeacherAPI(generics.GenericAPIView):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	serializer_class = AdminTeacherSerializer
 
 	def post(self, request, *args, **kwargs):
@@ -94,7 +94,7 @@ class CreateTeacherAPI(generics.GenericAPIView):
 
 class AdminStudentViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 
 	queryset = Student.objects.all()
 	serializer_class = AdminStudentListDetailSerializer
@@ -142,7 +142,7 @@ class AdminStudentViewSet(viewsets.ModelViewSet):
 
 class AdminPrincipalViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	serializer_class = AdminPrincipalListDetailSerializer
 
 	def get_queryset(self):
@@ -193,9 +193,10 @@ class AdminPrincipalViewSet(viewsets.ModelViewSet):
 		serialized_profile = AdminPrincipalProfileListDetailSerializer(profile)
 		return Response(serialized_profile.data)
 
+
 class AdminParentViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	queryset = Parent.objects.all()
 	serializer_class = AdminParentListDetailSerializer
 
@@ -245,7 +246,7 @@ class AdminParentViewSet(viewsets.ModelViewSet):
 
 class AdminTeacherViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	queryset = Teacher.objects.all()
 	serializer_class = AdminTeacherListDetailSerializer
 
@@ -294,7 +295,7 @@ class AdminTeacherViewSet(viewsets.ModelViewSet):
 
 class AdminBursarViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	queryset = Bursar.objects.all()
 	serializer_class = AdminBursarListDetailSerializer
 
@@ -342,7 +343,7 @@ class AdminBursarViewSet(viewsets.ModelViewSet):
 
 class BursarProfileViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	queryset = BursarProfile.objects.all()
 	serializer_class = AdminBursarProfileListDetailSerializer
 
@@ -357,7 +358,7 @@ class BursarProfileViewSet(viewsets.ModelViewSet):
 
 class PrincipalProfileViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	queryset = PrincipalProfile.objects.all()
 	serializer_class = AdminPrincipalProfileListDetailSerializer
 
@@ -373,7 +374,7 @@ class PrincipalProfileViewSet(viewsets.ModelViewSet):
 
 class TeacherProfileViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	queryset = TeacherProfile.objects.all()
 	serializer_class = AdminTeacherProfileListDetailSerializer
 
@@ -389,7 +390,7 @@ class TeacherProfileViewSet(viewsets.ModelViewSet):
 
 class ParentProfileViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	queryset = ParentProfile.objects.all()
 	serializer_class = AdminParentProfileListDetailSerializer
 
@@ -404,7 +405,7 @@ class ParentProfileViewSet(viewsets.ModelViewSet):
 
 class StudentProfileViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	queryset = StudentProfile.objects.all()
 	serializer_class = AdminStudentProfileListDetailSerializer
 
@@ -426,7 +427,9 @@ def get_student(student_number):
 class StudentAttendanceRecordsViewSet(viewsets.ModelViewSet):
 	serializer_class = AttendanceSerializer
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
+
+
 	def get_queryset(self, *args, **kwargs):
 		queryset = AttendanceRecord.objects.all().order_by('-id')
 		student_id = self.request.query_params.get('id', None)
@@ -441,7 +444,7 @@ class StudentAttendanceRecordsViewSet(viewsets.ModelViewSet):
 
 class StudentGeneralGradeTestViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	serializer_class = AdminStudentGradingRecordsListDetailSerializer
 
 	def get_queryset(self, *args, **kwargs):
@@ -455,10 +458,11 @@ class StudentGeneralGradeTestViewSet(viewsets.ModelViewSet):
 									grade__type='test'
 									).order_by('-id')
 		return queryset
+
 
 class StudentGeneralGradeExcerciseViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated, ]
 	serializer_class = AdminStudentGradingRecordsListDetailSerializer
 
 	def get_queryset(self, *args, **kwargs):
@@ -472,11 +476,12 @@ class StudentGeneralGradeExcerciseViewSet(viewsets.ModelViewSet):
 									grade__type='excercise'
 									).order_by('-id')
 		return queryset
+
 
 
 class StudentGeneralGradeAssignmentViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 	serializer_class = AdminStudentGradingRecordsListDetailSerializer
 
 	def get_queryset(self, *args, **kwargs):

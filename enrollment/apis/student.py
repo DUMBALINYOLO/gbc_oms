@@ -1,6 +1,6 @@
 from rest_framework import viewsets, generics, permissions, status
 from rest_framework.response import Response
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from knox.auth import TokenAuthentication
 from enrollment.models import Admission
 from django.db.models import Q as CompleLookUp
 from enrollment.serializers import (
@@ -18,7 +18,7 @@ def get_student(email):
 
 class StudentAdmissionViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 
 	def get_serializer_class(self, *args, **kwargs):
 

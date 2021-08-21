@@ -130,8 +130,15 @@ import AdminOfferedUpcomingCourse from './it/offered/UpcomingCourse';
 import Adverts from './public/adverts/Adverts';
 import PublicOngoingCourse from './public/adverts/OngoingCourse';
 import AdminTickets from './it/tickets/TicketsTab';
+import StudentTickets from './student/tickets/TicketsTab';
+import StudentClosedTicket from './student/tickets/ClosedTicket';
+import StudentOpenTicket from './student/tickets/Ticket';
+import StudentReopenedTicket from './student/tickets/ReopenedTicket';
+import AdminOpenTicket from './it/tickets/open/Ticket';
 import { library } from '@fortawesome/fontawesome-svg-core';
+
 import './assets/base.scss';
+
 import {
   fab,
   faFacebook,
@@ -457,6 +464,32 @@ class App extends React.Component {
                 exact 
                 path='/itdashboard/tickets' 
                 component={AdminTickets} 
+              />
+              <Route 
+                exact 
+                path='/studentdashboard/tickets' 
+                component={StudentTickets} 
+              />
+              <Route 
+                exact 
+                path='/student-open-tickets/:id' 
+                component={StudentOpenTicket} 
+              />
+
+              <Route 
+                exact 
+                path='/student-closed-tickets/:id' 
+                component={StudentClosedTicket} 
+              />
+              <Route 
+                exact 
+                path='/student-reopened-tickets/:id' 
+                component={StudentReopenedTicket} 
+              />
+              <Route 
+                exact 
+                path='/itdashboard/open-tickets/:id' 
+                component={AdminOpenTicket} 
               />
 						<Route exact path='/itdashboard/enquiries' component={Inquiries} />
 						<Route exact path='/itdashboard/enquiries/:id' component={Inquiry} />

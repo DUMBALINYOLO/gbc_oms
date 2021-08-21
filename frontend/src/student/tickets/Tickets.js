@@ -75,7 +75,7 @@ const Tickets = props => {
   }, []);
 
   const handleClick = id =>{
-    history.push(`/customer-open-tickets/${id}`)
+    history.push(`/student-open-tickets/${id}`)
   }
 
   const openNew = () => {
@@ -111,6 +111,7 @@ const Tickets = props => {
                 variant="contained"
                 className="m-1"
                 onClick={openNew}
+                style={{width: '100px'}}
               >
                 <span className="btn-wrapper--icon">
                   <FontAwesomeIcon icon={['fas', 'lemon']} />

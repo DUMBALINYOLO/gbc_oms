@@ -75,7 +75,7 @@ const Ticket = (props) => {
 
           </div>
           <div className="p-field p-col-12 p-md-6">
-            <Button label='SUBMIT' onClick={saveTicket}/>
+            <Button label='SUBMIT' className='btn-warning btn-rounded' onClick={saveTicket}/>
           </div>
 
         </div>

@@ -1,5 +1,5 @@
 from rest_framework import viewsets, generics, permissions
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from knox.auth import TokenAuthentication
 from grading.models import GeneralGrade
 from django.db.models import Q as ComplexQueryFilter
 from grading.serializers import (
@@ -11,7 +11,7 @@ from grading.serializers import (
 
 class TeacherGeneralGradeTestViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 
 
 	def get_serializer_class(self, *args, **kwargs):
@@ -47,7 +47,7 @@ class TeacherGeneralGradeTestViewSet(viewsets.ModelViewSet):
 
 class TeacherGeneralGradeExcerciseViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 
 
 	def get_serializer_class(self, *args, **kwargs):
@@ -81,7 +81,7 @@ class TeacherGeneralGradeExcerciseViewSet(viewsets.ModelViewSet):
 
 class TeacherGeneralGradeAssignmentViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 
 
 	def get_serializer_class(self, *args, **kwargs):
@@ -109,6 +109,4 @@ class TeacherGeneralGradeAssignmentViewSet(viewsets.ModelViewSet):
 
 
 
-	# def perform_create(self, serializer, *args, **kwargs):
-	# 	user = self.request.user
-	# 	return serializer.save(type='asignment', recorded_by=user.staffuser)
+	

@@ -1,25 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import clsx from 'clsx';
-import Corporate from '../../containers/Templates/CustomerWrapper';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PerfectScrollbar from 'react-perfect-scrollbar';
-import classNames from 'classnames';
-import {
-  Grid,
-  Fab,
-  IconButton,
-  Typography,
-  Card,
-  CardContent,
-  Button,
-  List,
-  ListItem,
-  Tooltip,
-  TextField
-} from '@material-ui/core';
-
+import Corporate from '../layout/StudentLayout';
 import Comments from './Comments';
 import {getComments} from '../../actions/tickets/comments';
 import {getCustomerOpenTicket} from '../../actions/tickets/customertickets';

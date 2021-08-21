@@ -459,6 +459,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         return TicketCommentListDetailerializer
 
 
+
     def create(self, request, *args, **kwargs):
         data = request.data.copy()
         user = request.user
@@ -479,6 +480,7 @@ class CommentViewSet(viewsets.ModelViewSet):
                                                     'user',
                                                     'ticket'
                                                 ).order_by('id')
+            print(queryset)
         return queryset
 
 

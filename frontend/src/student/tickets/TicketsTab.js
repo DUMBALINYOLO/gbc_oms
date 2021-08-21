@@ -5,7 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import Corporate from '../../containers/Templates/CustomerWrapper';
+import Corporate from '../layout/StudentLayout';
 import OpenTickets from './Tickets';
 import CustomerReOpenedTickets from './CustomerReOpenedTickets'
 import CustomerClosedTickets from './CustomerClosedTickets'
@@ -72,7 +72,6 @@ const ScrollIconTabs = (props) => {
           </Tabs>
         </AppBar>
         {value === 0 && <TabContainer><OpenTickets/></TabContainer>}
-
         {value === 1 && <TabContainer><CustomerReOpenedTickets/></TabContainer>}
         {value === 2 && <TabContainer><CustomerClosedTickets/></TabContainer>}
       </div>

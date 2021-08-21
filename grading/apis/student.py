@@ -1,5 +1,5 @@
 from rest_framework import viewsets, generics, permissions
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from knox.auth import TokenAuthentication
 from grading.models import Record
 from django.db.models import Q as ComplexQueryFilter
 from grading.serializers import StudentRecordListDetailSerializer
@@ -15,7 +15,7 @@ def get_student(email):
 class StudentTestViewSet(viewsets.ModelViewSet):
 	serializer_class = StudentRecordListDetailSerializer
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 
 
 	def get_queryset(self, *args, **kwargs):
@@ -38,7 +38,7 @@ class StudentTestViewSet(viewsets.ModelViewSet):
 class StudentExcerciseViewSet(viewsets.ModelViewSet):
 	serializer_class = StudentRecordListDetailSerializer
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated, ]
 
 
 	def get_queryset(self, *args, **kwargs):
@@ -62,7 +62,7 @@ class StudentExcerciseViewSet(viewsets.ModelViewSet):
 class StudentAsignmentViewSet(viewsets.ModelViewSet):
 	serializer_class = StudentRecordListDetailSerializer
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
 
 
 	def get_queryset(self, *args, **kwargs):
@@ -80,3 +80,5 @@ class StudentAsignmentViewSet(viewsets.ModelViewSet):
 							).order_by('-id')
 
 		return queryset
+
+

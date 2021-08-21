@@ -43,13 +43,13 @@ class Ticket(models.Model):
                         )
     assigned_by = models.ForeignKey(
                             'people.User',
-                            null=False,
+                            null=True,
                             related_name='assigned_tickects',
-                            on_delete=models.CASCADE
+                            on_delete=models.CASCADE,
                         )
     assigned_to = models.ForeignKey(
                             'people.User',
-                            null=False,
+                            null=True,
                             related_name='handled_tickects',
                             on_delete=models.CASCADE
                         )
@@ -89,6 +89,8 @@ class Comment(models.Model):
     )
     comment = models.TextField()
     ticket_id = models.IntegerField(default=0)
+    created = models.DateTimeField(auto_now_add=True)
+
 
 
     def __str__(self):
