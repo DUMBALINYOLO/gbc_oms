@@ -8,18 +8,22 @@ from .models import (
             )
 import base64, uuid
 from django.core.files.base import ContentFile
+from drf_extra_fields.fields import Base64ImageField
 
 
-class Base64ImageField(serializers.ImageField):
+# class Base64ImageField(serializers.ImageField):
     
-    def to_internal_value(self, data):
-        if isinstance(data, str) and data.startswith('data:image'):
-            # base64 encoded image - decode
-            format, imgstr = data.split(';base64,') # format ~= data:image/X,
-            ext = format.split('/')[-1] # guess file extension
-            id = uuid.uuid4()
-            data = ContentFile(base64.b64decode(imgstr), name = id.urn[9:] + '.' + ext)
-        return super(Base64ImageField, self).to_internal_value(data)
+#     def to_internal_value(self, data):
+#         if isinstance(data, str) and data.startswith('data:image'):
+#             # base64 encoded image - decode
+#             format, imgstr = data.split(';base64,') # format ~= data:image/X,
+#             ext = format.split('/')[-1] # guess file extension
+#             id = uuid.uuid4()
+#             data = ContentFile(base64.b64decode(imgstr), name = id.urn[9:] + '.' + ext)
+#         return super(Base64ImageField, self).to_internal_value(data)
+
+
+
 
 
 def get_course(course_id):
@@ -28,6 +32,7 @@ def get_course(course_id):
 
 
 class CourseOfferedCreateUpdateSerializer(serializers.ModelSerializer):
+    image = Base64ImageField(required=True)
 
     class Meta:
         model = CourseOffered

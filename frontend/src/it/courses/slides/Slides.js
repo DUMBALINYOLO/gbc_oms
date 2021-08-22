@@ -72,7 +72,7 @@ const CourseSlides = props => {
       }else{
         props.addCourseSlide(topic, token)
         setNewTopic(topic)
-        props.getCourseSlides(id,query, token);
+        props.getCourseSlides(id, token);
       }
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -107,7 +107,6 @@ const CourseSlides = props => {
                         <Search />
                     </InputAdornment>)
                 }}
-                onChange={handleQuery}
             />
             <Controls.Button
                 text="Add New"

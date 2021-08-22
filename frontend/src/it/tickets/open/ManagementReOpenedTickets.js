@@ -71,7 +71,7 @@ const ReOpenedTickets = props => {
   }, []);
 
   const handleClick = id =>{
-    history.push(`/reopened-tickets/${id}`)
+    history.push(`/itdashboard/reopened-tickets/${id}`)
   }
 
   const openNew = () => {

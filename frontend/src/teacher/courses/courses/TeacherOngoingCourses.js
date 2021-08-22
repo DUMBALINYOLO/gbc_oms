@@ -57,7 +57,7 @@ const TeacherOngoingCourses = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminOngoingCourses(query, token);
+        props.getAdminOngoingCourses(token);
     }
     console.log('mount it!');
 
@@ -73,7 +73,7 @@ const TeacherOngoingCourses = props => {
       else{
         props.addOngoingCourse(fee, token)
         setNewCourse(fee)
-        props.getAdminOngoingCourses(query, token);
+        props.getAdminOngoingCourses(token);
       }
       resetForm()
       setRecordForEdit(null)
@@ -131,7 +131,7 @@ const TeacherOngoingCourses = props => {
                       <Search />
                   </InputAdornment>)
               }}
-              onChange={handleQuery}
+              
           />
           <Controls.Button
               text="Add New"

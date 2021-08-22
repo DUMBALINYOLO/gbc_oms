@@ -235,9 +235,9 @@ const navigationConfig = [
         id: "advertise",
         title: "ADVERTISE",
         type: "collapse",
-        icon: <SwapIcon />,
+        icon: <AccountTree />,
         badge: {
-          title: "9",
+          title: "10",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -256,9 +256,9 @@ const navigationConfig = [
         id: "tickets",
         title: "TICKETS",
         type: "collapse",
-        icon: <SwapIcon />,
+        icon: <BusinessIcon />,
         badge: {
-          title: "9",
+          title: "11",
           bg: "#525E8A",
           fg: "#FFFFFF",
 
@@ -269,6 +269,27 @@ const navigationConfig = [
             title: "TICKETS",
             type: "item",
             url: '/itdashboard/tickets',
+            exact: true,
+          },
+        ],
+      },
+      {
+        id: "newsletter",
+        title: "NEWSLETTER",
+        type: "collapse",
+        icon: <BuildIcon />,
+        badge: {
+          title: "12",
+          bg: "#525E8A",
+          fg: "#FFFFFF",
+
+        },
+        children: [
+          {
+            id: "newsletter",
+            title: "NEWSLETTER",
+            type: "item",
+            url: '/itdashboard/newsletter',
             exact: true,
           },
         ],

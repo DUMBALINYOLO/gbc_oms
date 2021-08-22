@@ -26,14 +26,15 @@ from people.apis import (
 				ResetAPI,
 				ChangePassAPI,
 				ForgotPassAPI,
-				LoginView
+				LoginView,
+				StaffUserViewSet
 			)
 from django.urls import path
 from rest_framework_simplejwt.views import TokenRefreshView
 
 router = DefaultRouter()
 
-
+router.register('staff-users', StaffUserViewSet, basename='staff-users')
 router.register('admin-students', AdminStudentViewSet, basename='admin-students')
 router.register('admin-principals', AdminPrincipalViewSet, basename='admin-principals')
 router.register('admin-teachers', AdminTeacherViewSet, basename='admin-teachers')
@@ -51,6 +52,7 @@ router.register('test-records', StudentGeneralGradeTestViewSet, basename='test-r
 router.register('excercise-records', StudentGeneralGradeExcerciseViewSet, basename='excercise-records')
 router.register('assignment-records', StudentGeneralGradeAssignmentViewSet, basename='assignment-records')
 
+
 urlpatterns = [
 	path('create-student/', CreateStudentAPI.as_view()),
 	path('create-bursar/', CreateBursarAPI.as_view()),
@@ -63,10 +65,3 @@ urlpatterns = [
 	path('forgot-password/', ForgotPassAPI.as_view()),
 	path('refresh/', TokenRefreshView.as_view(), name='refresh'),
 ] + router.urls
-
-
-
-
-
-
-

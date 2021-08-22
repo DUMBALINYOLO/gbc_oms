@@ -55,7 +55,7 @@ const Courses = props => {
   }
 
   const handleClick = id =>{
-    history.push(`/itdashboard/upcoming-offered-courses/${id}`)
+    history.push(`/upcoming-courses/${id}`)
   }
 
   

@@ -511,13 +511,13 @@ export const addEnrollment = (enrollment, token) => {
 //     };
 // };
 
-export const getStudents = (token) => dispatch => {
+export const getStudents = (id, token) => dispatch => {
     let headers = axios.defaults.headers = {
       "Content-Type": "application/json",
       Authorization: `Token ${token}`,
       'Accept': 'application/json',
     };
-    axios.get(classstudentsURL, headers)
+    axios.get(`${classstudentsURL}?id=${id}`, headers)
         .then(res => {
             dispatch({
                 type: GET_CLASS_STUDENTS,

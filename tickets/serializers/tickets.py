@@ -80,8 +80,10 @@ class TicketCommentListDetailerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
+        
         fields = [
             'id',
             'user',
-            'comment'
+            'comment',
+            'created',
         ]

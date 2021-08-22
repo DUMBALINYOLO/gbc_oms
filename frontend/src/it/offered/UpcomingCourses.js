@@ -101,7 +101,7 @@ const Courses = props => {
                     onHide={hideDialog}
                     >
                       <CreateOngoing
-                        getCourses={props.getOngoingOfferedCourses}
+                        getCourses={props.getUpcomingOfferedCourses}
                         seriesDialog={setSeriesDialog}
                     />
 

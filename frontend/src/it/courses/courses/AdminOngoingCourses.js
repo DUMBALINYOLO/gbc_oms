@@ -94,7 +94,7 @@ const AdminOngoingCourses = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        dispatch(getAdminOngoingCourses(query, token));
+        dispatch(getAdminOngoingCourses(token));
     }
     console.log('mount it!');
 
@@ -107,7 +107,7 @@ const AdminOngoingCourses = props => {
       }else{
         props.addOngoingCourse(fee, token)
         setNewCourse(fee)
-        dispatch(getAdminOngoingCourses(query, token));
+        dispatch(getAdminOngoingCourses(token));
       }
       resetForm()
       setRecordForEdit(null)
@@ -179,7 +179,6 @@ const AdminOngoingCourses = props => {
                           <Search />
                       </InputAdornment>)
                   }}
-                  onChange={handleQuery}
                   handleSwitchView={handleSwitchView}
               />
               <Controls.Button

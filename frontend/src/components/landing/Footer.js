@@ -45,7 +45,6 @@ class Footer extends React.Component {
       createData('login', '#/login'),
       createData('newsletter', '#/newsletter'),
       createData('courses', '#/offered-courses'),
-      createData('contact', '#/contact'),
     ]
   }
 

@@ -10,7 +10,7 @@ User = get_user_model()
 
 class StatsCounterAPIView(views.APIView):
     authentication_classes = (TokenAuthentication,)
-    permission_classes = [permissions.IsAuthenticated,]
+    permission_classes = [permissions.AllowAny,]
 
 
     def get(self, request, format=None):

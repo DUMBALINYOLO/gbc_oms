@@ -1,7 +1,7 @@
 from rest_framework import viewsets, generics, status, views
 from rest_framework.response import Response
 from rest_framework import viewsets, generics, permissions
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from knox.auth import  TokenAuthentication
 
 
 from .constants import (

@@ -11,8 +11,7 @@ from people.serializers import (
 
 
 class CreateStudentAPI(generics.GenericAPIView):
-	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.IsAuthenticated, ]
+	permission_classes = [permissions.AllowAny, ]
 
 	serializer_class = StudentCreateSerializer
 

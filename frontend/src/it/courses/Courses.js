@@ -62,7 +62,7 @@ class ScrollIconTabs extends React.Component {
             <Tabs
               value={value}
               onChange={this.handleChange}
-              variant="scrollable"
+              variant="fullWidth"
               scrollButtons="on"
               indicatorColor="primary"
               textColor="secondary"

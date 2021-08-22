@@ -52,7 +52,7 @@ const StudentOngoingCourses = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getUpcomingStudentCourses(email,query, token);
+        props.getUpcomingStudentCourses(email, token);
     }
     console.log('mount it!');
 

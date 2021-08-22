@@ -23,17 +23,41 @@ const AddCourse = (props) => {
     const [price, setPrice] = useState();
 
 
+    const convertBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+          const fileReader = new FileReader();
+          fileReader.readAsDataURL(file)
+          fileReader.onload = () => {
+            resolve(fileReader.result);
+          }
+          fileReader.onerror = (error) => {
+            reject(error);
+          }
+        })
+      }
+
+
+      const handleFileRead = async (event) => {
+        const file = event.target.files[0]
+        const base64 = await convertBase64(file)
+        setImage(base64)
+        console.log(base64)
+      }
+
+
 
    
 
     const saveImage = (e) => {
         e.preventDefault();
-        const uploadData = new FormData();
-        uploadData.append('image', image, image.name);
-        uploadData.append('description', description);
-        uploadData.append('start_date', start_date);
-        uploadData.append('end_date', end_date);
-        uploadData.append('price', price);
+        const uploadData = {
+            image,
+            name,
+            description,
+            start_date,
+            end_date,
+            price,
+        }
         props.addUpcomingOfferedCourse(uploadData, token)
         props.seriesDialog(false)
         props.getCourses(token)
@@ -113,7 +137,7 @@ const AddCourse = (props) => {
               accept="image/*"
               type="file"
               name='cover'
-              onChange={(evt) => setImage(evt.target.files[0])}
+              onChange={(evt) => handleFileRead(evt)}
             />
           </div>
           <div className="p-field p-col-12 p-md-6">

@@ -72,7 +72,7 @@ class ClassStudiedSubjectsViewSet(viewsets.ModelViewSet):
 
 class ClassStudentsViewSet(viewsets.ModelViewSet):
 	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.IsAuthenticated,]
+	permission_classes = [permissions.AllowAny,]
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'put', 'patch', 'update']:

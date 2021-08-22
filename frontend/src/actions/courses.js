@@ -117,10 +117,10 @@ import { createMessage, returnErrors } from './messages';
 
 export const getCourseSlides = (id,token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     axios.get(`${courseslidesURL}?id=${id}`, headers)
         .then(res => {
             dispatch({
@@ -134,10 +134,10 @@ export const getCourseSlides = (id,token) => dispatch => {
 // Add
 export const addCourseSlide = (slide, token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     axios.post(courseslidesURL, slide, headers)
         .then(res => {
             dispatch({
@@ -150,10 +150,10 @@ export const addCourseSlide = (slide, token) => dispatch => {
 
 //get
 export const getCourseSlide = (id, token) => dispatch =>{
-      let headers = axios.defaults.headers = {
+    let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
       axios.get(`${courseslidesURL}${id}/`, headers)
         .then(res => {
@@ -167,10 +167,10 @@ export const getCourseSlide = (id, token) => dispatch =>{
 //Edit
 export const editCourseSlide = (id, slide, token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     JSON.stringify(id, null, 3)
     axios.patch(`${courseslidesURL}${id}/`, slide, headers)
         .then(res => {
@@ -185,10 +185,10 @@ export const editCourseSlide = (id, slide, token) => dispatch => {
 
 export const getUpcomingStudentCourses = (email, token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     axios.get(`${upcomingstudentcoursesURL}?email=${email}`, headers)
         .then(res => {
             dispatch({
@@ -201,10 +201,10 @@ export const getUpcomingStudentCourses = (email, token) => dispatch => {
 
 export const getStudentUpcomingCourse = (id, token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     axios.get(`${upcomingstudentcoursesURL}${id}/`, headers)
         .then(res => {
             dispatch({
@@ -217,10 +217,10 @@ export const getStudentUpcomingCourse = (id, token) => dispatch => {
 
 export const getOngoingStudentCourses = (email, token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     axios.get(`${ongoingstudentcoursesURL}?email=${email}`, headers)
         .then(res => {
             dispatch({
@@ -233,10 +233,10 @@ export const getOngoingStudentCourses = (email, token) => dispatch => {
 
 export const getStudentOngoingCourse = (id, token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     axios.get(`${ongoingstudentcoursesURL}${id}/`, headers)
         .then(res => {
             dispatch({
@@ -251,10 +251,10 @@ export const getStudentOngoingCourse = (id, token) => dispatch => {
 
 export const getCourseStatus = (token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     axios.get(coursestatuschoicesURL, headers)
         .then(res => {
             dispatch({
@@ -267,10 +267,10 @@ export const getCourseStatus = (token) => dispatch => {
 
 export const getAdminUpcomingCourses = (token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     axios.get(adminupcomingcoursesURL, headers)
         .then(res => {
             dispatch({
@@ -282,10 +282,10 @@ export const getAdminUpcomingCourses = (token) => dispatch => {
 
 export const getAdminUpcomingCourse = (id, token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     axios.get(`${adminupcomingcoursesURL}${id}/`, headers)
         .then(res => {
             dispatch({
@@ -297,9 +297,9 @@ export const getAdminUpcomingCourse = (id, token) => dispatch => {
 
 export const getAdminOngoingCourses = (token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
     };
     axios.get(adminongoingcoursesURL, headers)
         .then(res => {
@@ -312,10 +312,10 @@ export const getAdminOngoingCourses = (token) => dispatch => {
 
 export const getAdminOngoingCourse = (id, token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     axios.get(`${adminongoingcoursesURL}${id}/`, headers)
         .then(res => {
             dispatch({
@@ -329,10 +329,10 @@ export const getAdminOngoingCourse = (id, token) => dispatch => {
 
 export const getAdminFinishedCourses = (token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     axios.get(adminfinishedcoursesURL, headers)
         .then(res => {
             dispatch({
@@ -344,10 +344,10 @@ export const getAdminFinishedCourses = (token) => dispatch => {
 
 export const getAdminFinishedCourse= (id, token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     axios.get(`${adminfinishedcoursesURL}${id}/`, headers)
         .then(res => {
             dispatch({
@@ -360,10 +360,10 @@ export const getAdminFinishedCourse= (id, token) => dispatch => {
 
 export const getAdminInactiveCourses = (token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     axios.get(admininactivecoursesURL, headers)
         .then(res => {
             dispatch({
@@ -375,10 +375,10 @@ export const getAdminInactiveCourses = (token) => dispatch => {
 
 export const getAdminInactiveCourse= (id, token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     axios.get(`${admininactivecoursesURL}${id}/`, headers)
         .then(res => {
             dispatch({
@@ -391,10 +391,10 @@ export const getAdminInactiveCourse= (id, token) => dispatch => {
 
 export const addUpComingCourse = (course, token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     axios.post(adminupcomingcoursesURL, course, headers)
         .then(res => {
             dispatch({
@@ -407,10 +407,10 @@ export const addUpComingCourse = (course, token) => dispatch => {
 
 export const editUpComingCourse = (id, course, token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };    
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };   
     JSON.stringify(id, null, 3)
     axios.patch(`${adminupcomingcoursesURL}${id}/`, course, headers)
         .then(res => {
@@ -423,10 +423,10 @@ export const editUpComingCourse = (id, course, token) => dispatch => {
 
 export const addFinishedCourse = (course, token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     axios.post(adminfinishedcoursesURL, course, headers)
         .then(res => {
             dispatch({
@@ -439,10 +439,10 @@ export const addFinishedCourse = (course, token) => dispatch => {
 
 export const editFinishedCourse = (id, course, token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     JSON.stringify(id, null, 3)
     axios.patch(`${adminfinishedcoursesURL}${id}/`, course, headers)
         .then(res => {
@@ -455,10 +455,10 @@ export const editFinishedCourse = (id, course, token) => dispatch => {
 
 export const addOngoingCourse = (course, token) => dispatch => {
     let headers = axios.defaults.headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${token}`,
-      'Accept': 'application/json',
-    };
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': "application/json",
+      };
     axios.post(adminongoingcoursesURL, course, headers)
         .then(res => {
             dispatch({
@@ -473,8 +473,8 @@ export const editOngoingCourse = (id, course, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
-      };    
+        'Accept': "application/json",
+      };   
     JSON.stringify(id, null, 3)
     axios.patch(`${adminongoingcoursesURL}${id}/`, course, headers)
         .then(res => {
@@ -489,7 +489,7 @@ export const addInactiveCourse = (course, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.post(admininactivecoursesURL, course, headers)
         .then(res => {
@@ -505,7 +505,7 @@ export const editInactiveCourse = (id, course, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     JSON.stringify(id, null, 3)
     axios.patch(`${admininactivecoursesURL}${id}/`, course, headers)
@@ -522,7 +522,7 @@ export const getAdminTopics = (course_id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${admintopicsURL}?id=${course_id}`, headers)
         .then(res => {
@@ -537,7 +537,7 @@ export const getAdminTopic= (id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${admintopicsURL}${id}/`, headers)
         .then(res => {
@@ -553,7 +553,7 @@ export const addTopic = (topic, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.post(admintopicsURL, topic, headers)
         .then(res => {
@@ -570,7 +570,7 @@ export const editTopic = (id, topic, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     JSON.stringify(id, null, 3)
     axios.patch(`${admintopicsURL}${id}/`, topic, headers)
@@ -587,7 +587,7 @@ export const getAdminReviews = (course_id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${adminreviewsURL}?id=${course_id}`,headers)
         .then(res => {
@@ -603,7 +603,7 @@ export const getAdminTopicObjectives = (topic_id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${admintopicobjectivesURL}?id=${topic_id}`, headers)
         .then(res => {
@@ -618,7 +618,7 @@ export const getAdminTopicObjective = (id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${admintopicobjectivesURL}/${id}/`,headers)
         .then(res => {
@@ -634,7 +634,7 @@ export const addTopicObjective = (objective, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.post(admintopicobjectivesURL, objective, headers)
         .then(res => {
@@ -650,7 +650,7 @@ export const editTopicObjective = (id, objective, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     JSON.stringify(id, null, 3)
     axios.patch(`${admintopicobjectivesURL}${id}/`, objective,headers)
@@ -668,7 +668,7 @@ export const getAdminTopicGuidelines = (topic_id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${admintopicguidelinesURL}?id=${topic_id}`, headers)
         .then(res => {
@@ -683,7 +683,7 @@ export const getAdminTopicGuideline = (id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${admintopicguidelinesURL}${id}/`, headers)
         .then(res => {
@@ -699,7 +699,7 @@ export const addTopicGuideLine = (guideline, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.post(admintopicguidelinesURL, guideline, headers)
         .then(res => {
@@ -715,7 +715,7 @@ export const editTopicGuideline = (id, guideline, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     JSON.stringify(id, null, 3)
     axios.patch(`${admintopicguidelinesURL}${id}/`, guideline, headers)
@@ -733,7 +733,7 @@ export const getAdminSubTopics = (topic_id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${adminsubtopicsURL}?id=${topic_id}`, headers)
         .then(res => {
@@ -748,7 +748,7 @@ export const getAdminSubTopic = (id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${adminsubtopicsURL}${id}/`,headers)
         .then(res => {
@@ -764,7 +764,7 @@ export const addSubTopic = (subtopic, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.post(adminsubtopicsURL, subtopic, headers)
         .then(res => {
@@ -780,7 +780,7 @@ export const editSubTopic = (id, subtopic, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     JSON.stringify(id, null, 3)
     axios.patch(`${adminsubtopicsURL}${id}/`, subtopic,headers)
@@ -797,7 +797,7 @@ export const getStudyNotes = (topic_id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${adminstudynotesURL}?id=${topic_id}`, headers)
         .then(res => {
@@ -813,7 +813,7 @@ export const getStudyNote = (id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${adminstudynotesURL}${id}/`,headers)
         .then(res => {
@@ -829,7 +829,7 @@ export const addStudyNote = (note, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.post(adminstudynotesURL, note, headers)
         .then(res => {
@@ -845,7 +845,7 @@ export const editStudyNote = (id, note, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     JSON.stringify(id, null, 3)
     axios.patch(`${adminstudynotesURL}${id}/`, note, headers)
@@ -862,7 +862,7 @@ export const getStudyNoteVideos = (note_id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${adminstudynotesvideosURL}?id=${note_id}`, headers)
         .then(res => {
@@ -877,7 +877,7 @@ export const getStudyNoteVideo = (id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${adminstudynotesvideosURL}${id}/`, headers)
         .then(res => {
@@ -893,7 +893,7 @@ export const addStudyNoteVideo = (video, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.post(adminstudynotesvideosURL, video,headers)
         .then(res => {
@@ -909,7 +909,7 @@ export const editStudyNoteVideo = (id, video, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     JSON.stringify(id, null, 3)
     axios.patch(`${adminstudynotesvideosURL}${id}/`, video, headers)
@@ -925,7 +925,7 @@ export const getStudyNoteImages = (note_id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${adminstudynotesimagesURL}?id=${note_id}`,headers)
         .then(res => {
@@ -940,7 +940,7 @@ export const getStudyNoteImage = (id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${adminstudynotesimagesURL}${id}/`,headers)
         .then(res => {
@@ -956,7 +956,7 @@ export const addStudyNoteImage = (image, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.post(adminstudynotesimagesURL, image,headers)
         .then(res => {
@@ -972,7 +972,7 @@ export const editStudyNoteImage = (id, image, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     JSON.stringify(id, null, 3)
     axios.patch(`${adminstudynotesimagesURL}${id}/`, image, headers)
@@ -989,7 +989,7 @@ export const getStudyNoteNotes = (note_id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${adminstudynotesnotesURL}?id=${note_id}`,headers)
         .then(res => {
@@ -1007,7 +1007,7 @@ export const getStudyNoteNote = (id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${adminstudynotesnotesURL}${id}/`, headers)
         .then(res => {
@@ -1023,7 +1023,7 @@ export const addStudyNoteNote = (note, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.post(adminstudynotesnotesURL, note, headers)
         .then(res => {
@@ -1039,7 +1039,7 @@ export const editStudyNoteNote = (id, note, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     JSON.stringify(id, null, 3)
     axios.patch(`${adminstudynotesnotesURL}${id}/`, note, headers)
@@ -1056,7 +1056,7 @@ export const getStudyNoteFiles = (note_id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${adminstudynotesfilesURL}?id=${note_id}`,headers)
         .then(res => {
@@ -1071,7 +1071,7 @@ export const getStudyNoteFile = (id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${adminstudynotesfilesURL}${id}/`,headers)
         .then(res => {
@@ -1087,7 +1087,7 @@ export const addStudyNoteFile = (file, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.post(adminstudynotesfilesURL, file,headers)
         .then(res => {
@@ -1103,7 +1103,7 @@ export const editStudyNoteFile = (id, file, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     JSON.stringify(id, null, 3)
     axios.patch(`${adminstudynotesfilesURL}${id}/`, file,headers)
@@ -1120,7 +1120,7 @@ export const getStudyNoteReferences = (note_id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${adminstudynotesreferencesURL}?id=${note_id}`,headers)
         .then(res => {
@@ -1135,7 +1135,7 @@ export const getStudyNoteReference = (id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${adminstudynotesreferencesURL}${id}/`,headers)
         .then(res => {
@@ -1151,7 +1151,7 @@ export const addStudyNoteReference = (reference, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.post(adminstudynotesreferencesURL, reference, headers)
         .then(res => {
@@ -1167,7 +1167,7 @@ export const editStudyNoteReference = (id, reference, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     JSON.stringify(id, null, 3)
     axios.patch(`${adminstudynotesreferencesURL}${id}/`, reference, headers)
@@ -1184,7 +1184,7 @@ export const getAuthors = (token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(adminauthorsURL,headers)
         .then(res => {
@@ -1201,7 +1201,7 @@ export const addAuthor = (author, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.post(adminauthorsURL, author,headers)
         .then(res => {
@@ -1217,7 +1217,7 @@ export const editAuthor = (id, author, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     JSON.stringify(id, null, 3)
     axios.patch(`${adminauthorsURL}${id}/`, author,headers)
@@ -1234,7 +1234,7 @@ export const getPublisherCities = (token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(adminpublishercitiesURL, headers)
         .then(res => {
@@ -1251,7 +1251,7 @@ export const addPublisherCity = (city, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.post(adminpublishercitiesURL, city,headers)
         .then(res => {
@@ -1267,7 +1267,7 @@ export const editPublisherCity = (id, city, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     JSON.stringify(id, null, 3)
     axios.patch(`${adminpublishercitiesURL}${id}/`, city,headers)
@@ -1284,7 +1284,7 @@ export const getPublishers= (token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(adminpublishersURL,headers)
         .then(res => {
@@ -1301,7 +1301,7 @@ export const addPublisher = (publisher, id, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.post(adminpublishersURL, publisher,headers)
         .then(res => {
@@ -1317,7 +1317,7 @@ export const editPublisher = (id, publisher, token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     JSON.stringify(id, null, 3)
     axios.patch(`${adminpublishersURL}${id}/`, publisher,headers)
@@ -1335,7 +1335,7 @@ export const getStudentCourseEnrollments = (id,token) => dispatch => {
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.get(`${studentcourseenrollmentsURL}?id=${id}`, headers)
         .then(res => {
@@ -1351,7 +1351,7 @@ export const addStudentCourseEnrollment = (studentcourseenrollment, token) => di
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     axios.post(studentcourseenrollmentsURL, studentcourseenrollment, headers)
         .then(res => {
@@ -1365,10 +1365,10 @@ export const addStudentCourseEnrollment = (studentcourseenrollment, token) => di
 
 //get
 export const getStudentCourseEnrollment = (id, token) => dispatch =>{
-      let headers = axios.defaults.headers = {
+    let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
       axios.get(`${studentcourseenrollmentsURL}${id}/`, headers)
         .then(res => {
@@ -1384,7 +1384,7 @@ export const editStudentCourseEnrollment = (id, studentcourseenrollment, token) 
     let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
-        'Accept': 'application/json',
+        'Accept': "application/json",
       };
     JSON.stringify(id, null, 3)
     axios.patch(`${studentcourseenrollmentsURL}${id}/`, studentcourseenrollment, headers)

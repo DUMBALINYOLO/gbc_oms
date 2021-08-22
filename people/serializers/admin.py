@@ -9,7 +9,8 @@ from people.models import (
 					Principal,
 					PrincipalProfile,
 					Parent,
-					ParentProfile
+					ParentProfile,
+					User
 				)
 from grading.models import Record
 from attendance.models import AttendanceRecord
@@ -19,6 +20,16 @@ from django.contrib.auth import authenticate
 class StringSerializer(serializers.StringRelatedField):
     def to_internal_value(self, value):
         return value
+
+
+class StaffUserSerializer(serializers.ModelSerializer):
+    	
+	class Meta:
+		model = User
+		fields = [
+			'id', 
+			'username',
+		]
 
 
 class AdminStudentProfileCreateUpdateSerializer(serializers.ModelSerializer):

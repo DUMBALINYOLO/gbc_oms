@@ -21,7 +21,8 @@ from .models import (
         )
 from django.db.models import Q as ComplexQueryFilter
 from django.shortcuts import get_object_or_404
-from rest_framework.parsers import FormParser, MultiPartParser
+from rest_framework.parsers import FormParser, MultiPartParser, JSONParser
+
 
 
 def get_course(course_id):
@@ -32,7 +33,7 @@ def get_course(course_id):
 
 class UpcomingCourseOfferedViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny,]
-    parser_classes = [MultiPartParser, FormParser]
+    # parser_classes = [MultiPartParser,FormParser, JSONParser]
     
 
     def get_serializer_class(self,*args, **kwargs):
@@ -68,7 +69,7 @@ class UpcomingCourseOfferedViewSet(viewsets.ModelViewSet):
 
 class OngoingCourseOfferedViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny,]
-    parser_classes = [MultiPartParser, FormParser]
+    # parser_classes = [MultiPartParser,FormParser, JSONParser]
 
 
 
@@ -83,7 +84,6 @@ class OngoingCourseOfferedViewSet(viewsets.ModelViewSet):
         print(data)
         data["status"] = 'ongoing'
         serializer = self.get_serializer(data=data)
-        print(serializer.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)

@@ -59,7 +59,7 @@ const Topics = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminTopics(id,query, token);
+        props.getAdminTopics(id, token);
     }
     console.log('mount it!');
 
@@ -74,7 +74,7 @@ const Topics = props => {
       }else{
         props.addTopic(topic, token)
         setNewTopic(topic)
-        props.getAdminTopics(id,query, token);
+        props.getAdminTopics(id, token);
       }
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -130,7 +130,6 @@ const Topics = props => {
                         <Search />
                     </InputAdornment>)
                 }}
-                onChange={handleQuery}
             />
             <Controls.Button
                 text="Add New"

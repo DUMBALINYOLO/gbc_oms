@@ -16,7 +16,7 @@ import styles from './widget-jss';
 class CounterIconWidget extends PureComponent {
 
   componentDidMount() {
-    this.props.getCounterStats();
+    this.props.getCounterStats(this.props.token);
   }
 
   render() {
@@ -82,6 +82,7 @@ class CounterIconWidget extends PureComponent {
 
 const mapStateToProps = state => ({
   statscounter: state.reports.statscounter,
+  token: state.auth.token,
 
 });
 

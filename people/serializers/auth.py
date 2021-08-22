@@ -12,16 +12,16 @@ User = get_user_model()
 
 # Rest Password Serializer
 class ResetSerializer(serializers.Serializer):
-
-    username = serializers.CharField(required=False)
-    email = serializers.CharField(required=False)
+    token = serializers.CharField(required=False)
+    password = serializers.CharField(required=False)
+    password2 = serializers.CharField(required=False)
 
     class Meta:
         model = User 
         fields = [
-            'id',
-            'username',
-            'email',
+            'token',
+            'password',
+            'password2',
         ]
 
 
@@ -37,7 +37,7 @@ class ChangePassSerializer(serializers.Serializer):
 class ForgotPassSerialiazer(serializers.Serializer):
 
     model = User
-    password = serializers.CharField(required=True)
+    email = serializers.CharField(required=True)
 
 
 

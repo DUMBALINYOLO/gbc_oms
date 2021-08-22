@@ -152,6 +152,7 @@ export const assignTicket = (id, ticket, token) => {
       let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
+        'Accept': "application/json",
       };
       axios
         .post(`${openticketsURL}${id}/assign/`, ticket, headers)
@@ -173,6 +174,7 @@ export const reassignTicket = (id, ticket, token) => {
       let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
+        'Accept': "application/json",
       };
       axios
         .post(`${openticketsURL}${id}/reassign/`, ticket, headers)

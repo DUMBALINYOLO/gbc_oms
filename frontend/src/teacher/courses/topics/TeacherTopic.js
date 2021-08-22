@@ -41,7 +41,7 @@ class AdminTopic extends React.Component {
   };
 
   componentDidMount() {
-    this.props.getAdminTopic(this.props.match.params.id);
+    this.props.getAdminTopic(this.props.match.params.id, this.props.token);
   }
 
   handleChange = (event, value) => {
@@ -116,6 +116,7 @@ class AdminTopic extends React.Component {
 const mapStateToProps = state => ({
   force: state, // force state from reducer
   topic: state.courses.admintopic,
+  token: state.auth.token,
 });
 
 

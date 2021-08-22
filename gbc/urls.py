@@ -23,6 +23,7 @@ urlpatterns = [
     re_path(r'api/reports/', include('reports.urls')),
     re_path(r'api/adverts/', include('adverts.urls')),
     re_path(r'api/messaging/', include('messaging.urls')),
+    re_path(r'api/blog/', include('newsletter.urls')),
     path('', index),
     re_path(r'^auth/', include('djoser.urls')),
     re_path(r'^auth/', include('djoser.urls.jwt')),

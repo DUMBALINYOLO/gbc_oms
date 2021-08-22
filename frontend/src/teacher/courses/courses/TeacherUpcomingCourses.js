@@ -58,7 +58,7 @@ const TeacherUpcomingCourses = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminUpcomingCourses(query, token);
+        props.getAdminUpcomingCourses(token);
     }
     console.log('mount it!');
 
@@ -79,7 +79,7 @@ const TeacherUpcomingCourses = props => {
       else{
         props.addUpComingCourse(fee, token)
         setNewCourse(fee)
-        props.getAdminUpcomingCourses(query, token);
+        props.getAdminUpcomingCourses( token);
       }
       resetForm()
       setRecordForEdit(null)
@@ -129,7 +129,6 @@ const TeacherUpcomingCourses = props => {
                       <Search />
                   </InputAdornment>)
               }}
-              onChange={handleQuery}
           />
           <Controls.Button
               text="Add New"

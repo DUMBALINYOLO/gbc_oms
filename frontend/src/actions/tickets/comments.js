@@ -82,6 +82,7 @@ export const getComments = (id, token) => {
       let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
+        'Accept': 'application/json',
       };
 
       axios
@@ -103,6 +104,7 @@ export const getComment = (id, token) => {
       let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
+        'Accept': 'application/json',
       };
       axios
         .get(`${commentsURL}${id}`, headers)
@@ -122,6 +124,7 @@ export const addComment = (comment, token) => {
       let headers = axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
+        'Accept': 'application/json',
       };
       axios
         .post(commentsURL, comment, headers)
@@ -134,6 +137,7 @@ export const addComment = (comment, token) => {
         });
     };
 };
+
 
 export const editComment = (id, comment, token) => dispatch => {
     let headers = axios.defaults.headers = {

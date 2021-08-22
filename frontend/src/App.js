@@ -129,15 +129,31 @@ import AdminOfferedOngoingCourse from './it/offered/OngoingCourse';
 import AdminOfferedUpcomingCourse from './it/offered/UpcomingCourse';
 import Adverts from './public/adverts/Adverts';
 import PublicOngoingCourse from './public/adverts/OngoingCourse';
+import PublicUpcomingCourse from './public/adverts/UpcomingCourse';
 import AdminTickets from './it/tickets/TicketsTab';
 import StudentTickets from './student/tickets/TicketsTab';
 import StudentClosedTicket from './student/tickets/ClosedTicket';
 import StudentOpenTicket from './student/tickets/Ticket';
 import StudentReopenedTicket from './student/tickets/ReopenedTicket';
 import AdminOpenTicket from './it/tickets/open/Ticket';
+import AdminClosedTicket from './it/tickets/open/ClosedTicket';
+import AdminReOpenedTicket from './it/tickets/open/ReOpenedTicket';
+
+import TeacherTickets from './teacher/tickets/TicketsTab';
+import TeacherOpenTicket from './teacher/tickets/open/Ticket';
+import TeacherClosedTicket from './teacher/tickets/open/ClosedTicket';
+import TeacherReOpenedTicket from './teacher/tickets/open/ReOpenedTicket';
+import Blogs from './public/blog/Blogs';
+import Blog from './public/blog/Blog';
+import ManagementBlogs from './it/blog/Blogs';
+import ManagementBlog from './it/blog/Blog';
+import ResetPassword from './public/accounts/ResetPassword';
+import RegisterAccount from './public/accounts/RegisterAccount';
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 import './assets/base.scss';
+
+
 
 import {
   fab,
@@ -398,7 +414,7 @@ window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
 const options = {
   position: positions.MIDDLE,
-	timeout: 3000,
+	timeout: 9000,
   transition: transitions.SCALE
 };
 
@@ -436,6 +452,16 @@ class App extends React.Component {
                 />
               <Route
                   exact
+                  path='/reset'
+                  component={ResetPassword}
+                />
+              <Route
+                  exact
+                  path='/register'
+                  component={RegisterAccount}
+                />
+              <Route
+                  exact
                   path='/offered-courses'
                   component={Adverts}
                 />
@@ -443,6 +469,11 @@ class App extends React.Component {
                   exact
                   path='/ongoing-courses/:id'
                   component={PublicOngoingCourse}
+                />
+              <Route
+                  exact
+                  path='/upcoming-courses/:id'
+                  component={PublicUpcomingCourse}
                 />
                 
               <Route 
@@ -491,6 +522,60 @@ class App extends React.Component {
                 path='/itdashboard/open-tickets/:id' 
                 component={AdminOpenTicket} 
               />
+              <Route 
+                exact 
+                path='/itdashboard/closed-tickets/:id' 
+                component={AdminClosedTicket} 
+              />
+              <Route 
+                exact 
+                path='/itdashboard/reopened-tickets/:id' 
+                component={AdminReOpenedTicket} 
+              />
+
+              <Route 
+                exact 
+                path='/teacherdashboard/tickets' 
+                component={TeacherTickets} 
+              />
+
+              <Route 
+                exact 
+                path='/teacherdashboard/open-tickets/:id' 
+                component={TeacherOpenTicket} 
+              />
+              <Route 
+                exact 
+                path='/teacherdashboard/closed-tickets/:id' 
+                component={TeacherClosedTicket} 
+              />
+              <Route 
+                exact 
+                path='/teacherdashboard/reopened-tickets/:id' 
+                component={TeacherReOpenedTicket} 
+              />
+              <Route 
+                exact 
+                path='/newsletter' 
+                component={Blogs} 
+              />
+              <Route 
+                exact 
+                path='/newsletter/:id' 
+                component={Blog} 
+              />
+              <Route 
+                exact 
+                path='/itdashboard/newsletter' 
+                component={ManagementBlogs} 
+              />
+              <Route 
+                exact 
+                path='/itdashboard/newsletter/:id' 
+                component={ManagementBlog} 
+              />
+
+
 						<Route exact path='/itdashboard/enquiries' component={Inquiries} />
 						<Route exact path='/itdashboard/enquiries/:id' component={Inquiry} />
 						<Route exact path='/itdashboard/users' component={UserDeques} />

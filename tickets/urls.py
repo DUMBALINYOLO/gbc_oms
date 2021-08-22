@@ -16,7 +16,7 @@ from .apis import (
 router = DefaultRouter()
 
 
-router.register(r'comments', OpenTicketViewSet, basename='comments')
+router.register(r'comments', CommentViewSet, basename='comments')
 router.register(r'open-tickets', OpenTicketViewSet, basename='open-tickets')
 router.register(r'customer-open-tickets', CustomerOpenTicketViewSet, basename='customer-open-tickets')
 router.register(r'assigned-open-tickets', AssignedOpenTicketViewSet, basename='assigned-open-tickets')

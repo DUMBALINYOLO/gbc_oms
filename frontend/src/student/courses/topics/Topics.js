@@ -54,7 +54,7 @@ const Topics = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminTopics(id,query, token);
+        props.getAdminTopics(id,token);
     }
     console.log('mount it!');
 
@@ -64,7 +64,7 @@ const Topics = props => {
   const handleQuery = e => {
     let target = e.target;
     setQuery(target.value);
-    props.getAdminTopics(query, token)
+    props.getAdminTopics(token)
   }
 
   const handleSearch = e => {

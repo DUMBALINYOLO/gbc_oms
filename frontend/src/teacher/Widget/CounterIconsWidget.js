@@ -21,7 +21,7 @@ class CounterIconWidget extends PureComponent {
             <CounterWidget
               color={colorfull[0]}
               start={0}
-              end={207}
+              end={0}
               duration={3}
               title="Excercises"
             >
@@ -32,7 +32,7 @@ class CounterIconWidget extends PureComponent {
             <CounterWidget
               color={colorfull[1]}
               start={0}
-              end={300}
+              end={0}
               duration={3}
               title="Tests"
             >
@@ -43,7 +43,7 @@ class CounterIconWidget extends PureComponent {
             <CounterWidget
               color={colorfull[2]}
               start={0}
-              end={67}
+              end={0}
               duration={3}
               title="Attendances"
             >
@@ -54,7 +54,7 @@ class CounterIconWidget extends PureComponent {
             <CounterWidget
               color={colorfull[3]}
               start={0}
-              end={70}
+              end={0}
               duration={3}
               title="Students"
             >

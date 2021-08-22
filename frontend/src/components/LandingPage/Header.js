@@ -83,11 +83,7 @@ const Header = (props) => {
             >
               ABOUT US
             </Button>
-            <Button
-              color="inherit"
-              className=" px-4 py-2 text-capitalize">
-              OUR TEAM
-            </Button>
+            
             <Button
               color="inherit"
               className=" px-4 py-2 text-capitalize"
@@ -98,8 +94,11 @@ const Header = (props) => {
             </Button>
             <Button
               color="inherit"
-              className=" px-4 py-2 text-capitalize">
-              CONTACT US
+              className=" px-4 py-2 text-capitalize"
+              component={Link}
+              to='/newsletter'
+            >
+              NEWSLETTER
             </Button>
           </div>
         </div>
@@ -132,17 +131,16 @@ const Header = (props) => {
             <ListItem className="d-block bg-secondary py-2 px-3">
               <div className="d-flex w-100 justify-content-between navbar-light align-items-center">
                 <div className="header-nav-logo justify-content-start">
-                  <a
-                    href="#/"
-                    onClick={e => e.preventDefault()}
-                    className="navbar-brand d-flex align-items-center d-40"
-                    title="Carolina React Admin Dashboard with Material-UI PRO">
-                    <img
-                      alt="Carolina React Admin Dashboard with Material-UI PRO"
-                      className="d-block img-fluid"
-                      src={projectLogo}
-                    />
-                  </a>
+                <Button
+                  color="inherit"
+                  className=" px-4 py-2 text-capitalize"
+                  component={Link}
+                  to='/'
+
+                >
+                <span>GERERE PROJECTS</span>
+
+              </Button>
                 </div>
                 <IconButton
                   onClick={toggleDrawer('right', false)}
@@ -153,151 +151,45 @@ const Header = (props) => {
             </ListItem>
             <Divider />
             <ListItem className="d-block py-3 px-2">
-              <a
-                className="d-flex px-3 align-items-center dropdown-item rounded"
-                href="#/"
-                onClick={e => e.preventDefault()}>
-                <div className="align-box-row w-100">
-                  <div className="mr-3">
-                    <div className="bg-strong-bliss text-center text-white d-40 rounded-circle">
-                      <FontAwesomeIcon icon={['fas', 'shapes']} />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-weight-bold text-primary d-block">
-                      UI Elements
-                    </div>
-                    <small className="text-black-50">Easy to customise</small>
-                  </div>
-                  <div className="ml-auto card-hover-indicator align-self-center">
-                    <FontAwesomeIcon
-                      icon={['fas', 'chevron-right']}
-                      className="font-size-lg"
-                    />
-                  </div>
-                </div>
-              </a>
+              <Button
+                color="inherit"
+                className=" px-4 py-2 text-capitalize"
+                component={Link}
+                to='/about'
+              >
+                ABOUT US
+              </Button>
             </ListItem>
             <Divider />
             <ListItem className="d-block py-3 px-2">
-              <a
-                className="d-flex px-3 align-items-center dropdown-item rounded"
-                href="#/"
-                onClick={e => e.preventDefault()}>
-                <div className="align-box-row w-100">
-                  <div className="mr-3">
-                    <div className="bg-plum-plate text-center text-white d-40 rounded-circle">
-                      <FontAwesomeIcon icon={['fas', 'car-battery']} />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-weight-bold text-primary d-block">
-                      Form widgets
-                    </div>
-                    <small className="text-black-50">
-                      Multiple options available
-                    </small>
-                  </div>
-                  <div className="ml-auto card-hover-indicator align-self-center">
-                    <FontAwesomeIcon
-                      icon={['fas', 'chevron-right']}
-                      className="font-size-lg"
-                    />
-                  </div>
-                </div>
-              </a>
+              <Button
+                color="inherit"
+                className=" px-4 py-2 text-capitalize"
+                component={Link}
+                to='/offered-courses'
+              >
+                OFFERED COURSES
+              </Button>
             </ListItem>
             <Divider />
             <ListItem className="d-block py-3 px-2">
-              <a
-                className="d-flex px-3 align-items-center dropdown-item rounded"
-                href="#/"
-                onClick={e => e.preventDefault()}>
-                <div className="align-box-row w-100">
-                  <div className="mr-3">
-                    <div className="bg-grow-early text-center text-white d-40 rounded-circle">
-                      <FontAwesomeIcon icon={['fas', 'table']} />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-weight-bold text-primary d-block">
-                      Tables
-                    </div>
-                    <small className="text-black-50">
-                      Dynamic and sortable examples
-                    </small>
-                  </div>
-                  <div className="ml-auto card-hover-indicator align-self-center">
-                    <FontAwesomeIcon
-                      icon={['fas', 'chevron-right']}
-                      className="font-size-lg"
-                    />
-                  </div>
-                </div>
-              </a>
+              <Button
+                color="inherit"
+                className=" px-4 py-2 text-capitalize"
+                component={Link}
+                to='/newsletter'
+              >
+                NEWSLETTER
+              </Button>
             </ListItem>
             <Divider />
             <ListItem className="d-block py-3 px-2">
-              <a
-                className="d-flex px-3 align-items-center dropdown-item rounded"
-                href="#/"
-                onClick={e => e.preventDefault()}>
-                <div className="align-box-row w-100">
-                  <div className="mr-3">
-                    <div className="bg-ripe-malin text-center text-white d-40 rounded-circle">
-                      <FontAwesomeIcon icon={['fas', 'map-marker-alt']} />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-weight-bold text-primary d-block">
-                      Maps
-                    </div>
-                    <small className="text-black-50">
-                      Everything you'll need, included
-                    </small>
-                  </div>
-                  <div className="ml-auto card-hover-indicator align-self-center">
-                    <FontAwesomeIcon
-                      icon={['fas', 'chevron-right']}
-                      className="font-size-lg"
-                    />
-                  </div>
-                </div>
-              </a>
-            </ListItem>
-            <Divider />
-            <ListItem className="d-block py-3 px-2">
-              <a
-                className="d-flex px-3 align-items-center dropdown-item rounded"
-                href="#/"
-                onClick={e => e.preventDefault()}>
-                <div className="align-box-row w-100">
-                  <div className="mr-3">
-                    <div className="bg-malibu-beach text-center text-white d-40 rounded-circle">
-                      <FontAwesomeIcon icon={['fas', 'cubes']} />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-weight-bold text-primary d-block">
-                      Presentation blocks
-                    </div>
-                    <small className="text-black-50">
-                      Build perfect websites today
-                    </small>
-                  </div>
-                  <div className="ml-auto card-hover-indicator align-self-center">
-                    <FontAwesomeIcon
-                      icon={['fas', 'chevron-right']}
-                      className="font-size-lg"
-                    />
-                  </div>
-                </div>
-              </a>
-            </ListItem>
-            <Divider />
-            <ListItem className="d-block py-3 px-2">
-              <Button color="inherit" variant="outlined" className="text-white">
-                My account
+              <Button
+                color="inherit"
+                component={Link}
+                to='/login'
+                className=" px-4 py-2 text-capitalize">
+                LOGIN
               </Button>
             </ListItem>
           </List>

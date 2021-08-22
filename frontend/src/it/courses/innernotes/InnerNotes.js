@@ -94,7 +94,7 @@ const InnerNotes = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getStudyNoteNotes(id,query, token);
+        props.getStudyNoteNotes(id, token);
     }
     console.log('mount it!');
 
@@ -111,7 +111,7 @@ const InnerNotes = props => {
         props.addStudyNoteNote(fee, token)
         setNewCourse(fee)
         console.log(fee)
-        props.getStudyNoteNotes(id,query, token);
+        props.getStudyNoteNotes(id, token);
       }
       setRecordForEdit(null)
       setOpenPopup(false)
@@ -182,7 +182,6 @@ const InnerNotes = props => {
                         <Search />
                     </InputAdornment>)
                 }}
-                onChange={handleQuery}
             />
             <Controls.Button
                 text="Add New"

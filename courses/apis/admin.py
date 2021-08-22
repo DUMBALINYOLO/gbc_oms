@@ -88,8 +88,8 @@ def get_course(course_id):
 
 
 class AdminUpcomingCourseViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)#SessionAuthentication, BasicAuthentication)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
 
 
 
@@ -140,8 +140,8 @@ class AdminUpcomingCourseViewSet(viewsets.ModelViewSet):
 
 
 class AdminOngoingCourseViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
 
 
 
@@ -184,8 +184,8 @@ class AdminOngoingCourseViewSet(viewsets.ModelViewSet):
 
 
 class AdminFinishedCourseViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
 
 
 
@@ -230,8 +230,8 @@ class AdminFinishedCourseViewSet(viewsets.ModelViewSet):
 
 
 class AdminInactiveCourseViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
 
 
 
@@ -278,8 +278,8 @@ class AdminInactiveCourseViewSet(viewsets.ModelViewSet):
 
 
 class LessonSlideViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
 
 
 	def get_serializer_class(self, *args, **kwargs):
@@ -301,8 +301,8 @@ class LessonSlideViewSet(viewsets.ModelViewSet):
 
 
 class StudentCourseEnrollementViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'patch', 'put', 'updating']:
@@ -326,8 +326,8 @@ class StudentCourseEnrollementViewSet(viewsets.ModelViewSet):
 
 
 class AdminTopicViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
-	permission_classes = [permissions.AllowAny,]
+	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['put', 'patch', 'update', 'create']:
@@ -366,8 +366,8 @@ class AdminTopicViewSet(viewsets.ModelViewSet):
 		return queryset
 
 class AdminReviewViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['put', 'patch', 'update', 'create']:
@@ -415,8 +415,8 @@ def get_topic(topic_id):
 	return topic
 
 class AdminTopicObjectivesViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'put', 'patch', 'update']:
@@ -446,8 +446,8 @@ class AdminTopicObjectivesViewSet(viewsets.ModelViewSet):
 
 
 class AdminTopicGuidelineViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'put', 'patch', 'update']:
@@ -476,8 +476,8 @@ class AdminTopicGuidelineViewSet(viewsets.ModelViewSet):
 
 
 class AdminSubTopicViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'put', 'patch', 'update']:
@@ -511,8 +511,9 @@ def get_subtopic(subtopic_id):
 
 
 class AdminStudyNoteViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
+
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'update', 'put', 'patch']:
@@ -561,8 +562,8 @@ class AdminStudyNoteViewSet(viewsets.ModelViewSet):
 
 
 class AdminImageViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'update', 'put', 'patch']:
@@ -593,8 +594,10 @@ class AdminImageViewSet(viewsets.ModelViewSet):
 
 
 class AdminNoteViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
+
+
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'update', 'put', 'patch']:
 			return ItTextCreateUpdateSerializer
@@ -614,8 +617,8 @@ class AdminNoteViewSet(viewsets.ModelViewSet):
 
 
 class AdminFileViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'update', 'put', 'patch']:
@@ -643,8 +646,9 @@ class AdminFileViewSet(viewsets.ModelViewSet):
 
 
 class AdminVideoViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
+
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'update', 'put', 'patch']:
@@ -671,8 +675,8 @@ class AdminVideoViewSet(viewsets.ModelViewSet):
 		return queryset
 
 class AdminReferenceViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
 
 	def get_serializer_class(self, *args, **kwargs):
 		if self.action in ['create', 'update', 'put', 'patch']:
@@ -722,8 +726,8 @@ class AdminReferenceViewSet(viewsets.ModelViewSet):
 
 
 class AdminAuthorViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
 
 
 	def get_serializer_class(self, *args, **kwargs):
@@ -744,8 +748,8 @@ class AdminAuthorViewSet(viewsets.ModelViewSet):
 
 
 class AdminPublisherCityViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
 
 
 	def get_serializer_class(self, *args, **kwargs):
@@ -767,8 +771,8 @@ class AdminPublisherCityViewSet(viewsets.ModelViewSet):
 
 
 class AdminPublisherViewSet(viewsets.ModelViewSet):
-	authentication_classes = (TokenAuthentication,)
 	permission_classes = [permissions.IsAuthenticated,]
+	authentication_classes = [TokenAuthentication,]
 
 
 	def get_serializer_class(self, *args, **kwargs):

@@ -32,6 +32,7 @@ import {
     EDIT_PRINCIPAL_PROFILE,
     GET_BURSAR_PROFILE,
     EDIT_BURSAR_PROFILE,
+    GET_STAFF_USERS
 
 } from '../types/peopleTypes';
 
@@ -60,6 +61,7 @@ const initialState = {
     parentprofile: {},
     studentprofiles: [],
     studentprofile: {},
+    staffusers: [],
 }
 
 export default function a(state = initialState, action){
@@ -203,6 +205,11 @@ export default function a(state = initialState, action){
             return {
                 ...state,
                 adminteachers: action.payload
+            };
+        case GET_STAFF_USERS:
+            return {
+                ...state,
+                staffusers: action.payload
             };
         case GET_ADMIN_TEACHER:
             return {

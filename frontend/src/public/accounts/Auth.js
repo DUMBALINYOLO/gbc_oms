@@ -18,9 +18,13 @@ import hero9 from './icon.jpg';
 import { withStyles } from '@material-ui/core/styles';
 import Corporate from '../../containers/Templates/Corporate';
 import { Redirect } from "react-router-dom";
-import {authLogin} from "../../actions/auth";
+import {authLogin, forgotPassword, resetPassword} from "../../actions/auth";
+import {addStudent} from "../../actions/people";
 import { connect } from 'react-redux';
 import GerereLogin from './Login';
+import ForgotPassword from './Forgot';
+import ResetPassword from './Reset';
+import Register from './Register';
 
 const StyledTabs = withStyles({
   indicator: {
@@ -117,7 +121,7 @@ class Login extends React.Component {
                                 <div className="bg-composed-wrapper--content p-5">
                                   <div className="d-flex align-items-center">
                                     <span className="px-4 h-auto py-1 badge badge-second badge-pill">
-                                      Register page
+                                      WELCOME TO GERERE BUSINESS COLLEGE
                                     </span>
                                     <Tooltip
                                       arrow
@@ -131,11 +135,14 @@ class Login extends React.Component {
                                     </Tooltip>
                                   </div>
                                   <div className="text-white mt-3">
-                                    <h1 className="display-4 my-3 font-weight-bold">
-                                      Por que você deve criar uma conta?
-                                    </h1>
+                                  <h1 className="display-4 my-3 font-weight-bold">
+                                    You can register as a Student if you do not have an account
+                                  </h1>
+                                  <p className="font-size-md mb-0 text-white-50">
+                                    If you have forgotten your password head to forgot your password and set your password
+                                  </p>
                                     <p className="font-size-md mb-0 text-white-50">
-                                      Uma hora livre, quando nosso poder de escolha é ilimitado e nada impede.
+                                      You can only reset your password if you have received a token in your email
                                     </p>
                                     <div className="divider border-2 my-5 border-light opacity-2 rounded w-25" />
                                   </div>
@@ -157,41 +164,56 @@ class Login extends React.Component {
                                   indicatorColor="primary"
                                   textColor="primary"
                                   onChange={this.handleChange}>
-                                  <StyledTab label="REGISTER ACCOUNT" />
                                   <StyledTab label="LOGIN" />
+                                  <StyledTab label="REGISTER ACCOUNT" />
                                   <StyledTab label="FORGOT PASSWORD" />
+                                  <StyledTab label="RESET PASSWORD" />
                                 </StyledTabs>
                               </div>
                               <TabPanel value={value} index={0}>
                                 <h3 className="display-4 mb-2 font-weight-bold">
-                                  REGISTER
+                                  LOGIN
                                 </h3>
-                                
                                   <GerereLogin
                                     authLogin={authLogin}
                                   />
+                                
+                                  
                               </TabPanel>
                               <TabPanel value={value} index={1}>
                                 <h3 className="display-4 mb-2 font-weight-bold">
-                                  LOGIN
+                                REGISTER
                                 </h3>
-                            
-                                  <GerereLogin
-                                    authLogin={authLogin}
+                                <Register
+                                    addStudent={this.props.addStudent}
+                                    msg={this.props.message}
                                   />
+                            
+                                  
 
                               </TabPanel>
 
                               <TabPanel value={value} index={2}>
                                 <h3 className="display-4 mb-2 font-weight-bold">
-                                  RESET PASSWORD
-                                </h3>   
-                                  <GerereLogin
-                                    authLogin={authLogin}
-                                  />
-
-
+                                  FORGOT PASSWORD
+                                </h3>
+                                
+                                <ForgotPassword
+                                  forgotPassword={this.props.forgotPassword}
+                                  msg={this.props.message}
+                                />
                               </TabPanel>
+                              <TabPanel value={value} index={3}>
+                              <h3 className="display-4 mb-2 font-weight-bold">
+                                RESET PASSWORD
+                              </h3>
+                              
+                              <ResetPassword
+                                resetPassword={this.props.resetPassword}
+                                msg={this.props.message}
+                              />
+
+                            </TabPanel>
                             </Container>
                           </Grid>
                         </Grid>
@@ -244,7 +266,7 @@ class Login extends React.Component {
                               <div className="bg-composed-wrapper--content p-5">
                                 <div className="d-flex align-items-center">
                                   <span className="px-4 h-auto py-1 badge badge-second badge-pill">
-                                    Register page
+                                    WELCOME TO GERERE BUSINESS COLLEGE
                                   </span>
                                   <Tooltip
                                     arrow
@@ -259,10 +281,13 @@ class Login extends React.Component {
                                 </div>
                                 <div className="text-white mt-3">
                                   <h1 className="display-4 my-3 font-weight-bold">
-                                    Por que você deve criar uma conta?
+                                    You can register as a Student if you do not have an account
                                   </h1>
                                   <p className="font-size-md mb-0 text-white-50">
-                                    Uma hora livre, quando nosso poder de escolha é ilimitado e nada impede.
+                                    If you have forgotten your password head to forgot your password and set your password
+                                  </p>
+                                  <p className="font-size-md mb-0 text-white-50">
+                                    You can only reset your password if you have received a token in your email
                                   </p>
                                   <div className="divider border-2 my-5 border-light opacity-2 rounded w-25" />
                                 </div>
@@ -284,38 +309,53 @@ class Login extends React.Component {
                                 indicatorColor="primary"
                                 textColor="primary"
                                 onChange={this.handleChange}>
-                                <StyledTab label="REGISTER ACCOUNT" />
                                 <StyledTab label="LOGIN" />
+                                <StyledTab label="REGISTER ACCOUNT" />
                                 <StyledTab label="FORGOT PASSWORD" />
+                                <StyledTab label="RESET PASSWORD" />
                               </StyledTabs>
                             </div>
                             <TabPanel value={value} index={0}>
                               <h3 className="display-4 mb-2 font-weight-bold">
-                                REGISTER AS STUDENT
+                                LOGIN
                               </h3>
-                              
                               <GerereLogin
                                 authLogin={authLogin}
                               />
+                              
+                              
                             </TabPanel>
                             <TabPanel value={value} index={1}>
                               <h3 className="display-4 mb-2 font-weight-bold">
-                                LOGIN
+                              REGISTER AS STUDENT
                               </h3>
                           
-                              <GerereLogin
-                                authLogin={authLogin}
+                              <Register
+                                    addStudent={this.props.addStudent}
+                                    msg={this.props.message}
                               />
 
                             </TabPanel>
 
                             <TabPanel value={value} index={2}>
                               <h3 className="display-4 mb-2 font-weight-bold">
+                                FORGOT PASSWORD
+                              </h3>
+                              
+                              <ForgotPassword
+                                forgotPassword={this.props.forgotPassword}
+                                msg={this.props.message}
+                              />
+
+                            </TabPanel>
+                            <TabPanel value={value} index={3}>
+                              <h3 className="display-4 mb-2 font-weight-bold">
                                 RESET PASSWORD
                               </h3>
                               
-                              <GerereLogin
-                                authLogin={authLogin}
+                              <ResetPassword
+                                resetPassword={this.props.resetPassword}
+                                msg={this.props.message}
                               />
 
                             </TabPanel>
@@ -343,13 +383,18 @@ const mapStateToProps = state => {
     error: state.auth.error,
     userRole: state.auth.userRole,
     token: state.auth.token,
+    msg: state.auth.msg,
+    message: state.errors.msg,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     authLogin: (email, password) =>
-      dispatch(authLogin(email, password))
+      dispatch(authLogin(email, password)),
+      forgotPassword : (user) => dispatch(forgotPassword(user)),
+      resetPassword: (user) => dispatch(resetPassword(user)),
+      addStudent: (user) => dispatch(addStudent(user)),
   };
 };
 

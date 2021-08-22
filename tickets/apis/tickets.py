@@ -140,6 +140,7 @@ class OpenTicketViewSet(viewsets.ModelViewSet):
             data= request.data.copy()
             user = get_user(data['assigned_to'])
             ticket.assigned_to = user
+            ticket.assigned_by = request.user
             ticket.save()
             ActivityReadLog.objects.create(
                             model = 'Ticket',
@@ -159,6 +160,7 @@ class OpenTicketViewSet(viewsets.ModelViewSet):
             data= request.data.copy()
             user = get_user(data['assigned_to'])
             ticket.assigned_to = user
+            ticket.assigned_by = request.user
             ticket.save()
             ActivityReadLog.objects.create(
                             model = 'Ticket',
@@ -414,9 +416,6 @@ class ReOpenedTicketViewSet(viewsets.ModelViewSet):
     
     
 
-
-
-
 class AssignedReOpenedTicketViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated,]
     authentication_classes = [TokenAuthentication,]
@@ -432,7 +431,7 @@ class AssignedReOpenedTicketViewSet(viewsets.ModelViewSet):
         queryset = Ticket.objects.filter(
                                 ~ComplexQueryFilter(
                                     status__in =[
-                                        'reopened',
+                                        'closed',
                                         'resolved',
                                         'open'
                                     ]
@@ -450,8 +449,8 @@ class AssignedReOpenedTicketViewSet(viewsets.ModelViewSet):
 
 
 class CommentViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated, ]
-    authenticatation_classes = [TokenAuthentication, ]
+    permission_classes = [permissions.IsAuthenticated,]
+    authentication_classes = [TokenAuthentication,]
 
     def get_serializer_class(self, *args, **kwargs):
         if self.action in ['create', 'update', 'put', 'patch']:
@@ -463,6 +462,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         data = request.data.copy()
         user = request.user
+        print(user)
         data["user"] = user.pk
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
@@ -472,15 +472,13 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 
     def get_queryset(self, *args, **kwargs):
-        queryset = Comment.objects.select_related('ticket')
+        queryset = Comment.objects.select_related('user')
         ticket_id = self.request.query_params.get('id', None)
         if ticket_id is not None:
             ticket = get_ticket(ticket_id)
             queryset = ticket.comments.select_related(
                                                     'user',
-                                                    'ticket'
                                                 ).order_by('id')
-            print(queryset)
         return queryset
 
 

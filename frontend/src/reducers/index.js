@@ -36,6 +36,7 @@ import assignedclosedtickets from './tickets/assignedclosedtickets';
 import reopenedtickets from './tickets/reopenedtickets';
 import assignedreopenedtickets from './tickets/assignedreopenedtickets';
 import customertickets from './tickets/customertickets';
+import blogs from './blogs';
 
 
 
@@ -70,7 +71,6 @@ export default combineReducers({
     messages,
     adverts,
     messaging,
-
     comments,
     opentickets,
     assignedopentickets,
@@ -78,6 +78,7 @@ export default combineReducers({
     assignedclosedtickets,
     reopenedtickets,
     assignedreopenedtickets,
-    customertickets
+    customertickets,
+    blogs
 
 });

@@ -8,6 +8,12 @@ import {
   USER_LOADED,
   USER_LOADING,
   AUTH_ERROR,
+  FORGOT_START,
+  FORGOT_SUCCESS,
+  FORGOT_FAIL,
+  RESET_START,
+  RESET_SUCCESS,
+  RESET_FAIL,
 
 } from '../types/authTypes';
 
@@ -22,6 +28,7 @@ const initialState = {
   user: null,
   isAuthenticated:null,
   isLoading: null,
+  msg: null,
 };
 
 const authStart = (state, action) => {
@@ -56,6 +63,54 @@ const authLogout = (state, action) => {
 };
 
 
+export const forgotStart = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
+    loading: false
+  });
+};
+
+export const forgotSuccess = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
+    msg: action.msg,
+    loading: false
+  });
+};
+
+
+export const forgotFail = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
+    loading: false
+  });
+};
+
+
+export const resetStart = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
+    loading: false
+  });
+};
+
+export const resetSuccess = (state, action) => {
+  return updateObject(state, {
+    msg: action.msg,
+    error: action.error,
+    loading: false,
+  });
+};
+
+
+export const resetFail = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
+    loading: false
+  });
+};
+
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case AUTH_START:
@@ -64,6 +119,18 @@ const reducer = (state = initialState, action) => {
       return authSuccess(state, action);
     case AUTH_FAIL:
       return authFail(state, action);
+    case FORGOT_START:
+      return forgotStart(state, action);
+    case FORGOT_SUCCESS:
+      return forgotSuccess(state, action);
+    case FORGOT_FAIL:
+      return forgotFail(state, action);
+    case RESET_START:
+      return resetStart(state, action);
+    case RESET_SUCCESS:
+      return resetSuccess(state, action);
+    case RESET_FAIL:
+      return resetFail(state, action);
     case AUTH_LOGOUT:
       return authLogout(state, action);
     case USER_LOADING:

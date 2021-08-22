@@ -7,10 +7,21 @@ import {
   USER_LOADED,
   USER_LOADING,
   AUTH_ERROR,
+  FORGOT_START,
+  FORGOT_SUCCESS,
+  FORGOT_FAIL,
+  RESET_START,
+  RESET_SUCCESS,
+  RESET_FAIL,
 
 } from '../types/authTypes';
 import { createMessage, returnErrors } from './messages';
-import {loginURL} from '../constants';
+import {
+  loginURL,
+  resetpasswordURL,
+  forgotpasswordURL
+
+} from '../constants';
 
 export const authStart = () => {
   return {
@@ -29,6 +40,50 @@ export const authSuccess = user => {
 export const authFail = error => {
   return {
     type: AUTH_FAIL,
+    error: error
+  };
+};
+
+
+export const forgotStart = () => {
+  return {
+    type: FORGOT_START
+  };
+};
+
+export const forgotSuccess = user => {
+  return {
+    type: FORGOT_SUCCESS,
+    user
+  };
+};
+
+
+export const forgotFail = error => {
+  return {
+    type: FORGOT_FAIL,
+    error: error
+  };
+};
+
+
+export const resetStart = () => {
+  return {
+    type: RESET_START
+  };
+};
+
+export const resetSuccess = user => {
+  return {
+    type: RESET_SUCCESS,
+    user
+  };
+};
+
+
+export const resetFail = error => {
+  return {
+    type: RESET_FAIL,
     error: error
   };
 };
@@ -143,3 +198,41 @@ export const loadUser = (token, email) => (dispatch, getState) => {
       });
     });
 };
+
+
+
+export const forgotPassword = (user) => {
+  return dispatch => {
+    dispatch(forgotStart());
+    axios
+      .post(forgotpasswordURL, user)
+      .then(res => {
+        const msg = res.data.msg
+        dispatch(forgotSuccess(msg));
+      })
+      .catch(err => {
+        dispatch(returnErrors(err.response.data, err.response.status));
+        dispatch(forgotFail(err));
+      });
+  };
+};
+
+
+
+export const resetPassword = (user) => {
+  return dispatch => {
+    dispatch(resetStart());
+    axios
+      .post(resetpasswordURL, user)
+      .then(res => {
+        const msg = res.data.msg
+        dispatch(resetSuccess(msg));
+      })
+      .catch(err => {
+        dispatch(returnErrors(err.response.data, err.response.status));
+        dispatch(resetFail(err));
+      });
+  };
+};
+
+

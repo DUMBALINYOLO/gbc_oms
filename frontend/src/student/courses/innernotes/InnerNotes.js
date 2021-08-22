@@ -65,7 +65,7 @@ const InnerNotes = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getStudyNoteNotes(id, query, token);
+        props.getStudyNoteNotes(id, token);
     }
     console.log('mount it!');
 
@@ -81,7 +81,7 @@ const InnerNotes = props => {
       else{
         props.addStudyNoteNote(fee, token)
         setNewCourse(fee)
-        props.getStudyNoteNotes(id, query, token);
+        props.getStudyNoteNotes(id, token);
       }
       resetForm()
       setRecordForEdit(null)

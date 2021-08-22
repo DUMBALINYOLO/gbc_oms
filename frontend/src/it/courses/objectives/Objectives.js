@@ -121,7 +121,7 @@ const Objectives = (props) => {
             else {
                 props.addTopicObjective(_record, token)
                 setNewRecord(_record)
-                props.getAdminTopicObjectives(token);
+                props.getAdminTopicObjectives(id, token);
                 toast.current.show({ severity: 'success', summary: 'Successful', detail: 'OBJECTIVES CREATED', life: 3000 });
             }
             setProductDialog(false);

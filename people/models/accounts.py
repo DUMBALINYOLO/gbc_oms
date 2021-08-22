@@ -126,3 +126,23 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def is_active(self):
         return self.active
+
+
+class UserPasswordResetCode(models.Model):
+    user = models.ForeignKey(
+                        'User',
+                        on_delete = models.CASCADE,
+                        related_name='resetters',
+                        blank=False,
+                        null=False
+                    )
+    reset_code = models.CharField(
+                            max_length=351,
+                            unique=True,
+                        )
+    expired = models.BooleanField(default=False)
+    uses = models.IntegerField(default=0)
+    
+    def __str__(self):
+        return self.reset_code
+

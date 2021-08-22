@@ -23,7 +23,7 @@ import styles from './dashboard-jss';
 
 class StudentHome extends PureComponent {
   render() {
-    const title = brand.name + ' - Personal Dashboard';
+    const title =  'Gerere  Business College';
     const description = brand.desc;
     const { classes } = this.props;
     return (

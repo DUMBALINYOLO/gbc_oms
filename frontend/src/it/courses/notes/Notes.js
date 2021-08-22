@@ -61,8 +61,8 @@ const Notes = (props) => {
 
     useEffect(() => {
       if(!props.fetched) {
-          props.getStudynotesStatusChoices();
-          props.getStudyNotesApprovalStatusChoices();
+          props.getStudynotesStatusChoices(token);
+          props.getStudyNotesApprovalStatusChoices(token);
           props.getStudyNotes(props.data.id, token);
       }
       console.log('mount it!');

@@ -33,7 +33,8 @@ import {
         GET_PRINCIPAL_PROFILE,
         EDIT_PRINCIPAL_PROFILE,
         GET_BURSAR_PROFILE,
-        EDIT_BURSAR_PROFILE
+        EDIT_BURSAR_PROFILE,
+        GET_STAFF_USERS
 
     } from '../types/peopleTypes';
 import {
@@ -53,10 +54,27 @@ import {
     teacherprofilesURL,
     bursarprofilesURL,
     studentprofilesURL,
+    staffusersURL
 
 } from '../constants';
 import { createMessage, returnErrors } from './messages';
 
+
+export const getStaffUsers = (token) => dispatch => {
+    let headers = axios.defaults.headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+        'Accept': 'application/json',
+      };
+
+    axios.get(staffusersURL,headers)
+        .then(res => {
+            dispatch({
+                type: GET_STAFF_USERS,
+                payload: res.data
+            });
+        }).catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+}
 
 
 export const getPrincipalProfiles = (token) => dispatch => {

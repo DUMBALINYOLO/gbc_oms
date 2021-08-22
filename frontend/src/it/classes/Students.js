@@ -72,6 +72,7 @@ const Students = (props) => {
     const {token, records} =props;
     const {id} =props.data
     const history = useHistory();
+    console.log(token)
 
     useEffect(() => {
       if(!props.fetched) {

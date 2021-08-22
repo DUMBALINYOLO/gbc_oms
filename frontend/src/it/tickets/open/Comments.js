@@ -1,30 +1,22 @@
-import React, { Fragment, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, {  useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
   Grid,
-  Fab,
-  IconButton,
-  Box,
-  Typography,
-  Tabs,
-  Tab,
-  Badge,
   Card,
   CardContent,
   Button,
-  Tooltip,
   TextField,
-  Divider
 } from '@material-ui/core';
-import AddCircleTwoToneIcon from '@material-ui/icons/AddCircleTwoTone';
 import {
   addComment,
 
 
 } from '../../../actions/tickets/comments';
 import { connect } from 'react-redux';
+import { Dialog } from 'primereact/dialog';
+import Asign from './Asign';
+import ReAsign from './ReAsign';
 
 
 
@@ -37,6 +29,28 @@ function Comments(props) {
   const {comments, userName, token, data} = props;
   const [record, setRecord]  = useState(tick)
   const {id} =props.data;
+  const [ticketDialog, setTicketDialog] = useState(false);
+  const [commentDialog, setCommentDialog] = useState(false);
+
+
+  const openComment = () => {
+    setCommentDialog(true);
+  }
+
+  const openTicket = () => {
+    setTicketDialog(true);
+  }
+
+  const hideCommentDialog = () => {
+    setCommentDialog(false);
+  }
+
+  const hideTicketDialog = () => {
+    setTicketDialog(false);
+  }
+
+
+
 
   const saveComment = (e) => {
       e.preventDefault();
@@ -50,6 +64,7 @@ function Comments(props) {
       props.getComments(id, token);
       setRecord(tick)
   }
+
   const onInputChange = (e, name) => {
       const val = (e.target && e.target.value) || '';
       let _record = {...record};
@@ -83,6 +98,35 @@ function Comments(props) {
                </div>
              </div>
 
+             <Dialog
+                visible={ticketDialog}
+                style={{ width: '400px' }}
+                header="IMAGE FORM"
+                modal
+                className="p-fluid"
+                onHide={hideTicketDialog}
+                >
+                    <Asign
+                        id ={id}
+                        ticketDialog={setTicketDialog}
+                    />
+            </Dialog>
+            <Dialog
+                visible={commentDialog}
+                style={{ width: '400px' }}
+                header="IMAGE FORM"
+                modal
+                className="p-fluid"
+                onHide={hideCommentDialog}
+                >
+                    <ReAsign
+                        id ={id}
+                        ticketDialog={setCommentDialog}
+                    />
+            </Dialog>
+
+
+
             <CardContent className="p-3" style={{paddingTop: '20px'}}>
               <div className="scroll-area ">
                 <PerfectScrollbar>
@@ -90,7 +134,7 @@ function Comments(props) {
                     comments.map((comment) => {
                       return (
                       <div className="chat-wrapper" key={comment.id}>
-                        {comment.user != userName ?
+                        {comment.user !== userName ?
                             <div className="chat-item p-2 mb-2">
                               <div className="align-box-row">
                                 <div>
@@ -157,9 +201,21 @@ function Comments(props) {
                     size="small"
                     variant="contained"
                     color="primary"
+                    onClick={openTicket}
 
                    >
                     ASSIGN TO
+                  </Button>
+                </div>
+                <div className="ml-auto">
+                  <Button
+                    size="small"
+                    variant="contained"
+                    color="primary"
+                    onClick={openComment}
+
+                   >
+                    REASIGN TO
                   </Button>
                 </div>
                 <div className="ml-auto">

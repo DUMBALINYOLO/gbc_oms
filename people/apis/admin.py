@@ -14,7 +14,8 @@ from people.models import (
 					Principal,
 					PrincipalProfile,
 					Parent,
-					ParentProfile
+					ParentProfile,
+					User
 				)
 from attendance.models import AttendanceRecord
 from grading.models import Record
@@ -34,8 +35,10 @@ from people.serializers import (
 						AdminPrincipalProfileListDetailSerializer,
 						AttendanceSerializer,
 						AdminStudentGradingRecordsListDetailSerializer,
+						StaffUserSerializer
 
 					)
+from django.db.models import Q as ComplexQueryFilter
 
 
 User = get_user_model()
@@ -44,6 +47,16 @@ User = get_user_model()
 def get_user(user_id):
 	user = get_object_or_404(User, id=user_id)
 	return user
+
+
+class StaffUserViewSet(viewsets.ModelViewSet):
+	serializer_class = StaffUserSerializer
+	authentication_classes = (TokenAuthentication,)
+	permission_classes = [permissions.IsAuthenticated,]
+	queryset = User.objects.filter(
+						~ComplexQueryFilter(type__in=['student', 'parent'])
+					)
+
 
 
 class CreateBursarAPI(generics.GenericAPIView):

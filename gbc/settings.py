@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'tickets',
     'logs',
     'notifications',
+    'newsletter',
     #third part apps
     'django_extensions',
     'solo.apps.SoloAppConfig',
@@ -142,7 +143,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 
     'DATE_INPUT_FORMATS': ['iso-8601', '%Y-%m-%dT%H:%M:%S.%fZ'],

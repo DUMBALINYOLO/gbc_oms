@@ -70,7 +70,7 @@ const ClosedTickets = props => {
   }, []);
 
   const handleClick = id =>{
-    history.push(`/closed-tickets/${id}`)
+    history.push(`/itdashboard/closed-tickets/${id}`)
   }
 
   const openNew = () => {

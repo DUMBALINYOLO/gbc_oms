@@ -150,6 +150,27 @@ const navigationConfig = [
           },
         ],
       }, 
+      {
+        id: "tickets",
+        title: "TICKETS",
+        type: "collapse",
+        icon: <BioIcon />,
+        badge: {
+          title: "5",
+          bg: "#525E8A",
+          fg: "#FFFFFF",
+
+        },
+        children: [
+          {
+            id: "tickets",
+            title: "TICKETS",
+            type: "item",
+            url: '/teacherdashboard/tickets',
+            exact: true,
+          },
+        ],
+      }, 
     ],
   },
 ];

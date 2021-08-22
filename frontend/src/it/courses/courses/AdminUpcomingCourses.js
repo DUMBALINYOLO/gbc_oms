@@ -75,7 +75,7 @@ const AdminUpcomingCourses = props => {
 
   useEffect(() => {
     if(!props.fetched) {
-        props.getAdminUpcomingCourses(query, token);
+        props.getAdminUpcomingCourses(token);
     }
     console.log('mount it!');
 
@@ -87,11 +87,11 @@ const AdminUpcomingCourses = props => {
       if (fee.id > 0){
         props.editUpComingCourse(fee.id, fee, token)
         setNewCourse(fee)
-        props.getAdminUpcomingCourses(query, token);
+        props.getAdminUpcomingCourses( token);
       }else{
         props.addUpComingCourse(fee, token)
         setNewCourse(fee)
-        props.getAdminUpcomingCourses(query, token);
+        props.getAdminUpcomingCourses(token);
       }
       resetForm()
       setRecordForEdit(null)
