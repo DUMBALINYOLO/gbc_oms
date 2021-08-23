@@ -21,7 +21,7 @@ urlpatterns = [
     re_path(r'api/classes/', include('klasses.urls')),
     re_path(r'api/courses/', include('courses.urls')),
     re_path(r'api/reports/', include('reports.urls')),
-    re_path(r'api/adverts/', include('adverts.urls')),
+    re_path(r'api/adverts/', include('ads.urls')),
     re_path(r'api/messaging/', include('messaging.urls')),
     re_path(r'api/blog/', include('newsletter.urls')),
     path('', index),

@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'klasses',
     'communication',
     'reports',
-    'adverts',
+    'ads',
     'messaging',
     'tickets',
     'logs',
