@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 from .views import index
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # re_path(r'api/accounting/', include('accounts.urls')),
@@ -22,6 +23,7 @@ urlpatterns = [
     re_path(r'api/courses/', include('courses.urls')),
     re_path(r'api/reports/', include('reports.urls')),
     re_path(r'api/adverts/', include('ads.urls')),
+    
     re_path(r'api/messaging/', include('messaging.urls')),
     re_path(r'api/blog/', include('newsletter.urls')),
     path('', index),

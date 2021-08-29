@@ -11,6 +11,7 @@ from django.core.files.base import ContentFile
 from drf_extra_fields.fields import Base64ImageField
 
 
+
 # class Base64ImageField(serializers.ImageField):
     
 #     def to_internal_value(self, data):

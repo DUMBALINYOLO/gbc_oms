@@ -5,6 +5,8 @@ import ErrorWrap from './ErrorWrapper';
 const title =' - Page Not Found';
 const description = 'No page';
 
+
+
 class Error extends Component {
   	render(){
   		return (

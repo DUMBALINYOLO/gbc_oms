@@ -36,7 +36,7 @@ export default function LivePreviewExample() {
                   <div className="feature-box mb-4 pr-4">
                     <h3 className="font-size-lg font-weight-bold my-3">
                     <h1 className="display-3 mb-3 font-weight-bold" style={{textAlign: 'center', color: '#33B2FF'}}>
-                        GERERE VISION MISSION
+                        GERERE MISSION
                     </h1>
                     </h3>
                     <p className=" mb-3" style={{textAlign: 'center', color: '#FFC300'}}>
@@ -62,7 +62,7 @@ export default function LivePreviewExample() {
                   </div>
                   <div className="feature-box mb-4 pr-4">
                     <h1 className="display-3 mb-3 font-weight-bold" style={{textAlign: 'center', color: '#33B2FF'}}>
-                        GERERE VISION MISSION
+                        GERERE VALUES
                     </h1>
                     <p className=" mb-3" style={{textAlign: 'center', color: '#FFC300'}}>
                         Greatness – we do not settle for known heights!
